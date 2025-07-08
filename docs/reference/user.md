@@ -230,14 +230,14 @@ key 说明列表：
 
 | key                                   | 说明    | 数据类型  | 具体描述          |
 |---------------------------------------|-------|-------|---------------|
-| `virtual_user_upper_leg_length_left`  | 左上肢长度 | float | 单位为米，默认值为 0.4 |
-| `virtual_user_upper_leg_length_right` | 右上肢长度 | float | 单位为米，默认值为 0.4 |
-| `virtual_user_lower_leg_length_left`  | 左下肢长度 | float | 单位为米，默认值为 0.4 |
-| `virtual_user_lower_leg_length_right` | 右下肢长度 | float | 单位为米，默认值为 0.4 |
-| `virtual_user_upper_arm_length_left`  | 左上臂长度 | float | 单位为米，默认值为 0.4 |
-| `virtual_user_upper_arm_length_right` | 右上臂长度 | float | 单位为米，默认值为 0.4 |
-| `virtual_user_lower_arm_length_left`  | 左下臂长度 | float | 单位为米，默认值为 0.4 |
-| `virtual_user_lower_arm_length_right` | 右下臂长度 | float | 单位为米，默认值为 0.4 |
+| `virtual_user_upper_leg_length_left`  | 左上肢长度 | float | 单位为米，默认值为 0.5 |
+| `virtual_user_upper_leg_length_right` | 右上肢长度 | float | 单位为米，默认值为 0.5 |
+| `virtual_user_lower_leg_length_left`  | 左下肢长度 | float | 单位为米，默认值为 0.5 |
+| `virtual_user_lower_leg_length_right` | 右下肢长度 | float | 单位为米，默认值为 0.5 |
+| `virtual_user_upper_arm_length_left`  | 左上臂长度 | float | 单位为米，默认值为 0.5 |
+| `virtual_user_upper_arm_length_right` | 右上臂长度 | float | 单位为米，默认值为 0.5 |
+| `virtual_user_lower_arm_length_left`  | 左下臂长度 | float | 单位为米，默认值为 0.5 |
+| `virtual_user_lower_arm_length_right` | 右下臂长度 | float | 单位为米，默认值为 0.5 |
 
 | key                             | 说明       | 数据类型 | 具体描述                    |
 |---------------------------------|----------|------|-------------------------|
