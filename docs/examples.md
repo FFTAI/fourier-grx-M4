@@ -50,20 +50,20 @@ conda activate fourier-grx
 
 ### 基础控制示例
 
-| 示例名称  | 说明        | 代码路径                       |
-|-------|-----------|----------------------------|
-| 机器人使能 | 控制机器人关节上电 | `user/demo_servo_on.py`    |
-| 机器人失能 | 控制机器人关节下电 | `user/demo_servo_off.py`   |
-| 清除故障  | 清除机器人报警状态 | `user/demo_clear_fault.py` |
-| 设置零位  | 设置当前位置为零位 | `user/demo_set_home.py`    |
+| 示例名称  | 说明        | 代码路径                        |
+|-------|-----------|-----------------------------|
+| 机器人使能 | 控制机器人关节上电 | `user/demo_servo_on.py`     |
+| 机器人失能 | 控制机器人关节下电 | `user/demo_servo_off.py`    |
+| 重启机器人 | 重启机器人执行器  | `user/demo_servo_reboot.py` |
+| 清除故障  | 清除机器人报警状态 | `user/demo_clear_fault.py`  |
+| 设置零位  | 设置当前位置为零位 | `user/demo_set_home.py`     |
 
 ### 运动控制示例
 
-| 示例名称 | 说明          | 代码路径                       |
-|------|-------------|----------------------------|
-| 关节测试 | 测试各关节运动功能   | `user/demo_test_joint.py`  |
-| 准备姿态 | 进入准备状态（微曲膝） | `user/demo_ready_state.py` |
-| 行走控制 | 使用手柄控制机器人行走 | `user/demo_walk.py`        |
+| 示例名称 | 说明          | 代码路径                      |
+|------|-------------|---------------------------|
+| 关节测试 | 测试各关节运动功能   | `user/demo_test_joint.py` |
+| 行走控制 | 使用手柄控制机器人行走 | `user/demo_walk.py`       |
 
 ### 运行方法
 
@@ -101,19 +101,20 @@ conda activate fourier-grx
 
 ### 系统控制示例
 
-| 示例名称  | 说明          | 代码路径                            |
-|-------|-------------|---------------------------------|
-| 状态监控  | 打印机器人状态信息   | `developer/demo_print_state.py` |
-| 参数配置  | 设置关节 PID 参数 | `developer/demo_set_pid.py`     |
-| 机器人使能 | 控制机器人使能状态   | `developer/demo_servo_on.py`    |
-| 零位设置  | 设置机器人零位     | `developer/demo_set_home.py`    |
+| 示例名称     | 说明          | 代码路径                             |
+|----------|-------------|----------------------------------|
+| 状态监控     | 打印机器人状态信息   | `developer/demo_print_state.py`  |
+| 参数配置     | 设置关节 PID 参数 | `developer/demo_set_pid.py`      |
+| 机器人执行器使能 | 控制机器人使能状态   | `developer/demo_servo_on.py`     |
+| 机器人执行器失能 | 控制机器人失能状态   | `developer/demo_servo_off.py`    |
+| 机器人执行器重启 | 重启机器人执行器    | `developer/demo_servo_reboot.py` |
+| 零位设置     | 设置机器人零位     | `developer/demo_set_home.py`     |
 
 ### 运动控制示例
 
-| 示例名称 | 说明     | 代码路径                            |
-|------|--------|---------------------------------|
-| 准备姿态 | 进入准备状态 | `developer/demo_ready_state.py` |
-| 行走控制 | 手柄控制行走 | `developer/demo_walk.py`        |
+| 示例名称 | 说明           | 代码路径                           |
+|------|--------------|--------------------------------|
+| 移动关节 | 移动机器人关节到指定角度 | `developer/demo_move_joint.py` |
 
 ### 运行方法
 

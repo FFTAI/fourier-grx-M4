@@ -57,18 +57,6 @@ has_toc: true
 1. 确认机器人型号是否配置正确，参见 [固件安装和更新](/fourier-grx-M4/docs/usage#固件安装和更新)
 2. 重启机器人后重试
 
-### IMU 初始化失败
-
-**问题描述**：机器人 initialize 失败，提示找不到 IMU 设备
-
-![IMU初始化错误](/fourier-grx-M4/assets/images/initialize_imu_error.png)
-
-**解决方案**：
-
-1. 检查 IMU 连接线是否正确连接到机器人主控板
-2. 确认 IMU 设备是否损坏
-3. 重启机器人后重试
-
 ### 执行器自检失败
 
 **问题描述**：机器人 self-check 失败，提示无法访问指定 IP 的执行器

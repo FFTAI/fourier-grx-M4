@@ -11,7 +11,7 @@ has_toc: true
 * TOC
 {:toc}
 
-developer 接口是针对开发者底层开发提供的二次开发接口。需要在 python 环境中安装 fourier_core 和 fourier_grx 库后，直接使用库函数进行开发调用。
+developer 接口是针对开发者底层开发提供的二次开发接口。需要在 python 环境中安装 `fourier_core` 和 `fourier_grx` 库后，直接使用库函数进行开发调用。
 
 ## 状态字典（state dict）
 
@@ -19,10 +19,6 @@ Fourier-GRX developer 接口使用状态字典（state dict）返回机器人当
 
 | key                    | 说明               | 数据类型                           | 单位    | 具体描述                                                        |
 |------------------------|------------------|--------------------------------|-------|-------------------------------------------------------------|
-| `imu_quat`             | 机器人 IMU 的四元数姿态信息 | array(float,float,float,float) |       | x, y, z, w                                                  |
-| `imu_euler_angle`      | 机器人 IMU 的欧拉角姿态信息 | array(float, float, float)     | deg   | roll, pitch, yaw                                            |
-| `imu_angular_velocity` | 机器人 IMU 的角速度信息   | array(float, float, float)     | deg/s | roll, pitch, yaw                                            |
-| `imu_acceleration`     | 机器人 IMU 的线加速度信息  | array(float, float, float)     | m/s^2 | x, y, z                                                     |
 | `joint_position`       | 机器人关节的位置信息       | array(float * num_of_joints)   | deg   | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
 | `joint_velocity`       | 机器人关节的速度信息       | array(float * num_of_joints)   | deg/s | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
 | `joint_kinetic`        | 机器人关节的力矩信息       | array(float * num_of_joints)   | Nm    | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
