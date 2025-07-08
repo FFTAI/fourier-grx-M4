@@ -21,7 +21,7 @@ has_toc: true
 启动时使用哪个配置文件，取决于 `run.sh` 文件中的 `robot_type`, `robot_version` 和 `run_type` 字段。
 这些字段的值既可以通过 `fourier-grx config` 命令行工具进行修改，也可以直接在 `run.sh` 文件中修改。
 
-比如，如果用户希望启动自定义的机器人配置文件 `config_M4__custom.yaml`，可以在 `run.sh` 文件中将 `run_type` 字段修改为 `custom`：
+比如，如果用户希望启动自定义的机器人配置文件 `config_M4_T1_custom.yaml`，可以在 `run.sh` 文件中将 `run_type` 字段修改为 `custom`：
 
 ```bash
 robot_type="M4"
@@ -29,7 +29,7 @@ robot_version=""
 
 run_type="custom"
 
-# 此时，用 fourier-grx start 命令启动机器人时，将会使用 ~/fourier-grx/config/m4/config_M4__custom.yaml 作为配置文件。
+# 此时，用 fourier-grx start 命令启动机器人时，将会使用 ~/fourier-grx/config/m4/config_M4_T1_custom.yaml 作为配置文件。
 ```
 
 ## 启动配置文件的内容

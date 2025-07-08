@@ -154,11 +154,11 @@ fourier-grx 提供了数据日志记录功能，但是默认情况下是关闭�
 如果需要启用数据日志记录功能，需要对 **配置文件** 进行手动修改，具体修改步骤如下：
 
 1. 创建机器人的启动配置文件：
-    - 打开文件夹 `~/fourier-grx/config/m4` 文件夹，找到当前使用的配置文件，比如 `config_M4__debug.yaml`。
-    - 将该文件复制一份，命名为 `config_M4__record.yaml`。
+    - 打开文件夹 `~/fourier-grx/config/m4` 文件夹，找到当前使用的配置文件，比如 `config_M4_T1_debug.yaml`。
+    - 将该文件复制一份，命名为 `config_M4_T1_record.yaml`。
 
 2. 修改配置文件：
-    - 打开 `config_M4__record.yaml` 文件。
+    - 打开 `config_M4_T1_record.yaml` 文件。
     - 在配置文件中，添加以下内容：
         - 该配置表示在使用该配置文件启动 `fourier-grx` 时，启用数据记录功能，并将记录数据保存到指定路径。
 
