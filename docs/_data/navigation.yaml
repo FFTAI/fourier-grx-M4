@@ -34,9 +34,6 @@ docs:
       - title: 机器人关节序列
         url: /docs/reference/joint_sequence
         nav_order: 3.3
-      - title: 作为移动平台使用
-        url: /docs/reference/move_platform_usage
-        nav_order: 3.4
       - title: 启动配置文件
         url: /docs/reference/config_file
         nav_order: 3.5
@@ -46,18 +43,6 @@ docs:
       - title: 命令行工具
         url: /docs/reference/command_line_tool
         nav_order: 3.7
-
-  - title: 模型训练
-    url: /docs/training
-    nav_order: 4
-    has_children: true
-    children:
-      - title: M4
-        url: /docs/training/m4
-        nav_order: 4.1
-      - title: Sim2Real
-        url: /docs/training/sim2real
-        nav_order: 4.2
 
   - title: 常用操作
     url: /docs/usage
