@@ -38,7 +38,7 @@ SDK 目前主要支持 Python 语言二次开发使用。
 | 硬件环境       | 系统环境             | Python 环境   | 已测试 | 测试通过 |
 |------------|------------------|-------------|-----|------|
 | ARM RK3588 | Ubuntu 20.04 LTS | Python 3.11 | ✅   | ✅    |
-| X64 i7     | Ubuntu 22.04 LTS | Python 3.11 | ✅   | ✅    |
+| X64 INTEL  | Ubuntu 22.04 LTS | Python 3.11 | ✅   | ✅    |
 |            | Windows          | Python 3.11 |     |      |
 |            | MacOS            | Python 3.11 |     |      |
 
