@@ -25,7 +25,7 @@ has_toc: true
 
 | 接口参数 | 虚拟外设映射关系                                                                                 |
 |------|------------------------------------------------------------------------------------------|
-| 步长长度 | `grx.virtual_panel_command_param_1`                                                      |
-| 步行速度 | `grx.virtual_panel_command_param_2`                                                      |
 | 大腿长度 | `grx.virtual_user_upper_leg_length_left`, `grx.virtual_user_upper_leg_length_right`, 取均值 |
 | 小腿长度 | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
+| 步长长度 | `grx.virtual_panel_command_param_1`                                                      |
+| 步行速度 | `grx.virtual_panel_command_param_2`                                                      |
