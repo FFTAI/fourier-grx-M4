@@ -44,6 +44,15 @@ docs:
         url: /docs/reference/command_line_tool
         nav_order: 3.7
 
+  - title: 任务描述
+    url: /docs/tasks
+    nav_order: 4
+    has_children: true
+    children:
+      - title: 被动前向行走
+        url: /docs/tasks/forward_walk_passive
+        nav_order: 4.1
+
   - title: 常用操作
     url: /docs/usage
     nav_order: 5
