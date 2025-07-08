@@ -49,6 +49,9 @@ docs:
     nav_order: 4
     has_children: true
     children:
+      - title: 站立姿态控制
+        url: /docs/tasks/stand_motion_control
+        nav_order: 4.0
       - title: 被动前向行走
         url: /docs/tasks/forward_walk_passive
         nav_order: 4.1
