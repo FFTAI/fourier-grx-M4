@@ -20,18 +20,19 @@ has_toc: true
 
 | 接口参数 | 类型      | 默认值 | 描述                          |
 |------|---------|-----|-----------------------------|
-| 步长长度 | `float` | 0.5 | 机器人每一步的长度，单位为 m。            |
-| 步行速度 | `float` | 0.5 | 机器人前进的速度，单位为 m/s。           |
 | 大腿长度 | `float` | 0.5 | 机器人的大腿长度，单位为 m。             |
 | 小腿长度 | `float` | 0.5 | 机器人的小腿长度，单位为 m。             |
+| 步长长度 | `float` | 0.5 | 机器人每一步的长度，单位为 m。            |
+| 步行速度 | `float` | 0.5 | 机器人前进的速度，单位为 m/s。           |
 | 助力系数 | `float` | 0.5 | 助力模式的系数，范围为 [0, 1]，表示助力的强度。 |
 
-| 接口参数 | 虚拟外设映射关系             |
-|------|----------------------|
-| 步长长度 | `robot.step_length`  |
-| 步行速度 | `robot.walk_speed`   |
-| 大腿长度 | `robot.thigh_length` |
-| 小腿长度 | `robot.calf_length`  |
+| 接口参数 | 虚拟外设映射关系                                                                                 |
+|------|------------------------------------------------------------------------------------------|
+| 大腿长度 | `grx.virtual_user_upper_leg_length_left`, `grx.virtual_user_upper_leg_length_right`, 取均值 |
+| 小腿长度 | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
+| 步长长度 | `grx.virtual_panel_command_param_1`                                                      |
+| 步行速度 | `grx.virtual_panel_command_param_2`                                                      |
+| 助力系数 | `grx.virtual_panel_command_param_3`                                                      |
 
 ## 助力模式 B
 
@@ -45,15 +46,16 @@ has_toc: true
 
 | 接口参数 | 类型      | 默认值 | 描述                          |
 |------|---------|-----|-----------------------------|
-| 步长长度 | `float` | 0.5 | 机器人每一步的长度，单位为 m。            |
-| 步行速度 | `float` | 0.5 | 机器人前进的速度，单位为 m/s。           |
 | 大腿长度 | `float` | 0.5 | 机器人的大腿长度，单位为 m。             |
 | 小腿长度 | `float` | 0.5 | 机器人的小腿长度，单位为 m。             |
+| 步长长度 | `float` | 0.5 | 机器人每一步的长度，单位为 m。            |
+| 步行速度 | `float` | 0.5 | 机器人前进的速度，单位为 m/s。           |
 | 助力系数 | `float` | 0.5 | 助力模式的系数，范围为 [0, 1]，表示助力的强度。 |
 
-| 接口参数 | 虚拟外设映射关系             |
-|------|----------------------|
-| 步长长度 | `robot.step_length`  |
-| 步行速度 | `robot.walk_speed`   |
-| 大腿长度 | `robot.thigh_length` |
-| 小腿长度 | `robot.calf_length`  |
+| 接口参数 | 虚拟外设映射关系                                                                                 |
+|------|------------------------------------------------------------------------------------------|
+| 大腿长度 | `grx.virtual_user_upper_leg_length_left`, `grx.virtual_user_upper_leg_length_right`, 取均值 |
+| 小腿长度 | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
+| 步长长度 | `grx.virtual_panel_command_param_1`                                                      |
+| 步行速度 | `grx.virtual_panel_command_param_2`                                                      |
+| 助力系数 | `grx.virtual_panel_command_param_3`                                                      |
