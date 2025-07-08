@@ -241,12 +241,12 @@ key 说明列表：
 
 | key                             | 说明       | 数据类型 | 具体描述                    |
 |---------------------------------|----------|------|-------------------------|
-| `virtual_panel_command_param_1` | 面板命令参数1  | int  | 面板命令参数1，具体含义由面板定义       |
-| `virtual_panel_command_param_2` | 面板命令参数2  | int  | 面板命令参数2，具体含义由面板定义       |
-| `virtual_panel_command_param_3` | 面板命令参数3  | int  | 面板命令参数3，具体含义由面板定义       |
-| `virtual_panel_command_param_4` | 面板命令参数4  | int  | 面板命令参数4，具体含义由面板定义       |
-| `virtual_panel_command_param_5` | 面板命令参数5  | int  | 面板命令参数5，具体含义由面板定义       |
-| `virtual_panel_command_param_6` | 面板命令参数6  | int  | 面板命令参数6，具体含义由面板定义       |
+| `virtual_panel_command_param_1` | 面板命令参数1  | int  | 面板命令参数1，具体含义由任务决定       |
+| `virtual_panel_command_param_2` | 面板命令参数2  | int  | 面板命令参数2，具体含义由任务决定       |
+| `virtual_panel_command_param_3` | 面板命令参数3  | int  | 面板命令参数3，具体含义由任务决定       |
+| `virtual_panel_command_param_4` | 面板命令参数4  | int  | 面板命令参数4，具体含义由任务决定       |
+| `virtual_panel_command_param_5` | 面板命令参数5  | int  | 面板命令参数5，具体含义由任务决定       |
+| `virtual_panel_command_param_6` | 面板命令参数6  | int  | 面板命令参数6，具体含义由任务决定       |
 | `virtual_panel_command_start`   | 面板命令开始标志 | bool | 0: 不开始，1: 开始，表示面板命令开始执行 |
 | `virtual_panel_command_stop`    | 面板命令停止标志 | bool | 0: 不停止，1: 停止，表示面板命令停止执行 |
 | `virtual_panel_command_pause`   | 面板命令暂停标志 | bool | 0: 不暂停，1: 暂停，表示面板命令暂停执行 |
