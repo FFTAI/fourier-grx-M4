@@ -22,7 +22,7 @@ user 接口主要分为以下4类：
 
 对应的 zenoh 接口 topic 的 key 格式为：
 
-- key 可以是 ["comm", "robot", "task", "grx"]
+- key 可以是 ["comm", "robot", "task", "grx", "rehab"]
 - `fourier-grx/dynalink_interface/{key}/server` ：机器人主控程序发出状态信息
 - `fourier-grx/dynalink_interface/{key}/client` ：机器人主控程序接收指令信息
 
@@ -44,23 +44,23 @@ key 说明列表：
 
 | key                          | 说明   | 数据类型         | 具体描述           |
 |------------------------------|------|--------------|----------------|
-| `actuator_measured_position` | 电机位置 | array(float) | 电机测量位置，单位为角度   |
-| `actuator_measured_velocity` | 电机速度 | array(float) | 电机测量速度，单位为角度/秒 |
+| `actuator_measured_position` | 电机位置 | array(float) | 电机测量位置，单位为弧度   |
+| `actuator_measured_velocity` | 电机速度 | array(float) | 电机测量速度，单位为弧度/秒 |
 | `actuator_measured_kinetic`  | 电机力矩 | array(float) | 电机测量力矩，单位为牛顿米  |
 | `actuator_measured_current`  | 电机电流 | array(float) | 电机测量电流，单位为安培   |
-| `actuator_output_position`   | 电机位置 | array(float) | 电机指令位置，单位为角度   |
-| `actuator_output_velocity`   | 电机速度 | array(float) | 电机指令速度，单位为角度/秒 |
+| `actuator_output_position`   | 电机位置 | array(float) | 电机指令位置，单位为弧度   |
+| `actuator_output_velocity`   | 电机速度 | array(float) | 电机指令速度，单位为弧度/秒 |
 | `actuator_output_kinetic`    | 电机力矩 | array(float) | 电机指令力矩，单位为牛顿米  |
 | `actuator_output_current`    | 电机电流 | array(float) | 电机指令电流，单位为安培   |
 
 | key                       | 说明   | 数据类型         | 具体描述           |
 |---------------------------|------|--------------|----------------|
-| `joint_measured_position` | 关节位置 | array(float) | 关节测量位置，单位为角度   |
-| `joint_measured_velocity` | 关节速度 | array(float) | 关节测量速度，单位为角度/秒 |
+| `joint_measured_position` | 关节位置 | array(float) | 关节测量位置，单位为弧度   |
+| `joint_measured_velocity` | 关节速度 | array(float) | 关节测量速度，单位为弧度/秒 |
 | `joint_measured_kinetic`  | 关节力矩 | array(float) | 关节测量力矩，单位为牛顿米  |
 | `joint_measured_current`  | 关节电流 | array(float) | 关节测量电流，单位为安培   |
-| `joint_output_position`   | 关节位置 | array(float) | 关节指令位置，单位为角度   |
-| `joint_output_velocity`   | 关节速度 | array(float) | 关节指令速度，单位为角度/秒 |
+| `joint_output_position`   | 关节位置 | array(float) | 关节指令位置，单位为弧度   |
+| `joint_output_velocity`   | 关节速度 | array(float) | 关节指令速度，单位为弧度/秒 |
 | `joint_output_kinetic`    | 关节力矩 | array(float) | 关节指令力矩，单位为牛顿米  |
 | `joint_output_current`    | 关节电流 | array(float) | 关节指令电流，单位为安培   |
 
@@ -83,6 +83,15 @@ key 说明列表：
 | `fourier_core_version` | 核心库版本  | string | 核心库版本号                  |
 | `fourier_grx_version`  | GRX库版本 | string | GRX库版本号                 |
 | `robot_error_codes`    | 机器人错误码 | int    | 机器人错误码，0: 无错误，其他: 具体错误码 |
+
+### rehab/server 接口协议 (状态信息)
+
+key 说明列表：
+
+| key                       | 说明     | 数据类型         | 具体描述           |
+|---------------------------|--------|--------------|----------------|
+| "joint_referenc_position" | 关节参考位置 | array(float) | 关节参考位置，单位为弧度   |
+| "joint_referenc_velocity" | 关节参考速度 | array(float) | 关节参考速度，单位为弧度/秒 |
 
 ---
 
@@ -252,3 +261,11 @@ key 说明列表：
 | `virtual_panel_command_start`   | 面板命令开始标志 | bool  | 0: 不开始，1: 开始，具体含义由任务决定 |
 | `virtual_panel_command_stop`    | 面板命令停止标志 | bool  | 0: 不停止，1: 停止，具体含义由任务决定 |
 | `virtual_panel_command_pause`   | 面板命令暂停标志 | bool  | 0: 不暂停，1: 暂停，具体含义由任务决定 |
+
+### rehab/client 接口协议 (指令信息)
+
+key 说明列表：
+
+| key | 说明  | 数据类型 | 具体描述 |
+|-----|-----|------|------|
+| (空) | （空） | （空）  | （空）  |
