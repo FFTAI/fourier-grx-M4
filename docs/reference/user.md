@@ -250,17 +250,21 @@ key 说明列表：
 | `virtual_user_lower_arm_length_left`  | 左下臂长度 | float | 单位为米，默认值为 0.5 |
 | `virtual_user_lower_arm_length_right` | 右下臂长度 | float | 单位为米，默认值为 0.5 |
 
-| key                             | 说明       | 数据类型  | 具体描述                   |
-|---------------------------------|----------|-------|------------------------|
-| `virtual_panel_command_param_1` | 面板命令参数1  | float | 面板命令参数1，具体含义由任务决定      |
-| `virtual_panel_command_param_2` | 面板命令参数2  | float | 面板命令参数2，具体含义由任务决定      |
-| `virtual_panel_command_param_3` | 面板命令参数3  | float | 面板命令参数3，具体含义由任务决定      |
-| `virtual_panel_command_param_4` | 面板命令参数4  | float | 面板命令参数4，具体含义由任务决定      |
-| `virtual_panel_command_param_5` | 面板命令参数5  | float | 面板命令参数5，具体含义由任务决定      |
-| `virtual_panel_command_param_6` | 面板命令参数6  | float | 面板命令参数6，具体含义由任务决定      |
-| `virtual_panel_command_start`   | 面板命令开始标志 | bool  | 0: 不开始，1: 开始，具体含义由任务决定 |
-| `virtual_panel_command_stop`    | 面板命令停止标志 | bool  | 0: 不停止，1: 停止，具体含义由任务决定 |
-| `virtual_panel_command_pause`   | 面板命令暂停标志 | bool  | 0: 不暂停，1: 暂停，具体含义由任务决定 |
+| key                              | 说明       | 数据类型  | 具体描述                   |
+|----------------------------------|----------|-------|------------------------|
+| `virtual_panel_command_param_1`  | 面板命令参数1  | float | 面板命令参数1，具体含义由任务决定      |
+| `virtual_panel_command_param_2`  | 面板命令参数2  | float | 面板命令参数2，具体含义由任务决定      |
+| `virtual_panel_command_param_3`  | 面板命令参数3  | float | 面板命令参数3，具体含义由任务决定      |
+| `virtual_panel_command_param_4`  | 面板命令参数4  | float | 面板命令参数4，具体含义由任务决定      |
+| `virtual_panel_command_param_5`  | 面板命令参数5  | float | 面板命令参数5，具体含义由任务决定      |
+| `virtual_panel_command_switch_1` | 面板命令开关1  | bool  | 0: 不开，1: 开，具体含义由任务决定   |
+| `virtual_panel_command_switch_2` | 面板命令开关2  | bool  | 0: 不开，1: 开，具体含义由任务决定   |
+| `virtual_panel_command_switch_3` | 面板命令开关3  | bool  | 0: 不开，1: 开，具体含义由任务决定   |
+| `virtual_panel_command_switch_4` | 面板命令开关4  | bool  | 0: 不开，1: 开，具体含义由任务决定   |
+| `virtual_panel_command_switch_5` | 面板命令开关5  | bool  | 0: 不开，1: 开，具体含义由任务决定   |
+| `virtual_panel_command_start`    | 面板命令开始标志 | bool  | 0: 不开始，1: 开始，具体含义由任务决定 |
+| `virtual_panel_command_stop`     | 面板命令停止标志 | bool  | 0: 不停止，1: 停止，具体含义由任务决定 |
+| `virtual_panel_command_pause`    | 面板命令暂停标志 | bool  | 0: 不暂停，1: 暂停，具体含义由任务决定 |
 
 ### rehab/client 接口协议 (指令信息)
 
