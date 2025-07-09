@@ -79,7 +79,7 @@ has_toc: true
 | 步长长度      | `grx.virtual_panel_command_param_1`                                                      |
 | 步行速度      | `grx.virtual_panel_command_param_2`                                                      |
 | 助力系数      | `grx.virtual_panel_command_param_3`                                                      |
-| 自动助力模式标志位 | `grx.virtual_panel_command_param_4`                                                      |
+| 自动助力模式标志位 | `grx.virtual_panel_command_switch_1`                                                     |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
 
 涉及状态接口：
