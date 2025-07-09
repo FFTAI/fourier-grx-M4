@@ -29,7 +29,9 @@ has_toc: true
 | 助力系数    | `float` | 0.5   | [0.0, 1.0]    | 助力模式的系数，表示助力的强度。               |
 | 停止运动标志位 | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。 |
 
-| 接口参数    | 虚拟外设映射关系                                                                                 |
+涉及指令接口：
+
+| 接口参数    | 接口映射关系                                                                                   |
 |---------|------------------------------------------------------------------------------------------|
 | 大腿长度    | `grx.virtual_user_upper_leg_length_left`, `grx.virtual_user_upper_leg_length_right`, 取均值 |
 | 小腿长度    | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
@@ -37,6 +39,13 @@ has_toc: true
 | 步行速度    | `grx.virtual_panel_command_param_2`                                                      |
 | 助力系数    | `grx.virtual_panel_command_param_3`                                                      |
 | 停止运动标志位 | `grx.virtual_panel_command_param_4`                                                      |
+
+涉及状态接口：
+
+| 接口参数   | 接口映射关系                           | 
+|--------|----------------------------------|
+| 参考轨迹位置 | `rehab.reference_joint_position` |
+| 参考轨迹速度 | `rehab_reference_joint_velocity` |
 
 ## 助力模式 B
 
@@ -61,7 +70,9 @@ has_toc: true
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。 |
 | 自动助力模式标志位 | `bool`  | false | (true, false) | 是否启用自动助力模式，根据当前状态自动调整助力系数。     |
 
-| 接口参数      | 虚拟外设映射关系                                                                                 |
+涉及指令接口：
+
+| 接口参数      | 接口映射关系                                                                                   |
 |-----------|------------------------------------------------------------------------------------------|
 | 大腿长度      | `grx.virtual_user_upper_leg_length_left`, `grx.virtual_user_upper_leg_length_right`, 取均值 |
 | 小腿长度      | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
@@ -70,3 +81,10 @@ has_toc: true
 | 助力系数      | `grx.virtual_panel_command_param_3`                                                      |
 | 停止运动标志位   | `grx.virtual_panel_command_param_4`                                                      |
 | 自动助力模式标志位 | `grx.virtual_panel_command_param_5`                                                      |
+
+涉及状态接口：
+
+| 接口参数   | 接口映射关系                           | 
+|--------|----------------------------------|
+| 参考轨迹位置 | `rehab.reference_joint_position` |
+| 参考轨迹速度 | `rehab_reference_joint_velocity` |
