@@ -18,7 +18,7 @@ Fourier-GRX-M4 SDK 安装文件请从 [固件更新](/fourier-grx-M4/docs/update
 下载完后，运行下面的指令完成安装过程：
 
 ```
-# Fourier-M4 安装 （旧版）
+# Fourier-M4 安装 (旧版)
 # 安装 fourier-m4-xxx.deb 文件，安装完后系统中会提供 fourier-m4 程序工具
 sudo dpkg -i fourier-m4-xxx.deb  # xxx 为具体版本号
 
@@ -27,7 +27,7 @@ fourier-m4 install
 ```
 
 ```
-# Fourier-GRX 安装 （新版）
+# Fourier-GRX 安装 (新版)
 # 安装 fourier-grx-xxx.deb 文件，安装完后系统中会提供 fourier-grx 程序工具
 sudo dpkg -i fourier-grx-xxx.deb  # xxx 为具体版本号
 
@@ -37,14 +37,14 @@ fourier-grx install
 
 安装过程中，会要求输入机器人型号，请根据实际机器人型号进行配置，目前支持的型号如下：
 
-`fourier-m4` 机器人型号的配置选项：
+`Fourier-M4 (旧版)` 机器人型号的配置选项：
 
 | 机器人型号 | 机器人版本 | 适配的机器人型号                                |
 |-------|-------|-----------------------------------------|
 | M4L   | V2    | M4 8电机版本 傅利叶智能自研执行器V1版本，使用 RK3399 嵌入式板卡 |
 | M4L   | V3    | M4 8电机版本 傅利叶智能自研执行器V1版本，使用 RK3588 嵌入式板卡 |
 
-`fourier-grx` 机器人型号的配置选项：
+`Fourier-GRX (新版)` 机器人型号的配置选项：
 
 | 机器人型号 | 机器人版本 | 测试机型 | [运行模式](/fourier-grx-M4/docs/reference/run_type) | 适配的机器人型号 |
 |-------|-------|------|-------------------------------------------------|----------|
