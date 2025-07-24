@@ -18,7 +18,7 @@ Fourier-GRX-M4 SDK 安装文件请从 [固件更新](/fourier-grx-M4/docs/update
 下载完后，运行下面的指令完成安装过程：
 
 ```
-# Fourier-M4 安装
+# Fourier-M4 安装 （旧版）
 # 安装 fourier-m4-xxx.deb 文件，安装完后系统中会提供 fourier-m4 程序工具
 sudo dpkg -i fourier-m4-xxx.deb  # xxx 为具体版本号
 
@@ -27,7 +27,7 @@ fourier-m4 install
 ```
 
 ```
-# Fourier-GRX 安装
+# Fourier-GRX 安装 （新版）
 # 安装 fourier-grx-xxx.deb 文件，安装完后系统中会提供 fourier-grx 程序工具
 sudo dpkg -i fourier-grx-xxx.deb  # xxx 为具体版本号
 
