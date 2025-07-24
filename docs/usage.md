@@ -54,7 +54,7 @@ fourier-grx install
 
 > ℹ️ **说明**
 >
-> `fourier-m4` 是 `fourier-grx` 的前置版本程序，目前已不再维护，建议用户使用 `fourier-grx` 进行安装和使用。
+> `fourier-m4` 是 `fourier-grx` 的前置版本程序，简称 “旧版”，目前已不再积极维护。如果设备支持新版的 `fourier-grx`， 建议使用 `fourier-grx` 进行安装和使用。
 
 ## 关节零位校准
 
