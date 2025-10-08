@@ -11,17 +11,26 @@ has_toc: true
 * TOC
 {:toc}
 
-developer 接口是针对开发者底层开发提供的二次开发接口。需要在 python 环境中安装 `fourier_core` 和 `fourier_grx` 库后，直接使用库函数进行开发调用。
+> ℹ️ **说明**：
+>
+> 使用 Fourier-GRX-N1 SDK Developer API 前，请将 `fourier-grx` 配置为 **开发者模式**。
+> 关于运行模式的配置，请参见 [运行模式](/fourier-grx-N1/docs/reference/run_type)。
+
+Fourier-GRX Developer 接口是针对开发者底层开发提供的二次开发接口，直接调用底层硬件接口，适用于底层开发。
+
+需要在 python 环境中安装 fourier_core 和 fourier_grx 库后，直接使用库函数进行开发调用。
+
+---
 
 ## 状态字典（state dict）
 
 Fourier-GRX developer 接口使用状态字典（state dict）返回机器人当前的状态信息，状态字典的 key 和 value 如下：
 
-| key                    | 说明               | 数据类型                           | 单位    | 具体描述                                                        |
-|------------------------|------------------|--------------------------------|-------|-------------------------------------------------------------|
-| `joint_position`       | 机器人关节的位置信息       | array(float * num_of_joints)   | rad   | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
-| `joint_velocity`       | 机器人关节的速度信息       | array(float * num_of_joints)   | rad/s | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
-| `joint_kinetic`        | 机器人关节的力矩信息       | array(float * num_of_joints)   | Nm    | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
+| key              | 说明         | 数据类型                         | 单位    | 具体描述                                                        |
+|------------------|------------|------------------------------|-------|-------------------------------------------------------------|
+| `joint_position` | 机器人关节的位置信息 | array(float * num_of_joints) | rad   | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
+| `joint_velocity` | 机器人关节的速度信息 | array(float * num_of_joints) | rad/s | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
+| `joint_kinetic`  | 机器人关节的力矩信息 | array(float * num_of_joints) | Nm    | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
 
 ## 控制字典（control dict）
 
