@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 助力前向行走
+title: 助力前向行走 (调整 PD 参数)
 nav_order: 4.2
 parent: 任务描述
 has_toc: true
