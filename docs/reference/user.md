@@ -99,6 +99,7 @@ key 说明列表：
 |----------------------------|--------|--------------|----------------|
 | `joint_reference_position` | 关节参考位置 | array(float) | 关节参考位置，单位为弧度   |
 | `joint_reference_velocity` | 关节参考速度 | array(float) | 关节参考速度，单位为弧度/秒 |
+| `motion_ratio`             | 运动进度比例 | float        | 比例值，范围 [0, 1]  |
 
 ---
 
