@@ -46,7 +46,7 @@ has_toc: true
 | 接口参数   | 接口映射关系                           | 
 |--------|----------------------------------|
 | 参考轨迹位置 | `rehab.reference_joint_position` |
-| 参考轨迹速度 | `rehab_reference_joint_velocity` |
+| 参考轨迹速度 | `rehab.reference_joint_velocity` |
 
 指令接口：
 
