@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 校准零点
+title: 校准零点 (直线关节)
 nav_order: 4.10
 parent: 任务描述
 has_toc: true

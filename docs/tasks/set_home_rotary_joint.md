@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 设置零点
+title: 设置零点 (旋转关节)
 nav_order: 4.10
 parent: 任务描述
 has_toc: true
@@ -32,9 +32,10 @@ has_toc: true
 
 状态接口：
 
-| 接口参数 | 接口映射关系 |
-|------|--------|
-|      |        |
+| 接口参数   | 接口映射关系                  |
+|--------|-------------------------|
+| 任务启动标志 | `task.flag_task_start`  |
+| 任务结束标志 | `task.flag_task_finish` |
 
 指令接口：
 

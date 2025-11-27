@@ -41,6 +41,9 @@ has_toc: true
 
 | 接口参数   | 接口映射关系                           | 
 |--------|----------------------------------|
+| 任务启动标志 | `task.flag_task_start`           |
+| 任务结束标志 | `task.flag_task_finish`          |
+| 运行比例   | `rehab.motion_ratio`             |
 | 参考轨迹位置 | `rehab.reference_joint_position` |
 | 参考轨迹速度 | `rehab.reference_joint_velocity` |
 
