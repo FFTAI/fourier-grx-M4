@@ -23,15 +23,11 @@ has_toc: true
 |-----------|---------|-------|---------------|--------------------------------|
 | 大腿长度      | `float` | 0.5   | [0.4, 0.6]    | 机器人的大腿长度，单位为 m。                |
 | 小腿长度      | `float` | 0.5   | [0.4, 0.6]    | 机器人的小腿长度，单位为 m。                |
-| 步长长度      | `float` | 0.5   | [0.1, 1.0]    | 机器人每一步的长度，单位为 m。               |
-| 步行速度      | `float` | 0.5   | [0.1, 1.0]    | 机器人前进的速度，单位为 m/s。              |
-| 助力系数      | `float` | 0.5   | [0.0, 1.0]    | 助力模式的系数，表示助力的强度。               |
+| 抬腿高度      | `float` | 0.1   | [0.1, 0.5]    | 机器人每一步的长度，单位为 m。               |
+| 步行周期      | `float` | 1.0   | [0.5, 4.0]    | 机器人前进的速度，单位为 s。                |
+| 助力系数      | `float` | 0.5   | [0.2, 1.0]    | 助力模式的系数，表示助力的强度。               |
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。 |
 | 自动助力模式标志位 | `bool`  | false | (true, false) | 是否启用自动助力模式，根据当前状态自动调整助力系数。     |
-
-> 建议：
-> - 步长为步速的 0.5 到 1.0 倍之间，能够获得较好的行走效果。例如，步速为 0.5 m/s 时，步长建议设置在 0.25 m 到 0.5 m 之间。
-> - 对于原地踏步任务，步长仅用于步速计算行走频率，实际并不影响机器人的踏步前进足部落地位置。
 
 ## 模块信息
 
@@ -60,8 +56,8 @@ has_toc: true
 |-----------|------------------------------------------------------------------------------------------|
 | 大腿长度      | `grx.virtual_user_upper_leg_length_left`, `grx.virtual_user_upper_leg_length_right`, 取均值 |
 | 小腿长度      | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
-| 步长长度      | `grx.virtual_panel_command_param_1`                                                      |
-| 步行速度      | `grx.virtual_panel_command_param_2`                                                      |
+| 抬腿高度      | `grx.virtual_panel_command_param_1`                                                      |
+| 步行周期      | `grx.virtual_panel_command_param_2`                                                      |
 | 助力系数      | `grx.virtual_panel_command_param_3`                                                      |
 | 自动助力模式标志位 | `grx.virtual_panel_command_switch_1`                                                     |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
