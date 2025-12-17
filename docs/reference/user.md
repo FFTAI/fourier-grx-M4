@@ -71,6 +71,18 @@ key 说明列表：
 | `joint_output_kinetic`    | 关节力矩 | array(float) | 关节指令力矩，单位为牛顿米  |
 | `joint_output_current`    | 关节电流 | array(float) | 关节指令电流，单位为安培   |
 
+| key                            | 说明        | 数据类型 | 具体描述              |
+|--------------------------------|-----------|------|-------------------|
+| `flag_robot_self_check`        | 机器人自检成功标志 | bool | 0: 自检失败，1: 自检成功   |
+| `flag_robot_calibration`       | 机器人完成校准标志 | bool | 0: 校准失败，1: 校准成功   |
+| `flag_robot_servo_on`          | 机器人伺服使能标志 | bool | 0: 伺服未使能，1: 伺服已使能 |
+| `flag_robot_emergent_stop`     | 机器人急停标志   | bool | 0: 未急停，1: 急停      |
+| `flag_robot_fault`             | 机器人故障标志   | bool | 0: 无故障，1: 有故障     |
+| `flag_robot_error`             | 机器人错误标志   | bool | 0: 无错误，1: 有错误     |
+| `flag_robot_pinched`           | 机器人夹持标志   | bool | 0: 未夹持，1: 夹持      |
+| `flag_robot_over_load`         | 机器人过载标志   | bool | 0: 未过载，1: 过载      |
+| `flag_robot_torque_protection` | 机器人力矩保护标志 | bool | 0: 未触发，1: 触发      |
+
 ### task/server 接口协议 (状态信息)
 
 key 说明列表：
