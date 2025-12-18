@@ -222,16 +222,18 @@ key 说明列表：
 | `virtual_teleoperation_button_left`       | 虚拟遥操作手柄左手柄按钮状态 | int                                                | 0: 未按下，1: 按下 |
 | `virtual_teleoperation_button_right`      | 虚拟遥操作手柄右手柄按钮状态 | int                                                | 0: 未按下，1: 按下 |
 
-| key                                   | 说明    | 数据类型  | 具体描述          |
-|---------------------------------------|-------|-------|---------------|
-| `virtual_user_upper_leg_length_left`  | 左上肢长度 | float | 单位为米，默认值为 0.5 |
-| `virtual_user_upper_leg_length_right` | 右上肢长度 | float | 单位为米，默认值为 0.5 |
-| `virtual_user_lower_leg_length_left`  | 左下肢长度 | float | 单位为米，默认值为 0.5 |
-| `virtual_user_lower_leg_length_right` | 右下肢长度 | float | 单位为米，默认值为 0.5 |
-| `virtual_user_upper_arm_length_left`  | 左上臂长度 | float | 单位为米，默认值为 0.5 |
-| `virtual_user_upper_arm_length_right` | 右上臂长度 | float | 单位为米，默认值为 0.5 |
-| `virtual_user_lower_arm_length_left`  | 左下臂长度 | float | 单位为米，默认值为 0.5 |
-| `virtual_user_lower_arm_length_right` | 右下臂长度 | float | 单位为米，默认值为 0.5 |
+| key                                   | 说明     | 数据类型  | 具体描述           |
+|---------------------------------------|--------|-------|----------------|
+| `virtual_user_upper_leg_length_left`  | 左上肢长度  | float | 单位为米，默认值为 0.5  |
+| `virtual_user_upper_leg_length_right` | 右上肢长度  | float | 单位为米，默认值为 0.5  |
+| `virtual_user_lower_leg_length_left`  | 左下肢长度  | float | 单位为米，默认值为 0.5  |
+| `virtual_user_lower_leg_length_right` | 右下肢长度  | float | 单位为米，默认值为 0.5  |
+| `virtual_user_upper_arm_length_left`  | 左上臂长度  | float | 单位为米，默认值为 0.5  |
+| `virtual_user_upper_arm_length_right` | 右上臂长度  | float | 单位为米，默认值为 0.5  |
+| `virtual_user_lower_arm_length_left`  | 左下臂长度  | float | 单位为米，默认值为 0.5  |
+| `virtual_user_lower_arm_length_right` | 右下臂长度  | float | 单位为米，默认值为 0.5  |
+| `virtual_user_knee_restriction_left`  | 左膝关节限制 | float | 单位为弧度，默认值为 0.0 |
+| `virtual_user_knee_restriction_right` | 右膝关节限制 | float | 单位为弧度，默认值为 0.0 |
 
 | key                              | 说明       | 数据类型  | 具体描述                   |
 |----------------------------------|----------|-------|------------------------|
