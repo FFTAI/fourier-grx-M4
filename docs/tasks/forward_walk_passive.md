@@ -60,6 +60,7 @@ has_toc: true
 | 小腿长度    | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
 | 步长长度    | `grx.virtual_panel_command_param_1`                                                      |
 | 步行速度    | `grx.virtual_panel_command_param_2`                                                      |
+| 启动运动标志位 | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位 | `grx.virtual_panel_command_stop`                                                         |
 
 ## 更新日志
