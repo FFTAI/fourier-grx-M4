@@ -87,11 +87,11 @@ key 说明列表：
 
 key 说明列表：
 
-| key                    | 说明       | 数据类型 | 具体描述                                                                                             |
-|------------------------|----------|------|--------------------------------------------------------------------------------------------------|
-| `flag_task_in_process` | 任务是否在进行中 | bool | 0: 任务未开始或已结束，1: 任务进行中                                                                            |
-| `robot_task_state`     | 机器人任务状态  | int  | 当前机器人任务状态，如果设置了 task/client 中的 `flag_task_command_update` 为 True，会更新此值，更新值为 `robot_task_command` |
-| `robot_task_substate`  | 机器人任务子状态 | int  |                                                                                                  |
+| key                    | 说明       | 数据类型 | 具体描述                                                                                                     |
+|------------------------|----------|------|----------------------------------------------------------------------------------------------------------|
+| `flag_task_in_process` | 任务是否在进行中 | bool | 0: 任务未开始或已结束，1: 任务进行中                                                                                    |
+| `robot_task_state`     | 机器人任务状态  | int  | 当前机器人任务状态 (TID 值)，如果设置了 task/client 中的 `flag_task_command_update` 为 True，会更新此值，更新值为 `robot_task_command` |
+| `robot_task_substate`  | 机器人任务子状态 | int  | 当前机器人模块状态 (MID 值)                                                                                        |
 
 ### grx/server 接口协议 (状态信息)
 
@@ -149,10 +149,10 @@ key 说明列表：
 | key                             | 说明         | 数据类型 | 具体描述            |
 |---------------------------------|------------|------|-----------------|
 | `flag_task_command_update`      | 任务指令请求更新标志 | bool | 0: 不更新，1: 更新    |
-| `robot_task_command`            | 任务指令       | int  | 机器人任务指令，具体指令见下表 |
+| `robot_task_command`            | 任务指令       | int  | 机器人任务指令 (TID 值) |
 | `robot_task_command_data`       | 任务指令数据     | dict | 机器人任务指令数据       |
 | `flag_component_command_update` | 模块指令请求更新标志 | bool | 0: 不更新，1: 更新    |
-| `robot_component_command`       | 模块指令       | int  | 机器人模块指令，具体指令见下表 |
+| `robot_component_command`       | 模块指令       | int  | 机器人模块指令 (MID 值) |
 | `robot_component_command_data`  | 模块指令数据     | dict | 机器人模块指令数据       |
 
 ### grx/client 接口协议 (指令信息)
