@@ -18,16 +18,17 @@ has_toc: true
 
 任务参数：
 
-| 接口参数    | 类型      | 默认值   | 参数范围          | 描述                                         |
-|---------|---------|-------|---------------|--------------------------------------------|
-| 大腿长度    | `float` | 0.5   | [0.3, 0.6]    | 机器人的大腿长度，单位为 m。                            |
-| 小腿长度    | `float` | 0.5   | [0.3, 0.6]    | 机器人的小腿长度，单位为 m。                            |
-| 步长长度    | `float` | 0.5   | [0.2, 0.8]    | 机器人每一步的长度，单位为 m。                           |
-| 步行速度    | `float` | 0.5   | [0.2, 0.8]    | 机器人前进的速度，单位为 m/s。                          |
-| 保护力矩限值  | `float` | None  | [0.0, 200.0]  | 机器人在行走过程中允许的最大关节力矩，单位为 Nm。默认不启用。           |
-| 启动运动标志位 | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
-| 停止运动标志位 | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
-| 暂停运动标志位 | `bool`  | false | (true, false) | 是否暂停运动，true 表示暂停，需重启任务才能继续行走。              |
+| 接口参数     | 类型      | 默认值   | 参数范围          | 描述                                         |
+|----------|---------|-------|---------------|--------------------------------------------|
+| 大腿长度     | `float` | 0.5   | [0.3, 0.6]    | 机器人的大腿长度，单位为 m。                            |
+| 小腿长度     | `float` | 0.5   | [0.3, 0.6]    | 机器人的小腿长度，单位为 m。                            |
+| 步长长度     | `float` | 0.5   | [0.2, 0.8]    | 机器人每一步的长度，单位为 m。                           |
+| 步行速度     | `float` | 0.5   | [0.2, 0.8]    | 机器人前进的速度，单位为 m/s。                          |
+| 启动运动标志位  | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
+| 停止运动标志位  | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
+| 暂停运动标志位  | `bool`  | false | (true, false) | 是否暂停运动，true 表示暂停，需重启任务才能继续行走。              |
+| 启用力矩保护开关 | `bool`  | false | (true, false) | 是否启用力矩保护功能                                 |
+| 保护力矩限值   | `float` | None  | [0.0, 200.0]  | 机器人在行走过程中允许的最大关节力矩，单位为 Nm。默认不启用。           |
 
 > 建议：
 > - 步长为步速的 0.5 到 1.0 倍之间，能够获得较好的行走效果。例如，步速为 0.5 m/s 时，步长建议设置在 0.25 m 到 0.5 m 之间。
@@ -58,16 +59,17 @@ has_toc: true
 - 大腿长度 在算法运算中只能输入一个值，因此取左右大腿长度的均值。因此，传参时传入两个，但是实际只会取均值去使用。
 - 小腿长度 在算法运算中只能输入一个值，因此取左右小腿长度的均值。因此，传参时传入两个，但是实际只会取均值去使用。
 
-| 接口参数    | 接口映射关系                                                                                   |
-|---------|------------------------------------------------------------------------------------------|
-| 大腿长度    | `grx.virtual_user_upper_leg_length_left`, `grx.virtual_user_upper_leg_length_right`, 取均值 |
-| 小腿长度    | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
-| 步长长度    | `grx.virtual_panel_command_param_1`                                                      |
-| 步行速度    | `grx.virtual_panel_command_param_2`                                                      |
-| 保护力矩限值  | `grx.virtual_panel_command_param_9`                                                      |
-| 启动运动标志位 | `grx.virtual_panel_command_start`                                                        |
-| 停止运动标志位 | `grx.virtual_panel_command_stop`                                                         |
-| 暂停运动标志位 | `grx.virtual_panel_command_pause`                                                        |
+| 接口参数     | 接口映射关系                                                                                   |
+|----------|------------------------------------------------------------------------------------------|
+| 大腿长度     | `grx.virtual_user_upper_leg_length_left`, `grx.virtual_user_upper_leg_length_right`, 取均值 |
+| 小腿长度     | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
+| 步长长度     | `grx.virtual_panel_command_param_1`                                                      |
+| 步行速度     | `grx.virtual_panel_command_param_2`                                                      |
+| 启动运动标志位  | `grx.virtual_panel_command_start`                                                        |
+| 停止运动标志位  | `grx.virtual_panel_command_stop`                                                         |
+| 暂停运动标志位  | `grx.virtual_panel_command_pause`                                                        |
+| 启用力矩保护开关 | `grx.virtual_panel_command_switch_1`                                                     |
+| 保护力矩限值   | `grx.virtual_panel_command_param_9`                                                      |
 
 ## 更新日志
 
