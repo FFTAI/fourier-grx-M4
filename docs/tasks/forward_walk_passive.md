@@ -23,8 +23,10 @@ has_toc: true
 | 小腿长度    | `float` | 0.5   | [0.3, 0.6]    | 机器人的小腿长度，单位为 m。                            |
 | 步长长度    | `float` | 0.5   | [0.2, 0.8]    | 机器人每一步的长度，单位为 m。                           |
 | 步行速度    | `float` | 0.5   | [0.2, 0.8]    | 机器人前进的速度，单位为 m/s。                          |
+| 保护力矩限值  | `float` | None  | [0.0, 1000.0] | 机器人在行走过程中允许的最大关节力矩，单位为 Nm。默认不启用。           |
 | 启动运动标志位 | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位 | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
+| 暂停运动标志位 | `bool`  | false | (true, false) | 是否暂停运动，true 表示暂停，需重启任务才能继续行走。              |
 
 > 建议：
 > - 步长为步速的 0.5 到 1.0 倍之间，能够获得较好的行走效果。例如，步速为 0.5 m/s 时，步长建议设置在 0.25 m 到 0.5 m 之间。
@@ -43,6 +45,7 @@ has_toc: true
 |-----------|--------------------------------------|
 | 任务启动标志    | `task.flag_task_start`               |
 | 任务结束标志    | `task.flag_task_finish`              |
+| 任务暂停标志    | `task.flag_task_pause`               |
 | 运行比例      | `rehab.motion_ratio`                 |
 | 参考轨迹位置    | `rehab.reference_joint_position`     |
 | 参考轨迹速度    | `rehab.reference_joint_velocity`     |
@@ -60,8 +63,10 @@ has_toc: true
 | 小腿长度    | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
 | 步长长度    | `grx.virtual_panel_command_param_1`                                                      |
 | 步行速度    | `grx.virtual_panel_command_param_2`                                                      |
+| 保护力矩限值  | `grx.virtual_panel_command_param_9`                                                      |
 | 启动运动标志位 | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位 | `grx.virtual_panel_command_stop`                                                         |
+| 暂停运动标志位 | `grx.virtual_panel_command_pause`                                                        |
 
 ## 更新日志
 
