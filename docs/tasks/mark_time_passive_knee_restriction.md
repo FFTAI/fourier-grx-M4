@@ -63,6 +63,8 @@ has_toc: true
 | 步行周期      | `grx.virtual_panel_command_param_2`                                                      |
 | 启动运动标志位   | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
+| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`                                                     |
+| 保护力矩限值    | `grx.virtual_panel_command_param_9`                                                      |
 
 ## 更新日志
 
