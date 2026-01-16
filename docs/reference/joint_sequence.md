@@ -23,12 +23,12 @@ Fourier-GRX SDK 中对于关节序列的定义如下。
 - 左腿：2
 - 右腿：2
 
-| 序号 | 关节名称                   | 具体描述        |
-|----|------------------------|-------------|
-| 0  | left_hip_pitch_joint   | 左髋 pitch 关节 |
-| 1  | left_knee_pitch_joint  | 左膝 pitch 关节 |
-| 2  | right_hip_pitch_joint  | 右髋 pitch 关节 |
-| 3  | right_knee_pitch_joint | 右膝 pitch 关节 |
+| 序号 | 关节名称                   | 具体描述        | IP 地址          |
+|----|------------------------|-------------|----------------|
+| 0  | left_hip_pitch_joint   | 左髋 pitch 关节 | 192.168.137.70 |
+| 1  | left_knee_pitch_joint  | 左膝 pitch 关节 | 192.168.137.71 |
+| 2  | right_hip_pitch_joint  | 右髋 pitch 关节 | 192.168.137.50 |
+| 3  | right_knee_pitch_joint | 右膝 pitch 关节 | 192.168.137.51 |
 
 ## M4L
 
@@ -40,13 +40,13 @@ Fourier-GRX SDK 中对于关节序列的定义如下。
     - 旋转关节: 2
     - 直线关节: 2
 
-| 序号 | 关节名称                     | 具体描述        |
-|----|--------------------------|-------------|
-| 0  | left_hip_pitch_joint     | 左髋 pitch 关节 |
-| 1  | left_knee_pitch_joint    | 左膝 pitch 关节 |
-| 2  | right_hip_pitch_joint    | 右髋 pitch 关节 |
-| 3  | right_knee_pitch_joint   | 右膝 pitch 关节 |
-| 4  | left_thigh_length_joint  | 左大腿长度关节     |
-| 5  | left_shank_length_joint  | 左小腿长度关节     |
-| 6  | right_thigh_length_joint | 右大腿长度关节     |
-| 7  | right_shank_length_joint | 右小腿长度关节     |
+| 序号 | 关节名称                     | 具体描述        | IP 地址          |
+|----|--------------------------|-------------|----------------|
+| 0  | left_hip_pitch_joint     | 左髋 pitch 关节 | 192.168.137.70 |
+| 1  | left_knee_pitch_joint    | 左膝 pitch 关节 | 192.168.137.71 |
+| 2  | right_hip_pitch_joint    | 右髋 pitch 关节 | 192.168.137.50 |
+| 3  | right_knee_pitch_joint   | 右膝 pitch 关节 | 192.168.137.51 |
+| 4  | left_thigh_length_joint  | 左大腿长度关节     | 192.168.137.72 |
+| 5  | left_shank_length_joint  | 左小腿长度关节     | 192.168.137.73 |
+| 6  | right_thigh_length_joint | 右大腿长度关节     | 192.168.137.52 |
+| 7  | right_shank_length_joint | 右小腿长度关节     | 192.168.137.53 |

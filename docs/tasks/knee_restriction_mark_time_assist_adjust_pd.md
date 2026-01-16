@@ -1,19 +1,19 @@
 ---
 layout: default
-title: 被动原地踏步 (膝关节受限)
-nav_order: 4.3
+title: 助力原地踏步 (膝关节受限, 调整 PD 参数)
+nav_order: 4.4
 parent: 任务描述
 has_toc: true
 ---
 
-# 被动原地踏步 (膝关节受限)
+# 助力原地踏步 (膝关节受限, 调整 PD 参数)
 
-任务值 (TID): **4302**
+任务值 (TID): **4304**
 
 任务描述：
 
 - 机器人通过给定参数，生成原地踏步的关节运动轨迹序列，通过执行器跟踪该轨迹，实现被动前向行走。
-- 发送"停止运动标志位"为 true 时，机器人将逐渐停止运动，并不是立即停止。
+- 助力强度由助力系数控制，系数越大，助力越强。(PD参数)
 
 任务参数：
 
@@ -25,6 +25,7 @@ has_toc: true
 | 右腿膝关节受限角度 | `float` | 0.0   | [0.0, 1.0]    | 右腿膝关节的最大受限角度，单位为弧度 rad。                    |
 | 抬腿高度      | `float` | 0.1   | [0.1, 0.5]    | 机器人每一步的长度，单位为 m。                           |
 | 步行周期      | `float` | 1.0   | [0.5, 4.0]    | 机器人前进的速度，单位为 s。                            |
+| 助力系数      | `float` | 0.5   | [0.0, 1.0]    | 助力模式的系数，表示助力的强度。                           |
 | 启动运动标志位   | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
 
@@ -61,9 +62,10 @@ has_toc: true
 | 右腿膝关节受限角度 | `grx.virtual_user_knee_restriction_right`                                                |
 | 抬腿高度      | `grx.virtual_panel_command_param_1`                                                      |
 | 步行周期      | `grx.virtual_panel_command_param_2`                                                      |
+| 助力系数      | `grx.virtual_panel_command_param_3`                                                      |
 | 启动运动标志位   | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
 
 ## 更新日志
 
-- `fourier-grx` v4.2.2 版本新增该功能。
+- `fourier-grx` v4.0.0 版本新增该功能。

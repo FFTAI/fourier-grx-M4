@@ -52,6 +52,8 @@ has_toc: true
 | 小腿长度      | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
 | 左腿膝关节受限角度 | `grx.virtual_user_knee_restriction_left`                                                 |
 | 右腿膝关节受限角度 | `grx.virtual_user_knee_restriction_right`                                                |
+| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`                                                     |
+| 保护力矩限值    | `grx.virtual_panel_command_param_9`                                                      |
 
 ## 更新日志
 

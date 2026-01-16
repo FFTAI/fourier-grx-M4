@@ -1,19 +1,21 @@
 ---
 layout: default
-title: 被动前向行走 (膝关节受限)
-nav_order: 4.1
+title: 助力原地踏步 (膝关节受限, 调整 dt 参数)
+nav_order: 4.4
 parent: 任务描述
 has_toc: true
 ---
 
-# 被动前向行走 (膝关节受限)
+# 助力原地踏步 (膝关节受限, 调整 dt 参数)
 
-任务值 (TID): **4301**
+任务值 (TID): **4306**
 
 任务描述：
 
-- 机器人通过给定参数，生成向前行走的关节运动轨迹序列，通过执行器跟踪该轨迹，实现被动前向行走。
-- 发送"停止运动标志位"为 true 时，机器人将逐渐停止运动，并不是立即停止。
+- 机器人通过给定参数，生成原地踏步的关节运动轨迹序列，通过执行器跟踪该轨迹，实现被动前向行走。
+- 助力强度由助力系数控制，系数越大，助力越强。
+- 可配置为自动助力模式，机器人会根据当前状态自动调整助力系数。
+- 可配置为自动助力模式，发送“自动助力模式标志位”，机器人会根据当前状态自动调整助力系数。(运动速度)
 
 任务参数：
 
@@ -23,13 +25,12 @@ has_toc: true
 | 小腿长度      | `float` | 0.5   | [0.3, 0.6]    | 机器人的小腿长度，单位为 m。                            |
 | 左腿膝关节受限角度 | `float` | 0.0   | [0.0, 1.0]    | 左腿膝关节的最大受限角度，单位为弧度 rad。                    |
 | 右腿膝关节受限角度 | `float` | 0.0   | [0.0, 1.0]    | 右腿膝关节的最大受限角度，单位为弧度 rad。                    |
-| 步长长度      | `float` | 0.5   | [0.2, 0.8]    | 机器人每一步的长度，单位为 m。                           |
-| 步行速度      | `float` | 0.5   | [0.2, 0.8]    | 机器人前进的速度，单位为 m/s。                          |
+| 抬腿高度      | `float` | 0.1   | [0.1, 0.5]    | 机器人每一步的长度，单位为 m。                           |
+| 步行周期      | `float` | 1.0   | [0.5, 4.0]    | 机器人前进的速度，单位为 s。                            |
+| 助力系数      | `float` | 0.5   | [0.0, 1.0]    | 助力模式的系数，表示助力的强度。                           |
+| 自动助力模式标志位 | `bool`  | false | (true, false) | 是否启用自动助力模式，根据当前状态自动调整助力系数。                 |
 | 启动运动标志位   | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
-
-> 建议：
-> - 步长为步速的 0.5 到 1.0 倍之间，能够获得较好的行走效果。例如，步速为 0.5 m/s 时，步长建议设置在 0.25 m 到 0.5 m 之间。
 
 ## 模块信息
 
@@ -62,11 +63,13 @@ has_toc: true
 | 小腿长度      | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
 | 左腿膝关节受限角度 | `grx.virtual_user_knee_restriction_left`                                                 |
 | 右腿膝关节受限角度 | `grx.virtual_user_knee_restriction_right`                                                |
-| 步长长度      | `grx.virtual_panel_command_param_1`                                                      |
-| 步行速度      | `grx.virtual_panel_command_param_2`                                                      |
+| 抬腿高度      | `grx.virtual_panel_command_param_1`                                                      |
+| 步行周期      | `grx.virtual_panel_command_param_2`                                                      |
+| 助力系数      | `grx.virtual_panel_command_param_3`                                                      |
+| 自动助力模式标志位 | `grx.virtual_panel_command_switch_1`                                                     |
 | 启动运动标志位   | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
 
 ## 更新日志
 
-- `fourier-grx` v4.2.2 版本新增该功能。
+- `fourier-grx` v4.0.0 版本新增该功能。
