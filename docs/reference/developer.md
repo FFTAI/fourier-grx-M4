@@ -13,8 +13,8 @@ has_toc: true
 
 > ℹ️ **说明**：
 >
-> 使用 Fourier-GRX-N1 SDK Developer API 前，请将 `fourier-grx` 配置为 **开发者模式**。
-> 关于运行模式的配置，请参见 [运行模式](/fourier-grx-N1/docs/reference/run_type)。
+> 使用 Fourier-GRX-M4 SDK Developer API 前，请将 `fourier-grx` 配置为 **开发者模式**。
+> 关于运行模式的配置，请参见 [运行模式](/fourier-grx-M4/docs/reference/run_type)。
 
 Fourier-GRX Developer 接口是针对开发者底层开发提供的二次开发接口，直接调用底层硬件接口，适用于底层开发。
 
