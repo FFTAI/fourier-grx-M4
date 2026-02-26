@@ -1,19 +1,19 @@
 ---
 layout: default
-title: M4 机器人
-nav_order: 1.1
+title: M4L 机器人
+nav_order: 1.2
 parent: 快速开始
 has_toc: true
 ---
 
-# M4 机器人
+# M4L 机器人
 
 * TOC
 {:toc}
 
 ## 视频教程
 
-以下视频教程演示了如何快速开始使用 M4 系列机器人。
+以下视频教程演示了如何快速开始使用 M4L 系列机器人。
 
 ## 系统开机
 
@@ -83,7 +83,7 @@ conda activate fourier-grx
 当我们安装好 conda 开发环境后，可以通过 git 同步机器人的二次开发接口示例程序。
 
 ```bash
-git clone https://github.com/FFTAI/Wiki-GRx-Deploy.git --branch=FourierM4
+git clone https://github.com/FFTAI/Wiki-GRx-Deploy.git --branch=FourierM4L
 ```
 
 建议同步到 `$HOME` 目录下，同步完成后，可以通过 `cd $HOME/Wiki-GRx-Deploy` 进入该目录查看。
@@ -97,7 +97,7 @@ git clone https://github.com/FFTAI/Wiki-GRx-Deploy.git --branch=FourierM4
 conda activate fourier-grx
 
 # 启动 fourier-grx 主程序
-python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4/config_M4_T1_sdk.yaml
+python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4l/config_M4L_T1_sdk.yaml
 
 # 当看到提示信息 ”You can start playing with the robot right now.“ 时，表示程序启动成功。
 ```
