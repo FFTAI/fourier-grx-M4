@@ -17,7 +17,7 @@ has_toc: true
 
 资源文件通常存储在 `~/fourier-grx/resource/` 目录下。不同机器人的资源文件存储在不同的子目录中。
 
-例如，`FourierM4` 机器人的资源文件存储在 `~/fourier-grx/resource/n1/` 目录下。
+例如，`FourierM4` 机器人的资源文件存储在 `~/fourier-grx/resource/m4/` 目录下。
 
 ## Zenoh 资源文件
 
