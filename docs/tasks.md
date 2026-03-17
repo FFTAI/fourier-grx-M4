@@ -12,8 +12,8 @@ has_toc: true
 
 > ⚠️ **注意**：
 >
-> 本章中未列出的任务功能，在使用手柄进行机器人控制，选择任务时仍可能会查看到，表明该任务可能仍处于开发中，或部份已废弃使用（未及时删去）。
-> 因此，建议开发者在使用手柄进行机器人操作时，谨慎选择本章中未列出的任务进行执行，推荐只尝试本技术文档中 [任务描述](/fourier-grx-M4/docs/tasks) 部分中列出的任务指令。
+> 本章中未列出的任务功能，在使用手柄进行机器人控制、选择任务时仍可能会显示，表明该任务可能仍处于开发中，或部分已废弃使用（未及时删去）。
+> 因此，建议开发者在使用手柄进行机器人操作时，谨慎选择本章中未列出的任务进行执行，推荐只尝试本技术文档中 [任务描述](/fourier-grx-M4/docs/tasks) 部分列出的任务指令。
 
 ## 任务和模块
 
@@ -22,7 +22,7 @@ has_toc: true
 - 任务指令通过 `fourier_grx.TaskCommand` 枚举类定义，具体定义如下：
 - 具体 `任务值 (TID)` 可能会根据机器人的不同，或 `fourier-grx` 版本的不同而有所变化，**具体值以实际任务信息为准**。
 
-M4 机器人任务指令示例：
+M4 机器人常见任务指令示例：
 
 | 任务指令              | 任务值 (TID) | 适用机型 | 任务描述                          |
 |-------------------|-----------|------|-------------------------------|
@@ -39,13 +39,52 @@ M4 机器人任务指令示例：
 
 ---
 
+## 任务文档索引
+
+以下页面为当前仓库中已经整理出的主要任务说明，可作为任务说明入口；如需查看任务切换协议，请同时参考 [参考指南 User 接口](/fourier-grx-M4/docs/reference/user) 中的 `task/client 接口协议 (指令信息)` 章节。
+
+### 基础控制任务
+
+- [执行器使能](/fourier-grx-M4/docs/tasks/servo_on)
+- [执行器失能](/fourier-grx-M4/docs/tasks/servo_off)
+- [执行器重启](/fourier-grx-M4/docs/tasks/servo_reboot)
+- [清除错误](/fourier-grx-M4/docs/tasks/clear_fault)
+- [设置零点](/fourier-grx-M4/docs/tasks/set_home)
+
+### 运动任务
+
+- [站立姿态控制](/fourier-grx-M4/docs/tasks/stand_motion_control)
+- [被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)
+- [助力前向行走（调整 PD 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)
+- [助力前向行走（调整 dt 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)
+- [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)
+- [助力原地踏步（调整 PD 参数）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_pd)
+- [助力原地踏步（调整 dt 参数）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
+
+### 膝关节受限任务
+
+- [站立姿态控制（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_stand_motion_control)
+- [被动前向行走（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive)
+- [助力前向行走（膝关节受限，调整 PD 参数）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_pd)
+- [助力前向行走（膝关节受限，调整 dt 参数）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_dt)
+- [被动原地踏步（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_passive)
+- [助力原地踏步（膝关节受限，调整 PD 参数）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
+- [助力原地踏步（膝关节受限，调整 dt 参数）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
+
+### 专项与扩展任务
+
+- [设置零点（旋转关节）](/fourier-grx-M4/docs/tasks/set_home_rotary_joint)
+- [校准零点（直线关节）](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)
+- [调整长度（直线关节）](/fourier-grx-M4/docs/tasks/move_length_prismatic_joint)
+- [规划器](/fourier-grx-M4/docs/tasks/planner)
+
 机器人模块指令列表 🎏：
 
 - 模块任务可以理解为任务下面的子任务模块，但是由于子任务之间可能存在 **互斥、组合** 的关系，因此，我们并不称其为子任务，而是以 **模块** 的形式进行管理。
-- 相互互斥的几个模块其中一个被调用时，另一个在程序中自动被 挂起。（由控制程序自动管理）
+- 相互互斥的几个模块其中一个被调用时，另一个在程序中自动被挂起。（由控制程序自动管理）
 - 相互组合的模块，对方的调用和切换不会互相影响。
-- 模块的运行管理全在控制程序中完成，上层无需关心模块的吊起切换过程是否有风险。
-- `模块值 (MID)` 跟机型绑定关系密切，因此，可能随版本变动，如果发现模块任务未正常执行，建议及时更新到最新固件并 **以具体任务中关于模块信息的描述为准**。
+- 模块的运行管理全在控制程序中完成，上层无需关心模块的调起切换过程是否有风险。
+- `模块值 (MID)` 跟机型绑定关系密切，因此，可能随版本变动。如果发现模块任务未正常执行，建议及时更新到最新固件，并 **以具体任务中关于模块信息的描述为准**。
 
 ## 任务切换
 
@@ -57,4 +96,3 @@ M4 机器人任务指令示例：
 | 任务确认 | `L2` 按键 | `enter` 键     | `task.flag_task_command_update` 发送 1 确认更新      | `control_system.robot_control_set_task_command(TID)` 发送 `任务值 (TID)`   |
 | 模块选择 | `R1` 按键 |               | `task.robot_component_command` 发送 `模块值 (MID)`  |                                                                       |
 | 模块确认 | `R2` 按键 |               | `task.flag_component_command_update` 发送 1 确认更新 | `control_system.robot_control_set_task_component(MID)` 发送 `模块值 (MID)` |
-

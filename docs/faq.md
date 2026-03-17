@@ -73,7 +73,7 @@ has_toc: true
 
 ### 外网访问配置
 
-**问题**：如何配置机器人访问外网？
+**问题描述**：如何配置机器人访问外网？
 
 **解决方案**：
 
@@ -95,7 +95,7 @@ sudo systemctl restart NetworkManager
 
 ### WiFi 热点配置
 
-**问题**：如何关闭 WiFi 热点自启动？
+**问题描述**：如何关闭 WiFi 热点自启动？
 
 **解决方案**：
 
@@ -148,7 +148,7 @@ sudo reboot
 
 ### 用户接口通信问题
 
-**问题**：user 测试程序无法正常通信
+**问题描述**：User 测试程序无法正常通信。
 
 **解决方案**：
 
@@ -160,7 +160,7 @@ sudo reboot
 
 ### 依赖问题
 
-**问题**：ImportError: GLIBC_2.33 not found
+**问题描述**：ImportError: GLIBC_2.33 not found
 
 **解决方案**：
 

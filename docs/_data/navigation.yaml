@@ -37,6 +37,9 @@ docs:
       - title: 机器人关节序列
         url: /docs/reference/joint_sequence
         nav_order: 3.3
+      - title: 资源文件
+        url: /docs/reference/resource_file
+        nav_order: 3.4
       - title: 启动配置文件
         url: /docs/reference/config_file
         nav_order: 3.5
@@ -46,27 +49,75 @@ docs:
       - title: 命令行工具
         url: /docs/reference/command_line_tool
         nav_order: 3.7
+      - title: 执行器错误码
+        url: /docs/reference/actuator_error_code
+        nav_order: 3.8
 
   - title: 任务描述
     url: /docs/tasks
     nav_order: 4
     has_children: true
     children:
+      - title: 执行器使能
+        url: /docs/tasks/servo_on
+        nav_order: 4.1
+      - title: 执行器失能
+        url: /docs/tasks/servo_off
+        nav_order: 4.2
+      - title: 执行器重启
+        url: /docs/tasks/servo_reboot
+        nav_order: 4.3
+      - title: 清除错误
+        url: /docs/tasks/clear_fault
+        nav_order: 4.4
+      - title: 设置零点
+        url: /docs/tasks/set_home
+        nav_order: 4.5
       - title: 站立姿态控制
         url: /docs/tasks/stand_motion_control
-        nav_order: 4.0
+        nav_order: 4.6
       - title: 被动前向行走
         url: /docs/tasks/forward_walk_passive
-        nav_order: 4.1
-      - title: 助力前向行走
-        url: /docs/tasks/forward_walk_assist
-        nav_order: 4.2
+        nav_order: 4.7
+      - title: 助力前向行走（调整 PD 参数）
+        url: /docs/tasks/forward_walk_assist_adjust_pd
+        nav_order: 4.8
+      - title: 助力前向行走（调整 dt 参数）
+        url: /docs/tasks/forward_walk_assist_adjust_dt
+        nav_order: 4.9
       - title: 被动原地踏步
-        url: /docs/tasks/stand_still_passive
-        nav_order: 4.3
-      - title: 助力原地踏步
-        url: /docs/tasks/stand_still_assist
-        nav_order: 4.4
+        url: /docs/tasks/mark_time_passive
+        nav_order: 4.10
+      - title: 助力原地踏步（调整 PD 参数）
+        url: /docs/tasks/mark_time_assist_adjust_pd
+        nav_order: 4.11
+      - title: 助力原地踏步（调整 dt 参数）
+        url: /docs/tasks/mark_time_assist_adjust_dt
+        nav_order: 4.12
+      - title: 站立姿态控制（膝关节受限）
+        url: /docs/tasks/knee_restriction_stand_motion_control
+        nav_order: 4.13
+      - title: 被动前向行走（膝关节受限）
+        url: /docs/tasks/knee_restriction_forward_walk_passive
+        nav_order: 4.14
+      - title: 助力前向行走（膝关节受限，调整 PD 参数）
+        url: /docs/tasks/knee_restriction_forward_walk_assist_adjust_pd
+        nav_order: 4.15
+      - title: 助力前向行走（膝关节受限，调整 dt 参数）
+        url: /docs/tasks/knee_restriction_forward_walk_assist_adjust_dt
+        nav_order: 4.16
+      - title: 被动原地踏步（膝关节受限）
+        url: /docs/tasks/knee_restriction_mark_time_passive
+        nav_order: 4.17
+      - title: 助力原地踏步（膝关节受限，调整 PD 参数）
+        url: /docs/tasks/knee_restriction_mark_time_assist_adjust_pd
+        nav_order: 4.18
+      - title: 助力原地踏步（膝关节受限，调整 dt 参数）
+        url: /docs/tasks/knee_restriction_mark_time_assist_adjust_dt
+        nav_order: 4.19
+      - title: 规划器
+        url: /docs/tasks/planner
+        nav_order: 4.99
 
   - title: 常用操作
     url: /docs/usage
@@ -83,3 +134,7 @@ docs:
   - title: 更新日志
     url: /docs/changelog
     nav_order: 8
+
+  - title: 贡献指南
+    url: /docs/contributing
+    nav_order: 9
