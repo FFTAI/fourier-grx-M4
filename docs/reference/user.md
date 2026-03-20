@@ -97,11 +97,14 @@ key 说明列表：
 
 key 说明列表：
 
-| key                    | 说明     | 数据类型   | 具体描述                    |
-|------------------------|--------|--------|-------------------------|
-| `fourier_core_version` | 核心库版本  | string | 核心库版本号                  |
-| `fourier_grx_version`  | GRX库版本 | string | GRX库版本号                 |
-| `robot_error_codes`    | 机器人错误码 | int    | 机器人错误码，0: 无错误，其他: 具体错误码 |
+| key                        | 说明       | 数据类型         | 具体描述                         |
+|----------------------------|----------|--------------|------------------------------|
+| `fourier_core_version`     | 核心库版本    | string       | 核心库版本号                       |
+| `fourier_grx_version`      | GRX库版本   | string       | GRX库版本号                      |
+| `robot_error_codes`        | 机器人错误码   | array(int)   | 机器人错误码列表，0: 无错误，其他: 具体错误码     |
+| `robot_battery_percentage` | 电池电量百分比  | float        | 电池当前电量，范围 [0.0, 1.0]，1.0 为满电 |
+| `robot_charging_level`     | 电池电量等级   | int          | 电量等级，范围 1-3，3 为最高            |
+| `robot_charging_state`     | 电池充电状态   | float        | 0.0: 未充电，1.0: 充电中            |
 
 ### rehab/server 接口协议 (状态信息)
 
