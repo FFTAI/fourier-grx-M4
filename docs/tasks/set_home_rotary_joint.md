@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 设置零点（旋转关节）
-nav_order: 4.10
+nav_order: 4.20
 parent: 任务描述
 has_toc: true
 ---

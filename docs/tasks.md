@@ -24,16 +24,21 @@ has_toc: true
 
 M4 机器人常见任务指令示例：
 
-| 任务指令              | 任务值 (TID) | 适用机型 | 任务描述                          |
-|-------------------|-----------|------|-------------------------------|
-| TASK_SERVO_OFF    | 36        | All  | 机器人全关节下电失能                    |
-| TASK_SERVO_ON     | 35        | All  | 机器人全关节上电使能                    |
-| TASK_SERVO_REBOOT | 41        | All  | 机器人全关节上电使能并重启                 |
-| TASK_CLEAR_FAULT  | 34        | All  | 清除机器人全关节报警                    |
-| TASK_SET_HOME     | 999       | All  | 设置机器人全关节零位位置为当前位置             |
-| TASK_TEST_JOINT   | 902       | All  | 机器人关节运动功能测试，用于检测机器人关节是否能够正常运动 |
-| TASK_READY_STATE  | 960       | All  | 机器人运行到 **准备状态**，为微曲膝关节的站立姿态   |
-| TASK_WALK         | 965       | All  | 机器人运动到 **行走状态**，可以用手柄控制机器人行走  |
+| 任务指令                                          | 任务值 (TID) | 适用机型 | 任务描述                          |
+|------------------------------------------------|-----------|------|-------------------------------|
+| TASK_SERVO_OFF                                 | 36        | All  | 机器人全关节下电失能                    |
+| TASK_SERVO_ON                                  | 35        | All  | 机器人全关节上电使能                    |
+| TASK_SERVO_REBOOT                              | 41        | All  | 机器人全关节重启并重新加载配置               |
+| TASK_CLEAR_FAULT                               | 34        | All  | 清除机器人全关节报警                    |
+| TASK_STAND_CONTROL                             | 4020      | M4L  | 机器人缓慢移动各关节恢复到站立姿态             |
+| TASK_ROTARY_JOINT_SET_HOME                     | 4103      | M4L  | 设置旋转关节当前位置为零点                 |
+| TASK_PRISMATIC_JOINT_AUTO_CALIBRATE            | 4210      | M4L  | 腿长调节关节自动校准（上电后需首先执行）          |
+| TASK_ROTARY_JOINT_FORWARD_WALK                 | 4111      | M4L  | 被动前向行走                        |
+| TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD | 4116    | M4L  | 助力前向行走（调整 PD 参数）              |
+| TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT | 4118    | M4L  | 助力前向行走（调整 dt 参数）              |
+| TASK_ROTARY_JOINT_MARK_TIME                    | 4112      | M4L  | 被动原地踏步                        |
+| TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD   | 4117      | M4L  | 助力原地踏步（调整 PD 参数）              |
+| TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT   | 4119      | M4L  | 助力原地踏步（调整 dt 参数）              |
 
 - All：表示所有傅利叶智能生产机型
 

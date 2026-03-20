@@ -119,6 +119,18 @@ docs:
         url: /docs/tasks/planner
         nav_order: 4.99
 
+      - title: 设置零点（旋转关节）
+        url: /docs/tasks/set_home_rotary_joint
+        nav_order: 4.20
+
+      - title: 校准零点（直线关节）
+        url: /docs/tasks/calibrate_home_prismatic_joint
+        nav_order: 4.21
+
+      - title: 调整长度（直线关节）
+        url: /docs/tasks/move_length_prismatic_joint
+        nav_order: 4.22
+
   - title: 常用操作
     url: /docs/usage
     nav_order: 5
