@@ -31,7 +31,11 @@ M4 机器人常见任务指令示例：
 | TASK_SERVO_REBOOT                              | 41        | All  | 机器人全关节重启并重新加载配置               |
 | TASK_CLEAR_FAULT                               | 34        | All  | 清除机器人全关节报警                    |
 | TASK_STAND_CONTROL                             | 4020      | M4L  | 机器人缓慢移动各关节恢复到站立姿态             |
-| TASK_ROTARY_JOINT_SET_HOME                     | 4103      | M4L  | 设置旋转关节当前位置为零点                 |
+| TASK_ROTARY_JOINT_SET_HOME                     | 4103      | M4L  | 设置旋转关节当前位置为零点（手动）              |
+| TASK_ROTARY_JOINT_BORDER_AND_RETURN            | 4104      | M4L  | 旋转关节边界检测：驱动至机械限位后自动回退        |
+| TASK_ROTARY_JOINT_SET_HOME_POSITION            | 4105      | M4L  | 采样均值后将当前位置设为旋转关节零点（软件层）      |
+| TASK_ROTARY_JOINT_MOVE_BACK                    | 4106      | M4L  | 旋转关节回退到安全位置                     |
+| TASK_ROTARY_JOINT_AUTO_CALIBRATE               | 4120      | M4L  | 旋转关节自动校准（边界检测→下电→设置零点，三步连贯）  |
 | TASK_PRISMATIC_JOINT_AUTO_CALIBRATE            | 4210      | M4L  | 腿长调节关节自动校准（上电后需首先执行）          |
 | TASK_ROTARY_JOINT_FORWARD_WALK                 | 4111      | M4L  | 被动前向行走                        |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD | 4116    | M4L  | 助力前向行走（调整 PD 参数）              |

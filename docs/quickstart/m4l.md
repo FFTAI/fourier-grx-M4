@@ -99,6 +99,9 @@ conda activate fourier-grx
 # 启动 fourier-grx 主程序
 python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4l/config_M4L_T1_sdk.yaml
 
+# M4LP1 机型请改用：
+# python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4l/config_M4L_P1_debug.yaml
+
 # 当看到提示信息 ”You can start playing with the robot right now.“ 时，表示程序启动成功。
 ```
 

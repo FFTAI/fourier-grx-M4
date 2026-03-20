@@ -131,6 +131,10 @@ docs:
         url: /docs/tasks/move_length_prismatic_joint
         nav_order: 4.22
 
+      - title: 自动校准（旋转关节）
+        url: /docs/tasks/rotary_joint_auto_calibrate
+        nav_order: 4.23
+
   - title: 常用操作
     url: /docs/usage
     nav_order: 5
