@@ -21,15 +21,15 @@ has_toc: true
 启动时使用哪个配置文件，取决于 `run.sh` 文件中的 `robot_type`, `robot_version` 和 `run_type` 字段。
 这些字段的值既可以通过 `fourier-grx config` 命令行工具进行修改，也可以直接在 `run.sh` 文件中修改。
 
-比如，如果用户希望启动自定义的机器人配置文件 `config_M4_T1_custom.yaml`，可以在 `run.sh` 文件中将 `run_type` 字段修改为 `custom`：
+比如，如果用户希望启动自定义的机器人配置文件 `config_M4L_T1_custom.yaml`，可以在 `run.sh` 文件中将 `run_type` 字段修改为 `custom`：
 
 ```bash
-robot_type="M4"
-robot_version=""
+robot_type="M4L"
+robot_version="T1"
 
 run_type="custom"
 
-# 此时，用 fourier-grx start 命令启动机器人时，将会使用 ~/fourier-grx/config/m4/config_M4_T1_custom.yaml 作为配置文件。
+# 此时，用 fourier-grx start 命令启动机器人时，将会使用 ~/fourier-grx/config/m4l/config_M4L_T1_custom.yaml 作为配置文件。
 ```
 
 ## 启动配置文件的内容
@@ -82,10 +82,10 @@ run_type="custom"
 
 | 配置项            | 说明                                                        | 数据类型    | 默认值                            | 可选项                   | 用户可修改      |
 |----------------|-----------------------------------------------------------|---------|--------------------------------|-----------------------|------------|
-| resource: path | 资源文件路径                                                    | string  | "~/fourier-grx/resource/m4"    | "path/to/resource"    | 是          |
+| resource: path | 资源文件路径                                                    | string  | "~/fourier-grx/resource/m4l"   | "path/to/resource"    | 是          |
 | zenoh: path    | Zenoh 配置文件路径                                              | string  | "~/fourier-grx/resource/zenoh" | "path/to/zenoh"       | 否 (暂未开放使用) |
 | record: enable | 是否启用 数据日志记录功能（记录关节位置、速度等信息，方便调试，需要 dynalink:enable=true ） | boolean | false                          | true, false           | 是          |
-| record: path   | 数据日志记录文件路径                                                | string  | "~/fourier-grx/record/m4"      | "path/to/record_file" | 是          |
+| record: path   | 数据日志记录文件路径                                                | string  | "~/fourier-grx/record/m4l"     | "path/to/record_file" | 是          |
 
 ### 外设相关
 
@@ -102,8 +102,8 @@ run_type="custom"
 
 | 配置项                         | 说明        | 数据类型   | 默认值      | 可选项                                   | 用户可修改 |
 |-----------------------------|-----------|--------|----------|-----------------------------------------|-------|
-| robot: name                 | 机器人名称     | string | "M4LT1"  | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LZenoh" | 否     |
-| robot: mechanism            | 机器人机械结构类型 | string | ""       | ""                                      | 否     |
+| robot: name                 | 机器人名称     | string | "M4LT1"  | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" \| "M4LZenoh" | 否     |
+| robot: backend              | 机器人通信后端类型 | string | "Real"   | "Real"                                  | 否     |
 | robot: control_period       | 控制周期      | float  | 0.02     | 单位为秒                                    | 否     |
 | robot: communication_period | 通信周期      | float  | 0.02     | 单位为秒                                    | 否     |
 
