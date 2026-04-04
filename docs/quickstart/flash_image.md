@@ -26,6 +26,13 @@ has_toc: true
 
 点击链接下载：[百度网盘](https://pan.baidu.com/s/19t8AZV9SYTdjn2uObBiSGA)（提取码：`hslu`）
 
+**快速下载：**
+
+| 文件 | 链接 |
+|------|------|
+| Ubuntu 22.04 系统镜像 | [20260114_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260114_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz) |
+| RKDevTool v3.15（含 DriverAssistant）| [RKDevTool_v3.15_for_window.zip](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/RKDevTool_v3.15_for_window.zip) |
+
 ### 安装 DriverAssistant
 
 解压 DriverAssistant 压缩包，双击 `DriverInstall.exe` 进入驱动安装界面，点击 **驱动安装** 开始安装。
@@ -53,6 +60,11 @@ LubanCat-RK3588 板卡上有一个 **MASKROM 按键**，按照以下步骤让板
 3. 使用 Type-C 数据线，一端连接板卡的 **OTG 接口**，另一端连接 Windows 电脑的 USB 接口。
 4. 打开 **RKDevTool** 烧录工具。
 5. 按住 **MASKROM 按键**，然后用供电线为板卡上电。
+
+   板卡上的 MASKROM 按键位置如下图所示：
+
+   ![MASKROM 按键位置](https://doc.embedfire.com/linux/rk3588/quick_start/zh/latest/_images/3588-flash-3.png)
+
 6. 等待 RKDevTool 提示 **"发现一个MASKROM设备"** 后，松开按键。
 7. 若未成功识别，重复第 2～6 步。
 
@@ -62,9 +74,14 @@ Ubuntu 22.04 镜像使用 **下载镜像** 模式烧录，需要额外提供 Loa
 
 1. 成功识别到 MASKROM 设备后，切换到软件的 **下载镜像** 标签页。
 2. 确认列表中有 `rkbin` 和 `firmware` 两行（如没有，可手动添加）：
-   - **rkbin**：选择工具目录内自带的 `rk3588_spl_loader_v1.17.113.bin` 文件。
+   - **rkbin**：选择工具目录内自带的 `rk3588_MiniLoaderAll.bin` 文件作为 rkbin（Bootloader）。
    - **firmware**：选择下载好的镜像文件（压缩包 `*.xz` 需先解压为 `.img` 格式）。
 3. 勾选底部的 **"强制按地址写"** 选项。
+
+   烧写地址配置界面如下图所示：
+
+   ![下载镜像配置界面](https://doc.embedfire.com/linux/rk3588/quick_start/zh/latest/_images/MR-5.png)
+
 4. 点击 **执行**，等待烧录完成。
 
 ---
@@ -74,3 +91,10 @@ Ubuntu 22.04 镜像使用 **下载镜像** 模式烧录，需要额外提供 Loa
 **Q：电脑没有识别到设备怎么办？**
 
 A：请确认已正确安装 DriverAssistant 驱动，并使用具有数据传输功能的 Type-C 数据线连接板卡 OTG 接口。若仍无法识别，可尝试卸载旧驱动后重新安装，或更换 USB 端口。
+
+
+---
+
+## 参考资源
+
+- [野火 RK3588 快速入门 — 烧录镜像](https://doc.embedfire.com/linux/rk3588/quick_start/zh/latest/quick_start/flash1_img/flash1_img.html)
