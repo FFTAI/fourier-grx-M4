@@ -64,6 +64,12 @@ fourier-grx install
 | M4L   | T2    | 否    | 开发者模式                                           | M4LT2    |
 | M4L   | P1    | 否    | 开发者模式                                           | M4LP1    |
 
+> ℹ️ **运行模式说明**
+>
+> - 上表中的**开发者模式**（`sdk`）仅供二次开发使用，适用于通过 SDK 接口进行自定义开发的场景。
+> - 对于**正式发布的机器**，应将运行模式配置为**发布模式**（`release`），以便通过掌机进行机器人控制。
+> - 可通过 `fourier-grx config` 修改运行模式，详见 [运行模式](/fourier-grx-M4/docs/reference/run_type) 参考页。
+
 如若配置错误，可运行 `fourier-grx config` 进行重新配置。当前的配置信息可以通过 `fourier-grx list` 查看。
 
 > ℹ️ **说明**
