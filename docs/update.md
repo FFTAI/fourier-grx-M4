@@ -14,13 +14,18 @@ toc_max_header: 3  # 最大显示标题层级（如 H3）
 
 ## 正式版本
 
-### Fourier-M4 固件
-
 正式版本是 Fourier-GRX-M4 SDK 的新版本发布信息，包含发布日期、版本号、资源链接和更新内容。
+
+### Fourier-GRX 固件
+
+| 发布日期       | 版本号   | 资源链接                                                                                    | 更新内容                                  | 技术支持       |
+|------------|-------|-----------------------------------------------------------------------------------------|---------------------------------------|------------|
+| 2026-04-03 | 4.4.0 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/update#440) | ✅          |
+
+### Fourier-M4 固件
 
 | 发布日期       | 版本号   | 资源链接                                                                                  | 更新内容                                  | 技术支持       |
 |------------|-------|---------------------------------------------------------------------------------------|---------------------------------------|------------|
-| 2026-04-03 | 4.4.0 | [下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-4.4.0.deb) | [详情](/fourier-grx-M4/docs/update#440) | ✅          |
 | 2025-07-22 | 2.0.6 | [下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [详情](/fourier-grx-M4/docs/update#206) | ❌          |
 | 2025-06-09 | 2.0.5 | [下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.5.deb) | [详情](/fourier-grx-M4/docs/update#205) | ❌          |
 
