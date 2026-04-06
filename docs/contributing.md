@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 贡献指南
+nav_order: 9
 ---
 
 # 贡献指南
