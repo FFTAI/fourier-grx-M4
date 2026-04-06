@@ -2,18 +2,16 @@
 .lang-switcher {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--border-color, #eeebee);
-  border-radius: 4px;
-  overflow: hidden;
-  font-size: 0.75rem;
+  gap: 2px;
+  font-size: 0.8rem;
   vertical-align: middle;
 }
 .lang-switcher a {
-  padding: 3px 10px;
+  padding: 2px 6px;
   text-decoration: none;
-  color: var(--body-text-color, #27262b);
-  background: transparent;
-  transition: background 0.15s;
+  color: var(--nav-child-link-color, #27262b);
+  border-radius: 3px;
+  transition: background 0.15s, color 0.15s;
   white-space: nowrap;
 }
 .lang-switcher a:hover {
@@ -21,13 +19,12 @@
   text-decoration: none;
 }
 .lang-switcher a.lang-active {
-  background: var(--link-color, #7253ed);
-  color: #fff !important;
-  font-weight: 600;
+  color: var(--link-color, #7253ed);
+  font-weight: 700;
 }
 .lang-switcher .lang-sep {
-  width: 1px;
-  height: 1.5em;
-  background: var(--border-color, #eeebee);
+  color: var(--border-color, #ddd);
+  font-size: 0.9em;
+  user-select: none;
 }
 </style>
