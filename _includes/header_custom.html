@@ -1,70 +1,19 @@
-<style>
-.lang-switcher {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  border: 1px solid var(--border-color, #eeebee);
-  border-radius: 4px;
-  overflow: hidden;
-  font-size: 0.75rem;
-  margin-left: 0.75rem;
-  vertical-align: middle;
-}
-.lang-switcher a {
-  padding: 2px 8px;
-  text-decoration: none;
-  color: var(--body-text-color, #27262b);
-  background: transparent;
-  transition: background 0.15s;
-}
-.lang-switcher a:hover {
-  background: var(--sidebar-color, #f5f6fa);
-}
-.lang-switcher a.active {
-  background: var(--link-color, #7253ed);
-  color: #fff;
-  font-weight: 600;
-}
-.lang-switcher .divider {
-  width: 1px;
-  background: var(--border-color, #eeebee);
-  align-self: stretch;
-}
-</style>
-
+<span class="lang-switcher" id="lang-switcher">
+  <a href="#" id="lang-zh-btn">中文</a>
+  <span class="lang-sep"></span>
+  <a href="#" id="lang-en-btn">EN</a>
+</span>
 <script>
 (function () {
-  function getLangSwitcherHtml(currentLang, zhHref, enHref) {
-    return '<span class="lang-switcher">' +
-      '<a href="' + zhHref + '" class="' + (currentLang === 'zh' ? 'active' : '') + '">中文</a>' +
-      '<span class="divider"></span>' +
-      '<a href="' + enHref + '" class="' + (currentLang === 'en' ? 'active' : '') + '">EN</a>' +
-      '</span>';
-  }
+  var path = window.location.pathname;
+  var isEn = path.indexOf('/docs/en') !== -1;
 
-  function getCounterpartUrl() {
-    var path = window.location.pathname;
-    var isEn = path.includes('/docs/en/') || path.includes('/docs/en');
-    if (isEn) {
-      return { currentLang: 'en', zhHref: path.replace('/docs/en', '/docs'), enHref: path };
-    } else {
-      var enPath = path.includes('/docs/')
-        ? path.replace('/docs/', '/docs/en/')
-        : path.replace(/\/?$/, '/docs/en/');
-      return { currentLang: 'zh', zhHref: path, enHref: enPath };
-    }
-  }
+  var zhPath = isEn ? path.replace('/docs/en', '/docs') : path;
+  var enPath = isEn ? path : path.replace('/docs/', '/docs/en/');
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var urls = getCounterpartUrl();
-    var switcher = document.createElement('span');
-    switcher.innerHTML = getLangSwitcherHtml(urls.currentLang, urls.zhHref, urls.enHref);
-
-    // Inject into just-the-docs header nav area
-    var siteTitle = document.querySelector('.site-title, .site-header .site-button');
-    if (siteTitle && siteTitle.parentNode) {
-      siteTitle.parentNode.insertBefore(switcher.firstChild, siteTitle.nextSibling);
-    }
-  });
+  var zhBtn = document.getElementById('lang-zh-btn');
+  var enBtn = document.getElementById('lang-en-btn');
+  if (zhBtn) { zhBtn.href = zhPath; if (!isEn) zhBtn.className = 'lang-active'; }
+  if (enBtn) { enBtn.href = enPath; if (isEn) enBtn.className = 'lang-active'; }
 })();
 </script>

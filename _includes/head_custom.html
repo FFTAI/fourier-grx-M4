@@ -1,0 +1,33 @@
+<style>
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-color, #eeebee);
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 0.75rem;
+  vertical-align: middle;
+}
+.lang-switcher a {
+  padding: 3px 10px;
+  text-decoration: none;
+  color: var(--body-text-color, #27262b);
+  background: transparent;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.lang-switcher a:hover {
+  background: var(--sidebar-color, #f5f6fa);
+  text-decoration: none;
+}
+.lang-switcher a.lang-active {
+  background: var(--link-color, #7253ed);
+  color: #fff !important;
+  font-weight: 600;
+}
+.lang-switcher .lang-sep {
+  width: 1px;
+  height: 1.5em;
+  background: var(--border-color, #eeebee);
+}
+</style>
