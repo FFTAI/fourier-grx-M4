@@ -14,6 +14,13 @@ has_toc: true
 
 ## 固件安装和更新
 
+以下视频教程演示了完整的 `fourier-grx` 固件安装流程。
+
+<video controls style="width: 100%; max-width: 800px;">
+  <source src="/fourier-grx-M4/assets/videos/video_install_fourier_grx.mp4" type="video/mp4">
+  您的浏览器不支持 HTML5 视频标签。
+</video>
+
 Fourier-GRX-M4 SDK 安装文件请从 [固件更新](/fourier-grx-M4/docs/update) 下载。
 下载完后，运行下面的指令完成安装过程：
 

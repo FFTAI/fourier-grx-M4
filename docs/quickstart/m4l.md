@@ -13,12 +13,7 @@ has_toc: true
 
 ## 视频教程
 
-以下视频教程演示了如何安装 `fourier-grx` 并快速开始使用 M4L 系列机器人。
-
-<video controls style="width: 100%; max-width: 800px;">
-  <source src="/fourier-grx-M4/assets/videos/video_install_fourier_grx.mp4" type="video/mp4">
-  您的浏览器不支持 HTML5 视频标签。
-</video>
+以下视频教程演示了如何快速开始使用 M4L 系列机器人。
 
 ## 系统开机
 
