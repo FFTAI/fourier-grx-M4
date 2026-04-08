@@ -18,6 +18,7 @@ has_toc: true
 
 | 发布日期       | 版本号   | 资源链接                                                                                    | 更新内容                                  | 技术支持       |
 |------------|-------|-----------------------------------------------------------------------------------------|---------------------------------------|------------|
+| 2026-04-08 | 4.4.1 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/update#441) | ✅          |
 | 2026-04-03 | 4.4.0 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/update#440) | ✅          |
 
 ### Fourier-M4 固件
@@ -38,6 +39,18 @@ has_toc: true
 固件安装流程请参考 [固件安装和更新](/fourier-grx-M4/docs/usage#固件安装和更新)。
 
 ## 更新内容
+
+### 4.4.1
+
+修复：
+
+- 修复配置文件键名错误：机器人名称读取由 `robot_name` 改为 `name`，与 YAML 配置文件实际结构保持一致
+
+修改：
+
+- 打包流程改进：将 `pdm` 和 `PyInstaller` 加入 `dependencies.sh` 依赖安装脚本
+- 优化 PyInstaller 构建脚本，新增 `build_pyinstaller.py` 以支持 M4L 的打包构建
+- 改进 M4L 构建流程，新增 `fi_fsa_v3` 运行时钩子（`rthook_fi_fsa_v3.py`），确保 M4LT2 所需库在打包后正常加载
 
 ### 4.4.0
 
