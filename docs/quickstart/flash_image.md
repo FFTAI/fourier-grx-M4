@@ -21,6 +21,15 @@ has_toc: true
 >
 > 出厂时控制板卡已预装系统镜像，**正常情况下无需重新烧录**。仅在系统损坏或需要更换镜像版本时，才需要执行本页面的操作。
 
+## 视频教程
+
+以下视频教程演示了完整的 Ubuntu 系统烧录流程。
+
+<video controls style="width: 100%; max-width: 800px;">
+  <source src="/fourier-grx-M4/assets/videos/video_install_ubuntu.mp4" type="video/mp4">
+  您的浏览器不支持 HTML5 视频标签。
+</video>
+
 ## 工具获取与安装
 
 烧录镜像到板卡 eMMC 需要在 **Windows 电脑** 上安装以下工具：
