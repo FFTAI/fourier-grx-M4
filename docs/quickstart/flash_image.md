@@ -25,7 +25,7 @@ has_toc: true
 
 以下视频教程演示了完整的 Ubuntu 系统烧录流程。
 
-<video controls style="width: 100%; max-width: 800px;">
+<video controls style="width: 360px; max-width: 100%;">
   <source src="/fourier-grx-M4/assets/videos/video_install_ubuntu.mp4" type="video/mp4">
   您的浏览器不支持 HTML5 视频标签。
 </video>
