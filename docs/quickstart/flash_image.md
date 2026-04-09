@@ -45,6 +45,7 @@ has_toc: true
 |------|------|
 | Ubuntu 22.04 系统镜像 | [20260114_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260114_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz) |
 | RKDevTool v3.15（含 DriverAssistant）| [RKDevTool_v3.15_for_window.zip](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/RKDevTool_v3.15_for_window.zip) |
+| network scanner | [network_scanner.ps1](/fourier-grx-M4/assets/scripts/network_scanner.ps1) |
 
 ### 安装 DriverAssistant
 
