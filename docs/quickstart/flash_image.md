@@ -106,6 +106,11 @@ Ubuntu 22.04 镜像使用 **下载镜像** 模式烧录，需要额外提供 Loa
 
 A：请确认已正确安装 DriverAssistant 驱动，并使用具有数据传输功能的 Type-C 数据线连接板卡 OTG 接口。若仍无法识别，可尝试卸载旧驱动后重新安装，或更换 USB 端口。
 
+**Q：运行 `network_scanner.ps1` 时提示无法加载脚本怎么办？**
+
+A：这是 Windows PowerShell 权限不足导致的常见问题。请关闭当前窗口，使用**管理员权限**重新打开 PowerShell 后，再执行脚本。
+
+![PowerShell 权限报错示例](/fourier-grx-M4/assets/images/powershell_error.png)
 
 ---
 
