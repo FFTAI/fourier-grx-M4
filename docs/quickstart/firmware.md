@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 固件安装和更新
-nav_order: 1.4
+nav_order: 1.2
 parent: 快速开始
 has_toc: true
 ---

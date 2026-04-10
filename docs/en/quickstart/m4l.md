@@ -1,7 +1,7 @@
 ---
 layout: default
 title: M4L Robot
-nav_order: 1.2
+nav_order: 1.4
 parent: "Quick Start"
 has_toc: true
 nav_exclude: true

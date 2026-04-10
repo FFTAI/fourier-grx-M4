@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Firmware Installation and Update
-nav_order: 1.4
+nav_order: 1.2
 parent: "Quick Start"
 has_toc: true
 nav_exclude: true

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: M4L 机器人
-nav_order: 1.2
+nav_order: 1.4
 parent: 快速开始
 has_toc: true
 ---
