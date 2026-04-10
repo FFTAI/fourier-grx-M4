@@ -42,6 +42,20 @@ has_toc: true
 
 下载完成后，按照以下步骤完成安装。
 
+### 下载 `fourier-grx` 程序包
+
+如果机器人主控电脑已经联网，也可以直接使用 `wget` 下载程序包。下面给出一个示例：
+
+```bash
+# 下载 fourier-grx 程序包（示例版本）
+wget https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb
+```
+
+> ℹ️ **说明**
+>
+> - 请根据 [固件更新](/fourier-grx-M4/docs/update) 页面中的最新版本链接，替换为实际需要下载的版本。
+> - 如果已经提前手动下载好 `.deb` 安装包，可直接跳过此步骤。
+
 ### 安装 `fourier-grx` 程序包
 
 ```bash
