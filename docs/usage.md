@@ -12,12 +12,6 @@ has_toc: true
 
 本文档介绍了使用 Fourier-GRX-M4 SDK 时的常用操作流程和注意事项。
 
-## 固件安装和更新
-
-固件安装与型号配置流程已独立迁移到快速开始章节，请参考：
-
-- [固件安装和更新](/fourier-grx-M4/docs/quickstart/firmware)
-
 ## 关节零位校准
 
 > ℹ️ **说明**

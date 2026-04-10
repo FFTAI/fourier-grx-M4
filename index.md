@@ -27,7 +27,7 @@ SDK 目前主要支持 Python 语言二次开发使用。
 
 [参考指南](/fourier-grx-M4/docs/reference) 包含了 SDK 库的详细 API 文档，可作为您开发应用程序的参考文档。
 
-[常用操作](/fourier-grx-M4/docs/usage) 包含了一些常用操作的说明，包括但不限于固件安装方法，机器人校准方法，以及操作模式的切换等。
+[常用操作](/fourier-grx-M4/docs/usage) 包含了一些常用操作的说明，包括机器人校准方法，以及操作模式的切换等。固件安装方法请参考 [快速开始 - 固件安装和更新](/fourier-grx-M4/docs/quickstart/firmware)。
 
 [常见问题](/fourier-grx-M4/docs/faq) 包含了一些常见问题的解答，可帮助您解决一些常见问题。如果您有遇到更多问题，也欢迎[贡献](/fourier-grx-M4/docs/contributing)您的一份力量，帮助我们改进。
 
