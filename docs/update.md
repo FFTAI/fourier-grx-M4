@@ -36,7 +36,7 @@ has_toc: true
 
 ## 安装方法
 
-固件安装流程请参考 [固件安装和更新](/fourier-grx-M4/docs/usage#固件安装和更新)。
+固件安装流程请参考 [固件安装和更新](/fourier-grx-M4/docs/quickstart/firmware)。
 
 ## 更新内容
 

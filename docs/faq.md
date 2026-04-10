@@ -54,7 +54,7 @@ has_toc: true
 
 **解决方案**：
 
-1. 确认机器人型号是否配置正确，参见 [固件安装和更新](/fourier-grx-M4/docs/usage#固件安装和更新)
+1. 确认机器人型号是否配置正确，参见 [固件安装和更新](/fourier-grx-M4/docs/quickstart/firmware)
 2. 重启机器人后重试
 
 ### 执行器自检失败
