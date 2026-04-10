@@ -19,6 +19,8 @@ Stable releases contain the official release information for the Fourier-GRX-M4 
 
 | Release Date | Version | Download                                                                                                                                                      | Release Notes                              | Support |
 |--------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------|
+| 2026-04-10   | 4.4.2   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#442) | ✅      |
+| 2026-04-08   | 4.4.1   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#441) | ✅      |
 | 2026-04-03   | 4.4.0   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#440) | ✅      |
 
 ### Fourier-M4 Firmware
@@ -39,6 +41,29 @@ No preview releases available at this time.
 For the firmware installation process, refer to [Firmware Installation and Update](/fourier-grx-M4/docs/en/quickstart/firmware).
 
 ## Release Notes
+
+### 4.4.2
+
+Added:
+
+- Added **HXC whole-body RL CPG walk task** (TID 3302) for the HXCT1 robot model
+  - The whole-body control model (`AlgorithmHXCWholeBodyRLWalkCPGControlModel`) extends the leg-body RL CPG algorithm, controlling 12 leg joints (position control); the 4 wheel joints (indices 12–15) are locked to zero velocity via PD braking (kp=0, kd=10)
+
+Fixed:
+
+- Fixed fourier-core: fixed a bug where the fi_fsa_v2.5 encoder zero point could not be set
+
+### 4.4.1
+
+Fixed:
+
+- Fixed configuration file key name error: robot name lookup changed from `robot_name` to `name` to match the actual YAML config structure
+
+Changed:
+
+- Packaging improvement: added `pdm` and `PyInstaller` to the `dependencies.sh` dependency installation script
+- Optimized PyInstaller build script; added `build_pyinstaller.py` to support M4L packaging builds
+- Improved M4L build process; added `fi_fsa_v3` runtime hook (`rthook_fi_fsa_v3.py`) to ensure libraries required by M4LT2 load correctly after packaging
 
 ### 4.4.0
 

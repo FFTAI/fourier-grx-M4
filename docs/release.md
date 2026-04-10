@@ -18,6 +18,7 @@ has_toc: true
 
 | 发布日期       | 版本号   | 资源链接                                                                                    | 更新内容                                  | 技术支持       |
 |------------|-------|-----------------------------------------------------------------------------------------|---------------------------------------|------------|
+| 2026-04-10 | 4.4.2 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#442) | ✅          |
 | 2026-04-08 | 4.4.1 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#441) | ✅          |
 | 2026-04-03 | 4.4.0 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#440) | ✅          |
 
@@ -39,6 +40,17 @@ has_toc: true
 固件安装流程请参考 [固件安装和更新](/fourier-grx-M4/docs/quickstart/firmware)。
 
 ## 更新内容
+
+### 4.4.2
+
+新增：
+
+- 新增 **HXC 全身 RL CPG 行走任务**（TID 3302），适用于 HXCT1 机器人型号
+  - 全身控制模型（`AlgorithmHXCWholeBodyRLWalkCPGControlModel`）基于腿部 RL CPG 算法，控制 12 个腿部关节（位置控制），4 个轮式关节（索引 12–15）通过 PD 制动锁定为零速度（kp=0, kd=10）
+
+修复：
+
+- 修复 fourier-core：修复 fi_fsa_v2.5 编码器零点无法设置的问题
 
 ### 4.4.1
 
