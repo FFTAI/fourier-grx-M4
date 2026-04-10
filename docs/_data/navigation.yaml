@@ -149,8 +149,8 @@ docs:
     url: /docs/faq
     nav_order: 6
 
-  - title: 固件更新
-    url: /docs/update
+  - title: 固件发布
+    url: /docs/release
     nav_order: 7
 
   - title: 更新日志

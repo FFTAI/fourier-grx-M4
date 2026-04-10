@@ -40,7 +40,7 @@ has_toc: true
 ## 程序启动
 
 机器人出厂时，默认已经为安装好了 `fourier-grx` 软件工具。
-如果发现没有安装，可以去 [固件更新](/fourier-grx-M4/docs/update) 页面查看下载和安装流程。
+如果发现没有安装，可以去 [固件发布](/fourier-grx-M4/docs/release) 页面查看下载和安装流程。
 
 该软件工具提供了 `fourier-grx start` 命令用于机器人控制程序启动。
 

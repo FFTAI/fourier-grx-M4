@@ -1,11 +1,11 @@
 ---
 layout: default
-title: 固件更新
+title: 固件发布
 nav_order: 7
 has_toc: true
 ---
 
-# 固件更新
+# 固件发布
 
 * TOC
 {:toc}
@@ -18,15 +18,15 @@ has_toc: true
 
 | 发布日期       | 版本号   | 资源链接                                                                                    | 更新内容                                  | 技术支持       |
 |------------|-------|-----------------------------------------------------------------------------------------|---------------------------------------|------------|
-| 2026-04-08 | 4.4.1 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/update#441) | ✅          |
-| 2026-04-03 | 4.4.0 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/update#440) | ✅          |
+| 2026-04-08 | 4.4.1 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#441) | ✅          |
+| 2026-04-03 | 4.4.0 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#440) | ✅          |
 
 ### Fourier-M4 固件
 
 | 发布日期       | 版本号   | 资源链接                                                                                  | 更新内容                                  | 技术支持       |
 |------------|-------|---------------------------------------------------------------------------------------|---------------------------------------|------------|
-| 2025-07-22 | 2.0.6 | [下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [详情](/fourier-grx-M4/docs/update#206) | ❌          |
-| 2025-06-09 | 2.0.5 | [下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.5.deb) | [详情](/fourier-grx-M4/docs/update#205) | ❌          |
+| 2025-07-22 | 2.0.6 | [下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [详情](/fourier-grx-M4/docs/release#206) | ❌          |
+| 2025-06-09 | 2.0.5 | [下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.5.deb) | [详情](/fourier-grx-M4/docs/release#205) | ❌          |
 
 ## 预览版本
 

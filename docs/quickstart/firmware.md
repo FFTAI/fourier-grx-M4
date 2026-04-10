@@ -14,7 +14,7 @@ has_toc: true
 > ℹ️ **说明**
 >
 > 本页面用于说明 Fourier-GRX-M4 SDK 的**固件安装、升级和首次型号配置**流程。
-> 固件安装包请从 [固件更新](/fourier-grx-M4/docs/update) 页面获取。
+> 固件安装包请从 [固件发布](/fourier-grx-M4/docs/release) 页面获取。
 
 ## 视频教程
 
@@ -29,7 +29,7 @@ has_toc: true
 
 在开始安装前，请先确认以下条件：
 
-- 已从 [固件更新](/fourier-grx-M4/docs/update) 页面下载对应版本的安装包
+- 已从 [固件发布](/fourier-grx-M4/docs/release) 页面下载对应版本的安装包
 - 机器人主控电脑可以正常进入系统
 - 建议使用**有线网络**连接，并确保设备可以联网
 - 如果当前使用有线网络，请先将机器人的网络配置为 **DHCP 自动获取 IP 地址** 模式
@@ -53,7 +53,7 @@ wget https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx
 
 > ℹ️ **说明**
 >
-> - 请根据 [固件更新](/fourier-grx-M4/docs/update) 页面中的最新版本链接，替换为实际需要下载的版本。
+> - 请根据 [固件发布](/fourier-grx-M4/docs/release) 页面中的最新版本链接，替换为实际需要下载的版本。
 > - 如果已经提前手动下载好 `.deb` 安装包，可直接跳过此步骤。
 
 ### 安装 `fourier-grx` 程序包

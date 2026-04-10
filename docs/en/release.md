@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Firmware Updates
+title: Firmware Releases
 nav_order: 7
 has_toc: true
 nav_exclude: true
 ---
 
-# Firmware Updates
+# Firmware Releases
 
 * TOC
 {:toc}
@@ -19,14 +19,14 @@ Stable releases contain the official release information for the Fourier-GRX-M4 
 
 | Release Date | Version | Download                                                                                                                                                      | Release Notes                              | Support |
 |--------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------|
-| 2026-04-03   | 4.4.0   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/update#440) | ✅      |
+| 2026-04-03   | 4.4.0   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#440) | ✅      |
 
 ### Fourier-M4 Firmware
 
 | Release Date | Version | Download                                                                                                                   | Release Notes                              | Support |
 |--------------|---------|----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------|
-| 2025-07-22   | 2.0.6   | [Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [Details](/fourier-grx-M4/docs/en/update#206) | ❌      |
-| 2025-06-09   | 2.0.5   | [Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.5.deb) | [Details](/fourier-grx-M4/docs/en/update#205) | ❌      |
+| 2025-07-22   | 2.0.6   | [Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [Details](/fourier-grx-M4/docs/en/release#206) | ❌      |
+| 2025-06-09   | 2.0.5   | [Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.5.deb) | [Details](/fourier-grx-M4/docs/en/release#205) | ❌      |
 
 ## Preview Releases
 
@@ -36,7 +36,7 @@ No preview releases available at this time.
 
 ## Installation
 
-For the firmware installation process, refer to [Firmware Installation and Update](/fourier-grx-M4/docs/en/usage#firmware-installation-and-update).
+For the firmware installation process, refer to [Firmware Installation and Update](/fourier-grx-M4/docs/en/quickstart/firmware).
 
 ## Release Notes
 

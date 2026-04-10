@@ -19,7 +19,7 @@
   - `docs/examples*` for runnable User/Developer examples
   - `docs/reference*` for API, config, run mode, resource, and CLI details
   - `docs/tasks*` for task/module semantics and per-task reference pages
-  - `docs/usage.md`, `docs/faq.md`, `docs/update.md`, `docs/changelog.md` for operations and maintenance
+  - `docs/usage.md`, `docs/faq.md`, `docs/release.md`, `docs/changelog.md` for operations and maintenance
 - The core conceptual split across the docs is:
   - **User API**: high-level control over Zenoh topics like `fourier-grx/dynalink_interface/{comm|robot|task|grx|rehab}/{server|client}`
   - **Developer API**: lower-level Python access via `fourier_core` and `fourier_grx`, intended to run on the robot controller
@@ -28,7 +28,7 @@
 ## Key conventions
 
 - Most pages use YAML front matter with `layout: default`, `title`, and `nav_order`. Child pages also use `parent`. Two TOC patterns are in use — follow whichever the surrounding pages use:
-  - `toc: true` with `toc_min_header`/`toc_max_header` keys **and** `* TOC\n{:toc}` in the body (only `docs/update.md` uses this)
+  - `toc: true` with `toc_min_header`/`toc_max_header` keys **and** `* TOC\n{:toc}` in the body (only `docs/release.md` uses this)
   - `has_toc: true` in front matter (all reference and task pages); some additionally include `* TOC\n{:toc}` in the body (e.g. quickstart pages), most do not
 - `nav_order` for child pages uses a decimal format (`4.1`, `4.2`, … `4.99`). Match this pattern when inserting a new child; use the next available decimal in sequence. The last item in a section often uses `.99` as a "catch-all" slot (e.g. `planner` at `4.99`).
 - Internal links and assets are usually written as absolute site paths rooted at `/fourier-grx-M4/...`. Keep new links in that form unless the surrounding file clearly uses another pattern.

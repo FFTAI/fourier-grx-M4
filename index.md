@@ -31,7 +31,7 @@ SDK 目前主要支持 Python 语言二次开发使用。
 
 [常见问题](/fourier-grx-M4/docs/faq) 包含了一些常见问题的解答，可帮助您解决一些常见问题。如果您有遇到更多问题，也欢迎[贡献](/fourier-grx-M4/docs/contributing)您的一份力量，帮助我们改进。
 
-[固件更新](/fourier-grx-M4/docs/update) 包含了发布的新固件以及介绍如何更新固件。
+[固件发布](/fourier-grx-M4/docs/release) 包含已发布的固件版本，以及对应的下载与说明。
 
 ## 支持平台与版本
 
