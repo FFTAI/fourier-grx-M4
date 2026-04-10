@@ -65,7 +65,7 @@ fourier-grx install
 
 安装过程中，会要求输入机器人型号。请根据实际机器人型号进行配置。
 
-### Fourier-GRX 支持的型号
+### 新版支持的型号
 
 | 机器人型号 | 机器人版本 | 测试机型 | [运行模式](/fourier-grx-M4/docs/reference/run_type) | 适配的机器人型号 |
 |-------|-------|------|-------------------------------------------------|----------|
@@ -102,10 +102,10 @@ fourier-grx list
 
 ## 旧版 `fourier-m4` 安装方式（已废弃）
 
-> ⚠️ **已废弃（Deprecated）**：以下为旧版 `fourier-m4` 软件的安装方式，已停止积极维护。
+> ⚠️ **已废弃**：以下为旧版 `fourier-m4` 软件的安装方式，已停止积极维护。
 
 ```bash
-# Fourier-M4 安装 (旧版)
+# Fourier-M4 安装（旧版）
 # 安装 fourier-m4-xxx.deb 文件，安装完后系统中会提供 fourier-m4 程序工具
 sudo dpkg -i fourier-m4-xxx.deb  # xxx 为具体版本号
 
@@ -113,7 +113,7 @@ sudo dpkg -i fourier-m4-xxx.deb  # xxx 为具体版本号
 fourier-m4 install
 ```
 
-> ⚠️ **已废弃（Deprecated）**：以下为旧版 `fourier-m4` 软件支持的机器人型号，已停止积极维护。
+> ⚠️ **已废弃**：以下为旧版 `fourier-m4` 软件支持的机器人型号，已停止积极维护。
 
 ### 旧版支持型号
 
