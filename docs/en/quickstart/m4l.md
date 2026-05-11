@@ -63,6 +63,11 @@ After the control program starts, follow these steps to switch the robot into wa
    - The robot will immediately stop all movements and `disable` all joints.
    - **(Note: The robot will go limp. Make sure proper protective measures are in place to prevent damage.)**
 
+3. If the **hardware emergency stop button** (red emergency switch on the robot backpack) is pressed, M4LT2 will automatically switch to **High-Damping Protection mode** (`TASK_ROTARY_JOINT_HIGH_DAMPING`):
+   - Joints remain powered and output damping torque — **limbs will not drop instantly**;
+   - High-damping mode persists until you manually switch to another task (e.g., `TASK_STAND_CONTROL`);
+   - This behavior differs from the gamepad `logo` key, which immediately cuts power (servo-off). See [High-Damping Protection Task](/fourier-grx-M4/docs/en/tasks/emergency_stop_high_damping) for details.
+
 ---
 
 ## Development Environment Setup

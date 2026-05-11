@@ -44,6 +44,7 @@ Common task command examples for M4 robots:
 | TASK_ROTARY_JOINT_MARK_TIME                       | 4112             | M4L               | Passive marching in place                                                 |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD      | 4117             | M4L               | Assisted marching in place (adjust PD parameters)                         |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT      | 4119             | M4L               | Assisted marching in place (adjust dt parameters)                         |
+| TASK_ROTARY_JOINT_HIGH_DAMPING                    | 4600             | M4LT2             | High-damping protection task triggered automatically on emergency stop (kp=0, high kd, soft braking) |
 
 - All: Indicates all Fourier Intelligence production robot models.
 
@@ -87,6 +88,10 @@ The pages below are the primary task descriptions organized in this repository a
 - [Calibrate Home (Prismatic Joints)](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint)
 - [Move to Length (Prismatic Joints)](/fourier-grx-M4/docs/en/tasks/move_length_prismatic_joint)
 - [Planner](/fourier-grx-M4/docs/en/tasks/planner)
+
+### Emergency Protection Tasks
+
+- [High-Damping Protection (Emergency Stop Response, M4LT2)](/fourier-grx-M4/docs/en/tasks/emergency_stop_high_damping)
 
 Robot module command list 🎏:
 

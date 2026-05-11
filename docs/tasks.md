@@ -43,6 +43,7 @@ M4 机器人常见任务指令示例：
 | TASK_ROTARY_JOINT_MARK_TIME                    | 4112      | M4L  | 被动原地踏步                        |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD   | 4117      | M4L  | 助力原地踏步（调整 PD 参数）              |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT   | 4119      | M4L  | 助力原地踏步（调整 dt 参数）              |
+| TASK_ROTARY_JOINT_HIGH_DAMPING                 | 4600      | M4LT2 | 急停触发时自动切换的高阻尼保护任务（kp=0，高 kd，软制动）|
 
 - All：表示所有傅利叶智能生产机型
 
@@ -86,6 +87,10 @@ M4 机器人常见任务指令示例：
 - [校准零点（直线关节）](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)
 - [调整长度（直线关节）](/fourier-grx-M4/docs/tasks/move_length_prismatic_joint)
 - [规划器](/fourier-grx-M4/docs/tasks/planner)
+
+### 急停保护任务
+
+- [高阻尼保护（急停响应，M4LT2）](/fourier-grx-M4/docs/tasks/emergency_stop_high_damping)
 
 机器人模块指令列表 🎏：
 
