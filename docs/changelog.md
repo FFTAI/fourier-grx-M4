@@ -13,6 +13,28 @@ has_toc: true
 
 ## 2026 年 5 月
 
+### v1.1.1 (2026-05-11)
+
+**新增功能**
+
+- ⚙️ **助力原地踏步（DT 模式）触发力配置接口**：新增 `assist_trigger_force_upper`（加速触发力）和 `assist_trigger_force_lower`（减速触发力）可配置参数，默认值分别为 `2.0 Nm` 和 `1.0 Nm`，通过上位机面板 `param_4`、`param_5` 设置。适用任务：TID 4119（助力原地踏步，调整 DT 参数）、TID 4306（膝关节受限助力原地踏步，调整 DT 参数）。详见 [助力原地踏步（DT）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt) 和 [膝关节受限助力原地踏步（DT）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
+
+**算法修正**
+
+- 🔧 **助力触发力阈值改为绝对力矩值**：原公式 `G[i] + offset` 改为 `G[i] * 0.0 + offset`（G 分量清零）。经实际实验测试，加入重力项 `G[i]` 会导致系统不稳定，故将其清零，直接以配置值作为加减速触发阈值
+
+**行为澄清**
+
+- 📌 明确参数更新时机：所有任务参数（步高、踏步周期、助力比例、触发力等）仅在**任务触发时**读取一次，不支持运行时实时刷新；需重新触发任务方可生效
+
+**文档更新**
+
+- 📖 更新 [助力原地踏步（DT）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)：参数名由"助力触发力上/下限偏移"改为"助力触发力上/下限"，更新触发阈值说明，补充 G 项清零的实验依据
+- 📖 更新 [膝关节受限助力原地踏步（DT）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)：同上
+- 📖 同步更新以上两个任务的英文文档
+
+---
+
 ### v1.1.0
 
 **新增功能**

@@ -14,6 +14,28 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## May 2026
 
+### v1.1.1 (2026-05-11)
+
+**New Features**
+
+- ⚙️ **Configurable assist trigger force interface for Mark Time Assist (DT mode)**: Added `assist_trigger_force_upper` (acceleration trigger force, default `2.0 Nm`) and `assist_trigger_force_lower` (deceleration trigger force, default `1.0 Nm`) as configurable parameters, set via upper-level panel `param_4` and `param_5`. Applicable tasks: TID 4119 (Assisted Marching in Place, adjust DT), TID 4306 (Knee Restriction Assisted Marching in Place, adjust DT). See [Mark Time Assist (DT)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt) and [Knee Restriction Mark Time Assist (DT)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
+
+**Algorithm Fix**
+
+- 🔧 **Assist trigger force threshold changed to absolute torque value**: Formula changed from `G[i] + offset` to `G[i] * 0.0 + offset` (gravity component zeroed). Experimental testing showed that including the gravity term `G[i]` caused system instability; it is now zeroed out and the configured value is used directly as the acceleration/deceleration trigger threshold
+
+**Behavior Clarification**
+
+- 📌 Clarified parameter update timing: all task parameters (step height, walk period, assist ratio, trigger forces, etc.) are read **once when the task is triggered** and do not refresh in real time; the task must be re-triggered for new values to take effect
+
+**Documentation Updates**
+
+- 📖 Updated [Mark Time Assist (DT)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt): renamed parameters from "trigger force upper/lower offset" to "trigger force upper/lower", updated threshold description, added G[i] zeroing rationale
+- 📖 Updated [Knee Restriction Mark Time Assist (DT)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt): same as above
+- 📖 Chinese documentation for both tasks updated in sync
+
+---
+
 ### v1.1.0
 
 **New Features**
