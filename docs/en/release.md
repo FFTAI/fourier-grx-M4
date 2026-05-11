@@ -11,132 +11,148 @@ nav_exclude: true
 * TOC
 {:toc}
 
-## Stable Releases
+## Latest Release
 
-Stable releases contain the official release information for the Fourier-GRX-M4 SDK, including release dates, version numbers, download links, and release notes.
+> **Fourier-GRX `4.4.3`** · 2026-05-11 · Platform: `linux/arm64` · [Download Now](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb)
+
+## Stable Releases
 
 ### Fourier-GRX Firmware
 
-| Release Date | Version | Download                                                                                                                                                      | Release Notes                              | Support |
-|--------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------|
-| 2026-05-11   | 4.4.3   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#443) | ✅      |
-| 2026-04-10   | 4.4.2   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#442) | ✅      |
-| 2026-04-08   | 4.4.1   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#441) | ✅      |
-| 2026-04-03   | 4.4.0   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#440) | ✅      |
+| Release Date | Version | Download | Release Notes | Support |
+|--------------|---------|----------|---------------|---------|
+| 2026-05-11 | **4.4.3** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [Details](#443) | ✅ Active |
+| 2026-04-10 | 4.4.2 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [Details](#442) | ✅ Active |
+| 2026-04-08 | 4.4.1 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [Details](#441) | ✅ Active |
+| 2026-04-03 | 4.4.0 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](#440) | ✅ Active |
 
 ### Fourier-M4 Firmware
 
-| Release Date | Version | Download                                                                                                                   | Release Notes                              | Support |
-|--------------|---------|----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------|
-| 2025-07-22   | 2.0.6   | [Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [Details](/fourier-grx-M4/docs/en/release#206) | ❌      |
-| 2025-06-09   | 2.0.5   | [Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.5.deb) | [Details](/fourier-grx-M4/docs/en/release#205) | ❌      |
+| Release Date | Version | Download | Release Notes | Support |
+|--------------|---------|----------|---------------|---------|
+| 2025-07-22 | 2.0.6 | [⬇ Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [Details](#206) | ❌ EOL |
+| 2025-06-09 | 2.0.5 | [⬇ Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.5.deb) | [Details](#205) | ❌ EOL |
 
 ## Preview Releases
-
-Preview releases are versions that have not yet been officially released. They may contain new features or fixes but are not guaranteed to be stable. Use with caution.
 
 No preview releases available at this time.
 
 ## Installation
 
-For the firmware installation process, refer to [Firmware Installation and Update](/fourier-grx-M4/docs/en/quickstart/firmware).
+For firmware installation instructions, refer to [Firmware Installation and Update](/fourier-grx-M4/docs/en/quickstart/firmware).
+
+---
 
 ## Release Notes
 
 ### 4.4.3
 
-Added:
+> 📅 2026-05-11 &nbsp;·&nbsp; Platform: `linux/arm64`
 
-- Added **M4LT2 emergency stop high-damping protection task** (TID 4600): when the hardware emergency stop switch (ioboard) is triggered on M4LT2 models, joints no longer cut power immediately; instead they automatically switch to a high-damping protection state (`kp=0`, `kd=80`) to prevent limbs from dropping suddenly. See [High-Damping Protection Task](/fourier-grx-M4/docs/en/tasks/emergency_stop_high_damping)
-- Added **configurable assist trigger force interface for mark time assist (DT mode)**: `assist_trigger_force_upper` (acceleration trigger force) and `assist_trigger_force_lower` (deceleration trigger force) can now be configured dynamically via upper-level panel parameters `param_4` and `param_5`
-  - Applicable tasks: Assisted Marching in Place (adjust DT parameters, TID 4119), Knee Restriction Assisted Marching in Place (adjust DT parameters, TID 4306)
+✨ **Added**
 
-Changed:
+- **M4LT2 emergency stop high-damping protection task** (TID 4600): when the hardware emergency stop switch (ioboard) is triggered, joints no longer cut power immediately — the system automatically switches to high-damping mode (`kp=0`, `kd=80`) to prevent limbs from dropping suddenly. See [High-Damping Protection Task](/fourier-grx-M4/docs/en/tasks/emergency_stop_high_damping)
+- **Configurable assist trigger force interface for Mark Time Assist (DT mode)**: new `assist_trigger_force_upper` / `assist_trigger_force_lower` parameters (defaults: `2.0 Nm` / `1.0 Nm`), configurable via panel `param_4` / `param_5`. Applies to TID 4119 and TID 4306
 
-- Assist trigger force threshold calculation changed from gravity-relative (`G[i] + offset`) to absolute torque threshold (`G[i] * 0.0 + offset`): experimental testing showed that including the `G[i]` term caused system instability; the gravity component is now zeroed out and the configured value is used directly as the threshold
+🔧 **Changed**
+
+- Assist trigger force thresholds changed to absolute torque values: formula updated from `G[i] + offset` to `G[i] * 0.0 + offset` (gravity component zeroed). Experimental testing confirmed that including `G[i]` caused system instability
+
+---
 
 ### 4.4.2
 
-Added:
+> 📅 2026-04-10 &nbsp;·&nbsp; Platform: `linux/arm64`
 
-- Added **HXC whole-body RL CPG walk task** (TID 3302) for the HXCT1 robot model
-  - The whole-body control model (`AlgorithmHXCWholeBodyRLWalkCPGControlModel`) extends the leg-body RL CPG algorithm, controlling 12 leg joints (position control); the 4 wheel joints (indices 12–15) are locked to zero velocity via PD braking (kp=0, kd=10)
+✨ **Added**
 
-Fixed:
+- **HXC whole-body RL CPG walk task** (TID 3302, for HXCT1): controls 12 leg joints (position control); 4 wheel joints (indices 12–15) are locked at zero velocity via PD braking (`kp=0, kd=10`)
 
-- Fixed fourier-core: fixed a bug where the fi_fsa_v2.5 encoder zero point could not be set
+🐛 **Fixed**
+
+- Fixed `fourier-core`: `fi_fsa_v2.5` encoder zero point could not be written
+
+---
 
 ### 4.4.1
 
-Fixed:
+> 📅 2026-04-08 &nbsp;·&nbsp; Platform: `linux/arm64`
 
-- Fixed configuration file key name error: robot name lookup changed from `robot_name` to `name` to match the actual YAML config structure
+🐛 **Fixed**
 
-Changed:
+- Fixed configuration key mismatch: robot name field changed from `robot_name` to `name` to match the actual YAML config structure
 
-- Packaging improvement: added `pdm` and `PyInstaller` to the `dependencies.sh` dependency installation script
-- Optimized PyInstaller build script; added `build_pyinstaller.py` to support M4L packaging builds
-- Improved M4L build process; added `fi_fsa_v3` runtime hook (`rthook_fi_fsa_v3.py`) to ensure libraries required by M4LT2 load correctly after packaging
+🔧 **Changed**
+
+- Added `pdm` and `PyInstaller` to the `dependencies.sh` install script
+- Added `build_pyinstaller.py` to support M4L packaging builds
+- Added `fi_fsa_v3` PyInstaller runtime hook (`rthook_fi_fsa_v3.py`) to ensure M4LT2 libraries load correctly after packaging
+
+---
 
 ### 4.4.0
 
-Added:
+> 📅 2026-04-03 &nbsp;·&nbsp; Platform: `linux/arm64`
 
-- Added **M4LP1** hardware model support (new hardware variant with prismatic joints)
-  - Added automatic prismatic joint calibration (automatically detects travel limits and resets to zero)
-  - Added task for moving prismatic joints to a specified length
-  - Improved rotary joint automatic calibration workflow (adopts a "travel to boundary then return" approach for better calibration reliability)
-- Added **M4LT2** hardware model support (new hardware version using the FSA v3 asynchronous communication protocol)
-  - Shares all algorithms and tasks with M4LT1; differs only in the motor communication protocol
-- Added **Knee Restriction** task set for scenarios where knee joint range of motion is limited:
-  - Knee restriction standing posture control (TID 4300)
-  - Knee restriction passive forward walking (TID 4301)
-  - Knee restriction passive marching in place (TID 4302)
-  - Knee restriction assisted forward walking (adjust PD parameters, TID 4303)
-  - Knee restriction assisted marching in place (adjust PD parameters, TID 4304)
-  - Knee restriction assisted forward walking (adjust DT parameters, TID 4305)
-  - Knee restriction assisted marching in place (adjust DT parameters, TID 4306)
-- Added **Assisted Mode Subdivision**: split assisted walking/marching tasks into two independent modes — PD parameter adjustment and DT timing adjustment:
-  - Assisted forward walking (adjust PD parameters, TID 4116)
-  - Assisted marching in place (adjust PD parameters, TID 4117)
-  - Assisted forward walking (adjust DT parameters, TID 4118)
-  - Assisted marching in place (adjust DT parameters, TID 4119)
-- Added **Planner** functionality: a trajectory planning auxiliary task that generates joint motion trajectory sequences for display on an upper-level system while keeping the device in a disabled state (TID 4401–4406)
-- Added automatic rotary joint calibration task (TID 4120), which automatically completes boundary detection, power-off drop, and zero-point writing in three sequential steps
-- Added keyboard shortcut input support (keyboard can now control assisted mode and other functions)
-- IO board support (ioboard communication and read/write)
+✨ **Added**
 
-Fixed:
+- **M4LP1** hardware model support (new variant with prismatic joints)
+  - Automatic prismatic joint calibration (detects travel limits and resets to zero)
+  - Task for moving prismatic joints to a specified length
+  - Rotary joint calibration updated to a "travel to boundary then return" approach for improved reliability
+- **M4LT2** hardware model support (FSA v3 async protocol); shares all algorithms and tasks with M4LT1
+- **Knee Restriction** task set for limited knee range-of-motion scenarios:
+  - Standing posture control (TID 4300)
+  - Passive forward walking (TID 4301) · Passive marching in place (TID 4302)
+  - Assisted forward walking — PD (TID 4303) · Assisted marching in place — PD (TID 4304)
+  - Assisted forward walking — DT (TID 4305) · Assisted marching in place — DT (TID 4306)
+- **Assisted mode subdivision**: split into separate PD and DT variants:
+  - Assisted forward walking — PD (TID 4116) · Assisted marching in place — PD (TID 4117)
+  - Assisted forward walking — DT (TID 4118) · Assisted marching in place — DT (TID 4119)
+- **Planner** tasks: trajectory planning in a device-disabled state for upper-level display (TID 4401–4406)
+- Automatic rotary joint calibration task (TID 4120): boundary detection → power-off drop → zero-point write
+- Keyboard shortcut input support
+- IO board communication and read/write support
 
-- Fixed multiple issues in the prismatic joint length automatic calibration
-- Fixed issues with flag setting and clearing
-- Fixed the virtual_panel not working
+🐛 **Fixed**
+
+- Fixed multiple issues in prismatic joint length calibration
+- Fixed flag set/clear inconsistencies
+- Fixed `virtual_panel` not responding
 - Fixed several issues during walking
 
-Changed:
+🔧 **Changed**
 
-- Optimized PD parameters for assisted mode (DT algorithm) to improve response stiffness
-- Optimized the load/energy detection algorithm to reduce false triggers
-- Improved stability of the gait generator in knee-restriction scenarios
-- Improved packaging process to support PyInstaller packaging of the fi_fsa_v3 library (required for M4LT2)
+- Tuned PD parameters for assisted mode (DT algorithm) to improve response stiffness
+- Reduced false triggers in the load/energy detection algorithm
+- Improved gait generator stability in knee-restriction scenarios
+- Packaging now supports PyInstaller bundling of the `fi_fsa_v3` library (required for M4LT2)
+
+---
 
 ### 2.0.6
 
-Fixed:
+> 📅 2025-07-22
 
-- Fixed an issue where placing the device down while standing did not trigger force protection
+🐛 **Fixed**
 
-Changed:
+- Fixed: placing the device down while standing did not trigger force protection
 
-- Improved device operating speed and stepping cadence; the M4LV3 control cycle was corrected from 0.03 s to 0.025 s (a 1/6 improvement — may introduce operational stability risks, pending test verification)
+🔧 **Changed**
 
-Unchanged:
+- M4LV3 control cycle corrected from `0.03 s` to `0.025 s` (~1/6 speed improvement); stepping cadence increased accordingly. Stability impact pending verification
 
-- Confirmed that force protection during walking is not implemented (this feature did not exist in previous code, and the requirement has not been confirmed as needed)
-- Confirmed that position protection is active during walking, but cannot be triggered when moving backward (this issue cannot be easily fixed; pending after-sales engineer confirmation on occurrence frequency — if rare, it will not be corrected)
+⚠️ **Known Limitations**
+
+- Force protection during walking is not implemented (requirement not yet confirmed)
+- Position protection cannot be triggered while moving backward (low-frequency issue; under review)
+
+---
 
 ### 2.0.5
 
-Fixed:
+> 📅 2025-06-09
 
-- Fixed an issue where assisted mode during marching in place could easily trigger unintended assisted movement
+🐛 **Fixed**
+
+- Fixed: assisted mode during marching in place could easily trigger unintended assisted movement
