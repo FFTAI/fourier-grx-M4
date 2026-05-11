@@ -29,6 +29,8 @@ Task Parameters:
 | Step lift height | `float` | 0.1 | [0.1, 0.4] | The leg lift height for each step, in m. |
 | Step cycle | `float` | 1.0 | [0.5, 4.0] | The single-step cycle for mark time — the time required to complete one full stepping cycle, in s. A smaller value means a higher step frequency; a larger value means slower stepping. |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | The adjustment coefficient for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal step frequency); a lower value plays more slowly, giving the patient more time to follow the motion. |
+| Assist trigger force upper | `float` | 2.0 | (-∞, +∞) | Absolute torque threshold that triggers an **increase** in assist ratio, in Nm. When measured joint torque exceeds this value, assist ratio increases by 0.01. Only active in auto assist mode. |
+| Assist trigger force lower | `float` | 1.0 | (-∞, +∞) | Absolute torque threshold that triggers a **decrease** in assist ratio, in Nm. When measured joint torque falls below this value, assist ratio decreases by 0.01. Only active in auto assist mode. |
 | Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio (±0.01) every control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory, without manual setting. The assist ratio is always clamped to [0.0, 1.0]. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start the motion. true = start; false = do not start (has no effect if already started). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop the motion. true = stop; false = continue stepping. |
@@ -45,6 +47,20 @@ Task Parameters:
 > | 0.0 | 0.5 | Trajectory plays at 50% speed; each step takes twice the normal duration — suitable for patients with weak motor ability. |
 > | 0.5 | 0.75 | Trajectory plays at 75% speed; moderate step frequency. |
 > | 1.0 | 1.0 | Trajectory plays at normal speed — suitable for patients with near-normal motor ability. |
+
+> **Assist Trigger Force Thresholds Explained**:
+>
+> These parameters are used directly as absolute torque thresholds to control automatic increases and decreases of the assist ratio.
+>
+> > **Note**: The design originally considered adding the gravity compensation torque G[i] to the thresholds (i.e., threshold = G[i] + offset) to make the trigger condition posture-adaptive.
+> > However, experimental testing showed that including G[i] tended to cause system instability, so the G[i] coefficient has been set to zero for now.
+> > The configured values are used directly as absolute thresholds.
+>
+> | Condition | Effect |
+> |-----------|--------|
+> | Measured torque > `assist_trigger_force_upper` | assist\_ratio += 0.01 (patient is actively pushing → increase assist) |
+> | Measured torque < `assist_trigger_force_lower` | assist\_ratio -= 0.01 (patient is not contributing → decrease assist) |
+> | Otherwise | assist\_ratio unchanged |
 
 ## Module Info
 
@@ -76,6 +92,8 @@ Command Interface:
 | Step lift height | `grx.virtual_panel_command_param_1` |
 | Step cycle | `grx.virtual_panel_command_param_2` |
 | Assist ratio | `grx.virtual_panel_command_param_3` |
+| Assist trigger force upper | `grx.virtual_panel_command_param_4` |
+| Assist trigger force lower | `grx.virtual_panel_command_param_5` |
 | Auto assist mode flag | `grx.virtual_panel_command_switch_1` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
@@ -83,3 +101,4 @@ Command Interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.
+- Added `Assist trigger force upper` / `Assist trigger force lower` parameters as configurable absolute torque thresholds for auto assist mode. Experimental testing showed that including the gravity compensation term G[i] in the threshold formula caused system instability; the G[i] coefficient has been set to zero and the configured values are used directly as absolute thresholds.
