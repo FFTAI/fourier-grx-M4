@@ -18,6 +18,7 @@ has_toc: true
 
 | 发布日期       | 版本号   | 资源链接                                                                                    | 更新内容                                  | 技术支持       |
 |------------|-------|-----------------------------------------------------------------------------------------|---------------------------------------|------------|
+| 2026-05-11 | 4.4.3 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#443) | ✅          |
 | 2026-04-10 | 4.4.2 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#442) | ✅          |
 | 2026-04-08 | 4.4.1 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#441) | ✅          |
 | 2026-04-03 | 4.4.0 | [下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](/fourier-grx-M4/docs/release#440) | ✅          |
@@ -40,6 +41,18 @@ has_toc: true
 固件安装流程请参考 [固件安装和更新](/fourier-grx-M4/docs/quickstart/firmware)。
 
 ## 更新内容
+
+### 4.4.3
+
+新增：
+
+- 新增 **M4LT2 急停高阻尼保护任务**（TID 4600）：M4LT2 机型在硬件急停开关（ioboard）触发时，关节不再直接断电，而是自动切换到高阻尼保护状态（`kp=0`、`kd=80`），防止肢体瞬间跌落。详见 [高阻尼保护任务说明](/fourier-grx-M4/docs/tasks/emergency_stop_high_damping)
+- 新增 **助力原地踏步（DT 模式）助力触发力配置接口**：`assist_trigger_force_upper`（加速触发力）和 `assist_trigger_force_lower`（减速触发力）现可通过上位机面板参数 `param_4`、`param_5` 动态设置
+  - 适用任务：助力原地踏步（调整 DT 参数，TID 4119）、膝关节受限助力原地踏步（调整 DT 参数，TID 4306）
+
+修改：
+
+- 助力触发力阈值计算方式由重力相对值（`G[i] + offset`）改为绝对力矩阈值（`G[i] * 0.0 + offset`）：经实验测试，加入 `G[i]` 项会导致系统不稳定，故将 G 分量清零，直接使用配置值作为阈值
 
 ### 4.4.2
 

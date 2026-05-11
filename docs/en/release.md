@@ -19,6 +19,7 @@ Stable releases contain the official release information for the Fourier-GRX-M4 
 
 | Release Date | Version | Download                                                                                                                                                      | Release Notes                              | Support |
 |--------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------|
+| 2026-05-11   | 4.4.3   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#443) | ✅      |
 | 2026-04-10   | 4.4.2   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#442) | ✅      |
 | 2026-04-08   | 4.4.1   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#441) | ✅      |
 | 2026-04-03   | 4.4.0   | [Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](/fourier-grx-M4/docs/en/release#440) | ✅      |
@@ -41,6 +42,18 @@ No preview releases available at this time.
 For the firmware installation process, refer to [Firmware Installation and Update](/fourier-grx-M4/docs/en/quickstart/firmware).
 
 ## Release Notes
+
+### 4.4.3
+
+Added:
+
+- Added **M4LT2 emergency stop high-damping protection task** (TID 4600): when the hardware emergency stop switch (ioboard) is triggered on M4LT2 models, joints no longer cut power immediately; instead they automatically switch to a high-damping protection state (`kp=0`, `kd=80`) to prevent limbs from dropping suddenly. See [High-Damping Protection Task](/fourier-grx-M4/docs/en/tasks/emergency_stop_high_damping)
+- Added **configurable assist trigger force interface for mark time assist (DT mode)**: `assist_trigger_force_upper` (acceleration trigger force) and `assist_trigger_force_lower` (deceleration trigger force) can now be configured dynamically via upper-level panel parameters `param_4` and `param_5`
+  - Applicable tasks: Assisted Marching in Place (adjust DT parameters, TID 4119), Knee Restriction Assisted Marching in Place (adjust DT parameters, TID 4306)
+
+Changed:
+
+- Assist trigger force threshold calculation changed from gravity-relative (`G[i] + offset`) to absolute torque threshold (`G[i] * 0.0 + offset`): experimental testing showed that including the `G[i]` term caused system instability; the gravity component is now zeroed out and the configured value is used directly as the threshold
 
 ### 4.4.2
 
