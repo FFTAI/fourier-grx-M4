@@ -11,192 +11,183 @@ nav_exclude: true
 * TOC
 {:toc}
 
-This document collects common questions and solutions encountered when using the Fourier-GRX-M4 SDK. If your issue is not listed here, please contact technical support.
+> If your issue is not listed here, please contact technical support: [xin.chen@fftai.com](mailto:xin.chen@fftai.com)
 
-## Hardware Issues
+## Category Navigation
+
+| Category | Questions |
+|----------|-----------|
+| 🔋 [Hardware](#-hardware-issues) | [Battery not charging](#battery-not-charging) |
+| 📦 [Installation](#-installation-issues) | [Installation interrupted](#installation-interrupted) · [Model config failure](#robot-model-configuration-failure) |
+| 🚀 [Initialization](#-initialization-issues) | [Config file error](#configuration-file-error) · [Actuator self-check failure](#actuator-self-check-failure) |
+| 🌐 [Network](#-network-configuration) | [External network access](#external-network-access) · [WiFi hotspot](#wifi-hotspot-configuration) |
+| ⚡ [Performance](#-performance) | [Control frequency](#control-frequency) · [Timeout warning](#timeout-warning) · [Gamepad sleep](#gamepad-sleep-issue) |
+| 🛠️ [Development](#️-development-environment) | [Communication issue](#user-api-communication-issue) · [Missing dependency](#dependency-issue) |
+
+---
+
+## 🔋 Hardware Issues
 
 ### Battery Not Charging
 
-**Problem**: The robot is plugged in but the battery is not charging. After a long time charging, the robot still shuts off immediately upon powering on.
+**Symptom**: Robot is plugged in but battery is not charging; robot shuts off immediately on power-on even after a long time connected.
 
-**Solution**:
+**Troubleshooting**:
 
-1. Check that the charging cable is properly and securely connected to the charging port.
-2. Check that the charger is functioning normally (red or blue light indicates charging; green light indicates fully charged).
-3. Check that the battery switch button is pressed. **Only when pressed** will the battery charge. Otherwise, the power cable only supplies power to the robot without charging the battery.
-4. Check whether the fuse has blown.
-    - The fuse is located inside the battery compartment. Open the compartment to inspect the fuse.
-    - If blown, the fuse must be replaced.
+1. Check that the charging cable is securely connected to the charging port
+2. Verify charger status: red/blue light = charging, green light = fully charged
+3. Confirm the battery switch is **pressed in** — only when pressed will the battery charge; otherwise the power cable supplies the robot only, without charging
+4. Check if the fuse has blown (located inside the battery compartment); replace if blown
 
-## Installation Issues
+---
+
+## 📦 Installation Issues
 
 ### Installation Interrupted
 
-**Problem**: The installation program exits unexpectedly due to an accident or user error.
+**Symptom**: The installer exits unexpectedly due to an error or accidental input.
 
-**Solution**:
-
-1. Simply re-run the installation program. Any previously installed content will be cleaned up automatically.
+**Solution**: Simply re-run the installer. Any partially installed content will be cleaned up automatically.
 
 ### Robot Model Configuration Failure
 
-**Problem**: During installation, the program prompts for a number to configure the robot model, but after entering it, a configuration error is reported and the installation exits.
+**Symptom**: The installer prompts for a number to configure the robot model, but reports a configuration error after input.
 
 **Solution**:
 
-1. Verify that you entered the correct **number**, not the option name as text.
-2. Restart the installation program and reconfigure.
+1. Enter the correct **number** — do not type the option name as text
+2. Restart the installer and reconfigure
 
-## Initialization Issues
+---
+
+## 🚀 Initialization Issues
 
 ### Configuration File Error
 
-**Problem**: Robot initialization fails with a configuration file error.
+**Symptom**: Robot initialization fails with a configuration file error.
 
 **Solution**:
 
-1. Verify that the robot model is configured correctly. See [Firmware Installation and Update](/fourier-grx-M4/docs/en/quickstart/firmware).
-2. Restart the robot and try again.
+1. Verify the robot model is configured correctly — see [Firmware Installation and Update](/fourier-grx-M4/docs/en/quickstart/firmware)
+2. Restart the robot and try again
 
 ### Actuator Self-Check Failure
 
-**Problem**: The robot self-check fails, indicating it cannot reach an actuator at the specified IP address.
+**Symptom**: `self-check` fails, reporting it cannot reach an actuator at the specified IP.
 
 ![Self-check error](/fourier-grx-M4/assets/images/self_check_error.png)
 
-**Solution**:
+**Troubleshooting**:
 
-1. Check the actuator power status (should show a purple breathing light).
-2. Confirm wired network connection and static IP configuration.
-3. Check the integrity of all cable connections.
+1. Check actuator power status (should show a **purple breathing light**)
+2. Confirm wired network connection and static IP configuration
+3. Check integrity of all cable connections
 
-## Network Configuration
+---
+
+## 🌐 Network Configuration
 
 ### External Network Access
 
-**Problem**: How do I configure the robot to access the internet?
+**Question**: How do I configure the robot's main controller to access the internet?
 
-**Solution**:
-
-1. Connect an external network via the wired Ethernet port.
-
-2. Configuration steps:
+The robot uses its wired Ethernet port with a static IP for actuator communication by default. To access the internet, temporarily switch to dynamic IP:
 
 ```bash
-# 1. Switch to dynamic IP (for internet access)
+# Switch to dynamic IP (internet access)
 sudo nmcli connection modify "Wired connection" ipv4.method auto
-   
-# 2. Switch back to static IP (for robot operation)
+sudo systemctl restart NetworkManager
+
+# Switch back to static IP (robot operation)
 sudo nmcli connection modify "Wired connection" ipv4.method manual \
     ipv4.addresses 192.168.137.220/24
-   
-# 3. Restart network service
 sudo systemctl restart NetworkManager
 ```
 
 ### WiFi Hotspot Configuration
 
-**Problem**: How do I disable the WiFi hotspot from starting automatically?
-
-**Solution**:
+**Question**: How do I disable the WiFi hotspot from starting automatically?
 
 ```bash
-# Temporarily disable
-sudo systemctl stop rocs-wifi
-
-# Permanently disable
-sudo systemctl disable rocs-wifi
-
-# Restart to apply
-sudo reboot
+sudo systemctl stop rocs-wifi      # Temporarily disable
+sudo systemctl disable rocs-wifi   # Permanently disable (takes effect after reboot)
 ```
 
-## Performance
+---
+
+## ⚡ Performance
 
 ### Control Frequency
 
-- **User API**:
-    - Control frequency: 50 Hz
-    - State output: 50 Hz
-    - Command reception: 50 Hz
-
-- **Developer API**:
-    - Data update frequency: configurable, default 400 Hz (up to 500 Hz)
-    - Algorithm execution frequency: configurable, recommended not to exceed the data update frequency
+| Interface | Data Update | Command Reception | Notes |
+|-----------|-------------|-------------------|-------|
+| User API | 50 Hz | 50 Hz | Fixed |
+| Developer API | Default 400 Hz (up to 500 Hz) | Configurable | Algorithm rate should not exceed data update rate |
 
 ### Timeout Warning
 
-**Problem**: The program reports a Timeout warning.
+**Symptom**: Program outputs `Timeout` warnings.
 
-**Solution**:
+**Troubleshooting**:
 
-1. Disable IPv6 (on the main controller and other devices on the LAN).
-2. Check whether any actuator connection cables are loose.
-3. Monitor network latency and packet loss.
+1. Disable IPv6 on the main controller and other LAN devices
+2. Check for loose actuator connection cables
+3. Monitor network latency and packet loss
 
 ### Gamepad Sleep Issue
 
-**Problem**: The gamepad enters sleep mode after a period of inactivity and cannot reconnect to control the robot afterward.
+**Symptom**: Gamepad enters sleep mode after inactivity and cannot reconnect to control the robot.
 
 **Solution**:
 
 1. Use a gamepad that supports a longer sleep timeout or can be configured for no sleep:
-    - Example: Gamesir G8+ Pro
-    - Example: Betop Starflash gamepad
-2. After reconnecting the gamepad, restart the robot control program.
+   - Example: Gamesir G8+ Pro
+   - Example: Betop Starflash gamepad
+2. After reconnecting the gamepad, restart the robot control program
 
-## Development Environment Issues
+---
+
+## 🛠️ Development Environment
 
 ### User API Communication Issue
 
-**Problem**: The User API test program cannot communicate normally.
+**Symptom**: User API test program cannot communicate normally.
 
-**Solution**:
+**Troubleshooting**:
 
-1. Verify network configuration:
-    - Zenoh preferentially uses the wired network interface.
-    - Avoid connecting both wired and wireless networks simultaneously.
-2. Check network connection status.
-3. Confirm SDK version compatibility.
+1. Zenoh preferentially uses the wired network interface — avoid connecting both wired and wireless simultaneously
+2. Confirm the robot IP and local machine are on the same subnet
+3. Verify SDK version compatibility
 
 ### Dependency Issue
 
-**Problem**: `ImportError: GLIBC_2.33 not found`
+**Symptom**: `ImportError: GLIBC_2.33 not found`
 
 **Solution**:
 
-1. Install the necessary build tools:
-
 ```bash
-sudo apt update
-sudo apt install build-essential
+sudo apt update && sudo apt install build-essential
 ```
 
-2. System requirements:
-    - Recommended: Ubuntu 22.04 LTS
-    - Minimum: A Linux distribution that supports GLIBC 2.33
+System requirements:
+- Recommended: Ubuntu 22.04 LTS
+- Minimum: A Linux distribution supporting GLIBC 2.33
 
-## Best Practices
+---
 
-1. **Development Environment Preparation**
-    - Use the recommended operating system version.
-    - Configure the network environment correctly.
-    - Install all required dependencies.
+## 💡 Best Practices
 
-2. **Network Configuration**
-    - Use a static IP during development.
-    - Switch to dynamic IP when internet access is needed.
-    - Periodically check network connection status.
+| Scenario | Recommendation |
+|----------|----------------|
+| Development setup | Use Ubuntu 22.04, install all dependencies, configure a static IP |
+| Network management | Use static IP during operation; switch to dynamic only when internet access is needed |
+| Troubleshooting | Check `~/fourier-grx/log/` first for runtime logs |
+| Calibration | After every power-on, run prismatic joint calibration → rotary joint calibration in order |
 
-3. **Troubleshooting**
-    - Review log files.
-    - Check hardware connections.
-    - Monitor system resources.
+---
 
 ## Getting Help
 
-If you encounter an issue not listed in this document:
-
-1. Check the [Reference Guide](/fourier-grx-M4/docs/en/reference).
-2. Review the [Changelog](/fourier-grx-M4/docs/en/changelog).
-3. Contact technical support: [xin.chen@fftai.com](mailto:xin.chen@fftai.com)
+- 📖 [Reference Guide](/fourier-grx-M4/docs/en/reference)
+- 📋 [Changelog](/fourier-grx-M4/docs/en/changelog)
+- 📧 Technical support: [xin.chen@fftai.com](mailto:xin.chen@fftai.com)

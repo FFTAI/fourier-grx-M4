@@ -11,179 +11,168 @@ nav_exclude: true
 * TOC
 {:toc}
 
-This document describes common operational workflows and important notes when using the Fourier-GRX-M4 SDK.
+## Quick Reference
 
-## Joint Zero Calibration
+| Category | Operation | Description |
+|----------|-----------|-------------|
+| 🔧 Calibration & Startup | [Joint Zero Calibration](#joint-zero-calibration) | Required calibration sequence after every M4L power-on |
+| 🔧 Calibration & Startup | [Auto-Start on Boot](#auto-start-on-boot) | Configure fourier-grx to start automatically with the system |
+| 📋 Logging & Data | [Program Run Logging](#enablingdisabling-program-run-logging) | Control terminal log output from fourier-grx |
+| 📋 Logging & Data | [Robot Data Recording](#enablingdisabling-robot-data-recording) | Enable CSV recording of joint/IMU data |
 
-> ℹ️ **Note**
->
-> Built-in calibration tasks can be selected and executed with a gamepad in **Debug Mode**, or by calling the corresponding task interface in **Developer Mode**.
+---
 
-### Pre-Startup Checklist
+## 🔧 Calibration & Startup
 
-1. **Hardware Check**
-    - ✅ Robot power is connected
-    - ✅ Gamepad is properly connected
-    - ✅ Network connection is normal
-    - ✅ Locking pins are inserted into the robot joint positioning holes
+### Joint Zero Calibration
 
-2. **Software Preparation**
-    - ✅ SDK is correctly installed
+> ℹ️ **Note**: Built-in calibration tasks can be selected and executed with a gamepad in **Debug Mode**, or by calling the corresponding task interface in **Developer Mode**.
 
-### Starting the Program
+#### Pre-Startup Checklist
 
-```bash
-# Start the Fourier-GRX program
-fourier-grx start
-```
+**Hardware**
 
-### Calibration Workflow
+- ✅ Robot power is connected
+- ✅ Gamepad is properly connected
+- ✅ Network connection is normal
+- ✅ Locking pins are inserted into the joint positioning holes (for manual calibration)
 
-1. **Steps**
-    - Use the gamepad `L1` button to select the **calibration task**
-    - Use the gamepad `L2` button to confirm execution
-    - Observe the terminal output
+**Software**
 
-### M4L Power-On Calibration Sequence
+- ✅ SDK is correctly installed and `fourier-grx start` runs successfully
+
+#### M4L Power-On Calibration Sequence
 
 > ⚠️ **M4L series robots must perform calibration in the following order after every power-on. Otherwise, joint position data will be invalid.**
 >
-> Rotary joints (hip/knee) save their zero point via absolute encoders and retain it across power cycles. Prismatic joints (leg length) use incremental encoders and **must be recalibrated after every power-on**.
+> - Rotary joints (hip/knee) use absolute encoders — zero point is retained across power cycles
+> - Prismatic joints (leg length) use incremental encoders — **must be recalibrated after every power-on**
 
-| Step | Task Name                        | TID  | Description                                                                                      |
-|------|----------------------------------|------|--------------------------------------------------------------------------------------------------|
-| 1    | Auto Calibrate (Prismatic Joints) | 4210 | Prismatic joints automatically find their travel limits and reset to zero; leg length will contract to minimum then reset |
-| 2    | Auto Calibrate (Rotary Joints)    | 4120 | Rotary joint boundary detection + auto zero-setting, consists of 3 sub-steps, takes approximately 60 s |
+| Step | Task Name | TID | Description |
+|------|-----------|-----|-------------|
+| 1 | Auto Calibrate (Prismatic Joints) | 4210 | Leg length contracts to minimum then resets to zero; takes ~20 s |
+| 2 | Auto Calibrate (Rotary Joints) | 4120 | Boundary detection → power-off drop → zero-point write; takes ~60 s |
 
-Detailed calibration task descriptions:
+#### Calibration Task Reference
 
-| Robot Model | Task                                  | Task ID | Description                      |
-|-------------|---------------------------------------|---------|----------------------------------|
-| M4L         | Auto Calibrate (Prismatic Joints)     | 4210    | Must be performed after every power-on |
-| M4L         | Auto Calibrate (Rotary Joints)        | 4120    | Perform as needed after power-on |
-| M4L         | Manual Set Home (Prismatic Joints)    | 4203    | Use after manually aligning pins |
-| M4L         | Manual Set Home (Rotary Joints)       | 4103    | Use after manually aligning pins |
+| Robot Model | Task | TID | Notes |
+|-------------|------|-----|-------|
+| M4L | Auto Calibrate (Prismatic Joints) | 4210 | Required after every power-on |
+| M4L | Auto Calibrate (Rotary Joints) | 4120 | Perform as needed after power-on |
+| M4L | Manual Set Home (Prismatic Joints) | 4203 | Use after manually aligning pins |
+| M4L | Manual Set Home (Rotary Joints) | 4103 | Use after manually aligning pins |
 
-2. **Calibration Verification**
-    - Success indicators:
-        - Terminal displays an **all-zeros array**
-        - All joint positions are correct
-    - Failure indicators:
-        - Array contains values greater than 1 (indicating joint deviation exceeding 1°)
-        - Joint positions are abnormal
+#### Calibration Verification
 
-3. **Exiting the Program**
+After calibration, the terminal prints a joint deviation array:
 
-   Press `Ctrl+C` twice to exit the program.
+- ✅ **Success**: all values near 0 (deviation < 1°)
+- ❌ **Failure**: any value greater than 1 — re-run the calibration task for the affected joint
 
-### Important Notes
+Press `Ctrl+C` twice to exit the program.
 
-1. **Pin Management**
-    - Manual calibration (TID=4103/4203): insert pins into the robot joint positioning holes first
-    - Automatic calibration (TID=4120/4210): no pins needed during execution
-    - After calibration, all pins must be removed before executing any motion task
-    - If a pin is found still inserted, recalibration is required
+#### Important Notes
 
-2. **Safety Precautions**
-    - During auto calibration (TID=4210), the leg-length mechanism will move automatically — maintain a safe distance
-    - During auto calibration (TID=4120), rotary joints will slowly move to their mechanical limits — ensure joints are unobstructed
-    - Keep the emergency stop button within reach, ready to stop the robot at any time
+**Pin Management**
 
-3. **Troubleshooting**
-    - Auto calibration timed out without completing: check if the motor driver is reporting an alarm; execute Clear Fault (TID=34) and retry
-    - Calibration completed but motion is abnormal: re-execute the calibration task for the affected direction
-    - Multiple failures: contact technical support and save the terminal log for analysis
+- Manual calibration (TID 4103 / 4203): insert pins before execution
+- Automatic calibration (TID 4120 / 4210): no pins required
+- After calibration, **remove all pins** before running any motion task
 
-## Auto-Start on Boot
+**Safety**
 
-fourier-grx provides a boot auto-start configuration feature. Use the following commands to configure it:
+- TID 4210: the leg-length mechanism moves automatically — maintain a safe distance
+- TID 4120: rotary joints slowly travel to their mechanical limits — ensure joints are unobstructed
+- Keep the emergency stop button within reach at all times
+
+**Troubleshooting**
+
+- Auto calibration timed out: check if the motor driver is reporting an alarm; execute Clear Fault (TID 34) and retry
+- Calibration succeeded but motion is abnormal: re-run the calibration task for the affected direction
+- Repeated failures: contact technical support and save the terminal log
+
+---
+
+### Auto-Start on Boot
 
 ```bash
-fourier-grx enable_service  # Enable auto-start on boot
-fourier-grx disable_service # Disable auto-start on boot
+fourier-grx enable_service   # Enable auto-start on boot
+fourier-grx disable_service  # Disable auto-start on boot
 ```
 
-If the robot is configured for gamepad remote control, ensure the gamepad is connected to the main controller's USB port and is awake before powering on when auto-start is enabled.
+> ℹ️ If the robot is configured for gamepad control, ensure the gamepad is connected to the main controller's USB port and awake before powering on.
 
-## Enabling/Disabling Program Run Logging
+---
 
-fourier-grx includes a program run logging feature that is enabled by default and provides no built-in option to disable it.
+## 📋 Logging & Data
 
-If you absolutely need to disable run logging, modify the following section in the startup script `run.sh`:
+### Enabling/Disabling Program Run Logging
 
-> ⚠️ **Note**:
->
-> Disabling run logging will prevent program activity from being recorded, which may hinder subsequent debugging and troubleshooting.
+Program run logging is **enabled by default** and writes to `~/fourier-grx/log/`.
+
+To disable it, modify the startup script `run.sh`:
+
+> ⚠️ Disabling run logging will prevent program activity from being recorded, which may hinder debugging and troubleshooting.
 
 ```bash
-# Original script content
+# Original (logging enabled)
 stdbuf -oL $FOURIER_GRX_HOME/run.bin --config=${config_file_path} \
 | tee $FOURIER_GRX_HOME/log/${log_file_name}
 
-# Modified script content
+# Modified (logging disabled)
 stdbuf -oL $FOURIER_GRX_HOME/run.bin --config=${config_file_path} \
 | tee /dev/null
 ```
 
-## Enabling/Disabling Robot Data Logging
+---
 
-fourier-grx provides a data logging feature that is **disabled by default** to reduce the impact on system performance.
+### Enabling/Disabling Robot Data Recording
 
-To enable data logging, manually modify the **configuration file** as follows:
+Robot data recording (joint positions, velocities, torques, IMU, etc.) is **disabled by default**. To enable it:
 
-1. Create a startup configuration file for the robot:
-    - Open the folder `~/fourier-grx/config/m4l` and find the currently used configuration file, for example `config_M4L_T1_debug.yaml`.
-    - Copy it and name the copy `config_M4L_T1_record.yaml`.
+**Step 1: Create a recording configuration file**
 
-2. Edit the configuration file:
-    - Open `config_M4L_T1_record.yaml`.
-    - Add the following content to the file:
-        - This configuration enables data recording when `fourier-grx` is started with this config file, and saves the recorded data to the specified path.
+Copy your current config file (e.g. `config_M4L_T1_debug.yaml`) and name it `config_M4L_T1_record.yaml`. Add the following at the end:
 
-   ```yaml
-   record:
-      enable: true
-      path: "~/fourier-grx/record/m4l"
-   ```
+```yaml
+record:
+  enable: true
+  path: "~/fourier-grx/record/m4l"
+```
 
-3. Edit the startup script:
-    - Open the `~/fourier-grx` folder and find the `run.sh` file.
-    - Locate the `run_type` field and change its value to `record`:
+**Step 2: Switch the startup mode**
 
-   ```bash
-   run_type="record"
-   ```
+Open `~/fourier-grx/run.sh` and set `run_type` to `record`:
 
-   > ⚠️ **Note**:
-   >
-   > To restore the robot to its normal operating mode later, use the `fourier-grx config` command to update the configuration, or manually change the `run_type` field in `run.sh` back to its original value.
+```bash
+run_type="record"
+```
 
-4. Start the robot:
-    - The robot will now enable data recording on startup and save the recorded data to the specified path.
+**Step 3: Start**
 
-    ```bash
-    # Run the following command in Terminal 1
-    fourier-grx start
-    ```
+```bash
+fourier-grx start
+```
 
-5. Data Analysis:
-    - Data is saved as comma-separated `.log` files, which can be analyzed with Excel or other data analysis tools.
-    - When importing into Excel, be sure to select the correct delimiter (comma) and encoding (UTF-8).
-    - The data files contain timestamps, IMU data, joint angles, velocities, and more for subsequent analysis:
-        - `Timestamp`: Timestamp
-        - `imu_quat_{i}`: IMU quaternion component i
-        - `imu_euler_{i}`: IMU Euler angle component i
-        - `imu_ang_vel_{i}`: IMU angular velocity component i
-        - `imu_lin_acc_{i}`: IMU linear acceleration component i
-        - `jm_pos_{i}`: Measured position of joint i
-        - `jm_vel_{i}`: Measured velocity of joint i
-        - `jm_tor_{i}`: Measured torque of joint i
-        - `jm_cur_{i}`: Measured current of joint i
-        - `jt_pos_{i}`: Target position of joint i
-        - `jt_vel_{i}`: Target velocity of joint i
-        - `jt_tor_{i}`: Target torque of joint i
-        - For joint sequence reference, see the [Joint Sequence](/fourier-grx-M4/docs/en/reference/joint_sequence) documentation.
+> ℹ️ To restore normal mode: change `run_type` back to its original value, or use `fourier-grx config` to switch the config file.
 
-> **Note**:
->
-> To disable data recording, set `record.enable` to `false` in the configuration file, or remove the `record` field entirely.
+#### Data Format Reference
+
+Files are comma-separated `.log` files (UTF-8 encoding), compatible with Excel or any data analysis tool.
+
+| Field | Description |
+|-------|-------------|
+| `Timestamp` | Timestamp |
+| `imu_quat_{i}` | IMU quaternion component i |
+| `imu_euler_{i}` | IMU Euler angle component i |
+| `imu_ang_vel_{i}` | IMU angular velocity component i |
+| `imu_lin_acc_{i}` | IMU linear acceleration component i |
+| `jm_pos_{i}` | Measured position of joint i |
+| `jm_vel_{i}` | Measured velocity of joint i |
+| `jm_tor_{i}` | Measured torque of joint i |
+| `jm_cur_{i}` | Measured current of joint i |
+| `jt_pos_{i}` | Target position of joint i |
+| `jt_vel_{i}` | Target velocity of joint i |
+| `jt_tor_{i}` | Target torque of joint i |
+
+For joint index mapping, see the [Joint Sequence](/fourier-grx-M4/docs/en/reference/joint_sequence) documentation.
