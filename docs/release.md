@@ -32,6 +32,12 @@ has_toc: true
 | 2025-07-22 | 2.0.6 | [⬇ 下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [详情](#206) | ❌ 已停止 |
 | 2025-06-09 | 2.0.5 | [⬇ 下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.5.deb) | [详情](#205) | ❌ 已停止 |
 
+### IO Board 固件
+
+| 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
+|----------|------|------|----------|----------|
+| 2026-05-11 | **1.0.0.3** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.3_20260511.zip) | [详情](#1003) | ✅ 支持中 |
+
 ## 预览版本
 
 暂无预览版本。
@@ -126,6 +132,16 @@ has_toc: true
 - 优化负载/能量检测算法，降低误触发率
 - 改进步态生成器在膝关节受限场景下的稳定性
 - 打包流程支持 `fi_fsa_v3` 库的 PyInstaller 打包
+
+---
+
+### 1.0.0.3
+
+> 📅 2026-05-11 &nbsp;·&nbsp; 平台：ESP32-WROOM-32D
+
+🔧 **修改**
+
+- **急停按键消抖**：GPIO 34 新增 50ms 软件消抖，防止机械抖动引发 TRIGGERED / released 反复打印
 
 ---
 
