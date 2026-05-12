@@ -152,6 +152,17 @@ docs:
   - title: 固件发布
     url: /docs/release
     nav_order: 7
+    has_children: true
+    children:
+      - title: Fourier-GRX 固件
+        url: /docs/release/fourier-grx
+        nav_order: 7.1
+      - title: Fourier-M4 固件
+        url: /docs/release/fourier-m4
+        nav_order: 7.2
+      - title: IO Board 固件
+        url: /docs/release/ioboard
+        nav_order: 7.3
 
   - title: 更新日志
     url: /docs/changelog
