@@ -38,10 +38,6 @@ has_toc: true
 |----------|------|------|----------|----------|
 | 2026-05-11 | **1.0.0.3** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.3_20260511.zip) | [详情](#1003) | ✅ 支持中 |
 
-## 预览版本
-
-暂无预览版本。
-
 ## 安装方法
 
 固件安装流程请参考 [固件安装和更新](/fourier-grx-M4/docs/quickstart/firmware)。
