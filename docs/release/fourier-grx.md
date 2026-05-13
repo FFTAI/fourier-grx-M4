@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-05-11 | **4.4.3** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [详情](#443) | ✅ 支持中 |
+| 2026-05-13 | **4.4.4** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [详情](#444) | ✅ 支持中 |
+| 2026-05-11 | 4.4.3 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [详情](#443) | ✅ 支持中 |
 | 2026-04-10 | 4.4.2 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [详情](#442) | ✅ 支持中 |
 | 2026-04-08 | 4.4.1 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](#441) | ✅ 支持中 |
 | 2026-04-03 | 4.4.0 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](#440) | ✅ 支持中 |
@@ -27,6 +28,21 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.4
+
+> 📅 2026-05-13 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **`fourier-grx update` 命令**：新增命令行更新工具，可自动检测当前安装的软件包变体，向服务器探测可用的新版本，以交互式列表引导用户选择并完成下载安装。支持 `fourier-grx update`（自动检测变体）、`fourier-grx update <variant>`（手动指定变体，适用于旧版安装包）和 `fourier-grx update --help`。详见 [命令行工具 · update](/fourier-grx-M4/docs/reference/command_line_tool#fourier-grx-update-详细说明)
+- **`X-Variant` deb 控制字段**：安装包的 deb 控制文件中新增 `X-Variant` 字段，记录平台/机型标识符（如 `linux-arm64-cpu-m4l-blaze`），供 `fourier-grx update` 自动识别当前变体
+
+🔧 **修改**
+
+- Makefile 新增 `BUILDTYPE` 目标级变量（`nuitka` / `pyinstaller` / `blaze` / `test`），修复各构建目标生成的 deb 包文件名中版本号错误的问题
+
+---
 
 ### 4.4.3
 
