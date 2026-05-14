@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-05-13 | **4.4.4** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [详情](#444) | ✅ 支持中 |
+| 2026-05-14 | **4.4.6** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | ✅ 支持中 |
+| 2026-05-13 | 4.4.4 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [详情](#444) | ✅ 支持中 |
 | 2026-05-11 | 4.4.3 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [详情](#443) | ✅ 支持中 |
 | 2026-04-10 | 4.4.2 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [详情](#442) | ✅ 支持中 |
 | 2026-04-08 | 4.4.1 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](#441) | ✅ 支持中 |
@@ -28,6 +29,16 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.6
+
+> 📅 2026-05-14 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **固件版本检测标志位**：新增 `flag_version_check_error`（`FlagState`，`0` = 正常，`1` = 异常）和 `version_check_error_info`（`List[str]`，异常详情列表）字段到 `DynalinkGRX`，并加入 `read_fields`，供上位机通过 Dynalink 接口实时轮询。检测范围涵盖 IOBoard、FSA 执行器、FSE 传感器的固件版本不一致、无响应及异常情况
+
+---
 
 ### 4.4.4
 

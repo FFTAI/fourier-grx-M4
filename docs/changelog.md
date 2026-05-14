@@ -13,6 +13,18 @@ has_toc: true
 
 ## 2026 年 5 月
 
+### v1.1.2 (2026-05-14)
+
+**新增功能**
+
+- 🔍 **固件版本检测标志位**：`DynalinkGRX` 新增 `flag_version_check_error`（`0` 正常 / `1` 异常）和 `version_check_error_info`（异常详情列表）字段，检测到 IOBoard / FSA / FSE 固件版本不匹配、无响应或查询异常时自动置位，通过 Dynalink `read_fields` 同步至上位机
+
+**版本更新**
+
+- 📦 `fourier-grx` 更新至 `4.4.6`
+
+---
+
 ### v1.1.1 (2026-05-11)
 
 **新增功能**
