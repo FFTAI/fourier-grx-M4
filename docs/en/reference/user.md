@@ -188,9 +188,11 @@ Key description list:
 | `fourier_core_version`     | Core library version      | string       | Core library version number                                    |
 | `fourier_grx_version`      | GRX library version       | string       | GRX library version number                                     |
 | `robot_error_codes`        | Robot error codes         | array(int)   | Robot error code list; 0: no error, other: specific error code |
-| `robot_battery_percentage` | Battery percentage        | float        | Current battery level, range [0.0, 1.0]; 1.0 = fully charged  |
-| `robot_charging_level`     | Battery level grade       | int          | Battery level grade, range 1–3; 3 is the highest              |
-| `robot_charging_state`     | Battery charging state    | float        | 0.0: not charging, 1.0: charging                               |
+| `robot_battery_percentage`   | Battery percentage                  | float         | Current battery level, range [0.0, 1.0]; 1.0 = fully charged                                                                              |
+| `robot_charging_level`       | Battery level grade                 | int           | Battery level grade, range 1–3; 3 is the highest                                                                                          |
+| `robot_charging_state`       | Battery charging state              | float         | 0.0: not charging, 1.0: charging                                                                                                           |
+| `flag_version_check_error`   | Firmware version check flag         | int           | `0`: all node versions normal; `1`: version anomaly detected (mismatch, no response, or query failure). Covers IOBoard, FSA actuators, FSE sensors |
+| `version_check_error_info`   | Firmware version check error detail | array(string) | List of descriptions for anomalous nodes, each including node type, ID, and actual/expected version info; empty list when all versions are normal |
 
 ### rehab/server Interface Protocol (State Information)
 
