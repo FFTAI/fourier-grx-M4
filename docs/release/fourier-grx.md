@@ -16,6 +16,7 @@ has_toc: true
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
 | 2026-05-14 | **4.4.6** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | ✅ 支持中 |
+| 2026-05-14 | 4.4.5 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [详情](#445) | ✅ 支持中 |
 | 2026-05-13 | 4.4.4 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [详情](#444) | ✅ 支持中 |
 | 2026-05-11 | 4.4.3 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [详情](#443) | ✅ 支持中 |
 | 2026-04-10 | 4.4.2 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [详情](#442) | ✅ 支持中 |
@@ -37,6 +38,17 @@ has_toc: true
 ✨ **新增**
 
 - **固件版本检测标志位**：新增 `flag_version_check_error`（`FlagState`，`0` = 正常，`1` = 异常）和 `version_check_error_info`（`List[str]`，异常详情列表）字段到 `DynalinkGRX`，并加入 `read_fields`，供上位机通过 Dynalink 接口实时轮询。检测范围涵盖 IOBoard、FSA 执行器、FSE 传感器的固件版本不一致、无响应及异常情况
+
+---
+
+### 4.4.5
+
+> 📅 2026-05-14 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **节点版本信息打印**：机器人初始化时查询并打印所有节点的固件版本信息，输出顺序为 IOBoard → FSA 执行器 → FSE 传感器，便于快速确认各硬件节点的实际固件状态
+- **固件版本一致性校验**：配置文件新增 `expected_firmware_version` 字段（可选），启动时将节点实际版本与预期版本对比，版本不匹配时打印 `WARNING` 告警；省略该字段则不启用校验。M4LT2 各配置已预填 IOBoard 预期版本（`1.0.0.2`）及 FSA 预期版本（`3.104.225.222`）；M4LP1 / M4LT1 各配置已预填 IOBoard 预期版本（`1.0.0.2`）
 
 ---
 
