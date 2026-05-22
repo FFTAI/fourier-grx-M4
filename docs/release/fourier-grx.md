@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-05-22 | **4.4.7** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | ✅ 支持中 |
+| 2026-05-22 | **4.4.8** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
+| 2026-05-22 | 4.4.7 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | ✅ 支持中 |
 | 2026-05-14 | 4.4.6 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | ✅ 支持中 |
 | 2026-05-14 | 4.4.5 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [详情](#445) | ✅ 支持中 |
 | 2026-05-13 | 4.4.4 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [详情](#444) | ✅ 支持中 |
@@ -31,6 +32,16 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.8
+
+> 📅 2026-05-22 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **修复 / 调整**
+
+- **直线关节行程下限收紧**：将 `min_thigh_length` 和 `min_shank_length` 由 `-0.100 m` 调整为 `-0.095 m`，进一步限制大腿和小腿直线关节的最大压缩行程
+
+---
 
 ### 4.4.7
 
