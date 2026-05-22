@@ -66,7 +66,8 @@ fourier-grx update --help             # 显示帮助信息
 发现以下新版本 / Found the following newer versions:
 ----------------------------------------------------
   [1] v4.4.5  fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb
-  [2] v4.4.6  fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb  ← 最新 latest
+  [2] v4.4.6  fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb
+  [3] v4.4.7  fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb  ← 最新 latest
 ----------------------------------------------------
 
 请选择要安装的版本编号（直接回车安装最新 [2]，输入 n 取消）:
