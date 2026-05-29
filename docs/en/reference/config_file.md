@@ -84,7 +84,6 @@ The Configuration File is a YAML-formatted file that contains various robot conf
 | Parameter      | Description                                                                                                          | Type    | Default                          | Options                | User-editable         |
 |----------------|----------------------------------------------------------------------------------------------------------------------|---------|----------------------------------|------------------------|-----------------------|
 | resource: path | Resource Files path                                                                                                  | string  | "~/fourier-grx/resource/m4l"    | "path/to/resource"     | Yes                   |
-| zenoh: path    | Zenoh configuration file path                                                                                        | string  | "~/fourier-grx/resource/zenoh"  | "path/to/zenoh"        | No (not yet available)|
 | record: enable | Whether to enable data logging (records joint positions, velocities, etc. for debugging; requires dynalink:enable=true) | boolean | false                          | true, false            | Yes                   |
 | record: path   | Data log file path                                                                                                   | string  | "~/fourier-grx/record/m4l"      | "path/to/record_file"  | Yes                   |
 
@@ -103,7 +102,7 @@ The Configuration File is a YAML-formatted file that contains various robot conf
 
 | Parameter             | Description       | Type   | Default   | Options                                                                 | User-editable |
 |-----------------------|-------------------|--------|-----------|-------------------------------------------------------------------------|---------------|
-| robot: name           | Robot name        | string | "M4LT1"   | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" \| "M4LZenoh"                 | No            |
+| robot: name           | Robot name        | string | "M4LT1"   | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2"                 | No            |
 
 > ℹ️ **Robot Model Notes**
 >

@@ -83,7 +83,6 @@ run_type="custom"
 | 配置项            | 说明                                                        | 数据类型    | 默认值                            | 可选项                   | 用户可修改      |
 |----------------|-----------------------------------------------------------|---------|--------------------------------|-----------------------|------------|
 | resource: path | 资源文件路径                                                    | string  | "~/fourier-grx/resource/m4l"   | "path/to/resource"    | 是          |
-| zenoh: path    | Zenoh 配置文件路径                                              | string  | "~/fourier-grx/resource/zenoh" | "path/to/zenoh"       | 否 (暂未开放使用) |
 | record: enable | 是否启用 数据日志记录功能（记录关节位置、速度等信息，方便调试，需要 dynalink:enable=true ） | boolean | false                          | true, false           | 是          |
 | record: path   | 数据日志记录文件路径                                                | string  | "~/fourier-grx/record/m4l"     | "path/to/record_file" | 是          |
 
@@ -102,7 +101,7 @@ run_type="custom"
 
 | 配置项                         | 说明        | 数据类型   | 默认值      | 可选项                                   | 用户可修改 |
 |-----------------------------|-----------|--------|----------|-----------------------------------------|-------|
-| robot: name                 | 机器人名称     | string | "M4LT1"  | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" \| "M4LZenoh" | 否     |
+| robot: name                 | 机器人名称     | string | "M4LT1"  | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" | 否     |
 
 > ℹ️ **机器人型号说明**
 >

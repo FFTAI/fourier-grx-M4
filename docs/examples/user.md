@@ -10,8 +10,7 @@ toc_max_header: 3  # 最大显示标题层级（如 H3）
 
 # User 接口
 
-Fourier-GRX User 接口使用 [Zenoh](https://zenoh.io/) 协议与机器人通信，
-适用于高层应用开发。
+Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通信。
 
 您可以在机器人主控电脑或任何与机器人同一局域网的计算机上运行这些示例。
 

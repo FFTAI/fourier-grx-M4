@@ -41,10 +41,8 @@ The SDK is designed to be simple and easy to use, providing high-level interface
 > ℹ️ **Note**:
 >
 > The Fourier-GRX-M4 SDK provides two levels of interfaces: User and Developer.
-> - The User API is based on the [Zenoh](https://zenoh.io) protocol.
+> - The User API communicates with the robot over the network and has no strict platform or language restrictions, but development on Ubuntu is still recommended.
 > - The Developer API is based on the Python library.
->
-> Using the User API via the [Zenoh](https://zenoh.io) protocol has no strict platform or language restrictions, but development on Ubuntu is still recommended.
 
 ## Changelog
 

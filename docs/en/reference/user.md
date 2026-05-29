@@ -17,7 +17,7 @@ nav_exclude: true
 > Before using the Fourier-GRX-M4 SDK User API, configure `fourier-grx` to **developer mode**.
 > For information on configuring the run type, see [Run Type](/fourier-grx-M4/docs/en/reference/run_type).
 
-The Fourier-GRX User API communicates with the robot using the [Zenoh](https://zenoh.io/) protocol and is suitable for high-level application development.
+The Fourier-GRX User API is suitable for high-level application development and communicates with the robot over the network.
 
 The User API is divided into five categories:
 
@@ -27,7 +27,7 @@ The User API is divided into five categories:
 - `grx`: fourier-grx library information; general robot content (primarily humanoid)
 - `rehab`: Rehabilitation robot information
 
-The Zenoh topic key format for these interfaces is:
+The topic key format for these interfaces is:
 
 - key can be one of ["comm", "robot", "task", "grx", "rehab"]
 - `fourier-grx/dynalink_interface/{key}/server`: State information published by the robot main control program **[robot acts as server]**
@@ -351,4 +351,4 @@ Key description list:
 
 ### rehab/client Interface Protocol (Command Information)
 
-> ℹ️ **This interface is not yet open.** The rehab/client command channel is not implemented in the current version. Do not send commands to this Zenoh topic. A real-time write interface for rehabilitation training parameters will be provided here in a future version.
+> ℹ️ **This interface is not yet open.** The rehab/client command channel is not implemented in the current version. Do not send commands to this topic. A real-time write interface for rehabilitation training parameters will be provided here in a future version.

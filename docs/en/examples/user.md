@@ -11,8 +11,7 @@ toc_max_header: 3
 
 # User Interface
 
-The Fourier-GRX User Interface communicates with the robot using the [Zenoh](https://zenoh.io/) protocol
-and is designed for high-level application development.
+The Fourier-GRX User Interface is designed for high-level application development and communicates with the robot over the network.
 
 You can run these examples on the robot controller or on any computer connected to the same LAN as the robot.
 

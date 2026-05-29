@@ -16,8 +16,7 @@ has_toc: true
 > 使用 Fourier-GRX-M4 SDK User API 前，请将 `fourier-grx` 配置为 **开发者模式**。
 > 关于运行模式的配置，请参见 [运行模式](/fourier-grx-M4/docs/reference/run_type)。
 
-Fourier-GRX User 接口使用 [Zenoh](https://zenoh.io/) 协议与机器人通信，
-适用于高层应用开发。
+Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通信。
 
 user 接口主要分为以下5类：
 
@@ -27,7 +26,7 @@ user 接口主要分为以下5类：
 - `grx`：fourier-grx 库相关信息，通用机器人相关内容（主要是人形）
 - `rehab`：康复机器人相关信息
 
-对应的 zenoh 接口 topic 的 key 格式为：
+接口 topic 的 key 格式为：
 
 - key 可以是 ["comm", "robot", "task", "grx", "rehab"]
 - `fourier-grx/dynalink_interface/{key}/server` ：机器人主控程序发出的状态信息 **[机器人作为服务器]**
@@ -351,4 +350,4 @@ key 说明列表：
 
 ### rehab/client 接口协议 (指令信息)
 
-> ℹ️ **该接口暂未开放。** 当前版本 rehab/client 指令通道尚未实现，请勿向该 Zenoh topic 发送指令。后续版本将在此处提供康复训练参数的实时写入接口。
+> ℹ️ **该接口暂未开放。** 当前版本 rehab/client 指令通道尚未实现，请勿向该 topic 发送指令。后续版本将在此处提供康复训练参数的实时写入接口。

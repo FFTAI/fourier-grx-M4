@@ -155,7 +155,7 @@ sudo systemctl disable rocs-wifi   # Permanently disable (takes effect after reb
 
 **Troubleshooting**:
 
-1. Zenoh preferentially uses the wired network interface — avoid connecting both wired and wireless simultaneously
+1. Prefer the wired network interface — avoid connecting both wired and wireless simultaneously
 2. Confirm the robot IP and local machine are on the same subnet
 3. Verify SDK version compatibility
 
