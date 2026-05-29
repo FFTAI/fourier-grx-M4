@@ -35,8 +35,12 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
     # 激活 conda 环境
     conda activate fourier-grx
    
-    # 运行具体机型的示例程序
-    python $HOME/Wiki-GRx-Deploy/user/demo_{示例名称}.py
+    # 克隆示例代码仓库（如尚未克隆）
+    git clone https://github.com/FFTAI/fourier-grx-M4.git
+   
+    # 进入 demo 目录并运行示例
+    cd fourier-grx-M4/demo/user
+    python demo_{示例名称}.py
     ```
 
 ### 最佳实践
@@ -51,17 +55,17 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 
 ### 基础控制示例
 
-| 示例名称  | 说明        | 代码路径                        |
-|-------|-----------|-----------------------------|
-| 执行器使能 | 使能机器人执行器  | `user/demo_servo_on.py`     |
-| 执行器失能 | 失能机器人执行器  | `user/demo_servo_off.py`    |
-| 执行器重启 | 重启机器人执行器  | `user/demo_servo_reboot.py` |
-| 清除故障  | 清除机器人报警状态 | `user/demo_clear_fault.py`  |
-| 设置零位  | 设置当前位置为零位 | `user/demo_set_home.py`     |
+| 示例名称  | 说明        | 代码路径                               |
+|-------|-----------|------------------------------------|
+| 执行器使能 | 使能机器人执行器  | `demo/user/demo_servo_on.py`       |
+| 执行器失能 | 失能机器人执行器  | `demo/user/demo_servo_off.py`      |
+| 执行器重启 | 重启机器人执行器  | `demo/user/demo_servo_reboot.py`   |
+| 清除故障  | 清除机器人报警状态 | `demo/user/demo_clear_fault.py`    |
+| 设置零位  | 设置当前位置为零位 | `demo/user/demo_set_home.py`       |
 
 ### 运动控制示例
 
-| 示例名称 | 说明          | 代码路径                      |
-|------|-------------|---------------------------|
-| 关节测试 | 测试各关节运动功能   | `user/demo_test_joint.py` |
-| 行走控制 | 使用手柄控制机器人行走 | `user/demo_walk.py`       |
+| 示例名称 | 说明          | 代码路径                            |
+|------|-------------|-----------------------------------|
+| 关节测试 | 测试各关节运动功能   | `demo/user/demo_test_joint.py`    |
+| 行走控制 | 使用手柄控制机器人行走 | `demo/user/demo_walk.py`          |
