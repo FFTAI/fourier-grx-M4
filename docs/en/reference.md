@@ -13,6 +13,7 @@ This section consolidates the core reference documentation for the Fourier-GRX-M
 
 ## Interface Reference
 
+- [Communication Interface](/fourier-grx-M4/docs/en/reference/communication): Explains the underlying User API communication mechanism (UDP socket, auto-discovery, topics, and data direction).
 - [User API](/fourier-grx-M4/docs/en/reference/user): For high-level application development, communicating with the robot over the network.
 - [Developer API](/fourier-grx-M4/docs/en/reference/developer): For low-level control development, calling the Python SDK library directly.
 

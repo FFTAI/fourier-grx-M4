@@ -16,7 +16,7 @@ has_toc: true
 > 使用 Fourier-GRX-M4 SDK User API 前，请将 `fourier-grx` 配置为 **开发者模式**。
 > 关于运行模式的配置，请参见 [运行模式](/fourier-grx-M4/docs/reference/run_type)。
 
-Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通信。
+Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通信。底层使用 UDP socket 传输，详见 [通信接口](/fourier-grx-M4/docs/reference/communication)。
 
 user 接口主要分为以下5类：
 

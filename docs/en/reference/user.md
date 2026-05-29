@@ -17,7 +17,7 @@ nav_exclude: true
 > Before using the Fourier-GRX-M4 SDK User API, configure `fourier-grx` to **developer mode**.
 > For information on configuring the run type, see [Run Type](/fourier-grx-M4/docs/en/reference/run_type).
 
-The Fourier-GRX User API is suitable for high-level application development and communicates with the robot over the network.
+The Fourier-GRX User API is suitable for high-level application development and communicates with the robot over the network via UDP socket transport. For details, see [Communication Interface](/fourier-grx-M4/docs/en/reference/communication).
 
 The User API is divided into five categories:
 

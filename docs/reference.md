@@ -12,6 +12,7 @@ has_children: true
 
 ## 接口参考
 
+- [通信接口](/fourier-grx-M4/docs/reference/communication)：User 接口底层通信机制说明（UDP socket、自动发现、主题与数据方向）。
 - [User 接口](/fourier-grx-M4/docs/reference/user)：面向高层应用开发，通过网络与机器人通信。
 - [Developer 接口](/fourier-grx-M4/docs/reference/developer)：面向底层控制开发，直接调用 Python 开发库。
 
