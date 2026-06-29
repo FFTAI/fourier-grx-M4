@@ -13,15 +13,21 @@ has_toc: true
 
 ## 2026 年 6 月
 
-### v1.1.3 (2026-06-29)
+### v1.1.4 (2026-06-29)
 
 **修复**
 
-- 🐛 **执行器使能前预置目标位置**：`TaskM4LBase` 的 `function_on_activate` 在调用 `SERVO_ON` 前，先将所有执行器目标位置更新为当前实测位置（速度、力矩、电流归零）。修复了 servo off 后手动拨动关节、再触发任务时关节突然跳回旧目标位置的安全隐患
+- 🐛 **Stand 任务使能冲击问题**：`TaskM4LRotaryJointStand._function_meta` 在算法 `STAGE_INIT` 阶段（SERVO_ON 后第一个 PD 帧）将 `kp` 置零、保留正常 `kd`，形成纯阻尼过渡，防止测量噪声或坐标系微小偏差被高增益 PD（kp=250）放大成关节冲击。`STAGE_START` 之后恢复全增益，此时 `joint_start_position == 当前实测值`，P 项近似为零，过渡平滑。同样覆盖 `TaskM4LRotaryJointKneeRestrictionStand`（继承同一 `_function_meta`）
 
 **版本更新**
 
-- 📦 `fourier-grx` 更新至 `4.4.9`
+- 📦 `fourier-grx` 更新至 `4.4.10`
+
+---
+
+### ~~v1.1.3 (2026-06-29)~~ *(已撤销)*
+
+> v1.1.3 中对 `function_on_activate` 里预置执行器目标位置的修改经验证无效：`SERVO_ON` 通信帧仅发送使能指令，不携带位置数据，故该修改已在 v1.1.4 中回退。
 
 ---
 

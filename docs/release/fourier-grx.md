@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-06-29 | **4.4.9** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [详情](#449) | ✅ 支持中 |
+| 2026-06-29 | **4.4.10** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4410) | ✅ 支持中 |
+| 2026-06-29 | ~~4.4.9~~ | — | [详情](#449) | ⚠️ 已撤销 |
 | 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
 | 2026-05-22 | 4.4.7 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | ✅ 支持中 |
 | 2026-05-14 | 4.4.6 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | ✅ 支持中 |
@@ -34,13 +35,21 @@ has_toc: true
 
 ## 更新内容
 
-### 4.4.9
+### 4.4.10
 
 > 📅 2026-06-29 &nbsp;·&nbsp; 平台：`linux/arm64`
 
 🐛 **修复**
 
-- **执行器使能前预置目标位置**：在 `TaskM4LBase` 中，执行 `SERVO_ON` 之前，先将每个执行器的目标位置同步为当前实测位置（目标速度、力矩、电流均归零）。修复了如下场景：servo off 后手动拨动关节，再触发任务时，执行器以旧的目标位置驱动关节突然跳回，存在安全风险
+- **Stand 任务使能冲击**：`TaskM4LRotaryJointStand`（及继承它的 `TaskM4LRotaryJointKneeRestrictionStand`）在算法 `STAGE_INIT` 阶段（即 SERVO_ON 后的第一个 PD 帧），将位置增益 `kp` 临时置零、保留速度阻尼 `kd`。这一纯阻尼过渡防止测量噪声或坐标系微小偏差被高增益 PD（kp=250）放大成可见的关节冲击。从 `STAGE_START` 起恢复全增益（此时 `joint_start_position == 当前实测值`，P 项近似为零，过渡平滑）
+
+---
+
+### ~~4.4.9~~ *(已撤销)*
+
+> 📅 2026-06-29 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+> ⚠️ 该版本中对 `function_on_activate` 预置执行器目标位置的修改经验证无效（`SERVO_ON` 通信帧仅发送使能指令，不携带位置数据），已在 4.4.10 中回退，请勿使用此版本。
 
 ---
 
