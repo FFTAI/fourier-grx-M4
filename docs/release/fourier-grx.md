@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-05-22 | **4.4.8** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
+| 2026-06-29 | **4.4.9** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [详情](#449) | ✅ 支持中 |
+| 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
 | 2026-05-22 | 4.4.7 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | ✅ 支持中 |
 | 2026-05-14 | 4.4.6 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | ✅ 支持中 |
 | 2026-05-14 | 4.4.5 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [详情](#445) | ✅ 支持中 |
@@ -32,6 +33,16 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.9
+
+> 📅 2026-06-29 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **执行器使能前预置目标位置**：在 `TaskM4LBase` 中，执行 `SERVO_ON` 之前，先将每个执行器的目标位置同步为当前实测位置（目标速度、力矩、电流均归零）。修复了如下场景：servo off 后手动拨动关节，再触发任务时，执行器以旧的目标位置驱动关节突然跳回，存在安全风险
+
+---
 
 ### 4.4.8
 
