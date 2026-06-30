@@ -15,7 +15,10 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-06-30 | **4.4.11** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.11-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4411) | ✅ 支持中 |
+| 2026-06-30 | **4.4.14** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | ✅ 支持中 |
+| 2026-06-30 | ~~4.4.13~~ | — | [详情](#4413) | ⚠️ 已撤销 |
+| 2026-06-30 | ~~4.4.12~~ | — | [详情](#4412) | ⚠️ 已撤销 |
+| 2026-06-30 | ~~4.4.11~~ | — | [详情](#4411) | ⚠️ 已撤销 |
 | 2026-06-29 | ~~4.4.10~~ | — | [详情](#4410) | ⚠️ 已撤销 |
 | 2026-06-29 | ~~4.4.9~~ | — | [详情](#449) | ⚠️ 已撤销 |
 | 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
@@ -36,19 +39,42 @@ has_toc: true
 
 ## 更新内容
 
-### 4.4.11
+### 4.4.14
 
 > 📅 2026-06-30 &nbsp;·&nbsp; 平台：`linux/arm64`
 
 🐛 **修复**
 
-- **Stand 任务使能冲击（完整修复）**：在 `AlgorithmM4LRotaryJointStandControlModel` 中新增 `STAGE_WARM_UP` 阶段。每次任务激活时 `reset()` 均回到此 stage，持续 0.5 s 的纯阻尼过渡（`kp=0`，`kd` 保持正常值，目标位置跟随实测值，P 项始终为零）。0.5 s 结束后进入正常 `STAGE_INIT → STAGE_START → ...` 流程。修复了 v4.4.10 中仅持续一个 tick（~20 ms）不足以消除速度残差、以及多次触发任务时 `STAGE_INIT` 不复现的双重问题。同样覆盖 `TaskM4LRotaryJointKneeRestrictionStand`
+- **Stand 任务使能冲击（完整修复）**：`STAGE_INIT`、`STAGE_START`、`STAGE_WARM_UP` 三个阶段全面应用 `kp=0` 纯阻尼：
+  - `STAGE_INIT`（从其他任务切换进来，1 tick）：新增 `output_joint_position = measured_position`，`kp=0`，避免 PD 帧以零位置为目标
+  - `STAGE_START`（任意激活路径的入口 tick）：`kp=0`，目标位置跟随实测
+  - `STAGE_WARM_UP`（持续 0.5 s）：`kp=0`，目标位置持续跟随实测；超时后以当前实测位置为插值起点，恢复正常增益，进入 `STAGE_PROCESS_01`
+  - 日志输出添加 stage 名称前缀，便于调试
+  - 同样覆盖 `TaskM4LRotaryJointKneeRestrictionStand`（继承同一 `_function_meta`）
+
+---
+
+### ~~4.4.13~~ *(已撤销)*
+
+> ⚠️ `STAGE_INIT` 缺少 `output_joint_position` 赋值，PD 帧目标为零。已在 4.4.14 修复。
+
+---
+
+### ~~4.4.12~~ *(已撤销)*
+
+> ⚠️ `STAGE_WARM_UP` 位置放置不正确（基于对 FSM stage 管理的误解）。已在后续版本中修正。
+
+---
+
+### ~~4.4.11~~ *(已撤销)*
+
+> ⚠️ 同上，`STAGE_WARM_UP` 设计有误。
 
 ---
 
 ### ~~4.4.10~~ *(已撤销)*
 
-> ⚠️ kp=0 仅持续一个 tick，不足以抑制冲击；且 `STAGE_INIT` 在第二次激活时不再触发。已在 4.4.11 中完整修复，请勿使用此版本。
+> ⚠️ kp=0 仅持续一个 tick，不足以抑制冲击；且 `STAGE_INIT` 在第二次激活时不再触发。
 
 ---
 
