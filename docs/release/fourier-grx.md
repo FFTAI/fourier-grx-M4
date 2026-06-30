@@ -16,7 +16,8 @@ has_toc: true
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
 | 2026-06-30 | **4.4.14** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | ✅ 支持中 |
-| 2026-06-29 | ~~4.4.9~~ | — | [详情](#449) | ⚠️ 已撤销 |
+| 2026-06-29 | 4.4.10 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4410) | 🔶 不推荐 |
+| 2026-06-29 | 4.4.9 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [详情](#449) | 🔶 不推荐 |
 | 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
 | 2026-05-22 | 4.4.7 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | ✅ 支持中 |
 | 2026-05-14 | 4.4.6 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | ✅ 支持中 |
@@ -68,17 +69,28 @@ has_toc: true
 
 ---
 
-### ~~4.4.10~~ *(已撤销)*
-
-> ⚠️ kp=0 仅持续一个 tick，不足以抑制冲击；且 `STAGE_INIT` 在第二次激活时不再触发。
-
----
-
-### ~~4.4.9~~ *(已撤销)*
+### 4.4.10
 
 > 📅 2026-06-29 &nbsp;·&nbsp; 平台：`linux/arm64`
 
-> ⚠️ 该版本中对 `function_on_activate` 预置执行器目标位置的修改经验证无效（`SERVO_ON` 通信帧仅发送使能指令，不携带位置数据），已在 4.4.10 中回退，请勿使用此版本。
+> 🔶 已知问题：Stand 任务使能冲击抑制不完整（`kp=0` 仅持续一个 tick，且第二次激活时不再触发）。建议升级至 4.4.14。
+
+🐛 **修复**
+
+- **执行器使能前预置目标位置**：在 `TaskM4LBase.function_on_activate` 中，`SERVO_ON` 前将每个执行器目标位置同步为当前实测位置（此修复后经验证无效，已在 4.4.14 改用 STAGE_WARM_UP 方案）
+- **Stand 任务首帧 kp=0**：在 `STAGE_INIT` 阶段将 `kp` 临时置零，降低使能冲击（效果有限）
+
+---
+
+### 4.4.9
+
+> 📅 2026-06-29 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+> 🔶 已知问题：对 `function_on_activate` 预置执行器目标位置的修改经验证无效（`SERVO_ON` 通信帧仅发送使能指令，不携带位置数据）。建议升级至 4.4.14。
+
+🐛 **修复**
+
+- **执行器使能前预置目标位置**：`SERVO_ON` 前将每个执行器目标位置同步为当前实测位置
 
 ---
 
