@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-06-29 | **4.4.10** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4410) | ✅ 支持中 |
+| 2026-06-30 | **4.4.11** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.11-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4411) | ✅ 支持中 |
+| 2026-06-29 | ~~4.4.10~~ | — | [详情](#4410) | ⚠️ 已撤销 |
 | 2026-06-29 | ~~4.4.9~~ | — | [详情](#449) | ⚠️ 已撤销 |
 | 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
 | 2026-05-22 | 4.4.7 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | ✅ 支持中 |
@@ -35,13 +36,19 @@ has_toc: true
 
 ## 更新内容
 
-### 4.4.10
+### 4.4.11
 
-> 📅 2026-06-29 &nbsp;·&nbsp; 平台：`linux/arm64`
+> 📅 2026-06-30 &nbsp;·&nbsp; 平台：`linux/arm64`
 
 🐛 **修复**
 
-- **Stand 任务使能冲击**：`TaskM4LRotaryJointStand`（及继承它的 `TaskM4LRotaryJointKneeRestrictionStand`）在算法 `STAGE_INIT` 阶段（即 SERVO_ON 后的第一个 PD 帧），将位置增益 `kp` 临时置零、保留速度阻尼 `kd`。这一纯阻尼过渡防止测量噪声或坐标系微小偏差被高增益 PD（kp=250）放大成可见的关节冲击。从 `STAGE_START` 起恢复全增益（此时 `joint_start_position == 当前实测值`，P 项近似为零，过渡平滑）
+- **Stand 任务使能冲击（完整修复）**：在 `AlgorithmM4LRotaryJointStandControlModel` 中新增 `STAGE_WARM_UP` 阶段。每次任务激活时 `reset()` 均回到此 stage，持续 0.5 s 的纯阻尼过渡（`kp=0`，`kd` 保持正常值，目标位置跟随实测值，P 项始终为零）。0.5 s 结束后进入正常 `STAGE_INIT → STAGE_START → ...` 流程。修复了 v4.4.10 中仅持续一个 tick（~20 ms）不足以消除速度残差、以及多次触发任务时 `STAGE_INIT` 不复现的双重问题。同样覆盖 `TaskM4LRotaryJointKneeRestrictionStand`
+
+---
+
+### ~~4.4.10~~ *(已撤销)*
+
+> ⚠️ kp=0 仅持续一个 tick，不足以抑制冲击；且 `STAGE_INIT` 在第二次激活时不再触发。已在 4.4.11 中完整修复，请勿使用此版本。
 
 ---
 

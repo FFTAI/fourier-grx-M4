@@ -13,15 +13,21 @@ has_toc: true
 
 ## 2026 年 6 月
 
-### v1.1.4 (2026-06-29)
+### v1.1.5 (2026-06-30)
 
 **修复**
 
-- 🐛 **Stand 任务使能冲击问题**：`TaskM4LRotaryJointStand._function_meta` 在算法 `STAGE_INIT` 阶段（SERVO_ON 后第一个 PD 帧）将 `kp` 置零、保留正常 `kd`，形成纯阻尼过渡，防止测量噪声或坐标系微小偏差被高增益 PD（kp=250）放大成关节冲击。`STAGE_START` 之后恢复全增益，此时 `joint_start_position == 当前实测值`，P 项近似为零，过渡平滑。同样覆盖 `TaskM4LRotaryJointKneeRestrictionStand`（继承同一 `_function_meta`）
+- 🐛 **Stand 任务使能冲击（完整修复）**：新增 `STAGE_WARM_UP` 阶段（0.5 s 纯阻尼过渡，`kp=0`，目标位置跟随实测）。`reset()` 覆写确保每次任务激活都重新经历此阶段，解决了 v1.1.4（4.4.10）中仅一个 tick 不足以抑制冲击、以及多次触发时阻尼阶段不复现的问题
 
 **版本更新**
 
-- 📦 `fourier-grx` 更新至 `4.4.10`
+- 📦 `fourier-grx` 更新至 `4.4.11`
+
+---
+
+### ~~v1.1.4 (2026-06-29)~~ *(已撤销)*
+
+> kp=0 仅持续一个 tick，不足以抑制冲击；且 `STAGE_INIT` 在第二次激活时不再触发。已在 v1.1.5 中完整修复。
 
 ---
 
