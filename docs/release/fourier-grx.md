@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-06-30 | **4.4.14** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | ✅ 支持中 |
+| 2026-06-30 | **4.4.19** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4419) | ✅ 支持中 |
+| 2026-06-30 | 4.4.14 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | ✅ 支持中 |
 | 2026-06-29 | 4.4.10 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4410) | 🔶 不推荐 |
 | 2026-06-29 | 4.4.9 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [详情](#449) | 🔶 不推荐 |
 | 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
@@ -35,6 +36,28 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.19
+
+> 📅 2026-06-30 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **`fourier-grx update <version>` 直接安装指定版本**：新增 `fourier-grx update <version>` 用法，变体自动从已安装包读取，无需手动指定。例：`fourier-grx update 4.4.14`
+
+🔧 **改进**
+
+- **`fourier-grx update` 探测范围优化**：
+  - 当前 minor 的 patch 探测范围由 +10 扩大至 +20，miss 阈值保持 5，应对跳过多个 patch 的情况
+  - 次版本只探 minor+1（原为 +1~+3），每个 patch 0~10，miss=3
+  - 主版本只探 major+1.0.y（patch 0~5，miss=3），不再扫描多个 minor
+  - 整体最坏请求数由 ~76 次降至 ~36 次
+
+🐛 **修复**
+
+- **`fourier-grx install` 失效**：修复插入新函数时意外删除 `if [ $# -eq 0 ]` 守卫行，导致所有子命令在脚本加载时直接执行的问题
+
+---
 
 ### 4.4.14
 
