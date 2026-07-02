@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-06-30 | **4.4.20** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4420) | ✅ 支持中 |
+| 2026-07-01 | **4.4.21** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4421) | ✅ 支持中 |
+| 2026-06-30 | 4.4.20 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4420) | ✅ 支持中 |
 | 2026-06-30 | 4.4.19 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4419) | ✅ 支持中 |
 | 2026-06-30 | 4.4.14 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | ✅ 支持中 |
 | 2026-06-29 | 4.4.10 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4410) | 🔶 不推荐 |
@@ -37,6 +38,16 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.21
+
+> 📅 2026-07-01 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **旋转关节回零任务执行器索引错误**：修复 `TaskM4LRotaryJointSetHome` 在 `ACTUATOR_SPACE` 模式下设置目标控制模式时，使用了全局机器人执行器索引（`robot.actuators[i]`）而非任务模型映射后的真实索引（`task_model.index_of_actuators_real_robot[i]`）的问题。该 Bug 在 M4LP1 等关节索引不从 0 连续排列的机型上会导致错误的执行器被配置
+
+---
 
 ### 4.4.20
 
