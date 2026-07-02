@@ -36,6 +36,7 @@ M4 机器人常见任务指令示例：
 | TASK_ROTARY_JOINT_SET_HOME_POSITION            | 4105      | M4L  | 采样均值后将当前位置设为旋转关节零点（软件层）      |
 | TASK_ROTARY_JOINT_MOVE_BACK                    | 4106      | M4L  | 旋转关节回退到安全位置                     |
 | TASK_ROTARY_JOINT_AUTO_CALIBRATE               | 4120      | M4L  | 旋转关节自动校准（边界检测→下电→设置零点，三步连贯）  |
+| TASK_ROTARY_JOINT_MANUAL_CALIBRATE             | 4121      | M4L  | 旋转关节手动校准（下电→用户手动摆位→设置零点，两步连贯） |
 | TASK_PRISMATIC_JOINT_AUTO_CALIBRATE            | 4210      | M4L  | 腿长调节关节自动校准（上电后需首先执行）          |
 | TASK_ROTARY_JOINT_FORWARD_WALK                 | 4111      | M4L  | 被动前向行走                        |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD | 4116    | M4L  | 助力前向行走（调整 PD 参数）              |
@@ -84,6 +85,8 @@ M4 机器人常见任务指令示例：
 ### 专项与扩展任务
 
 - [设置零点（旋转关节）](/fourier-grx-M4/docs/tasks/set_home_rotary_joint)
+- [自动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_auto_calibrate)
+- [手动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_manual_calibrate)
 - [校准零点（直线关节）](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)
 - [调整长度（直线关节）](/fourier-grx-M4/docs/tasks/move_length_prismatic_joint)
 - [规划器](/fourier-grx-M4/docs/tasks/planner)
