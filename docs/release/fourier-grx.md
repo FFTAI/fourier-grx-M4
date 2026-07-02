@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-01 | **4.4.21** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4421) | ✅ 支持中 |
+| 2026-07-02 | **4.4.22** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4422) | ✅ 支持中 |
+| 2026-07-01 | 4.4.21 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4421) | ✅ 支持中 |
 | 2026-06-30 | 4.4.20 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4420) | ✅ 支持中 |
 | 2026-06-30 | 4.4.19 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4419) | ✅ 支持中 |
 | 2026-06-30 | 4.4.14 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | ✅ 支持中 |
@@ -38,6 +39,21 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.22
+
+> 📅 2026-07-02 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **旋转关节手动标定任务**（TID 4121，`TASK_ROTARY_JOINT_MANUAL_CALIBRATE`，适用 M4LP1 / M4LT1 / M4LT2）：用于用户手动将关节摆到期望零位后触发标定。执行序列为：
+  1. **ServoOff**：自动下电，用户可自由移动关节至目标姿态
+  2. **SetHomePosition**：对当前位置采样平均（约 1 s / 50 帧），写入 `set_home_position()`
+  3. **目标位置重置**：标定完成后，将 joint target 同步至新坐标系下的实测位置，防止下一个任务使能时出现目标跳变冲击
+
+  与 TID 4120（AutoCalibrate）的区别：AutoCalibrate 自动驱动关节找边界后归零；ManualCalibrate 由用户手动定位后触发，适用于快速现场校准场景。
+
+---
 
 ### 4.4.21
 
