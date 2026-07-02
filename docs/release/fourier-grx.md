@@ -18,19 +18,19 @@ has_toc: true
 | 2026-07-02 | **4.4.22** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4422) | ✅ 支持中 |
 | 2026-07-01 | 4.4.21 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4421) | ✅ 支持中 |
 | 2026-06-30 | 4.4.20 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4420) | ✅ 支持中 |
-| 2026-06-30 | 4.4.19 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4419) | ✅ 支持中 |
-| 2026-06-30 | 4.4.14 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | ✅ 支持中 |
+| 2026-06-30 | 4.4.19 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4419) | 🔶 不推荐 |
+| 2026-06-30 | 4.4.14 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | 🔶 不推荐 |
 | 2026-06-29 | 4.4.10 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4410) | 🔶 不推荐 |
 | 2026-06-29 | 4.4.9 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [详情](#449) | 🔶 不推荐 |
-| 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ✅ 支持中 |
-| 2026-05-22 | 4.4.7 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | ✅ 支持中 |
-| 2026-05-14 | 4.4.6 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | ✅ 支持中 |
-| 2026-05-14 | 4.4.5 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [详情](#445) | ✅ 支持中 |
-| 2026-05-13 | 4.4.4 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [详情](#444) | ✅ 支持中 |
-| 2026-05-11 | 4.4.3 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [详情](#443) | ✅ 支持中 |
-| 2026-04-10 | 4.4.2 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [详情](#442) | ✅ 支持中 |
-| 2026-04-08 | 4.4.1 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](#441) | ✅ 支持中 |
-| 2026-04-03 | 4.4.0 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](#440) | ✅ 支持中 |
+| 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | 🔶 不推荐 |
+| 2026-05-22 | 4.4.7 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | 🔶 不推荐 |
+| 2026-05-14 | 4.4.6 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | 🔶 不推荐 |
+| 2026-05-14 | 4.4.5 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [详情](#445) | 🔶 不推荐 |
+| 2026-05-13 | 4.4.4 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [详情](#444) | 🔶 不推荐 |
+| 2026-05-11 | 4.4.3 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [详情](#443) | 🔶 不推荐 |
+| 2026-04-10 | 4.4.2 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [详情](#442) | 🔶 不推荐 |
+| 2026-04-08 | 4.4.1 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](#441) | 🔶 不推荐 |
+| 2026-04-03 | 4.4.0 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](#440) | 🔶 不推荐 |
 
 ## 安装方法
 
