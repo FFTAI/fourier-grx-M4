@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-02 | **4.4.22** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4422) | ✅ 支持中 |
+| 2026-07-06 | **4.4.23** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4423) | ✅ 支持中 |
+| 2026-07-02 | 4.4.22 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4422) | ✅ 支持中 |
 | 2026-07-01 | 4.4.21 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4421) | ✅ 支持中 |
 | 2026-06-30 | 4.4.20 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4420) | ✅ 支持中 |
 | 2026-06-30 | 4.4.19 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4419) | 🔶 不推荐 |
@@ -39,6 +40,26 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.23
+
+> 📅 2026-07-06 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **前向行走步长偏短**：`hip_movement_ratio=(1.0, 0.7)` 对 IK 后的后摆髋关节角度缩放至 70%，导致实际物理步长仅为指令步长的 85%（对称步中前摆贡献 `S/2×1.0`，后摆贡献 `S/2×0.7`，合计 `0.85S`）。在 Cartesian 层预乘补偿系数 `20/17`（≈ 1.176），使指令步长与实际步长一致。
+
+  覆盖以下所有前向行走任务（通过 `_run_gait_generation` 继承链一次修复）：
+  - TID 4111 被动前向行走
+  - TID 4116 助力前向行走（调整 PD）
+  - TID 4118 助力前向行走（调整 DT）
+  - TID 4301 膝关节受限前向行走
+  - TID 4303 膝关节受限助力前向行走（调整 PD）
+  - TID 4305 膝关节受限助力前向行走（调整 DT）
+
+  原地踏步系列（MarkTime）使用独立的 `generate_mark_gait`，无步长参数，不受影响。
+
+---
 
 ### 4.4.22
 
