@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-06 | **4.4.23** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4423) | ✅ 支持中 |
+| 2026-07-16 | **4.4.24** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4424) | ✅ 支持中 |
+| 2026-07-06 | 4.4.23 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4423) | 🔶 不推荐 |
 | 2026-07-02 | 4.4.22 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4422) | ✅ 支持中 |
 | 2026-07-01 | 4.4.21 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4421) | ✅ 支持中 |
 | 2026-06-30 | 4.4.20 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4420) | ✅ 支持中 |
@@ -40,6 +41,20 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.24
+
+> 📅 2026-07-16 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **参考轨迹时域对齐（前向行走 & 原地踏步）**：启用参考轨迹延迟补偿（`gait_trajectory_total_delay_compensation_index = -6`），修正上传至 GUI 的 `reference_joint_position` 与机器人实际 `measured_joint_position` 之间的时域偏移，使两条曲线在 GUI 上视觉对齐更好
+
+- **助力 DT 模式响应速度加快**（前向行走 & 原地踏步）：助力触发时 `assist_ratio` 的增量由 `0.01` 调整为 `0.02`，助力爬坡速度加倍，响应更快
+
+- **M4LP1 / M4LT1 负载模式 kp 参数调整**：`algo_rotary_pd_kp_hard` 髋关节（索引 0、2）由 `500` 调整为 `600`，膝关节（索引 1、3）保持 `500`，提升带载行走时的刚度
+
+---
 
 ### 4.4.23
 
