@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-16 | **4.4.24** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4424) | ✅ 支持中 |
+| 2026-07-16 | **4.4.25** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4425) | ✅ 支持中 |
+| 2026-07-16 | 4.4.24 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4424) | 🔶 不推荐 |
 | 2026-07-06 | 4.4.23 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4423) | 🔶 不推荐 |
 | 2026-07-02 | 4.4.22 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4422) | ✅ 支持中 |
 | 2026-07-01 | 4.4.21 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4421) | ✅ 支持中 |
@@ -41,6 +42,16 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.25
+
+> 📅 2026-07-16 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **原地踏步助力 DT 模式 `assist_ratio` 回落速度过快**：`AlgorithmM4LRotaryJointMarkTimeAssistAdjustDtControlModel` 中检测到力矩低于下阈值时，`assist_ratio` 的衰减步长由 `-0.01` 调整为 `-0.001`，避免原地踏步场景下助力比例回落过快导致的助力不稳定；前向行走助力 DT 模式不受影响。
+
+---
 
 ### 4.4.24
 
