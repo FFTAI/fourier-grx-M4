@@ -22,7 +22,7 @@ The SDK is designed to be simple and easy to use, providing high-level interface
 
 [Reference Guide](/fourier-grx-M4/docs/en/reference) contains detailed API documentation for the SDK library and can be used as a reference while developing your applications.
 
-[Usage Guide](/fourier-grx-M4/docs/en/usage) covers common operations such as robot calibration and switching between operating modes. For firmware installation, see [Quick Start - Firmware Installation and Update](/fourier-grx-M4/docs/en/quickstart/firmware).
+[Usage Guide](/fourier-grx-M4/docs/en/usage) covers common operations such as robot calibration and switching between operating modes. For firmware installation, see [Quick Start - Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install); for firmware upgrades, see [Quick Start - Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update).
 
 [FAQ](/fourier-grx-M4/docs/en/faq) provides answers to common questions and can help you resolve frequent issues. If you encounter additional problems, you are also welcome to [contribute](/fourier-grx-M4/docs/en/contributing) and help us improve.
 

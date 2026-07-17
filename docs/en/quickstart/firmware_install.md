@@ -1,21 +1,23 @@
 ---
 layout: default
-title: Firmware Installation and Update
+title: Firmware Installation (First-Time Setup)
 nav_order: 1.2
 parent: "Quick Start"
 has_toc: true
 nav_exclude: true
 ---
 
-# Firmware Installation and Update
+# Firmware Installation (First-Time Setup)
 
 * TOC
 {:toc}
 
 > ℹ️ **Note**
 >
-> This page describes the workflow for **firmware installation, upgrades, and initial robot model configuration** for the Fourier-GRX-M4 SDK.
+> This page describes the **first-time installation and initial robot model configuration** workflow for the Fourier-GRX-M4 SDK, for a **brand-new device that has not yet been configured**.
 > Download firmware packages from the [Firmware Releases](/fourier-grx-M4/docs/en/release) page.
+>
+> If the robot has **already completed first-time installation** (the wired network is already configured with a static IP) and you only need to **upgrade to a newer version**, use the lighter-weight [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update) page instead. You can use the `fourier-grx update` command directly without repeating the network configuration steps below.
 
 ## Video Tutorial
 
@@ -74,7 +76,7 @@ fourier-grx install
 > ℹ️ **Note**
 >
 > - If installation fails due to network or other issues, rerun the commands above.
-> - Both first-time installation and version upgrades can follow this page.
+> - This page's workflow applies to **first-time installation** or scenarios where you need to **reconfigure the network or robot model**. If the device has already been installed and configured and you only need to upgrade the version, use the `fourier-grx update` workflow on the [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update) page instead — it's simpler.
 
 ## Robot Model Configuration
 
