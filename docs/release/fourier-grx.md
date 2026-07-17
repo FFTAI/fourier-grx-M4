@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-16 | **4.4.25** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4425) | ✅ 支持中 |
+| 2026-07-17 | **4.4.26** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4426) | ✅ 支持中 |
+| 2026-07-16 | 4.4.25 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4425) | ✅ 支持中 |
 | 2026-07-16 | 4.4.24 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4424) | 🔶 不推荐 |
 | 2026-07-06 | 4.4.23 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4423) | 🔶 不推荐 |
 | 2026-07-02 | 4.4.22 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4422) | ✅ 支持中 |
@@ -42,6 +43,16 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.26
+
+> 📅 2026-07-17 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **M4LP1 规划器（Planner）模式任务未注册**：`fi_task_m4l_rotary_joint_planner.py` 中全部 12 个 Planner 任务类（TID 4401-4406、4501-4506，覆盖前向行走 / 原地踏步及其助力变体、膝关节受限变体）此前仅注册给 M4LT1 / M4LT2 / M4LZenoh，遗漏了 M4LP1。导致 M4LP1 切换到 Planner 模式时，任务未被 FSM 实际执行（不报错、静默跳过），`reference_joint_position_max` / `reference_joint_position_min` 等字段因从未写入而保持初始空值，而 M4LT2 等已注册机型工作正常。现已为全部 12 个 Planner 任务类补充 `RobotName.M4LP1` 注册。膝关节受限相关的基类任务本身已支持 M4LP1，本次修复不会额外强制开启膝关节限制行为。
+
+---
 
 ### 4.4.25
 
