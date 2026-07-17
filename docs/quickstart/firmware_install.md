@@ -1,20 +1,22 @@
 ---
 layout: default
-title: 固件安装和更新
+title: 固件安装（首次安装）
 nav_order: 1.2
 parent: 快速开始
 has_toc: true
 ---
 
-# 固件安装和更新
+# 固件安装（首次安装）
 
 * TOC
 {:toc}
 
 > ℹ️ **说明**
 >
-> 本页面用于说明 Fourier-GRX-M4 SDK 的**固件安装、升级和首次型号配置**流程。
+> 本页面用于说明 Fourier-GRX-M4 SDK 在**全新设备 / 尚未配置过固件**情况下的**首次安装和机器人型号配置**流程。
 > 固件安装包请从 [固件发布](/fourier-grx-M4/docs/release) 页面获取。
+>
+> 如果机器人**已经完成过首次安装**（有线网络已配置为静态 IP），只是需要**升级到新版本**，请参考更轻量的 [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update) 页面，可直接使用 `fourier-grx update` 命令完成更新，无需重复以下网络配置步骤。
 
 ## 视频教程
 
@@ -73,7 +75,7 @@ fourier-grx install
 > ℹ️ **说明**
 >
 > - 如果安装过程中由于网络或其他原因失败，可以重新运行上述安装命令。
-> - 首次安装和版本升级都可以参考本页面执行。
+> - 本页面流程适用于**首次安装**或**需要重新配置网络 / 机器人型号**的场景。如果设备已经安装并配置过，仅需升级版本，请改用 [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update) 页面中的 `fourier-grx update` 方式，更加简便。
 
 ## 机器人型号配置
 
