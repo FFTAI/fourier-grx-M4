@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-17 | **4.4.26** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4426) | ✅ 支持中 |
+| 2026-07-17 | **4.4.27** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4427) | ✅ 支持中 |
+| 2026-07-17 | 4.4.26 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4426) | ✅ 支持中 |
 | 2026-07-16 | 4.4.25 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4425) | ✅ 支持中 |
 | 2026-07-16 | 4.4.24 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4424) | 🔶 不推荐 |
 | 2026-07-06 | 4.4.23 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4423) | 🔶 不推荐 |
@@ -43,6 +44,24 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.27
+
+> 📅 2026-07-17 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**（本版本源于一次全仓库细粒度代码审查）
+
+- **膝关节受限助力模式限位角失效（安全相关）**：`ForwardWalk`/`MarkTime` 的 `AssistAdjustPD`/`AssistAdjustDT` 共 4 个算法文件，在向父类传递额外参数时误写为 `kwargs=kwargs`（应为 `**kwargs` 展开），导致 `H_com` 与 `knee_restriction` 两个参数被静默丢弃。**实际影响**：全部 4 个「膝关节受限 + 助力（PD/DT）」任务中，患者配置的膝关节限位角从未真正传递到步态生成器，限位功能形同虚设。现已修复为正确的 `**kwargs` 展开。
+
+- **无效/未注册 TID 可能导致控制进程异常**：`FSMManager._callback_task_command_update` 在 `set_task_command(value_type="value")` 收到未注册 TID 时会尝试访问裸 int 的 `.name` 属性而抛出异常（该接口对应 Zenoh 网络任务指令通道，外部可达）。已增加防护，并在检测到"TID 未匹配任何已注册任务"时输出告警日志，便于尽早发现同类漏注册问题。
+
+- **M4LZenoh 缺失直线关节自动标定任务注册**：`TASK_PRISMATIC_JOINT_AUTO_CALIBRATE`（TID 4210）此前未注册给 M4LZenoh，尽管其内部子任务（MoveMax/SetHome）均已支持该机型。现已补充注册。
+
+🔧 **代码质量清理**
+
+- 修正 `fi_task_m4l_rotary_joint_mark_time.py` 中一处命名笔误：一个继承自 MarkTime 的任务类被误命名为 `TaskM4LT1RotaryJointForwardWalk`（与前向行走模块中的同名类冲突），现更名为 `TaskM4LT1RotaryJointMarkTime`。
+
+---
 
 ### 4.4.26
 
