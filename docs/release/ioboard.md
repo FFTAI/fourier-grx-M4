@@ -15,7 +15,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-05-12 | **1.0.0.3** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.3_20260512.zip) | [详情](#1003) | ✅ 支持中 |
+| 2026-05-12 | **1.0.0.3** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.3_20260721.zip) | [详情](#1003) | ✅ 支持中 |
 | 2026-05-12 | 1.0.0.2 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.2_20260512.zip) | [详情](#1002) | ✅ 支持中 |
 
 ## 烧录方法
