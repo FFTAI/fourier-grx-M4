@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-17 | **4.4.27** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4427) | ✅ 支持中 |
+| 2026-07-23 | **4.4.28** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4428) | ✅ 支持中 |
+| 2026-07-17 | 4.4.27 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4427) | ✅ 支持中 |
 | 2026-07-17 | 4.4.26 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4426) | ✅ 支持中 |
 | 2026-07-16 | 4.4.25 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4425) | ✅ 支持中 |
 | 2026-07-16 | 4.4.24 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4424) | 🔶 不推荐 |
@@ -44,6 +45,18 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.28
+
+> 📅 2026-07-23 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **执行器使能状态标志（`flag_actuator_enables`）从未真正反映真实状态**：该字段此前仅在机器人启动时被硬编码写入一次（恒为"已使能"），此后无论用户执行 `servo_off`/`servo_on`，还是任务切换过程中系统自动重新使能执行器（几乎所有 M4L 任务激活时都会发生），都不会更新该字段，导致上位机/GUI 看到的执行器使能状态与真实状态长期不一致。
+
+  修复方式：在 `fourier-core` 的 `ActuatorMotor.set_target_control_mode()`（全部执行器类型控制模式设置的唯一入口）中，将使能状态维护为一个锁存量——只有收到 `SERVO_ON`/`SERVO_OFF` 指令时才会翻转，其余运动控制模式切换不受影响；`fourier-grx` 侧则在每个通信周期将该状态同步至 Dynalink 上传字段。本次修复保留了"任务激活时自动使能执行器"的既有设计，不改变任务切换行为。
+
+---
 
 ### 4.4.27
 
