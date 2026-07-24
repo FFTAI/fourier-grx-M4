@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-24 | **4.4.29** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4429) | ✅ 支持中 |
+| 2026-07-24 | **4.4.30** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.30-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4430) | ✅ 支持中 |
+| 2026-07-24 | 4.4.29 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4429) | ✅ 支持中 |
 | 2026-07-23 | 4.4.28 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4428) | ✅ 支持中 |
 | 2026-07-17 | 4.4.27 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4427) | ✅ 支持中 |
 | 2026-07-17 | 4.4.26 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4426) | ✅ 支持中 |
@@ -47,6 +48,20 @@ has_toc: true
 
 ## 更新内容
 
+### 4.4.30
+
+> 📅 2026-07-24 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **助力原地踏步 DT 模式响应加快**：`MarkTimeAssistAdjustDt`（TID 4119/4306）自动助力模式下，力矩超过上限时的助力系数增量由 `0.02` 调整为 `0.04`，加快用力时的助力爬坡速度；减量 `-0.001`（v4.4.25 起）保持不变。
+
+🔧 **代码质量**
+
+- 统一 `ForwardWalkAssistAdjustDt`（TID 4118/4305）与 `MarkTimeAssistAdjustDt`（TID 4119/4306）循环走路阶段中 `motion_index`/`motion_index_range` 相关代码的书写风格，与基类/PD 变体保持一致，不影响任何运动行为（已通过独立仿真脚本核实生成轨迹在改动前后完全一致）。
+
+---
+
 ### 4.4.29
 
 > 📅 2026-07-24 &nbsp;·&nbsp; 平台：`linux/arm64`
@@ -56,6 +71,12 @@ has_toc: true
 - **助力 DT 模式 GUI 参考轨迹卡死在起步过渡片段**：`ForwardWalkAssistAdjustDt`（TID 4118/4305）与 `MarkTimeAssistAdjustDt`（TID 4119/4306）两个算法的循环走路阶段（`_run_loop_step`）此前遗漏了 `motion_index_range` 的刷新，导致该范围永久冻结在进入循环前"起步过渡"阶段设置的窄区间内。上传给 GUI 的 `reference_joint_position`/`reference_joint_velocity` 因此被永久包裹回放起步过渡那一小段轨迹，而不是反映真实的循环走路轨迹，表现为左右腿参考曲线明显不对称（如一侧膝关节长期贴近 0）。
 
   **该缺陷仅影响 GUI 展示的参考轨迹数据，不影响机器人实际运动**——驱动执行器的 PD 控制目标使用的是同一算法内部未被包裹的真实索引，机器人实际走路轨迹一直是正确的。
+
+🔧 **调整**
+
+- **前向行走关节微调比例调整**：`hip_movement_ratio` 由 `(1.0, 0.7)` 调整为 `(1.0, 0.85)`，减小后摆髋关节角度的缩放幅度，覆盖全部前向行走任务（TID 4111/4116/4118/4301/4303/4305）。
+
+  > ⚠️ 已知遗留问题：该比例调整后，`_run_gait_generation()` 中用于补偿实际步长的系数（`20/17`，对应旧比例 0.7 推导所得）尚未同步更新，理论上会造成新比例下的轻微步长补偿偏差，待后续版本核实修正。
 
 ---
 
