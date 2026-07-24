@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-23 | **4.4.28** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4428) | ✅ 支持中 |
+| 2026-07-24 | **4.4.29** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4429) | ✅ 支持中 |
+| 2026-07-23 | 4.4.28 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4428) | ✅ 支持中 |
 | 2026-07-17 | 4.4.27 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4427) | ✅ 支持中 |
 | 2026-07-17 | 4.4.26 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4426) | ✅ 支持中 |
 | 2026-07-16 | 4.4.25 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4425) | ✅ 支持中 |
@@ -45,6 +46,18 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.29
+
+> 📅 2026-07-24 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **助力 DT 模式 GUI 参考轨迹卡死在起步过渡片段**：`ForwardWalkAssistAdjustDt`（TID 4118/4305）与 `MarkTimeAssistAdjustDt`（TID 4119/4306）两个算法的循环走路阶段（`_run_loop_step`）此前遗漏了 `motion_index_range` 的刷新，导致该范围永久冻结在进入循环前"起步过渡"阶段设置的窄区间内。上传给 GUI 的 `reference_joint_position`/`reference_joint_velocity` 因此被永久包裹回放起步过渡那一小段轨迹，而不是反映真实的循环走路轨迹，表现为左右腿参考曲线明显不对称（如一侧膝关节长期贴近 0）。
+
+  **该缺陷仅影响 GUI 展示的参考轨迹数据，不影响机器人实际运动**——驱动执行器的 PD 控制目标使用的是同一算法内部未被包裹的真实索引，机器人实际走路轨迹一直是正确的。
+
+---
 
 ### 4.4.28
 
