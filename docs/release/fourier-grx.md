@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-24 | **4.4.30** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.30-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4430) | ✅ 支持中 |
+| 2026-07-24 | **4.4.31** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.31-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4431) | ✅ 支持中 |
+| 2026-07-24 | 4.4.30 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.30-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4430) | ✅ 支持中 |
 | 2026-07-24 | 4.4.29 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4429) | ✅ 支持中 |
 | 2026-07-23 | 4.4.28 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4428) | ✅ 支持中 |
 | 2026-07-17 | 4.4.27 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4427) | ✅ 支持中 |
@@ -48,6 +49,16 @@ has_toc: true
 
 ## 更新内容
 
+### 4.4.31
+
+> 📅 2026-07-24 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **前向行走步长补偿系数与 hip_movement_ratio 不匹配**：v4.4.29 将 `hip_movement_ratio` 由 `(1.0, 0.7)` 调整为 `(1.0, 0.85)`，但用于抵消该缩放对实际步长影响的补偿系数（原为 `20/17`，专为旧比例 `0.7` 推导）未同步更新。现已更正为 `40/37`（`= 1/((1.0+0.85)/2)`），恢复命令步长与实际物理步长的精确匹配，覆盖全部前向行走任务（TID 4111/4116/4118/4301/4303/4305）。
+
+---
+
 ### 4.4.30
 
 > 📅 2026-07-24 &nbsp;·&nbsp; 平台：`linux/arm64`
@@ -74,9 +85,7 @@ has_toc: true
 
 🔧 **调整**
 
-- **前向行走关节微调比例调整**：`hip_movement_ratio` 由 `(1.0, 0.7)` 调整为 `(1.0, 0.85)`，减小后摆髋关节角度的缩放幅度，覆盖全部前向行走任务（TID 4111/4116/4118/4301/4303/4305）。
-
-  > ⚠️ 已知遗留问题：该比例调整后，`_run_gait_generation()` 中用于补偿实际步长的系数（`20/17`，对应旧比例 0.7 推导所得）尚未同步更新，理论上会造成新比例下的轻微步长补偿偏差，待后续版本核实修正。
+- **前向行走关节微调比例调整**：`hip_movement_ratio` 由 `(1.0, 0.7)` 调整为 `(1.0, 0.85)`，减小后摆髋关节角度的缩放幅度，覆盖全部前向行走任务（TID 4111/4116/4118/4301/4303/4305）。步长补偿系数已在 v4.4.31 同步更新，详见该版本说明。
 
 ---
 
