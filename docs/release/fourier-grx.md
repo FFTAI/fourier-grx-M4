@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-24 | **4.4.31** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.31-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4431) | ✅ 支持中 |
+| 2026-07-28 | **4.4.32** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.32-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4432) | ✅ 支持中 |
+| 2026-07-24 | 4.4.31 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.31-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4431) | ✅ 支持中 |
 | 2026-07-24 | 4.4.30 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.30-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4430) | ✅ 支持中 |
 | 2026-07-24 | 4.4.29 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4429) | ✅ 支持中 |
 | 2026-07-23 | 4.4.28 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4428) | ✅ 支持中 |
@@ -48,6 +49,18 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.32
+
+> 📅 2026-07-28 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **GUI 展示的关节参考角度最大/最小值包含了起步/收尾过渡的瞬态极值**：`reference_joint_position_max/min` 此前是对整段 `gait_generator.gait_data`（包含起步过渡、循环走路、收尾过渡三段）直接取 `max()/min()`，导致展示值受首尾瞬态步影响，与用户实际关心的"稳定循环走路/踏步阶段"角度范围不一致（例如某次实测左髋关节最小角度整段为 -32.56°，仅循环段为 -25.23°）。现已改为仅在循环走路阶段（`_run_loop_step` 所覆盖的索引区间）内计算最大/最小值，更准确反映稳态步态的关节角度范围。覆盖全部前向行走与原地踏步任务（TID 4111/4116/4118/4301/4303/4305 以及 4112/4117/4119/4302/4304/4306）。
+
+  **该修复仅影响 GUI 展示的 `reference_joint_position_max/min` 统计口径，不影响机器人实际运动轨迹。**
+
+---
 
 ### 4.4.31
 

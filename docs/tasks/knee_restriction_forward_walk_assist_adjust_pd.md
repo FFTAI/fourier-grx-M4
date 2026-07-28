@@ -79,6 +79,8 @@ has_toc: true
 | 参考轨迹位置最大值 | `rehab.reference_joint_position_max` |
 | 参考轨迹位置最小值 | `rehab.reference_joint_position_min` |
 
+> 说明：`reference_joint_position_max`/`reference_joint_position_min` 自 v4.4.32 起，仅统计"循环走路/踏步"稳态阶段的关节角度范围，不包含起步、收尾过渡阶段的瞬态极值。
+
 指令接口：
 
 - 大腿长度 在算法运算中只能输入一个值，因此取左右大腿长度的均值。因此，传参时传入两个，但是实际只会取均值去使用。
