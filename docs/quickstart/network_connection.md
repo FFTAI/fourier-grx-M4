@@ -1,0 +1,120 @@
+---
+layout: default
+title: 网络连接与远程登录
+nav_order: 1.15
+parent: 快速开始
+has_toc: true
+---
+
+# 网络连接与远程登录
+
+* TOC
+{:toc}
+
+> ℹ️ **说明**
+>
+> 本页面用于说明在**没有路由器 / 无线转有线设备**的情况下，如何通过**笔记本电脑或平板电脑共享 WiFi 网络到有线网口**，为机器人主控电脑提供网络连接，并通过 **SSH** 远程登录到主控电脑系统。
+>
+> 该方法常用于以下场景：
+> - [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install) 时，机器人有线网络处于 **DHCP 自动获取 IP** 模式，需要外网下载安装包
+> - [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update) 时，需要临时访问外网执行 `fourier-grx update`
+> - 现场没有可用的路由器/交换机，只能用笔记本/平板直接网线连接机器人
+
+## 为什么使用笔记本/平板共享网络
+
+机器人主控电脑通常只有一个有线网口，同时承担两个角色：
+
+- **连接执行器局域网**（默认静态 IP `192.168.137.220/24`，执行器地址范围详见 [关节顺序](/fourier-grx-M4/docs/reference/joint_sequence)）
+- **对外访问互联网**（下载安装包、`fourier-grx update` 探测新版本等）
+
+现场环境往往没有能同时满足"提供外网"和"与机器人在同一子网"的路由器，此时最简单的方式就是让随身携带的笔记本或平板通过自身的 WiFi 联网，再把网络**共享**给有线网口，用一根网线直接连接机器人主控电脑。
+
+> ℹ️ **提示**：Windows 的"网络共享"（ICS，Internet Connection Sharing）功能默认会把共享出去的网段设置为 `192.168.137.0/24`（本机为 `192.168.137.1`），与机器人默认的静态 IP `192.168.137.220` **恰好同属一个网段**，这也是该默认 IP 的由来，使用该方式无需额外修改子网配置。
+
+## 方式一：Windows 电脑共享网络
+
+1. 用网线连接笔记本电脑的**有线网口**（或 USB 转以太网转接器）和机器人主控电脑的网口。
+2. 打开 **设置 → 网络和 Internet → 拨号/更改适配器选项**（或控制面板 → 网络和共享中心 → 更改适配器设置）。
+3. 找到当前**正在使用的 WiFi 连接**，右键点击 → **属性**。
+4. 切换到 **共享** 选项卡，勾选 **"允许其他网络用户通过此计算机的 Internet 连接来连接"**。
+5. 在下方"家庭网络连接"下拉框中，选择连接到机器人的那个**以太网（有线）连接**，点击 **确定**。
+6. 共享生效后，该以太网适配器的 IP 会自动变为 `192.168.137.1`，并开启 DHCP 服务，为连接的设备（机器人）分配 `192.168.137.x` 网段地址。
+
+> ⚠️ **注意**
+>
+> - 如果电脑有多个有线网口/虚拟网卡，请确认第 5 步选择的是**实际连接机器人的那个**，选错会导致无法连通。
+> - 如果机器人当前网络仍为 **DHCP** 模式（尚未执行过安装），共享网络生效后机器人会自动从 `192.168.137.x` 网段获取一个动态 IP；具体地址可以使用 [烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) 页面提供的 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描确认。
+> - 如果机器人已经是**静态 IP**（`192.168.137.220`，已完成过首次安装），共享网络生效后可直接通过该固定地址访问，无需扫描。
+
+## 方式二：macOS 电脑共享网络
+
+1. 用 USB 转以太网转接器连接 Mac 和机器人主控电脑的网口（大部分 MacBook 无内置网口）。
+2. 打开 **系统设置 → 通用 → 共享**（旧版 macOS 为 **系统偏好设置 → 共享**）。
+3. 点击 **互联网共享**，"共享来源"选择 **Wi-Fi**，"提供给的电脑使用"勾选**以太网转接器**对应的选项。
+4. 打开右上角开关启用互联网共享。
+
+> ℹ️ **说明**：macOS 互联网共享默认分配的网段可能不是 `192.168.137.x`（通常为 `192.168.2.x`），如果机器人已配置为静态 IP `192.168.137.220`，可能无法直接连通。此时建议改用 **方式一（Windows 电脑）**，或临时将 Mac 侧网卡手动配置一个 `192.168.137.x` 网段的静态 IP（例如 `192.168.137.1/24`）后再连接。
+
+## 方式三：使用手机热点
+
+部分手机支持通过 USB 数据线共享热点为有线网络（如 Android 的"USB 网络共享"），操作方式与电脑共享类似，具体入口请参考各手机系统的设置说明。同样需要注意共享出去的网段是否与机器人当前 IP 处于同一子网。
+
+## 验证网络连接
+
+网线连接并完成共享配置后，可以在电脑上通过以下方式验证是否已连通：
+
+```bash
+# Windows: 在 PowerShell / CMD 中执行
+ping 192.168.137.220
+
+# macOS / Linux: 在终端中执行
+ping 192.168.137.220
+```
+
+如果能收到回复，说明网络已经连通，可以继续进行 SSH 登录。
+
+如果机器人尚未配置静态 IP（仍为 DHCP 模式），请使用 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描局域网确认实际分配到的 IP 地址，具体用法参见 [系统烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) 页面。
+
+## SSH 远程登录
+
+网络连通后，即可通过 SSH 远程登录到机器人主控电脑，无需额外连接 HDMI 显示器和键盘鼠标。
+
+```bash
+ssh cat@192.168.137.220
+```
+
+- 用户名：`cat`
+- 密码：`temppwd`
+- 如果机器人当前仍为 DHCP 模式，请将上述 IP 替换为通过 `network_scanner.ps1` 扫描到的实际地址。
+
+首次连接时，终端会提示确认远程主机指纹（host key），输入 `yes` 继续即可：
+
+```text
+The authenticity of host '192.168.137.220 (192.168.137.220)' can't be established.
+...
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+> ⚠️ **常见问题：`REMOTE HOST IDENTIFICATION HAS CHANGED` 警告**
+>
+> 如果机器人主控电脑曾经**重新烧录系统镜像**或**重装过系统**，其 SSH host key 会发生变化。再次通过相同 IP 连接时，本地电脑会因为记录的旧 host key 不匹配而拒绝连接，并提示类似如下警告：
+>
+> ```text
+> WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+> ...
+> Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+> ```
+>
+> 这是**正常现象**（并非真的被攻击），清除本地保存的旧 host key 后重新连接即可：
+>
+> ```bash
+> ssh-keygen -R 192.168.137.220
+> ssh cat@192.168.137.220
+> ```
+
+## 相关链接
+
+- [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)：全新设备的完整安装流程
+- [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update)：已安装设备的版本升级流程
+- [系统烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image)：`network_scanner.ps1` 脚本的详细用法
+- [通信接口](/fourier-grx-M4/docs/reference/communication)：机器人与 SDK 之间的网络通信建议

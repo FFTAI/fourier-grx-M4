@@ -35,6 +35,7 @@ has_toc: true
 - 机器人主控电脑可以正常进入系统
 - 建议使用**有线网络**连接，并确保设备可以联网
 - 如果当前使用有线网络，请先将机器人的网络配置为 **DHCP 自动获取 IP 地址** 模式
+- 如果现场没有可用的路由器，可参考 [网络连接与远程登录](/fourier-grx-M4/docs/quickstart/network_connection) 页面，通过笔记本/平板共享 WiFi 网络到有线网口为机器人提供联网，并可直接 SSH 远程登录执行安装命令
 
 > ℹ️ **说明**
 >
@@ -141,3 +142,9 @@ fourier-m4 install
 > ℹ️ **说明**
 >
 > `fourier-m4` 是 `fourier-grx` 的前置版本程序，简称 “旧版”，目前已不再积极维护。如果设备支持新版的 `fourier-grx`， 建议使用 `fourier-grx` 进行安装和使用。
+
+## 相关链接
+
+- [网络连接与远程登录](/fourier-grx-M4/docs/quickstart/network_connection)：无路由器环境下，通过笔记本/平板共享网络并 SSH 远程登录机器人主控电脑
+- [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update)：已完成首次安装的设备升级到新版本
+- [固件发布](/fourier-grx-M4/docs/release)：查看所有版本及更新内容
