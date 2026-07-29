@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-28 | **4.4.32** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.32-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4432) | ✅ 支持中 |
+| 2026-07-29 | **4.4.33** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.33-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4433) | ✅ 支持中 |
+| 2026-07-28 | 4.4.32 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.32-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4432) | ✅ 支持中 |
 | 2026-07-24 | 4.4.31 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.31-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4431) | ✅ 支持中 |
 | 2026-07-24 | 4.4.30 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.30-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4430) | ✅ 支持中 |
 | 2026-07-24 | 4.4.29 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4429) | ✅ 支持中 |
@@ -49,6 +50,20 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.33
+
+> 📅 2026-07-29 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **前向行走髋关节微调比例调整**：`hip_movement_ratio` 由 `(1.0, 0.85)` 调整为 `(1.0, 0.8)`，覆盖全部前向行走任务（TID 4111/4116/4118/4301/4303/4305）。
+
+🔧 **代码质量**
+
+- **步长补偿系数改为动态推导**：此前每次调整 `hip_movement_ratio` 都需要手动同步更新一个硬编码的步长补偿系数（如 `20/17`、`40/37`），历史上曾因遗漏同步而产生 bug（详见 v4.4.31）。现已改为由 `hip_movement_ratio` 直接推导补偿系数（`2 / (hip_movement_ratio[0] + hip_movement_ratio[1])`），后续调整该比例不会再出现两者不同步的问题。
+
+---
 
 ### 4.4.32
 
