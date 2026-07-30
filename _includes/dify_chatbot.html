@@ -1,0 +1,29 @@
+{% comment %}
+  Dify 聊天机器人嵌入组件。
+  在 _config.yaml 的 dify_chatbot.token 中填入 Dify 应用的嵌入 token 后自动启用。
+  自建 Dify 时把 base_url 改为你的 Dify 域名（例如 https://dify.example.com）。
+{% endcomment %}
+{% assign dify = site.dify_chatbot %}
+{% if dify and dify.token and dify.token != "" %}
+{% assign dify_base = dify.base_url | default: "https://udify.app" %}
+<script>
+  window.difyChatbotConfig = {
+    token: {{ dify.token | jsonify }},
+    baseUrl: {{ dify_base | jsonify }}
+  };
+</script>
+<script
+  src="{{ dify_base }}/embed.min.js"
+  id="{{ dify.token }}"
+  defer>
+</script>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: {{ dify.button_color | default: "#7253ed" }} !important;
+  }
+  #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+  }
+</style>
+{% endif %}

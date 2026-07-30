@@ -39,6 +39,14 @@ kramdown:
   toc_levels: 1..3
   syntax_highlighter: rouge
 
+# Dify AI 问答机器人
+# 在 Dify 控制台（应用 -> 访问 API / 嵌入）获取嵌入 token 后填入即可启用；
+# token 为空时组件不加载。自建 Dify 时修改 base_url 为你的 Dify 域名。
+dify_chatbot:
+  token: ""
+  base_url: "https://udify.app"
+  button_color: "#7253ed"
+
 # 其他配置
 heading_anchors: true
 back_to_top: true
