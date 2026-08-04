@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 高阻尼保护（急停响应）
-nav_order: 4.24
+nav_order: 4.27
 parent: 任务描述
 has_toc: true
 ---

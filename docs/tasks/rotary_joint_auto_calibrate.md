@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 自动校准（旋转关节）
-nav_order: 4.23
+nav_order: 4.7
 parent: 任务描述
 has_toc: true
 ---

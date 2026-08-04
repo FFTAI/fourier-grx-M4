@@ -15,7 +15,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-07-29 | **4.4.35** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4435) | ✅ 支持中 |
+| 2026-08-03 | **4.4.37** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.37-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4437) | ✅ 支持中 |
+| 2026-07-29 | 4.4.35 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4435) | ✅ 支持中 |
 | 2026-07-29 | 4.4.34 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.34-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4434) | 🔶 不推荐 |
 | 2026-07-29 | 4.4.33 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.33-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4433) | 🔶 不推荐 |
 | 2026-07-28 | 4.4.32 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.32-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4432) | ✅ 支持中 |
@@ -52,6 +53,27 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.37
+
+> 📅 2026-08-03 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **DSP 双支撑步态生成器**：新增 `AlgorithmGaitGeneratorDSP`，前向行走任务可通过 `gait_generator_type="dsp"` 启用。每步分为单支撑期（SSP，LIPM 质心轨迹）与双支撑期（DSP，Hermite 低速重心转移），换腿接缝速度连续，支撑腿在髋关节摆到最前后向后（-x）运动的速度显著放缓；新增参数 `dsp_ratio`（双支撑期时间占比，默认 0.2）、`dsp_com_ratio`（重心转移距离比例，默认 0.8）、`swing_blend`（摆动脚平滑梯形速度，默认 0.3）。
+- **腿长相对调节任务**：新增 `TASK_PRISMATIC_JOINT_MOVE_OFFSET`（TID 4207），以当前实测位置为基准按偏移量调节腿长，与标定零点无关，软件重启未重新标定时也可安全微调；单次偏移限幅 ±0.02 m。详见 [相对调节长度（直线关节）](/fourier-grx-M4/docs/tasks/move_offset_prismatic_joint)。
+- **摆动脚平滑梯形速度剖面**（vhip/fhip/dsp）：`swing_blend` 参数（0~0.5]，离地/落地速度为 0，消除触地速度突变；vhip/fhip 默认不启用（保持原 linspace 行为）。
+
+🔧 **调整**
+
+- **步边界 COM 速度比例参数**（vhip/fhip）：新增 `com_boundary_speed_ratio`（0~2]，对步内时间做 warp，减缓（<1）或加快（>1）换腿附近支撑腿后摆速度，端点位移、步长、步频不变；默认 1.0（不改变原有轨迹）。
+
+🐛 **修复**
+
+- **步态关节速度轨迹不自洽**：关节速度改为由最终位置轨迹（关节微调缩放、膝限位、低通滤波之后）差分计算，修复速度前馈与位置轨迹不匹配的问题（vhip/fhip/dsp 同步修复）。
+- **DSP 步态起步过渡支撑膝弯曲**：起步过渡段 COM 高度取 Hermite 剖面与支撑腿几何高度的较大值，保证支撑腿全程伸直，与稳态一致。
+
+---
 
 ### 4.4.35
 
