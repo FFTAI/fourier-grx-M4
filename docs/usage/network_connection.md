@@ -13,10 +13,10 @@ has_toc: true
 
 > ℹ️ **说明**
 >
-> 本页面用于说明在**没有路由器 / 无线转有线设备**的情况下，如何通过**笔记本电脑或平板电脑共享 WiFi 网络到有线网口**，为机器人主控电脑提供网络连接，并通过 **SSH** 远程登录到主控电脑系统。
+> 本页面用于说明在**没有路由器 / 无线转有线设备**的情况下，如何通过**笔记本电脑或平板电脑共享 WiFi 网络到有线网口**，为机器人主控电脑提供网络连接，并通过 **SSH** 或 **Web 终端** 远程登录到主控电脑系统。
 >
 > 该方法常用于以下场景：
-> - [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install) 时，机器人有线网络处于 **DHCP 自动获取 IP** 模式，需要外网下载安装包
+> - [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install) 时，需要外网下载安装包（20260805 之前的镜像有线网络默认处于 **DHCP 自动获取 IP** 模式；**20260805 及以后的镜像烧录后自动配置静态 IP `192.168.137.220`**）
 > - [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update) 时，需要临时访问外网执行 `fourier-grx update`
 > - 现场没有可用的路由器/交换机，只能用笔记本/平板直接网线连接机器人
 
@@ -43,8 +43,9 @@ has_toc: true
 > ⚠️ **注意**
 >
 > - 如果电脑有多个有线网口/虚拟网卡，请确认第 5 步选择的是**实际连接机器人的那个**，选错会导致无法连通。
-> - 如果机器人当前网络仍为 **DHCP** 模式（尚未执行过安装），共享网络生效后机器人会自动从 `192.168.137.x` 网段获取一个动态 IP；具体地址可以使用 [烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) 页面提供的 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描确认。
-> - 如果机器人已经是**静态 IP**（`192.168.137.220`，已完成过首次安装），共享网络生效后可直接通过该固定地址访问，无需扫描。
+> - **20260805 及以后的系统镜像**烧录后自动配置静态 IP `192.168.137.220`，无需扫描，可直接访问。
+> - 如果机器人当前网络仍为 **DHCP** 模式（旧版镜像且尚未执行过安装），共享网络生效后机器人会自动从 `192.168.137.x` 网段获取一个动态 IP；具体地址可以使用 [烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) 页面提供的 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描确认。
+> - 如果机器人已经是**静态 IP**（`192.168.137.220`，已完成过首次安装或使用了 20260805 及以后的镜像），共享网络生效后可直接通过该固定地址访问，无需扫描。
 
 ## 方式二：macOS 电脑共享网络
 
@@ -73,7 +74,17 @@ ping 192.168.137.220
 
 如果能收到回复，说明网络已经连通，可以继续进行 SSH 登录。
 
-如果机器人尚未配置静态 IP（仍为 DHCP 模式），请使用 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描局域网确认实际分配到的 IP 地址，具体用法参见 [系统烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) 页面。
+如果机器人尚未配置静态 IP（仍为 DHCP 模式，仅旧版镜像未安装时），请使用 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描局域网确认实际分配到的 IP 地址，具体用法参见 [系统烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) 页面。
+
+## Web 终端登录（20260805 及以后镜像）
+
+20260805 及以后版本的系统镜像内置了 Web 终端服务，网络连通后**无需 SSH 客户端**，直接在浏览器打开：
+
+```text
+http://192.168.137.220:7681
+```
+
+即为机器人主控电脑的登录终端，按界面提示登录即可（系统用户名/密码与 SSH 登录一致）。
 
 ## SSH 远程登录
 
@@ -85,7 +96,7 @@ ssh cat@192.168.137.220
 
 - 用户名：`cat`
 - 密码：`temppwd`
-- 如果机器人当前仍为 DHCP 模式，请将上述 IP 替换为通过 `network_scanner.ps1` 扫描到的实际地址。
+- 如果机器人当前仍为 DHCP 模式（仅旧版镜像未安装时），请将上述 IP 替换为通过 `network_scanner.ps1` 扫描到的实际地址。
 
 首次连接时，终端会提示确认远程主机指纹（host key），输入 `yes` 继续即可：
 
