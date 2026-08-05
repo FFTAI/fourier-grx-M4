@@ -35,8 +35,15 @@ Download link: [Baidu Netdisk](https://pan.baidu.com/s/19t8AZV9SYTdjn2uObBiSGA) 
 
 | File | Link |
 |------|------|
-| Ubuntu 22.04 system image | [20260114_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260114_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz) |
+| Ubuntu 22.04 system image | [20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz) |
 | RKDevTool v3.15 (includes DriverAssistant) | [RKDevTool_v3.15_for_window.zip](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/RKDevTool_v3.15_for_window.zip) |
+
+> ℹ️ **Features of the 20260805 image**
+>
+> This image works out of the box with no extra network configuration:
+>
+> - **Automatic static IP**: the board is automatically configured as `192.168.137.220` after flashing and booting;
+> - **Built-in web terminal**: simply open <http://192.168.137.220:7681> in a browser to log in to the terminal — no SSH client or IP scanning required.
 
 ### Installing DriverAssistant
 

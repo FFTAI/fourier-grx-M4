@@ -43,9 +43,16 @@ has_toc: true
 
 | 文件 | 链接 |
 |------|------|
-| Ubuntu 22.04 系统镜像 | [20260114_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260114_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz) |
+| Ubuntu 22.04 系统镜像 | [20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz) |
 | RKDevTool v3.15（含 DriverAssistant）| [RKDevTool_v3.15_for_window.zip](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/RKDevTool_v3.15_for_window.zip) |
 | network scanner IP 扫描脚本 | [network_scanner.ps1](/fourier-grx-M4/assets/scripts/network_scanner.ps1) |
+
+> ℹ️ **20260805 镜像特性**
+>
+> 该版本镜像开箱即用，无需额外网络配置：
+>
+> - **自动配置静态 IP**：烧录启动后板卡自动配置为 `192.168.137.220`；
+> - **内置 Web 终端**：浏览器直接打开 <http://192.168.137.220:7681> 即可登录终端，无需 SSH 客户端或 IP 扫描。
 
 ### 安装 DriverAssistant
 
