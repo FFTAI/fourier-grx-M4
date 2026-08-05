@@ -144,10 +144,47 @@ docs:
   - title: 常用操作
     url: /docs/usage
     nav_order: 5
+    has_children: true
+    children:
+      - title: 关节零位校准
+        url: /docs/usage/calibrate
+        nav_order: 5.1
+      - title: 程序开机自启动
+        url: /docs/usage/auto_start
+        nav_order: 5.2
+      - title: 程序运行日志
+        url: /docs/usage/run_log
+        nav_order: 5.3
+      - title: 机器人数据记录
+        url: /docs/usage/data_record
+        nav_order: 5.4
 
   - title: 常见问题
     url: /docs/faq
     nav_order: 6
+    has_children: true
+    children:
+      - title: 硬件问题
+        url: /docs/faq/hardware
+        nav_order: 6.1
+      - title: 安装问题
+        url: /docs/faq/install
+        nav_order: 6.2
+      - title: 初始化问题
+        url: /docs/faq/initialize
+        nav_order: 6.3
+      - title: 网络配置
+        url: /docs/faq/network
+        nav_order: 6.4
+      - title: 性能相关
+        url: /docs/faq/performance
+        nav_order: 6.5
+      - title: 开发环境问题
+        url: /docs/faq/dev_env
+        nav_order: 6.6
+      - title: Windows 串口驱动安装
+        url: /docs/faq/serial_driver
+        nav_order: 6.7
 
   - title: 固件发布
     url: /docs/release

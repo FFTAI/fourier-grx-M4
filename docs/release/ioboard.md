@@ -27,6 +27,10 @@ has_toc: true
 
 环境要求：Windows 10 / 11，PowerShell 5.1 或更高版本，USB 数据线连接开发板。
 
+> ℹ️ **说明**
+>
+> 如果烧录脚本提示 `No serial ports detected`，或设备管理器中没有出现 COM 口，说明电脑未安装 USB 转串口驱动，请参考 [Windows 串口驱动安装](/fourier-grx-M4/docs/faq/serial_driver) 页面安装驱动后重试。
+
 硬件平台：ESP32-WROOM-32D
 
 ---

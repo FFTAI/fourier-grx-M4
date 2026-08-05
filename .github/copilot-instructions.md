@@ -19,7 +19,7 @@
   - `docs/examples*` for runnable User/Developer examples
   - `docs/reference*` for API, config, run mode, resource, and CLI details
   - `docs/tasks*` for task/module semantics and per-task reference pages
-  - `docs/usage.md`, `docs/faq.md`, `docs/release.md`, `docs/changelog.md` for operations and maintenance
+  - `docs/usage*`, `docs/faq*`, `docs/release.md`, `docs/changelog.md` for operations and maintenance
 - The core conceptual split across the docs is:
   - **User API**: high-level control over Zenoh topics like `fourier-grx/dynalink_interface/{comm|robot|task|grx|rehab}/{server|client}`
   - **Developer API**: lower-level Python access via `fourier_core` and `fourier_grx`, intended to run on the robot controller

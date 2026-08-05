@@ -15,7 +15,7 @@ has_toc: true
 > - 旋转关节零点手动设置 → [设置零点（旋转关节）TID=4103](/fourier-grx-M4/docs/tasks/set_home_rotary_joint)
 > - 直线关节（腿长）校准 → [校准零点（直线关节）TID=4210](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)
 >
-> 完整校准流程请参见 [关节零位校准](/fourier-grx-M4/docs/usage#关节零位校准)。
+> 完整校准流程请参见 [关节零位校准](/fourier-grx-M4/docs/usage/calibrate)。
 
 ## 更新日志
 

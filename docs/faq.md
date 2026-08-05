@@ -3,6 +3,7 @@ layout: default
 title: 常见问题
 nav_order: 6
 has_toc: true
+has_children: true
 ---
 
 # 常见问题解答（FAQ）
@@ -16,161 +17,13 @@ has_toc: true
 
 | 分类 | 问题 |
 |------|------|
-| 🔋 [硬件问题](#-硬件问题) | [电池充不进去](#电池充电充不进去) |
-| 📦 [安装问题](#-安装问题) | [安装中断](#安装过程中断) · [机型配置失败](#机型配置失败) |
-| 🚀 [初始化问题](#-初始化问题) | [配置文件错误](#配置文件错误) · [执行器自检失败](#执行器自检失败) |
-| 🌐 [网络配置](#-网络配置) | [外网访问](#外网访问配置) · [WiFi 热点](#wifi-热点配置) |
-| ⚡ [性能相关](#-性能相关) | [控制频率说明](#控制频率说明) · [超时警告](#超时警告处理) · [手柄休眠](#手柄休眠问题) |
-| 🛠️ [开发环境](#️-开发环境问题) | [通信问题](#用户接口通信问题) · [依赖缺失](#依赖问题) |
-
----
-
-## 🔋 硬件问题
-
-### 电池充电充不进去
-
-**现象**：机器人插线充电后长时间无变化，一上电仍自动断电。
-
-**排查步骤**：
-
-1. 检查充电线是否牢固连接到充电口
-2. 确认充电器状态：红灯/蓝灯 = 充电中，绿灯 = 充满
-3. 确认电池开关**已按下**——只有按下状态才会对电池充电，未按下时电源线仅供机器人运行，不充电
-4. 检查保险丝是否烧断（位于电池盒内），若烧断需更换
-
----
-
-## 📦 安装问题
-
-### 安装过程中断
-
-**现象**：安装程序因意外或误操作退出。
-
-**解决方案**：直接重新运行安装程序，旧有安装内容会自动清理。
-
-### 机型配置失败
-
-**现象**：安装时提示输入数字配置机型，输入后报配置错误并退出。
-
-**解决方案**：
-
-1. 确认输入的是**数字编号**，而非选项名称文本
-2. 重启安装程序后重新配置
-
----
-
-## 🚀 初始化问题
-
-### 配置文件错误
-
-**现象**：机器人初始化失败，提示配置文件错误。
-
-**解决方案**：
-
-1. 确认机器人型号配置正确，参见 [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)
-2. 重启机器人后重试
-
-### 执行器自检失败
-
-**现象**：`self-check` 失败，提示无法访问指定 IP 的执行器。
-
-![自检错误](/fourier-grx-M4/assets/images/self_check_error.png)
-
-**排查步骤**：
-
-1. 检查执行器电源状态（正常应显示**紫色呼吸灯**）
-2. 确认有线网络连接和静态 IP 配置
-3. 检查线路连接完整性
-
----
-
-## 🌐 网络配置
-
-### 外网访问配置
-
-**问题**：如何让机器人主控电脑访问外网？
-
-机器人默认使用有线网口连接执行器（静态 IP）。需要外网时，按以下步骤切换：
-
-```bash
-# 切换到动态 IP（访问外网）
-sudo nmcli connection modify "有线连接" ipv4.method auto
-sudo systemctl restart NetworkManager
-
-# 使用完毕，切换回静态 IP（操作机器人）
-sudo nmcli connection modify "有线连接" ipv4.method manual \
-    ipv4.addresses 192.168.137.220/24
-sudo systemctl restart NetworkManager
-```
-
-### WiFi 热点配置
-
-**问题**：如何关闭 WiFi 热点自启动？
-
-```bash
-sudo systemctl stop rocs-wifi      # 临时关闭
-sudo systemctl disable rocs-wifi   # 永久关闭（重启后生效）
-```
-
----
-
-## ⚡ 性能相关
-
-### 控制频率说明
-
-| 接口类型 | 数据更新 | 指令接收 | 备注 |
-|----------|----------|----------|------|
-| User API | 50 Hz | 50 Hz | 固定频率 |
-| Developer API | 默认 400 Hz（最高 500 Hz） | 可配置 | 算法频率建议不超过数据更新频率 |
-
-### 超时警告处理
-
-**现象**：程序输出 `Timeout` 警告。
-
-**排查步骤**：
-
-1. 关闭 IPv6（主控电脑及局域网内其他设备）
-2. 检查执行器连接线是否松动
-3. 监控网络延迟和丢包情况
-
-### 手柄休眠问题
-
-**现象**：手柄闲置一段时间后进入休眠，重新唤醒后无法控制机器人。
-
-**解决方案**：
-
-1. 换用支持更长休眠等待时间或可配置无休眠的手柄，例如：
-   - Gamesir G8+ Pro
-   - 北通星闪手柄
-2. 重连手柄后重启机器人控制程序
-
----
-
-## 🛠️ 开发环境问题
-
-### 用户接口通信问题
-
-**现象**：User API 测试程序无法正常通信。
-
-**排查步骤**：
-
-1. 优先使用有线网口，避免同时连接有线和无线网络
-2. 确认机器人 IP 与本机网段一致
-3. 确认 SDK 版本兼容性
-
-### 依赖问题
-
-**现象**：`ImportError: GLIBC_2.33 not found`
-
-**解决方案**：
-
-```bash
-sudo apt update && sudo apt install build-essential
-```
-
-系统要求：
-- 推荐：Ubuntu 22.04 LTS
-- 最低：支持 GLIBC 2.33 的 Linux 发行版
+| 🔋 [硬件问题](/fourier-grx-M4/docs/faq/hardware) | [电池充不进去](/fourier-grx-M4/docs/faq/hardware#电池充电充不进去) |
+| 📦 [安装问题](/fourier-grx-M4/docs/faq/install) | [安装中断](/fourier-grx-M4/docs/faq/install#安装过程中断) · [机型配置失败](/fourier-grx-M4/docs/faq/install#机型配置失败) |
+| 🚀 [初始化问题](/fourier-grx-M4/docs/faq/initialize) | [配置文件错误](/fourier-grx-M4/docs/faq/initialize#配置文件错误) · [执行器自检失败](/fourier-grx-M4/docs/faq/initialize#执行器自检失败) |
+| 🌐 [网络配置](/fourier-grx-M4/docs/faq/network) | [外网访问](/fourier-grx-M4/docs/faq/network#外网访问配置) · [WiFi 热点](/fourier-grx-M4/docs/faq/network#wifi-热点配置) |
+| ⚡ [性能相关](/fourier-grx-M4/docs/faq/performance) | [控制频率说明](/fourier-grx-M4/docs/faq/performance#控制频率说明) · [超时警告](/fourier-grx-M4/docs/faq/performance#超时警告处理) · [手柄休眠](/fourier-grx-M4/docs/faq/performance#手柄休眠问题) |
+| 🛠️ [开发环境](/fourier-grx-M4/docs/faq/dev_env) | [通信问题](/fourier-grx-M4/docs/faq/dev_env#用户接口通信问题) · [依赖缺失](/fourier-grx-M4/docs/faq/dev_env#依赖问题) |
+| 🔌 驱动安装 | [Windows 串口驱动安装](/fourier-grx-M4/docs/faq/serial_driver)（IO Board 烧录检测不到串口时） |
 
 ---
 
