@@ -24,6 +24,7 @@ has_children: true
 | ⚡ [性能相关](/fourier-grx-M4/docs/faq/performance) | [控制频率说明](/fourier-grx-M4/docs/faq/performance#控制频率说明) · [超时警告](/fourier-grx-M4/docs/faq/performance#超时警告处理) · [手柄休眠](/fourier-grx-M4/docs/faq/performance#手柄休眠问题) |
 | 🛠️ [开发环境](/fourier-grx-M4/docs/faq/dev_env) | [通信问题](/fourier-grx-M4/docs/faq/dev_env#用户接口通信问题) · [依赖缺失](/fourier-grx-M4/docs/faq/dev_env#依赖问题) |
 | 🔌 驱动安装 | [Windows 串口驱动安装](/fourier-grx-M4/docs/faq/serial_driver)（IO Board 烧录检测不到串口时） |
+| 💿 系统烧录 | [识别不到设备 / 脚本无法加载 / 扫描不到设备](/fourier-grx-M4/docs/faq/flash_image) |
 
 ---
 

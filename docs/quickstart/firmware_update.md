@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 固件更新
-nav_order: 1.25
+nav_order: 1.3
 parent: 快速开始
 has_toc: true
 ---
@@ -30,7 +30,7 @@ has_toc: true
 > ⚠️ **注意**
 >
 > - `fourier-grx install` 无论是首次安装还是更新，都会**重新执行网络配置脚本**（`setup_static_ipv4.sh`）以及机器人型号 / 版本 / 运行模式的交互式配置。如果之前手动修改过静态 IP 地址（非默认的 `192.168.137.220`），会被重置为默认值，请更新前留意确认。
-> - `fourier-grx update` 命令需要设备可以访问外网（用于探测云端最新版本），如果当前静态 IP 网络配置的网关 / DNS 无法访问外网，请改用[手动下载安装包](#方式二手动下载安装包)的方式，或参考 [网络连接与远程登录](/fourier-grx-M4/docs/quickstart/network_connection) 页面，通过笔记本/平板共享 WiFi 网络临时给机器人接入外网。
+> - `fourier-grx update` 命令需要设备可以访问外网（用于探测云端最新版本），如果当前静态 IP 网络配置的网关 / DNS 无法访问外网，请改用[手动下载安装包](#方式二手动下载安装包)的方式，或参考 [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection) 页面，通过笔记本/平板共享 WiFi 网络临时给机器人接入外网。
 
 ## 更新前准备
 
@@ -131,7 +131,7 @@ fourier-grx version
 
 ## 相关链接
 
-- [网络连接与远程登录](/fourier-grx-M4/docs/quickstart/network_connection)：无路由器环境下，通过笔记本/平板共享网络并 SSH 远程登录机器人主控电脑
+- [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection)：无路由器环境下，通过笔记本/平板共享网络并 SSH 远程登录机器人主控电脑
 - [固件发布](/fourier-grx-M4/docs/release)：查看所有版本及更新内容
 - [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)：全新设备的完整安装流程
 - [运行模式](/fourier-grx-M4/docs/reference/run_type)：开发者模式 / 发布模式说明

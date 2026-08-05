@@ -35,7 +35,7 @@ has_toc: true
 - 机器人主控电脑可以正常进入系统
 - 建议使用**有线网络**连接，并确保设备可以联网
 - 如果当前使用有线网络，请先将机器人的网络配置为 **DHCP 自动获取 IP 地址** 模式
-- 如果现场没有可用的路由器，可参考 [网络连接与远程登录](/fourier-grx-M4/docs/quickstart/network_connection) 页面，通过笔记本/平板共享 WiFi 网络到有线网口为机器人提供联网，并可直接 SSH 远程登录执行安装命令
+- 如果现场没有可用的路由器，可参考 [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection) 页面，通过笔记本/平板共享 WiFi 网络到有线网口为机器人提供联网，并可直接 SSH 远程登录执行安装命令
 
 > ℹ️ **说明**
 >
@@ -119,32 +119,10 @@ fourier-grx list
 
 ## 旧版 `fourier-m4` 安装方式（已废弃）
 
-> ⚠️ **已废弃**：以下为旧版 `fourier-m4` 软件的安装方式，已停止积极维护。
-
-```bash
-# Fourier-M4 安装（旧版）
-# 安装 fourier-m4-xxx.deb 文件，安装完后系统中会提供 fourier-m4 程序工具
-sudo dpkg -i fourier-m4-xxx.deb  # xxx 为具体版本号
-
-# 安装 fourier-m4 完整内容
-fourier-m4 install
-```
-
-> ⚠️ **已废弃**：以下为旧版 `fourier-m4` 软件支持的机器人型号，已停止积极维护。
-
-### 旧版支持型号
-
-| 机器人型号 | 机器人版本 | 适配的机器人型号                                       |
-|-------|-------|------------------------------------------------|
-| M4L   | V2    | M4 8电机版本 傅利叶智能自研执行器V1版本，使用 RK3399 嵌入式板卡        |
-| M4L   | V3    | M4 8电机版本 傅利叶智能自研执行器V1版本，使用 RK3588 嵌入式板卡（鲁班猫板卡） |
-
-> ℹ️ **说明**
->
-> `fourier-m4` 是 `fourier-grx` 的前置版本程序，简称 “旧版”，目前已不再积极维护。如果设备支持新版的 `fourier-grx`， 建议使用 `fourier-grx` 进行安装和使用。
+> ⚠️ **已废弃**：旧版 `fourier-m4` 软件已停止积极维护，其安装方式和支持型号已迁移至 [Fourier-M4 固件](/fourier-grx-M4/docs/release/fourier-m4) 页面。
 
 ## 相关链接
 
-- [网络连接与远程登录](/fourier-grx-M4/docs/quickstart/network_connection)：无路由器环境下，通过笔记本/平板共享网络并 SSH 远程登录机器人主控电脑
+- [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection)：无路由器环境下，通过笔记本/平板共享网络并 SSH 远程登录机器人主控电脑
 - [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update)：已完成首次安装的设备升级到新版本
 - [固件发布](/fourier-grx-M4/docs/release)：查看所有版本及更新内容

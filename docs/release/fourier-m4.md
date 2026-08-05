@@ -20,7 +20,26 @@ has_toc: true
 
 ## 安装方法
 
-固件首次安装流程请参考 [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)；已安装设备升级版本请参考 [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update)。
+> ⚠️ **已废弃**：`fourier-m4` 软件已停止积极维护。如果设备支持新版的 `fourier-grx`，建议使用 `fourier-grx` 进行安装，首次安装参见 [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)，升级版本参见 [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update)。
+
+```bash
+# 安装 fourier-m4-xxx.deb 文件，安装完后系统中会提供 fourier-m4 程序工具
+sudo dpkg -i fourier-m4-xxx.deb  # xxx 为具体版本号
+
+# 安装 fourier-m4 完整内容
+fourier-m4 install
+```
+
+### 支持型号
+
+| 机器人型号 | 机器人版本 | 适配的机器人型号                                       |
+|-------|-------|------------------------------------------------|
+| M4L   | V2    | M4 8电机版本 傅利叶智能自研执行器V1版本，使用 RK3399 嵌入式板卡        |
+| M4L   | V3    | M4 8电机版本 傅利叶智能自研执行器V1版本，使用 RK3588 嵌入式板卡（鲁班猫板卡） |
+
+> ℹ️ **说明**
+>
+> `fourier-m4` 是 `fourier-grx` 的前置版本程序，简称 “旧版”。
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: M4L 机器人
-nav_order: 1.4
+nav_order: 1.5
 parent: 快速开始
 has_toc: true
 ---
@@ -37,7 +37,7 @@ has_toc: true
 机器人开机后，用户可以通过有线网络方式连接机器人。
 机器人主控电脑的有线网口 IP 地址为 `192.168.137.220`，可以通过 `ssh` 服务登录到机器人的主控电脑，登录用户名和密码与本地登录方式相同。
 
-> ℹ️ 如果现场没有可用的路由器，可参考 [网络连接与远程登录](/fourier-grx-M4/docs/quickstart/network_connection) 页面，通过笔记本/平板共享 WiFi 网络到有线网口连接机器人。
+> ℹ️ 如果现场没有可用的路由器，可参考 [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection) 页面，通过笔记本/平板共享 WiFi 网络到有线网口连接机器人。
 
 ## 程序启动
 

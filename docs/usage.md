@@ -19,3 +19,4 @@ has_children: true
 | 🔧 校准与启动 | [程序开机自启动](/fourier-grx-M4/docs/usage/auto_start) | 配置 fourier-grx 随系统自动启动 |
 | 📋 日志与数据 | [程序运行日志](/fourier-grx-M4/docs/usage/run_log) | 控制 fourier-grx 的终端日志输出 |
 | 📋 日志与数据 | [机器人数据记录](/fourier-grx-M4/docs/usage/data_record) | 启用关节/IMU 数据的记录 |
+| 🌐 网络 | [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection) | 无路由器环境下共享网络并 SSH 远程登录 |
