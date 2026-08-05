@@ -15,7 +15,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-08-03 | **4.4.37** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.37-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4437) | ✅ 支持中 |
+| 2026-08-03 | **4.4.38** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.38-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4438) | ✅ 支持中 |
 | 2026-07-29 | 4.4.35 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4435) | ✅ 支持中 |
 | 2026-07-29 | 4.4.34 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.34-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4434) | 🔶 不推荐 |
 | 2026-07-29 | 4.4.33 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.33-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4433) | 🔶 不推荐 |
@@ -54,7 +54,7 @@ has_toc: true
 
 ## 更新内容
 
-### 4.4.37
+### 4.4.38
 
 > 📅 2026-08-03 &nbsp;·&nbsp; 平台：`linux/arm64`
 
@@ -66,6 +66,7 @@ has_toc: true
 
 🔧 **调整**
 
+- **前向行走髋关节后摆缩放系数按步态生成器分别设置**：极限工况（步长 0.75 m、步速 0.8 m/s、真实最长腿长 0.46/0.55 m）下满足 hip 后摆 ≤ 17° 约束——vhip/fhip 由 `(1.0, 0.7)` 调整为 `(1.0, 0.68)`（后摆峰值约 16.9°），dsp 为 `(1.0, 0.52)`（后摆峰值约 16.8°）。步长补偿公式自动同步，物理步长不变。覆盖全部前向行走任务（TID 4111/4116/4118/4301/4303/4305）。
 - **步边界 COM 速度比例参数**（vhip/fhip）：新增 `com_boundary_speed_ratio`（0~2]，对步内时间做 warp，减缓（<1）或加快（>1）换腿附近支撑腿后摆速度，端点位移、步长、步频不变；默认 1.0（不改变原有轨迹）。
 
 🐛 **修复**
