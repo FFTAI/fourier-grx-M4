@@ -36,6 +36,7 @@ Before starting the installation, make sure the following conditions are met:
 - The robot controller can boot into the system normally
 - A **wired network** connection is recommended, and the device should have internet access
 - If you are using wired networking, first configure the robot network to **DHCP mode** so the device can access the internet
+- If no router is available on-site, refer to the [Network Connection and Remote Login](/fourier-grx-M4/docs/en/usage/network_connection) page to share WiFi from a laptop/tablet to the wired ethernet port, giving the robot internet access and allowing you to run the installation commands over SSH directly
 
 > ℹ️ **Note**
 >
@@ -119,26 +120,10 @@ fourier-grx list
 
 ## Legacy `fourier-m4` installation method (deprecated)
 
-> ⚠️ **Deprecated**: The following installation method is for the legacy `fourier-m4` software, which is no longer actively maintained.
+> ⚠️ **Deprecated**: The legacy `fourier-m4` software is no longer actively maintained. Its installation method and supported models have been moved to the [Fourier-M4 Firmware](/fourier-grx-M4/docs/en/release/fourier-m4) page.
 
-```bash
-# Fourier-M4 installation (legacy)
-# Install the fourier-m4-xxx.deb package. After installation, the `fourier-m4` CLI will be available.
-sudo dpkg -i fourier-m4-xxx.deb  # replace xxx with the actual version number
+## Related Links
 
-# Install the full fourier-m4 content
-fourier-m4 install
-```
-
-> ⚠️ **Deprecated**: The following robot model list applies to the legacy `fourier-m4` software only.
-
-### Supported legacy models
-
-| Robot Model | Robot Version | Compatible Robot |
-|-------------|---------------|------------------|
-| M4L         | V2            | M4 8-motor version, Fourier Intelligence proprietary FSA V1 actuator, RK3399 embedded board |
-| M4L         | V3            | M4 8-motor version, Fourier Intelligence proprietary FSA V1 actuator, RK3588 embedded board (LubanCat) |
-
-> ℹ️ **Note**
->
-> `fourier-m4` is the predecessor to `fourier-grx` and is no longer actively maintained. If your device supports `fourier-grx`, use `fourier-grx` for installation and operation.
+- [Network Connection and Remote Login](/fourier-grx-M4/docs/en/usage/network_connection): share a network from a laptop/tablet and log in to the robot controller via SSH when no router is available
+- [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update): upgrade a device that has already completed first-time installation to a newer version
+- [Firmware Releases](/fourier-grx-M4/docs/en/release): view all versions and release notes

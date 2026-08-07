@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Auto Calibrate (Prismatic Joint)
-nav_order: 4.21
+title: Calibrate Home (Prismatic Joint)
+nav_order: 4.9
 parent: "Task Description"
 has_toc: true
 nav_exclude: true

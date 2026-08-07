@@ -1,7 +1,7 @@
 ---
 layout: default
 title: M4L Robot
-nav_order: 1.4
+nav_order: 1.5
 parent: "Quick Start"
 has_toc: true
 nav_exclude: true
@@ -37,6 +37,8 @@ Connect an HDMI monitor and a USB keyboard/mouse to the robot's controller compu
 
 After the robot boots, you can connect to it over a wired network.
 The wired network interface IP address of the robot's controller computer is `192.168.137.220`. You can log in via `ssh` using the same username and password as the local login.
+
+> ℹ️ If no router is available on-site, refer to the [Network Connection and Remote Login](/fourier-grx-M4/docs/en/usage/network_connection) page to share WiFi from a laptop/tablet to the wired ethernet port and connect to the robot.
 
 ## Starting the Program
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Set Home (Rotary Joint)
-nav_order: 4.20
+nav_order: 4.6
 parent: "Task Description"
 has_toc: true
 nav_exclude: true

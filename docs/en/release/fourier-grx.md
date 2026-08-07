@@ -14,27 +14,41 @@ nav_exclude: true
 
 ## Version List
 
+> ⚠️ Only the latest version is currently supported — always install/upgrade to the latest version; older versions are kept for historical reference only.
+
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-07-16 | **4.4.25** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4425) | ✅ Active |
-| 2026-07-16 | 4.4.24 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4424) | 🔶 Not Recommended |
-| 2026-07-06 | 4.4.23 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4423) | 🔶 Not Recommended |
-| 2026-07-02 | 4.4.22 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4422) | ✅ Active |
-| 2026-07-01 | 4.4.21 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4421) | ✅ Active |
-| 2026-06-30 | 4.4.20 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4420) | ✅ Active |
-| 2026-06-30 | 4.4.19 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4419) | 🔶 Not Recommended |
-| 2026-06-30 | 4.4.14 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4414) | 🔶 Not Recommended |
-| 2026-06-29 | 4.4.10 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4410) | 🔶 Not Recommended |
-| 2026-06-29 | 4.4.9 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [Details](#449) | 🔶 Not Recommended |
-| 2026-05-22 | 4.4.8 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [Details](#448) | 🔶 Not Recommended |
-| 2026-05-22 | 4.4.7 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [Details](#447) | 🔶 Not Recommended |
-| 2026-05-14 | 4.4.6 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [Details](#446) | 🔶 Not Recommended |
-| 2026-05-14 | 4.4.5 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [Details](#445) | 🔶 Not Recommended |
-| 2026-05-13 | 4.4.4 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [Details](#444) | 🔶 Not Recommended |
-| 2026-05-11 | 4.4.3 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [Details](#443) | 🔶 Not Recommended |
-| 2026-04-10 | 4.4.2 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [Details](#442) | 🔶 Not Recommended |
-| 2026-04-08 | 4.4.1 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [Details](#441) | 🔶 Not Recommended |
-| 2026-04-03 | 4.4.0 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](#440) | 🔶 Not Recommended |
+| 2026-08-06 | **4.4.39** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4439) | ✅ Active |
+| 2026-08-03 | 4.4.38 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.38-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4438) | ❌ No longer supported |
+| 2026-07-29 | 4.4.35 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4435) | ❌ No longer supported |
+| 2026-07-29 | 4.4.34 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.34-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4434) | ❌ No longer supported |
+| 2026-07-29 | 4.4.33 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.33-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4433) | ❌ No longer supported |
+| 2026-07-28 | 4.4.32 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.32-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4432) | ❌ No longer supported |
+| 2026-07-24 | 4.4.31 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.31-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4431) | ❌ No longer supported |
+| 2026-07-24 | 4.4.30 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.30-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4430) | ❌ No longer supported |
+| 2026-07-24 | 4.4.29 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4429) | ❌ No longer supported |
+| 2026-07-23 | 4.4.28 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4428) | ❌ No longer supported |
+| 2026-07-17 | 4.4.27 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4427) | ❌ No longer supported |
+| 2026-07-17 | 4.4.26 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4426) | ❌ No longer supported |
+| 2026-07-16 | 4.4.25 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4425) | ❌ No longer supported |
+| 2026-07-16 | 4.4.24 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4424) | ❌ No longer supported |
+| 2026-07-06 | 4.4.23 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4423) | ❌ No longer supported |
+| 2026-07-02 | 4.4.22 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4422) | ❌ No longer supported |
+| 2026-07-01 | 4.4.21 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4421) | ❌ No longer supported |
+| 2026-06-30 | 4.4.20 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4420) | ❌ No longer supported |
+| 2026-06-30 | 4.4.19 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4419) | ❌ No longer supported |
+| 2026-06-30 | 4.4.14 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4414) | ❌ No longer supported |
+| 2026-06-29 | 4.4.10 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4410) | ❌ No longer supported |
+| 2026-06-29 | 4.4.9 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [Details](#449) | ❌ No longer supported |
+| 2026-05-22 | 4.4.8 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [Details](#448) | ❌ No longer supported |
+| 2026-05-22 | 4.4.7 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [Details](#447) | ❌ No longer supported |
+| 2026-05-14 | 4.4.6 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [Details](#446) | ❌ No longer supported |
+| 2026-05-14 | 4.4.5 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [Details](#445) | ❌ No longer supported |
+| 2026-05-13 | 4.4.4 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [Details](#444) | ❌ No longer supported |
+| 2026-05-11 | 4.4.3 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [Details](#443) | ❌ No longer supported |
+| 2026-04-10 | 4.4.2 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [Details](#442) | ❌ No longer supported |
+| 2026-04-08 | 4.4.1 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [Details](#441) | ❌ No longer supported |
+| 2026-04-03 | 4.4.0 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](#440) | ❌ No longer supported |
 
 ## Installation
 
@@ -43,6 +57,168 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.39
+
+> 📅 2026-08-06 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changed**
+
+- **Forward walk DSP gait generator hip backward-swing scaling factor adjusted**: `hip_movement_ratio` changed from `(1.0, 0.52)` to `(1.0, 0.62)`, relaxing the backward-swing compression of the DSP gait (vhip/fhip remain `(1.0, 0.68)` unchanged). Under the constraint conditions (step length 0.75 m, walking speed 0.8 m/s, actual maximum leg length 0.46/0.55 m), the cyclic-segment hip backward-swing peak is about 18.7°. The step-length compensation formula syncs automatically; the physical step length is unchanged. Forward walk tasks use the dsp gait generator by default, covering TID 4111/4116/4118/4301/4303/4305.
+
+---
+
+### 4.4.38
+
+> 📅 2026-08-03 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **Added**
+
+- **DSP double-support gait generator**: added `AlgorithmGaitGeneratorDSP`, which forward walk tasks can enable via `gait_generator_type="dsp"`. Each step is divided into a single-support phase (SSP, LIPM COM trajectory) and a double-support phase (DSP, Hermite low-speed weight transfer), with continuous velocity at the leg-switch seam; the support leg's backward (-x) motion slows down significantly once the hip reaches its forward-most position. New parameters: `dsp_ratio` (double-support phase time fraction, default 0.2), `dsp_com_ratio` (weight-transfer distance ratio, default 0.8), `swing_blend` (swing-foot smooth trapezoidal velocity, default 0.3).
+- **Relative leg-length adjustment task**: added `TASK_PRISMATIC_JOINT_MOVE_OFFSET` (TID 4207), which adjusts leg length by an offset relative to the current measured position, independent of the calibrated zero — safe for fine adjustments even after a software restart without re-calibration; a single offset is limited to ±0.02 m. See [Relative Length Adjustment (Prismatic Joint)](/fourier-grx-M4/docs/en/tasks/move_offset_prismatic_joint).
+- **Swing-foot smooth trapezoidal velocity profile** (vhip/fhip/dsp): the `swing_blend` parameter (0~0.5] sets liftoff/touchdown velocity to 0, eliminating touchdown velocity jumps; disabled by default for vhip/fhip (keeps the original linspace behavior).
+
+🔧 **Changed**
+
+- **Forward walk hip backward-swing scaling factor now set per gait generator**: under the worst-case conditions (step length 0.75 m, walking speed 0.8 m/s, actual maximum leg length 0.46/0.55 m), the hip backward-swing ≤ 17° constraint is satisfied — vhip/fhip changed from `(1.0, 0.7)` to `(1.0, 0.68)` (backward-swing peak ≈ 16.9°), dsp is `(1.0, 0.52)` (backward-swing peak ≈ 16.8°). The step-length compensation formula syncs automatically; the physical step length is unchanged. Covers all forward walk tasks (TID 4111/4116/4118/4301/4303/4305).
+- **Step-boundary COM speed ratio parameter** (vhip/fhip): added `com_boundary_speed_ratio` (0~2], which warps intra-step time to slow down (<1) or speed up (>1) the support leg's backward-swing speed near the leg switch; endpoint displacement, step length, and cadence are unchanged; default 1.0 (no change to the original trajectory).
+
+🐛 **Fixed**
+
+- **Gait joint velocity trajectory not self-consistent**: joint velocities are now computed by differentiating the final position trajectory (after joint trim scaling, knee clamping, and low-pass filtering), fixing the mismatch between the velocity feedforward and the position trajectory (fixed for vhip/fhip/dsp alike).
+- **Support knee bending during the DSP gait start transition**: during the start transition, the COM height now takes the larger of the Hermite profile and the support leg's geometric height, keeping the support leg fully extended throughout, consistent with steady state.
+
+---
+
+### 4.4.35
+
+> 📅 2026-07-29 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changed**
+
+- **Forward walk hip trim ratio adjusted again**: `hip_movement_ratio` changed from `(1.0, 0.77)` to `(1.0, 0.7)` (the same ratio as v4.4.28 and earlier), covering all forward walk tasks (TID 4111/4116/4118/4301/4303/4305). The step-length compensation factor syncs automatically via the dynamic derivation formula introduced in v4.4.33 — no extra change needed.
+
+---
+
+### 4.4.34
+
+> 📅 2026-07-29 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changed**
+
+- **Forward walk hip trim ratio adjusted**: `hip_movement_ratio` changed from `(1.0, 0.8)` to `(1.0, 0.77)`, covering all forward walk tasks (TID 4111/4116/4118/4301/4303/4305). The step-length compensation factor syncs automatically via the dynamic derivation formula introduced in v4.4.33 — no extra change needed.
+
+> ⚠️ This version was superseded by v4.4.35 shortly after release; installing it on its own is not recommended.
+
+---
+
+### 4.4.33
+
+> 📅 2026-07-29 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changed**
+
+- **Forward walk hip trim ratio adjusted**: `hip_movement_ratio` changed from `(1.0, 0.85)` to `(1.0, 0.8)`, covering all forward walk tasks (TID 4111/4116/4118/4301/4303/4305).
+
+🔧 **Code Quality**
+
+- **Step-length compensation factor now derived dynamically**: previously, every adjustment to `hip_movement_ratio` required manually syncing a hard-coded step-length compensation factor (e.g. `20/17`, `40/37`), and a missed sync once caused a bug (see v4.4.31). The factor is now derived directly from `hip_movement_ratio` (`2 / (hip_movement_ratio[0] + hip_movement_ratio[1])`), so future ratio adjustments can no longer get out of sync.
+
+> ⚠️ This version was superseded by v4.4.34/v4.4.35 shortly after release; installing it on its own is not recommended.
+
+---
+
+### 4.4.32
+
+> 📅 2026-07-28 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixed**
+
+- **GUI min/max reference joint angles included transient extremes from the start/finish transitions**: `reference_joint_position_max/min` previously took `max()/min()` over the entire `gait_generator.gait_data` (covering the start transition, cyclic walking, and finish transition segments), so the displayed values were affected by transient steps at both ends and did not match the "steady cyclic walking/marching" angle range that users actually care about (for example, in one measurement the left hip minimum angle was -32.56° over the whole segment, but only -25.23° over the cyclic segment). The max/min is now computed only within the cyclic walking phase (the index range covered by `_run_loop_step`), more accurately reflecting the steady-state gait's joint angle range. Covers all forward walk and mark time tasks (TID 4111/4116/4118/4301/4303/4305 and 4112/4117/4119/4302/4304/4306).
+
+  **This fix only affects the statistics of the GUI-displayed `reference_joint_position_max/min`; it does not affect the robot's actual motion trajectory.**
+
+---
+
+### 4.4.31
+
+> 📅 2026-07-24 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixed**
+
+- **Forward walk step-length compensation factor mismatched with hip_movement_ratio**: v4.4.29 changed `hip_movement_ratio` from `(1.0, 0.7)` to `(1.0, 0.85)`, but the compensation factor used to cancel the scaling's effect on actual step length (originally `20/17`, derived specifically for the old `0.7` ratio) was not updated accordingly. It is now corrected to `40/37` (`= 1/((1.0+0.85)/2)`), restoring an exact match between commanded step length and actual physical step length, covering all forward walk tasks (TID 4111/4116/4118/4301/4303/4305).
+
+---
+
+### 4.4.30
+
+> 📅 2026-07-24 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changed**
+
+- **Faster response in Mark Time Assist DT mode**: in `MarkTimeAssistAdjustDt` (TID 4119/4306) auto-assist mode, the assist coefficient increment when torque exceeds the upper limit changed from `0.02` to `0.04`, speeding up the assist ramp under heavy effort; the decrement `-0.001` (since v4.4.25) is unchanged.
+
+🔧 **Code Quality**
+
+- Unified the code style of the `motion_index`/`motion_index_range`-related code in the cyclic walking phase of `ForwardWalkAssistAdjustDt` (TID 4118/4305) and `MarkTimeAssistAdjustDt` (TID 4119/4306), consistent with the base class/PD variants; no motion behavior is affected (an independent simulation script verified that the generated trajectories are identical before and after the change).
+
+---
+
+### 4.4.29
+
+> 📅 2026-07-24 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixed**
+
+- **Assist DT mode GUI reference trajectory stuck on the start-transition segment**: the cyclic walking phase (`_run_loop_step`) of the two algorithms `ForwardWalkAssistAdjustDt` (TID 4118/4305) and `MarkTimeAssistAdjustDt` (TID 4119/4306) previously missed refreshing `motion_index_range`, leaving the range permanently frozen in the narrow interval set during the "start transition" phase before entering the loop. The `reference_joint_position`/`reference_joint_velocity` uploaded to the GUI therefore kept wrapping and replaying that small start-transition segment instead of reflecting the real cyclic walking trajectory, showing up as clearly asymmetric left/right leg reference curves (e.g. one knee staying near 0 for long periods).
+
+  **This defect only affected the reference trajectory data shown in the GUI, not the robot's actual motion** — the PD control targets driving the actuators used the algorithm's internal, unwrapped real indices, so the robot's actual walking trajectory was always correct.
+
+🔧 **Changed**
+
+- **Forward walk joint trim ratio adjusted**: `hip_movement_ratio` changed from `(1.0, 0.7)` to `(1.0, 0.85)`, reducing the scaling of the backward-swing hip angle, covering all forward walk tasks (TID 4111/4116/4118/4301/4303/4305). The step-length compensation factor was updated in v4.4.31 — see that version's notes for details.
+
+---
+
+### 4.4.28
+
+> 📅 2026-07-23 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixed**
+
+- **Actuator enable status flag (`flag_actuator_enables`) never reflected the true state**: this field was previously hard-coded once at robot startup (always "enabled"), and was never updated afterwards — neither when the user ran `servo_off`/`servo_on`, nor when the system automatically re-enabled actuators during task switching (which happens when almost every M4L task is activated) — so the actuator enable status seen by the host computer/GUI was persistently inconsistent with the real state.
+
+  Fix: in `fourier-core`'s `ActuatorMotor.set_target_control_mode()` (the single entry point for setting the control mode of all actuator types), the enable state is now maintained as a latched value — it only flips when a `SERVO_ON`/`SERVO_OFF` command is received, and is unaffected by other motion-control mode switches; on the `fourier-grx` side, the state is synced to the Dynalink upload field every communication cycle. This fix preserves the existing "automatically enable actuators on task activation" design and does not change task-switching behavior.
+
+---
+
+### 4.4.27
+
+> 📅 2026-07-17 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixed** (this version originates from a fine-grained whole-repository code review)
+
+- **Knee restriction angle ineffective in knee-restricted assist modes (safety-related)**: the 4 algorithm files `ForwardWalk`/`MarkTime` `AssistAdjustPD`/`AssistAdjustDT` mistakenly passed extra parameters to the parent class as `kwargs=kwargs` (instead of unpacking with `**kwargs`), silently dropping the `H_com` and `knee_restriction` parameters. **Actual impact**: in all 4 "knee-restricted + assist (PD/DT)" tasks, the patient-configured knee restriction angle never actually reached the gait generator, rendering the restriction feature non-functional. Fixed to the correct `**kwargs` unpacking.
+
+- **Invalid/unregistered TID could crash the control process**: when `set_task_command(value_type="value")` received an unregistered TID, `FSMManager._callback_task_command_update` would try to access the `.name` attribute of a bare int and throw an exception (this interface corresponds to the Zenoh network task command channel, which is externally reachable). A guard has been added, and a warning log is now emitted when a "TID matches no registered task" is detected, making similar missing-registration issues easier to catch early.
+
+- **M4LZenoh missing prismatic joint auto-calibration task registration**: `TASK_PRISMATIC_JOINT_AUTO_CALIBRATE` (TID 4210) was previously not registered for M4LZenoh, even though its internal subtasks (MoveMax/SetHome) already supported this model. The registration has been added.
+
+🔧 **Code Quality Cleanup**
+
+- Fixed a naming typo in `fi_task_m4l_rotary_joint_mark_time.py`: a task class inheriting from MarkTime was mistakenly named `TaskM4LT1RotaryJointForwardWalk` (conflicting with the same-named class in the forward walk module); it has been renamed to `TaskM4LT1RotaryJointMarkTime`.
+
+---
+
+### 4.4.26
+
+> 📅 2026-07-17 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixed**
+
+- **M4LP1 Planner-mode tasks not registered**: all 12 Planner task classes in `fi_task_m4l_rotary_joint_planner.py` (TID 4401-4406, 4501-4506, covering forward walk / mark time and their assist variants and knee-restricted variants) were previously registered only for M4LT1 / M4LT2 / M4LZenoh, with M4LP1 missed. As a result, when M4LP1 switched to Planner mode, the tasks were not actually executed by the FSM (silently skipped without an error), and fields such as `reference_joint_position_max` / `reference_joint_position_min` kept their initial empty values because they were never written, while registered models such as M4LT2 worked fine. `RobotName.M4LP1` registration has been added for all 12 Planner task classes. The knee-restriction-related base tasks themselves already support M4LP1, and this fix does not force-enable knee restriction behavior.
+
+---
 
 ### 4.4.25
 

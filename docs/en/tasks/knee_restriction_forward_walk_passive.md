@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Passive Forward Walk (Knee Restriction)
-nav_order: 4.14
+nav_order: 4.18
 parent: "Task Description"
 has_toc: true
 nav_exclude: true
@@ -63,6 +63,8 @@ Status interface:
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
 | Reference trajectory position min | `rehab.reference_joint_position_min` |
+
+> Note: Starting from v4.4.32, `reference_joint_position_max`/`reference_joint_position_min` only cover the joint angle range of the steady-state "cyclic walking/stepping" phase, and do not include transient extremes from the start and end transition phases.
 
 Command interface:
 

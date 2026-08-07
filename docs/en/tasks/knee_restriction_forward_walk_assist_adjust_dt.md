@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Assist Forward Walk (Knee Restriction, Adjust dt Parameter)
-nav_order: 4.16
+nav_order: 4.20
 parent: "Task Description"
 has_toc: true
 nav_exclude: true
@@ -31,7 +31,7 @@ Task Parameters:
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal walking pace); a lower value plays it slower, giving the patient more time to follow the motion. |
-| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio by ±0.01 each control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory, with no manual setting required; the assist ratio is always clamped to [0.0, 1.0]. |
+| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio each control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory (+0.02 when the patient pushes, −0.01 when the patient is not contributing), with no manual setting required; the assist ratio is always clamped to [0.0, 1.0]. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
 
@@ -82,6 +82,8 @@ Status interface:
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
 | Reference trajectory position min | `rehab.reference_joint_position_min` |
 
+> Note: Starting from v4.4.32, `reference_joint_position_max`/`reference_joint_position_min` only cover the joint angle range of the steady-state "cyclic walking/stepping" phase, and do not include transient extremes from the start and end transition phases.
+
 Command interface:
 
 - The upper leg length accepts a single value in the algorithm, so the average of the left and right values is used. Two values are passed, but only their mean is applied.
@@ -103,3 +105,4 @@ Command interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.
+- `fourier-grx` v4.4.24 adjusted the auto assist mode increments: from the symmetric ±0.01 to +0.02 (increased when the user pushes) / −0.01 (decreased when the user is not contributing), speeding up the assist response.

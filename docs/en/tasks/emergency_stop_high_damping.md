@@ -1,7 +1,7 @@
 ---
 layout: default
 title: High-Damping Protection (Emergency Stop Response)
-nav_order: 4.24
+nav_order: 4.27
 parent: "Task Description"
 has_toc: true
 nav_exclude: true
@@ -20,7 +20,7 @@ Task Description:
 - When the robot detects that the **hardware emergency stop switch** (ioboard emergency button) has been triggered, the control program automatically switches to this task.
 - Unlike direct power-off (`TASK_SERVO_OFF`), this task keeps the joints powered and controls the rotary joints in a **high-damping, zero-spring** PD mode:
   - `kp = 0`: No restoring spring force; joints can be passively moved by external force.
-  - `kd = 80 (default)`: Velocity damping braking force is applied to dissipate kinetic energy and prevent limbs from dropping or swinging rapidly.
+  - `kd = 20 (default)`: Velocity damping braking force is applied to dissipate kinetic energy and prevent limbs from dropping or swinging rapidly.
   - Target position tracks the current measured position every frame in real time — no snap-back effect.
 - This mode significantly reduces the risk of uncontrolled limb movement after an emergency stop, providing operators with a safer intervention window.
 

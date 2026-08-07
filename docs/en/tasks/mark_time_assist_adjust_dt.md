@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Assist Mark Time (Adjust dt Parameter)
-nav_order: 4.12
+nav_order: 4.16
 parent: "Task Description"
 has_toc: true
 nav_exclude: true
@@ -29,9 +29,9 @@ Task Parameters:
 | Step lift height | `float` | 0.1 | [0.1, 0.4] | The leg lift height for each step, in m. |
 | Step cycle | `float` | 1.0 | [0.5, 4.0] | The single-step cycle for mark time — the time required to complete one full stepping cycle, in s. A smaller value means a higher step frequency; a larger value means slower stepping. |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | The adjustment coefficient for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal step frequency); a lower value plays more slowly, giving the patient more time to follow the motion. |
-| Assist trigger force upper | `float` | 2.0 | (-∞, +∞) | Absolute torque threshold that triggers an **increase** in assist ratio, in Nm. When measured joint torque exceeds this value, assist ratio increases by 0.01. Only active in auto assist mode. |
-| Assist trigger force lower | `float` | 1.0 | (-∞, +∞) | Absolute torque threshold that triggers a **decrease** in assist ratio, in Nm. When measured joint torque falls below this value, assist ratio decreases by 0.01. Only active in auto assist mode. |
-| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio (±0.01) every control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory, without manual setting. The assist ratio is always clamped to [0.0, 1.0]. |
+| Assist trigger force upper | `float` | 2.0 | [-∞, +∞] | Torque threshold that triggers an **increase** in assist ratio in auto assist mode, in Nm. When measured joint torque exceeds this value, the assist ratio automatically increases by 0.04. |
+| Assist trigger force lower | `float` | 1.0 | [-∞, +∞] | Torque threshold that triggers a **decrease** in assist ratio in auto assist mode, in Nm. When measured joint torque falls below this value, the assist ratio automatically decreases by 0.001. |
+| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio every control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory (+0.04 when the patient exerts effort, -0.001 when the patient's effort is insufficient), without manual setting. The assist ratio is always clamped to [0.0, 1.0]. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start the motion. true = start; false = do not start (has no effect if already started). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop the motion. true = stop; false = continue stepping. |
 
@@ -58,8 +58,8 @@ Task Parameters:
 >
 > | Condition | Effect |
 > |-----------|--------|
-> | Measured torque > `assist_trigger_force_upper` | assist\_ratio += 0.01 (patient is actively pushing → increase assist) |
-> | Measured torque < `assist_trigger_force_lower` | assist\_ratio -= 0.01 (patient is not contributing → decrease assist) |
+> | Measured torque > `assist_trigger_force_upper` | assist\_ratio += 0.04 (patient is actively pushing → increase assist) |
+> | Measured torque < `assist_trigger_force_lower` | assist\_ratio -= 0.001 (patient is not contributing → decrease assist) |
 > | Otherwise | assist\_ratio unchanged |
 
 ## Module Info
@@ -79,6 +79,8 @@ State Interface:
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
 | Reference trajectory position min | `rehab.reference_joint_position_min` |
+
+> Note: Since v4.4.32, `reference_joint_position_max`/`reference_joint_position_min` only report the joint angle range during the steady-state phase of "cyclic walking/marking time", excluding transient extrema during the start-up and finishing transition phases.
 
 Command Interface:
 
@@ -102,3 +104,5 @@ Command Interface:
 
 - Added in `fourier-grx` v4.0.0.
 - Added `Assist trigger force upper` / `Assist trigger force lower` parameters as configurable absolute torque thresholds for auto assist mode. Experimental testing showed that including the gravity compensation term G[i] in the threshold formula caused system instability; the G[i] coefficient has been set to zero and the configured values are used directly as absolute thresholds.
+- `fourier-grx` v4.4.25: Adjusted the auto-decrement of the assist trigger lower threshold from -0.01 to -0.001, avoiding assist instability caused by the assist ratio falling back too quickly in mark time scenarios; the +0.02 increment of the upper threshold (since v4.4.24) remains unchanged.
+- `fourier-grx` v4.4.30: Adjusted the auto-increment of the assist trigger upper threshold from +0.02 to +0.04, further speeding up the assist response when the user exerts effort.

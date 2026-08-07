@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Passive Forward Walk
-nav_order: 4.7
+nav_order: 4.11
 parent: "Task Description"
 has_toc: true
 nav_exclude: true
@@ -54,6 +54,8 @@ Status interface:
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
 | Reference trajectory position min | `rehab.reference_joint_position_min` |
+
+> Note: Since v4.4.32, `reference_joint_position_max`/`reference_joint_position_min` only report the joint angle range during the steady-state phase of "cyclic walking/marking time", excluding transient extrema during the start-up and finishing transition phases.
 
 Command interface:
 

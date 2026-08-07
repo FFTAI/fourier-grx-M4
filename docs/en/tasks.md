@@ -37,7 +37,10 @@ Common task command examples for M4 robots:
 | TASK_ROTARY_JOINT_SET_HOME_POSITION               | 4105             | M4L               | Sample mean, then set current position as rotary joint zero (software layer) |
 | TASK_ROTARY_JOINT_MOVE_BACK                       | 4106             | M4L               | Return rotary joints to a safe position                                   |
 | TASK_ROTARY_JOINT_AUTO_CALIBRATE                  | 4120             | M4L               | Automatic rotary joint calibration (boundary detection → power off → set zero, three sequential steps) |
+| TASK_ROTARY_JOINT_MANUAL_CALIBRATE                | 4121             | M4L               | Manual rotary joint calibration (power off → user manually positions joints → set zero, two sequential steps) |
 | TASK_PRISMATIC_JOINT_AUTO_CALIBRATE               | 4210             | M4L               | Automatic prismatic joint calibration (must be performed first after power-on) |
+| TASK_PRISMATIC_JOINT_MOVE_LENGTH                  | 4206             | M4L               | Leg-length adjustment (absolute position command)                         |
+| TASK_PRISMATIC_JOINT_MOVE_OFFSET                  | 4207             | M4L               | Relative leg-length adjustment (offset from the current position, no re-calibration required) |
 | TASK_ROTARY_JOINT_FORWARD_WALK                    | 4111             | M4L               | Passive forward walking                                                   |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD   | 4116             | M4L               | Assisted forward walking (adjust PD parameters)                           |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT   | 4118             | M4L               | Assisted forward walking (adjust dt parameters)                           |
@@ -62,6 +65,13 @@ The pages below are the primary task descriptions organized in this repository a
 - [Clear Fault](/fourier-grx-M4/docs/en/tasks/clear_fault)
 - [Set Home](/fourier-grx-M4/docs/en/tasks/set_home)
 
+### Home & Calibration Tasks
+
+- [Set Home (Rotary Joint)](/fourier-grx-M4/docs/en/tasks/set_home_rotary_joint)
+- [Auto Calibrate (Rotary Joint)](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate)
+- [Manual Calibrate (Rotary Joint)](/fourier-grx-M4/docs/en/tasks/rotary_joint_manual_calibrate)
+- [Calibrate Home (Prismatic Joint)](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint)
+
 ### Motion Tasks
 
 - [Standing Posture Control](/fourier-grx-M4/docs/en/tasks/stand_motion_control)
@@ -82,11 +92,13 @@ The pages below are the primary task descriptions organized in this repository a
 - [Assisted Marching in Place (Knee Restriction, Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
 - [Assisted Marching in Place (Knee Restriction, Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
 
-### Specialized & Extended Tasks
+### Leg-Length Adjustment Tasks
 
-- [Set Home (Rotary Joints)](/fourier-grx-M4/docs/en/tasks/set_home_rotary_joint)
-- [Calibrate Home (Prismatic Joints)](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint)
-- [Move to Length (Prismatic Joints)](/fourier-grx-M4/docs/en/tasks/move_length_prismatic_joint)
+- [Adjust Length (Prismatic Joint)](/fourier-grx-M4/docs/en/tasks/move_length_prismatic_joint)
+- [Move by Offset (Prismatic Joint)](/fourier-grx-M4/docs/en/tasks/move_offset_prismatic_joint)
+
+### Planner
+
 - [Planner](/fourier-grx-M4/docs/en/tasks/planner)
 
 ### Emergency Protection Tasks

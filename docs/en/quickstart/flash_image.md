@@ -22,6 +22,15 @@ nav_exclude: true
 >
 > The control board ships with a pre-installed system image. **Under normal circumstances, re-flashing is not required.** Only perform the steps on this page if the system is corrupted or you need to switch to a different image version.
 
+## Video Tutorial
+
+The following video tutorial demonstrates the complete Ubuntu system flashing process.
+
+<video controls style="width: 360px; max-width: 100%;">
+  <source src="/fourier-grx-M4/assets/videos/video_install_ubuntu.mp4" type="video/mp4">
+  Your browser does not support the HTML5 video tag.
+</video>
+
 ## Obtaining and Installing the Tools
 
 Flashing an image to the board's eMMC requires the following tools installed on a **Windows PC**:
@@ -37,6 +46,7 @@ Download link: [Baidu Netdisk](https://pan.baidu.com/s/19t8AZV9SYTdjn2uObBiSGA) 
 |------|------|
 | Ubuntu 22.04 system image | [20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz) |
 | RKDevTool v3.15 (includes DriverAssistant) | [RKDevTool_v3.15_for_window.zip](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/RKDevTool_v3.15_for_window.zip) |
+| network scanner IP scanning script | [network_scanner.ps1](/fourier-grx-M4/assets/scripts/network_scanner.ps1) |
 
 > ℹ️ **Features of the 20260805 image**
 >
@@ -100,9 +110,7 @@ The Ubuntu 22.04 image is flashed using **Download Image** mode, which also requ
 
 ## Frequently Asked Questions
 
-**Q: The PC does not recognize the device. What should I do?**
-
-A: Confirm that the DriverAssistant driver is correctly installed and that you are using a Type-C data cable with data transfer capability connected to the board's OTG port. If the device is still not recognized, try uninstalling and reinstalling the driver, or try a different USB port.
+Common issues during flashing (the PC does not recognize the device, `network_scanner.ps1` fails to load / cannot find the device, etc.) have been moved to the [FAQ - System Flashing Issues](/fourier-grx-M4/docs/en/faq/flash_image) page.
 
 ---
 

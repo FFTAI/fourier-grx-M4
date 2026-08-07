@@ -11,6 +11,29 @@ has_toc: true
 
 本文档记录了 Fourier-GRX-M4 SDK 及其文档的所有重要更新。
 
+## 2026 年 8 月
+
+### v1.2.0 (2026-08-07)
+
+**文档更新**
+
+- 📖 英文文档全面补齐与同步：
+  - 任务文档全部页面与中文最新内容同步，并补译了缺失的英文页面
+  - 英文 FAQ、常用操作（Usage Guide）对齐中文子页面结构（由单页合并改为索引 + 子页面）
+  - 快速开始、固件发布、示例等页面同步中文近期改动
+- 📖 固件发布页支持策略调整：[Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 仅最新版本标记为「支持中」，历史版本统一标记为「不再支持」（保留下载链接与更新内容供查阅）
+- 📖 新增任务页面：[手动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_manual_calibrate)（TID 4121）、[相对调节长度（直线关节）](/fourier-grx-M4/docs/tasks/move_offset_prismatic_joint)（TID 4207），任务索引顺序同步调整
+- 📖 新增 [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection) 指南：无路由器环境下共享网络、20260805 镜像自动静态 IP（`192.168.137.220`）、Web 终端（`:7681`）、SSH 登录凭据说明
+- 📖 系统镜像更新至 20260805；[固件安装](/fourier-grx-M4/docs/quickstart/firmware_install) / [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update) 页面补充网络共享 + SSH 登录说明
+- 📖 修正 6 处任务文档与代码实现不一致的描述
+
+**版本更新**
+
+- 📦 `fourier-grx` 更新至 `4.4.39`（4.4.21 ~ 4.4.39 各版本更新内容详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
+- 📦 `ioboard` 更新至 `1.0.0.3`（详见 [IO Board 固件](/fourier-grx-M4/docs/release/ioboard)）
+
+---
+
 ## 2026 年 6 月
 
 ### v1.1.8 (2026-06-30)

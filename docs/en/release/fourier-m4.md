@@ -21,7 +21,26 @@ nav_exclude: true
 
 ## Installation
 
-For first-time installation, see [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install). To upgrade an already-installed device, see [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update).
+> ⚠️ **Deprecated**: the `fourier-m4` software is no longer actively maintained. If your device supports the newer `fourier-grx`, it is recommended to install `fourier-grx` instead — see [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install) for first-time installation and [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update) for upgrades.
+
+```bash
+# Install the fourier-m4-xxx.deb file; the fourier-m4 program tool will be available on the system afterwards
+sudo dpkg -i fourier-m4-xxx.deb  # xxx is the specific version number
+
+# Install the full fourier-m4 content
+fourier-m4 install
+```
+
+### Supported Models
+
+| Robot Model | Robot Version | Compatible Robot Model                                       |
+|-------|-------|------------------------------------------------|
+| M4L   | V2    | M4 8-motor version, Fourier Intelligence proprietary actuator V1, using an RK3399 embedded board        |
+| M4L   | V3    | M4 8-motor version, Fourier Intelligence proprietary actuator V1, using an RK3588 embedded board (LubanCat board) |
+
+> ℹ️ **Note**
+>
+> `fourier-m4` is the predecessor program of `fourier-grx`, referred to as the "legacy version".
 
 ---
 

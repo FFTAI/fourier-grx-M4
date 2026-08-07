@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Stand Motion Control
-nav_order: 4.6
+nav_order: 4.10
 parent: "Task Description"
 has_toc: true
 nav_exclude: true
@@ -17,13 +17,13 @@ Task Description:
 
 - The robot slowly moves all joints back to the standing posture.
 - Typically used as a preparatory action before a motion task, or to restore the initial posture after motion ends.
-- Supports torque protection: when the torque of any joint exceeds the configured threshold, the task will pause and set an overload flag.
+- Supports torque protection: when the torque of any joint exceeds the configured threshold, the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the overload flag; the task must be re-issued to continue.
 
 Task Parameters:
 
 | Parameter | Type | Default | Range | Description |
 |-----------|------|---------|-------|-------------|
-| Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. When enabled, if the torque of any joint exceeds the "torque protection limit", the task will pause and set the overload flag; the task must be restarted to continue. |
+| Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. When enabled, if the torque of any joint exceeds the "torque protection limit", the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the overload flag; the task must be re-issued to continue. |
 | Torque protection limit | `float` | — | [0.0, 200.0] | The maximum allowable output torque for any joint during the standing process, in Nm. Only effective when torque protection is enabled; disabled by default. |
 
 > **Task Description**:

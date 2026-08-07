@@ -36,8 +36,12 @@ You can run these examples on the robot controller or on any computer connected 
     # Activate the conda environment
     conda activate fourier-grx
 
-    # Run the example script for your robot model
-    python $HOME/Wiki-GRx-Deploy/user/demo_{example_name}.py
+    # Clone the example code repository (if not already cloned)
+    git clone https://github.com/FFTAI/fourier-grx-M4.git
+
+    # Enter the demo directory and run an example
+    cd fourier-grx-M4/demo/user
+    python demo_{example_name}.py
     ```
 
 ### Best Practices
@@ -54,15 +58,15 @@ You can run these examples on the robot controller or on any computer connected 
 
 | Example Name       | Description                        | Code Path                       |
 |--------------------|------------------------------------|---------------------------------|
-| Servo On           | Enable robot actuators             | `user/demo_servo_on.py`         |
-| Servo Off          | Disable robot actuators            | `user/demo_servo_off.py`        |
-| Servo Reboot       | Reboot robot actuators             | `user/demo_servo_reboot.py`     |
-| Clear Fault        | Clear robot fault/alarm state      | `user/demo_clear_fault.py`      |
-| Set Home           | Set current position as home (zero)| `user/demo_set_home.py`         |
+| Servo On           | Enable robot actuators             | `demo/user/demo_servo_on.py`         |
+| Servo Off          | Disable robot actuators            | `demo/user/demo_servo_off.py`        |
+| Servo Reboot       | Reboot robot actuators             | `demo/user/demo_servo_reboot.py`     |
+| Clear Fault        | Clear robot fault/alarm state      | `demo/user/demo_clear_fault.py`      |
+| Set Home           | Set current position as home (zero)| `demo/user/demo_set_home.py`         |
 
 ### Motion Control Examples
 
 | Example Name   | Description                              | Code Path                   |
 |----------------|------------------------------------------|-----------------------------|
-| Joint Test     | Test motion function of each joint       | `user/demo_test_joint.py`   |
-| Walk Control   | Control robot walking with a joystick    | `user/demo_walk.py`         |
+| Joint Test     | Test motion function of each joint       | `demo/user/demo_test_joint.py`   |
+| Walk Control   | Control robot walking with a joystick    | `demo/user/demo_walk.py`         |

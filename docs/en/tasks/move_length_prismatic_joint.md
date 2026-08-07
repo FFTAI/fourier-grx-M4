@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Adjust Length (Prismatic Joint)
-nav_order: 4.22
+nav_order: 4.24
 parent: "Task Description"
 has_toc: true
 nav_exclude: true
@@ -21,10 +21,10 @@ Task Parameters:
 
 | Parameter | Type | Default | Range | Description |
 |-----------|------|---------|-------|-------------|
-| Left thigh adjustment length | `float` | 0.0 | [0.0, 0.09] | The adjustment segment length of the robot's left thigh, in m. |
-| Left shank adjustment length | `float` | 0.0 | [0.0, 0.09] | The adjustment segment length of the robot's left shank, in m. |
-| Right thigh adjustment length | `float` | 0.0 | [0.0, 0.09] | The adjustment segment length of the robot's right thigh, in m. |
-| Right shank adjustment length | `float` | 0.0 | [0.0, 0.09] | The adjustment segment length of the robot's right shank, in m. |
+| Left thigh adjustment length | `float` | 0.0 | [0.0, 0.095] | The adjustment segment length of the robot's thigh, in m. |
+| Left shank adjustment length | `float` | 0.0 | [0.0, 0.095] | The adjustment segment length of the robot's shank, in m. |
+| Right thigh adjustment length | `float` | 0.0 | [0.0, 0.095] | The adjustment segment length of the robot's thigh, in m. |
+| Right shank adjustment length | `float` | 0.0 | [0.0, 0.095] | The adjustment segment length of the robot's shank, in m. |
 
 ## Module Info
 
@@ -51,4 +51,5 @@ Command Interface:
 
 ## Update Log
 
+- `fourier-grx` v4.4.7: The upper limit of the thigh/shank adjustment length was changed from `0.090 m` to `0.095 m`, and the parameter range was updated to `[0.0, 0.095]`.
 - Added in `fourier-grx` v4.1.22.

@@ -23,9 +23,12 @@ To guarantee real-time performance, these examples must be run on the robot cont
     # Activate the conda environment
     conda activate fourier-grx
 
-    # Run the example script for your robot model.
-    # The config file must be adjusted for your specific model; use a config file with the "_debug.yaml" suffix.
-    python $HOME/Wiki-GRx-Deploy/developer/demo_{example_name}.py --config=$HOME/fourier-grx/config/{robot_model}/config_{robot_model}_debug.yaml
+    # Clone the example code repository (if not already cloned)
+    git clone https://github.com/FFTAI/fourier-grx-M4.git
+
+    # Enter the demo directory and run an example; --config specifies the config file for your robot model
+    cd fourier-grx-M4/demo/developer
+    python demo_{example_name}.py --config=config_M4L_T1_developer.yaml
     ```
 
 ### Notes
@@ -41,15 +44,15 @@ To guarantee real-time performance, these examples must be run on the robot cont
 
 | Example Name   | Description                          | Code Path                            |
 |----------------|--------------------------------------|--------------------------------------|
-| Servo On       | Enable robot actuators               | `developer/demo_servo_on.py`         |
-| Servo Off      | Disable robot actuators              | `developer/demo_servo_off.py`        |
-| Servo Reboot   | Reboot robot actuators               | `developer/demo_servo_reboot.py`     |
-| State Monitor  | Print robot state information        | `developer/demo_print_state.py`      |
-| Parameter Config | Set joint PID parameters           | `developer/demo_set_pid.py`          |
-| Set Home       | Set robot home (zero) position       | `developer/demo_set_home.py`         |
+| Servo On       | Enable robot actuators               | `demo/developer/demo_servo_on.py`         |
+| Servo Off      | Disable robot actuators              | `demo/developer/demo_servo_off.py`        |
+| Servo Reboot   | Reboot robot actuators               | `demo/developer/demo_servo_reboot.py`     |
+| State Monitor  | Print robot state information        | `demo/developer/demo_print_state.py`      |
+| Parameter Config | Set joint PID parameters           | `demo/developer/demo_set_pid.py`          |
+| Set Home       | Set robot home (zero) position       | `demo/developer/demo_set_home.py`         |
 
 ### Motion Control Examples
 
 | Example Name  | Description                                   | Code Path                          |
 |---------------|-----------------------------------------------|------------------------------------|
-| Move Joint    | Move a robot joint to a specified angle       | `developer/demo_move_joint.py`     |
+| Move Joint    | Move a robot joint to a specified angle       | `demo/developer/demo_move_joint.py`     |

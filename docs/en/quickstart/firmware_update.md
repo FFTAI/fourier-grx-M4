@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Firmware Update
-nav_order: 1.25
+nav_order: 1.3
 parent: "Quick Start"
 has_toc: true
 nav_exclude: true
@@ -31,7 +31,7 @@ The firmware update flow largely follows the same steps as first-time installati
 > ⚠️ **Note**
 >
 > - Whether it's a first-time install or an update, `fourier-grx install` always **re-runs the network configuration script** (`setup_static_ipv4.sh`) and the interactive robot model / version / run mode configuration. If you previously changed the static IP address manually (to something other than the default `192.168.137.220`), it will be reset to the default — confirm this before updating.
-> - `fourier-grx update` requires the device to have internet access (to probe the cloud storage for the latest version). If your static IP network configuration (gateway / DNS) cannot reach the internet, use the [manual package download](#option-2-manual-package-download) method instead.
+> - `fourier-grx update` requires the device to have internet access (to probe the cloud storage for the latest version). If your static IP network configuration (gateway / DNS) cannot reach the internet, use the [manual package download](#option-2-manual-package-download) method instead, or refer to the [Network Connection and Remote Login](/fourier-grx-M4/docs/en/usage/network_connection) page to temporarily give the robot internet access by sharing WiFi from a laptop/tablet.
 
 ## Before You Update
 
@@ -132,6 +132,7 @@ fourier-grx version
 
 ## Related Links
 
+- [Network Connection and Remote Login](/fourier-grx-M4/docs/en/usage/network_connection): share a network from a laptop/tablet and log in to the robot controller via SSH when no router is available
 - [Firmware Releases](/fourier-grx-M4/docs/en/release): view all versions and release notes
 - [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install): the complete installation workflow for a brand-new device
 - [Run Mode](/fourier-grx-M4/docs/en/reference/run_type): Developer Mode vs. Release Mode
