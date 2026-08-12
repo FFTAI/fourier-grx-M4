@@ -151,10 +151,12 @@ Key description list:
 
 **Robot Basic Information**
 
-| Key                | Description            | Type   | Details                                  |
-|--------------------|------------------------|--------|------------------------------------------|
-| `robot_name`       | Robot name             | string | Current robot model name                 |
-| `robot_work_space` | Robot workspace        | int    | Current robot workspace index            |
+| Key                    | Description            | Type   | Details                                  |
+|------------------------|------------------------|--------|------------------------------------------|
+| `robot_name`           | Robot name             | string | Current robot model name                 |
+| `robot_serial_number`  | Robot serial number    | int    | Current robot serial number              |
+| `robot_work_space`     | Robot workspace        | int    | Current robot workspace index            |
+| `robot_control_period` | Control period         | float  | Robot control period in seconds          |
 
 ### task/server Interface Protocol (State Information)
 
