@@ -17,7 +17,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-08-06 | **4.4.39** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4439) | ✅ 支持中 |
+| 2026-08-12 | **4.4.40** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4440) | ✅ 支持中 |
+| 2026-08-06 | 4.4.39 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4439) | ❌ 不再支持 |
 | 2026-08-03 | 4.4.38 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.38-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4438) | ❌ 不再支持 |
 | 2026-07-29 | 4.4.35 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4435) | ❌ 不再支持 |
 | 2026-07-29 | 4.4.34 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.34-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4434) | ❌ 不再支持 |
@@ -56,6 +57,17 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.40
+
+> 📅 2026-08-12 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **移除 DynalinkCore 模块**：将 `robot_serial_number`、`control_period` 字段迁移至 `DynalinkRobot`，统一通过 `robot` topic 暴露；同步从 sync/DDS 通信的 topic key 列表中移除 `core`。
+- **更新 M4L 序列号定义**：清理不再使用的 M1/M2/M3/MB 序列号枚举，新增 M4L P1/T1/T2 相关序列号，并在对应机型中写入默认序列号。
+
+---
 
 ### 4.4.39
 

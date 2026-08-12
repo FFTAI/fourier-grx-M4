@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## August 2026
 
+### v1.2.1 (2026-08-12)
+
+**Version Updates**
+
+- 📦 `fourier-grx` updated to `4.4.40` (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+
+---
+
 ### v1.2.0 (2026-08-07)
 
 **Documentation Updates**

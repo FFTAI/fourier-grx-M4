@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 8 月
 
+### v1.2.1 (2026-08-12)
+
+**版本更新**
+
+- 📦 `fourier-grx` 更新至 `4.4.40`（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
+
+---
+
 ### v1.2.0 (2026-08-07)
 
 **文档更新**

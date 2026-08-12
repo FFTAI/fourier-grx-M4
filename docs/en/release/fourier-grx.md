@@ -18,7 +18,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-08-06 | **4.4.39** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4439) | ✅ Active |
+| 2026-08-12 | **4.4.40** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | ✅ Active |
+| 2026-08-06 | 4.4.39 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4439) | ❌ No longer supported |
 | 2026-08-03 | 4.4.38 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.38-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4438) | ❌ No longer supported |
 | 2026-07-29 | 4.4.35 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4435) | ❌ No longer supported |
 | 2026-07-29 | 4.4.34 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.34-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4434) | ❌ No longer supported |
@@ -57,6 +58,17 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.40
+
+> 📅 2026-08-12 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changed**
+
+- **Removed the DynalinkCore module**: moved `robot_serial_number` and `control_period` fields to `DynalinkRobot`, now exposed through the `robot` topic; removed `core` from the sync/DDS transport topic key lists.
+- **Updated M4L serial number definitions**: cleaned up unused M1/M2/M3/MB serial number enums, added M4L P1/T1/T2 related serial numbers, and set default serial numbers in the corresponding robot models.
+
+---
 
 ### 4.4.39
 
