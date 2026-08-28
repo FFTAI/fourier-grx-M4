@@ -19,14 +19,14 @@ has_toc: true
 
 - 🛡️ 新增上位机心跳与断连保护机制：
   - `comm` topic 新增可写字段 `host_heartbeat_counter`，上位机持续写入即可维持连接
-  - 新增可读字段 `host_heartbeat_timeout`（默认 1.0 s）与 `host_heartbeat_connection_lost`
+  - 新增可读字段 `host_heartbeat_timeout`（默认 6.0 s）与 `host_heartbeat_connection_lost`
   - 超时未收到心跳时自动触发急停（常规机型进入 `TASK_SERVO_OFF`，M4LT2 进入高阻尼软制动）
   - HEX 协议的 `HEART_BEAT` 命令同样刷新心跳计时器
   - 详见 [通信接口](/fourier-grx-M4/docs/reference/communication) 文档
 
 **版本更新**
 
-- 📦 `fourier-grx` 更新至 `4.4.41`（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
+- 📦 `fourier-grx` 更新至 `4.4.42`（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
 
 ---
 

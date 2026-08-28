@@ -20,14 +20,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 - 🛡️ Added host heartbeat and disconnect protection:
   - New writable field `host_heartbeat_counter` in the `comm` topic; the host keeps writing it to maintain the connection
-  - New read-only fields `host_heartbeat_timeout` (default 1.0 s) and `host_heartbeat_connection_lost`
+  - New read-only fields `host_heartbeat_timeout` (default 6.0 s) and `host_heartbeat_connection_lost`
   - Automatically triggers emergent stop on timeout: standard robots enter `TASK_SERVO_OFF`, M4LT2 enters high-damping soft braking
   - The HEX protocol `HEART_BEAT` command also refreshes the heartbeat timer
   - See the [Communication Interface](/fourier-grx-M4/docs/en/reference/communication) documentation for details
 
 **Version Updates**
 
-- 📦 `fourier-grx` updated to `4.4.41` (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+- 📦 `fourier-grx` updated to `4.4.42` (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
 
 ---
 

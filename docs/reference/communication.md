@@ -123,7 +123,7 @@ client = SyncClientSocket(
 
 2. **控制器检测超时**
 
-   - 可读字段 `host_heartbeat_timeout` 为超时阈值，默认 **1.0 秒**。
+   - 可读字段 `host_heartbeat_timeout` 为超时阈值，默认 **6.0 秒**。
    - 若超过 `host_heartbeat_timeout` 未收到新的 `host_heartbeat_counter` 写入，控制器将判定上位机断连。
    - 断连时 `host_heartbeat_connection_lost` 置为 `SET`，同时触发急停：
      - 常规机型：任务切换为 `TASK_SERVO_OFF`。

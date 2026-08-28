@@ -125,7 +125,7 @@ The `comm` topic includes a host heartbeat detection mechanism that automaticall
 
 2. **Controller detects timeout**
 
-   - The read-only field `host_heartbeat_timeout` is the timeout threshold, defaulting to **1.0 s**.
+   - The read-only field `host_heartbeat_timeout` is the timeout threshold, defaulting to **6.0 s**.
    - If no new `host_heartbeat_counter` write is received within `host_heartbeat_timeout`, the controller judges the host as disconnected.
    - On disconnect, `host_heartbeat_connection_lost` is set to `SET` and an emergent stop is triggered:
      - Standard robots: task switches to `TASK_SERVO_OFF`.
