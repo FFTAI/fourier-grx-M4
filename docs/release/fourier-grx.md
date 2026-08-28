@@ -17,7 +17,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-08-12 | **4.4.40** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4440) | ✅ 支持中 |
+| 2026-08-28 | **4.4.41** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4441) | ✅ 支持中 |
+| 2026-08-12 | 4.4.40 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4440) | ❌ 不再支持 |
 | 2026-08-06 | 4.4.39 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4439) | ❌ 不再支持 |
 | 2026-08-03 | 4.4.38 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.38-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4438) | ❌ 不再支持 |
 | 2026-07-29 | 4.4.35 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4435) | ❌ 不再支持 |
@@ -57,6 +58,21 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.41
+
+> 📅 2026-08-28 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🛡️ **新增**
+
+- **上位机心跳与断连保护**：
+  - `comm` topic 新增可写字段 `host_heartbeat_counter`，上位机持续写入即可维持连接。
+  - 新增可读字段 `host_heartbeat_timeout`（默认 1.0 s）与 `host_heartbeat_connection_lost`。
+  - 若超过 `host_heartbeat_timeout` 未收到心跳，控制器自动触发急停：常规机型进入 `TASK_SERVO_OFF`，M4LT2 进入高阻尼软制动。
+  - HEX 协议的 `HEART_BEAT` 命令同步刷新心跳计时器。
+  - 详见 [通信接口](/fourier-grx-M4/docs/reference/communication) 文档。
+
+---
 
 ### 4.4.40
 

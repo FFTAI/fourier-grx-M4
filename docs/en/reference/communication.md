@@ -102,6 +102,50 @@ For per-topic field details, see the [User API Reference](/fourier-grx-M4/docs/e
 
 ---
 
+## Heartbeat and Disconnect Protection
+
+The `comm` topic includes a host heartbeat detection mechanism that automatically protects the robot when communication between the controller and the host is lost.
+
+### How It Works
+
+1. **Host continuously writes the heartbeat field**
+
+   The client must write the `host_heartbeat_counter` field to the server's `comm` topic every communication cycle:
+
+   ```python
+   write_dict = {
+       "comm": {
+           "host_heartbeat_counter": 1,  # any fixed value or incrementing counter
+       }
+   }
+   ```
+
+   - The controller treats each received `host_heartbeat_counter` write as a valid heartbeat and refreshes its internal timer.
+   - Writing a fixed value (e.g., always `1`) is sufficient; an incrementing counter makes it easier to verify that fresh data is arriving.
+
+2. **Controller detects timeout**
+
+   - The read-only field `host_heartbeat_timeout` is the timeout threshold, defaulting to **1.0 s**.
+   - If no new `host_heartbeat_counter` write is received within `host_heartbeat_timeout`, the controller judges the host as disconnected.
+   - On disconnect, `host_heartbeat_connection_lost` is set to `SET` and an emergent stop is triggered:
+     - Standard robots: task switches to `TASK_SERVO_OFF`.
+     - M4LT2: task switches to the high-damping task for soft braking.
+
+3. **HEART_BEAT command compatibility**
+
+   The `HEART_BEAT` command sent via the HEX protocol (ports 4196/4197) also refreshes the heartbeat timer, sharing the same timeout detection logic as the `comm` topic heartbeat.
+
+### Related Fields
+
+| Field | Direction | Description |
+|-------|-----------|-------------|
+| `host_heartbeat_counter` | Client → Server | Heartbeat counter; keep writing to maintain connection |
+| `host_heartbeat_timeout` | Server → Client | Timeout threshold in seconds; default 1.0 s |
+| `host_heartbeat_connection_lost` | Server → Client | Disconnect flag; `SET` means timeout occurred |
+| `flag_ethernet_connect_status` | Server → Client | Ethernet connection status; set to `SET` on heartbeat |
+
+---
+
 ## Configuration Parameters
 
 In the `fourier-grx` configuration file (typically under `~/.fourier/fourier-grx/config/`), two blocks control communication behavior:

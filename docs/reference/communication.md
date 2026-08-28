@@ -100,6 +100,50 @@ client = SyncClientSocket(
 
 ---
 
+## 心跳与断连保护
+
+`comm` topic 内置上位机心跳检测机制，用于在控制器与上位机通信中断时自动保护机器人。
+
+### 工作机制
+
+1. **上位机持续写入心跳字段**
+
+   客户端需在每个通信周期向服务端的 `comm` topic 写入 `host_heartbeat_counter` 字段：
+
+   ```python
+   write_dict = {
+       "comm": {
+           "host_heartbeat_counter": 1,  # 可写任意固定值或递增计数器
+       }
+   }
+   ```
+
+   - 控制器收到该字段即视为一次有效心跳，刷新内部计时器。
+   - 写固定值（如始终写 `1`）即可生效；写递增计数器更便于排查是否收到新数据。
+
+2. **控制器检测超时**
+
+   - 可读字段 `host_heartbeat_timeout` 为超时阈值，默认 **1.0 秒**。
+   - 若超过 `host_heartbeat_timeout` 未收到新的 `host_heartbeat_counter` 写入，控制器将判定上位机断连。
+   - 断连时 `host_heartbeat_connection_lost` 置为 `SET`，同时触发急停：
+     - 常规机型：任务切换为 `TASK_SERVO_OFF`。
+     - M4LT2：任务切换为高阻尼任务，提供软制动。
+
+3. **HEX 心跳命令兼容**
+
+   通过 HEX 协议（端口 4196/4197）发送的 `HEART_BEAT` 命令同样会刷新心跳计时器，与 `comm` topic 心跳机制共用同一超时检测逻辑。
+
+### 相关字段
+
+| 字段 | 方向 | 说明 |
+|------|------|------|
+| `host_heartbeat_counter` | 客户端 → 服务端 | 心跳计数器，持续写入即可维持连接 |
+| `host_heartbeat_timeout` | 服务端 → 客户端 | 超时阈值（秒），默认 1.0 s |
+| `host_heartbeat_connection_lost` | 服务端 → 客户端 | 断连标志，`SET` 表示已超时断连 |
+| `flag_ethernet_connect_status` | 服务端 → 客户端 | 以太网连接状态，收到心跳时置 `SET` |
+
+---
+
 ## 配置文件参数
 
 在 `fourier-grx` 配置文件（通常位于 `~/.fourier/fourier-grx/config/`）中，以下两个配置块控制通信行为：

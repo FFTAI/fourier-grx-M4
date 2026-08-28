@@ -18,7 +18,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-08-12 | **4.4.40** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | ✅ Active |
+| 2026-08-28 | **4.4.41** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4441) | ✅ Active |
+| 2026-08-12 | 4.4.40 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | ❌ No longer supported |
 | 2026-08-06 | 4.4.39 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4439) | ❌ No longer supported |
 | 2026-08-03 | 4.4.38 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.38-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4438) | ❌ No longer supported |
 | 2026-07-29 | 4.4.35 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4435) | ❌ No longer supported |
@@ -58,6 +59,21 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.41
+
+> 📅 2026-08-28 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🛡️ **New**
+
+- **Host heartbeat and disconnect protection**:
+  - New writable field `host_heartbeat_counter` in the `comm` topic; the host keeps writing it to maintain the connection.
+  - New read-only fields `host_heartbeat_timeout` (default 1.0 s) and `host_heartbeat_connection_lost`.
+  - If no heartbeat is received within `host_heartbeat_timeout`, the controller automatically triggers an emergent stop: standard robots enter `TASK_SERVO_OFF`, M4LT2 enters high-damping soft braking.
+  - The HEX protocol `HEART_BEAT` command also refreshes the heartbeat timer.
+  - See the [Communication Interface](/fourier-grx-M4/docs/en/reference/communication) documentation for details.
+
+---
 
 ### 4.4.40
 
