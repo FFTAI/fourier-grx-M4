@@ -45,6 +45,8 @@ Key description list:
 |----------------------------------|------------------------------------------------|------|-------------------------------------|
 | `flag_heart_beat`                | Heartbeat flag                                 | bool | 1: robot has started                |
 | `flag_ethernet_connect_status`   | Host-to-robot Ethernet connection status       | bool | 0: not connected, 1: connected      |
+| `host_heartbeat_timeout`         | Host heartbeat timeout threshold               | float | Unit: seconds; default 6.0 s       |
+| `host_heartbeat_connection_lost` | Host disconnect flag                           | bool | 0: connected, 1: disconnected after timeout (triggers an emergent stop) |
 
 ### robot/server Interface Protocol (State Information)
 
@@ -214,7 +216,13 @@ Key description list:
 
 ### comm/client Interface Protocol (Command Information)
 
-> ℹ️ **This interface is not yet open.** The comm/client channel is used for system-level communication commands. The current version has no writable fields; it exists as a reserved interface only.
+The comm/client channel is used for host heartbeat writes. For details on how it works, see [Communication Interface - Heartbeat and Disconnect Protection](/fourier-grx-M4/docs/en/reference/communication#heartbeat-and-disconnect-protection).
+
+Key description list:
+
+| Key                      | Description          | Type | Details                                                          |
+|--------------------------|----------------------|------|------------------------------------------------------------------|
+| `host_heartbeat_counter` | Host heartbeat counter | int | Keep writing to maintain the connection; a fixed value or an incrementing counter both work |
 
 ### robot/client Interface Protocol (Command Information)
 
