@@ -12,6 +12,20 @@ nav_exclude: true
 
 This document records all significant updates to the Fourier-GRX-M4 SDK and its documentation.
 
+## September 2026
+
+### v1.2.3 (2026-09-01)
+
+**Optimizations**
+
+- ⚙️ Refined host heartbeat timing logic: the heartbeat timeout now starts counting from the **first** received `host_heartbeat_counter`; before that, disconnect protection is not triggered
+
+**Version Updates**
+
+- 📦 `fourier-grx` updated to `4.4.43` (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+
+---
+
 ## August 2026
 
 ### v1.2.2 (2026-08-28)

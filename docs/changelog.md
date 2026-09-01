@@ -11,6 +11,20 @@ has_toc: true
 
 本文档记录了 Fourier-GRX-M4 SDK 及其文档的所有重要更新。
 
+## 2026 年 9 月
+
+### v1.2.3 (2026-09-01)
+
+**优化**
+
+- ⚙️ 上位机心跳计时逻辑优化：心跳超时计时从**第一次收到** `host_heartbeat_counter` 时开始，在此之前不触发断连保护
+
+**版本更新**
+
+- 📦 `fourier-grx` 更新至 `4.4.43`（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
+
+---
+
 ## 2026 年 8 月
 
 ### v1.2.2 (2026-08-28)
