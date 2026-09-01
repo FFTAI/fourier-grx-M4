@@ -138,7 +138,7 @@ client = SyncClientSocket(
 | 字段 | 方向 | 说明 |
 |------|------|------|
 | `host_heartbeat_counter` | 客户端 → 服务端 | 心跳计数器，持续写入即可维持连接 |
-| `host_heartbeat_timeout` | 服务端 → 客户端 | 超时阈值（秒），默认 1.0 s |
+| `host_heartbeat_timeout` | 服务端 → 客户端 | 超时阈值（秒），默认 6.0 s |
 | `host_heartbeat_connection_lost` | 服务端 → 客户端 | 断连标志，`SET` 表示已超时断连 |
 | `flag_ethernet_connect_status` | 服务端 → 客户端 | 以太网连接状态，收到心跳时置 `SET` |
 

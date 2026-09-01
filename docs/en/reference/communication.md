@@ -140,7 +140,7 @@ The `comm` topic includes a host heartbeat detection mechanism that automaticall
 | Field | Direction | Description |
 |-------|-----------|-------------|
 | `host_heartbeat_counter` | Client → Server | Heartbeat counter; keep writing to maintain connection |
-| `host_heartbeat_timeout` | Server → Client | Timeout threshold in seconds; default 1.0 s |
+| `host_heartbeat_timeout` | Server → Client | Timeout threshold in seconds; default 6.0 s |
 | `host_heartbeat_connection_lost` | Server → Client | Disconnect flag; `SET` means timeout occurred |
 | `flag_ethernet_connect_status` | Server → Client | Ethernet connection status; set to `SET` on heartbeat |
 
