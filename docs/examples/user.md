@@ -69,3 +69,15 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 |------|-------------|-----------------------------------|
 | 关节测试 | 测试各关节运动功能   | `demo/user/demo_test_joint.py`    |
 | 行走控制 | 使用手柄控制机器人行走 | `demo/user/demo_walk.py`          |
+
+### UDP 纯 socket 示例（无 SDK 依赖）
+
+以下示例仅使用 Python 标准库（`socket` + `struct`）实现，无需安装 `fourier_grx` SDK 或任何第三方包，详见 `demo/udp/README.md`：
+
+| 示例名称   | 说明                              | 代码路径                        |
+|--------|---------------------------------|-----------------------------|
+| 执行器使能  | 通过 UDP 使能机器人执行器                 | `demo/udp/demo_servo_on.py` |
+| 执行器失能  | 通过 UDP 失能机器人执行器                 | `demo/udp/demo_servo_off.py` |
+| 行走控制   | 通过 UDP 控制机器人行走                  | `demo/udp/demo_walk.py`     |
+| 状态读取   | 接收并打印机器人状态（task / comm topic）   | `demo/udp/demo_get_state.py` |
+| 上位机心跳  | 持续写入心跳字段，演示断连保护机制               | `demo/udp/demo_heartbeat.py` |

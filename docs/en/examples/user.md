@@ -70,3 +70,15 @@ You can run these examples on the robot controller or on any computer connected 
 |----------------|------------------------------------------|-----------------------------|
 | Joint Test     | Test motion function of each joint       | `demo/user/demo_test_joint.py`   |
 | Walk Control   | Control robot walking with a joystick    | `demo/user/demo_walk.py`         |
+
+### UDP Raw Socket Examples (No SDK Required)
+
+The following examples use only the Python standard library (`socket` + `struct`) — no `fourier_grx` SDK or third-party packages needed. See `demo/udp/README.md` for details:
+
+| Example Name | Description                                   | Code Path                    |
+|--------------|-----------------------------------------------|------------------------------|
+| Servo On     | Enable robot actuators over UDP               | `demo/udp/demo_servo_on.py`  |
+| Servo Off    | Disable robot actuators over UDP              | `demo/udp/demo_servo_off.py` |
+| Walk Control | Control robot walking over UDP                | `demo/udp/demo_walk.py`      |
+| Get State    | Receive and print robot state (task / comm)   | `demo/udp/demo_get_state.py` |
+| Heartbeat    | Keep writing the heartbeat field; demos disconnect protection | `demo/udp/demo_heartbeat.py` |
