@@ -56,12 +56,15 @@ def demo_virtual_joystick(host=None):
 
     # --------------------------------------------------
     # 推送虚拟摇杆状态示例：左摇杆前推 3 秒（20Hz 持续写入）
-    print("写入虚拟摇杆状态：左摇杆前推（y = -1.0），持续 3 秒...")
+    # 轴值 -y（前推）归一化映射到任务范围：
+    #   axis_left[1]  = -0.5 → 步长约 0.5 m（范围 [0.20, 0.80] m）
+    #   axis_right[1] = -0.25 → 速度约 0.375 m/s（范围 [0.10, 1.20] m/s）
+    print("写入虚拟摇杆状态：左/右摇杆前推，持续 3 秒...")
     t_start = time.time()
     while time.time() - t_start < 3.0:
         client.publish("grx", {
-            "virtual_joystick_axis_left": [0.0, -1.0],   # 步长归一化输入（最大）
-            "virtual_joystick_axis_right": [0.0, -0.5],  # 速度归一化输入（50%）
+            "virtual_joystick_axis_left": [0.0, -0.5],   # 步长归一化输入（约 0.5 m）
+            "virtual_joystick_axis_right": [0.0, -0.25],  # 速度归一化输入（约 0.375 m/s）
         })
         time.sleep(0.05)
 

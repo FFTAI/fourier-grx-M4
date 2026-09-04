@@ -57,12 +57,14 @@ def demo_virtual_panel(host=None):
 
     # --------------------------------------------------
     # 2. 通过虚拟面板设置步长 / 速度并开始行走
+    #    步长范围 [0.20, 0.80] m，速度范围 [0.10, 1.20] m/s，任务默认值均为 0.5
+    #    demo 使用较小值，便于安全验证
     client.publish("grx", {
-        "virtual_panel_command_param_1": 0.10,  # 步长 0.1 m
-        "virtual_panel_command_param_2": 0.10,  # 行走速度 0.1 m/s
+        "virtual_panel_command_param_1": 0.20,  # 步长 0.2 m
+        "virtual_panel_command_param_2": 0.20,  # 行走速度 0.2 m/s
         "virtual_panel_command_start": True,
     })
-    print("开始行走：步长 0.1 m，速度 0.1 m/s")
+    print("开始行走：步长 0.2 m，速度 0.2 m/s")
 
     # 行走 5 秒
     time.sleep(5)
