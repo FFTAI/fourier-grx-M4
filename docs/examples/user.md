@@ -62,6 +62,9 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 | 执行器重启 | 重启机器人执行器  | `demo/user/demo_servo_reboot.py`   |
 | 清除故障  | 清除机器人报警状态 | `demo/user/demo_clear_fault.py`    |
 | 设置零位  | 设置当前位置为零位 | `demo/user/demo_set_home.py`       |
+| 清除保护标志 | 清除过载 / 力矩保护标志（robot topic） | `demo/user/demo_clear_protection.py` |
+| 状态读取  | 读取任务状态、关节位置、IMU、电量等（task / robot / grx topic） | `demo/user/demo_get_state.py` |
+| 上位机心跳 | 持续写入心跳字段（comm topic），配合断连保护机制使用 | `demo/user/demo_heartbeat.py` |
 
 ### 运动控制示例
 
@@ -69,6 +72,7 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 |------|-------------|-----------------------------------|
 | 关节测试 | 测试各关节运动功能   | `demo/user/demo_test_joint.py`    |
 | 行走控制 | 使用手柄控制机器人行走 | `demo/user/demo_walk.py`          |
+| 虚拟面板控制 | 通过虚拟面板设置步长/速度并控制行走（grx topic） | `demo/user/demo_virtual_panel.py` |
 
 ### UDP 纯 socket 示例（无 SDK 依赖）
 
@@ -78,6 +82,11 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 |--------|---------------------------------|-----------------------------|
 | 执行器使能  | 通过 UDP 使能机器人执行器                 | `demo/udp/demo_servo_on.py` |
 | 执行器失能  | 通过 UDP 失能机器人执行器                 | `demo/udp/demo_servo_off.py` |
+| 执行器重启  | 通过 UDP 重启机器人执行器                 | `demo/udp/demo_servo_reboot.py` |
+| 清除故障   | 通过 UDP 清除机器人报警状态                | `demo/udp/demo_clear_fault.py` |
 | 行走控制   | 通过 UDP 控制机器人行走                  | `demo/udp/demo_walk.py`     |
 | 状态读取   | 接收并打印机器人状态（task / comm topic）   | `demo/udp/demo_get_state.py` |
+| 清除保护标志 | 清除过载 / 力矩保护标志（robot topic）      | `demo/udp/demo_clear_protection.py` |
+| 虚拟面板控制 | 通过虚拟面板设置步长/速度并控制行走（grx topic）   | `demo/udp/demo_virtual_panel.py` |
+| 虚拟摇杆输入 | 写入虚拟摇杆轴状态（grx topic）             | `demo/udp/demo_virtual_joystick.py` |
 | 上位机心跳  | 持续写入心跳字段，演示断连保护机制               | `demo/udp/demo_heartbeat.py` |

@@ -56,8 +56,11 @@ BROADCAST_PORT = 9527       # auto-discovery broadcast port
 MAX_PACKET_SIZE = 65507     # UDP theoretical max payload
 
 # task commands (fourier-grx task menu values)
+TASK_CLEAR_FAULT = 34
 TASK_SERVO_ON = 35
 TASK_SERVO_OFF = 36
+TASK_SERVO_REBOOT = 41
+TASK_WALK = 965                          # TASK_APPLICATION_WALK_MOTION_CONTROL
 TASK_ROTARY_JOINT_FORWARD_WALK = 4111
 
 

@@ -63,6 +63,9 @@ You can run these examples on the robot controller or on any computer connected 
 | Servo Reboot       | Reboot robot actuators             | `demo/user/demo_servo_reboot.py`     |
 | Clear Fault        | Clear robot fault/alarm state      | `demo/user/demo_clear_fault.py`      |
 | Set Home           | Set current position as home (zero)| `demo/user/demo_set_home.py`         |
+| Clear Protection   | Clear over-load / torque protection flags (robot topic) | `demo/user/demo_clear_protection.py` |
+| Get State          | Read task state, joint positions, IMU, battery, etc. (task / robot / grx topics) | `demo/user/demo_get_state.py` |
+| Host Heartbeat     | Keep writing the heartbeat field (comm topic); works with the disconnect protection | `demo/user/demo_heartbeat.py` |
 
 ### Motion Control Examples
 
@@ -70,6 +73,7 @@ You can run these examples on the robot controller or on any computer connected 
 |----------------|------------------------------------------|-----------------------------|
 | Joint Test     | Test motion function of each joint       | `demo/user/demo_test_joint.py`   |
 | Walk Control   | Control robot walking with a joystick    | `demo/user/demo_walk.py`         |
+| Virtual Panel  | Set step length/velocity via the virtual panel and start/stop walking (grx topic) | `demo/user/demo_virtual_panel.py` |
 
 ### UDP Raw Socket Examples (No SDK Required)
 
@@ -79,6 +83,11 @@ The following examples use only the Python standard library (`socket` + `struct`
 |--------------|-----------------------------------------------|------------------------------|
 | Servo On     | Enable robot actuators over UDP               | `demo/udp/demo_servo_on.py`  |
 | Servo Off    | Disable robot actuators over UDP              | `demo/udp/demo_servo_off.py` |
+| Servo Reboot | Reboot robot actuators over UDP               | `demo/udp/demo_servo_reboot.py` |
+| Clear Fault  | Clear robot fault/alarm state over UDP        | `demo/udp/demo_clear_fault.py` |
 | Walk Control | Control robot walking over UDP                | `demo/udp/demo_walk.py`      |
 | Get State    | Receive and print robot state (task / comm)   | `demo/udp/demo_get_state.py` |
+| Clear Protection | Clear over-load / torque protection flags (robot topic) | `demo/udp/demo_clear_protection.py` |
+| Virtual Panel | Set step length/velocity via the virtual panel and start/stop walking (grx topic) | `demo/udp/demo_virtual_panel.py` |
+| Virtual Joystick | Write virtual joystick axis states (grx topic) | `demo/udp/demo_virtual_joystick.py` |
 | Heartbeat    | Keep writing the heartbeat field; demos disconnect protection | `demo/udp/demo_heartbeat.py` |

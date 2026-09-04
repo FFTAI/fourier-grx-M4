@@ -22,12 +22,39 @@ MessagePack 编解码由本目录下的 `mini_msgpack.py` 用标准库 `struct` 
 
 ## 示例列表
 
+**任务指令（task topic）**
+
 | 示例 | 说明 |
 |------|------|
 | `demo_servo_on.py` | 执行器使能（TASK_SERVO_ON = 35） |
 | `demo_servo_off.py` | 执行器失能（TASK_SERVO_OFF = 36） |
+| `demo_servo_reboot.py` | 执行器重启（TASK_SERVO_REBOOT = 41） |
+| `demo_clear_fault.py` | 清除故障（TASK_CLEAR_FAULT = 34） |
 | `demo_walk.py` | 行走控制（TASK_ROTARY_JOINT_FORWARD_WALK = 4111） |
+
+**状态读取（server → client 推送）**
+
+| 示例 | 说明 |
+|------|------|
 | `demo_get_state.py` | 接收并打印机器人状态（task / comm topic） |
+
+**保护标志清除（robot topic）**
+
+| 示例 | 说明 |
+|------|------|
+| `demo_clear_protection.py` | 清除过载 / 力矩保护标志 |
+
+**虚拟外设输入（grx topic）**
+
+| 示例 | 说明 |
+|------|------|
+| `demo_virtual_panel.py` | 虚拟面板：设置步长/速度并控制行走开始停止（默认配置可用） |
+| `demo_virtual_joystick.py` | 虚拟摇杆：写入摇杆轴状态（需在配置中开启 use_virtual_joystick） |
+
+**心跳（comm topic）**
+
+| 示例 | 说明 |
+|------|------|
 | `demo_heartbeat.py` | 上位机心跳（持续写 `comm.host_heartbeat_counter`） |
 
 ## 运行方法
