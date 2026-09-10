@@ -30,7 +30,7 @@ MessagePack 编解码由本目录下的 `mini_msgpack.py` 用标准库 `struct` 
 | `demo_servo_off.py` | 执行器失能（TASK_SERVO_OFF = 36） |
 | `demo_servo_reboot.py` | 执行器重启（TASK_SERVO_REBOOT = 41） |
 | `demo_clear_fault.py` | 清除故障（TASK_CLEAR_FAULT = 34） |
-| `demo_walk.py` | 行走控制（TASK_ROTARY_JOINT_FORWARD_WALK = 4111） |
+| `demo_walk.py` | 定时行走：启动任务（4111），通过虚拟面板开始行走，5 秒后停止 |
 
 **状态读取（server → client 推送）**
 
@@ -48,8 +48,8 @@ MessagePack 编解码由本目录下的 `mini_msgpack.py` 用标准库 `struct` 
 
 | 示例 | 说明 |
 |------|------|
-| `demo_virtual_panel.py` | 虚拟面板：设置步长/速度并控制行走开始停止（默认配置可用） |
-| `demo_virtual_joystick.py` | 虚拟摇杆：写入摇杆轴状态（需在配置中开启 use_virtual_joystick） |
+| `demo_virtual_panel.py` | 虚拟面板：设置步长/速度，开始行走 5 秒后停止（需开启 use_virtual_panel） |
+| `demo_virtual_joystick.py` | 虚拟摇杆：写入摇杆轴状态（需开启 use_virtual_joystick，测试时建议关闭 use_virtual_panel） |
 
 **心跳（comm topic）**
 
@@ -71,10 +71,12 @@ python demo_servo_on.py --host 192.168.137.220
 
 ## 上位机心跳注意事项
 
-`demo_heartbeat.py` 演示断连保护机制：
+`demo_heartbeat.py` 演示断连保护机制。三个运动示例（`demo_walk.py`、
+`demo_virtual_panel.py`、`demo_virtual_joystick.py`）也会在运行期间持续发送心跳；
 
 - 控制器从**第一次收到** `host_heartbeat_counter` 开始计时
 - 超过 `host_heartbeat_timeout`（默认 6 秒）未收到新的心跳写入，
   控制器自动触发断连保护（常规机型 SERVO_OFF，M4LT2 高阻尼软制动）
-- 因此一旦开始发送心跳就必须持续发送；中途停止约 6 秒后会触发保护，
-  这正是该机制的设计目的
+- 运动示例退出时会停止心跳，因此约 6 秒后会按设计触发保护
+- 单次命令示例（如 servo on/off、clear fault）不发送心跳，避免示例退出后
+  意外触发断连保护

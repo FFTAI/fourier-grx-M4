@@ -45,6 +45,7 @@ Comm topic heartbeat field (client -> robot):
 import os
 import socket
 import sys
+import threading
 
 # allow running the demos from any working directory
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -54,6 +55,7 @@ from mini_msgpack import packb, unpackb
 SERVER_PORT = 5566          # fourier-grx sync server data port
 BROADCAST_PORT = 9527       # auto-discovery broadcast port
 MAX_PACKET_SIZE = 65507     # UDP theoretical max payload
+HEARTBEAT_INTERVAL = 0.5    # seconds; well below the default 6 s timeout
 
 # task commands (fourier-grx task menu values)
 TASK_CLEAR_FAULT = 34
@@ -78,6 +80,7 @@ class FourierUdpClient:
 
         self.server_addr = (host, port)
 
+        self._send_lock = threading.Lock()
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self._socket.bind(("", 0))  # any local port
 
@@ -104,7 +107,9 @@ class FourierUdpClient:
 
     def publish(self, key: str, data: dict):
         """Send one {"key": key, "data": data} packet to the robot."""
-        self._socket.sendto(packb({"key": key, "data": data}), self.server_addr)
+        packet = packb({"key": key, "data": data})
+        with self._send_lock:
+            self._socket.sendto(packet, self.server_addr)
 
     def receive(self, timeout: float = 1.0):
         """
@@ -133,3 +138,53 @@ class FourierUdpClient:
 
     def close(self):
         self._socket.close()
+
+
+class HeartbeatSender:
+    """
+    Background sender for comm.host_heartbeat_counter.
+
+    Starting the sender arms the robot's disconnect timer. Stopping it does not
+    disarm that timer: after host_heartbeat_timeout (default 6 s), the robot
+    intentionally triggers its disconnect protection.
+    """
+
+    def __init__(self, client: FourierUdpClient, interval: float = HEARTBEAT_INTERVAL):
+        if interval <= 0:
+            raise ValueError("heartbeat interval must be positive")
+        self._client = client
+        self._interval = interval
+        self._stop_event = threading.Event()
+        self._thread = None
+
+    def start(self):
+        if self._thread is not None:
+            return self
+        self._stop_event.clear()
+        self._thread = threading.Thread(target=self._run, daemon=True)
+        self._thread.start()
+        return self
+
+    def stop(self):
+        if self._thread is None:
+            return
+        self._stop_event.set()
+        self._thread.join(timeout=self._interval + 0.2)
+        self._thread = None
+
+    def __enter__(self):
+        return self.start()
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.stop()
+        return False
+
+    def _run(self):
+        counter = 0
+        while not self._stop_event.is_set():
+            try:
+                self._client.send_heartbeat(counter)
+            except OSError:
+                break
+            counter += 1
+            self._stop_event.wait(self._interval)
