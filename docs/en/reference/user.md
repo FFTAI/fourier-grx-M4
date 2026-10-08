@@ -150,6 +150,8 @@ Key description list:
 | `flag_robot_pinched`           | Robot pinch flag                   | bool | 0: not pinched, 1: pinched                  |
 | `flag_robot_over_load`         | Robot overload flag                | bool | 0: not overloaded, 1: overloaded            |
 | `flag_robot_torque_protection` | Robot torque protection flag       | bool | 0: not triggered, 1: triggered              |
+| `flag_robot_velocity_protection` | Robot velocity protection flag   | bool | 0: not triggered, 1: triggered              |
+| `flag_robot_position_protection` | Robot position protection flag   | bool | 0: not triggered, 1: triggered              |
 
 **Robot Basic Information**
 
@@ -232,6 +234,8 @@ Key description list:
 |--------------------------------------|--------------------------------------|------|----------------------------|
 | `clear_flag_robot_over_load`         | Clear overload flag                  | bool | 0: do not clear, 1: clear  |
 | `clear_flag_robot_torque_protection` | Clear torque protection flag         | bool | 0: do not clear, 1: clear  |
+| `clear_flag_robot_velocity_protection` | Clear velocity protection flag     | bool | 0: do not clear, 1: clear  |
+| `clear_flag_robot_position_protection` | Clear position protection flag     | bool | 0: do not clear, 1: clear  |
 
 ### task/client Interface Protocol (Command Information)
 

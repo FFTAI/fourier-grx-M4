@@ -149,6 +149,8 @@ key 说明列表：
 | `flag_robot_pinched`           | 机器人夹持标志   | bool | 0: 未夹持，1: 夹持      |
 | `flag_robot_over_load`         | 机器人过载标志   | bool | 0: 未过载，1: 过载      |
 | `flag_robot_torque_protection` | 机器人力矩保护标志 | bool | 0: 未触发，1: 触发      |
+| `flag_robot_velocity_protection` | 机器人速度保护标志 | bool | 0: 未触发，1: 触发    |
+| `flag_robot_position_protection` | 机器人位置保护标志 | bool | 0: 未触发，1: 触发    |
 
 **机器人基本信息**
 
@@ -231,6 +233,8 @@ key 说明列表：
 |--------------------------------------|----------|------|--------------|
 | `clear_flag_robot_over_load`         | 清除过载标志   | bool | 0: 不清除，1: 清除 |
 | `clear_flag_robot_torque_protection` | 清除力矩保护标志 | bool | 0: 不清除，1: 清除 |
+| `clear_flag_robot_velocity_protection` | 清除速度保护标志 | bool | 0: 不清除，1: 清除 |
+| `clear_flag_robot_position_protection` | 清除位置保护标志 | bool | 0: 不清除，1: 清除 |
 
 ### task/client 接口协议 (指令信息)
 

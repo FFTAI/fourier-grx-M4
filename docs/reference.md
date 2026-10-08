@@ -27,3 +27,4 @@ has_children: true
 
 - [命令行工具](/fourier-grx-M4/docs/reference/command_line_tool)：`fourier-grx` 常用子命令说明。
 - [执行器错误码](/fourier-grx-M4/docs/reference/actuator_error_code)：常见错误码与处理方式。
+- [速度保护与位置保护](/fourier-grx-M4/docs/reference/protection)：关节超速与超范围保护的触发条件、保护行为与清错恢复流程。

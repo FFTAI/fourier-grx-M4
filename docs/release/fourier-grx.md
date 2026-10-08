@@ -17,7 +17,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-09-01 | **4.4.43** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4443) | ✅ 支持中 |
+| 2026-10-08 | **4.4.44** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-c1-blaze.deb) | [详情](#4444) | ✅ 支持中 |
+| 2026-09-01 | 4.4.43 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4443) | ❌ 不再支持 |
 | 2026-08-28 | 4.4.42 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4442) | ❌ 不再支持 |
 | 2026-08-28 | 4.4.41 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4441) | ❌ 不再支持 |
 | 2026-08-12 | 4.4.40 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4440) | ❌ 不再支持 |
@@ -60,6 +61,22 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.44
+
+> 📅 2026-10-08 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **关节速度保护**：持续监测 4 个旋转关节速度，连续 5 个控制周期超过阈值（默认 15 rad/s）时自动失能（`TASK_SERVO_OFF`）进入保护态并锁存，避免异常超速伤害用户。
+- **关节位置保护**：关节位置大幅超出任务发布的合理运动范围（范围随任务与步态参数自动调整，覆盖站立/原地踏步/前向行走系列任务）时自动失能进入保护态并锁存。
+- **上位机清错**：两种保护均置位独立标志位（`flag_robot_velocity_protection` / `flag_robot_position_protection`），上位机写入 `clear_flag_robot_velocity_protection` / `clear_flag_robot_position_protection` 清错后即可恢复控制。详见 [速度保护与位置保护](/fourier-grx-M4/docs/reference/protection)。
+
+🐛 **修复**
+
+- **过载保护清错不生效**：修复上位机写入 `clear_flag_robot_over_load` 后，机器人侧标志位未被清除、下一通信周期即被重新置位的问题。
+
+---
 
 ### 4.4.43
 

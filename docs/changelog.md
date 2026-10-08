@@ -11,6 +11,27 @@ has_toc: true
 
 本文档记录了 Fourier-GRX-M4 SDK 及其文档的所有重要更新。
 
+## 2026 年 10 月
+
+### v1.2.4 (2026-10-08)
+
+**新增功能**
+
+- 🛡️ 新增关节速度保护：持续监测 4 个旋转关节速度，连续 5 个控制周期超过阈值（默认 15 rad/s，可真机标定）时自动失能进入保护态
+- 🛡️ 新增关节位置保护：关节位置大幅超出任务发布的合理运动范围（随任务与步态参数自动调整）时自动失能进入保护态
+- 🔧 两种保护均置位独立标志位（`flag_robot_velocity_protection` / `flag_robot_position_protection`），并锁存保护态；上位机可通过 `clear_flag_robot_velocity_protection` / `clear_flag_robot_position_protection` 清错并恢复控制
+- 📖 详见 [速度保护与位置保护](/fourier-grx-M4/docs/reference/protection) 文档
+
+**修复**
+
+- 🐛 修复过载保护（`flag_robot_over_load`）清错请求不生效的问题：此前上位机写入 `clear_flag_robot_over_load` 后，机器人侧标志位未被清除，下一通信周期即被重新置位
+
+**版本更新**
+
+- 📦 `fourier-grx` 更新至 `4.4.44`（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
+
+---
+
 ## 2026 年 9 月
 
 ### v1.2.3 (2026-09-01)

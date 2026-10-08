@@ -28,3 +28,4 @@ This section consolidates the core reference documentation for the Fourier-GRX-M
 
 - [Command-Line Tool](/fourier-grx-M4/docs/en/reference/command_line_tool): Common `fourier-grx` subcommand descriptions.
 - [Actuator Error Codes](/fourier-grx-M4/docs/en/reference/actuator_error_code): Common error codes and how to handle them.
+- [Velocity & Position Protection](/fourier-grx-M4/docs/en/reference/protection): Trigger conditions, protection behavior, and clear/recovery flow for joint over-speed and out-of-range protections.

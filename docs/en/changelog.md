@@ -12,6 +12,27 @@ nav_exclude: true
 
 This document records all significant updates to the Fourier-GRX-M4 SDK and its documentation.
 
+## October 2026
+
+### v1.2.4 (2026-10-08)
+
+**New Features**
+
+- 🛡️ Added joint velocity protection: continuously monitors the velocity of the 4 rotary joints; if the velocity exceeds the threshold (default 15 rad/s, tunable on hardware) for 5 consecutive control cycles, all actuators are disabled and the robot enters the protection state
+- 🛡️ Added joint position protection: if a joint position goes far beyond the reasonable motion range published by the active task (which adapts automatically to the task and gait parameters), all actuators are disabled and the robot enters the protection state
+- 🔧 Both protections set independent flags (`flag_robot_velocity_protection` / `flag_robot_position_protection`) and latch the protection state; the host can clear them via `clear_flag_robot_velocity_protection` / `clear_flag_robot_position_protection` to resume control
+- 📖 See the [Velocity & Position Protection](/fourier-grx-M4/docs/en/reference/protection) documentation
+
+**Fixes**
+
+- 🐛 Fixed the overload protection (`flag_robot_over_load`) clear request not taking effect: previously, after the host wrote `clear_flag_robot_over_load`, the robot-side flag was never cleared and was set again at the next communication cycle
+
+**Version Updates**
+
+- 📦 `fourier-grx` updated to `4.4.44` (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+
+---
+
 ## September 2026
 
 ### v1.2.3 (2026-09-01)

@@ -18,7 +18,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-09-01 | **4.4.43** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | ✅ Active |
+| 2026-10-08 | **4.4.44** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-c1-blaze.deb) | [Details](#4444) | ✅ Active |
+| 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | ❌ Unsupported |
 | 2026-08-28 | 4.4.42 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4442) | ❌ No longer supported |
 | 2026-08-28 | 4.4.41 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4441) | ❌ No longer supported |
 | 2026-08-12 | 4.4.40 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | ❌ No longer supported |
@@ -61,6 +62,22 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.44
+
+> 📅 2026-10-08 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Joint velocity protection**: continuously monitors the velocity of the 4 rotary joints; if the velocity exceeds the threshold (default 15 rad/s) for 5 consecutive control cycles, all actuators are disabled (`TASK_SERVO_OFF`), the protection state is entered and latched, preventing harm from abnormal over-speed.
+- **Joint position protection**: if a joint position goes far beyond the reasonable motion range published by the active task (the range adapts automatically to the task and gait parameters, covering the stand / mark-time / forward-walk task families), all actuators are disabled, and the protection state is entered and latched.
+- **Host clearable**: both protections set independent flags (`flag_robot_velocity_protection` / `flag_robot_position_protection`); the host writes `clear_flag_robot_velocity_protection` / `clear_flag_robot_position_protection` to clear the error and resume control. See [Velocity & Position Protection](/fourier-grx-M4/docs/en/reference/protection) for details.
+
+🐛 **Fixed**
+
+- **Overload protection clear request not taking effect**: fixed the robot-side flag never being cleared after the host wrote `clear_flag_robot_over_load`, which caused the flag to be set again at the next communication cycle.
+
+---
 
 ### 4.4.43
 
