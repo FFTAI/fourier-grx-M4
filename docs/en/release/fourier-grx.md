@@ -18,7 +18,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-08 | **4.4.44** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-c1-blaze.deb) | [Details](#4444) | ✅ Active |
+| 2026-10-08 | **4.4.44** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | ✅ Active |
 | 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | ❌ Unsupported |
 | 2026-08-28 | 4.4.42 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4442) | ❌ No longer supported |
 | 2026-08-28 | 4.4.41 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4441) | ❌ No longer supported |

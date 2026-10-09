@@ -17,7 +17,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-08 | **4.4.44** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-c1-blaze.deb) | [详情](#4444) | ✅ 支持中 |
+| 2026-10-08 | **4.4.44** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4444) | ✅ 支持中 |
 | 2026-09-01 | 4.4.43 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4443) | ❌ 不再支持 |
 | 2026-08-28 | 4.4.42 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4442) | ❌ 不再支持 |
 | 2026-08-28 | 4.4.41 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4441) | ❌ 不再支持 |
