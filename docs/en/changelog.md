@@ -18,7 +18,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **New Features**
 
-- 📈 The `rehab/server` interface adds a `step_frequency` field: gait tasks (forward-walk / mark-time families) automatically derive and report cadence (steps/min) in real time, updating with step length / speed commands. The host PC can use it for cadence display and training-volume statistics (see [User Interface](/fourier-grx-M4/docs/en/reference/user) for details)
+- 📈 The `rehab/server` interface adds a `step_frequency` field: gait tasks (forward-walk / mark-time families) and trajectory Planner tasks automatically derive and report cadence (steps/min) in real time, updating with step length / speed commands and automatically cleared to 0 on task exit. The host PC can use it for cadence display and training-volume statistics (see [User Interface](/fourier-grx-M4/docs/en/reference/user) for details)
 
 **Version Updates**
 

@@ -71,7 +71,7 @@ has_toc: true
 
 ✨ **新增**
 
-- **步频（step_frequency）上报**：`rehab/server` 接口新增 `step_frequency` 字段（float，单位**步/分钟** = 60 / 单步周期），由当前步态轨迹自动生成，随步长/速度指令变化实时更新。前向行走、原地踏步系列任务（含助力与膝限位变体）每周期发布，其他任务为 0。上位机可直接读取用于步频显示与训练量统计。详见 [User 接口](/fourier-grx-M4/docs/reference/user)。
+- **步频（step_frequency）上报**：`rehab/server` 接口新增 `step_frequency` 字段（float，单位**步/分钟** = 60 / 单步周期），由当前步态轨迹自动生成，随步长/速度指令变化实时更新。前向行走、原地踏步系列任务（含助力与膝限位变体）及**轨迹规划（Planner）任务**每周期发布；任务退出时自动清零，无步态任务运行时恒为 0。上位机可直接读取用于步频显示与训练量统计。详见 [User 接口](/fourier-grx-M4/docs/reference/user)。
 
 ---
 

@@ -72,7 +72,7 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 
 ✨ **New**
 
-- **Step frequency (`step_frequency`) reporting**: the `rehab/server` interface adds a `step_frequency` field (float, unit: **steps/min** = 60 / single-step period), derived automatically from the current gait trajectory and updated in real time when step length / speed commands change. Published every cycle by the forward-walk and mark-time task families (including assist and knee-restriction variants); 0 for other tasks. The host PC can read it directly for cadence display and training-volume statistics. See [User Interface](/fourier-grx-M4/docs/en/reference/user) for details.
+- **Step frequency (`step_frequency`) reporting**: the `rehab/server` interface adds a `step_frequency` field (float, unit: **steps/min** = 60 / single-step period), derived automatically from the current gait trajectory and updated in real time when step length / speed commands change. Published every cycle by the forward-walk and mark-time task families (including assist and knee-restriction variants) **and the trajectory Planner tasks**; automatically cleared to 0 when the task exits, so it is 0 whenever no gait task is running. The host PC can read it directly for cadence display and training-volume statistics. See [User Interface](/fourier-grx-M4/docs/en/reference/user) for details.
 
 ---
 

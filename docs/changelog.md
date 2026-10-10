@@ -17,7 +17,7 @@ has_toc: true
 
 **新增功能**
 
-- 📈 `rehab/server` 接口新增 `step_frequency` 字段：步态任务（前向行走/原地踏步系列）自动生成并实时上报步频（步/分钟），随步长/速度指令变化更新，上位机可用于步频显示与训练量统计（详见 [User 接口](/fourier-grx-M4/docs/reference/user)）
+- 📈 `rehab/server` 接口新增 `step_frequency` 字段：步态任务（前向行走/原地踏步系列）与轨迹规划（Planner）任务自动生成并实时上报步频（步/分钟），随步长/速度指令变化更新，任务退出自动清零，上位机可用于步频显示与训练量统计（详见 [User 接口](/fourier-grx-M4/docs/reference/user)）
 
 **版本更新**
 
