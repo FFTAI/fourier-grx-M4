@@ -14,6 +14,18 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.7 (2026-10-10)
+
+**New Features**
+
+- 📈 The `rehab/server` interface adds a `step_frequency` field: gait tasks (forward-walk / mark-time families) automatically derive and report cadence (steps/min) in real time, updating with step length / speed commands. The host PC can use it for cadence display and training-volume statistics (see [User Interface](/fourier-grx-M4/docs/en/reference/user) for details)
+
+**Version Updates**
+
+- 📦 `fourier-grx` updated to `4.4.47` (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+
+---
+
 ### v1.2.6 (2026-10-10)
 
 **Improvements**

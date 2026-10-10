@@ -18,7 +18,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-10 | **4.4.46** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4446) | ✅ Active |
+| 2026-10-10 | **4.4.47** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4447) | ✅ Active |
+| 2026-10-10 | 4.4.46 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4446) | ❌ Unsupported |
 | 2026-10-10 | 4.4.45 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | ❌ Unsupported |
 | 2026-10-08 | 4.4.44 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | ❌ Unsupported |
 | 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | ❌ Unsupported |
@@ -64,6 +65,16 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.47
+
+> 📅 2026-10-10 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Step frequency (`step_frequency`) reporting**: the `rehab/server` interface adds a `step_frequency` field (float, unit: **steps/min** = 60 / single-step period), derived automatically from the current gait trajectory and updated in real time when step length / speed commands change. Published every cycle by the forward-walk and mark-time task families (including assist and knee-restriction variants); 0 for other tasks. The host PC can read it directly for cadence display and training-volume statistics. See [User Interface](/fourier-grx-M4/docs/en/reference/user) for details.
+
+---
 
 ### 4.4.46
 

@@ -13,6 +13,18 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.7 (2026-10-10)
+
+**新增功能**
+
+- 📈 `rehab/server` 接口新增 `step_frequency` 字段：步态任务（前向行走/原地踏步系列）自动生成并实时上报步频（步/分钟），随步长/速度指令变化更新，上位机可用于步频显示与训练量统计（详见 [User 接口](/fourier-grx-M4/docs/reference/user)）
+
+**版本更新**
+
+- 📦 `fourier-grx` 更新至 `4.4.47`（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
+
+---
+
 ### v1.2.6 (2026-10-10)
 
 **优化**
