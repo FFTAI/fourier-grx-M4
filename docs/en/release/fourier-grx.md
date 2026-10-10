@@ -18,7 +18,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-10 | **4.4.47** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4447) | ✅ Active |
+| 2026-10-10 | **4.4.48** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4448) | ✅ Active |
+| 2026-10-10 | 4.4.47 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4447) | ❌ Unsupported |
 | 2026-10-10 | 4.4.46 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4446) | ❌ Unsupported |
 | 2026-10-10 | 4.4.45 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | ❌ Unsupported |
 | 2026-10-08 | 4.4.44 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | ❌ Unsupported |
@@ -65,6 +66,28 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.48
+
+> 📅 2026-10-10 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Gait parameter interface extension (host-adjustable)**: since v4.4.48, the virtual panel adds 3 unified reserved parameters (see each task page for details):
+  - `grx.virtual_panel_command_param_6` = base height `base_height` (m, [0.6, 1.2]; defaults to the sum of thigh + shank lengths) — forward-walk and mark-time basic/assist tasks
+  - `grx.virtual_panel_command_param_7` = step lift height `step_height` (m, [0.05, 0.2], default 0.1) — forward-walk tasks only
+  - `grx.virtual_panel_command_param_8` = double-support ratio `dsp_ratio` ([0.1, 0.3], default 0.2) — forward-walk tasks only, effective only for the DSP gait generator
+  - Common semantics: a value ≤ 0 or not sent uses the algorithm default (existing host programs need no changes); out-of-range values are clipped automatically; **takes effect at the next start of walking (trajectory regeneration)** — changes made while walking do not affect the trajectory currently being executed. For knee-restriction tasks, the base height is still computed automatically from the knee restriction angle (param_6 has no effect).
+
+🐛 **Fixed**
+
+- **Missing position protection bounds update in knee-restriction gait tasks (safety-related)**: the 6 knee-restriction forward-walk / mark-time tasks (including assist variants) previously did not update the joint position protection bounds every cycle — the bounds stayed frozen at "measured position ±0.25 rad" from the moment of task activation, so position protection would false-trigger servo-off as soon as the joints started moving. Per-cycle bounds updates have been added, matching the behavior of the basic tasks. Devices using knee-restriction tasks should re-verify the corresponding gaits after upgrading.
+
+🔧 **Changed**
+
+- **Unified gait generator parameter naming (internal refactor, no behavior change)**: `H_max` renamed to `step_height` (maximum swing-foot lift height, matching the existing naming in the mark-time chain), `H_com` renamed to `base_height` (base/pelvis height); `generate_mark_gait` no longer takes the redundant `step_height`/`H_max` dual parameters. Host interface fields and the `gait_data` data contract (keys such as `com_height`) remain unchanged.
+
+---
 
 ### 4.4.47
 

@@ -17,7 +17,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-10 | **4.4.47** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4447) | ✅ 支持中 |
+| 2026-10-10 | **4.4.48** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4448) | ✅ 支持中 |
+| 2026-10-10 | 4.4.47 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4447) | ❌ 不再支持 |
 | 2026-10-10 | 4.4.46 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4446) | ❌ 不再支持 |
 | 2026-10-10 | 4.4.45 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4445) | ❌ 不再支持 |
 | 2026-10-08 | 4.4.44 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4444) | ❌ 不再支持 |
@@ -64,6 +65,28 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.48
+
+> 📅 2026-10-10 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **步态参数接口扩展（上位机可调）**：自 v4.4.48 起，虚拟面板新增 3 个统一预留参数（详见各任务页面）：
+  - `grx.virtual_panel_command_param_6` = 基座高度 base_height（m，[0.6, 1.2]，默认自动取大腿+小腿长度之和）——前向行走与原地踏步基础/助力任务
+  - `grx.virtual_panel_command_param_7` = 抬腿高度 step_height（m，[0.05, 0.2]，默认 0.1）——仅前向行走类任务
+  - `grx.virtual_panel_command_param_8` = 双支撑期占比 dsp_ratio（[0.1, 0.3]，默认 0.2）——仅前向行走类任务，且仅 DSP 步态生成器生效
+  - 通用语义：参数 ≤ 0 或未发送时使用算法默认值（既有上位机程序无需修改）；超范围自动限幅；**下次起步（轨迹重新生成）时生效**，行走中修改不影响当前轨迹。膝限位任务的基座高度仍由膝限位角度自动计算（param_6 不生效）。
+
+🐛 **修复**
+
+- **膝限位步态任务缺失位置保护边界更新（安全相关）**：膝限位前向行走/原地踏步共 6 个任务（含助力变体）此前未在每周期更新关节位置保护边界，边界停留在任务激活时刻的「测量位置 ±0.25 rad」，关节一开始运动就会误触发位置保护失能。已补齐每周期边界更新，与基础任务行为一致。使用膝限位任务的设备升级后请回归验证一遍对应步态。
+
+🔧 **调整**
+
+- **步态生成器参数命名统一（内部重构，无行为变化）**：`H_max` 更名为 `step_height`（摆动脚最大抬升高度，与原地踏步链路既有命名统一），`H_com` 更名为 `base_height`（基座/骨盆高度）；`generate_mark_gait` 消除 `step_height`/`H_max` 冗余双参数。上位机接口字段与 `gait_data` 数据契约（`com_height` 等 key）保持不变。
+
+---
 
 ### 4.4.47
 
