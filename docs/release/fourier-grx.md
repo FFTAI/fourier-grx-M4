@@ -17,7 +17,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-08 | **4.4.44** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4444) | ✅ 支持中 |
+| 2026-10-10 | **4.4.45** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4445) | ✅ 支持中 |
+| 2026-10-08 | 4.4.44 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4444) | ❌ 不再支持 |
 | 2026-09-01 | 4.4.43 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4443) | ❌ 不再支持 |
 | 2026-08-28 | 4.4.42 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4442) | ❌ 不再支持 |
 | 2026-08-28 | 4.4.41 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4441) | ❌ 不再支持 |
@@ -62,13 +63,30 @@ has_toc: true
 
 ## 更新内容
 
+### 4.4.45
+
+> 📅 2026-10-10 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **速度/位置保护阈值真机标定**（详见 [速度保护与位置保护](/fourier-grx-M4/docs/reference/protection)）：
+  - 速度保护阈值由 15 rad/s 调整为 **4.5 rad/s**（约 258°/s）。依据真机实测：正常步态关节速度峰值约 3.5 rad/s，人工拉扯极限约 240~260°/s；旧值 15 rad/s 超过执行器输出端物理速度上限，实际上永远无法触发。
+  - 位置保护裕量由 0.35 rad 调整为 **0.25 rad**（约 14.3°）。依据真机实测关节位置超出合理范围 15° 即为极限，且需覆盖最差跟踪偏差约 0.21 rad。
+  - 位置保护边界与任务层目标位置均钳制到硬件限位（`joint_max/min_position`），防止极端参数组合（大步长+慢速）下指令越出关节限位。
+
+🐛 **修复**
+
+- **步态生成器 atan2 分支跳变导致关节猛甩（安全相关）**：大步长+慢速（如步长 0.8 m、速度 0.1 m/s）的停车过渡段，质心过渡轨迹过冲不可达，IK 的 `atan2` 在 ±180° 分支切割处跳变 2π，被低通滤波拖尾成高速斜坡，关节实测速度可达 12.5 rad/s。现按帧序列 `numpy.unwrap` 消除跳变，该工况下实测速度峰值降至 0.95 rad/s。已通过 33 组全参数闭环仿真回归验证：正常工况速度/位置保护零误触发，故障 0.08 s 内可靠触发。
+
+---
+
 ### 4.4.44
 
 > 📅 2026-10-08 &nbsp;·&nbsp; 平台：`linux/arm64`
 
 ✨ **新增**
 
-- **关节速度保护**：持续监测 4 个旋转关节速度，连续 5 个控制周期超过阈值（默认 15 rad/s）时自动失能（`TASK_SERVO_OFF`）进入保护态并锁存，避免异常超速伤害用户。
+- **关节速度保护**：持续监测 4 个旋转关节速度，连续 5 个控制周期超过阈值（v4.4.44 默认 15 rad/s，**v4.4.45 起标定为 4.5 rad/s**）时自动失能（`TASK_SERVO_OFF`）进入保护态并锁存，避免异常超速伤害用户。
 - **关节位置保护**：关节位置大幅超出任务发布的合理运动范围（范围随任务与步态参数自动调整，覆盖站立/原地踏步/前向行走系列任务）时自动失能进入保护态并锁存。
 - **上位机清错**：两种保护均置位独立标志位（`flag_robot_velocity_protection` / `flag_robot_position_protection`），上位机写入 `clear_flag_robot_velocity_protection` / `clear_flag_robot_position_protection` 清错后即可恢复控制。详见 [速度保护与位置保护](/fourier-grx-M4/docs/reference/protection)。
 

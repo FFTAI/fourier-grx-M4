@@ -18,7 +18,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-08 | **4.4.44** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | ✅ Active |
+| 2026-10-10 | **4.4.45** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | ✅ Active |
+| 2026-10-08 | 4.4.44 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | ❌ Unsupported |
 | 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | ❌ Unsupported |
 | 2026-08-28 | 4.4.42 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4442) | ❌ No longer supported |
 | 2026-08-28 | 4.4.41 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4441) | ❌ No longer supported |
@@ -63,13 +64,30 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 
 ## Release Notes
 
+### 4.4.45
+
+> 📅 2026-10-10 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Adjusted**
+
+- **Velocity/position protection thresholds calibrated on hardware** (see [Velocity & Position Protection](/fourier-grx-M4/docs/en/reference/protection) for details):
+  - Velocity protection threshold adjusted from 15 rad/s to **4.5 rad/s** (~258°/s). Basis: measured normal gait joint velocity peaks at ~3.5 rad/s, and the maximum speed a therapist can pull the leg by hand is ~240–260°/s; the old value of 15 rad/s exceeds the actuator's physical output-speed limit and could never trigger.
+  - Position protection margin adjusted from 0.35 rad to **0.25 rad** (~14.3°). Basis: measured on hardware, a joint position deviation beyond 15° from the reasonable range is already the extreme, and the margin must cover the worst-case tracking error of ~0.21 rad.
+  - Both the position protection bounds and the task-layer target positions are now clamped to the hardware joint limits (`joint_max/min_position`), preventing commands from exceeding joint limits under extreme parameter combinations (long step length + slow speed).
+
+🐛 **Fixed**
+
+- **Gait generator atan2 branch jump causing violent joint whipping (safety-related)**: during the stop transition of a long-step + slow-speed combination (e.g. step length 0.8 m, speed 0.1 m/s), the COM transition trajectory overshoots into an unreachable region, and the `atan2` in the IK jumps by 2π at the ±180° branch cut; the low-pass filter smears this into a high-speed ramp, producing measured joint velocities of up to 12.5 rad/s. The jump is now removed by per-frame `numpy.unwrap`; the measured velocity peak in this scenario drops to 0.95 rad/s. Verified by a 33-group full-parameter closed-loop simulation regression: zero false triggers under normal gait, and reliable triggering within 0.08 s under injected faults.
+
+---
+
 ### 4.4.44
 
 > 📅 2026-10-08 &nbsp;·&nbsp; Platform: `linux/arm64`
 
 ✨ **New**
 
-- **Joint velocity protection**: continuously monitors the velocity of the 4 rotary joints; if the velocity exceeds the threshold (default 15 rad/s) for 5 consecutive control cycles, all actuators are disabled (`TASK_SERVO_OFF`), the protection state is entered and latched, preventing harm from abnormal over-speed.
+- **Joint velocity protection**: continuously monitors the velocity of the 4 rotary joints; if the velocity exceeds the threshold (default 15 rad/s in v4.4.44, **calibrated to 4.5 rad/s since v4.4.45**) for 5 consecutive control cycles, all actuators are disabled (`TASK_SERVO_OFF`), the protection state is entered and latched, preventing harm from abnormal over-speed.
 - **Joint position protection**: if a joint position goes far beyond the reasonable motion range published by the active task (the range adapts automatically to the task and gait parameters, covering the stand / mark-time / forward-walk task families), all actuators are disabled, and the protection state is entered and latched.
 - **Host clearable**: both protections set independent flags (`flag_robot_velocity_protection` / `flag_robot_position_protection`); the host writes `clear_flag_robot_velocity_protection` / `clear_flag_robot_position_protection` to clear the error and resume control. See [Velocity & Position Protection](/fourier-grx-M4/docs/en/reference/protection) for details.
 

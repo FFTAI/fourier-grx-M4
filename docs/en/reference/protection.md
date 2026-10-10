@@ -19,24 +19,29 @@ While the M4L device is running, it continuously monitors joint velocity and joi
 
 | Protection | Monitored Object | Trigger Condition |
 |-----------|------------------|-------------------|
-| Velocity protection | Measured joint velocity of the 4 rotary joints (hip/knee) | Any rotary joint velocity exceeds the threshold (default 15 rad/s, tunable on hardware) for 5 consecutive control cycles |
+| Velocity protection | Measured joint velocity of the 4 rotary joints (hip/knee) | Any rotary joint velocity exceeds the threshold (default 4.5 rad/s, tunable on hardware) for 5 consecutive control cycles |
 | Position protection | Measured joint position | Any joint position stays outside the "reasonable motion range" (published by the active task, see below) for 5 consecutive control cycles |
 
 Notes:
 
 - **Debounce**: both protections require 5 consecutive control cycles beyond the limit before triggering, to avoid false triggers from measurement noise;
 - **Velocity protection** only monitors the 4 rotary joints by default; the prismatic joints (leg-length adjustment) are not covered;
-- **Normal gait never triggers the protections**: validated by full-parameter-range simulation — within the allowed command parameter ranges, the peak joint velocity of mark-time/forward-walk is at worst ~10 rad/s (threshold 15 rad/s), and the joint position always stays inside the task-published reasonable range.
+- **Normal gait never triggers the protections**: validated by full-parameter-range closed-loop simulation (33 gait-parameter groups × walk/stop, including start-up and command-step transients) — within the allowed command parameter ranges, the measured peak joint velocity of mark-time/forward-walk is at worst ~3.5 rad/s (threshold 4.5 rad/s), and the joint position always stays inside the task-published reasonable range.
 
 ### The "Reasonable Motion Range" of Position Protection
 
 The reasonable range **varies automatically with the task and gait parameters**, and is published by the active task:
 
-1. When the task is activated, the range is initialized to **current joint position ± margin** (default 0.35 rad);
-2. While running, the task merges the **reference trajectory extremes** and the **current commanded target position** into the range every cycle (union, grow-only) — therefore mark-time and forward-walk have different ranges, and the range follows automatically when gait parameters change mid-run;
+1. When the task is activated, the range is initialized to **current joint position ± margin** (default 0.25 rad);
+2. While running, the task clamps the **reference trajectory extremes** and the **current commanded target position** to the hardware joint limits (`joint_max/min_position`) first, then merges them into the range every cycle (union, grow-only) — therefore mark-time and forward-walk have different ranges, and the range follows automatically when gait parameters change mid-run;
 3. When the task exits, the range is reset to disabled (±inf).
 
 Position protection triggers only when the joint position goes **far beyond every position the task has ever commanded, plus the margin** — i.e. a genuine runaway. Normal tracking errors and start-transition segments do not trigger it.
+
+### Threshold Calibration Basis (v4.4.45)
+
+- **Velocity threshold 4.5 rad/s (~258°/s)**: measured on hardware — normal gait joint velocity peaks at ~3.5 rad/s, and the maximum speed a therapist can pull the leg by hand is ~240–260°/s. The previous default of 15 rad/s exceeds the actuator's physical output-speed limit and could never trigger; corrected in v4.4.45;
+- **Position margin 0.25 rad (~14.3°)**: measured on hardware — a joint position deviation beyond 15° from the reasonable range is already the extreme, and the margin must cover the worst simulated tracking error of ~0.21 rad.
 
 Tasks currently integrated with position protection: **stand, mark time, forward walk** and their derived tasks (knee-restriction series, application series, assist_adjust series). Calibration/test tasks are not integrated yet.
 

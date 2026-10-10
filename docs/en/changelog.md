@@ -14,6 +14,24 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.5 (2026-10-10)
+
+**Improvements**
+
+- ⚙️ Velocity protection threshold calibrated from 15 rad/s to **4.5 rad/s** (~258°/s): based on hardware measurements — normal gait peaks at ~3.5 rad/s and the maximum manual pull speed is ~240–260°/s; the old value exceeded the actuator's physical speed limit and could never trigger
+- ⚙️ Position protection margin calibrated from 0.35 rad to **0.25 rad** (~14.3°): based on hardware measurements — a deviation beyond 15° is already the extreme, covering the worst-case tracking error of ~0.21 rad
+- ⚙️ Position protection bounds and task-layer target positions are now clamped to the hardware joint limits, preventing out-of-limit commands under extreme parameter combinations
+
+**Fixes**
+
+- 🐛 Fixed a safety hazard where the gait generator's `atan2` branch jump caused violent joint whipping: during long-step + slow-speed stop transitions the measured joint velocity could reach 12.5 rad/s; per-frame unwrap reduces it to 0.95 rad/s
+
+**Version Updates**
+
+- 📦 `fourier-grx` updated to `4.4.45` (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+
+---
+
 ### v1.2.4 (2026-10-08)
 
 **New Features**
