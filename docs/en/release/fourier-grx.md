@@ -18,7 +18,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-10 | **4.4.45** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | ✅ Active |
+| 2026-10-10 | **4.4.46** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4446) | ✅ Active |
+| 2026-10-10 | 4.4.45 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | ❌ Unsupported |
 | 2026-10-08 | 4.4.44 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | ❌ Unsupported |
 | 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | ❌ Unsupported |
 | 2026-08-28 | 4.4.42 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4442) | ❌ No longer supported |
@@ -63,6 +64,16 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.46
+
+> 📅 2026-10-10 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Adjusted**
+
+- **Overload protection (over_load) now debounced by 5 control cycles**: aligned with the velocity/position protections — the protection triggers only when the joint effort exceeds the threshold (140 Nm rotary / 18 N prismatic) for 5 consecutive control cycles (100 ms), preventing false triggers from current/torque measurement spikes (motor commutation, transient impacts, sudden patient kicks). For sustained overload, the original safety semantics are preserved: `TASK_SERVO_OFF` is re-forced every 5 cycles until the effort recovers or the host clears the flag.
+
+---
 
 ### 4.4.45
 

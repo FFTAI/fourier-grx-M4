@@ -17,7 +17,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-10 | **4.4.45** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4445) | ✅ 支持中 |
+| 2026-10-10 | **4.4.46** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4446) | ✅ 支持中 |
+| 2026-10-10 | 4.4.45 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4445) | ❌ 不再支持 |
 | 2026-10-08 | 4.4.44 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4444) | ❌ 不再支持 |
 | 2026-09-01 | 4.4.43 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4443) | ❌ 不再支持 |
 | 2026-08-28 | 4.4.42 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4442) | ❌ 不再支持 |
@@ -62,6 +63,16 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.46
+
+> 📅 2026-10-10 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **过力保护（over_load）加入 5 周期消抖**：与速度/位置保护对齐，关节力矩连续 5 个控制周期（100 ms）超过阈值（旋转关节 140 Nm、直线关节 18 N）才触发失能，避免电流/力矩测量尖峰（电机换向、异物瞬时冲击、患者突然蹬腿）导致误触发。持续过力场景下保持每 5 周期重复强制 `TASK_SERVO_OFF` 的原有安全语义，直至力矩恢复或上位机清错。
+
+---
 
 ### 4.4.45
 

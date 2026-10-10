@@ -14,6 +14,18 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.6 (2026-10-10)
+
+**Improvements**
+
+- ⚙️ Overload protection (over_load) now debounced by 5 control cycles: the protection triggers only when the joint effort exceeds the threshold for 5 consecutive control cycles (100 ms), preventing false triggers from current/torque measurement spikes; for sustained overload, the safety semantics of re-forcing servo-off every 5 cycles are preserved
+
+**Version Updates**
+
+- 📦 `fourier-grx` updated to `4.4.46` (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+
+---
+
 ### v1.2.5 (2026-10-10)
 
 **Improvements**
