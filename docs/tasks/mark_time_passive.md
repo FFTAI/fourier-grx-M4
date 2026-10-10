@@ -26,11 +26,14 @@ has_toc: true
 | 小腿长度     | `float` | 0.5   | [0.3, 0.6]    | 机器人的小腿长度，单位为 m。                            |
 | 抬腿高度     | `float` | 0.1   | [0.1, 0.4]    | 机器人每一步的抬腿高度，单位为 m。                          |
 | 步行周期     | `float` | 1.0   | [0.5, 4.0]    | 原地踏步的单步周期，即完成一次完整踏步循环所需的时间，单位为 s。值越小踏步频率越高，值越大踏步越慢。                            |
+| 基座高度     | `float` | None  | [0.6, 1.2]    | 踏步时基座（骨盆）离地高度，单位为 m。≤ 0 或未发送时自动取大腿+小腿长度之和。超出范围会被限幅到该范围内。下次起步（轨迹重新生成）时生效，踏步过程中修改不影响当前正在执行的轨迹。 |
 | 启动运动标志位  | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位  | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
 | 暂停运动标志位  | `bool`  | false | (true, false) | 是否暂停运动，true 表示暂停，需重启任务才能继续行走。              |
 | 启用力矩保护开关 | `bool`  | false | (true, false) | 是否启用力矩保护功能                                 |
 | 保护力矩限值   | `float` | None  | [0.0, 200.0]  | 踏步过程中任意关节允许的最大输出力矩，单位为 Nm。当任一关节实时力矩超过此限值时，任务将暂停并置位"任务暂停标志"。仅在启用力矩保护时生效，默认不启用。           |
+
+> 说明：本任务的抬腿高度仍由既有"抬腿高度"接口 `grx.virtual_panel_command_param_1` 设置，新增的面板接口 `param_7`/`param_8` 对本任务不生效。
 
 ## 模块信息
 
@@ -64,6 +67,7 @@ has_toc: true
 | 小腿长度     | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, 取均值 |
 | 抬腿高度     | `grx.virtual_panel_command_param_1`                                                      |
 | 步行周期     | `grx.virtual_panel_command_param_2`                                                      |
+| 基座高度     | `grx.virtual_panel_command_param_6`                                                      |
 | 启动运动标志位  | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位  | `grx.virtual_panel_command_stop`                                                         |
 | 暂停运动标志位  | `grx.virtual_panel_command_pause`                                                        |
@@ -73,3 +77,4 @@ has_toc: true
 ## 更新日志
 
 - `fourier-grx` v4.0.0 版本新增该功能。
+- `fourier-grx` v4.4.48 版本新增基座高度参数接口。

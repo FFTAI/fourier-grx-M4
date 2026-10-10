@@ -25,8 +25,11 @@ has_toc: true
 | 抬腿高度    | `float` | 0.1   | [0.1, 0.4]    | 机器人每一步的抬腿高度，单位为 m。                          |
 | 步行周期    | `float` | 1.0   | [0.5, 4.0]    | 原地踏步的单步周期，即完成一次完整踏步循环所需的时间，单位为 s。值越小踏步频率越高，值越大踏步越慢。                            |
 | 助力系数    | `float` | 0.5   | [0.0, 1.0]    | 关节 PD 控制刚度的调节系数，取值范围 [0.0, 1.0]。系数越小，关节越柔顺，患者自主发力空间越大；系数越大，关节刚度越高，轨迹跟踪能力越强。                           |
+| 基座高度    | `float` | None  | [0.6, 1.2]    | 踏步时基座（骨盆）离地高度，单位为 m。≤ 0 或未发送时自动取大腿+小腿长度之和。超出范围会被限幅到该范围内。下次起步（轨迹重新生成）时生效，踏步过程中修改不影响当前正在执行的轨迹。 |
 | 启动运动标志位 | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位 | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
+
+> 说明：本任务的抬腿高度仍由既有"抬腿高度"接口 `grx.virtual_panel_command_param_1` 设置，新增的面板接口 `param_7`/`param_8` 对本任务不生效。
 
 > **助力系数说明**：
 >
@@ -75,9 +78,11 @@ has_toc: true
 | 抬腿高度    | `grx.virtual_panel_command_param_1`                                                      |
 | 步行周期    | `grx.virtual_panel_command_param_2`                                                      |
 | 助力系数    | `grx.virtual_panel_command_param_3`                                                      |
+| 基座高度    | `grx.virtual_panel_command_param_6`                                                      |
 | 启动运动标志位 | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位 | `grx.virtual_panel_command_stop`                                                         |
 
 ## 更新日志
 
 - `fourier-grx` v4.0.0 版本新增该功能。
+- `fourier-grx` v4.4.48 版本新增基座高度参数接口。

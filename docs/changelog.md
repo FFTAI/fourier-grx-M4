@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.8 (2026-10-10)
+
+**文档更新**
+
+- 📖 新增步态任务参数接口说明（对应 `fourier-grx` v4.4.48）：基座高度 base_height（`grx.virtual_panel_command_param_6`）、抬腿高度 step_height（`grx.virtual_panel_command_param_7`，仅前向行走类任务）、双支撑期占比 dsp_ratio（`grx.virtual_panel_command_param_8`，仅前向行走类任务且仅 DSP 步态生成器生效）；涉及前向行走、助力前向行走、膝限位前向行走、原地踏步、助力原地踏步等任务页面，中英文文档同步更新
+
+---
+
 ### v1.2.7 (2026-10-10)
 
 **新增功能**

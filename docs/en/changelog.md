@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.8 (2026-10-10)
+
+**Documentation Updates**
+
+- 📖 Added documentation for the new gait task parameter interfaces (corresponding to `fourier-grx` v4.4.48): Base height base_height (`grx.virtual_panel_command_param_6`), step lift height step_height (`grx.virtual_panel_command_param_7`, forward-walk tasks only), and double-support ratio dsp_ratio (`grx.virtual_panel_command_param_8`, forward-walk tasks only, effective only for the DSP gait generator); covers the forward walk, assist forward walk, knee-restriction forward walk, mark time, and assist mark time task pages, with Chinese and English documentation updated in sync
+
+---
+
 ### v1.2.7 (2026-10-10)
 
 **New Features**

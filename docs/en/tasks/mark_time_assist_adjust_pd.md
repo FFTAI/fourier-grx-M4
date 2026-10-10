@@ -26,8 +26,11 @@ Task Parameters:
 | Step lift height | `float` | 0.1 | [0.1, 0.4] | The leg lift height for each step, in m. |
 | Step cycle | `float` | 1.0 | [0.5, 4.0] | The single-step cycle for mark time — the time required to complete one full stepping cycle, in s. A smaller value means a higher step frequency; a larger value means slower stepping. |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | The adjustment coefficient for joint PD control stiffness, in the range [0.0, 1.0]. A smaller value makes the joints more compliant, giving the patient more room for active effort; a larger value increases joint stiffness and trajectory-tracking capability. |
+| Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while stepping, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of stepping (trajectory regeneration); changes made while stepping do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start the motion. true = start; false = do not start (has no effect if already started). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop the motion. true = stop; false = continue stepping. |
+
+> Note: In this task, the step lift height is still set via the existing `grx.virtual_panel_command_param_1` interface (see the "Step lift height" row above); the new panel interfaces `param_7`/`param_8` have no effect on this task.
 
 > **Assist Ratio Explanation**:
 >
@@ -76,9 +79,11 @@ Command Interface:
 | Step lift height | `grx.virtual_panel_command_param_1` |
 | Step cycle | `grx.virtual_panel_command_param_2` |
 | Assist ratio | `grx.virtual_panel_command_param_3` |
+| Base height (pelvis height) | `grx.virtual_panel_command_param_6` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.
+- `fourier-grx` v4.4.48 added the base height parameter interface.

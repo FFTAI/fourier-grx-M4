@@ -32,8 +32,11 @@ Task Parameters:
 | Assist trigger force upper | `float` | 2.0 | [-∞, +∞] | Torque threshold that triggers an **increase** in assist ratio in auto assist mode, in Nm. When measured joint torque exceeds this value, the assist ratio automatically increases by 0.04. |
 | Assist trigger force lower | `float` | 1.0 | [-∞, +∞] | Torque threshold that triggers a **decrease** in assist ratio in auto assist mode, in Nm. When measured joint torque falls below this value, the assist ratio automatically decreases by 0.001. |
 | Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio every control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory (+0.04 when the patient exerts effort, -0.001 when the patient's effort is insufficient), without manual setting. The assist ratio is always clamped to [0.0, 1.0]. |
+| Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while stepping, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of stepping (trajectory regeneration); changes made while stepping do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start the motion. true = start; false = do not start (has no effect if already started). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop the motion. true = stop; false = continue stepping. |
+
+> Note: In this task, the step lift height is still set via the existing `grx.virtual_panel_command_param_1` interface (see the "Step lift height" row above); the new panel interfaces `param_7`/`param_8` have no effect on this task.
 
 > **Assist Ratio Explanation**:
 >
@@ -96,6 +99,7 @@ Command Interface:
 | Assist ratio | `grx.virtual_panel_command_param_3` |
 | Assist trigger force upper | `grx.virtual_panel_command_param_4` |
 | Assist trigger force lower | `grx.virtual_panel_command_param_5` |
+| Base height (pelvis height) | `grx.virtual_panel_command_param_6` |
 | Auto assist mode flag | `grx.virtual_panel_command_switch_1` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
@@ -106,3 +110,4 @@ Command Interface:
 - Added `Assist trigger force upper` / `Assist trigger force lower` parameters as configurable absolute torque thresholds for auto assist mode. Experimental testing showed that including the gravity compensation term G[i] in the threshold formula caused system instability; the G[i] coefficient has been set to zero and the configured values are used directly as absolute thresholds.
 - `fourier-grx` v4.4.25: Adjusted the auto-decrement of the assist trigger lower threshold from -0.01 to -0.001, avoiding assist instability caused by the assist ratio falling back too quickly in mark time scenarios; the +0.02 increment of the upper threshold (since v4.4.24) remains unchanged.
 - `fourier-grx` v4.4.30: Adjusted the auto-increment of the assist trigger upper threshold from +0.02 to +0.04, further speeding up the assist response when the user exerts effort.
+- `fourier-grx` v4.4.48 added the base height parameter interface.

@@ -27,6 +27,9 @@ Task Parameters:
 | Lower leg length | `float` | 0.5 | [0.3, 0.6] | The robot's lower leg (shank) length, in m. |
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
+| Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while walking, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
+| Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
+| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Only effective for the DSP gait generator. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
 | Pause motion flag | `bool` | false | (true, false) | Whether to pause motion. true = pause; the task must be restarted to resume walking. |
@@ -68,6 +71,9 @@ Command interface:
 | Lower leg length | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, averaged |
 | Step length | `grx.virtual_panel_command_param_1` |
 | Walking speed | `grx.virtual_panel_command_param_2` |
+| Base height (pelvis height) | `grx.virtual_panel_command_param_6` |
+| Step lift height | `grx.virtual_panel_command_param_7` |
+| Double-support ratio | `grx.virtual_panel_command_param_8` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 | Pause motion flag | `grx.virtual_panel_command_pause` |
@@ -77,3 +83,4 @@ Command interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.
+- `fourier-grx` v4.4.48 added the base height / step lift height / double-support ratio parameter interfaces.

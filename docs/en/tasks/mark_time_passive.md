@@ -27,11 +27,14 @@ Task Parameters:
 | Shank length | `float` | 0.5 | [0.3, 0.6] | The robot's shank length, in m. |
 | Step lift height | `float` | 0.1 | [0.1, 0.4] | The leg lift height for each step, in m. |
 | Step cycle | `float` | 1.0 | [0.5, 4.0] | The single-step cycle for mark time — the time required to complete one full stepping cycle, in s. A smaller value means a higher step frequency; a larger value means slower stepping. |
+| Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while stepping, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of stepping (trajectory regeneration); changes made while stepping do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start the motion. true = start; false = do not start (has no effect if already started). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop the motion. true = stop; false = continue stepping. |
 | Pause motion flag | `bool` | false | (true, false) | Whether to pause the motion. true = pause; the task must be restarted to continue stepping. |
 | Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. |
 | Torque protection limit | `float` | None | [0.0, 200.0] | The maximum allowable output torque for any joint during stepping, in Nm. If the real-time torque of any joint exceeds this limit, the task will pause and set the task pause flag. Only effective when torque protection is enabled; disabled by default. |
+
+> Note: In this task, the step lift height is still set via the existing `grx.virtual_panel_command_param_1` interface (see the "Step lift height" row above); the new panel interfaces `param_7`/`param_8` have no effect on this task.
 
 ## Module Info
 
@@ -65,6 +68,7 @@ Command Interface:
 | Shank length | `grx.virtual_user_lower_leg_length_left`, `grx.virtual_user_lower_leg_length_right`, averaged |
 | Step lift height | `grx.virtual_panel_command_param_1` |
 | Step cycle | `grx.virtual_panel_command_param_2` |
+| Base height (pelvis height) | `grx.virtual_panel_command_param_6` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 | Pause motion flag | `grx.virtual_panel_command_pause` |
@@ -74,3 +78,4 @@ Command Interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.
+- `fourier-grx` v4.4.48 added the base height parameter interface.

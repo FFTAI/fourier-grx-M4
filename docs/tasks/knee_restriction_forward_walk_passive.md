@@ -27,9 +27,13 @@ has_toc: true
 | 右腿膝关节受限角度 | `float` | 0.0   | [0.0, 1.0]    | 右腿膝关节的最小弯曲角度限制，单位为 rad。运动轨迹中膝关节角度不会低于此值（即不会过度伸展超过此限制）。0.0 表示不限制（允许完全伸直）。                    |
 | 步长长度      | `float` | 0.5   | [0.2, 0.8]    | 机器人每一步的长度，单位为 m。                           |
 | 步行速度      | `float` | 0.5   | [0.1, 1.2]    | 机器人前进的目标速度，单位为 m/s。单步持续时间 = 步长 ÷ 步行速度（例如步长 0.5 m、步速 0.5 m/s 时，单步用时约 1.0 s）。                          |
+| 抬腿高度      | `float` | 0.1   | [0.05, 0.2]   | 摆动脚最大抬升高度，单位为 m。≤ 0 或未发送时使用默认值。超出范围会被限幅到该范围内。下次起步（轨迹重新生成）时生效，行走过程中修改不影响当前正在执行的轨迹。 |
+| 双支撑期占比    | `float` | 0.2   | [0.1, 0.3]    | 双支撑期时间占单步周期的比例。≤ 0 或未发送时使用默认值。超出范围会被限幅到该范围内。仅 DSP 步态生成器生效。下次起步（轨迹重新生成）时生效，行走过程中修改不影响当前正在执行的轨迹。 |
 | 启动运动标志位   | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
 
+
+> 说明：本任务的基座高度由膝关节受限角度与腿长自动计算，`grx.virtual_panel_command_param_6`（基座高度）接口对本任务不生效。
 
 > **膝关节受限角度说明**：
 >
@@ -78,6 +82,8 @@ has_toc: true
 | 右腿膝关节受限角度 | `grx.virtual_user_knee_restriction_right`                                                |
 | 步长长度      | `grx.virtual_panel_command_param_1`                                                      |
 | 步行速度      | `grx.virtual_panel_command_param_2`                                                      |
+| 抬腿高度      | `grx.virtual_panel_command_param_7`                                                      |
+| 双支撑期占比    | `grx.virtual_panel_command_param_8`                                                      |
 | 启动运动标志位   | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
 | 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`                                                     |
@@ -86,3 +92,4 @@ has_toc: true
 ## 更新日志
 
 - `fourier-grx` v4.2.2 版本新增该功能。
+- `fourier-grx` v4.4.48 版本新增抬腿高度/双支撑期占比参数接口（基座高度由膝限位角度与腿长自动计算）。

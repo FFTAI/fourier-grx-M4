@@ -32,9 +32,13 @@ Task Parameters:
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal walking pace); a lower value plays it slower, giving the patient more time to follow the motion. |
 | Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio each control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory (+0.02 when the patient pushes, −0.01 when the patient is not contributing), with no manual setting required; the assist ratio is always clamped to [0.0, 1.0]. |
+| Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
+| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Only effective for the DSP gait generator. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
 
+
+> Note: In this task, the base height is computed automatically from the knee restriction angle and leg lengths; the `grx.virtual_panel_command_param_6` (base height) interface has no effect on this task.
 
 > **Knee Restriction Angle Explained**:
 >
@@ -98,6 +102,8 @@ Command interface:
 | Step length | `grx.virtual_panel_command_param_1` |
 | Walking speed | `grx.virtual_panel_command_param_2` |
 | Assist ratio | `grx.virtual_panel_command_param_3` |
+| Step lift height | `grx.virtual_panel_command_param_7` |
+| Double-support ratio | `grx.virtual_panel_command_param_8` |
 | Auto assist mode flag | `grx.virtual_panel_command_switch_1` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
@@ -106,3 +112,4 @@ Command interface:
 
 - Added in `fourier-grx` v4.0.0.
 - `fourier-grx` v4.4.24 adjusted the auto assist mode increments: from the symmetric ±0.01 to +0.02 (increased when the user pushes) / −0.01 (decreased when the user is not contributing), speeding up the assist response.
+- `fourier-grx` v4.4.48 added the step lift height / double-support ratio parameter interfaces (the base height is computed automatically from the knee restriction angle and leg lengths).
