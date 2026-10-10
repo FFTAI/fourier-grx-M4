@@ -211,6 +211,7 @@ Key description list:
 | `reference_joint_position_max` | Joint reference maximum position   | array(float) | Maximum target position for each joint over the entire motion trajectory, unit: radians. Can be used to display joint range of motion on the host PC. |
 | `reference_joint_position_min` | Joint reference minimum position   | array(float) | Minimum target position for each joint over the entire motion trajectory, unit: radians. Can be used to display joint range of motion on the host PC. |
 | `motion_ratio`                 | Motion progress ratio              | float        | Completion ratio of the current task's motion, range [0, 1]. Can be used for progress display or multi-device synchronization.          |
+| `step_frequency`               | Step frequency (cadence)           | float        | Cadence of the active gait task, unit: **steps/min** (= 60 / single-step period T_step). Derived automatically from the current gait trajectory and updates in real time when step length / speed commands change. Published only by the forward-walk and mark-time task families (0 for other tasks). Can be used by the host PC to display cadence or accumulate training volume statistics. |
 
 ---
 
