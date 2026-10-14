@@ -14,6 +14,16 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.9 (2026-10-14)
+
+**Documentation Updates**
+
+- 📖 **Release entries backfilled**: added the Chinese and English release notes for the three already officially released versions v4.4.49 (built-in web debugging host, configuration preserved on upgrade), v4.4.50 (web UI second-level grouping / Chinese parameter labels / virtual user leg length commands), and v4.4.51 (virtual panel draft mode)
+- 🆕 **New task documentation**: left-leg / right-leg separate manual rotary joint calibration `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG` (4122) / `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG` (4123); the Chinese and English task indexes and the manual calibration task page are updated accordingly; these two tasks are available since v4.4.53
+- ℹ️ **About v4.4.52 / v4.4.53**: these two versions currently provide pre-release builds only (not listed in the download lists on this page). Pre-release builds are not discovered by the automatic probing of `fourier-grx update` and must be installed explicitly: `fourier-grx update <version>-prerelease` (e.g. `fourier-grx update 4.4.53-prerelease`). Download links will be added following this page's conventions once they are officially released
+
+---
+
 ### v1.2.8 (2026-10-10)
 
 **Documentation Updates**

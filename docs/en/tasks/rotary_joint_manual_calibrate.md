@@ -26,6 +26,10 @@ Task Description:
   | Zero-point determination | User manually positions the joints | The robot automatically drives to the mechanical limits and retracts |
   | Applicable scenarios | Quick on-site calibration, known zero posture | Standard power-on calibration, first-time use |
   | Suspension required | No (depends on the target zero posture) | Yes (both feet off the ground) |
+- Single-leg variants (TID 4122 / 4123): only the rotary joints of **that** leg are powered off and have their zero point set, while the other leg holds its position throughout — convenient for positioning one leg at a time by hand.
+  - `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG` (TID 4122): left-leg rotary joints, joint index 0-1
+  - `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG` (TID 4123): right-leg rotary joints, joint index 2-3
+  - Robot-wide calibration completion flag `flag_calibration`: each single-leg task records that leg as calibrated (`flag_calibration_left_leg` / `flag_calibration_right_leg`), and the robot-wide `flag_calibration` is set only **after both legs have been calibrated**; when TID 4121 is executed directly (both legs calibrated together), both are set at the same time. Therefore "4122 followed by 4123" and "one run of 4121" are equivalent in terms of the resulting flags.
 
 Task Parameters:
 
@@ -88,3 +92,4 @@ Command Interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.4.22.
+- Left-leg / right-leg separate manual calibration variants added in `fourier-grx` v4.4.53 (TID 4122 / 4123): available since v4.4.53 (v4.4.53 has not been officially released yet; currently available through pre-release channels only).

@@ -25,6 +25,10 @@ has_toc: true
   | 零位确定方式 | 用户手动摆放关节 | 机器自动驱动至机械限位后回退 |
   | 适用场景 | 快速现场校准、已知零位姿态 | 标准上电校准、初次使用 |
   | 需要悬挂 | 否（取决于目标零位姿态） | 是（需双脚离地） |
+- 单腿变体（TID 4122 / 4123）：仅对**该侧**旋转关节执行下电与设置零点，另一条腿全程保持位置不动，便于用户逐条腿手动摆位。
+  - `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG`（TID 4122）：左腿旋转关节，关节索引 0-1
+  - `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG`（TID 4123）：右腿旋转关节，关节索引 2-3
+  - 整机标定完成标志 `flag_calibration`：单腿任务各自记录该腿已完成（`flag_calibration_left_leg` / `flag_calibration_right_leg`），**左右腿都标定过之后**整机 `flag_calibration` 才置位；直接执行 TID 4121（双腿一起标定）时两者同时置位。因此「先 4122 再 4123」与「执行一次 4121」在标志结果上等价。
 
 任务参数：
 
@@ -87,3 +91,4 @@ has_toc: true
 ## 更新日志
 
 - `fourier-grx` v4.4.22 版本新增该功能。
+- `fourier-grx` v4.4.53 版本新增左腿 / 右腿单独手动校准变体（TID 4122 / 4123）：自 v4.4.53 起提供（v4.4.53 尚未正式发布，当前仅通过预发布渠道提供）。

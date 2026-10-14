@@ -17,7 +17,10 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-10 | **4.4.48** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4448) | ✅ 支持中 |
+| 2026-10-12 | **4.4.51** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4451) | ✅ 支持中 |
+| 2026-10-12 | 4.4.50 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4450) | ❌ 不再支持 |
+| 2026-10-12 | 4.4.49 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4449) | ❌ 不再支持 |
+| 2026-10-10 | 4.4.48 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4448) | ❌ 不再支持 |
 | 2026-10-10 | 4.4.47 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4447) | ❌ 不再支持 |
 | 2026-10-10 | 4.4.46 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4446) | ❌ 不再支持 |
 | 2026-10-10 | 4.4.45 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4445) | ❌ 不再支持 |
@@ -65,6 +68,39 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.51
+
+> 📅 2026-10-12 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **虚拟面板改为「编辑与下发分离」的草稿模式**：web 调试上位机的参数面板不再随拖动即时下发指令，改动先累积为草稿，确认无误后点击「下发」才真正发送到机器人；面板提供「复位」按钮把全部参数回到当前生效值。避免调参过程中误触发机器人动作。
+
+---
+
+### 4.4.50
+
+> 📅 2026-10-12 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **任务按钮二级分组**：web 调试上位机的任务列表按任务编号区间自动归入二级分组（如「旋转关节 · 基础」「旋转关节 · 助力」「旋转关节 · 校准」等），同一小类的按钮连续排列，长列表查找更快。
+- **面板参数中文语义标签**：虚拟面板的 9 个参数槽位显示中文语义名称（如基座高度、抬腿高度、双支撑期占比等），不再只显示 param_N。
+- **虚拟用户腿长下发**：web 调试上位机可直接下发上位机用户参数 `upper_leg_length` / `lower_leg_length`（大腿 / 小腿长度，单位 m）。
+
+---
+
+### 4.4.49
+
+> 📅 2026-10-12 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **内置 web 调试上位机**：固件自带局域网网页调试界面，机器人上执行 `fourier-grx web` 后，同一局域网内的电脑浏览器访问 `http://<机器人IP>:8000` 即可使用（`--host` / `--port` 可改监听地址与端口）。界面提供任务下发、虚拟摇杆、虚拟面板参数、急停按钮与实时状态监视；与机器人之间通过 UDP + msgpack 通信，并会通过 UDP 广播自动发现机器人地址，无需手动填写 IP。纯调试工具，不参与机器人正常运行。
+- **升级安装保留用户配置**：`fourier-grx install` 升级时会先把旧目录备份到 `~/fourier-grx-bak`，配置环节优先提示沿用备份里的旧配置，避免升级后需要重新配置网络等选项。
+
+---
 
 ### 4.4.48
 

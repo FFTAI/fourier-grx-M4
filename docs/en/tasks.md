@@ -38,6 +38,8 @@ Common task command examples for M4 robots:
 | TASK_ROTARY_JOINT_MOVE_BACK                       | 4106             | M4L               | Return rotary joints to a safe position                                   |
 | TASK_ROTARY_JOINT_AUTO_CALIBRATE                  | 4120             | M4L               | Automatic rotary joint calibration (boundary detection → power off → set zero, three sequential steps) |
 | TASK_ROTARY_JOINT_MANUAL_CALIBRATE                | 4121             | M4L               | Manual rotary joint calibration (power off → user manually positions joints → set zero, two sequential steps) |
+| TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG       | 4122             | M4L               | Manual rotary joint calibration for the left leg only (only the left leg powers off and sets its zero point; the right leg stays in support) |
+| TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG      | 4123             | M4L               | Manual rotary joint calibration for the right leg only (only the right leg powers off and sets its zero point; the left leg stays in support) |
 | TASK_PRISMATIC_JOINT_AUTO_CALIBRATE               | 4210             | M4L               | Automatic prismatic joint calibration (must be performed first after power-on) |
 | TASK_PRISMATIC_JOINT_MOVE_LENGTH                  | 4206             | M4L               | Leg-length adjustment (absolute position command)                         |
 | TASK_PRISMATIC_JOINT_MOVE_OFFSET                  | 4207             | M4L               | Relative leg-length adjustment (offset from the current position, no re-calibration required) |

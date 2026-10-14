@@ -18,7 +18,10 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-10 | **4.4.48** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4448) | ✅ Active |
+| 2026-10-12 | **4.4.51** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4451) | ✅ Active |
+| 2026-10-12 | 4.4.50 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4450) | ❌ Unsupported |
+| 2026-10-12 | 4.4.49 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4449) | ❌ Unsupported |
+| 2026-10-10 | 4.4.48 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4448) | ❌ Unsupported |
 | 2026-10-10 | 4.4.47 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4447) | ❌ Unsupported |
 | 2026-10-10 | 4.4.46 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4446) | ❌ Unsupported |
 | 2026-10-10 | 4.4.45 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | ❌ Unsupported |
@@ -66,6 +69,39 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.51
+
+> 📅 2026-10-12 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Virtual panel switched to draft mode (edit and send separated)**: the parameter panel of the web debugging host no longer dispatches commands immediately while you drag a slider — changes accumulate as a draft first and are only actually sent to the robot once you click "Send" after confirming them. The panel also provides a "Reset" button that returns all parameters to the currently effective values. This prevents accidentally triggering robot motion while tuning parameters.
+
+---
+
+### 4.4.50
+
+> 📅 2026-10-12 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Second-level grouping of task buttons**: the task list of the web debugging host automatically groups tasks into second-level groups by TID range (e.g. "Rotary Joint · Basic", "Rotary Joint · Assist", "Rotary Joint · Calibrate"), so buttons of the same sub-category stay in one continuous block and long lists are faster to search.
+- **Semantic labels for panel parameters**: the 9 parameter slots of the virtual panel now display semantic names (base height, step lift height, double-support ratio, etc.) instead of only param_N.
+- **Virtual user leg length commands**: the web debugging host can now directly send the host user parameters `upper_leg_length` / `lower_leg_length` (thigh / shank length, unit m).
+
+---
+
+### 4.4.49
+
+> 📅 2026-10-12 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Built-in web debugging host**: the firmware now ships a LAN web debugging interface. Run `fourier-grx web` on the robot, then open `http://<robot-IP>:8000` in a browser on any computer in the same LAN (`--host` / `--port` change the listening address and port). The interface provides task dispatch, a virtual joystick, virtual panel parameters, an emergency stop button, and real-time state monitoring; it communicates with the robot over UDP + msgpack and discovers the robot address automatically via UDP broadcast, so the IP does not need to be filled in manually. A pure debugging tool — it does not take part in normal robot operation.
+- **User configuration preserved on upgrade install**: `fourier-grx install` now first backs the old directory up to `~/fourier-grx-bak` when upgrading, and the configuration step preferentially offers to reuse the old configuration from the backup, so options such as networking do not need to be configured again after an upgrade.
+
+---
 
 ### 4.4.48
 

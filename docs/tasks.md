@@ -37,6 +37,8 @@ M4 机器人常见任务指令示例：
 | TASK_ROTARY_JOINT_MOVE_BACK                    | 4106      | M4L  | 旋转关节回退到安全位置                     |
 | TASK_ROTARY_JOINT_AUTO_CALIBRATE               | 4120      | M4L  | 旋转关节自动校准（边界检测→下电→设置零点，三步连贯）  |
 | TASK_ROTARY_JOINT_MANUAL_CALIBRATE             | 4121      | M4L  | 旋转关节手动校准（下电→用户手动摆位→设置零点，两步连贯） |
+| TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG    | 4122      | M4L  | 左腿旋转关节单独手动校准（仅左腿下电与设零点，右腿保持支撑） |
+| TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG   | 4123      | M4L  | 右腿旋转关节单独手动校准（仅右腿下电与设零点，左腿保持支撑） |
 | TASK_PRISMATIC_JOINT_AUTO_CALIBRATE            | 4210      | M4L  | 腿长调节关节自动校准（上电后需首先执行）          |
 | TASK_PRISMATIC_JOINT_MOVE_LENGTH               | 4206      | M4L  | 腿长调节（绝对位置指令）                     |
 | TASK_PRISMATIC_JOINT_MOVE_OFFSET               | 4207      | M4L  | 腿长相对调节（相对当前位置偏移，无需重新标定）      |
