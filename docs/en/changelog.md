@@ -14,6 +14,16 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.10 (2026-10-14)
+
+**Documentation Updates**
+
+- 📦 `fourier-grx` v4.4.53 officially released: its release notes and download link have been added, and v4.4.51 moved to unsupported (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+- 📖 The pre-release channel syntax `fourier-grx update <version>-prerelease` is available since v4.4.53; earlier versions must install manually with `sudo dpkg -i`
+- ℹ️ v4.4.52 was never officially released; the version number goes directly from 4.4.51 to 4.4.53
+
+---
+
 ### v1.2.9 (2026-10-14)
 
 **Documentation Updates**

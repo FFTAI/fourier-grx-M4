@@ -18,7 +18,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-12 | **4.4.51** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4451) | ✅ Active |
+| 2026-10-14 | **4.4.53** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4453) | ✅ Active |
+| 2026-10-12 | 4.4.51 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4451) | ❌ Unsupported |
 | 2026-10-12 | 4.4.50 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4450) | ❌ Unsupported |
 | 2026-10-12 | 4.4.49 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4449) | ❌ Unsupported |
 | 2026-10-10 | 4.4.48 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4448) | ❌ Unsupported |
@@ -69,6 +70,23 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 ---
 
 ## Release Notes
+
+### 4.4.53
+
+> 📅 2026-10-14 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Separate left-leg / right-leg manual calibration**: added `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG` (4122) / `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG` (4123). Only the joints on that side are powered off and have their zero point set (left leg joint indices 0-1, right leg 2-3) while the other leg stays under position control throughout. The robot-wide `flag_calibration` is only set once both legs have completed calibration, so "running 4122 followed by 4123" and "running 4121 once" are equivalent in terms of the calibration flags. See [Manual Calibrate (Rotary Joint)](/fourier-grx-M4/docs/en/tasks/rotary_joint_manual_calibrate) for details.
+
+🔧 **Adjusted**
+
+- **Rotary joint PD baseline unified to the hard profile on M4LT1 / M4LT2** (kp 600, 500, 600, 500 / kd 30 × 4): all rotary joint tasks now start from the hard profile instead of starting soft and ramping up afterwards. The compliance-related assist_adjust_pd tasks still interpolate between the buttery and soft profiles according to `assist_ratio`, so the feel of the compliance adjustment is unaffected.
+- **Pure velocity criterion added to the arrival detection of leg-length adjustment (prismatic joints)**: in the `motion_ratio ≥ 0.20` range, the position is considered reached once the velocity stays below 0.001 m/s for 5 s (the previous criterion required an effort ≥ 6 Nm sustained for 0.2 s), fixing the cases where arrival was never detected because the effort never built up.
+- **Knee-restriction tasks reuse the robot model parameters**: for M4LP1 the knee-restriction forward-walk energy threshold now takes the model value of 50 J instead of the hard-coded 30 J; for mark_time it is 70 J on all models, unchanged.
+- **Pre-release channel and the `fourier-grx update <version>-prerelease` syntax added**: pre-release packages are not found by the argument-free automatic probe. This syntax is available since v4.4.53; on earlier versions, install manually with `sudo dpkg -i <deb>`.
+
+---
 
 ### 4.4.51
 

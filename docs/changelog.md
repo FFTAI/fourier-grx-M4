@@ -13,6 +13,16 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.10 (2026-10-14)
+
+**文档更新**
+
+- 📦 `fourier-grx` v4.4.53 正式发布：补录发布说明与下载链接，v4.4.51 转为不再支持（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
+- 📖 预发布渠道 `fourier-grx update <版本>-prerelease` 语法自 v4.4.53 起可用，更早版本需 `sudo dpkg -i` 手动安装
+- ℹ️ v4.4.52 未正式发布，版本号由 4.4.51 直接进入 4.4.53
+
+---
+
 ### v1.2.9 (2026-10-14)
 
 **文档更新**

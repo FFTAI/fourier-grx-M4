@@ -17,7 +17,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-12 | **4.4.51** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4451) | ✅ 支持中 |
+| 2026-10-14 | **4.4.53** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4453) | ✅ 支持中 |
+| 2026-10-12 | 4.4.51 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4451) | ❌ 不再支持 |
 | 2026-10-12 | 4.4.50 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4450) | ❌ 不再支持 |
 | 2026-10-12 | 4.4.49 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4449) | ❌ 不再支持 |
 | 2026-10-10 | 4.4.48 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4448) | ❌ 不再支持 |
@@ -68,6 +69,23 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.53
+
+> 📅 2026-10-14 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **左腿 / 右腿单独手动校准**：新增 `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG`（4122）/ `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG`（4123）。仅对该侧关节下电并设置零点（左腿关节索引 0-1，右腿 2-3），另一腿全程保持位置控制。整机的 `flag_calibration` 需两条腿都完成标定后才会置位，因此「依次执行 4122 + 4123」与「一次执行 4121」在标定标志结果上等价。详见 [手动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_manual_calibrate)。
+
+🔧 **调整**
+
+- **M4LT1 / M4LT2 旋转关节 PD 基线统一为 hard 档**（kp 600, 500, 600, 500 / kd 30 × 4）：全部旋转关节任务从 hard 起步，不再先软后爬升。柔顺相关的 assist_adjust_pd 类任务仍按 `assist_ratio` 在 buttery / soft 之间插值，柔顺调节手感不受影响。
+- **腿长调节（移动关节）到位判定新增纯速度判据**：在 `motion_ratio ≥ 0.20` 区间内，速度持续 5 s 低于 0.001 m/s 即判定到位（原判据需力矩 ≥ 6 Nm 持续 0.2 s），修复了力矩建立不足的场景下长时间判不到位的问题。
+- **膝限位任务复用机型参数**：M4LP1 膝限位前向行走的能量阈值由固定 30 J 改为取机型值 50 J；mark_time 各机型均为 70 J，无变化。
+- **新增预发布渠道与 `fourier-grx update <版本>-prerelease` 语法**：预发布包不会被无参自动探测发现。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
+
+---
 
 ### 4.4.51
 

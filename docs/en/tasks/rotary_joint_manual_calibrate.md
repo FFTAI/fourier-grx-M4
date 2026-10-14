@@ -92,4 +92,4 @@ Command Interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.4.22.
-- Left-leg / right-leg separate manual calibration variants added in `fourier-grx` v4.4.53 (TID 4122 / 4123): available since v4.4.53 (v4.4.53 has not been officially released yet; currently available through pre-release channels only).
+- Left-leg / right-leg separate manual calibration variants added in `fourier-grx` v4.4.53 (TID 4122 / 4123): available since v4.4.53.
