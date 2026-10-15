@@ -17,7 +17,7 @@ Task Description:
 
 - The robot generates a joint motion trajectory sequence for mark time based on the given parameters, and drives the actuators to track that trajectory, achieving Passive Mark Time.
 - When the "stop motion flag" is set to true, the robot will gradually slow down and stop rather than halting immediately.
-- When the task enters the torque protection state, the robot will pause motion and set the "task pause flag" to true. The task must be restarted to continue stepping.
+- Once torque protection is triggered, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set. This task must be sent again before stepping can continue.
 
 Task Parameters:
 
@@ -30,9 +30,8 @@ Task Parameters:
 | Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while stepping, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of stepping (trajectory regeneration); changes made while stepping do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start the motion. true = start; false = do not start (has no effect if already started). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop the motion. true = stop; false = continue stepping. |
-| Pause motion flag | `bool` | false | (true, false) | Whether to pause the motion. true = pause; the task must be restarted to continue stepping. |
 | Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. |
-| Torque protection limit | `float` | None | [0.0, 200.0] | The maximum allowable output torque for any joint during stepping, in Nm. If the real-time torque of any joint exceeds this limit, the task will pause and set the task pause flag. Only effective when torque protection is enabled; disabled by default. |
+| Torque protection limit | `float` | None | [0.0, 200.0] | The maximum allowable output torque for any joint during stepping, in Nm. If the real-time torque of any joint exceeds this limit, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set. Only effective when torque protection is enabled; disabled by default. |
 
 > Note: In this task, the step lift height is still set via the existing `grx.virtual_panel_command_param_1` interface (see the "Step lift height" row above); the new panel interfaces `param_7`/`param_8` have no effect on this task.
 
@@ -50,6 +49,7 @@ State Interface:
 | Task finish flag | `task.flag_task_finish` |
 | Task pause flag | `task.flag_task_pause` |
 | Motion ratio | `rehab.motion_ratio` |
+| Step frequency (steps/min) | `rehab.step_frequency` |
 | Reference trajectory position | `rehab.reference_joint_position` |
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
@@ -71,11 +71,11 @@ Command Interface:
 | Base height (pelvis height) | `grx.virtual_panel_command_param_6` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
-| Pause motion flag | `grx.virtual_panel_command_pause` |
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Torque protection limit | `grx.virtual_panel_command_param_9` |
 
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.
+- `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height parameter interface.

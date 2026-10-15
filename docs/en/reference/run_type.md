@@ -30,7 +30,8 @@ The available run types are listed below:
 | 2   | debug mode       | debug         | For developer debugging; uses a **joystick** for robot control by default         | ❌       | ✅        |
 | 3   | Teleoperation    | teleoperation | For developer debugging; uses **Vision Pro** for robot control by default         | ❌       | ⚠️        |
 | A   | developer mode   | sdk           | For developers using the **SDK** library for debugging                            | ❌       | ✅        |
-| B   | Offline debug    | offline       | For **offline** debugging; for internal testing only                              | ❌       | ❌        |
+| B   | server mode      | server        | For the SDK PubSub API; exchanges data with the server over Zenoh                    | ❌       | ✅        |
+| C   | Offline debug    | offline       | For **offline** debugging; for internal testing only                              | ❌       | ❌        |
 
 ### Debug Mode
 

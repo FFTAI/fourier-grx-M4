@@ -31,6 +31,8 @@ record:
 run_type="record"
 ```
 
+> ℹ️ 这里的 `record` 不是内置运行模式，只是借用配置文件命名规则 `config_<型号>_<版本>_<run_type>.yaml` 指向上一步新建的文件。`fourier-grx config` 的模式列表中没有 `record`，如需再次进入记录模式，只能直接编辑 `run.sh`。
+
 **第三步：启动**
 
 ```bash

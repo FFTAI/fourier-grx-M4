@@ -20,5 +20,5 @@ nav_exclude: true
 
 **Solution**:
 
-1. Confirm you entered the **numeric ID**, not the option name as text
+1. Confirm the input matches the prompt: the robot model and sub-version take **numeric IDs**, while the main version and run type also accept the letters **A/B/C**; do not type the option name as text
 2. Restart the installer and reconfigure

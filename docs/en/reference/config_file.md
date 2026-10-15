@@ -72,7 +72,7 @@ The Configuration File is a YAML-formatted file that contains various robot conf
 
 | Parameter             | Description                                                                               | Type    | Default | Options     | User-editable                          |
 |-----------------------|-------------------------------------------------------------------------------------------|---------|---------|-------------|----------------------------------------|
-| dynalink: enable      | Whether to enable the dynamic link data transfer feature                                  | boolean | false   | true, false | Yes                                    |
+| dynalink: enable      | Whether to enable the dynamic link data transfer feature                                  | boolean | true    | true, false | Yes                                    |
 | sync: enable          | Whether to enable data synchronization (requires dynalink:enable=true)                    | boolean | false   | true, false | No (not yet available)                 |
 | rerun: enable         | Whether to enable rerun plotting (requires dynalink:enable=true)                          | boolean | false   | true, false | Yes                                    |
 | streamlit: enable     | Whether to enable streamlit plotting (requires dynalink:enable=true)                      | boolean | false   | true, false | No (not yet available)                 |
@@ -92,29 +92,28 @@ The Configuration File is a YAML-formatted file that contains various robot conf
 | Parameter                               | Description                       | Type    | Default    | Options                  | User-editable |
 |-----------------------------------------|-----------------------------------|---------|------------|--------------------------|---------------|
 | peripheral: use_joystick                | Whether to use joystick control   | boolean | false      | true, false              | Yes           |
-| peripheral: joystick_type               | Joystick type                     | string  | "XBOX"     | "XBOX", "PS4", "PS5"     | Yes           |
+| peripheral: joystick_type               | Joystick type                     | string  | "LUBANCAT" | "XBOX", "PS4", "PS5", "GAMESIR", "LUBANCAT" | Yes       |
 | peripheral: use_keyboard                | Whether to use keyboard control   | boolean | false      | true, false              | Yes           |
-| peripheral: keyboard_type               | Keyboard type                     | string  | "NORMAL"   | "NORMAL"                 | Yes           |
-| peripheral: use_virtual_joystick        | Whether to use virtual joystick   | boolean | false      | true, false              | Yes           |
+| peripheral: keyboard_type               | Keyboard type                     | string  | "STANDARD" | "STANDARD"               | Yes           |
+| peripheral: use_virtual_panel           | Whether to enable the virtual panel (panel parameters dispatched from the web host / handheld) | boolean | true | true, false | Yes |
+| peripheral: use_virtual_user            | Whether to enable virtual user parameters (leg length etc. dispatched from the web host / handheld) | boolean | true | true, false | Yes |
+| peripheral: use_virtual_joystick        | Whether to use virtual joystick (legacy key)   | boolean | false      | true, false              | Yes           |
 | peripheral: use_virtual_teleoperation   | Whether to use virtual teleoperation | boolean | false   | true, false              | Yes           |
 
 ### Robot
 
 | Parameter             | Description       | Type   | Default   | Options                                                                 | User-editable |
 |-----------------------|-------------------|--------|-----------|-------------------------------------------------------------------------|---------------|
-| robot: name           | Robot name        | string | "M4LT1"   | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2"                 | No            |
+| robot: name           | Robot name        | string | by model  | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" \| "M4LZenoh"                 | No            |
+| robot: backend        | Robot communication backend type | string | "Real" | "Real"      | No            |
+| robot: control_period | Control period    | float  | 0.02    | Unit: seconds   | No            |
+| communication: period | Communication period | float | 0.02   | Unit: seconds (top-level `communication` section) | No            |
 
 > ℹ️ **Robot Model Notes**
 >
 > - **M4LT2**: Latest model, equipped with **2.5th-generation FSA actuators**.
 > - **M4LT1**: Equipped with **2.0th-generation FSA actuators**.
 > - **M4LP1**: Equipped with older **1.0th-generation FSA actuators**, adapted to the 2.0th-generation interface via software upgrade.
-
-| Parameter                   | Description               | Type   | Default | Options         | User-editable |
-|-----------------------------|---------------------------|--------|---------|-----------------|---------------|
-| robot: backend              | Robot communication backend type | string | "Real" | "Real"      | No            |
-| robot: control_period       | Control period            | float  | 0.02    | Unit: seconds   | No            |
-| robot: communication_period | Communication period      | float  | 0.02    | Unit: seconds   | No            |
 
 ### Sensors
 

@@ -23,6 +23,7 @@ The examples cover both the User API and Developer API, catering to different le
 
 - [User API Examples](/fourier-grx-M4/docs/en/examples/user): For high-level application development. Can run on the robot's main controller or any other computer on the same LAN.
 - [Developer API Examples](/fourier-grx-M4/docs/en/examples/developer): For low-level development. Must run on the robot's main controller.
+- The [User API Examples](/fourier-grx-M4/docs/en/examples/user) page also lists the **raw UDP socket examples**, which talk to the robot using only the Python standard library and need no `fourier_grx` SDK installation — useful for quickly checking the protocol on a machine without the SDK environment.
 - For interface field descriptions and protocol details, refer to the [Reference Guide](/fourier-grx-M4/docs/en/reference) alongside these examples.
 
 ## Example Code Repository
@@ -45,25 +46,30 @@ git clone https://github.com/FFTAI/Wiki-GRx-Deploy.git --branch=FourierM4L
 cd $HOME/Wiki-GRx-Deploy
 ```
 
+> ℹ️ Cloning into `$HOME` is recommended, so the examples sit next to the `fourier-grx` installation directory.
+
 ## Development Environment Setup
 
-The `fourier-grx` tool provides the `fourier-grx setup_conda` command to set up a conda development environment for robot secondary development with a single command.
+The `fourier-grx` tool provides the `fourier-grx setup_uv` command, which sets up a [uv](https://docs.astral.sh/uv/)-based Python 3.11 development environment for robot secondary development with a single command.
 
 ```bash
-# On the robot's main controller:
-fourier-grx setup_conda
+# 1. Build the development environment on the robot's main controller (internet access required)
+fourier-grx setup_uv
 
-# After the command completes, a conda environment named `fourier-grx` will be created.
-# Activate it with:
-conda activate fourier-grx
+# 2. Activate it (the virtual environment always lives in $HOME/fourier-grx/.venv)
+source $HOME/fourier-grx/.venv/bin/activate
 
-# If you prefer to set up the environment manually, you can find the dependency wheel
-# files under $HOME/fourier-grx/whl and install them manually.
+# 3. Check that fourier_grx imports cleanly — no output means success
+python -c "import fourier_grx"
 ```
 
-It is recommended to clone the repository into the `$HOME` directory. After cloning, you can navigate to it with `cd $HOME/Wiki-GRx-Deploy`.
+Notes:
+
+- For a Python 3.10 environment, use `fourier-grx setup_uv_py310` instead; the virtual environment location stays the same.
+- To set the environment up fully by hand, the `fourier_core` / `fourier_grx` wheels are in `$HOME/fourier-grx/whl`, and the remaining dependencies are listed in the `pyproject.toml` of the `fourier-grx` repository.
+- To tell whether the environment is ready: if `python -c "import fourier_grx"` succeeds, the SDK examples in this repository will run. The examples under `demo/udp` do not need this environment at all.
 
 For instructions on running specific example programs, refer to the respective interface pages:
 
-- [User API](/fourier-grx-M4/docs/en/examples/user)
+- [User API](/fourier-grx-M4/docs/en/examples/user) (including the raw UDP socket examples)
 - [Developer API](/fourier-grx-M4/docs/en/examples/developer)

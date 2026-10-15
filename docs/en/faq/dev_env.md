@@ -20,7 +20,7 @@ nav_exclude: true
 
 ## Dependency Issue
 
-**Symptom**: `ImportError: GLIBC_2.33 not found`
+**Symptom**: `ImportError: GLIBC_2.34 not found`
 
 **Solution**:
 
@@ -31,4 +31,4 @@ sudo apt update && sudo apt install build-essential
 System requirements:
 
 - Recommended: Ubuntu 22.04 LTS
-- Minimum: A Linux distribution supporting GLIBC 2.33
+- Minimum: GLIBC 2.34 or later (the `fourier-grx` environment script checks this version and asks for Ubuntu 22.04 or later)

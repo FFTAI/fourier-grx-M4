@@ -18,6 +18,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 --------------------------------------------------
 Demo code for testing joint of the robot
 
+⚠️ 在 M4L 上此示例不会真正执行任何动作：
+   SDK 常量 fourier_grx.TaskCommand.TASK_TEST_JOINT 对应 TID 902，
+   M4L 没有注册该任务，机器人会打印
+   "Task command value 902 is not supported." 并保持原任务不变。
+   M4L 请改用以下专项任务（把下方 message 中的任务值替换即可）：
+   - 4100 TASK_ROTARY_JOINT_TEST_JOINT_PD    旋转关节（髋/膝）PD 测试，往复 3 次
+   - 4200 TASK_PRISMATIC_JOINT_TEST_JOINT_PD 直线关节（腿长）PD 测试
+   测试任务会驱动关节运动，执行前请确认机器人已支撑稳定、周围无人。
+
 Run this script by:
     python demo_xxx.py
 

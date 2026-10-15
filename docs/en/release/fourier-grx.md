@@ -15,6 +15,8 @@ nav_exclude: true
 ## Version List
 
 > ⚠️ Only the latest version is currently supported — always install/upgrade to the latest version; older versions are kept for historical reference only.
+>
+> Builds earlier than **4.4.40** (and 4.4.41) have been removed from the download server and are marked "Delisted" below; those rows are kept so the change history remains readable.
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
@@ -29,43 +31,53 @@ nav_exclude: true
 | 2026-10-08 | 4.4.44 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | ❌ Unsupported |
 | 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | ❌ Unsupported |
 | 2026-08-28 | 4.4.42 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4442) | ❌ No longer supported |
-| 2026-08-28 | 4.4.41 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4441) | ❌ No longer supported |
+| 2026-08-28 | 4.4.41 | Delisted | [Details](#4441) | ❌ No longer supported |
 | 2026-08-12 | 4.4.40 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | ❌ No longer supported |
-| 2026-08-06 | 4.4.39 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4439) | ❌ No longer supported |
-| 2026-08-03 | 4.4.38 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.38-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4438) | ❌ No longer supported |
-| 2026-07-29 | 4.4.35 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4435) | ❌ No longer supported |
-| 2026-07-29 | 4.4.34 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.34-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4434) | ❌ No longer supported |
-| 2026-07-29 | 4.4.33 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.33-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4433) | ❌ No longer supported |
-| 2026-07-28 | 4.4.32 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.32-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4432) | ❌ No longer supported |
-| 2026-07-24 | 4.4.31 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.31-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4431) | ❌ No longer supported |
-| 2026-07-24 | 4.4.30 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.30-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4430) | ❌ No longer supported |
-| 2026-07-24 | 4.4.29 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4429) | ❌ No longer supported |
-| 2026-07-23 | 4.4.28 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4428) | ❌ No longer supported |
-| 2026-07-17 | 4.4.27 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4427) | ❌ No longer supported |
-| 2026-07-17 | 4.4.26 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4426) | ❌ No longer supported |
-| 2026-07-16 | 4.4.25 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4425) | ❌ No longer supported |
-| 2026-07-16 | 4.4.24 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4424) | ❌ No longer supported |
-| 2026-07-06 | 4.4.23 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4423) | ❌ No longer supported |
-| 2026-07-02 | 4.4.22 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4422) | ❌ No longer supported |
-| 2026-07-01 | 4.4.21 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4421) | ❌ No longer supported |
-| 2026-06-30 | 4.4.20 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4420) | ❌ No longer supported |
-| 2026-06-30 | 4.4.19 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4419) | ❌ No longer supported |
-| 2026-06-30 | 4.4.14 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4414) | ❌ No longer supported |
-| 2026-06-29 | 4.4.10 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4410) | ❌ No longer supported |
-| 2026-06-29 | 4.4.9 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [Details](#449) | ❌ No longer supported |
-| 2026-05-22 | 4.4.8 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [Details](#448) | ❌ No longer supported |
-| 2026-05-22 | 4.4.7 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [Details](#447) | ❌ No longer supported |
-| 2026-05-14 | 4.4.6 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [Details](#446) | ❌ No longer supported |
-| 2026-05-14 | 4.4.5 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [Details](#445) | ❌ No longer supported |
-| 2026-05-13 | 4.4.4 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [Details](#444) | ❌ No longer supported |
-| 2026-05-11 | 4.4.3 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [Details](#443) | ❌ No longer supported |
-| 2026-04-10 | 4.4.2 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [Details](#442) | ❌ No longer supported |
-| 2026-04-08 | 4.4.1 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [Details](#441) | ❌ No longer supported |
-| 2026-04-03 | 4.4.0 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [Details](#440) | ❌ No longer supported |
+| 2026-08-06 | 4.4.39 | Delisted | [Details](#4439) | ❌ No longer supported |
+| 2026-08-03 | 4.4.38 | Delisted | [Details](#4438) | ❌ No longer supported |
+| 2026-07-29 | 4.4.35 | Delisted | [Details](#4435) | ❌ No longer supported |
+| 2026-07-29 | 4.4.34 | Delisted | [Details](#4434) | ❌ No longer supported |
+| 2026-07-29 | 4.4.33 | Delisted | [Details](#4433) | ❌ No longer supported |
+| 2026-07-28 | 4.4.32 | Delisted | [Details](#4432) | ❌ No longer supported |
+| 2026-07-24 | 4.4.31 | Delisted | [Details](#4431) | ❌ No longer supported |
+| 2026-07-24 | 4.4.30 | Delisted | [Details](#4430) | ❌ No longer supported |
+| 2026-07-24 | 4.4.29 | Delisted | [Details](#4429) | ❌ No longer supported |
+| 2026-07-23 | 4.4.28 | Delisted | [Details](#4428) | ❌ No longer supported |
+| 2026-07-17 | 4.4.27 | Delisted | [Details](#4427) | ❌ No longer supported |
+| 2026-07-17 | 4.4.26 | Delisted | [Details](#4426) | ❌ No longer supported |
+| 2026-07-16 | 4.4.25 | Delisted | [Details](#4425) | ❌ No longer supported |
+| 2026-07-16 | 4.4.24 | Delisted | [Details](#4424) | ❌ No longer supported |
+| 2026-07-06 | 4.4.23 | Delisted | [Details](#4423) | ❌ No longer supported |
+| 2026-07-02 | 4.4.22 | Delisted | [Details](#4422) | ❌ No longer supported |
+| 2026-07-01 | 4.4.21 | Delisted | [Details](#4421) | ❌ No longer supported |
+| 2026-06-30 | 4.4.20 | Delisted | [Details](#4420) | ❌ No longer supported |
+| 2026-06-30 | 4.4.19 | Delisted | [Details](#4419) | ❌ No longer supported |
+| 2026-06-30 | 4.4.14 | Delisted | [Details](#4414) | ❌ No longer supported |
+| 2026-06-29 | 4.4.10 | Delisted | [Details](#4410) | ❌ No longer supported |
+| 2026-06-29 | 4.4.9 | Delisted | [Details](#449) | ❌ No longer supported |
+| 2026-05-22 | 4.4.8 | Delisted | [Details](#448) | ❌ No longer supported |
+| 2026-05-22 | 4.4.7 | Delisted | [Details](#447) | ❌ No longer supported |
+| 2026-05-14 | 4.4.6 | Delisted | [Details](#446) | ❌ No longer supported |
+| 2026-05-14 | 4.4.5 | Delisted | [Details](#445) | ❌ No longer supported |
+| 2026-05-13 | 4.4.4 | Delisted | [Details](#444) | ❌ No longer supported |
+| 2026-05-11 | 4.4.3 | Delisted | [Details](#443) | ❌ No longer supported |
+| 2026-04-10 | 4.4.2 | Delisted | [Details](#442) | ❌ No longer supported |
+| 2026-04-08 | 4.4.1 | Delisted | [Details](#441) | ❌ No longer supported |
+| 2026-04-03 | 4.4.0 | Delisted | [Details](#440) | ❌ No longer supported |
 
 ## Installation
 
 For first-time installation, see [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install). To upgrade an already-installed device, see [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update).
+
+## Pre-release Channel
+
+The download links above are all **stable channel** (`blaze`) builds. Pre-release channel builds use `prerelease` instead of `blaze` as the last segment of the file name and the `X-Variant`, leaving the model segment unchanged — for example `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`.
+
+- Pre-release packages are **never** found by the automatic probe of `fourier-grx update` and are not listed in the table above.
+- Install one explicitly: `fourier-grx update <version>-prerelease`, e.g. `fourier-grx update 4.4.53-prerelease`. This syntax is available since v4.4.53; on earlier versions, install with `sudo dpkg -i <deb>` instead.
+- `fourier-grx install` is still required afterwards.
+
+For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs/en/reference/command_line_tool#pre-release-channel).
 
 ---
 
@@ -116,7 +128,7 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 
 ✨ **New**
 
-- **Built-in web debugging host**: the firmware now ships a LAN web debugging interface. Run `fourier-grx web` on the robot, then open `http://<robot-IP>:8000` in a browser on any computer in the same LAN (`--host` / `--port` change the listening address and port). The interface provides task dispatch, a virtual joystick, virtual panel parameters, an emergency stop button, and real-time state monitoring; it communicates with the robot over UDP + msgpack and discovers the robot address automatically via UDP broadcast, so the IP does not need to be filled in manually. A pure debugging tool — it does not take part in normal robot operation.
+- **Built-in web debugging host**: the firmware now ships a LAN web debugging interface. Run `fourier-grx web` on the robot, then open `http://<robot-IP>:8000` in a browser on any computer in the same LAN (`--host` sets the robot IP; `--bind` / `--port` change the web service's listen address and port, `0.0.0.0:8000` by default). The interface provides task dispatch, a virtual joystick, virtual panel parameters, an emergency stop button, and real-time state monitoring; it communicates with the robot over UDP + msgpack and discovers the robot address automatically via UDP broadcast, so the IP does not need to be filled in manually. A pure debugging tool — it does not take part in normal robot operation. See [M4L Robot · Web Debugging over the LAN](/fourier-grx-M4/docs/en/quickstart/m4l#web-debugging-over-the-lan).
 - **User configuration preserved on upgrade install**: `fourier-grx install` now first backs the old directory up to `~/fourier-grx-bak` when upgrading, and the configuration step preferentially offers to reuse the old configuration from the backup, so options such as networking do not need to be configured again after an upgrade.
 
 ---
@@ -610,7 +622,7 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 
 ✨ **Added**
 
-- **`fourier-grx update` command**: added a CLI update tool that automatically detects the currently installed package variant, probes the server for available newer versions, and guides the user through an interactive list to select and complete the download/install. Supports `fourier-grx update` (auto-detect variant), `fourier-grx update <variant>` (manually specify the variant, for older installed packages), and `fourier-grx update --help`. See [CLI Tools · update](/fourier-grx-M4/docs/en/reference/command_line_tool#fourier-grx-update-detailed-instructions) for details
+- **`fourier-grx update` command**: added a CLI update tool that automatically detects the currently installed package variant, probes the server for available newer versions, and guides the user through an interactive list to select and complete the download/install. Supports `fourier-grx update` (auto-detect variant), `fourier-grx update <variant>` (manually specify the variant, for older installed packages), and `fourier-grx update --help`. See [CLI Tools · update](/fourier-grx-M4/docs/en/reference/command_line_tool#fourier-grx-update-detailed-instructions) for details (note: the `update <variant>` form was replaced by `update <version>` in v4.4.53; the variant can no longer be passed manually)
 - **`X-Variant` deb control field**: added an `X-Variant` field to the installed package's deb control file, recording the platform/model identifier (e.g. `linux-arm64-cpu-m4l-blaze`) so `fourier-grx update` can automatically identify the current variant
 
 🔧 **Changed**

@@ -14,6 +14,26 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.11 (2026-10-15)
+
+**Documentation fixes**
+
+- 🔧 **Command Line Tool**: removed the non-existent `setup_conda` in favour of `setup_uv` / `setup_uv_py310` and added the `web` sub-command; corrected `fourier-grx update <variant>` to `update <version>` and `update <version>-<channel>` (the variant is always read automatically and cannot be passed as an argument); added "The Two Layers of Installation" explaining that `sudo dpkg -i` only updates `/usr/share/fourier-grx/` while `fourier-grx install` deploys the new version into `~/fourier-grx/`; added the `fourier-grx web` option table (`--host` is the robot IP, `--bind` is the web listen address, `0.0.0.0:8000` by default)
+- 📦 The Fourier-GRX latest version on the [Firmware Releases](/fourier-grx-M4/docs/en/release) page corrected from 4.4.43 to **4.4.53**; added a "Pre-release Channel" section to the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx#pre-release-channel) page — `-prerelease` replaces only the build-type segment at the end of `X-Variant`, keeping the model segment, which is why the automatic probe never finds pre-release builds; v4.4.52 was never officially released and has no download link
+- 🆕 Added a "Web Debugging over the LAN" section to the [M4L Robot](/fourier-grx-M4/docs/en/quickstart/m4l#web-debugging-over-the-lan) quick start: starting `fourier-grx web` and auto discovery, live state, task dispatch, the virtual panel, the run log, and a safety note about latched values
+- 🔧 **Firmware Update**: documented `fourier-grx update <version>-prerelease`; noted that `fourier-grx install` first backs `~/fourier-grx` up to `~/fourier-grx-bak` and prefers to reuse the old configuration, and that network parameters are reset unconditionally to the static IP
+- 🔧 **Run Type**: added run type `B` server mode (`server`); the offline debug mode (`offline`) number corrected from `B` to `C`
+- 🔧 **Configuration File**: corrected the defaults and options of `dynalink: enable`, `joystick_type`, `keyboard_type`, `robot: name` and the communication period, and added `use_virtual_panel` / `use_virtual_user`
+- 🔧 Development environment FAQ: minimum GLIBC corrected from 2.33 to 2.34
+- 🗑️ Removed the empty "Video Tutorial" sections from the M4 / M4L quick start pages
+- 🔗 Download link audit: builds earlier than 4.4.40 (including 4.4.41) have been removed from the download server (404 confirmed); the Download column of those 32 versions on the [Firmware Releases page](/fourier-grx-M4/docs/en/release/fourier-grx) now reads "Delisted" while the version rows and their release notes stay available; the `wget` examples in the quick start pages now use 4.4.53, which is still online
+- 🐞 **Task documentation corrections**: the "pause motion" interface `grx.virtual_panel_command_pause` documented for TID 4112 is never read by that task and has been removed from its parameter and interface tables; in the knee-restriction family, torque protection (4301 / 4302) and the assist coefficient (4303 / 4304 / 4305) are not wired into the algorithm call in the current firmware, and the pages now state this explicitly together with a substitute task; the behaviour after a torque-protection trigger is corrected from "pauses the task" to "exits immediately and returns to `TASK_IDLE`"; the missing `rehab.step_frequency` state interface was added to 12 gait task pages; `dsp_ratio` is now marked as not applicable on tasks that use the vhip gait generator
+- 🔧 **Sample code**: the conda instructions in `demo/user` and `demo/developer` were replaced with `setup_uv` and `source $HOME/fourier-grx/.venv/bin/activate`; `demo_set_home.py` and `demo_test_joint.py` send TID 999 / 902, which no M4L task registers, and now explain this and point to the substitutes (4103 / 4203, 4100 / 4200); `demo/udp/demo_get_state.py` now drains the receive queue continuously (state is pushed at roughly 250 packets/s, so receiving one packet per sleep only ever prints data that is seconds old); `config_M4L_T1_developer.yaml` gained the missing `fi_ioboard` section, and the meaning of `log_level: "none"` is corrected (it means every message is logged, not silence)
+- 🔧 **Version attribution in task changelogs**: corrected to "the first release that contains the change" — the knee-restriction family v4.2.5 → v4.2.6, stand motion control v3.0.3 → v3.1.1, 4103 / 4206 v4.1.18 → v4.1.19; servo on / off / reboot and clear-fault already existed in v2.0.5, the earliest release in the public history, so those entries no longer claim an "added in" version
+- 🌐 **Language switching**: fixed the "EN" button on the Chinese home page (which sits at the site root) pointing back at the current page, and the "中文" button on the English home page pointing at a page that does not exist
+
+---
+
 ### v1.2.10 (2026-10-14)
 
 **Documentation Updates**

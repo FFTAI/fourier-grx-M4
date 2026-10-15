@@ -12,10 +12,6 @@ nav_exclude: true
 * TOC
 {:toc}
 
-## Video Tutorial
-
-The following video tutorial demonstrates how to quickly get started with the M4L series robot.
-
 ## Powering On
 
 Once you have the robot, the first step is to power it on.
@@ -72,25 +68,53 @@ After the control program starts, follow these steps to switch the robot into wa
 
 ---
 
+## Web Debugging over the LAN
+
+When you want to debug the robot without a gamepad and without writing code, use the browser. After the control program is running, execute the following on the robot's controller computer:
+
+```bash
+fourier-grx web
+```
+
+`fourier-grx web` discovers the robot automatically via UDP broadcasts, so no IP needs to be entered. If discovery fails (for example across subnets), pass the robot IP explicitly: `fourier-grx web --host 192.168.137.220`.
+
+Then open `http://192.168.137.220:8000` in a browser on any computer in the same LAN. The interface provides:
+
+| Feature | Description |
+|---------|-------------|
+| Live state | Connection state, current task, error codes, battery, IMU attitude, joint position / velocity / torque, refreshed at about 10 Hz |
+| Task dispatch | All task buttons, grouped; risky commands (servo off, reboot, set home) require confirmation; a persistent emergency stop button sits in the lower-right corner |
+| Virtual panel | Sliders, switches, and start / stop / pause, as a substitute for the gamepad when tuning parameters and starting or stopping tasks |
+| Run log | Every dispatched task command, joystick, and panel value is printed to the terminal running `fourier-grx web` |
+
+> ⚠️ **Note**
+>
+> - Panel changes are **not sent automatically** — click **Send** on the card to dispatch them.
+> - Joystick and panel values are **latched** on the robot: the last value sent stays in effect until a new value overwrites it or the task changes. Pressing **Reset** in the interface only returns the pointer to zero — **it does not stop the robot**.
+
+For options and port details, see [Command Line Tool · `fourier-grx web`](/fourier-grx-M4/docs/en/reference/command_line_tool#fourier-grx-web-detailed-instructions).
+
+---
+
 ## Development Environment Setup
 
-In addition to launching the control program, the `fourier-grx` tool provides the `fourier-grx setup_conda` command to set up a conda development environment for robot secondary development with a single command.
+`fourier-grx setup_uv` builds the uv virtual environment (Python 3.11) required for secondary development in one step.
 
 ```bash
 # On the robot's controller computer:
-fourier-grx setup_conda
+fourier-grx setup_uv
 
-# After the command completes, a conda environment named `fourier-grx` will be created.
-# Activate it with:
-conda activate fourier-grx
+# The environment lives in $HOME/fourier-grx/.venv. Activate it with:
+source $HOME/fourier-grx/.venv/bin/activate
 
-# If you prefer to set up the development environment manually, the dependency wheel files
-# can be found under $HOME/fourier-grx/whl for manual installation.
+# For Python 3.10, use: fourier-grx setup_uv_py310
 ```
+
+> ℹ️ Make sure the robot's controller computer can reach the internet before running the command.
 
 ## Running Example Programs
 
-After setting up the conda environment, you can clone the robot's secondary development interface examples via git.
+Once the development environment is ready, clone the robot's secondary development interface examples via git.
 
 ```bash
 git clone https://github.com/FFTAI/Wiki-GRx-Deploy.git --branch=FourierM4L
@@ -102,24 +126,22 @@ Then, launch the example programs with the following commands:
 
 ```bash
 # Open a Terminal on the robot's controller computer
-# 1. Launch the fourier-grx main program
-# Activate the conda environment
-conda activate fourier-grx
+# Activate the development environment
+source $HOME/fourier-grx/.venv/bin/activate
 
 # Launch the fourier-grx main program
-python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4l/config_M4L_T1_sdk.yaml
+$HOME/fourier-grx/run.bin --config=$HOME/fourier-grx/config/m4l/config_M4L_T1_sdk.yaml
 
 # For the M4LP1 variant, use instead:
-# python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4l/config_M4L_P1_debug.yaml
+# $HOME/fourier-grx/run.bin --config=$HOME/fourier-grx/config/m4l/config_M4L_P1_sdk.yaml
 
 # When you see the message "You can start playing with the robot right now.", the program has started successfully.
 ```
 
 ```bash
 # Open a Terminal on the robot's controller computer or any computer on the same LAN
-# 1. Launch the user interface example
-# Activate the conda environment
-conda activate fourier-grx  
+# Activate the development environment
+source $HOME/fourier-grx/.venv/bin/activate
 
 # Launch the example program to enter walking mode.
 python $HOME/Wiki-GRx-Deploy/user/demo_walk.py

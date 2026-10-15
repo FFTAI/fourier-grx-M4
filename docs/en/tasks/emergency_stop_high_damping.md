@@ -19,7 +19,7 @@ Task Description:
 
 - When the robot detects that the **hardware emergency stop switch** (ioboard emergency button) has been triggered, the control program automatically switches to this task.
 - Unlike direct power-off (`TASK_SERVO_OFF`), this task keeps the joints powered and controls the rotary joints in a **high-damping, zero-spring** PD mode:
-  - `kp = 0`: No restoring spring force; joints can be passively moved by external force.
+  - `kp ≈ 0` (0.001 in the implementation, which the firmware does not allow to be exactly 0): no restoring spring force; joints can be passively moved by external force.
   - `kd = 20 (default)`: Velocity damping braking force is applied to dissipate kinetic energy and prevent limbs from dropping or swinging rapidly.
   - Target position tracks the current measured position every frame in real time — no snap-back effect.
 - This mode significantly reduces the risk of uncontrolled limb movement after an emergency stop, providing operators with a safer intervention window.
@@ -35,12 +35,13 @@ This task has no configurable parameters. The `kd` value must be tuned by a hard
 
 ## Trigger Conditions
 
-This task is triggered by either of the following emergency stop conditions (both set `flag_emergent_stop`):
+This task is triggered by any of the following three conditions:
 
 | Trigger Source | Trigger Condition | Description |
 |----------------|-------------------|-------------|
-| ioboard emergency switch | `ioboard.emergency_state == True` | User presses the hardware emergency stop button on the robot backpack |
-| All-actuator communication timeout | All actuators time out for ≥ 50 consecutive control cycles | Protective trigger due to communication anomaly |
+| ioboard emergency switch | `ioboard.emergency_state == True` (sets `flag_emergent_stop`) | User presses the hardware emergency stop button on the robot backpack |
+| All-actuator communication timeout | All actuators time out for ≥ 50 consecutive control cycles (sets `flag_emergent_stop`) | Protective trigger due to communication anomaly |
+| Host heartbeat timeout | `flag_host_heartbeat_timeout` is set | Protective trigger when the host loses communication with the robot |
 
 ## Module Info
 
@@ -69,4 +70,5 @@ This task requires no additional command parameters and is triggered automatical
 
 ## Update Log
 
-- Added in `fourier-grx` v1.1.0 (M4LT2 only).
+- Added in `fourier-grx` v4.4.3 (M4LT2 only).
+- Since `fourier-grx` v4.4.43, a host heartbeat timeout also switches to this task (previously only the hardware emergency stop and the all-actuator timeout triggered it).

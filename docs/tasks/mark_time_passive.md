@@ -16,7 +16,7 @@ has_toc: true
 
 - 机器人通过给定参数，生成原地踏步的关节运动轨迹序列，通过执行器跟踪该轨迹，实现被动原地踏步。
 - 发送"停止运动标志位"为 true 时，机器人将逐渐停止运动，并不是立即停止。
-- 任务进入力矩保护状态后，机器人将暂停运动，并置"任务暂停标志"为 true。需要重新启动任务才能继续行走。
+- 触发力矩保护后，机器人立即退出本任务并切换至空闲任务（`TASK_IDLE`），同时置位过力矩保护标志，需重新下发本任务才能继续踏步。
 
 任务参数：
 
@@ -29,9 +29,8 @@ has_toc: true
 | 基座高度     | `float` | None  | [0.6, 1.2]    | 踏步时基座（骨盆）离地高度，单位为 m。≤ 0 或未发送时自动取大腿+小腿长度之和。超出范围会被限幅到该范围内。下次起步（轨迹重新生成）时生效，踏步过程中修改不影响当前正在执行的轨迹。 |
 | 启动运动标志位  | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位  | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
-| 暂停运动标志位  | `bool`  | false | (true, false) | 是否暂停运动，true 表示暂停，需重启任务才能继续行走。              |
 | 启用力矩保护开关 | `bool`  | false | (true, false) | 是否启用力矩保护功能                                 |
-| 保护力矩限值   | `float` | None  | [0.0, 200.0]  | 踏步过程中任意关节允许的最大输出力矩，单位为 Nm。当任一关节实时力矩超过此限值时，任务将暂停并置位"任务暂停标志"。仅在启用力矩保护时生效，默认不启用。           |
+| 保护力矩限值   | `float` | None  | [0.0, 200.0]  | 踏步过程中任意关节允许的最大输出力矩，单位为 Nm。当任一关节实时力矩超过此限值时，机器人立即退出本任务并切换至空闲任务（`TASK_IDLE`），同时置位过力矩保护标志。仅在启用力矩保护时生效，默认不启用。           |
 
 > 说明：本任务的抬腿高度仍由既有"抬腿高度"接口 `grx.virtual_panel_command_param_1` 设置，新增的面板接口 `param_7`/`param_8` 对本任务不生效。
 
@@ -49,6 +48,7 @@ has_toc: true
 | 任务结束标志    | `task.flag_task_finish`              |
 | 任务暂停标志    | `task.flag_task_pause`               |
 | 运行比例      | `rehab.motion_ratio`                 |
+| 步频          | `rehab.step_frequency`              |
 | 参考轨迹位置    | `rehab.reference_joint_position`     |
 | 参考轨迹速度    | `rehab.reference_joint_velocity`     |
 | 参考轨迹位置最大值 | `rehab.reference_joint_position_max` |
@@ -70,11 +70,11 @@ has_toc: true
 | 基座高度     | `grx.virtual_panel_command_param_6`                                                      |
 | 启动运动标志位  | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位  | `grx.virtual_panel_command_stop`                                                         |
-| 暂停运动标志位  | `grx.virtual_panel_command_pause`                                                        |
 | 启用力矩保护开关 | `grx.virtual_panel_command_switch_1`                                                     |
 | 保护力矩限值   | `grx.virtual_panel_command_param_9`                                                      |
 
 ## 更新日志
 
 - `fourier-grx` v4.0.0 版本新增该功能。
+- `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。
 - `fourier-grx` v4.4.48 版本新增基座高度参数接口。

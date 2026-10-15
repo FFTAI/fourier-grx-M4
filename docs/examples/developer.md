@@ -18,10 +18,18 @@ Fourier-GRX Developer 接口是针对开发者底层开发提供的二次开发�
 
 ## 运行方法
 
+> ⚠️ Developer 接口示例本身就是机器人控制程序：它会在自己的进程里初始化硬件并完成控制循环。
+> 因此运行前必须先停止机器人上正在运行的 `fourier-grx` 主程序，否则两个进程会同时争用同一批执行器：
+>
+> ```bash
+> # 在机器人主控电脑上停止主程序
+> fourier-grx stop
+> ```
+
 1. 在机器人主控电脑上启动示例代码，直接进行控制：
     ```bash
-    # 激活 conda 环境
-    conda activate fourier-grx
+    # 激活开发环境（虚拟环境位于 $HOME/fourier-grx/.venv）
+    source $HOME/fourier-grx/.venv/bin/activate
 
     # 克隆示例代码仓库（如尚未克隆）
     git clone https://github.com/FFTAI/fourier-grx-M4.git
@@ -30,6 +38,9 @@ Fourier-GRX Developer 接口是针对开发者底层开发提供的二次开发�
     cd fourier-grx-M4/demo/developer
     python demo_{示例名称}.py --config=config_M4L_T1_developer.yaml
     ```
+
+   运行后程序会先打印 `fourier_core` / `fourier_grx` 的版本信息字典，然后按 `--config` 中的配置初始化硬件，并在示例进程内的后台线程中运行控制循环；示例的算法函数返回后进程即退出。
+   注意 `--config` 的相对路径按当前工作目录解析，需要在 `demo/developer` 目录下执行，或者填写绝对路径。
 
 ### 注意事项
 

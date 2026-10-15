@@ -26,8 +26,11 @@ Protocol summary (UDP + MessagePack):
   about once per second (auto discovery).
 - Client -> robot packet: {"key": <topic>, "data": {...writable fields...}}
 - Robot -> client packets: {"key": <topic>, "data": {...readable fields...}},
-  pushed at ~50 Hz to every client that has sent at least one packet
-  (the server learns client addresses from incoming packets).
+  sent once per topic on every communication cycle to every client that has
+  sent at least one packet (the server learns client addresses from incoming
+  packets). With the default period 0.02 s this is 5 topics * 50 Hz, i.e.
+  about 250 packets per second, so a reader must keep draining the socket
+  instead of sleeping between reads.
 
 Topics: "comm", "robot", "task", "grx", "rehab"
 

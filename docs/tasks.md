@@ -19,7 +19,7 @@ has_toc: true
 
 机器人任务指令列表 🎏：
 
-- 任务指令通过 `fourier_grx.TaskCommand` 枚举类定义，具体定义如下：
+- 任务指令的底层定义是枚举类：M4L 机型为 `fourier_grx.task.menu.TaskMenuM4L`，通用的下电/上电/清错等指令为 `fourier_grx.task.menu.TaskMenuRobotReal`。二次开发时通常通过 User API 提供的别名 `fourier_grx.sdk.user.TaskCommand` 取值（需 `import fourier_grx.sdk.user as fourier_grx` 后写作 `fourier_grx.TaskCommand.TASK_*`），具体定义如下：
 - 具体 `任务值 (TID)` 可能会根据机器人的不同，或 `fourier-grx` 版本的不同而有所变化，**具体值以实际任务信息为准**。
 
 M4 机器人常见任务指令示例：
@@ -31,10 +31,10 @@ M4 机器人常见任务指令示例：
 | TASK_SERVO_REBOOT                              | 41        | All  | 机器人全关节重启并重新加载配置               |
 | TASK_CLEAR_FAULT                               | 34        | All  | 清除机器人全关节报警                    |
 | TASK_STAND_CONTROL                             | 4020      | M4L  | 机器人缓慢移动各关节恢复到站立姿态             |
-| TASK_ROTARY_JOINT_SET_HOME                     | 4103      | M4L  | 设置旋转关节当前位置为零点（手动）              |
+| TASK_ROTARY_JOINT_SET_HOME                     | 4103      | M4L  | 设置旋转关节当前位置为执行器层零点（含执行器重启）       |
 | TASK_ROTARY_JOINT_BORDER_AND_RETURN            | 4104      | M4L  | 旋转关节边界检测：驱动至机械限位后自动回退        |
-| TASK_ROTARY_JOINT_SET_HOME_POSITION            | 4105      | M4L  | 采样均值后将当前位置设为旋转关节零点（软件层）      |
-| TASK_ROTARY_JOINT_MOVE_BACK                    | 4106      | M4L  | 旋转关节回退到安全位置                     |
+| TASK_ROTARY_JOINT_SET_HOME_POSITION            | 4105      | M4L  | 采样均值后将当前位置设为旋转关节零点（软件应用层，不重启）  |
+| TASK_ROTARY_JOINT_MOVE_BACK                    | 4106      | M4L  | 旋转关节回退到安全位置（仅有枚举定义，当前固件无对应任务实现）   |
 | TASK_ROTARY_JOINT_AUTO_CALIBRATE               | 4120      | M4L  | 旋转关节自动校准（边界检测→下电→设置零点，三步连贯）  |
 | TASK_ROTARY_JOINT_MANUAL_CALIBRATE             | 4121      | M4L  | 旋转关节手动校准（下电→用户手动摆位→设置零点，两步连贯） |
 | TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG    | 4122      | M4L  | 左腿旋转关节单独手动校准（仅左腿下电与设零点，右腿保持支撑） |
@@ -48,9 +48,14 @@ M4 机器人常见任务指令示例：
 | TASK_ROTARY_JOINT_MARK_TIME                    | 4112      | M4L  | 被动原地踏步                        |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD   | 4117      | M4L  | 助力原地踏步（调整 PD 参数）              |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT   | 4119      | M4L  | 助力原地踏步（调整 dt 参数）              |
-| TASK_ROTARY_JOINT_HIGH_DAMPING                 | 4600      | M4LT2 | 急停触发时自动切换的高阻尼保护任务（kp=0，高 kd，软制动）|
+| TASK_ROTARY_JOINT_HIGH_DAMPING                 | 4600      | M4LT2 | 急停触发时自动切换的高阻尼保护任务（kp≈0，kd=20，软制动）  |
 
 - All：表示所有傅利叶智能生产机型
+
+> 说明：
+>
+> - `TaskMenuM4L` 中还有一批已实现但未在本章展开说明的任务，主要用于标定内部流程和关节级调试：4104（边界检测与回位）、4105（软件层设置零点）、4110（旋转关节正弦波测试）、4100 / 4200（关节 PD 测试）、4203 / 4204 / 4205（直线关节设零点与限位移动，其中 4204 是 4210 自动校准的内部步骤）。
+> - 另有若干枚举项在当前固件中没有对应实现，仅作为占位保留：4000、4010、4011、4101、4102、4106、4114、4115、4201、4202。它们在手柄任务列表中仍可能看到，请勿用于生产流程。
 
 ---
 

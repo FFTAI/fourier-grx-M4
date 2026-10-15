@@ -28,10 +28,9 @@ Task Parameters:
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for joint PD control stiffness, in the range [0.0, 1.0]. A lower value makes joints more compliant, leaving more room for the patient's own effort; a higher value increases joint stiffness and trajectory-tracking capability. |
 | Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while walking, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
-| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Only effective for the DSP gait generator. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
+| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. **This task uses the vhip gait generator, so this parameter has no effect** (only the DSP generator of TID 4111 / 4301 uses it). Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
-
 
 > **Assist Ratio Explained**:
 >
@@ -51,6 +50,8 @@ Task Parameters:
 > Recommendation:
 > - A step length between 0.5× and 1.0× the walking speed tends to produce good walking results. For example, at a walking speed of 0.5 m/s, a step length of 0.25 m to 0.5 m is recommended.
 
+> When it takes effect: the assist ratio is written into the joint PD gains only while the task is in its start stage (`STAGE_INIT` / `STAGE_START`). Changing it during walking or stepping does not change the current stiffness — the task must be restarted.
+
 ## Module Info
 
 This task has no independent module commands and does not support per-joint control via the module interface.
@@ -64,6 +65,7 @@ Status interface:
 | Task start flag | `task.flag_task_start` |
 | Task finish flag | `task.flag_task_finish` |
 | Motion ratio | `rehab.motion_ratio` |
+| Step frequency (steps/min) | `rehab.step_frequency` |
 | Reference trajectory position | `rehab.reference_joint_position` |
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
@@ -92,4 +94,5 @@ Command interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.
+- `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height / step lift height / double-support ratio parameter interfaces.

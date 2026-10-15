@@ -51,7 +51,7 @@ has_toc: true
 
 ```bash
 # 下载 fourier-grx 程序包（示例版本）
-wget https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb
+wget https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb
 ```
 
 > ℹ️ **说明**
@@ -66,6 +66,10 @@ wget https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx
 sudo dpkg -i fourier-grx-xxx.deb  # xxx 为具体版本号
 ```
 
+> ℹ️ **说明**
+>
+> 这一步只把程序包解压到 `/usr/share/fourier-grx/` 并安装 `fourier-grx` 命令本身，机器人控制程序尚未部署，执行 `dpkg` 后终端也会提示继续运行 `fourier-grx install`。
+
 ### 安装运行所需内容
 
 ```bash
@@ -73,9 +77,12 @@ sudo dpkg -i fourier-grx-xxx.deb  # xxx 为具体版本号
 fourier-grx install
 ```
 
+该命令把上一步的程序部署到 `~/fourier-grx/`，配置运行环境，并询问机器人型号、版本和运行模式。
+
 > ℹ️ **说明**
 >
-> - 如果安装过程中由于网络或其他原因失败，可以重新运行上述安装命令。
+> - 两步都要完成，机器人运行的才是新版本。
+> - 如果安装过程中由于网络或其他原因失败，可以重新运行上述安装命令。重复执行 `fourier-grx install` 前，`~/fourier-grx` 会先被备份为 `~/fourier-grx-bak`。
 > - 本页面流程适用于**首次安装**或**需要重新配置网络 / 机器人型号**的场景。如果设备已经安装并配置过，仅需升级版本，请改用 [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update) 页面中的 `fourier-grx update` 方式，更加简便。
 
 ## 机器人型号配置

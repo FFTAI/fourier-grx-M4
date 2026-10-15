@@ -11,10 +11,6 @@ has_toc: true
 * TOC
 {:toc}
 
-## 视频教程
-
-以下视频教程演示了如何快速开始使用 M4L 系列机器人。
-
 ## 系统开机
 
 当我们拿到机器人后，首先需要将机器人开机。
@@ -41,10 +37,9 @@ has_toc: true
 
 ## 程序启动
 
-机器人出厂时，默认已经为安装好了 `fourier-grx` 软件工具。
-如果发现没有安装，可以去 [固件发布](/fourier-grx-M4/docs/release) 页面查看下载和安装流程。
+机器人出厂时默认已装好 `fourier-grx` 软件工具；若未安装，请到 [固件发布](/fourier-grx-M4/docs/release) 页面查看下载和安装流程。
 
-该软件工具提供了 `fourier-grx start` 命令用于机器人控制程序启动。
+用 `fourier-grx start` 启动机器人控制程序。
 
 ```bash
 # 在机器人主控电脑上：
@@ -69,25 +64,53 @@ fourier-grx start
    - 高阻尼模式将持续保持，直到手动切换到其他任务（如 `TASK_STAND_CONTROL`）；
    - 此行为与手柄 `logo` 键的直接断电（失能）不同，详见 [高阻尼保护任务说明](/fourier-grx-M4/docs/tasks/emergency_stop_high_damping)。
 
+## 局域网网页调试
+
+不想连手柄、也不写代码时，可以用浏览器调试机器人。启动控制程序后，在机器人主控电脑上执行：
+
+```bash
+fourier-grx web
+```
+
+`fourier-grx web` 会通过 UDP 广播自动发现机器人，无需填写 IP。若跨网段等原因发现失败，加上机器人 IP：`fourier-grx web --host 192.168.137.220`。
+
+随后在同一局域网内任意电脑的浏览器打开 `http://192.168.137.220:8000`，界面提供：
+
+| 功能 | 说明 |
+|------|------|
+| 实时状态 | 连接状态、当前任务、错误码、电池、IMU 姿态、关节位置 / 速度 / 力矩，约 10 Hz 刷新 |
+| 任务下发 | 按分组列出全部任务按钮；失能、重启、设零点等危险命令需二次确认；右下角常驻急停按钮 |
+| 虚拟面板 | 滑条、开关与 start / stop / pause，可替代手柄调参与启停任务 |
+| 运行日志 | 每次下发的任务命令、摇杆与面板数据会打印在 `fourier-grx web` 所在终端 |
+
+> ⚠️ **注意**
+>
+> - 面板改动**不会自动下发**，需点击卡片上的「下发」按钮。
+> - 摇杆与面板的值在机器人侧是**锁存**的，最后一次下发的值会一直生效，直到被新值覆盖或切换任务。界面上的「复位」只把指针归零，**不会让机器人停下**。
+
+参数与端口说明见 [命令行工具 · `fourier-grx web`](/fourier-grx-M4/docs/reference/command_line_tool#fourier-grx-web-详细说明)。
+
 ---
 
 ## 二次开发环境配置
 
-除了启动控制程序的功能，`fourier-grx` 工具还提供了 `fourier-grx setup_conda` 命令用于一键配置 conda 开发环境用于机器人二次开发。
+`fourier-grx` 提供 `setup_uv` 命令，一键搭建二次开发所需的 uv 虚拟环境（Python 3.11）。
 
 ```bash
 # 在机器人主控电脑上：
-fourier-grx setup_conda
+fourier-grx setup_uv
 
-# 程序运行完成后，会搭建出一个名为 `fourier-grx` 的 conda 环境，可以通过以下命令激活该环境
-conda activate fourier-grx
+# 环境位于 $HOME/fourier-grx/.venv，激活方式：
+source $HOME/fourier-grx/.venv/bin/activate
 
-# 如果希望自主搭建开发环境，可以在 $HOME/fourier-grx/whl 中找到依赖库文件进行手动安装。
+# 需要 Python 3.10 时改用：fourier-grx setup_uv_py310
 ```
+
+> ℹ️ 执行前请确保机器人主控电脑可以访问外网。
 
 ## 示例程序运行
 
-当我们安装好 conda 开发环境后，可以通过 git 同步机器人的二次开发接口示例程序。
+开发环境搭好后，通过 git 同步机器人的二次开发接口示例程序。
 
 ```bash
 git clone https://github.com/FFTAI/Wiki-GRx-Deploy.git --branch=FourierM4L
@@ -99,15 +122,14 @@ git clone https://github.com/FFTAI/Wiki-GRx-Deploy.git --branch=FourierM4L
 
 ```bash
 # 在机器人主控电脑上打开 Terminal
-# 1. 启动 fourier-grx 主程序
-# 激活 conda 环境
-conda activate fourier-grx
+# 激活开发环境
+source $HOME/fourier-grx/.venv/bin/activate
 
 # 启动 fourier-grx 主程序
-python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4l/config_M4L_T1_sdk.yaml
+$HOME/fourier-grx/run.bin --config=$HOME/fourier-grx/config/m4l/config_M4L_T1_sdk.yaml
 
 # M4LP1 机型请改用：
-# python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4l/config_M4L_P1_debug.yaml
+# $HOME/fourier-grx/run.bin --config=$HOME/fourier-grx/config/m4l/config_M4L_P1_sdk.yaml
 
 # 当看到提示信息 ”You can start playing with the robot right now.“ 时，表示程序启动成功。
 ```
@@ -115,8 +137,8 @@ python $HOME/fourier-grx/whl/run.py --config=$HOME/fourier-grx/config/m4l/config
 ```bash
 # 在机器人主控电脑上或与机器人同局域网内的任意一台电脑上打开 Terminal
 # 1. 启动 user 接口示例
-# 激活 conda 环境
-conda activate fourier-grx  
+# 激活开发环境
+source $HOME/fourier-grx/.venv/bin/activate
 
 # 启动示例程序，进入行走状态.
 python $HOME/Wiki-GRx-Deploy/user/demo_walk.py

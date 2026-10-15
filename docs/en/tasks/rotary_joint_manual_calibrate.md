@@ -33,9 +33,7 @@ Task Description:
 
 Task Parameters:
 
-| Parameter | Type | Default | Range | Description |
-|-----------|------|---------|-------|-------------|
-| | | | | |
+This task has no configurable parameters.
 
 ## Module Info
 
@@ -54,9 +52,7 @@ State Interface:
 
 Command Interface:
 
-| Parameter | Interface Mapping |
-|-----------|------------------|
-| | |
+This task requires no command parameters. Send the corresponding TID to trigger it.
 
 ## Internal Sub-Task Description
 
@@ -92,4 +88,4 @@ Command Interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.4.22.
-- Left-leg / right-leg separate manual calibration variants added in `fourier-grx` v4.4.53 (TID 4122 / 4123): available since v4.4.53.
+- `fourier-grx` v4.4.53 added the left-leg / right-leg separate manual calibration variants (TID 4122 / 4123).

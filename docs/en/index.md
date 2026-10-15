@@ -8,6 +8,8 @@ nav_exclude: true
 
 # Welcome to the Fourier-GRX-M4 SDK Documentation
 
+> This is the English home page. For the Chinese documentation, see [中文](/fourier-grx-M4/).
+
 ## Introduction
 
 The Fourier-GRX-M4 SDK is a software development kit provided by Fourier Intelligence. It offers a set of APIs for installing, configuring, and controlling Fourier Intelligence's M4 and M4L series robot products.
@@ -22,9 +24,11 @@ The SDK is designed to be simple and easy to use, providing high-level interface
 
 [Reference Guide](/fourier-grx-M4/docs/en/reference) contains detailed API documentation for the SDK library and can be used as a reference while developing your applications.
 
-[Usage Guide](/fourier-grx-M4/docs/en/usage) covers common operations such as robot calibration and switching between operating modes. For firmware installation, see [Quick Start - Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install); for firmware upgrades, see [Quick Start - Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update).
+[Task Description](/fourier-grx-M4/docs/en/tasks) documents the motion and calibration tasks the robot can run, one page per task, covering how to trigger them, their parameters, and precautions.
 
-[FAQ](/fourier-grx-M4/docs/en/faq) provides answers to common questions and can help you resolve frequent issues. If you encounter additional problems, you are also welcome to [contribute](/fourier-grx-M4/docs/en/contributing) and help us improve.
+[Usage Guide](/fourier-grx-M4/docs/en/usage) covers routine operations: joint zero-position calibration, auto-start on boot, run logs, data recording, and network connection. For firmware installation, see [Quick Start - Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install); for firmware upgrades, see [Quick Start - Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update).
+
+[FAQ](/fourier-grx-M4/docs/en/faq) collects troubleshooting for hardware, installation, initialization, networking, and performance. If your problem is not listed, you are welcome to [contribute](/fourier-grx-M4/docs/en/contributing) and help us improve.
 
 [Firmware Releases](/fourier-grx-M4/docs/en/release) lists published firmware versions together with their downloads and notes.
 

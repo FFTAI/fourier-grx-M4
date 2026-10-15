@@ -52,7 +52,7 @@ If the robot controller is already connected to the internet, you can download t
 
 ```bash
 # Download the fourier-grx package (example version)
-wget https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb
+wget https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb
 ```
 
 > ℹ️ **Note**
@@ -67,6 +67,10 @@ wget https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx
 sudo dpkg -i fourier-grx-xxx.deb  # replace xxx with the actual version number
 ```
 
+> ℹ️ **Note**
+>
+> This step only unpacks the archive into `/usr/share/fourier-grx/` and installs the `fourier-grx` command itself; the robot control program is not deployed yet. The terminal also prompts you to continue with `fourier-grx install` after `dpkg` finishes.
+
 ### Install the runtime content
 
 ```bash
@@ -74,9 +78,12 @@ sudo dpkg -i fourier-grx-xxx.deb  # replace xxx with the actual version number
 fourier-grx install
 ```
 
+This command deploys the package from the previous step into `~/fourier-grx/`, sets up the runtime, and prompts for the robot model, version, and run type.
+
 > ℹ️ **Note**
 >
-> - If installation fails due to network or other issues, rerun the commands above.
+> - Both steps are required for the robot to actually run the new version.
+> - If installation fails due to network or other issues, rerun the commands above. Before a repeated `fourier-grx install`, `~/fourier-grx` is first backed up to `~/fourier-grx-bak`.
 > - This page's workflow applies to **first-time installation** or scenarios where you need to **reconfigure the network or robot model**. If the device has already been installed and configured and you only need to upgrade the version, use the `fourier-grx update` workflow on the [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update) page instead — it's simpler.
 
 ## Robot Model Configuration

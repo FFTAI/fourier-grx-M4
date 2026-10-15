@@ -13,6 +13,26 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.11 (2026-10-15)
+
+**文档修正**
+
+- 🔧 **命令行工具**：删除实际不存在的 `setup_conda`，更正为 `setup_uv` / `setup_uv_py310` 并补上 `web` 子命令；`fourier-grx update <variant>` 更正为 `update <version>` 与 `update <version>-<渠道>`（机型变体一律自动读取，不能作为参数传入）；新增「安装的两个层次」，说明 `sudo dpkg -i` 只更新 `/usr/share/fourier-grx/`、`fourier-grx install` 才把新版本部署到 `~/fourier-grx/`；补充 `fourier-grx web` 参数表（`--host` 是机器人 IP，`--bind` 才是 web 监听地址，默认 `0.0.0.0:8000`）
+- 📦 [固件发布](/fourier-grx-M4/docs/release) 页 Fourier-GRX 最新版本由 4.4.43 更正为 **4.4.53**；[Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx#预发布渠道) 新增「预发布渠道」小节 —— `-prerelease` 只替换 `X-Variant` 末段的构建类型，机型段保留，因此自动探测不会发现预发布包；v4.4.52 未正式发布，不提供下载链接
+- 🆕 [M4L 机器人](/fourier-grx-M4/docs/quickstart/m4l#局域网网页调试) 新增「局域网网页调试」一节：`fourier-grx web` 启动与自动发现、实时状态、任务下发、虚拟面板、运行日志，以及面板值锁存的安全提示
+- 🔧 **固件更新**：补充 `fourier-grx update <版本>-prerelease` 用法；说明 `fourier-grx install` 会先备份 `~/fourier-grx` 为 `~/fourier-grx-bak` 并优先沿用旧配置，以及网络参数会被无条件重置为静态 IP
+- 🔧 **运行模式**：补上 `B` 服务器模式（`server`），离线调试模式（`offline`）的编号由 `B` 更正为 `C`
+- 🔧 **启动配置文件**：修正 `dynalink: enable`、`joystick_type`、`keyboard_type`、`robot: name`、通信周期等项的默认值与可选项，补充 `use_virtual_panel` / `use_virtual_user`
+- 🔧 开发环境 FAQ：GLIBC 最低版本由 2.33 更正为 2.34
+- 🗑️ 移除 M4 / M4L 快速开始页中没有内容的「视频教程」小节
+- 🔗 下载链接体检：早于 4.4.40 的安装包（含 4.4.41）已从下载服务器移除（实测 404），[固件发布页](/fourier-grx-M4/docs/release/fourier-grx)中这 32 个版本的下载列改为「已下架」占位，版本行与更新内容保留可查；快速开始页中作为示例的 `wget` 版本号改用仍在线的 4.4.53
+- 🐞 **任务文档事实校正**：TID 4112 声明的「暂停运动」接口 `grx.virtual_panel_command_pause` 实际从未被该任务读取，已从参数表与接口映射表移除；膝关节受限系列的力矩保护（4301 / 4302）与助力系数（4303 / 4304 / 4305）在当前固件中未接入算法调用，已在对应页面标注为「不生效」并给出替代任务；力矩保护触发后的行为由「暂停任务」更正为「立即退出并回到 `TASK_IDLE`」；为 12 篇步态任务页补上遗漏的 `rehab.step_frequency` 状态接口；`dsp_ratio` 在使用 vhip 步态生成器的任务页更正为「不生效」
+- 🔧 **示例代码**：`demo/user`、`demo/developer` 的 conda 相关说明改用 `setup_uv` 与 `source $HOME/fourier-grx/.venv/bin/activate`；`demo_set_home.py`、`demo_test_joint.py` 发送的 TID 999 / 902 在 M4L 上没有注册任何任务，已补充说明与替代任务（4103 / 4203、4100 / 4200）；`demo/udp/demo_get_state.py` 改为持续排空接收队列（状态推送约 250 包/秒，收一包睡一次会一直打印数秒前的旧数据）；`config_M4L_T1_developer.yaml` 补齐 `fi_ioboard` 段，并更正 `log_level: "none"` 的含义（等同输出全部日志，而非静默）
+- 🔧 **任务页更新日志的版本归属**：按「首个包含该变更的发布版本」校正 —— 膝关节受限系列 v4.2.5 → v4.2.6、站立姿态控制 v3.0.3 → v3.1.1、4103 / 4206 v4.1.18 → v4.1.19；伺服上电 / 下电 / 重启与清除故障在公开版本历史的最早版本 v2.0.5 中即已存在，相应条目不再标注「新增」版本
+- 🌐 **中英文切换**：修复中文首页（位于站点根目录）上「EN」按钮指向当前页、英文首页的「中文」按钮指向不存在页面的问题
+
+---
+
 ### v1.2.10 (2026-10-14)
 
 **文档更新**

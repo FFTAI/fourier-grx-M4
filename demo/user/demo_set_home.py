@@ -18,6 +18,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 --------------------------------------------------
 Demo code for set home of the robot
 
+⚠️ 在 M4L 上此示例不会真正执行任何动作：
+   SDK 常量 fourier_grx.TaskCommand.TASK_SET_HOME 对应 TID 999，
+   M4L 没有注册该任务，机器人会打印
+   "Task command value 999 is not supported." 并保持原任务不变。
+   M4L 请改用以下专项任务（把下方 message 中的任务值替换即可）：
+   - 4103 TASK_ROTARY_JOINT_SET_HOME   设置旋转关节（髋/膝）当前位置为零点
+   - 4203 TASK_PRISMATIC_JOINT_SET_HOME 设置直线关节（腿长）零点
+   详见文档《任务描述 - 设置零点》。
+
 Run this script by:
     python demo_xxx.py
 

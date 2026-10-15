@@ -29,12 +29,15 @@ Task Parameters:
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
 | Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
-| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Only effective for the DSP gait generator. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
+| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. This task uses the DSP gait generator, so this parameter is effective. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
+| Pause motion flag | `bool` | false | (true, false) | Whether to pause the motion. true = pause; the task must be restarted to continue walking. |
 
-
-> Note: In this task, the base height is computed automatically from the knee restriction angle and leg lengths; the `grx.virtual_panel_command_param_6` (base height) interface has no effect on this task.
+> Note:
+>
+> - In this task, the base height is computed automatically from the knee restriction angle and leg lengths; the `grx.virtual_panel_command_param_6` (base height) interface has no effect on this task.
+> - This task receives `command_switch_1` (enable torque protection) and `command_param_9` (torque protection limit), but the knee-restriction variant does not run the torque-protection check, so both interfaces have **no effect** here; use TID 4111 if torque protection is required.
 
 > **Knee Restriction Angle Explained**:
 >
@@ -62,7 +65,9 @@ Status interface:
 |-----------|------------------|
 | Task start flag | `task.flag_task_start` |
 | Task finish flag | `task.flag_task_finish` |
+| Task pause flag | `task.flag_task_pause` |
 | Motion ratio | `rehab.motion_ratio` |
+| Step frequency (steps/min) | `rehab.step_frequency` |
 | Reference trajectory position | `rehab.reference_joint_position` |
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
@@ -87,10 +92,12 @@ Command interface:
 | Double-support ratio | `grx.virtual_panel_command_param_8` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
-| Enable torque protection | `grx.virtual_panel_command_switch_1` |
-| Torque protection limit | `grx.virtual_panel_command_param_9` |
+| Pause motion flag | `grx.virtual_panel_command_pause` |
+| Enable torque protection | `grx.virtual_panel_command_switch_1` (no effect on this task) |
+| Torque protection limit | `grx.virtual_panel_command_param_9` (no effect on this task) |
 
 ## Update Log
 
-- Added in `fourier-grx` v4.2.2.
+- Added in `fourier-grx` v4.2.6.
+- `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the step lift height / double-support ratio parameter interfaces (the base height is computed automatically from the knee restriction angle and leg lengths).

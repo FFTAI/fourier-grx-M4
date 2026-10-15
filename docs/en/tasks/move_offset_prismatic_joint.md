@@ -59,4 +59,4 @@ Command Interface:
 
 ## Update Log
 
-- Added in `fourier-grx` v4.4.38.
+- Added in `fourier-grx` v4.4.37.

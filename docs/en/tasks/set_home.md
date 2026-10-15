@@ -9,7 +9,7 @@ nav_exclude: true
 
 # Set Home (All Joints)
 
-> ⚠️ **This task (TID=999) is not yet implemented.**
+> ⚠️ **This task (TID=999) is not yet implemented.** TID 999 is defined in the general robot task table `TaskMenuGRX.TASK_SET_HOME`; `TaskMenuM4L` (the 4000–4999 range) has no matching implementation.
 >
 > For the M4L robot, please use the following dedicated calibration tasks instead:
 > - Rotary joint (hip/knee) automatic zero-point calibration → [Auto Calibrate (Rotary Joint) TID=4120](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate)
@@ -20,4 +20,4 @@ nav_exclude: true
 
 ## Update Log
 
-- Added interface placeholder in `fourier-grx` v1.0.0 (not yet implemented).
+- Added interface placeholder in `fourier-grx` v2.2.14 (not yet implemented).

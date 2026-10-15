@@ -24,9 +24,7 @@ Task Description:
 
 Task Parameters:
 
-| Parameter | Type | Default | Range | Description |
-|-----------|------|---------|-------|-------------|
-| | | | | |
+This task has no configurable parameters.
 
 ## Module Info
 
@@ -45,9 +43,7 @@ State Interface:
 
 Command Interface:
 
-| Parameter | Interface Mapping |
-|-----------|------------------|
-| | |
+This task requires no command parameters. Send the corresponding TID to trigger it.
 
 ## Internal Sub-Task Description
 
@@ -86,4 +82,4 @@ Command Interface:
 
 ## Update Log
 
-- Added in `fourier-grx` v4.2.0.
+- Added in `fourier-grx` v4.4.0.

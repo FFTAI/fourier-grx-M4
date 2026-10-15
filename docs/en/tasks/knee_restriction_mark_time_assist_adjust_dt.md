@@ -48,7 +48,6 @@ Task Parameters:
 > | 0.5 | Knee maintains at least ~28.6° of bend throughout motion |
 > | 1.0 | Knee maintains at least ~57.3° of bend throughout motion (strong restriction) |
 
-
 > **Assist Ratio Explained**:
 >
 > The assist ratio controls pacing by adjusting the trajectory playback speed (play\_speed). The formula is:
@@ -89,6 +88,7 @@ Status interface:
 | Task start flag | `task.flag_task_start` |
 | Task finish flag | `task.flag_task_finish` |
 | Motion ratio | `rehab.motion_ratio` |
+| Step frequency (steps/min) | `rehab.step_frequency` |
 | Reference trajectory position | `rehab.reference_joint_position` |
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
@@ -118,7 +118,8 @@ Command interface:
 
 ## Update Log
 
-- Added in `fourier-grx` v4.0.0.
-- Added `Assist trigger force upper` / `Assist trigger force lower` parameters as configurable absolute torque thresholds for auto assist mode. Experimental testing showed that including the gravity compensation term G[i] in the threshold formula caused system instability; the G[i] coefficient has been set to zero and the configured values are used directly as absolute thresholds.
+- Added in `fourier-grx` v4.2.6.
+- `fourier-grx` v4.4.4 added the `Assist trigger force upper` / `Assist trigger force lower` parameters as configurable absolute torque thresholds for auto assist mode. Experimental testing showed that including the gravity compensation term G[i] in the threshold formula caused system instability; the G[i] coefficient has been set to zero and the configured values are used directly as absolute thresholds.
 - `fourier-grx` v4.4.25 adjusted the auto-decrement applied when torque falls below the assist trigger force lower threshold from −0.01 to −0.001, avoiding assist instability caused by the assist ratio decaying too quickly in mark-time scenarios; the +0.02 increment for the upper threshold (since v4.4.24) remains unchanged.
 - `fourier-grx` v4.4.30 raised the auto-increment applied when torque exceeds the assist trigger force upper threshold from +0.02 to +0.04, further speeding up the assist response when the patient pushes.
+- `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).

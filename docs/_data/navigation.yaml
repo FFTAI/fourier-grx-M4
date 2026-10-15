@@ -37,6 +37,9 @@ docs:
     nav_order: 3
     has_children: true
     children:
+      - title: 通信接口
+        url: /docs/reference/communication
+        nav_order: 3.0
       - title: User 接口
         url: /docs/reference/user
         nav_order: 3.1
@@ -61,6 +64,9 @@ docs:
       - title: 执行器错误码
         url: /docs/reference/actuator_error_code
         nav_order: 3.8
+      - title: 速度保护与位置保护
+        url: /docs/reference/protection
+        nav_order: 3.9
 
   - title: 任务描述
     url: /docs/tasks
@@ -82,67 +88,72 @@ docs:
       - title: 设置零点
         url: /docs/tasks/set_home
         nav_order: 4.5
-      - title: 站立姿态控制
-        url: /docs/tasks/stand_motion_control
-        nav_order: 4.6
-      - title: 被动前向行走
-        url: /docs/tasks/forward_walk_passive
-        nav_order: 4.7
-      - title: 助力前向行走（调整 PD 参数）
-        url: /docs/tasks/forward_walk_assist_adjust_pd
-        nav_order: 4.8
-      - title: 助力前向行走（调整 dt 参数）
-        url: /docs/tasks/forward_walk_assist_adjust_dt
-        nav_order: 4.9
-      - title: 被动原地踏步
-        url: /docs/tasks/mark_time_passive
-        nav_order: 4.10
-      - title: 助力原地踏步（调整 PD 参数）
-        url: /docs/tasks/mark_time_assist_adjust_pd
-        nav_order: 4.11
-      - title: 助力原地踏步（调整 dt 参数）
-        url: /docs/tasks/mark_time_assist_adjust_dt
-        nav_order: 4.12
-      - title: 站立姿态控制（膝关节受限）
-        url: /docs/tasks/knee_restriction_stand_motion_control
-        nav_order: 4.13
-      - title: 被动前向行走（膝关节受限）
-        url: /docs/tasks/knee_restriction_forward_walk_passive
-        nav_order: 4.14
-      - title: 助力前向行走（膝关节受限，调整 PD 参数）
-        url: /docs/tasks/knee_restriction_forward_walk_assist_adjust_pd
-        nav_order: 4.15
-      - title: 助力前向行走（膝关节受限，调整 dt 参数）
-        url: /docs/tasks/knee_restriction_forward_walk_assist_adjust_dt
-        nav_order: 4.16
-      - title: 被动原地踏步（膝关节受限）
-        url: /docs/tasks/knee_restriction_mark_time_passive
-        nav_order: 4.17
-      - title: 助力原地踏步（膝关节受限，调整 PD 参数）
-        url: /docs/tasks/knee_restriction_mark_time_assist_adjust_pd
-        nav_order: 4.18
-      - title: 助力原地踏步（膝关节受限，调整 dt 参数）
-        url: /docs/tasks/knee_restriction_mark_time_assist_adjust_dt
-        nav_order: 4.19
-      - title: 规划器
-        url: /docs/tasks/planner
-        nav_order: 4.99
-
       - title: 设置零点（旋转关节）
         url: /docs/tasks/set_home_rotary_joint
-        nav_order: 4.20
-
-      - title: 校准零点（直线关节）
-        url: /docs/tasks/calibrate_home_prismatic_joint
-        nav_order: 4.21
-
-      - title: 调整长度（直线关节）
-        url: /docs/tasks/move_length_prismatic_joint
-        nav_order: 4.22
-
+        nav_order: 4.6
       - title: 自动校准（旋转关节）
         url: /docs/tasks/rotary_joint_auto_calibrate
+        nav_order: 4.7
+      - title: 手动校准（旋转关节）
+        url: /docs/tasks/rotary_joint_manual_calibrate
+        nav_order: 4.8
+      - title: 校准零点（直线关节）
+        url: /docs/tasks/calibrate_home_prismatic_joint
+        nav_order: 4.9
+      - title: 站立姿态控制
+        url: /docs/tasks/stand_motion_control
+        nav_order: 4.10
+      - title: 被动前向行走
+        url: /docs/tasks/forward_walk_passive
+        nav_order: 4.11
+      - title: 助力前向行走（调整 PD 参数）
+        url: /docs/tasks/forward_walk_assist_adjust_pd
+        nav_order: 4.12
+      - title: 助力前向行走（调整 dt 参数）
+        url: /docs/tasks/forward_walk_assist_adjust_dt
+        nav_order: 4.13
+      - title: 被动原地踏步
+        url: /docs/tasks/mark_time_passive
+        nav_order: 4.14
+      - title: 助力原地踏步（调整 PD 参数）
+        url: /docs/tasks/mark_time_assist_adjust_pd
+        nav_order: 4.15
+      - title: 助力原地踏步（调整 dt 参数）
+        url: /docs/tasks/mark_time_assist_adjust_dt
+        nav_order: 4.16
+      - title: 站立姿态控制（膝关节受限）
+        url: /docs/tasks/knee_restriction_stand_motion_control
+        nav_order: 4.17
+      - title: 被动前向行走（膝关节受限）
+        url: /docs/tasks/knee_restriction_forward_walk_passive
+        nav_order: 4.18
+      - title: 助力前向行走（膝关节受限, 调整 PD 参数）
+        url: /docs/tasks/knee_restriction_forward_walk_assist_adjust_pd
+        nav_order: 4.19
+      - title: 助力前向行走（膝关节受限, 调整 dt 参数）
+        url: /docs/tasks/knee_restriction_forward_walk_assist_adjust_dt
+        nav_order: 4.20
+      - title: 被动原地踏步（膝关节受限）
+        url: /docs/tasks/knee_restriction_mark_time_passive
+        nav_order: 4.21
+      - title: 助力原地踏步（膝关节受限, 调整 PD 参数）
+        url: /docs/tasks/knee_restriction_mark_time_assist_adjust_pd
+        nav_order: 4.22
+      - title: 助力原地踏步（膝关节受限, 调整 dt 参数）
+        url: /docs/tasks/knee_restriction_mark_time_assist_adjust_dt
         nav_order: 4.23
+      - title: 调整长度（直线关节）
+        url: /docs/tasks/move_length_prismatic_joint
+        nav_order: 4.24
+      - title: 相对调节长度（直线关节）
+        url: /docs/tasks/move_offset_prismatic_joint
+        nav_order: 4.25
+      - title: 规划器
+        url: /docs/tasks/planner
+        nav_order: 4.26
+      - title: 高阻尼保护（急停响应）
+        url: /docs/tasks/emergency_stop_high_damping
+        nav_order: 4.27
 
   - title: 常用操作
     url: /docs/usage

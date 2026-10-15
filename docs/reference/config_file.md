@@ -71,7 +71,7 @@ run_type="custom"
 
 | 配置项                   | 说明                                           | 数据类型    | 默认值   | 可选项         | 用户可修改           |
 |-----------------------|----------------------------------------------|---------|-------|-------------|-----------------|
-| dynalink: enable      | 是否启用 动态连接数据传输功能                              | boolean | false | true, false | 是               |
+| dynalink: enable      | 是否启用 动态连接数据传输功能                              | boolean | true | true, false | 是               |
 | sync: enable          | 是否启用 数据同步功能（需要 dynalink:enable=true）         | boolean | false | true, false | 否 (暂未开放使用)      |
 | rerun: enable         | 是否启用 rerun 绘图功能（需要 dynalink:enable=true）     | boolean | false | true, false | 是               |
 | streamlit: enable     | 是否启用 streamlit 绘图功能（需要 dynalink:enable=true） | boolean | false | true, false | 否 (暂未开放使用)      |
@@ -91,26 +91,28 @@ run_type="custom"
 | 配置项                                   | 说明          | 数据类型    | 默认值      | 可选项                  | 用户可修改 |
 |---------------------------------------|-------------|---------|----------|----------------------|-------|
 | peripheral: use_joystick              | 是否使用手柄控制    | boolean | false    | true, false          | 是     |
-| peripheral: joystick_type             | 手柄类型        | string  | "XBOX"   | "XBOX", "PS4", "PS5" | 是     |
+| peripheral: joystick_type             | 手柄类型        | string  | "LUBANCAT" | "XBOX", "PS4", "PS5", "GAMESIR", "LUBANCAT" | 是 |
 | peripheral: use_keyboard              | 是否使用键盘控制    | boolean | false    | true, false          | 是     |
-| peripheral: keyboard_type             | 键盘类型        | string  | "NORMAL" | "NORMAL"             | 是     |
-| peripheral: use_virtual_joystick      | 是否使用虚拟手柄控制  | boolean | false    | true, false          | 是     |
+| peripheral: keyboard_type             | 键盘类型        | string  | "STANDARD" | "STANDARD"           | 是     |
+| peripheral: use_virtual_panel         | 是否启用虚拟面板（web 上位机 / 掌机下发面板参数） | boolean | true     | true, false          | 是     |
+| peripheral: use_virtual_user          | 是否启用虚拟用户参数（web 上位机 / 掌机下发腿长等） | boolean | true     | true, false          | 是     |
+| peripheral: use_virtual_joystick      | 是否使用虚拟手柄控制（旧配置键）  | boolean | false    | true, false          | 是     |
 | peripheral: use_virtual_teleoperation | 是否使用虚拟遥操作控制 | boolean | false    | true, false          | 是     |
 
 ### 机器人相关
 
 | 配置项                         | 说明        | 数据类型   | 默认值      | 可选项                                   | 用户可修改 |
 |-----------------------------|-----------|--------|----------|-----------------------------------------|-------|
-| robot: name                 | 机器人名称     | string | "M4LT1"  | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" | 否     |
+| robot: name                 | 机器人名称     | string | 按机型      | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" \| "M4LZenoh" | 否     |
+| robot: backend              | 机器人通信后端类型 | string | "Real"   | "Real"                                  | 否     |
+| robot: control_period       | 控制周期      | float  | 0.02     | 单位为秒                                    | 否     |
+| communication: period       | 通信周期      | float  | 0.02     | 单位为秒（顶层 `communication` 段）              | 否     |
 
 > ℹ️ **机器人型号说明**
 >
 > - **M4LT2**：最新机型，搭载 **2.5 代 FSA 执行器**。
 > - **M4LT1**：搭载 **2.0 代 FSA 执行器**。
 > - **M4LP1**：搭载旧版 **1.0 代 FSA 执行器**，通过软件升级适配 2.0 代接口。
-| robot: backend              | 机器人通信后端类型 | string | "Real"   | "Real"                                  | 否     |
-| robot: control_period       | 控制周期      | float  | 0.02     | 单位为秒                                    | 否     |
-| robot: communication_period | 通信周期      | float  | 0.02     | 单位为秒                                    | 否     |
 
 ### 传感器相关
 

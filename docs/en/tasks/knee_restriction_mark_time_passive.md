@@ -31,6 +31,8 @@ Task Parameters:
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue stepping. |
 
+> Note: this task receives `command_switch_1` / `command_param_9`, but the knee-restriction variant does not run the torque-protection check, so both interfaces have **no effect** here (use TID 4112 if torque protection is required). The base height is computed from the knee restriction angle and leg lengths, so `param_6` has no effect either.
+>
 > **Knee Restriction Angle Explained**:
 >
 > This parameter sets the minimum bend angle the knee joint must maintain throughout the entire motion (unit: rad). The algorithm clamps any knee joint angle in the trajectory that falls below this value to the specified value, ensuring the knee never extends beyond the set limit. Designed for patients whose knee extension function is restricted and who cannot fully straighten the knee.
@@ -55,6 +57,7 @@ Status interface:
 | Task start flag | `task.flag_task_start` |
 | Task finish flag | `task.flag_task_finish` |
 | Motion ratio | `rehab.motion_ratio` |
+| Step frequency (steps/min) | `rehab.step_frequency` |
 | Reference trajectory position | `rehab.reference_joint_position` |
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
@@ -77,9 +80,10 @@ Command interface:
 | Step period | `grx.virtual_panel_command_param_2` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
-| Enable torque protection | `grx.virtual_panel_command_switch_1` |
-| Torque protection limit | `grx.virtual_panel_command_param_9` |
+| Enable torque protection | `grx.virtual_panel_command_switch_1` (no effect on this task) |
+| Torque protection limit | `grx.virtual_panel_command_param_9` (no effect on this task) |
 
 ## Update Log
 
-- Added in `fourier-grx` v4.2.2.
+- Added in `fourier-grx` v4.2.6.
+- `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).

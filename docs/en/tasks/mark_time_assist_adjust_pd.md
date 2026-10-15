@@ -47,6 +47,8 @@ Task Parameters:
 > | 0.5 | 150 | 15 | Moderate stiffness — suitable for patients with some active motor ability. |
 > | 1.0 | 200 | 20 | Normal stiffness with full trajectory-tracking capability — suitable for patients requiring completely passive guidance. |
 
+> When it takes effect: the assist ratio is written into the joint PD gains only while the task is in its start stage (`STAGE_INIT` / `STAGE_START`). Changing it during walking or stepping does not change the current stiffness — the task must be restarted.
+
 ## Module Info
 
 This task has no independent module commands and does not support per-joint control via the module interface.
@@ -60,6 +62,7 @@ State Interface:
 | Task start flag | `task.flag_task_start` |
 | Task finish flag | `task.flag_task_finish` |
 | Motion ratio | `rehab.motion_ratio` |
+| Step frequency (steps/min) | `rehab.step_frequency` |
 | Reference trajectory position | `rehab.reference_joint_position` |
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
@@ -86,4 +89,5 @@ Command Interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.
+- `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height parameter interface.

@@ -18,10 +18,18 @@ To guarantee real-time performance, these examples must be run on the robot cont
 
 ## How to Run
 
-1. Start the example script directly on the robot controller to take control:
+> ⚠️ A Developer-interface example *is* the robot control program: it initializes the hardware and runs the control loop inside its own process.
+> Stop the running `fourier-grx` main program first, otherwise two processes will contend for the same actuators:
+>
+> ```bash
+> # Stop the main program on the robot controller
+> fourier-grx stop
+> ```
+
+1. Start the example on the robot controller to take direct control:
     ```bash
-    # Activate the conda environment
-    conda activate fourier-grx
+    # Activate the development environment (virtual environment at $HOME/fourier-grx/.venv)
+    source $HOME/fourier-grx/.venv/bin/activate
 
     # Clone the example code repository (if not already cloned)
     git clone https://github.com/FFTAI/fourier-grx-M4.git
@@ -30,6 +38,9 @@ To guarantee real-time performance, these examples must be run on the robot cont
     cd fourier-grx-M4/demo/developer
     python demo_{example_name}.py --config=config_M4L_T1_developer.yaml
     ```
+
+   On startup the script prints a dictionary with the `fourier_core` / `fourier_grx` versions, initializes the hardware from the `--config` file, and then runs the control loop on a background thread inside the example's own process; the process exits once the example's algorithm function returns.
+   A relative `--config` path is resolved against the current working directory, so either run from `demo/developer` or pass an absolute path.
 
 ### Notes
 

@@ -32,6 +32,8 @@ Open `~/fourier-grx/run.sh` and set `run_type` to `record`:
 run_type="record"
 ```
 
+> ℹ️ `record` is not a built-in run type — it only borrows the file naming rule `config_<model>_<version>_<run_type>.yaml` to point at the file created in the previous step. `record` does not appear in the `fourier-grx config` run-type list, so to enter recording mode again you have to edit `run.sh` directly.
+
 **Step 3: Start**
 
 ```bash

@@ -6,19 +6,37 @@
 ## 运行环境
 
 - Python 3.10+，无需安装任何第三方包
-- 机器人已启动 `fourier-grx` 主程序，且配置中 `communication.enable: true`、`type: "socket"`
+- 机器人已启动 `fourier-grx` 主程序，且启动所用的配置文件中包含：
+
+  ```yaml
+  dynalink:
+    enable: true
+
+  communication:
+    enable: true
+    period: 0.02  # 50Hz
+    type: "socket"
+  ```
+
+  `release` / `debug` 模式的 M4L 配置已带有以上字段；`sdk`（开发者模式）的配置目前
+  只有 `dynalink.enable`，需要补上 `communication` 段，否则机器人不会监听 UDP 5566，
+  示例会一直等待广播直到超时。可用 `fourier-grx list` 确认当前生效的配置文件。
 
 ## 协议简介（UDP + MessagePack）
 
 - 机器人（服务端）监听 UDP **5566** 端口
 - 机器人每秒向 `255.255.255.255:9527` 广播一次 `{"host": <ip>, "port": 5566}`（自动发现）
 - 客户端 → 机器人数据包：`{"key": <topic>, "data": {...可写字段...}}`
-- 机器人 → 客户端数据包：`{"key": <topic>, "data": {...可读字段...}}`，
-  约 50 Hz 推送给所有"发过至少一个包"的客户端
+- 机器人 → 客户端数据包：`{"key": <topic>, "data": {...可读字段...}}`
 - topic 包括：`comm`、`robot`、`task`、`grx`、`rehab`
+- 服务端只向"至少发过一个包"的客户端推送状态，因此需要先发送一个数据包"注册"自己
+- 推送按通信周期成组进行：每个周期为 5 个 topic 各发一包，默认 `period: 0.02`
+  即约 **250 包/秒**。因此读取状态时必须持续把 socket 读空，
+  若"收一包睡一会儿"，打印出来的会是几秒之前的旧数据（`demo_get_state.py` 即按此实现）
 
 MessagePack 编解码由本目录下的 `mini_msgpack.py` 用标准库 `struct` 实现，
-与官方 `msgpack` 库完全兼容。
+覆盖本协议报文用到的类型（nil / bool / int / float / str / array / map），
+对这些类型与官方 `msgpack` 库逐字节一致；不支持 ext / timestamp 等扩展类型。
 
 ## 示例列表
 
@@ -69,10 +87,21 @@ python demo_servo_on.py
 python demo_servo_on.py --host 192.168.137.220
 ```
 
+运行成功后终端会打印：
+
+```text
+等待机器人广播（UDP 9527）...
+已连接到机器人 192.168.137.220:5566
+发送任务指令: TASK_SERVO_ON (35)
+```
+
+若没有收到广播，会抛出 `TimeoutError` 并提示检查机器人与本机是否在同一局域网，
+此时可改用 `--host` 直接指定机器人 IP。
+
 ## 上位机心跳注意事项
 
 `demo_heartbeat.py` 演示断连保护机制。三个运动示例（`demo_walk.py`、
-`demo_virtual_panel.py`、`demo_virtual_joystick.py`）也会在运行期间持续发送心跳；
+`demo_virtual_panel.py`、`demo_virtual_joystick.py`）也会在运行期间持续发送心跳。
 
 - 控制器从**第一次收到** `host_heartbeat_counter` 开始计时
 - 超过 `host_heartbeat_timeout`（默认 6 秒）未收到新的心跳写入，

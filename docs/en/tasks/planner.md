@@ -7,9 +7,13 @@ has_toc: true
 nav_exclude: true
 ---
 
-# Planner (Different tasks can have different planner tasks)
+# Planner
 
-The Planner is an auxiliary task for trajectory-tracking tasks. It generates joint motion trajectory sequences for display on the host computer along with possible trajectory generation results. The robot itself does not execute trajectory-tracking motion during this task — ensure the device is in Servo Off state to avoid accidental injury.
+The Planner is an auxiliary task for trajectory-tracking tasks. It generates joint motion trajectory sequences for display on the host computer along with possible trajectory generation results. Planner tasks do not run the task activate/deactivate flow, so the robot itself does not execute trajectory-tracking motion.
+
+> ⚠️ **Note**: before using the Planner, run Servo Off (TID=36) to make sure the device is de-energized, to avoid accidental injury.
+>
+> When a Planner task is deactivated, the step-frequency field reported to the host (`rehab.step_frequency`) is cleared to zero.
 
 ## Passive Forward Walk
 
@@ -82,3 +86,8 @@ Task Parameters: refer to [Assist Forward Walk (Knee Restriction, Adjust dt Para
 Task ID (TID): **4506**
 
 Task Parameters: refer to [Assist Mark Time (Knee Restriction, Adjust dt Parameter)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
+
+## Update Log
+
+- Planner tasks (TID 4401–4406) added in `fourier-grx` v4.3.0.
+- Since `fourier-grx` v4.4.47, planner tasks clear the reported step-frequency field on exit.

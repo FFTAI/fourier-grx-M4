@@ -25,6 +25,8 @@ Task Parameters:
 | Lower leg length | `float` | 0.5 | [0.3, 0.6] | The robot's lower leg (shank) length, in m. |
 | Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the left knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
 | Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the right knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
+| Enable torque protection | `bool` | false | (true, false) | Whether to enable torque protection. When enabled, if the torque of any joint exceeds the torque protection limit, the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the overload flag; the task must be re-issued to continue. |
+| Torque protection limit | `float` | None | [0.0, 200.0] | Maximum allowable output torque for any joint during the standing process, in Nm. Only effective when torque protection is enabled; disabled by default. |
 
 > **Knee Restriction Angle Explained**:
 >
@@ -67,4 +69,4 @@ Command interface:
 
 ## Update Log
 
-- Added in `fourier-grx` v1.0.0.
+- Added in `fourier-grx` v4.2.6.

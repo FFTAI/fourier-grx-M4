@@ -20,7 +20,7 @@ nav_exclude: true
 
 Robot task command list 🎏:
 
-- Task commands are defined via the `fourier_grx.TaskCommand` enum class, as detailed below.
+- Task commands are defined via enum classes: `fourier_grx.task.menu.TaskMenuM4L` for the M4L robots, and `fourier_grx.task.menu.TaskMenuRobotReal` for the common power-off / power-on / clear-fault commands, as detailed below.
 - The specific `Task Value (TID)` may vary depending on the robot model or `fourier-grx` version. **Always refer to the actual task information for the authoritative values.**
 
 Common task command examples for M4 robots:
@@ -32,10 +32,10 @@ Common task command examples for M4 robots:
 | TASK_SERVO_REBOOT                                 | 41               | All               | Reboot all robot joints and reload configuration                          |
 | TASK_CLEAR_FAULT                                  | 34               | All               | Clear alarms on all robot joints                                          |
 | TASK_STAND_CONTROL                                | 4020             | M4L               | Slowly move all joints back to standing posture                           |
-| TASK_ROTARY_JOINT_SET_HOME                        | 4103             | M4L               | Set the current position of rotary joints as zero (manual)                |
+| TASK_ROTARY_JOINT_SET_HOME                        | 4103             | M4L               | Set the current rotary joint position as the actuator-level zero (includes an actuator reboot) |
 | TASK_ROTARY_JOINT_BORDER_AND_RETURN               | 4104             | M4L               | Rotary joint boundary detection: drive to mechanical limit then auto-return |
-| TASK_ROTARY_JOINT_SET_HOME_POSITION               | 4105             | M4L               | Sample mean, then set current position as rotary joint zero (software layer) |
-| TASK_ROTARY_JOINT_MOVE_BACK                       | 4106             | M4L               | Return rotary joints to a safe position                                   |
+| TASK_ROTARY_JOINT_SET_HOME_POSITION               | 4105             | M4L               | Sample the mean, then set the current position as the rotary joint zero (software application layer, no reboot) |
+| TASK_ROTARY_JOINT_MOVE_BACK                       | 4106             | M4L               | Return rotary joints to a safe position (enum placeholder only; no task implementation in the current firmware) |
 | TASK_ROTARY_JOINT_AUTO_CALIBRATE                  | 4120             | M4L               | Automatic rotary joint calibration (boundary detection → power off → set zero, three sequential steps) |
 | TASK_ROTARY_JOINT_MANUAL_CALIBRATE                | 4121             | M4L               | Manual rotary joint calibration (power off → user manually positions joints → set zero, two sequential steps) |
 | TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG       | 4122             | M4L               | Manual rotary joint calibration for the left leg only (only the left leg powers off and sets its zero point; the right leg stays in support) |
@@ -49,9 +49,14 @@ Common task command examples for M4 robots:
 | TASK_ROTARY_JOINT_MARK_TIME                       | 4112             | M4L               | Passive marching in place                                                 |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD      | 4117             | M4L               | Assisted marching in place (adjust PD parameters)                         |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT      | 4119             | M4L               | Assisted marching in place (adjust dt parameters)                         |
-| TASK_ROTARY_JOINT_HIGH_DAMPING                    | 4600             | M4LT2             | High-damping protection task triggered automatically on emergency stop (kp=0, high kd, soft braking) |
+| TASK_ROTARY_JOINT_HIGH_DAMPING                    | 4600             | M4LT2             | High-damping protection task triggered automatically on emergency stop (kp≈0, kd=20, soft braking) |
 
 - All: Indicates all Fourier Intelligence production robot models.
+
+> Note:
+>
+> - `TaskMenuM4L` also contains several implemented tasks that are not expanded in this chapter; they are mainly used as internal calibration steps and for joint-level debugging: 4104 (border detection and return), 4105 (software-layer set home), 4110 (rotary joint sine wave test), 4100 / 4200 (joint PD test), 4203 / 4204 / 4205 (prismatic joint set home and end-limit moves, where 4204 is the internal step of the 4210 auto calibration).
+> - The following enum entries have no implementation in the current firmware and are kept as placeholders only: 4000, 4010, 4011, 4101, 4102, 4106, 4114, 4115, 4201, 4202. They may still appear in the gamepad task list — do not use them in production workflows.
 
 ---
 

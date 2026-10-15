@@ -1,4 +1,4 @@
-log_level: "none" # Notice: for client use, please set log_level to "error"
+log_level: "none" # 注意: "none" 在 fourier-grx 里表示输出全部日志(TRACE)，不是关闭日志；若只想看报错请改为 "error"
 
 # Control System Layer --------------------------------------------------------
 device_connected: true
@@ -41,3 +41,11 @@ actuator:
 # Hardware Layer ---------------------------------------------------------------
 fi_fsa:
   version: "v2_async"
+  data_upload_frequency: 500  # Hz, FSA actuator data upload frequency
+
+# IOBoard 驱动版本必须显式指定；缺省时 fourier-core 会退回同步版 fi_ioboard_v1，
+# 与 M4L 正式配置使用的异步版不一致
+fi_ioboard:
+  version: "v1_async"
+  expected_firmware_version: "1.0.0.2"  # IOBoard expected firmware version
+  data_upload_frequency: 1  # Hz, IOBoard data upload frequency

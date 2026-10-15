@@ -19,7 +19,7 @@ parent: 常见问题
 
 ## 依赖问题
 
-**现象**：`ImportError: GLIBC_2.33 not found`
+**现象**：`ImportError: GLIBC_2.34 not found`
 
 **解决方案**：
 
@@ -30,4 +30,4 @@ sudo apt update && sudo apt install build-essential
 系统要求：
 
 - 推荐：Ubuntu 22.04 LTS
-- 最低：支持 GLIBC 2.33 的 Linux 发行版
+- 最低：GLIBC 2.34 及以上（`fourier-grx` 的环境脚本会校验这一版本并要求 Ubuntu 22.04 或更高）

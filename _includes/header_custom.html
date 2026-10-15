@@ -8,8 +8,18 @@
   var path = window.location.pathname;
   var isEn = path.indexOf('/docs/en') !== -1;
 
-  var zhPath = isEn ? path.replace('/docs/en', '/docs') : path;
-  var enPath = isEn ? path : path.replace('/docs/', '/docs/en/');
+  // 中文首页在站点根目录，英文首页在 <root>/docs/en/，两者都不遵循 /docs/xxx <-> /docs/en/xxx 的替换规则
+  var cut = path.indexOf('/docs/');
+  var siteRoot = cut === -1 ? path.replace(/[^/]*$/, '') : path.slice(0, cut) + '/';
+
+  var zhPath, enPath;
+  if (isEn) {
+    enPath = path;
+    zhPath = /\/docs\/en\/?([^/]+\.html)?$/.test(path) ? siteRoot : path.replace('/docs/en', '/docs');
+  } else {
+    zhPath = path;
+    enPath = cut === -1 ? siteRoot + 'docs/en/' : path.replace('/docs/', '/docs/en/');
+  }
 
   var zhBtn = document.getElementById('lang-zh-btn');
   var enBtn = document.getElementById('lang-en-btn');

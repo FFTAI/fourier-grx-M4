@@ -40,4 +40,4 @@ This task requires no additional command parameters. Send TID=35 to trigger it.
 
 ## Update Log
 
-- Added in `fourier-grx` v1.0.0.
+- Provided since early `fourier-grx` versions (already present in v2.0.5, the earliest release in this repository’s public history).

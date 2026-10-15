@@ -51,5 +51,5 @@ Command Interface:
 
 ## Update Log
 
+- Added in `fourier-grx` v4.1.19.
 - `fourier-grx` v4.4.7: The upper limit of the thigh/shank adjustment length was changed from `0.090 m` to `0.095 m`, and the parameter range was updated to `[0.0, 0.095]`.
-- Added in `fourier-grx` v4.1.22.

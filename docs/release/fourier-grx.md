@@ -14,6 +14,8 @@ has_toc: true
 ## 版本列表
 
 > ⚠️ 目前仅最新版本受支持，请始终安装/升级到最新版本；旧版本仅保留供查阅历史更新内容。
+>
+> 早于 **4.4.40** 的版本（以及 4.4.41）安装包已从下载服务器移除，下表对应位置标注为「已下架」；这些版本仍保留在表中，以便查阅更新内容。
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
@@ -28,43 +30,53 @@ has_toc: true
 | 2026-10-08 | 4.4.44 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4444) | ❌ 不再支持 |
 | 2026-09-01 | 4.4.43 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4443) | ❌ 不再支持 |
 | 2026-08-28 | 4.4.42 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4442) | ❌ 不再支持 |
-| 2026-08-28 | 4.4.41 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.41-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4441) | ❌ 不再支持 |
+| 2026-08-28 | 4.4.41 | 已下架 | [详情](#4441) | ❌ 不再支持 |
 | 2026-08-12 | 4.4.40 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4440) | ❌ 不再支持 |
-| 2026-08-06 | 4.4.39 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.39-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4439) | ❌ 不再支持 |
-| 2026-08-03 | 4.4.38 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.38-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4438) | ❌ 不再支持 |
-| 2026-07-29 | 4.4.35 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.35-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4435) | ❌ 不再支持 |
-| 2026-07-29 | 4.4.34 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.34-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4434) | ❌ 不再支持 |
-| 2026-07-29 | 4.4.33 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.33-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4433) | ❌ 不再支持 |
-| 2026-07-28 | 4.4.32 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.32-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4432) | ❌ 不再支持 |
-| 2026-07-24 | 4.4.31 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.31-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4431) | ❌ 不再支持 |
-| 2026-07-24 | 4.4.30 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.30-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4430) | ❌ 不再支持 |
-| 2026-07-24 | 4.4.29 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.29-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4429) | ❌ 不再支持 |
-| 2026-07-23 | 4.4.28 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.28-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4428) | ❌ 不再支持 |
-| 2026-07-17 | 4.4.27 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.27-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4427) | ❌ 不再支持 |
-| 2026-07-17 | 4.4.26 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.26-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4426) | ❌ 不再支持 |
-| 2026-07-16 | 4.4.25 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.25-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4425) | ❌ 不再支持 |
-| 2026-07-16 | 4.4.24 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.24-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4424) | ❌ 不再支持 |
-| 2026-07-06 | 4.4.23 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.23-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4423) | ❌ 不再支持 |
-| 2026-07-02 | 4.4.22 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.22-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4422) | ❌ 不再支持 |
-| 2026-07-01 | 4.4.21 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.21-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4421) | ❌ 不再支持 |
-| 2026-06-30 | 4.4.20 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.20-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4420) | ❌ 不再支持 |
-| 2026-06-30 | 4.4.19 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.19-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4419) | ❌ 不再支持 |
-| 2026-06-30 | 4.4.14 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.14-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4414) | ❌ 不再支持 |
-| 2026-06-29 | 4.4.10 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.10-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4410) | ❌ 不再支持 |
-| 2026-06-29 | 4.4.9 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.9-linux-arm64-cpu-m4l-blaze.deb) | [详情](#449) | ❌ 不再支持 |
-| 2026-05-22 | 4.4.8 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.8-linux-arm64-cpu-m4l-blaze.deb) | [详情](#448) | ❌ 不再支持 |
-| 2026-05-22 | 4.4.7 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb) | [详情](#447) | ❌ 不再支持 |
-| 2026-05-14 | 4.4.6 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb) | [详情](#446) | ❌ 不再支持 |
-| 2026-05-14 | 4.4.5 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb) | [详情](#445) | ❌ 不再支持 |
-| 2026-05-13 | 4.4.4 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.4-linux-arm64-cpu-m4l-blaze.deb) | [详情](#444) | ❌ 不再支持 |
-| 2026-05-11 | 4.4.3 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.3-linux-arm64-cpu-m4l-blaze.deb) | [详情](#443) | ❌ 不再支持 |
-| 2026-04-10 | 4.4.2 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.2-linux-arm64-cpu-m4l-blaze.deb) | [详情](#442) | ❌ 不再支持 |
-| 2026-04-08 | 4.4.1 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.1-linux-arm64-cpu-m4l-blaze.deb) | [详情](#441) | ❌ 不再支持 |
-| 2026-04-03 | 4.4.0 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.0-linux-arm64-cpu-m4l-blaze.deb) | [详情](#440) | ❌ 不再支持 |
+| 2026-08-06 | 4.4.39 | 已下架 | [详情](#4439) | ❌ 不再支持 |
+| 2026-08-03 | 4.4.38 | 已下架 | [详情](#4438) | ❌ 不再支持 |
+| 2026-07-29 | 4.4.35 | 已下架 | [详情](#4435) | ❌ 不再支持 |
+| 2026-07-29 | 4.4.34 | 已下架 | [详情](#4434) | ❌ 不再支持 |
+| 2026-07-29 | 4.4.33 | 已下架 | [详情](#4433) | ❌ 不再支持 |
+| 2026-07-28 | 4.4.32 | 已下架 | [详情](#4432) | ❌ 不再支持 |
+| 2026-07-24 | 4.4.31 | 已下架 | [详情](#4431) | ❌ 不再支持 |
+| 2026-07-24 | 4.4.30 | 已下架 | [详情](#4430) | ❌ 不再支持 |
+| 2026-07-24 | 4.4.29 | 已下架 | [详情](#4429) | ❌ 不再支持 |
+| 2026-07-23 | 4.4.28 | 已下架 | [详情](#4428) | ❌ 不再支持 |
+| 2026-07-17 | 4.4.27 | 已下架 | [详情](#4427) | ❌ 不再支持 |
+| 2026-07-17 | 4.4.26 | 已下架 | [详情](#4426) | ❌ 不再支持 |
+| 2026-07-16 | 4.4.25 | 已下架 | [详情](#4425) | ❌ 不再支持 |
+| 2026-07-16 | 4.4.24 | 已下架 | [详情](#4424) | ❌ 不再支持 |
+| 2026-07-06 | 4.4.23 | 已下架 | [详情](#4423) | ❌ 不再支持 |
+| 2026-07-02 | 4.4.22 | 已下架 | [详情](#4422) | ❌ 不再支持 |
+| 2026-07-01 | 4.4.21 | 已下架 | [详情](#4421) | ❌ 不再支持 |
+| 2026-06-30 | 4.4.20 | 已下架 | [详情](#4420) | ❌ 不再支持 |
+| 2026-06-30 | 4.4.19 | 已下架 | [详情](#4419) | ❌ 不再支持 |
+| 2026-06-30 | 4.4.14 | 已下架 | [详情](#4414) | ❌ 不再支持 |
+| 2026-06-29 | 4.4.10 | 已下架 | [详情](#4410) | ❌ 不再支持 |
+| 2026-06-29 | 4.4.9 | 已下架 | [详情](#449) | ❌ 不再支持 |
+| 2026-05-22 | 4.4.8 | 已下架 | [详情](#448) | ❌ 不再支持 |
+| 2026-05-22 | 4.4.7 | 已下架 | [详情](#447) | ❌ 不再支持 |
+| 2026-05-14 | 4.4.6 | 已下架 | [详情](#446) | ❌ 不再支持 |
+| 2026-05-14 | 4.4.5 | 已下架 | [详情](#445) | ❌ 不再支持 |
+| 2026-05-13 | 4.4.4 | 已下架 | [详情](#444) | ❌ 不再支持 |
+| 2026-05-11 | 4.4.3 | 已下架 | [详情](#443) | ❌ 不再支持 |
+| 2026-04-10 | 4.4.2 | 已下架 | [详情](#442) | ❌ 不再支持 |
+| 2026-04-08 | 4.4.1 | 已下架 | [详情](#441) | ❌ 不再支持 |
+| 2026-04-03 | 4.4.0 | 已下架 | [详情](#440) | ❌ 不再支持 |
 
 ## 安装方法
 
 固件首次安装流程请参考 [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)；已安装设备升级版本请参考 [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update)。
+
+## 预发布渠道
+
+上表的下载链接均为**正式渠道**（`blaze`）。预发布渠道构建的文件名与 `X-Variant` 末段为 `prerelease`，机型段保持不变，例如 `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`。
+
+- 预发布包**不会**被 `fourier-grx update` 的自动探测发现，也不列入上表。
+- 安装方式：`fourier-grx update <版本>-prerelease`，例如 `fourier-grx update 4.4.53-prerelease`。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
+- 安装后仍需执行 `fourier-grx install` 完成部署。
+
+参数细节见 [命令行工具 · 预发布渠道](/fourier-grx-M4/docs/reference/command_line_tool#预发布渠道)。
 
 ---
 
@@ -115,7 +127,7 @@ has_toc: true
 
 ✨ **新增**
 
-- **内置 web 调试上位机**：固件自带局域网网页调试界面，机器人上执行 `fourier-grx web` 后，同一局域网内的电脑浏览器访问 `http://<机器人IP>:8000` 即可使用（`--host` / `--port` 可改监听地址与端口）。界面提供任务下发、虚拟摇杆、虚拟面板参数、急停按钮与实时状态监视；与机器人之间通过 UDP + msgpack 通信，并会通过 UDP 广播自动发现机器人地址，无需手动填写 IP。纯调试工具，不参与机器人正常运行。
+- **内置 web 调试上位机**：固件自带局域网网页调试界面，机器人上执行 `fourier-grx web` 后，同一局域网内的电脑浏览器访问 `http://<机器人IP>:8000` 即可使用（`--host` 指定机器人 IP，`--bind` / `--port` 修改 web 服务的监听地址与端口，默认 `0.0.0.0:8000`）。界面提供任务下发、虚拟摇杆、虚拟面板参数、急停按钮与实时状态监视；与机器人之间通过 UDP + msgpack 通信，并会通过 UDP 广播自动发现机器人地址，无需手动填写 IP。纯调试工具，不参与机器人正常运行。用法见 [M4L 机器人 · 局域网网页调试](/fourier-grx-M4/docs/quickstart/m4l#局域网网页调试)。
 - **升级安装保留用户配置**：`fourier-grx install` 升级时会先把旧目录备份到 `~/fourier-grx-bak`，配置环节优先提示沿用备份里的旧配置，避免升级后需要重新配置网络等选项。
 
 ---
@@ -609,7 +621,7 @@ has_toc: true
 
 ✨ **新增**
 
-- **`fourier-grx update` 命令**：新增命令行更新工具，可自动检测当前安装的软件包变体，向服务器探测可用的新版本，以交互式列表引导用户选择并完成下载安装。支持 `fourier-grx update`（自动检测变体）、`fourier-grx update <variant>`（手动指定变体，适用于旧版安装包）和 `fourier-grx update --help`。详见 [命令行工具 · update](/fourier-grx-M4/docs/reference/command_line_tool#fourier-grx-update-详细说明)
+- **`fourier-grx update` 命令**：新增命令行更新工具，可自动检测当前安装的软件包变体，向服务器探测可用的新版本，以交互式列表引导用户选择并完成下载安装。支持 `fourier-grx update`（自动检测变体）、`fourier-grx update <variant>`（手动指定变体，适用于旧版安装包）和 `fourier-grx update --help`。详见 [命令行工具 · update](/fourier-grx-M4/docs/reference/command_line_tool#fourier-grx-update-详细说明)（注：`update <variant>` 形式自 v4.4.53 起已改为 `update <version>`，变体不能手动传入）
 - **`X-Variant` deb 控制字段**：安装包的 deb 控制文件中新增 `X-Variant` 字段，记录平台/机型标识符（如 `linux-arm64-cpu-m4l-blaze`），供 `fourier-grx update` 自动识别当前变体
 
 🔧 **修改**

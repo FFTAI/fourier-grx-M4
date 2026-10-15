@@ -29,13 +29,12 @@ Task Parameters:
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal walking pace); a lower value plays it slower, giving the patient more time to follow the motion. |
-| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio each control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory (+0.02 when the patient exerts effort, -0.01 when the patient's effort is insufficient), with no manual setting required; the assist ratio is always clamped to [0.0, 1.0]. |
+| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the algorithm decides every control cycle (20 ms): during the swing phase, if the measured hip joint torque exceeds “gravity-compensated torque + 2.0 Nm” the assist ratio increases by 0.02, and if it falls below the gravity-compensated torque it decreases by 0.01; no manual setting is required. The assist ratio is always clamped to [0.0, 1.0]. While auto mode is on, `param_3` no longer applies. |
 | Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while walking, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
-| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Only effective for the DSP gait generator. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
+| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. **This task uses the vhip gait generator, so this parameter has no effect** (only the DSP generator of TID 4111 / 4301 uses it). Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
-
 
 > **Assist Ratio Explained**:
 >
@@ -66,6 +65,7 @@ Status interface:
 | Task start flag | `task.flag_task_start` |
 | Task finish flag | `task.flag_task_finish` |
 | Motion ratio | `rehab.motion_ratio` |
+| Step frequency (steps/min) | `rehab.step_frequency` |
 | Reference trajectory position | `rehab.reference_joint_position` |
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
@@ -96,4 +96,5 @@ Command interface:
 
 - Added in `fourier-grx` v4.0.0.
 - `fourier-grx` v4.4.24: Adjusted the auto assist mode increments from symmetric ±0.01 to +0.02 (increased when the user exerts effort) / -0.01 (decreased when the user's effort is insufficient), speeding up the assist response.
+- `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height / step lift height / double-support ratio parameter interfaces.

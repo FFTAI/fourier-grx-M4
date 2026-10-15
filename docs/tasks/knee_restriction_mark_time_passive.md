@@ -30,6 +30,8 @@ has_toc: true
 | 启动运动标志位   | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
 
+> 说明：本任务会接收 `command_switch_1` / `command_param_9`，但膝关节受限变体未执行力矩保护判定，这两个接口对本任务**不生效**；需要力矩保护请使用 TID 4112。基座高度由膝限位角度与腿长自动计算，`param_6` 同样不生效。
+>
 > **膝关节受限角度说明**：
 >
 > 该参数为膝关节在整个运动过程中需维持的最小弯曲角度（单位：rad）。算法将轨迹中所有低于此值的膝关节角度截断至设定值，从而保证膝关节始终保持不低于指定弯曲程度的状态。适用于膝关节伸展功能受限、不能完全伸直的患者。
@@ -54,6 +56,7 @@ has_toc: true
 | 任务启动标志    | `task.flag_task_start`               |
 | 任务结束标志    | `task.flag_task_finish`              |
 | 运行比例      | `rehab.motion_ratio`                 |
+| 步频          | `rehab.step_frequency`              |
 | 参考轨迹位置    | `rehab.reference_joint_position`     |
 | 参考轨迹速度    | `rehab.reference_joint_velocity`     |
 | 参考轨迹位置最大值 | `rehab.reference_joint_position_max` |
@@ -76,9 +79,10 @@ has_toc: true
 | 步行周期      | `grx.virtual_panel_command_param_2`                                                      |
 | 启动运动标志位   | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
-| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`                                                     |
-| 保护力矩限值    | `grx.virtual_panel_command_param_9`                                                      |
+| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`（本任务不生效）                                      |
+| 保护力矩限值    | `grx.virtual_panel_command_param_9`（本任务不生效）                                       |
 
 ## 更新日志
 
-- `fourier-grx` v4.2.2 版本新增该功能。
+- `fourier-grx` v4.2.6 版本新增该功能。
+- `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。

@@ -42,7 +42,6 @@ Task Parameters:
 > | 0.5 | Knee maintains at least ~28.6° of bend throughout motion |
 > | 1.0 | Knee maintains at least ~57.3° of bend throughout motion (strong restriction) |
 
-
 > **Assist Ratio Explained**:
 >
 > The assist ratio adjusts joint stiffness by linearly interpolating the PD control gains of the actuators. The formula is:
@@ -58,6 +57,8 @@ Task Parameters:
 > | 0.5 | 150 | 15 | Moderate stiffness — suitable for patients with some voluntary movement ability |
 > | 1.0 | 200 | 20 | Normal stiffness with full trajectory-tracking capability — suitable for patients requiring completely passive guidance |
 
+> ⚠️ **Note**: in the current firmware (v4.4.53), the knee-restriction variant does not pass the assist ratio when calling the algorithm, so `grx.virtual_panel_command_param_3` has **no actual effect** on this task: the algorithm always receives an assist ratio of 0, so joint stiffness is fixed at the most compliant level (Kp = 100, Kd = 10).
+
 ## Module Info
 
 This task has no independent module commands and does not support per-joint control via the module interface.
@@ -71,6 +72,7 @@ Status interface:
 | Task start flag | `task.flag_task_start` |
 | Task finish flag | `task.flag_task_finish` |
 | Motion ratio | `rehab.motion_ratio` |
+| Step frequency (steps/min) | `rehab.step_frequency` |
 | Reference trajectory position | `rehab.reference_joint_position` |
 | Reference trajectory velocity | `rehab.reference_joint_velocity` |
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
@@ -97,4 +99,5 @@ Command interface:
 
 ## Update Log
 
-- Added in `fourier-grx` v4.0.0.
+- Added in `fourier-grx` v4.2.6.
+- `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).

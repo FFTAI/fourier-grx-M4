@@ -2,8 +2,9 @@
 layout: default
 title: Velocity & Position Protection
 nav_order: 3.9
-parent: Reference Guide
+parent: "Reference Guide"
 has_toc: true
+nav_exclude: true
 ---
 
 # Velocity & Position Protection

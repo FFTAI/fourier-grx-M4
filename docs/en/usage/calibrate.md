@@ -47,6 +47,11 @@ nav_exclude: true
 | M4L | Auto Calibrate (Rotary Joints) | 4120 | Perform as needed after power-on |
 | M4L | Manual Set Home (Prismatic Joints) | 4203 | Use after manually aligning pins |
 | M4L | Manual Set Home (Rotary Joints) | 4103 | Use after manually aligning pins |
+| M4L | Manual Calibrate (Rotary Joints) | 4121 | Position the joints by hand after they power off, then write the zero point |
+| M4L | Manual Calibrate · Left Leg (Rotary Joints) | 4122 | Left leg only; available since v4.4.53 |
+| M4L | Manual Calibrate · Right Leg (Rotary Joints) | 4123 | Right leg only; available since v4.4.53 |
+
+For how the per-leg completion flags combine, see [Manual Calibration (Rotary Joints)](/fourier-grx-M4/docs/en/tasks/rotary_joint_manual_calibrate).
 
 ## Calibration Verification
 

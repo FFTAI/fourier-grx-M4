@@ -48,7 +48,8 @@ def algorithm():
         task_command=fourier_grx.TaskCommand.TASK_SERVO_REBOOT
     )
 
-    # wait for servo off
+    # 保持进程存活一会儿，确保指令被控制循环取走
+    # （执行器真正完成重启需要更长时间，可另开终端观察机器人日志输出）
     time.sleep(1)
 
 

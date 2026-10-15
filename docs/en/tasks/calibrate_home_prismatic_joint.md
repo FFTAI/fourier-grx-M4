@@ -15,14 +15,34 @@ Task ID (TID): **4210**
 
 Task Description:
 
-- Launches the automatic calibration procedure for the leg-length adjustment joints.
+- Launches the automatic calibration procedure for the leg-length adjustment joints: the prismatic joints are driven 0.2 m along the positive actuator axis (covering the whole adjustment travel) until they hit the mechanical limit, which is then recorded as the zero reference of the software coordinate frame (from then on a leg-length command of 0.0 corresponds to this limit, and larger values move toward the other end).
 - Each time the robot is powered on, the leg-length information is lost and must be re-calibrated before the leg-length adjustment function can be used normally.
+- When calibration completes, the task switches back to the idle task (`TASK_IDLE`) and syncs each joint's target position to the new measured position, preventing a target jump when the next task enables servo.
+
+> ⚠️ **Note**: during calibration the prismatic joints push against their mechanical limits the whole time. Make sure both legs are free of external obstruction and the robot is suspended or stably supported, and never stand beneath it.
+>
+> Directions here are described in the actuator coordinate frame: because the M4L leg-length motor axis is opposite to the leg-length command direction (see the `× -1.0` convention of TID 4206), the positive actuator direction corresponds to decreasing leg length.
+
+## Internal Sub-task Steps
+
+| Step | TID | Task name | Description |
+|----|-----|--------|----|
+| 1 | 4204 | Move to maximum position (internal step) | Drives 0.2 m along the positive actuator axis over a 120 s S-curve profile and stops once the limit is detected |
+| 2 | — | Actuator power off | Reuses `TaskRobotRealServoOff` to prepare for the software zeroing |
+| 3 | 4203 | Set prismatic joint home | Writes the current measured position as the software-layer zero point |
+
+Step 1 uses two arrival criteria — either one is enough:
+
+| Criterion | Trigger condition |
+|----|---------|
+| Torque + velocity | Measured torque ≥ 6 Nm and velocity ≤ 0.001 m/s, held for 0.2 s |
+| Velocity only | `motion_ratio` ≥ 0.20 and velocity ≤ 0.001 m/s, held for 5 s |
+
+The velocity-only criterion covers contact cases where torque does not build up properly; the 0.20 lower bound exists because the S-curve reference velocity is itself below the velocity threshold at the very start of the travel, which would otherwise cause false detections.
 
 Task Parameters:
 
-| Parameter | Type | Default | Range | Description |
-|-----------|------|---------|-------|-------------|
-|           |      |         |       |             |
+This task has no configurable parameters.
 
 ## Module Info
 
@@ -39,10 +59,9 @@ Status interface:
 
 Command interface:
 
-| Parameter | Interface Mapping |
-|-----------|------------------|
-|           |                   |
+This task requires no command parameters. Send the corresponding TID to trigger it. The calibration cannot be interrupted or tuned from the panel parameters.
 
 ## Update Log
 
-- Added in `fourier-grx` v4.1.22.
+- Added in `fourier-grx` v4.1.17.
+- `fourier-grx` v4.4.53 added a velocity-only arrival criterion that does not depend on torque (`motion_ratio` ≥ 0.20 with velocity ≤ 0.001 m/s held for 5 s), so arrival is still detected when contact torque does not build up.

@@ -24,11 +24,11 @@ Task Parameters:
 | Parameter | Type | Default | Range | Description |
 |-----------|------|---------|-------|-------------|
 | Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. When enabled, if the torque of any joint exceeds the "torque protection limit", the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the overload flag; the task must be re-issued to continue. |
-| Torque protection limit | `float` | — | [0.0, 200.0] | The maximum allowable output torque for any joint during the standing process, in Nm. Only effective when torque protection is enabled; disabled by default. |
+| Torque protection limit | `float` | None | [0.0, 200.0] | The maximum allowable output torque for any joint during the standing process, in Nm. Only effective when torque protection is enabled; disabled by default. |
 
 > **Task Description**:
 >
-> The robot interpolates linearly from the current joint positions to the standing target posture (all joint angles at 0 rad) over approximately 5 seconds, then holds the standing posture until another task command is received.
+> After a 0.2 s warm-up in pure-damping mode (kp = 0), the robot interpolates from the current joint positions to the standing target posture (all four rotary joints at 0 rad) over approximately 5 seconds, then holds the standing posture until another task command is received.
 
 ## Module Info
 
@@ -53,4 +53,4 @@ Command Interface:
 
 ## Update Log
 
-- Added in `fourier-grx` v1.0.0.
+- Added in `fourier-grx` v3.1.1.

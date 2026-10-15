@@ -41,7 +41,6 @@ has_toc: true
 > | 0.5  | 膝关节在运动全程至少保持约 28.6° 的弯曲       |
 > | 1.0  | 膝关节在运动全程至少保持约 57.3° 的弯曲（限制较强） |
 
-
 > **助力系数说明**：
 >
 > 助力系数通过对执行器的 PD 控制增益进行线性插值来调节关节刚度。计算公式如下：
@@ -57,6 +56,8 @@ has_toc: true
 > | 0.5  | 150 | 15 | 中等刚度，适合有一定自主运动能力的患者                  |
 > | 1.0  | 200 | 20 | 正常刚度，轨迹跟踪能力正常，适合需要完全被动引导的患者          |
 
+> ⚠️ **注意**：当前固件（v4.4.53）中，膝关节受限变体在调用算法时未传递助力系数，`grx.virtual_panel_command_param_3` 对本任务**不起实际调节作用**：算法收到的助力系数恒为 0，关节刚度固定取最柔顺档（Kp=100、Kd=10）。
+
 ## 模块信息
 
 该任务暂无独立模块指令，不支持通过模块接口进行分关节控制。
@@ -70,6 +71,7 @@ has_toc: true
 | 任务启动标志    | `task.flag_task_start`               |
 | 任务结束标志    | `task.flag_task_finish`              |
 | 运行比例      | `rehab.motion_ratio`                 |
+| 步频          | `rehab.step_frequency`              |
 | 参考轨迹位置    | `rehab.reference_joint_position`     |
 | 参考轨迹速度    | `rehab.reference_joint_velocity`     |
 | 参考轨迹位置最大值 | `rehab.reference_joint_position_max` |
@@ -96,4 +98,5 @@ has_toc: true
 
 ## 更新日志
 
-- `fourier-grx` v4.0.0 版本新增该功能。
+- `fourier-grx` v4.2.6 版本新增该功能。
+- `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。

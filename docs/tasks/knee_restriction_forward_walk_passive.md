@@ -28,12 +28,15 @@ has_toc: true
 | 步长长度      | `float` | 0.5   | [0.2, 0.8]    | 机器人每一步的长度，单位为 m。                           |
 | 步行速度      | `float` | 0.5   | [0.1, 1.2]    | 机器人前进的目标速度，单位为 m/s。单步持续时间 = 步长 ÷ 步行速度（例如步长 0.5 m、步速 0.5 m/s 时，单步用时约 1.0 s）。                          |
 | 抬腿高度      | `float` | 0.1   | [0.05, 0.2]   | 摆动脚最大抬升高度，单位为 m。≤ 0 或未发送时使用默认值。超出范围会被限幅到该范围内。下次起步（轨迹重新生成）时生效，行走过程中修改不影响当前正在执行的轨迹。 |
-| 双支撑期占比    | `float` | 0.2   | [0.1, 0.3]    | 双支撑期时间占单步周期的比例。≤ 0 或未发送时使用默认值。超出范围会被限幅到该范围内。仅 DSP 步态生成器生效。下次起步（轨迹重新生成）时生效，行走过程中修改不影响当前正在执行的轨迹。 |
+| 双支撑期占比    | `float` | 0.2   | [0.1, 0.3]    | 双支撑期时间占单步周期的比例。≤ 0 或未发送时使用默认值。超出范围会被限幅到该范围内。本任务使用 DSP 步态生成器，该参数生效。下次起步（轨迹重新生成）时生效，行走过程中修改不影响当前正在执行的轨迹。 |
 | 启动运动标志位   | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
+| 暂停运动标志位   | `bool`  | false | (true, false) | 是否暂停运动，true 表示暂停，需重启任务才能继续行走。            |
 
-
-> 说明：本任务的基座高度由膝关节受限角度与腿长自动计算，`grx.virtual_panel_command_param_6`（基座高度）接口对本任务不生效。
+> 说明：
+>
+> - 本任务的基座高度由膝关节受限角度与腿长自动计算，`grx.virtual_panel_command_param_6`（基座高度）接口对本任务不生效。
+> - 本任务会接收 `command_switch_1`（启用力矩保护开关）与 `command_param_9`（保护力矩限值），但膝关节受限变体未执行力矩保护判定，因此这两个接口对本任务**不生效**；需要力矩保护请使用 TID 4111。
 
 > **膝关节受限角度说明**：
 >
@@ -61,7 +64,9 @@ has_toc: true
 |-----------|--------------------------------------|
 | 任务启动标志    | `task.flag_task_start`               |
 | 任务结束标志    | `task.flag_task_finish`              |
+| 任务暂停标志    | `task.flag_task_pause`               |
 | 运行比例      | `rehab.motion_ratio`                 |
+| 步频          | `rehab.step_frequency`              |
 | 参考轨迹位置    | `rehab.reference_joint_position`     |
 | 参考轨迹速度    | `rehab.reference_joint_velocity`     |
 | 参考轨迹位置最大值 | `rehab.reference_joint_position_max` |
@@ -86,10 +91,12 @@ has_toc: true
 | 双支撑期占比    | `grx.virtual_panel_command_param_8`                                                      |
 | 启动运动标志位   | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
-| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`                                                     |
-| 保护力矩限值    | `grx.virtual_panel_command_param_9`                                                      |
+| 暂停运动标志位   | `grx.virtual_panel_command_pause`                                                        |
+| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`（本任务不生效）                                      |
+| 保护力矩限值    | `grx.virtual_panel_command_param_9`（本任务不生效）                                       |
 
 ## 更新日志
 
-- `fourier-grx` v4.2.2 版本新增该功能。
+- `fourier-grx` v4.2.6 版本新增该功能。
+- `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。
 - `fourier-grx` v4.4.48 版本新增抬腿高度/双支撑期占比参数接口（基座高度由膝限位角度与腿长自动计算）。

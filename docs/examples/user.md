@@ -16,13 +16,28 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 
 ## 运行方法
 
-1. 在机器人主控电脑上配置 `fourier-grx` 运行在 `开发者模式`
-   ```
+1. 在机器人主控电脑上配置 `fourier-grx` 运行模式：
+   ```bash
    # 修改 fourier-grx 配置
    fourier-grx config
    
-   # 选择运行模式为开发者模式
+   # 运行模式选择「开发者模式」(sdk)
    ```
+
+   User 接口示例依赖机器人的 UDP 通信通道，因此启动后使用的配置文件中必须包含：
+
+   ```yaml
+   dynalink:
+     enable: true
+
+   communication:
+     enable: true
+     period: 0.02  # 50Hz
+     type: "socket"
+   ```
+
+   `release`（发布模式）与 `debug`（调试模式）的 M4L 配置文件已默认带有以上字段；`sdk`（开发者模式）的 M4L 配置文件目前只有 `dynalink.enable`，需要手动补上 `communication` 段，否则机器人不会监听 UDP 5566 端口，示例会一直停在“等待连接到机器人...”。
+   可用 `fourier-grx list` 查看当前生效的配置文件路径。
 
 2. 在机器人主控电脑上启动 Fourier-GRX 主程序：
     ```bash
@@ -32,8 +47,8 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 
 3. 运行示例程序（可在远程电脑上执行）：
     ```bash
-    # 激活 conda 环境
-    conda activate fourier-grx
+    # 激活开发环境（虚拟环境位于 $HOME/fourier-grx/.venv）
+    source $HOME/fourier-grx/.venv/bin/activate
    
     # 克隆示例代码仓库（如尚未克隆）
     git clone https://github.com/FFTAI/fourier-grx-M4.git
@@ -42,6 +57,9 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
     cd fourier-grx-M4/demo/user
     python demo_{示例名称}.py
     ```
+
+   运行成功后终端会先打印 `等待连接到机器人...`，随后打印 `已连接到机器人 <机器人IP>:5566` 与所发送的消息内容；控制类示例（servo on/off 等）随后自动退出。
+   若长时间停在“等待连接到机器人...”，请检查机器人是否已 `start`、`communication.enable` 是否为 `true`，以及两台机器是否在同一局域网。
 
 ### 最佳实践
 
@@ -61,7 +79,7 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 | 执行器失能 | 失能机器人执行器  | `demo/user/demo_servo_off.py`      |
 | 执行器重启 | 重启机器人执行器  | `demo/user/demo_servo_reboot.py`   |
 | 清除故障  | 清除机器人报警状态 | `demo/user/demo_clear_fault.py`    |
-| 设置零位  | 设置当前位置为零位 | `demo/user/demo_set_home.py`       |
+| 设置零位  | 发送 TID 999；M4L 未注册该任务，需改用 4103 / 4203（详见脚本内说明） | `demo/user/demo_set_home.py`       |
 | 清除保护标志 | 清除过载 / 力矩保护标志（robot topic） | `demo/user/demo_clear_protection.py` |
 | 状态读取  | 读取任务状态、关节位置、IMU、电量等（task / robot / grx topic） | `demo/user/demo_get_state.py` |
 | 上位机心跳 | 持续写入心跳字段（comm topic），配合断连保护机制使用 | `demo/user/demo_heartbeat.py` |
@@ -70,8 +88,8 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
 
 | 示例名称 | 说明          | 代码路径                            |
 |------|-------------|-----------------------------------|
-| 关节测试 | 测试各关节运动功能   | `demo/user/demo_test_joint.py`    |
-| 行走控制 | 使用手柄控制机器人行走 | `demo/user/demo_walk.py`          |
+| 关节测试 | 发送 TID 902；M4L 未注册该任务，需改用 4100 / 4200（详见脚本内说明） | `demo/user/demo_test_joint.py`    |
+| 行走控制 | 发送 TID 965 启动行走任务，实际行走仍需手柄或虚拟面板给出输入 | `demo/user/demo_walk.py`          |
 | 虚拟面板控制 | 通过虚拟面板设置步长/速度并控制行走（grx topic） | `demo/user/demo_virtual_panel.py` |
 
 ### UDP 纯 socket 示例（无 SDK 依赖）
