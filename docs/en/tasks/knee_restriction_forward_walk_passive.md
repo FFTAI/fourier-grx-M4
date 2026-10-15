@@ -37,7 +37,7 @@ Task Parameters:
 > Note:
 >
 > - In this task, the base height is computed automatically from the knee restriction angle and leg lengths; the `grx.virtual_panel_command_param_6` (base height) interface has no effect on this task.
-> - This task receives `command_switch_1` (enable torque protection) and `command_param_9` (torque protection limit), but the knee-restriction variant does not run the torque-protection check, so both interfaces have **no effect** here; use TID 4111 if torque protection is required.
+> - `command_switch_1` (enable torque protection) and `command_param_9` (torque protection limit) take effect for this task from `fourier-grx` v4.4.54: once enabled, if the real-time torque of any joint exceeds the limit, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set. In v4.4.53 and earlier, the knee-restriction variant did not run the torque-protection check, so these two interfaces had no effect.
 
 > **Knee Restriction Angle Explained**:
 >
@@ -93,11 +93,12 @@ Command interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 | Pause motion flag | `grx.virtual_panel_command_pause` |
-| Enable torque protection | `grx.virtual_panel_command_switch_1` (no effect on this task) |
-| Torque protection limit | `grx.virtual_panel_command_param_9` (no effect on this task) |
+| Enable torque protection | `grx.virtual_panel_command_switch_1` |
+| Torque protection limit | `grx.virtual_panel_command_param_9` |
 
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the step lift height / double-support ratio parameter interfaces (the base height is computed automatically from the knee restriction angle and leg lengths).
+- `fourier-grx` v4.4.54 restored the torque-protection check, so `command_switch_1` and `command_param_9` now take effect: on over-torque of any joint the task exits immediately to the idle task (`TASK_IDLE`).

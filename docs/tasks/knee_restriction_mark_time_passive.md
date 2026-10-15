@@ -29,8 +29,9 @@ has_toc: true
 | 步行周期      | `float` | 1.0   | [0.5, 4.0]    | 原地踏步的单步周期，即完成一次完整踏步循环所需的时间，单位为 s。值越小踏步频率越高，值越大踏步越慢。                            |
 | 启动运动标志位   | `bool`  | false | (true, false) | 是否启动运动，true 表示启动，false 表示不启动（如果已经启动，不会起作用） |
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
+| 暂停运动标志位   | `bool`  | false | (true, false) | 是否暂停运动，true 表示暂停，需重启任务才能继续行走。         |
 
-> 说明：本任务会接收 `command_switch_1` / `command_param_9`，但膝关节受限变体未执行力矩保护判定，这两个接口对本任务**不生效**；需要力矩保护请使用 TID 4112。基座高度由膝限位角度与腿长自动计算，`param_6` 同样不生效。
+> 说明：`command_switch_1` / `command_param_9` 自 `fourier-grx` v4.4.54 起对本任务生效，启用后任一关节实时力矩超过限值时，机器人立即退出本任务并切换至空闲任务（`TASK_IDLE`），同时置位过力矩保护标志（v4.4.53 及更早版本未执行该判定）。基座高度由膝限位角度与腿长自动计算，`param_6` 不生效。
 >
 > **膝关节受限角度说明**：
 >
@@ -79,10 +80,12 @@ has_toc: true
 | 步行周期      | `grx.virtual_panel_command_param_2`                                                      |
 | 启动运动标志位   | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
-| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`（本任务不生效）                                      |
-| 保护力矩限值    | `grx.virtual_panel_command_param_9`（本任务不生效）                                       |
+| 暂停运动标志位   | `grx.virtual_panel_command_pause`                                                        |
+| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`                                                      |
+| 保护力矩限值    | `grx.virtual_panel_command_param_9`                                                       |
 
 ## 更新日志
 
 - `fourier-grx` v4.2.6 版本新增该功能。
 - `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。
+- `fourier-grx` v4.4.54 版本恢复力矩保护判定，`command_switch_1` 与 `command_param_9` 自此生效：任一关节过力矩时立即退出本任务并切换至空闲任务（`TASK_IDLE`）；同时继承 TID 4112 的暂停指令读取，`command_pause` 自此生效。

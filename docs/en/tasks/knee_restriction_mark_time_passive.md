@@ -30,8 +30,9 @@ Task Parameters:
 | Step period | `float` | 1.0 | [0.5, 4.0] | The cycle duration for one complete stepping cycle, in s. A smaller value means a higher step frequency; a larger value means a slower step. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue stepping. |
+| Pause motion flag | `bool` | false | (true, false) | Whether to pause motion. true = pause; the task must be restarted to continue stepping. |
 
-> Note: this task receives `command_switch_1` / `command_param_9`, but the knee-restriction variant does not run the torque-protection check, so both interfaces have **no effect** here (use TID 4112 if torque protection is required). The base height is computed from the knee restriction angle and leg lengths, so `param_6` has no effect either.
+> Note: `command_switch_1` / `command_param_9` take effect for this task from `fourier-grx` v4.4.54; once enabled, if the real-time torque of any joint exceeds the limit, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set (v4.4.53 and earlier did not run this check). The base height is computed from the knee restriction angle and leg lengths, so `param_6` has no effect.
 >
 > **Knee Restriction Angle Explained**:
 >
@@ -80,10 +81,12 @@ Command interface:
 | Step period | `grx.virtual_panel_command_param_2` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
-| Enable torque protection | `grx.virtual_panel_command_switch_1` (no effect on this task) |
-| Torque protection limit | `grx.virtual_panel_command_param_9` (no effect on this task) |
+| Pause motion flag | `grx.virtual_panel_command_pause` |
+| Enable torque protection | `grx.virtual_panel_command_switch_1` |
+| Torque protection limit | `grx.virtual_panel_command_param_9` |
 
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
+- `fourier-grx` v4.4.54 restored the torque-protection check, so `command_switch_1` and `command_param_9` now take effect: on over-torque of any joint the task exits immediately to the idle task (`TASK_IDLE`); it also inherits the pause command handling of TID 4112, so `command_pause` now takes effect.

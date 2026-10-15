@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-14 | **4.4.53** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4453) | ✅ Active |
+| 2026-10-15 | **4.4.54** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4454) | ✅ Active |
+| 2026-10-14 | 4.4.53 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4453) | ❌ No longer supported |
 | 2026-10-12 | 4.4.51 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4451) | ❌ Unsupported |
 | 2026-10-12 | 4.4.50 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4450) | ❌ Unsupported |
 | 2026-10-12 | 4.4.49 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4449) | ❌ Unsupported |
@@ -82,6 +83,22 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.54
+
+> 📅 2026-10-15 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Fixed / Changed**
+
+- **Torque protection works again in knee-restriction forward walk (4301) and mark time (4302)**: both tasks accepted `grx.virtual_panel_command_switch_1` (enable torque protection) and `grx.virtual_panel_command_param_9` (protection torque limit) but never evaluated them, so the parameters were silently ignored. The check is now identical to 4111 / 4112: as soon as the measured effort of any joint exceeds the threshold (capped at 200 Nm), the task exits to `TASK_IDLE` and the over-torque flag is raised.
+  > ⚠️ This is a behaviour change: motions that previously ran through on 4.4.53 and earlier will now abort when protection is enabled. After the first upgrade, start from a conservative threshold.
+- **The assist coefficient is adjustable again in the knee-restriction assist tasks (4303 / 4304 / 4305)**: the coefficient was missing from the algorithm call, so `grx.virtual_panel_command_param_3` had no effect. Their behaviour now matches the unrestricted counterparts (4116 / 4117 / 4118) and 4306.
+  > ℹ️ Side effect: only when **neither a joystick nor the virtual panel is connected** does the coefficient fall back to "unspecified", which the algorithm resolves to 1.0 (no adjustment), whereas 4.4.53 and earlier always used 0.0. Whenever a virtual panel (including the web debugging UI) or a joystick is connected, its current value is used — and a panel that never received the parameter still reports the default 0.0, exactly like before. No action is needed to keep the old feel; send `param_3` explicitly for a stiffer assist.
+- **Mark time (4112) honours the panel pause command**: `grx.virtual_panel_command_pause` was simply not read (the code read start and stop but not pause); it now works, and 4302 benefits as well.
+- **The UDP channel is back in SDK mode**: the `communication` section was missing from `config_M4L_*_sdk.yaml`, so the communication loop was never scheduled and the SDK User API could not reach the robot over UDP 5566. The section now matches the release / debug / offline configurations.
+- The knee-restriction tasks now pass the measured-effort channel to their algorithms, which they previously omitted.
+
+---
 
 ### 4.4.53
 

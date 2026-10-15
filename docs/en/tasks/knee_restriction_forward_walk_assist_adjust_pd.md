@@ -64,7 +64,9 @@ Task Parameters:
 > Recommendation:
 > - A step length between 0.5× and 1.0× the walking speed tends to produce good walking results. For example, at a walking speed of 0.5 m/s, a step length of 0.25 m to 0.5 m is recommended.
 
-> ⚠️ **Note**: in the current firmware (v4.4.53), the knee-restriction variant does not pass the assist ratio when calling the algorithm, so `grx.virtual_panel_command_param_3` has **no actual effect** on this task: the algorithm always receives an assist ratio of 0, so joint stiffness is fixed at the most compliant level (Kp = 100, Kd = 10).
+> Note: from `fourier-grx` v4.4.54 the knee-restriction variant passes the assist ratio to the algorithm again, so `grx.virtual_panel_command_param_3` is adjustable once more, matching the parent task TID 4116 and TID 4306 (in v4.4.53 and earlier the parameter was not passed, the algorithm always received an assist ratio of 0, and joint stiffness was fixed at the most compliant level, Kp = 100, Kd = 10).
+>
+> Behavior change: when the virtual panel is enabled but this parameter was never sent, the panel default 0.0 still applies, as before; when a joystick is connected the assist ratio now follows the stick value, which the old firmware ignored — that omission is exactly what this fix addresses; when neither a joystick nor the virtual panel is connected the value is None and the algorithm treats it as "no adjustment" (equivalent to 1.0, Kp = 200, Kd = 20) instead of a fixed 0.
 
 ## Module Info
 
@@ -111,3 +113,4 @@ Command interface:
 - Added in `fourier-grx` v4.2.6.
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the step lift height / double-support ratio parameter interfaces (the base height is computed automatically from the knee restriction angle and leg lengths).
+- `fourier-grx` v4.4.54 passes the assist ratio again, so `grx.virtual_panel_command_param_3` is adjustable once more, consistent with TID 4116 and TID 4306.

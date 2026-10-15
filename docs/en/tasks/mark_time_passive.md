@@ -30,6 +30,7 @@ Task Parameters:
 | Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while stepping, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of stepping (trajectory regeneration); changes made while stepping do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start the motion. true = start; false = do not start (has no effect if already started). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop the motion. true = stop; false = continue stepping. |
+| Pause motion flag | `bool` | false | (true, false) | Whether to pause the motion. true = pause; the task must be restarted to continue stepping. |
 | Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. |
 | Torque protection limit | `float` | None | [0.0, 200.0] | The maximum allowable output torque for any joint during stepping, in Nm. If the real-time torque of any joint exceeds this limit, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set. Only effective when torque protection is enabled; disabled by default. |
 
@@ -71,6 +72,7 @@ Command Interface:
 | Base height (pelvis height) | `grx.virtual_panel_command_param_6` |
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
+| Pause motion flag | `grx.virtual_panel_command_pause` |
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Torque protection limit | `grx.virtual_panel_command_param_9` |
 
@@ -79,3 +81,4 @@ Command Interface:
 - Added in `fourier-grx` v4.0.0.
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height parameter interface.
+- `fourier-grx` v4.4.54 added the missing read of the pause command `command_pause`, so pausing now takes effect.

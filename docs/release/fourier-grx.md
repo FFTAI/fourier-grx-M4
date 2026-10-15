@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-14 | **4.4.53** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4453) | ✅ 支持中 |
+| 2026-10-15 | **4.4.54** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4454) | ✅ 支持中 |
+| 2026-10-14 | 4.4.53 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4453) | ❌ 不再支持 |
 | 2026-10-12 | 4.4.51 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4451) | ❌ 不再支持 |
 | 2026-10-12 | 4.4.50 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4450) | ❌ 不再支持 |
 | 2026-10-12 | 4.4.49 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4449) | ❌ 不再支持 |
@@ -81,6 +82,22 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.54
+
+> 📅 2026-10-15 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **修复 / 调整**
+
+- **膝关节受限前向行走（4301）与原地踏步（4302）的力矩保护恢复生效**：这两个任务此前会接收 `grx.virtual_panel_command_switch_1`（启用力矩保护开关）与 `grx.virtual_panel_command_param_9`（保护力矩限值）但不执行判定，参数被静默忽略。现在判定与 4111 / 4112 完全一致：任一关节实测力矩超过阈值（阈值上限 200 Nm）时立即退出任务并回到 `TASK_IDLE`，同时置位过力矩标志。
+  > ⚠️ 这是行为变化：在 4.4.53 及更早版本中不会中断的任务，启用保护后现在会中断。首次升级后建议从小阈值开始验证。
+- **膝关节受限助力任务的助力系数恢复可调（4303 / 4304 / 4305）**：调用算法时漏传了助力系数，导致 `grx.virtual_panel_command_param_3` 不起作用。现在与对应的非受限任务（4116 / 4117 / 4118）及 4306 行为一致。
+  > ℹ️ 附带变化：只有当**手柄与虚拟面板都没有接入**时，助力系数才会取「未指定」并按 1.0（不调整档）处理，而 4.4.53 及更早版本恒为 0.0；只要接入了虚拟面板（含网页调试界面）或手柄，读到的就是其当前值 —— 面板未下发过该参数时仍是默认的 0.0，与旧版一致。需要旧手感无需任何操作，需要更刚硬的助力请显式下发 `param_3`。
+- **原地踏步（4112）支持面板暂停指令**：`grx.virtual_panel_command_pause` 此前被读取遗漏（同一段代码里读了启动与停止，独缺暂停），现已生效；4302 一并受益。
+- **SDK 模式恢复 UDP 通道**：`config_M4L_*_sdk.yaml` 缺少 `communication` 段，导致通信循环不会被调度，SDK User API 无法通过 UDP 5566 连接机器人。现已补齐为与 release / debug / offline 一致的 socket 配置。
+- 膝关节受限各任务的算法调用补齐了实测力矩通道，此前该通道未传入。
+
+---
 
 ### 4.4.53
 

@@ -36,7 +36,7 @@ has_toc: true
 > 说明：
 >
 > - 本任务的基座高度由膝关节受限角度与腿长自动计算，`grx.virtual_panel_command_param_6`（基座高度）接口对本任务不生效。
-> - 本任务会接收 `command_switch_1`（启用力矩保护开关）与 `command_param_9`（保护力矩限值），但膝关节受限变体未执行力矩保护判定，因此这两个接口对本任务**不生效**；需要力矩保护请使用 TID 4111。
+> - `command_switch_1`（启用力矩保护开关）与 `command_param_9`（保护力矩限值）自 `fourier-grx` v4.4.54 起对本任务生效：启用后任一关节实时力矩超过限值时，机器人立即退出本任务并切换至空闲任务（`TASK_IDLE`），同时置位过力矩保护标志。v4.4.53 及更早版本膝关节受限变体未执行力矩保护判定，这两个接口不起作用。
 
 > **膝关节受限角度说明**：
 >
@@ -92,11 +92,12 @@ has_toc: true
 | 启动运动标志位   | `grx.virtual_panel_command_start`                                                        |
 | 停止运动标志位   | `grx.virtual_panel_command_stop`                                                         |
 | 暂停运动标志位   | `grx.virtual_panel_command_pause`                                                        |
-| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`（本任务不生效）                                      |
-| 保护力矩限值    | `grx.virtual_panel_command_param_9`（本任务不生效）                                       |
+| 启用力矩保护开关  | `grx.virtual_panel_command_switch_1`                                                      |
+| 保护力矩限值    | `grx.virtual_panel_command_param_9`                                                       |
 
 ## 更新日志
 
 - `fourier-grx` v4.2.6 版本新增该功能。
 - `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。
 - `fourier-grx` v4.4.48 版本新增抬腿高度/双支撑期占比参数接口（基座高度由膝限位角度与腿长自动计算）。
+- `fourier-grx` v4.4.54 版本恢复力矩保护判定，`command_switch_1` 与 `command_param_9` 自此生效：任一关节过力矩时立即退出本任务并切换至空闲任务（`TASK_IDLE`）。

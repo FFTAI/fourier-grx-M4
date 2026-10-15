@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.12 (2026-10-15)
+
+**Documentation Updates**
+
+- 📦 `fourier-grx` v4.4.54 officially released (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx#4454) release page); v4.4.53 moved to unsupported. This is a bug-fix release: torque protection works again in the knee-restriction tasks 4301 / 4302, the assist coefficient is adjustable again in 4303 / 4304 / 4305, mark time (4112) honours the panel pause command, and the `communication` section was added to `*_sdk.yaml` so the SDK User API UDP channel works again
+- 🔧 Retracted the "this interface has no effect" notes on the 6 affected task pages and restored the "Pause motion flag" parameter and interface-mapping rows that had been removed from the 4112 page (both languages)
+
+---
+
 ### v1.2.11 (2026-10-15)
 
 **Documentation fixes**
