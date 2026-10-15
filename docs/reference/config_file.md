@@ -74,7 +74,6 @@ run_type="custom"
 | dynalink: enable      | 是否启用 动态连接数据传输功能                              | boolean | true | true, false | 是               |
 | sync: enable          | 是否启用 数据同步功能（需要 dynalink:enable=true）         | boolean | false | true, false | 否 (暂未开放使用)      |
 | rerun: enable         | 是否启用 rerun 绘图功能（需要 dynalink:enable=true）     | boolean | false | true, false | 是               |
-| streamlit: enable     | 是否启用 streamlit 绘图功能（需要 dynalink:enable=true） | boolean | false | true, false | 否 (暂未开放使用)      |
 | comm: enable          | 是否启用 旧版通信适配功能（需要 dynalink:enable=true）       | boolean | false | true, false | 否 (暂未开放使用)      |
 | teleoperation: enable | 是否启用 遥操作功能（需要 dynalink:enable=true）          | boolean | false | true, false | 是 (请联系技术支持进行使用) |
 

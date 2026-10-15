@@ -75,7 +75,6 @@ The Configuration File is a YAML-formatted file that contains various robot conf
 | dynalink: enable      | Whether to enable the dynamic link data transfer feature                                  | boolean | true    | true, false | Yes                                    |
 | sync: enable          | Whether to enable data synchronization (requires dynalink:enable=true)                    | boolean | false   | true, false | No (not yet available)                 |
 | rerun: enable         | Whether to enable rerun plotting (requires dynalink:enable=true)                          | boolean | false   | true, false | Yes                                    |
-| streamlit: enable     | Whether to enable streamlit plotting (requires dynalink:enable=true)                      | boolean | false   | true, false | No (not yet available)                 |
 | comm: enable          | Whether to enable legacy communication adapter (requires dynalink:enable=true)            | boolean | false   | true, false | No (not yet available)                 |
 | teleoperation: enable | Whether to enable teleoperation (requires dynalink:enable=true)                           | boolean | false   | true, false | Yes (contact technical support to use) |
 
