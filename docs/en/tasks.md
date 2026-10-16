@@ -44,6 +44,7 @@ Common task command examples for M4 robots:
 | TASK_PRISMATIC_JOINT_MOVE_LENGTH                  | 4206             | M4L               | Leg-length adjustment (absolute position command)                         |
 | TASK_PRISMATIC_JOINT_MOVE_OFFSET                  | 4207             | M4L               | Relative leg-length adjustment (offset from the current position, no re-calibration required) |
 | TASK_ROTARY_JOINT_FORWARD_WALK                    | 4111             | M4L               | Passive forward walking                                                   |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC           | 4113             | M4L               | Harmonic-coefficient forward walking (pre-computed gait curves; amplitude / knee-restriction / cadence levels) |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD   | 4116             | M4L               | Assisted forward walking (adjust PD parameters)                           |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT   | 4118             | M4L               | Assisted forward walking (adjust dt parameters)                           |
 | TASK_ROTARY_JOINT_MARK_TIME                       | 4112             | M4L               | Passive marching in place                                                 |
@@ -83,6 +84,7 @@ The pages below are the primary task descriptions organized in this repository a
 
 - [Standing Posture Control](/fourier-grx-M4/docs/en/tasks/stand_motion_control)
 - [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive)
+- [Harmonic-Coefficient Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
 - [Assisted Forward Walking (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
 - [Assisted Forward Walking (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
 - [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive)

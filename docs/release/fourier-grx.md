@@ -76,6 +76,7 @@ has_toc: true
 - 预发布包**不会**被 `fourier-grx update` 的自动探测发现，也不列入上表。
 - 安装方式：`fourier-grx update <版本>-prerelease`，例如 `fourier-grx update 4.4.53-prerelease`。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
 - 安装后仍需执行 `fourier-grx install` 完成部署。
+- 当前预发布：`fourier-grx update 4.4.55-prerelease`（2026-10-16 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为谐波系数前向行走任务 4113 与其规划器 4407，详见 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)。
 
 参数细节见 [命令行工具 · 预发布渠道](/fourier-grx-M4/docs/reference/command_line_tool#预发布渠道)。
 

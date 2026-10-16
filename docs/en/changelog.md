@@ -14,6 +14,33 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.15 (2026-10-16)
+
+**Release**
+
+- 📦 A **prerelease build of `fourier-grx` v4.4.55** has been built and uploaded to the pre-release channel: `fourier-grx-4.4.55-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-16 11:35, branch `m4-lfs`, `X-Variant` = `linux-arm64-cpu-m4l-prerelease`)
+- ⬇️ Install with `fourier-grx update 4.4.55-prerelease`, then run `fourier-grx install` to deploy. The package is not found by the argument-free automatic probe of `fourier-grx update` and is not listed in the [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx)
+- ✨ Contents: the [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) task (TID 4113) and its [planner](/fourier-grx-M4/docs/en/tasks/planner) (TID 4407), 5 new gait level echo fields in `rehab/server`, and a widened deactivation clear covering `rehab.gait_*`
+- ⚠️ No stable release yet; once it ships, add its download link to the firmware version table and replace "stable release pending" in the v1.2.13 / v1.2.14 entries with the actual date
+
+### v1.2.14 (2026-10-16)
+
+**Documentation Updates**
+
+- ➕ Added the **Harmonic-Coefficient Forward Walk planner (TID 4407)** to the [Planner](/fourier-grx-M4/docs/en/tasks/planner) page: the plan-only counterpart of 4113. The three panel levels (`param_1` amplitude / `param_2` knee restriction / `param_3` cadence) are still applied every control cycle, but no joint commands are sent, so the host can preview the joint envelopes of all 4 × 4 = 16 curves and the 6 cadence levels before the patient starts moving. Includes the full reported-field table and the 4 × 4 envelope table
+- 🔧 Documented two previously undocumented planner behaviours: although the planner does not drive the joints, it still merges the trajectory into the joint position protection envelope every control cycle (widening only, restored on reset); and the deactivation clear now covers all `rehab.gait_*` level echo fields
+- 📡 The publisher of the 5 gait echo fields in the `rehab/server` status table is now listed as "4113 / 4407" instead of "4113"
+- 🔧 Fixed the description of the 4 reference-trajectory array fields in `rehab/server`: added the element order **[hip_L, knee_L, hip_R, knee_R]** (length 4 for every gait task — verified across 4111 / 4112 / 4113 / 4116 / 4117 / 4301 / 4302 / 4401 / 4407 / 4501, the whole family is consistent), and corrected the scope of `reference_joint_position_max/min` from "the entire trajectory" to "the cyclic segment (start and end transitions excluded)", matching what the code actually does
+- ⚠️ The above corresponds to `fourier-grx` v4.4.55; a prerelease build is available (see v1.2.15), stable release pending
+
+### v1.2.13 (2026-10-16)
+
+**Documentation Updates**
+
+- ➕ Added the task page [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) (TID 4113, M4L): replays Fourier harmonic-coefficient gait curves with three orthogonal panel levels — **hip swing amplitude** (`param_1`), **knee restriction** (`param_2`) and **cadence** (`param_3`); cadence spans 22.9 ~ 49.2 steps/min, i.e. the required 2.45 ~ 5.25 s per stride. Chinese and English pages added, along with the task table and index entries
+- 📡 Documented 5 new gait echo fields in the `rehab/server` status table: `gait_name`, `gait_amplitude_level`, `gait_knee_restriction_deg`, `gait_speed_level`, `gait_stride_time_s`
+- ⚠️ This feature is available from `fourier-grx` v4.4.55 (this entry was written before the version number was assigned and said "later than v4.4.54"; it is now fixed as v4.4.55, see v1.2.15); once the stable release ships, add its download link to the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) table
+
 ### v1.2.12 (2026-10-15)
 
 **Documentation Updates**

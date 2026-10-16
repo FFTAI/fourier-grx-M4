@@ -43,6 +43,7 @@ M4 机器人常见任务指令示例：
 | TASK_PRISMATIC_JOINT_MOVE_LENGTH               | 4206      | M4L  | 腿长调节（绝对位置指令）                     |
 | TASK_PRISMATIC_JOINT_MOVE_OFFSET               | 4207      | M4L  | 腿长相对调节（相对当前位置偏移，无需重新标定）      |
 | TASK_ROTARY_JOINT_FORWARD_WALK                 | 4111      | M4L  | 被动前向行走                        |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC        | 4113      | M4L  | 谐波系数前向行走（回放预存步态曲线；幅度档 / 伸膝限制档 / 步频档） |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD | 4116    | M4L  | 助力前向行走（调整 PD 参数）              |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT | 4118    | M4L  | 助力前向行走（调整 dt 参数）              |
 | TASK_ROTARY_JOINT_MARK_TIME                    | 4112      | M4L  | 被动原地踏步                        |
@@ -82,6 +83,7 @@ M4 机器人常见任务指令示例：
 
 - [站立姿态控制](/fourier-grx-M4/docs/tasks/stand_motion_control)
 - [被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)
+- [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)
 - [助力前向行走（调整 PD 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)
 - [助力前向行走（调整 dt 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)
 - [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)

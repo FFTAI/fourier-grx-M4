@@ -77,6 +77,7 @@ The download links above are all **stable channel** (`blaze`) builds. Pre-releas
 - Pre-release packages are **never** found by the automatic probe of `fourier-grx update` and are not listed in the table above.
 - Install one explicitly: `fourier-grx update <version>-prerelease`, e.g. `fourier-grx update 4.4.53-prerelease`. This syntax is available since v4.4.53; on earlier versions, install with `sudo dpkg -i <deb>` instead.
 - `fourier-grx install` is still required afterwards.
+- Current pre-release: `fourier-grx update 4.4.55-prerelease` (built 2026-10-16, `X-Variant` = `linux-arm64-cpu-m4l-prerelease`), containing the Harmonic-Coefficient Forward Walk task 4113 and its planner 4407 — see [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic).
 
 For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs/en/reference/command_line_tool#pre-release-channel).
 

@@ -13,6 +13,33 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.15 (2026-10-16)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.55 预发布包**已构建并上传预发布渠道：`fourier-grx-4.4.55-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-16 11:35，构建分支 `m4-lfs`，`X-Variant` = `linux-arm64-cpu-m4l-prerelease`）
+- ⬇️ 安装方式：`fourier-grx update 4.4.55-prerelease`，随后执行 `fourier-grx install` 完成部署。该包不会被 `fourier-grx update` 的无参自动探测发现，也不列入[固件版本表](/fourier-grx-M4/docs/release/fourier-grx)
+- ✨ 本版内容：谐波系数前向行走任务 [TID 4113](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic) 与其[规划器 TID 4407](/fourier-grx-M4/docs/tasks/planner)，`rehab/server` 新增 5 个步态档位回显字段，规划器停用时的清零范围扩展至 `rehab.gait_*`
+- ⚠️ 尚未发布正式版；发布后需在固件版本表补录下载链接，并把 v1.2.13 / v1.2.14 条目中的「正式版待发布」改为具体日期
+
+### v1.2.14 (2026-10-16)
+
+**文档更新**
+
+- ➕ [规划器](/fourier-grx-M4/docs/tasks/planner)页新增 **谐波系数前向行走规划器（TID 4407）**：4113 的只规划版本，面板三条档位（`param_1` 幅度 / `param_2` 伸膝限制 / `param_3` 步频）照常每个控制周期生效，但不向关节下发指令，供上位机在患者开始运动前预览 4 × 4 = 16 条曲线的关节包络与 6 档节奏；附完整上报字段表与 4 × 4 包络对照表。中英文同步
+- 🔧 补充规划器页两处此前未记载的行为：规划器虽不驱动关节，每周期仍会并入关节位置保护包络（只放宽、不收窄，复位后恢复）；停用时清零范围已扩展至 `rehab.gait_*` 全部档位回显字段
+- 📡 `rehab/server` 状态接口表中 5 个步态回显字段的发布方由「4113」改为「4113 / 4407」。中英文同步
+- 🔧 修正 `rehab/server` 中 4 个参考轨迹数组字段的说明：补上数组顺序 **[左髋, 左膝, 右髋, 右膝]**（步态类任务长度均为 4，实测覆盖 4111 / 4112 / 4113 / 4116 / 4117 / 4301 / 4302 / 4401 / 4407 / 4501，全家族一致）；并把 `reference_joint_position_max/min` 的统计范围由「整段轨迹」更正为「循环段（不含起步与结束过渡段）」，与代码实际行为对齐。中英文同步
+- ⚠️ 上述功能对应 `fourier-grx` v4.4.55，预发布包已提供（见 v1.2.15），正式版待发布
+
+### v1.2.13 (2026-10-16)
+
+**文档更新**
+
+- ➕ 新增任务页 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)（TID 4113，M4L）：回放 Fourier 谐波系数步态曲线，**髋摆动幅度档**（`param_1`）、**伸膝限制档**（`param_2`）、**步频档**（`param_3`）三条正交通道；步频 22.9 ~ 49.2 步/分，对应技术要求 2.45 ~ 5.25 s/大步。中英文同步，并已加入任务总表与任务索引
+- 📡 `rehab/server` 状态接口表补充 5 个步态回显字段：`gait_name`、`gait_amplitude_level`、`gait_knee_restriction_deg`、`gait_speed_level`、`gait_stride_time_s`（中英文同步）
+- ⚠️ 该功能自 `fourier-grx` v4.4.55 起提供（本条目撰写时尚未定版本号，写作「大于 v4.4.54」，现确定为 v4.4.55，见 v1.2.15）；正式发布后需在 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 版本表补录下载链接
+
 ### v1.2.12 (2026-10-15)
 
 **文档更新**
