@@ -125,4 +125,4 @@ Task Parameters: refer to [Assist Mark Time (Knee Restriction, Adjust dt Paramet
 
 - Planner tasks (TID 4401–4406) added in `fourier-grx` v4.3.0.
 - Since `fourier-grx` v4.4.47, planner tasks clear the reported step-frequency field on exit.
-- `fourier-grx` v4.4.55 (prerelease build `4.4.55-prerelease` available, stable release pending): added the Harmonic-Coefficient Forward Walk planner (TID 4407), and extended the planner deactivation clear to cover all harmonic gait level echo fields.
+- `fourier-grx` v4.4.55 (current prerelease build is `4.4.56-prerelease`, stable release pending; on P1 use v4.4.56 or later): added the Harmonic-Coefficient Forward Walk planner (TID 4407), and extended the planner deactivation clear to cover all harmonic gait level echo fields.

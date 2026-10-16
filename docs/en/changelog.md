@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.16 (2026-10-16)
+
+**Release and defect fix**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.56**: `fourier-grx-4.4.56-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-16 12:35, branch `m4-lfs`); install with `fourier-grx update 4.4.56-prerelease`
+- 🐛 Fixed the M4LP1 control thread exiting right after start: the joint-protection debounce counters and thresholds were initialised in `RobotM4L._init_actuator()`, but `RobotM4LP1` overrides that method wholesale without calling `super()`, so `flag_joint_over_load_protection_counter_threshold` was never created and the control thread raised `AttributeError` on the first control cycle. The counters are now initialised in the base constructor, where a variant override of `_init_actuator()` cannot skip them; the velocity and position protection counters sat on the same risk (hidden only because their reads are behind an enable switch) and are fixed the same way. M4LT1 / M4LT2 do not override the method and were never affected
+- ⚠️ **Do not install `4.4.55-prerelease` on M4LP1**; the defect is present in v4.4.52 through v4.4.55. On P1 use `4.4.56-prerelease` or later
+- 📄 Version notes on the [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic), [Planner](/fourier-grx-M4/docs/en/tasks/planner) and [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) pages updated accordingly
+
 ### v1.2.15 (2026-10-16)
 
 **Release**

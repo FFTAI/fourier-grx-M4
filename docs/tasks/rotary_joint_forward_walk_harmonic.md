@@ -115,4 +115,5 @@ has_toc: true
 
 ## 更新日志
 
-- v4.4.55：新增本任务（TID 4113）。预发布包 `fourier-grx-4.4.55-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-16 构建）已提供，安装方式 `fourier-grx update 4.4.55-prerelease`；正式版尚未发布，发布后在此补发布页链接。
+- v4.4.55：新增本任务（TID 4113）。
+- v4.4.56：修复 M4LP1 控制线程启动即退出的缺陷，**P1 请使用 v4.4.56 及以上**。当前预发布包 `fourier-grx-4.4.56-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-16 构建），安装方式 `fourier-grx update 4.4.56-prerelease`；正式版尚未发布，发布后在此补发布页链接。

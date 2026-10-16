@@ -13,6 +13,15 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.16 (2026-10-16)
+
+**发布与缺陷修正**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.56**：`fourier-grx-4.4.56-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-16 12:35 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.56-prerelease`
+- 🐛 修正 M4LP1 控制线程启动即退出：关节保护的消抖计数器与门限原先在 `RobotM4L._init_actuator()` 里初始化，而 `RobotM4LP1` 整体覆盖了该方法且不调用 `super()`，导致 `flag_joint_over_load_protection_counter_threshold` 缺失，控制线程在第 1 个控制周期读该属性时抛 `AttributeError` 而终止。计数器改由基类构造统一初始化，机型覆盖 `_init_actuator()` 无法再绕过；限速与限位保护的计数器此前在同一风险面上（读取点被外层开关保护才未暴露），一并消除。M4LT1 / M4LT2 不覆盖该方法，不受影响
+- ⚠️ **`4.4.55-prerelease` 请勿在 M4LP1 上安装**；该缺陷自 v4.4.52 起存在于 v4.4.52 ~ v4.4.55。P1 请使用 `4.4.56-prerelease` 及以上
+- 📄 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)、[规划器](/fourier-grx-M4/docs/tasks/planner) 与 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 页的版本标注同步更新。中英文同步
+
 ### v1.2.15 (2026-10-16)
 
 **发布**
