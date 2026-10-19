@@ -117,4 +117,5 @@ Command interface:
 ## Update Log
 
 - v4.4.55: this task was added (TID 4113).
-- v4.4.56: fixed the M4LP1 control thread exiting right after start — **on P1, use v4.4.56 or later**. The current prerelease build is `fourier-grx-4.4.56-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-16); install it with `fourier-grx update 4.4.56-prerelease`. No stable release yet — the release-page link will be added here once it ships.
+- v4.4.56: fixed the M4LP1 control thread exiting right after start — **on P1, use v4.4.56 or later**.
+- v4.4.57: the rotary-joint PD hard-tier kp is flattened to `[500,500,500,500]`; the T1 / T2 baseline start-up gain drops from hip 600 / knee 500 to a flat 500. The current prerelease build is `fourier-grx-4.4.57-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-19); install it with `fourier-grx update 4.4.57-prerelease`. No stable release yet — the release-page link will be added here once it ships.

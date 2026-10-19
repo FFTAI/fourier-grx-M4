@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.18 (2026-10-19)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.57**: `fourier-grx-4.4.57-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-19 17:35, branch `m4-lfs`); install with `fourier-grx update 4.4.57-prerelease`
+- 🔧 What changed: **the rotary-joint PD hard-tier kp is flattened to 500**. In the M4LP1 and M4LT1/T2 parameter classes the hard tier goes from `[600,500,600,500]` (hip/knee split) to `[500,500,500,500]`; kd stays `[30,30,30,30]`. On M4LT1 / M4LT2 the rotary baseline gain is a copy of the hard tier, so the start-up gain of every rotary task (stand / forward walk / mark time / calibration / test) drops from hip 600 · knee 500 to a flat 500 — the motion feels softer. M4LP1 keeps its soft `[250×4]` baseline; only its load-ramp target changes to a flat 500. The buttery / soft compliance interpolation of the assist_adjust_pd tasks is unaffected
+- 📄 Version notes on the [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic), [Planner](/fourier-grx-M4/docs/en/tasks/planner) and [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) pages updated accordingly
+
 ### v1.2.17 (2026-10-19)
 
 **Documentation Improvements**

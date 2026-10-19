@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.18 (2026-10-19)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.57**：`fourier-grx-4.4.57-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-19 17:35 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.57-prerelease`
+- 🔧 本版内容：**旋转关节 PD hard 档 kp 统一为 500**。M4LP1 与 M4LT1/T2 参数类的 hard 档由 `[600,500,600,500]`（髋/膝区分）调整为 `[500,500,500,500]`，kd 维持 `[30,30,30,30]`。M4LT1 / M4LT2 的 rotary 基线增益是 hard 档副本，全部旋转关节任务（站立 / 前向行走 / 原地踏步 / 标定 / 测试）的起步增益随之由髋 600 · 膝 500 变为统一 500，动作手感变软；M4LP1 基线仍为 `[250×4]` 软起步，仅负载爬升终点统一为 500。assist_adjust_pd 类的 buttery / soft 柔顺插值手感不受影响
+- 📄 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)、[规划器](/fourier-grx-M4/docs/tasks/planner) 与 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 页的版本标注同步更新。中英文同步
+
 ### v1.2.17 (2026-10-19)
 
 **文档改进**
