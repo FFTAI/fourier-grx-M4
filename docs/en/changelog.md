@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.17 (2026-10-19)
+
+**Documentation Improvements**
+
+- Rewrote the root README with the repository scope, online documentation links, documentation navigation, example categories, directory structure, and contribution information
+- Completed the Chinese and English Quick Start indexes with device-state-based routes to the existing installation, upgrade, flashing, and model workflows, plus post-installation next steps
+- Clarified the roles of the local `demo/` examples and the external `Wiki-GRx-Deploy` examples, and fixed child-page navigation configuration on the Chinese examples index
+- Expanded the Chinese and English contributing guides with issue-reporting details, bilingual synchronization, front matter, and pre-submission check requirements
+
 ### v1.2.16 (2026-10-16)
 
 **Release and defect fix**

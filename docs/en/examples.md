@@ -14,10 +14,12 @@ nav_exclude: true
 
 This documentation provides a rich set of example code to help you quickly learn how to use the Fourier-GRX-M4 SDK.
 
-- Example code for M4 series robots is located in the `FourierM4` branch of [Github Wiki-GRx-Deploy](https://github.com/FFTAI/Wiki-GRx-Deploy.git).
-- Example code for M4L series robots is located in the `FourierM4L` branch of [Github Wiki-GRx-Deploy](https://github.com/FFTAI/Wiki-GRx-Deploy.git).
+The examples are available in two locations:
 
-The examples cover both the User API and Developer API, catering to different levels of development needs.
+- The `demo/` directory in this repository contains User API, Developer API, and raw UDP socket examples. The interface pages below explain how to obtain and run them.
+- The `FourierM4` and `FourierM4L` branches of the external [Wiki-GRx-Deploy](https://github.com/FFTAI/Wiki-GRx-Deploy.git) repository provide additional model-specific examples.
+
+These examples cover different levels of development. Choose them according to the interface type, robot model, and runtime environment.
 
 ## Example Entry Points
 
@@ -26,9 +28,9 @@ The examples cover both the User API and Developer API, catering to different le
 - The [User API Examples](/fourier-grx-M4/docs/en/examples/user) page also lists the **raw UDP socket examples**, which talk to the robot using only the Python standard library and need no `fourier_grx` SDK installation — useful for quickly checking the protocol on a machine without the SDK environment.
 - For interface field descriptions and protocol details, refer to the [Reference Guide](/fourier-grx-M4/docs/en/reference) alongside these examples.
 
-## Example Code Repository
+## External Example Code Repository
 
-You can clone the robot secondary-development example programs via git:
+Use the following commands to clone the model-specific examples from `Wiki-GRx-Deploy`. You do not need to clone this external repository to run the examples under `demo/` in this repository.
 
 ### M4 Series Robots
 

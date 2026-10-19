@@ -3,6 +3,7 @@ layout: default
 title: 示例代码
 nav_order: 2
 has_toc: true
+has_children: true
 ---
 
 # 示例代码
@@ -12,10 +13,12 @@ has_toc: true
 
 本文档提供了丰富的示例代码，帮助您快速掌握 Fourier-GRX-M4 SDK 的使用方法。
 
-- M4 系列机器人的示例代码位于 [Github Wiki-GRx-Deploy](https://github.com/FFTAI/Wiki-GRx-Deploy.git) 的 `FourierM4` 分支中。
-- M4L 系列机器人的示例代码位于 [Github Wiki-GRx-Deploy](https://github.com/FFTAI/Wiki-GRx-Deploy.git) 的 `FourierM4L` 分支中。
+示例代码来自两个位置：
 
-示例代码包含用户接口（User API）、开发者接口（Developer API）的示例，适用于不同层次的开发需求。
+- 本仓库的 `demo/` 目录提供 User API、Developer API 和 UDP 纯 socket 示例，各接口页面会说明具体的获取与运行方法。
+- 外部 [Wiki-GRx-Deploy](https://github.com/FFTAI/Wiki-GRx-Deploy.git) 仓库的 `FourierM4` 和 `FourierM4L` 分支提供更多对应机型的示例。
+
+这些示例适用于不同层次的开发需求，请根据接口类型、机器人型号和运行环境选择。
 
 ## 示例入口
 
@@ -24,9 +27,9 @@ has_toc: true
 - [User 接口示例](/fourier-grx-M4/docs/examples/user) 页面还收录了 **UDP 纯 socket 示例**：只用 Python 标准库与机器人通信，不需要安装 `fourier_grx` SDK，适合在不想搭建 SDK 环境的电脑上快速验证协议。
 - 如需查看接口字段和协议说明，请结合 [参考指南](/fourier-grx-M4/docs/reference) 一起阅读。
 
-## 示例代码仓库
+## 外部示例代码仓库
 
-可以通过 git 同步机器人的二次开发接口示例程序，同步命令为：
+以下命令用于同步 `Wiki-GRx-Deploy` 中的机型示例；运行本仓库 `demo/` 中的示例时，无需再克隆该外部仓库。
 
 ### M4 系列机器人
 
