@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-15 | **4.4.54** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4454) | ✅ Active |
+| 2026-10-19 | **4.4.57** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4457) | ✅ Active |
+| 2026-10-15 | 4.4.54 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4454) | ❌ No longer supported |
 | 2026-10-14 | 4.4.53 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4453) | ❌ No longer supported |
 | 2026-10-12 | 4.4.51 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4451) | ❌ Unsupported |
 | 2026-10-12 | 4.4.50 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4450) | ❌ Unsupported |
@@ -85,6 +86,26 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.57
+
+> 📅 2026-10-19 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **Added**
+
+- **Harmonic-Coefficient Forward Walk (TID 4113) and its planner (TID 4407)**: replays a periodic joint curve sampled from the pre-stored Fourier harmonic coefficients of the Fourier-GRX main table; the trajectory shape is picked from 4 × 4 = 16 curves along the hip-swing-amplitude × knee-extension-limit axes, while timing is set independently by the cadence level. The planner variant only generates the preview and sends no joint commands. `rehab/server` gained 5 gait-level echo fields, and the planner deactivation clear now covers `rehab.gait_*`. See [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) and [Planner](/fourier-grx-M4/docs/en/tasks/planner). (Shipped through the v4.4.55 prerelease cycle; 4.4.55 / 4.4.56 never got their own stable release — this version makes the feature generally available.)
+
+🐛 **Fixed**
+
+- **M4LP1 control thread exiting right after start**: the joint-protection debounce counters were initialised in `RobotM4L._init_actuator()`, but the P1 variant overrides that method wholesale without calling `super()`, so the control thread raised `AttributeError` in the first control cycle. The counters are now initialised in the base constructor, where a variant override cannot skip them. The defect existed since v4.4.52 and was not fixed in the v4.4.53 / 4.4.54 stable releases (M4LT1 / M4LT2 were never affected); **M4LP1 users should upgrade directly to v4.4.57**.
+
+🔧 **Changed**
+
+- **The rotary-joint PD hard-tier kp is flattened to `[500,500,500,500]`** (kd stays `[30,30,30,30]`, now aligned with the algorithm's built-in default): on M4LT1 / M4LT2 the baseline gain is a copy of the hard tier, so every rotary task (stand / forward walk / mark time / calibration / test) starts at a flat 500 instead of hip 600 / knee 500.
+  > ⚠️ Behaviour change: upgrading from the v4.4.53 / 4.4.54 stable releases lowers the T1 / T2 start-up stiffness (hip 600 → 500, knee 500 → 500) — the motion feels softer. M4LP1 keeps its soft `[250×4]` baseline; only its load-ramp target becomes a flat 500. The buttery / soft compliance interpolation of the assist_adjust_pd tasks is unaffected.
+- Removed the never-implemented streamlit UI and its process mount (cleanup).
+
+---
 
 ### 4.4.54
 

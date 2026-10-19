@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.19 (2026-10-19)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.57 is now stable**: `fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-19 17:49, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.57`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.57 row and release notes; 4.4.54 moves to "No longer supported". Highlights: the M4LP1 start-up crash is fixed (affected range v4.4.52 – 4.4.56-prerelease — **on P1, upgrade directly to v4.4.57**); the Harmonic-Coefficient Forward Walk task 4113 and planner 4407 become generally available; the rotary-joint PD hard-tier kp is flattened to `[500,500,500,500]` (lower T1 / T2 start-up stiffness — ⚠️ behaviour change)
+- ℹ️ Everything from the v4.4.55 / v4.4.56 prerelease cycles ships as stable in this version; 4.4.55 and 4.4.56 never got their own stable releases
+- 📄 The [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) and [Planner](/fourier-grx-M4/docs/en/tasks/planner) pages drop the "stable release pending" notes and link to the release page
+
 ### v1.2.18 (2026-10-19)
 
 **Release**
@@ -47,7 +56,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 📦 A **prerelease build of `fourier-grx` v4.4.55** has been built and uploaded to the pre-release channel: `fourier-grx-4.4.55-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-16 11:35, branch `m4-lfs`, `X-Variant` = `linux-arm64-cpu-m4l-prerelease`)
 - ⬇️ Install with `fourier-grx update 4.4.55-prerelease`, then run `fourier-grx install` to deploy. The package is not found by the argument-free automatic probe of `fourier-grx update` and is not listed in the [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx)
 - ✨ Contents: the [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) task (TID 4113) and its [planner](/fourier-grx-M4/docs/en/tasks/planner) (TID 4407), 5 new gait level echo fields in `rehab/server`, and a widened deactivation clear covering `rehab.gait_*`
-- ⚠️ No stable release yet; once it ships, add its download link to the firmware version table and replace "stable release pending" in the v1.2.13 / v1.2.14 entries with the actual date
+- ✅ Shipped as stable with **v4.4.57** (2026-10-19); the download link is in the [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) (4.4.55 / 4.4.56 never got their own stable releases)
 
 ### v1.2.14 (2026-10-16)
 
@@ -57,7 +66,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 🔧 Documented two previously undocumented planner behaviours: although the planner does not drive the joints, it still merges the trajectory into the joint position protection envelope every control cycle (widening only, restored on reset); and the deactivation clear now covers all `rehab.gait_*` level echo fields
 - 📡 The publisher of the 5 gait echo fields in the `rehab/server` status table is now listed as "4113 / 4407" instead of "4113"
 - 🔧 Fixed the description of the 4 reference-trajectory array fields in `rehab/server`: added the element order **[hip_L, knee_L, hip_R, knee_R]** (length 4 for every gait task — verified across 4111 / 4112 / 4113 / 4116 / 4117 / 4301 / 4302 / 4401 / 4407 / 4501, the whole family is consistent), and corrected the scope of `reference_joint_position_max/min` from "the entire trajectory" to "the cyclic segment (start and end transitions excluded)", matching what the code actually does
-- ⚠️ The above corresponds to `fourier-grx` v4.4.55; a prerelease build is available (see v1.2.15), stable release pending
+- ✅ The above became generally available with **v4.4.57** (2026-10-19; previously shipped through the 4.4.55 – 4.4.57 prerelease builds)
 
 ### v1.2.13 (2026-10-16)
 

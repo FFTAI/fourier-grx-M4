@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-15 | **4.4.54** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4454) | ✅ 支持中 |
+| 2026-10-19 | **4.4.57** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4457) | ✅ 支持中 |
+| 2026-10-15 | 4.4.54 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4454) | ❌ 不再支持 |
 | 2026-10-14 | 4.4.53 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4453) | ❌ 不再支持 |
 | 2026-10-12 | 4.4.51 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4451) | ❌ 不再支持 |
 | 2026-10-12 | 4.4.50 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4450) | ❌ 不再支持 |
@@ -84,6 +85,26 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.57
+
+> 📅 2026-10-19 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **谐波系数前向行走（TID 4113）与其规划器（TID 4407）**：直接回放 Fourier-GRX 主表预存的 Fourier 谐波系数采样出的周期性关节曲线，轨迹形状由「髋摆动幅度 × 伸膝限制」两轴从 4 × 4 = 16 条曲线中选定，节奏由步频档独立决定；规划器版只生成预览、不下发关节指令。`rehab/server` 新增 5 个步态档位回显字段，规划器停用时的清零范围扩展至 `rehab.gait_*`。详见 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic) 与 [规划器](/fourier-grx-M4/docs/tasks/planner)。（该功能自 v4.4.55 周期的预发布包提供；4.4.55 / 4.4.56 未单独发布正式版，自本版本起正式提供。）
+
+🐛 **修复**
+
+- **M4LP1 控制线程启动即退出**：关节保护的消抖计数器原先在 `RobotM4L._init_actuator()` 中初始化，而 P1 机型整体覆盖该方法且不调用 `super()`，导致控制线程在第 1 个控制周期抛 `AttributeError` 终止；现由基类构造统一初始化，机型覆盖无法再绕过。该缺陷自 v4.4.52 起存在，v4.4.53 / 4.4.54 正式版未修复（M4LT1 / M4LT2 不受影响）；**M4LP1 请直接升级到 v4.4.57**。
+
+🔧 **调整**
+
+- **旋转关节 PD hard 档 kp 统一为 `[500,500,500,500]`**（kd 维持 `[30,30,30,30]`，并与算法内置默认值对齐）：M4LT1 / M4LT2 的基线增益为 hard 档副本，全部旋转关节任务（站立 / 前向行走 / 原地踏步 / 标定 / 测试）的起步增益由髋 600 · 膝 500 变为统一 500。
+  > ⚠️ 这是行为变化：从 v4.4.53 / 4.4.54 正式版升级后，T1 / T2 起步刚度下降（髋 600 → 500、膝 500 → 500），动作手感变软；M4LP1 基线仍为 `[250×4]` 软起步，仅负载爬升终点统一为 500。assist_adjust_pd 类的 buttery / soft 柔顺插值手感不受影响。
+- 移除从未实现的 streamlit 界面与进程挂载（清理）。
+
+---
 
 ### 4.4.54
 

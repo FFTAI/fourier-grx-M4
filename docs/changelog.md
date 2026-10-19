@@ -13,6 +13,15 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.19 (2026-10-19)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.57 正式发布**：`fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb`（2026-10-19 17:49 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.57`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.57 行与更新内容小节，4.4.54 转不再支持。本版要点：M4LP1 启动即崩溃缺陷修复（影响面 v4.4.52 ~ 4.4.56-prerelease，**P1 请直接升级 v4.4.57**）；谐波系数前向行走 4113 与规划器 4407 正式提供；旋转关节 PD hard 档 kp 统一为 `[500,500,500,500]`（T1 / T2 起步刚度下降，⚠️ 行为变化）
+- ℹ️ v4.4.55 / v4.4.56 周期的功能随本版一并正式发布，这两个版本号未单独发布正式版
+- 📄 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)与[规划器](/fourier-grx-M4/docs/tasks/planner)页去掉「正式版待发布」标注并补发布页链接。中英文同步
+
 ### v1.2.18 (2026-10-19)
 
 **发布**
@@ -46,7 +55,7 @@ has_toc: true
 - 📦 `fourier-grx` **v4.4.55 预发布包**已构建并上传预发布渠道：`fourier-grx-4.4.55-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-16 11:35，构建分支 `m4-lfs`，`X-Variant` = `linux-arm64-cpu-m4l-prerelease`）
 - ⬇️ 安装方式：`fourier-grx update 4.4.55-prerelease`，随后执行 `fourier-grx install` 完成部署。该包不会被 `fourier-grx update` 的无参自动探测发现，也不列入[固件版本表](/fourier-grx-M4/docs/release/fourier-grx)
 - ✨ 本版内容：谐波系数前向行走任务 [TID 4113](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic) 与其[规划器 TID 4407](/fourier-grx-M4/docs/tasks/planner)，`rehab/server` 新增 5 个步态档位回显字段，规划器停用时的清零范围扩展至 `rehab.gait_*`
-- ⚠️ 尚未发布正式版；发布后需在固件版本表补录下载链接，并把 v1.2.13 / v1.2.14 条目中的「正式版待发布」改为具体日期
+- ✅ 正式版已随 **v4.4.57** 发布（2026-10-19），下载链接见[固件版本表](/fourier-grx-M4/docs/release/fourier-grx)（4.4.55 / 4.4.56 未单独发布正式版）
 
 ### v1.2.14 (2026-10-16)
 
@@ -56,7 +65,7 @@ has_toc: true
 - 🔧 补充规划器页两处此前未记载的行为：规划器虽不驱动关节，每周期仍会并入关节位置保护包络（只放宽、不收窄，复位后恢复）；停用时清零范围已扩展至 `rehab.gait_*` 全部档位回显字段
 - 📡 `rehab/server` 状态接口表中 5 个步态回显字段的发布方由「4113」改为「4113 / 4407」。中英文同步
 - 🔧 修正 `rehab/server` 中 4 个参考轨迹数组字段的说明：补上数组顺序 **[左髋, 左膝, 右髋, 右膝]**（步态类任务长度均为 4，实测覆盖 4111 / 4112 / 4113 / 4116 / 4117 / 4301 / 4302 / 4401 / 4407 / 4501，全家族一致）；并把 `reference_joint_position_max/min` 的统计范围由「整段轨迹」更正为「循环段（不含起步与结束过渡段）」，与代码实际行为对齐。中英文同步
-- ⚠️ 上述功能对应 `fourier-grx` v4.4.55，预发布包已提供（见 v1.2.15），正式版待发布
+- ✅ 上述功能自 **v4.4.57** 起正式发布（2026-10-19；此前经 4.4.55 ~ 4.4.57 预发布包提供）
 
 ### v1.2.13 (2026-10-16)
 
