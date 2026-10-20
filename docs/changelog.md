@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.22 (2026-10-20)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.59**：`fourier-grx-4.4.59-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-20 14:37 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.59-prerelease`
+- 🔧 本版内容：**修复直线关节自动校准电机不动**。v4.4.49 引入的任务层输出限位钳制（防步态生成器越界指令）破坏了标定扫掠任务「指令越过软件限位 ±0.2 m 以顶到机械硬限位」的设计——直线关节行程仅 0.098 m，目标被钳回后若关节已抵近限位，目标等于实测位置、电机完全不动，随后在纯速度判据下误报到位并直接归零。标定扫掠类任务（直线 MoveMin / MoveMax、旋转 BorderAndReturn）现豁免该钳制、恢复越界指令；旋转标定扫掠的位置保护边界由「激活时位置 ± 0.25 rad」放宽为「硬件限位 ± 裕量」，避免扫掠中途误触发位置保护而伺服下电；MoveMax 到位日志文案 min→max 修正；进度日志按 1% 步进限速（单次扫掠 6000 行 → 约 100 行）
+- 📄 [校准零点（直线关节）](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)与[自动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_auto_calibrate)页更新日志同步，[Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.59。中英文同步
+
 ### v1.2.21 (2026-10-20)
 
 **发布**

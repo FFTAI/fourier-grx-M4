@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.22 (2026-10-20)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.59**: `fourier-grx-4.4.59-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-20 14:37, branch `m4-lfs`); install with `fourier-grx update 4.4.59-prerelease`
+- 🔧 What changed: **fixed the prismatic-joint auto calibration not moving the motor**. The task-layer output clamp introduced in v4.4.49 (to stop gait generators from commanding beyond hardware limits) broke the calibration sweep design of "commanding ±0.2 m past the software limits to press the joint against the mechanical hard stop" — the prismatic stroke is only 0.098 m, so once the joint is at/near the limit the clamped target equals the measured position, the motor never moves, and the velocity-only criterion then falsely reports arrival and zeroes the wrong point. Calibration sweep tasks (prismatic MoveMin / MoveMax, rotary BorderAndReturn) are now exempt from the clamp and regain their overshoot commands; the rotary sweep's position-protection bounds are widened from "position at activation ± 0.25 rad" to "hardware limits ± margin" so a long sweep no longer trips the protection into servo-off mid-way; the MoveMax arrival log text is fixed (min→max); the progress log now prints in 1% steps instead of every control cycle (≈6000 → ≈100 lines per sweep)
+- 📄 Update logs on the [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint) and [Rotary Joint Auto Calibration](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate) pages and the "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.21 (2026-10-20)
 
 **Release**
