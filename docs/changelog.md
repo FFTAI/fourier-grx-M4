@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.24 (2026-10-20)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.60**：`fourier-grx-4.4.60-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-20 16:43 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.60-prerelease`
+- 🔧 本版内容：**髋关节 hard 档 kd 由 30 增至 45**，消除空载高频振动。Pinocchio CRBA 分析显示髋关节等效惯量 2.25 kg·m²（约为膝的 3 倍），hard 档 kp=500 / kd=30 对应阻尼比 ζ=0.45（欠阻尼，相位裕度仅 19°）；kd=45 后 ζ=0.67，PM≈41°。膝关节 kd=30 不变（惯量 0.72 kg·m²，ζ=0.79 已达标）。M4LP1 基线（250/25）不受影响，M4LT1/T2 基线（hard 副本）自动跟随。稳态力矩不变（kp 未动），发热增量可忽略（正常行走 < 1 W）
+- 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.60。中英文同步
+
 ### v1.2.23 (2026-10-20)
 
 **发布**

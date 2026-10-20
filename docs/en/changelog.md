@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.24 (2026-10-20)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.60**: `fourier-grx-4.4.60-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-20 16:43, branch `m4-lfs`); install with `fourier-grx update 4.4.60-prerelease`
+- 🔧 What changed: **hip-joint hard-tier kd raised from 30 to 45**, eliminating the no-load high-frequency vibration. Pinocchio CRBA analysis shows the hip's effective inertia is 2.25 kg·m² (about 3× the knee's); at kp=500 / kd=30 the hip's damping ratio was ζ=0.45 (underdamped, phase margin only 19°) — with kd=45 it becomes ζ=0.67, PM≈41°. The knee keeps kd=30 (J=0.72 kg·m², ζ=0.79 already adequate). M4LP1 baseline (250/25) unaffected; M4LT1/T2 baseline (hard copy) follows automatically. Stall torque unchanged (kp untouched); extra heat dissipation negligible (< 1 W during normal walking)
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.23 (2026-10-20)
 
 **Release**
