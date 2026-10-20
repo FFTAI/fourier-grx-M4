@@ -36,9 +36,9 @@ Step 1 uses two arrival criteria — either one is enough:
 | Criterion | Trigger condition |
 |----|---------|
 | Torque + velocity | Measured torque ≥ 6 Nm and velocity ≤ 0.001 m/s, held for 0.2 s |
-| Velocity only | `motion_ratio` ≥ 0.20 and velocity ≤ 0.001 m/s, held for 5 s |
+| Velocity only | `motion_ratio` ≥ 0.20 and velocity ≤ 0.001 m/s, held for 25 s |
 
-The velocity-only criterion covers contact cases where torque does not build up properly; the 0.20 lower bound exists because the S-curve reference velocity is itself below the velocity threshold at the very start of the travel, which would otherwise cause false detections.
+The velocity-only criterion covers contact cases where torque does not build up properly; the 0.20 lower bound exists because the S-curve reference velocity is itself below the velocity threshold at the very start of the travel, which would otherwise cause false detections. In the tail of the travel (r > 0.8295) the reference velocity likewise drops below the threshold and stays there for about 20.5 s, so since `fourier-grx` v4.4.58 the hold time is 25 s — longer than that tail window, which is what rules out premature "arrived" calls before the joint touches the limit. On v4.4.53 – v4.4.57 the hold was 5 s, which risked a false arrival call about 3.5 mm before the hard stop.
 
 Task Parameters:
 
@@ -65,3 +65,4 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 
 - Added in `fourier-grx` v4.1.17.
 - `fourier-grx` v4.4.53 added a velocity-only arrival criterion that does not depend on torque (`motion_ratio` ≥ 0.20 with velocity ≤ 0.001 m/s held for 5 s), so arrival is still detected when contact torque does not build up.
+- `fourier-grx` v4.4.58 raises the velocity-only hold time from 5 s to 25 s: 5 s is shorter than the ~20.5 s naturally slow tail of the profile, which risked declaring arrival before the joint touched the limit and zeroing about 3.5 mm short (currently provided via the `4.4.58-prerelease` build; stable release pending).

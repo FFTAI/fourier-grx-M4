@@ -77,7 +77,7 @@ has_toc: true
 - 预发布包**不会**被 `fourier-grx update` 的自动探测发现，也不列入上表。
 - 安装方式：`fourier-grx update <版本>-prerelease`，例如 `fourier-grx update 4.4.53-prerelease`。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
 - 安装后仍需执行 `fourier-grx install` 完成部署。
-- 当前预发布：`fourier-grx update 4.4.57-prerelease`（2026-10-19 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为旋转关节 PD hard 档 kp 统一为 `[500,500,500,500]`（T1 / T2 基线起步增益随之由髋 600 · 膝 500 变为统一 500），其余与 4.4.56 相同（含谐波系数前向行走任务 4113 与其规划器 4407），详见 [更新日志](/fourier-grx-M4/docs/changelog)。
+- 当前预发布：`fourier-grx update 4.4.58-prerelease`（2026-10-20 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为直线关节到位判定的纯速度计时由 5 s 增至 25 s（消除校准行程末段在接触限位前约 3.5 mm 处的提前到位误判，详见 [直线关节零点校准](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)），其余与 4.4.57 正式版相同，详见 [更新日志](/fourier-grx-M4/docs/changelog)。
 - ⚠️ **M4LP1 请勿安装 `4.4.55-prerelease`**：该包（及 v4.4.52 ~ 4.4.55 正式版）在 P1 上会因缺失关节保护计数器属性而在启动后立即退出；请使用 `4.4.56-prerelease` 及以上。M4LT1 / M4LT2 不受影响。
 
 参数细节见 [命令行工具 · 预发布渠道](/fourier-grx-M4/docs/reference/command_line_tool#预发布渠道)。

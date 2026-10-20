@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.20 (2026-10-20)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.58**：`fourier-grx-4.4.58-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-20 13:23 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.58-prerelease`
+- 🔧 本版内容：**直线关节到位判定纯速度计时由 5 s 增至 25 s**。校准行程（120 s S 曲线）末段 r > 0.8295 的参考速度自然低于 0.001 m/s 判据门限且持续约 20.5 s，原 5 s 连续计时在关节尚未接触限位时即可能误判到位（最迟约在行程开始 + 104.5 s、距硬限位约 3.5 mm 处），污染零点标定；25 s 大于该末段窗口，自由跟踪全程不再触发，代价是力矩建立不足场景的兜底判定延迟变为接触后 + 25 s
+- 📄 [直线关节零点校准](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)页的到位判据表与更新日志同步，[Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.58。中英文同步
+
 ### v1.2.19 (2026-10-19)
 
 **发布**
