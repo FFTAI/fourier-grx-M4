@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.23 (2026-10-20)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.59 is now stable**: `fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 14:48, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.59`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.59 row and release notes; 4.4.58 moves to "No longer supported". Highlights: fixes the prismatic-joint auto calibration not moving the motor and a position-protection false trigger mid-sweep in the rotary calibration (both present since v4.4.49 — **machines whose prismatic joints were auto-calibrated on v4.4.49 – 4.4.58 should be recalibrated after upgrading**); otherwise identical to 4.4.58
+- 📄 The [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint) and [Rotary Joint Auto Calibration](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate) pages drop the "stable release pending" notes and link to the release page
+
 ### v1.2.22 (2026-10-20)
 
 **Release**

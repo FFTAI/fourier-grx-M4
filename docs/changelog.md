@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.23 (2026-10-20)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.59 正式发布**：`fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 14:48 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.59`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.59 行与更新内容小节，4.4.58 转不再支持。本版要点：修复直线关节自动校准电机不动与旋转标定扫掠位置保护误触发（均自 v4.4.49 起存在；**用 v4.4.49 ~ 4.4.58 做过直线关节自动校准的机器请升级后重新校准**）；其余与 4.4.58 相同
+- 📄 [校准零点（直线关节）](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)与[自动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_auto_calibrate)页去掉「正式版待发布」标注并补发布页链接。中英文同步
+
 ### v1.2.22 (2026-10-20)
 
 **发布**

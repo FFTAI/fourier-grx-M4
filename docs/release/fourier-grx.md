@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-20 | **4.4.58** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4458) | ✅ 支持中 |
+| 2026-10-20 | **4.4.59** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4459) | ✅ 支持中 |
+| 2026-10-20 | 4.4.58 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4458) | ❌ 不再支持 |
 | 2026-10-19 | 4.4.57 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4457) | ❌ 不再支持 |
 | 2026-10-15 | 4.4.54 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4454) | ❌ 不再支持 |
 | 2026-10-14 | 4.4.53 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4453) | ❌ 不再支持 |
@@ -86,6 +87,24 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.59
+
+> 📅 2026-10-20 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **直线关节自动校准电机不动**（缺陷自 v4.4.49 起存在，M4LP1 / T1 / T2 均受影响）：v4.4.49 为防步态生成器越界指令，在任务层把目标位置钳制到硬件限位，同时破坏了标定扫掠任务「指令越过软件限位 ±0.2 m 以顶到机械硬限位」的设计——直线关节行程仅 0.098 m，目标被钳回后若关节已抵近限位（典型情形：上一次校准刚结束，关节正停在软件零点），目标等于实测位置、电机完全不动，随后被纯速度判据误报到位并直接归零。**使用 v4.4.49 ~ v4.4.58 做过直线关节自动校准的机器，若校准过程中未观察到扫掠动作，则校准无效，请升级到本版本后重新校准**。详见 [校准零点（直线关节）](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)。
+- **旋转关节自动校准扫掠中途位置保护误触发**（缺陷自 v4.4.49 起存在）：保护边界在任务激活时初始化为「当前位置 ± 0.25 rad」，而扫掠的关节位移常超该裕量，中途被误判越界并伺服下电。本版起标定扫掠类任务（直线 MoveMin / MoveMax、旋转 BorderAndReturn）的保护边界初始化为硬件限位 ± 裕量。详见 [自动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_auto_calibrate)。
+
+🔧 **调整**
+
+- MoveMax 到位日志文案 min→max 修正（此前日志误写 "reach min position"）。
+- 校准扫掠的进度日志按 1% 步进打印（原为每控制周期一行，单次扫掠约 6000 行 → 约 100 行）。
+
+其余功能与 v4.4.58 相同（含直线关节到位判定纯速度计时 25 s）。
+
+---
 
 ### 4.4.58
 

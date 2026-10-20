@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-20 | **4.4.58** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4458) | ✅ Active |
+| 2026-10-20 | **4.4.59** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4459) | ✅ Active |
+| 2026-10-20 | 4.4.58 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4458) | ❌ No longer supported |
 | 2026-10-19 | 4.4.57 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4457) | ❌ No longer supported |
 | 2026-10-15 | 4.4.54 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4454) | ❌ No longer supported |
 | 2026-10-14 | 4.4.53 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4453) | ❌ No longer supported |
@@ -87,6 +88,24 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.59
+
+> 📅 2026-10-20 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixes**
+
+- **Prismatic-joint auto calibration not moving the motor** (present since v4.4.49, affecting M4LP1 / T1 / T2): v4.4.49 introduced a task-layer clamp of target positions to the hardware limits to stop gait generators from commanding out of range — the same clamp broke the calibration sweep design of "commanding ±0.2 m past the software limits to press the joint against the mechanical hard stop". The prismatic stroke is only 0.098 m, so once the joint is at/near the limit (typically right after a previous calibration, where it sits exactly at the software zero), the clamped target equals the measured position, the motor never moves, and the velocity-only criterion then falsely reports arrival and zeroes the wrong point. **Machines whose prismatic joints were auto-calibrated on v4.4.49 – v4.4.58 without any visible sweep motion should be recalibrated after upgrading to this version.** See [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint).
+- **Position-protection false trigger mid-sweep in the rotary-joint auto calibration** (present since v4.4.49): the protection bounds were initialised as "position at activation ± 0.25 rad", but the sweep's joint travel regularly exceeds that margin, so the robot was flagged out of range and servoed off mid-way. From this version on, calibration sweep tasks (prismatic MoveMin / MoveMax, rotary BorderAndReturn) initialise the bounds as hardware limits ± margin. See [Rotary Joint Auto Calibration](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate).
+
+🔧 **Changes**
+
+- MoveMax arrival log text fixed (it previously read "reach min position").
+- The calibration sweep progress log now prints in 1% steps instead of once per control cycle (≈6000 → ≈100 lines per sweep).
+
+Everything else is identical to v4.4.58 (including the 25 s velocity-only arrival timer of the prismatic calibration).
+
+---
 
 ### 4.4.58
 
