@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-20 | **4.4.60** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4460) | ✅ 支持中 |
+| 2026-10-20 | **4.4.61** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4461) | ✅ 支持中 |
+| 2026-10-20 | 4.4.60 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4460) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.59 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4459) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.58 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4458) | ❌ 不再支持 |
 | 2026-10-19 | 4.4.57 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4457) | ❌ 不再支持 |
@@ -88,6 +89,20 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.61
+
+> 📅 2026-10-20 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **M4LT1 / T2 旋转关节基线增益改为独立 medium 档**：kp `[350×4]`、kd `[35,25,55,25]`（左髋 35 / 右髋 55，按真机左右腿分别整定），不再以 hard 档（500）起步——空载起步更软、手感更柔顺；检测到负载后仍由自动调节向 hard 档爬升。新增 `algo_rotary_pd_medium` 档位声明（当前未被任务映射引用）。
+- **hard 档髋 kd 由 45 增至 50**（M4LP1 / T1 / T2 一致）：空载髋阻尼比 ζ 0.67 → 0.75，进一步抑制高频振动；膝 kd=30 不变。
+  > ⚠️ 这是行为变化：从 v4.4.60 及更早版本升级后，T1 / T2 全部旋转关节任务（站立 / 前向行走 / 原地踏步 / 标定 / 测试）的起步刚度由 hard（kp 500）降为 medium（kp 350），动作手感变软、更柔顺；M4LP1 不受影响（基线仍为 `[250×4]`，hard 髋 kd 保持 45）。
+
+其余功能与 v4.4.60 相同（含 4.4.60 的髋 kd 45 减振与 4.4.59 的直线关节校准修复）。
+
+---
 
 ### 4.4.60
 

@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.27 (2026-10-20)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.61 is now stable**: `fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 18:59, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.61`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.61 row and release notes; 4.4.60 moves to "No longer supported". Highlights: the T1/T2 rotary baseline gain becomes a standalone medium tier (softer start-up — ⚠️ behaviour change); hard-tier hip kd raised to 50; M4LP1 unaffected
+- 📄 Chinese and English pages updated in sync
+
 ### v1.2.26 (2026-10-20)
 
 **Release**

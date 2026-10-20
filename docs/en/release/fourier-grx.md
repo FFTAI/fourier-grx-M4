@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-20 | **4.4.60** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4460) | ✅ Active |
+| 2026-10-20 | **4.4.61** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4461) | ✅ Active |
+| 2026-10-20 | 4.4.60 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4460) | ❌ No longer supported |
 | 2026-10-20 | 4.4.59 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4459) | ❌ No longer supported |
 | 2026-10-20 | 4.4.58 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4458) | ❌ No longer supported |
 | 2026-10-19 | 4.4.57 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4457) | ❌ No longer supported |
@@ -89,6 +90,20 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.61
+
+> 📅 2026-10-20 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changes**
+
+- **The M4LT1 / T2 rotary baseline gain becomes a standalone medium tier**: kp `[350×4]`, kd `[35,25,55,25]` (left hip 35 / right hip 55, tuned per leg on real hardware) — rotary tasks no longer start from the hard tier (500), giving a softer, more compliant no-load start-up; the load-detection auto-adjust still ramps toward the hard tier. A new `algo_rotary_pd_medium` tier is declared (not yet referenced by any task mapping).
+- **Hard-tier hip kd raised from 45 to 50** (M4LP1 / T1 / T2 alike): no-load hip damping ratio ζ 0.67 → 0.75, further suppressing high-frequency vibration; knee kd stays 30.
+  > ⚠️ This is a behaviour change: upgrading from v4.4.60 or earlier, all T1 / T2 rotary tasks (stand / forward walk / mark time / calibration / test) now start at the medium tier (kp 350) instead of hard (kp 500) — the motion feels softer and more compliant. M4LP1 is unaffected (baseline stays `[250×4]`, hard hip kd stays 45).
+
+Everything else is identical to v4.4.60 (including the hip kd 45 vibration fix from 4.4.60 and the prismatic-joint calibration fix from 4.4.59).
+
+---
 
 ### 4.4.60
 
