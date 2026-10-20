@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-20 | **4.4.61** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4461) | ✅ 支持中 |
+| 2026-10-20 | **4.4.62** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4462) | ✅ 支持中 |
+| 2026-10-20 | 4.4.61 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4461) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.60 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4460) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.59 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4459) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.58 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4458) | ❌ 不再支持 |
@@ -89,6 +90,24 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.62
+
+> 📅 2026-10-20 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **M4LT1 / T2 控制周期由 50 Hz 提升至 100 Hz**（`robot.control_period: 0.02 → 0.01`，client / debug / offline / release 配置统一；server 的 400 Hz SDK 配置与通信循环 50 Hz 不变）。配套前置适配随本版一并发布：标定类任务（直线 move_min / move_max / move_length / move_offset、旋转 border_and_return）的 dt 由硬编码 0.02 改为从 `control_period` 传入；保护消抖（过力 / 速度 / 位置）由固定 5 拍改为 0.1 s 确认时长；负载检测的功率低通滤波与 PD 爬升分别改为 0.19 s / 2.0 s 时间常数——100 Hz 下以上机制的计时行为与 50 Hz 完全一致。
+  > ⚠️ 这是行为变化：T1 / T2 控制频率翻倍，指令更新更平滑；M4LP1 保持 50 Hz 不变。
+- **hard 档髋 kp 由 500 增至 700**（kd 50 不变；空载髋 ζ≈0.63，带载支撑刚度提高）；T1/T2 基线 kd 改为左右对称 `[35,25,35,25]`。
+
+🐛 **修复**
+
+- **负载检测 PD 爬升取整停滞**：原实现每拍增量经 `numpy.round` 取整后小于 0.5 即被舍回，导致 kp 实际停滞在约 450（到不了 hard 的 500/700）、kd 自基线起完全不动。现改为 0.01 步进下限的两位小数增量，尾段持续推进并精确到达 hard 档（实测 350 → 700/500 收敛约 13 s，kd 同步到位）。
+
+其余功能与 v4.4.61 相同（含 4.4.61 的 T1/T2 基线 medium 化）。
+
+---
 
 ### 4.4.61
 

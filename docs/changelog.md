@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.29 (2026-10-20)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.62 正式发布**：`fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 20:38 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.62`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.62 行与更新内容小节，4.4.61 转不再支持。本版要点：T1/T2 控制周期提升至 100 Hz（⚠️ 行为变化，前置适配已随本版一并发布）；hard 档髋 kp 增至 700；负载检测 PD 爬升修复取整停滞（kp/kd 现在能精确爬到 hard 档）；P1 不受影响
+- 📄 中英文同步
+
 ### v1.2.28 (2026-10-20)
 
 **发布**

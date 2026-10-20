@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-20 | **4.4.61** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4461) | ✅ Active |
+| 2026-10-20 | **4.4.62** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4462) | ✅ Active |
+| 2026-10-20 | 4.4.61 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4461) | ❌ No longer supported |
 | 2026-10-20 | 4.4.60 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4460) | ❌ No longer supported |
 | 2026-10-20 | 4.4.59 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4459) | ❌ No longer supported |
 | 2026-10-20 | 4.4.58 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4458) | ❌ No longer supported |
@@ -90,6 +91,24 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.62
+
+> 📅 2026-10-20 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changes**
+
+- **M4LT1 / T2 control rate raised from 50 Hz to 100 Hz** (`robot.control_period: 0.02 → 0.01` across the client / debug / offline / release configs; the 400 Hz SDK server configs and the 50 Hz communication loop are unchanged). The required timing adaptations ship in this same version: calibration tasks (prismatic move_min / move_max / move_length / move_offset, rotary border_and_return) now take dt from `control_period` instead of a hardcoded 0.02; protection debounce (overload / velocity / position) changed from a fixed 5 cycles to a 0.1 s confirmation window; the load-detection power filter and PD ramp became 0.19 s / 2.0 s time constants — at 100 Hz all of these behave identically in wall-clock time to 50 Hz.
+  > ⚠️ This is a behaviour change: T1 / T2 command updates are twice as fast and smoother; M4LP1 stays at 50 Hz.
+- **Hard-tier hip kp raised from 500 to 700** (kd 50 unchanged; no-load hip ζ≈0.63, stiffer loaded support); T1/T2 baseline kd made symmetric `[35,25,35,25]`.
+
+🐛 **Fixes**
+
+- **Load-detection PD ramp rounding stall**: the per-cycle increment went through `numpy.round` to integers, so any increment below 0.5 was rounded back — kp actually froze at ~450 (never reaching the hard tier's 500/700) and kd never moved at all from baseline. The ramp now uses a two-decimal increment with a 0.01 minimum step, climbing all the way to the hard tier exactly (measured: 350 → 700/500 converges in ≈13 s, kd follows to target).
+
+Everything else is identical to v4.4.61 (including its medium-tier baseline for T1/T2).
+
+---
 
 ### 4.4.61
 
