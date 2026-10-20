@@ -82,7 +82,7 @@ has_toc: true
 - 预发布包**不会**被 `fourier-grx update` 的自动探测发现，也不列入上表。
 - 安装方式：`fourier-grx update <版本>-prerelease`，例如 `fourier-grx update 4.4.53-prerelease`。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
 - 安装后仍需执行 `fourier-grx install` 完成部署。
-- 当前预发布：`fourier-grx update 4.4.62-prerelease`（2026-10-20 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为 M4LT1/T2 控制周期提升至 100 Hz、hard 档髋 kp 增至 700、负载检测 PD 爬升修复取整停滞（kp/kd 现在能精确爬到 hard 档），其余与 4.4.61 正式版相同，详见 [更新日志](/fourier-grx-M4/docs/changelog)。
+- 当前预发布：`fourier-grx update 4.4.63-prerelease`（2026-10-20 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为步态轨迹平滑滤波与延迟补偿按物理量定义并随控制周期折算（适配 T1/T2 的 100 Hz 控制周期，50 Hz 机型行为基本不变），其余与 4.4.62 正式版相同，详见 [更新日志](/fourier-grx-M4/docs/changelog)。
 - ⚠️ **M4LP1 请勿安装 `4.4.55-prerelease`**：该包（及 v4.4.52 ~ 4.4.55 正式版）在 P1 上会因缺失关节保护计数器属性而在启动后立即退出；请使用 `4.4.56-prerelease` 及以上。M4LT1 / M4LT2 不受影响。
 
 参数细节见 [命令行工具 · 预发布渠道](/fourier-grx-M4/docs/reference/command_line_tool#预发布渠道)。

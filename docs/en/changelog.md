@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.30 (2026-10-20)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.63**: `fourier-grx-4.4.63-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-20 21:35, branch `m4-lfs`); install with `fourier-grx update 4.4.63-prerelease`
+- 🔧 What changed: **the gait-trajectory smoothing filter and delay compensation are now defined in physical units and scale with the control period** — the smoothing filter's hardcoded alpha=0.25 becomes a 2.5 Hz cutoff folded through a first-order EMA (equivalent to 0.2696 at 50 Hz, close to the old value; identical frequency response at 100 Hz), and the total delay compensation's hardcoded -6 frames becomes 0.12 s of physical time (still -6 frames at 50 Hz, -12 at 100 Hz — same delay in seconds). This completes the adaptation to the 100 Hz control rate introduced in 4.4.62; 50 Hz models are essentially unchanged
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.29 (2026-10-20)
 
 **Release**
