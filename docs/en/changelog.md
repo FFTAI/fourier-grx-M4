@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.26 (2026-10-20)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.61**: `fourier-grx-4.4.61-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-20 18:48, branch `m4-lfs`); install with `fourier-grx update 4.4.61-prerelease`
+- 🔧 What changed: **the M4LT1/T2 rotary baseline gain becomes a standalone medium tier** (kp `[350×4]`, kd `[35,25,55,25]`, tuned per leg on real hardware) instead of starting directly from the hard tier — softer no-load start-up, more compliant feel; the load-detection auto-adjust still ramps toward the hard tier. Hard-tier hip kd goes from 45 to 50 (no-load ζ 0.67 → 0.75). A new `algo_rotary_pd_medium` tier is declared (not yet referenced by any task mapping). M4LP1 is unaffected (baseline stays 250/25, hard hip kd 45)
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.25 (2026-10-20)
 
 **Release**

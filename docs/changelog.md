@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.26 (2026-10-20)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.61**：`fourier-grx-4.4.61-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-20 18:48 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.61-prerelease`
+- 🔧 本版内容：**M4LT1/T2 旋转关节基线增益改为独立 medium 档**（kp `[350×4]`、kd `[35,25,55,25]`，按真机左右腿分别整定），不再直接以 hard 档起步——空载起步更软、手感更柔顺；检测到负载后仍由自动调节向 hard 档爬升。hard 档髋 kd 由 45 增至 50（空载 ζ 0.67 → 0.75）。新增 `algo_rotary_pd_medium` 档位声明（当前未被任务映射引用）。M4LP1 不受影响（基线仍为 250/25，hard 髋 kd 45）
+- 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.61。中英文同步
+
 ### v1.2.25 (2026-10-20)
 
 **发布**
