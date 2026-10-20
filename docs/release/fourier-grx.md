@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-19 | **4.4.57** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4457) | ✅ 支持中 |
+| 2026-10-20 | **4.4.58** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4458) | ✅ 支持中 |
+| 2026-10-19 | 4.4.57 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4457) | ❌ 不再支持 |
 | 2026-10-15 | 4.4.54 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4454) | ❌ 不再支持 |
 | 2026-10-14 | 4.4.53 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4453) | ❌ 不再支持 |
 | 2026-10-12 | 4.4.51 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4451) | ❌ 不再支持 |
@@ -86,6 +87,18 @@ has_toc: true
 
 ## 更新内容
 
+### 4.4.58
+
+> 📅 2026-10-20 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **直线关节到位判定的纯速度计时由 5 s 增至 25 s**（M4LP1 / T1 / T2 一致）：120 s S 曲线校准行程的末段（r > 0.8295）参考速度自然低于 0.001 m/s 判据门限，且持续约 20.5 s；原 5 s 连续计时在关节尚未接触限位时即可能误判到位（最迟约在行程开始 + 104.5 s、距硬限位约 3.5 mm 处），使零点标定偏短。25 s 大于该末段窗口，消除这一误判；力矩建立不足场景的兜底判定相应变为接触后 + 25 s 触发。力矩 + 速度判据（≥ 6 Nm 且 ≤ 0.001 m/s 持续 0.2 s）不变。详见 [直线关节零点校准](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)。
+
+其余功能与 v4.4.57 相同（含谐波系数前向行走 4113 / 规划器 4407、M4LP1 启动崩溃修复、旋转关节 PD hard 档 kp 统一 500）。
+
+---
+
 ### 4.4.57
 
 > 📅 2026-10-19 &nbsp;·&nbsp; 平台：`linux/arm64`
@@ -133,7 +146,7 @@ has_toc: true
 🔧 **调整**
 
 - **M4LT1 / M4LT2 旋转关节 PD 基线统一为 hard 档**（kp 600, 500, 600, 500 / kd 30 × 4）：全部旋转关节任务从 hard 起步，不再先软后爬升。柔顺相关的 assist_adjust_pd 类任务仍按 `assist_ratio` 在 buttery / soft 之间插值，柔顺调节手感不受影响。
-- **腿长调节（移动关节）到位判定新增纯速度判据**：在 `motion_ratio ≥ 0.20` 区间内，速度持续 5 s 低于 0.001 m/s 即判定到位（原判据需力矩 ≥ 6 Nm 持续 0.2 s），修复了力矩建立不足的场景下长时间判不到位的问题。
+- **腿长调节（移动关节）到位判定新增纯速度判据**：在 `motion_ratio ≥ 0.20` 区间内，速度持续 5 s 低于 0.001 m/s 即判定到位（原判据需力矩 ≥ 6 Nm 持续 0.2 s），修复了力矩建立不足的场景下长时间判不到位的问题。（该计时自 v4.4.58 起增至 25 s，见 [4.4.58](#4458)。）
 - **膝限位任务复用机型参数**：M4LP1 膝限位前向行走的能量阈值由固定 30 J 改为取机型值 50 J；mark_time 各机型均为 70 J，无变化。
 - **新增预发布渠道与 `fourier-grx update <版本>-prerelease` 语法**：预发布包不会被无参自动探测发现。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
 

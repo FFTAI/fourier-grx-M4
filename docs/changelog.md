@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.21 (2026-10-20)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.58 正式发布**：`fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 13:34 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.58`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.58 行与更新内容小节，4.4.57 转不再支持。本版要点：直线关节到位判定的纯速度计时由 5 s 增至 25 s，消除校准行程末段在接触限位前约 3.5 mm 处的提前到位误判；其余功能与 4.4.57 相同
+- 📄 [直线关节零点校准](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)页去掉「正式版待发布」标注并补发布页链接。中英文同步
+
 ### v1.2.20 (2026-10-20)
 
 **发布**

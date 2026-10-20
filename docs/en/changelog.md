@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.21 (2026-10-20)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.58 is now stable**: `fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 13:34, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.58`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.58 row and release notes; 4.4.57 moves to "No longer supported". Highlight: the velocity-only arrival timer of the prismatic-joint calibration goes from 5 s to 25 s, removing the premature "arrived" call up to ~3.5 mm before the hard stop in the tail of the sweep; otherwise identical to 4.4.57
+- 📄 The [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint) page drops the "stable release pending" note and links to the release page
+
 ### v1.2.20 (2026-10-20)
 
 **Release**
@@ -21,6 +29,8 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 📦 The pre-release channel moves to `fourier-grx` **v4.4.58**: `fourier-grx-4.4.58-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-20 13:23, branch `m4-lfs`); install with `fourier-grx update 4.4.58-prerelease`
 - 🔧 What changed: **the velocity-only arrival timer of the prismatic-joint calibration goes from 5 s to 25 s**. In the tail of the 120 s S-curve profile (r > 0.8295) the reference velocity naturally drops below the 0.001 m/s threshold for about 20.5 s, so with a 5 s continuous window a joint that had not yet touched the limit could be falsely declared "arrived" — at the latest around start + 104.5 s, roughly 3.5 mm before the hard stop — corrupting the zero calibration. A 25 s window exceeds that tail window and eliminates the false trigger; the cost is that the low-torque fallback now fires 25 s (instead of 5 s) after contact
 - 📄 The arrival-criteria table and update log on the [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint) page and the "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
+### v1.2.19 (2026-10-19)
 
 **Release**
 

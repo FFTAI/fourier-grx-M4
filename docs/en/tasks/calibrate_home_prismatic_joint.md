@@ -65,4 +65,4 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 
 - Added in `fourier-grx` v4.1.17.
 - `fourier-grx` v4.4.53 added a velocity-only arrival criterion that does not depend on torque (`motion_ratio` ≥ 0.20 with velocity ≤ 0.001 m/s held for 5 s), so arrival is still detected when contact torque does not build up.
-- `fourier-grx` v4.4.58 raises the velocity-only hold time from 5 s to 25 s: 5 s is shorter than the ~20.5 s naturally slow tail of the profile, which risked declaring arrival before the joint touched the limit and zeroing about 3.5 mm short (currently provided via the `4.4.58-prerelease` build; stable release pending).
+- `fourier-grx` v4.4.58 raises the velocity-only hold time from 5 s to 25 s: 5 s is shorter than the ~20.5 s naturally slow tail of the profile, which risked declaring arrival before the joint touched the limit and zeroing about 3.5 mm short. The stable release shipped on 2026-10-20 — see [Fourier-GRX firmware · 4.4.58](/fourier-grx-M4/docs/en/release/fourier-grx#4458) for downloads and details.

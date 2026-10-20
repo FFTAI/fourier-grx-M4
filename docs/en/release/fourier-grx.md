@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-19 | **4.4.57** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4457) | ✅ Active |
+| 2026-10-20 | **4.4.58** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4458) | ✅ Active |
+| 2026-10-19 | 4.4.57 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4457) | ❌ No longer supported |
 | 2026-10-15 | 4.4.54 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4454) | ❌ No longer supported |
 | 2026-10-14 | 4.4.53 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4453) | ❌ No longer supported |
 | 2026-10-12 | 4.4.51 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4451) | ❌ Unsupported |
@@ -87,6 +88,18 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 
 ## Release Notes
 
+### 4.4.58
+
+> 📅 2026-10-20 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changes**
+
+- **The velocity-only arrival timer of the prismatic-joint calibration goes from 5 s to 25 s** (M4LP1 / T1 / T2 alike): in the tail of the 120 s S-curve sweep (r > 0.8295) the reference velocity naturally falls below the 0.001 m/s threshold and stays there for about 20.5 s, so with the old 5 s continuous window a joint that had not yet touched the limit could be falsely declared "arrived" — at the latest around start + 104.5 s, roughly 3.5 mm before the hard stop — shortening the calibrated zero. The 25 s window exceeds that tail and removes the false trigger; the low-torque fallback now fires 25 s after contact instead. The torque + velocity criterion (≥ 6 Nm and ≤ 0.001 m/s held for 0.2 s) is unchanged. See [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint).
+
+Everything else is identical to v4.4.57 (Harmonic-Coefficient Forward Walk 4113 / planner 4407, the M4LP1 start-up crash fix, and the rotary-joint PD hard-tier kp flattened to 500).
+
+---
+
 ### 4.4.57
 
 > 📅 2026-10-19 &nbsp;·&nbsp; Platform: `linux/arm64`
@@ -134,7 +147,7 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 🔧 **Adjusted**
 
 - **Rotary joint PD baseline unified to the hard profile on M4LT1 / M4LT2** (kp 600, 500, 600, 500 / kd 30 × 4): all rotary joint tasks now start from the hard profile instead of starting soft and ramping up afterwards. The compliance-related assist_adjust_pd tasks still interpolate between the buttery and soft profiles according to `assist_ratio`, so the feel of the compliance adjustment is unaffected.
-- **Pure velocity criterion added to the arrival detection of leg-length adjustment (prismatic joints)**: in the `motion_ratio ≥ 0.20` range, the position is considered reached once the velocity stays below 0.001 m/s for 5 s (the previous criterion required an effort ≥ 6 Nm sustained for 0.2 s), fixing the cases where arrival was never detected because the effort never built up.
+- **Pure velocity criterion added to the arrival detection of leg-length adjustment (prismatic joints)**: in the `motion_ratio ≥ 0.20` range, the position is considered reached once the velocity stays below 0.001 m/s for 5 s (the previous criterion required an effort ≥ 6 Nm sustained for 0.2 s), fixing the cases where arrival was never detected because the effort never built up. (The hold time was raised to 25 s in v4.4.58 — see [4.4.58](#4458).)
 - **Knee-restriction tasks reuse the robot model parameters**: for M4LP1 the knee-restriction forward-walk energy threshold now takes the model value of 50 J instead of the hard-coded 30 J; for mark_time it is 70 J on all models, unchanged.
 - **Pre-release channel and the `fourier-grx update <version>-prerelease` syntax added**: pre-release packages are not found by the argument-free automatic probe. This syntax is available since v4.4.53; on earlier versions, install manually with `sudo dpkg -i <deb>`.
 
