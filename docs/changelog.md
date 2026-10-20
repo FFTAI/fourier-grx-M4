@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.28 (2026-10-20)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.62**：`fourier-grx-4.4.62-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-20 20:27 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.62-prerelease`
+- 🔧 本版内容：**M4LT1/T2 控制周期由 50 Hz 提升至 100 Hz**（`control_period: 0.02 → 0.01`；前置适配：标定类任务 dt 断链修复、保护消抖与负载检测机制改为按秒定义，100 Hz 下计时行为与 50 Hz 一致；server 的 400 Hz SDK 配置与通信循环 50 Hz 不变）；**hard 档髋 kp 由 500 增至 700**（kd 50 不变）；**负载检测 PD 爬升修复取整停滞**——原实现 kp 停在 450、kd 完全不动，现以 0.01 步进下限精确爬至 hard 档；T1/T2 基线 kd 改为左右对称 `[35,25,35,25]`。M4LP1 不受影响（控制周期仍 50 Hz，基线 250/25，hard 髋 kp 500 / kd 45）
+- 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.62。中英文同步
+
 ### v1.2.27 (2026-10-20)
 
 **发布**

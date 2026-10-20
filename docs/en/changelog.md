@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.28 (2026-10-20)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.62**: `fourier-grx-4.4.62-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-20 20:27, branch `m4-lfs`); install with `fourier-grx update 4.4.62-prerelease`
+- 🔧 What changed: **M4LT1/T2 control rate raised from 50 Hz to 100 Hz** (`control_period: 0.02 → 0.01`; prerequisites included: calibration-task dt wiring fix and time-based protection debounce / load detection, so timing behaviour at 100 Hz matches 50 Hz; the 400 Hz SDK server configs and the 50 Hz communication loop are unchanged); **hard-tier hip kp raised from 500 to 700** (kd 50 unchanged); **the load-detection PD ramp no longer stalls on integer rounding** — previously kp froze at ~450 and kd never moved, now a 0.01 minimum step carries both exactly to the hard tier; T1/T2 baseline kd made symmetric `[35,25,35,25]`. M4LP1 is unaffected (control rate stays 50 Hz, baseline 250/25, hard hip kp 500 / kd 45)
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.27 (2026-10-20)
 
 **Release**
