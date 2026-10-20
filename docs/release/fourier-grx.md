@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-20 | **4.4.59** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4459) | ✅ 支持中 |
+| 2026-10-20 | **4.4.60** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4460) | ✅ 支持中 |
+| 2026-10-20 | 4.4.59 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4459) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.58 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4458) | ❌ 不再支持 |
 | 2026-10-19 | 4.4.57 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4457) | ❌ 不再支持 |
 | 2026-10-15 | 4.4.54 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4454) | ❌ 不再支持 |
@@ -87,6 +88,19 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.60
+
+> 📅 2026-10-20 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **髋关节 hard 档 kd 由 30 增至 45**（M4LP1 / T1 / T2 一致），消除空载高频振动。基于 URDF 的 Pinocchio CRBA 分析：髋关节等效惯量 2.25 kg·m²（约为膝 0.72 kg·m² 的 3 倍），原 kd=30 对应阻尼比 ζ=0.45（欠阻尼，相位裕度仅 19°）；kd=45 后 ζ=0.67、PM≈41°。膝关节 kd=30 不变（ζ=0.79 已达标）。稳态保持力矩不变（kp 未动），编码器噪声放大与发热增量均可忽略（正常行走 < 1 W）。
+  > ⚠️ 这是行为变化：M4LT1 / T2 的 rotary 基线增益为 hard 档副本，全部旋转关节任务（站立 / 前向行走 / 原地踏步 / 标定 / 测试）的髋关节阻尼随之增大，动作手感更稳；M4LP1 基线仍为 `[250×4]` 软起步，仅负载爬升终点的髋 kd 由 30 变为 45。
+
+其余功能与 v4.4.59 相同（含直线关节自动校准修复与 25 s 纯速度判据）。
+
+---
 
 ### 4.4.59
 

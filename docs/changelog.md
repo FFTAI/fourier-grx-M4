@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.25 (2026-10-20)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.60 正式发布**：`fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 17:13 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.60`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.60 行与更新内容小节，4.4.59 转不再支持。本版要点：髋关节 hard 档 kd 由 30 增至 45，消除空载高频振动（ζ 0.45→0.67）；⚠️ 行为变化——T1 / T2 全部旋转关节任务的髋阻尼增大，动作手感更稳
+- 📄 中英文同步
+
 ### v1.2.24 (2026-10-20)
 
 **发布**

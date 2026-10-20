@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-20 | **4.4.59** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4459) | ✅ Active |
+| 2026-10-20 | **4.4.60** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4460) | ✅ Active |
+| 2026-10-20 | 4.4.59 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4459) | ❌ No longer supported |
 | 2026-10-20 | 4.4.58 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4458) | ❌ No longer supported |
 | 2026-10-19 | 4.4.57 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4457) | ❌ No longer supported |
 | 2026-10-15 | 4.4.54 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4454) | ❌ No longer supported |
@@ -88,6 +89,19 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.60
+
+> 📅 2026-10-20 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changes**
+
+- **Hip-joint hard-tier kd raised from 30 to 45** (M4LP1 / T1 / T2 alike), eliminating the no-load high-frequency vibration. Pinocchio CRBA analysis on the URDF: the hip's effective inertia is 2.25 kg·m² — about 3× the knee's 0.72 kg·m² — so the old kd=30 gave a damping ratio of ζ=0.45 (underdamped, phase margin only 19°); kd=45 brings ζ=0.67 and PM≈41°. The knee keeps kd=30 (ζ=0.79, already adequate). Stall-holding torque is unchanged (kp untouched); encoder-noise amplification and extra heat are negligible (< 1 W during normal walking).
+  > ⚠️ This is a behaviour change: on M4LT1 / T2 the rotary baseline gain is a copy of the hard tier, so every rotary task (stand / forward walk / mark time / calibration / test) gets more hip damping and feels steadier. M4LP1 keeps its soft `[250×4]` baseline — only the load-ramp endpoint's hip kd changes from 30 to 45.
+
+Everything else is identical to v4.4.59 (including the prismatic-joint auto-calibration fix and the 25 s velocity-only criterion).
+
+---
 
 ### 4.4.59
 
