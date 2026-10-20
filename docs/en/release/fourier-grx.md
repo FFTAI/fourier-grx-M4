@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-20 | **4.4.62** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4462) | ✅ Active |
+| 2026-10-20 | **4.4.63** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4463) | ✅ Active |
+| 2026-10-20 | 4.4.62 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4462) | ❌ No longer supported |
 | 2026-10-20 | 4.4.61 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4461) | ❌ No longer supported |
 | 2026-10-20 | 4.4.60 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4460) | ❌ No longer supported |
 | 2026-10-20 | 4.4.59 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4459) | ❌ No longer supported |
@@ -91,6 +92,19 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.63
+
+> 📅 2026-10-20 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changes**
+
+- **The gait-trajectory smoothing filter is defined by its cutoff frequency and scales with the control period**: the hardcoded `alpha = 0.25` becomes a 2.5 Hz cutoff folded through a first-order EMA (`1 − exp(−2π·fc·dt)`; equivalent to 0.2696 at 50 Hz, close to the old value; identical frequency response at 100 Hz), adapting to the T1/T2 100 Hz control rate introduced in 4.4.62.
+- **The total delay compensation is defined in physical time and scales with the control period**: the hardcoded −6 frames becomes 0.12 s (still −6 frames at 50 Hz, −12 frames at 100 Hz — same physical delay).
+
+50 Hz models (M4LP1) are essentially unchanged. Everything else is identical to v4.4.62 (100 Hz control rate, hard-tier hip kp 700, and the load-ramp fix included).
+
+---
 
 ### 4.4.62
 

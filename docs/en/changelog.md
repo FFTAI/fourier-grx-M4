@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.31 (2026-10-20)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.63 is now stable**: `fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 21:56, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.63`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.63 row and release notes; 4.4.62 moves to "No longer supported". Highlight: the gait smoothing filter and delay compensation are defined in physical units and scale with the control period, completing the adaptation to the T1/T2 100 Hz control rate (50 Hz models essentially unchanged)
+- 📄 Chinese and English pages updated in sync
+
 ### v1.2.30 (2026-10-20)
 
 **Release**

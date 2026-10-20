@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-20 | **4.4.62** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4462) | ✅ 支持中 |
+| 2026-10-20 | **4.4.63** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4463) | ✅ 支持中 |
+| 2026-10-20 | 4.4.62 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4462) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.61 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4461) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.60 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4460) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.59 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4459) | ❌ 不再支持 |
@@ -90,6 +91,19 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.63
+
+> 📅 2026-10-20 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **调整**
+
+- **步态轨迹平滑滤波按截止频率定义并随控制周期折算**：由硬编码 `alpha = 0.25` 改为按截止频率 2.5 Hz 经一阶 EMA 折算（`1 − exp(−2π·fc·dt)`；50 Hz 下等效 0.2696，与旧值接近；100 Hz 下频率响应与 50 Hz 一致），适配 4.4.62 引入的 T1/T2 100 Hz 控制周期。
+- **总延迟补偿按物理时间定义并随控制周期折算**：由硬编码 −6 帧改为 0.12 s 物理时间（50 Hz 下仍为 −6 帧，100 Hz 下 −12 帧，物理时延不变）。
+
+50 Hz 机型（M4LP1）行为基本不变。其余功能与 v4.4.62 相同（含 100 Hz 控制周期、hard 髋 kp 700、负载爬升修复）。
+
+---
 
 ### 4.4.62
 
