@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.33 (2026-10-21)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.64 正式发布**：`fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb`（2026-10-21 16:00 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.64`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.64 行与更新内容小节，4.4.63 转不再支持。本版要点：直线 move_length / move_offset 零位移保护（修复 NaN 指令）；move_min / move_max 指令钳制 0.25 → 0.5 mm/拍
+- 📄 中英文同步
+
 ### v1.2.32 (2026-10-21)
 
 **发布**

@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.33 (2026-10-21)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.64 is now stable**: `fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-21 16:00, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.64`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.64 row and release notes; 4.4.63 moves to "No longer supported". Highlights: zero-displacement guard for the prismatic move_length / move_offset tasks (fixes NaN commands); move_min / move_max command clamp relaxed 0.25 → 0.5 mm per cycle
+- 📄 Chinese and English pages updated in sync
+
 ### v1.2.32 (2026-10-21)
 
 **Release**

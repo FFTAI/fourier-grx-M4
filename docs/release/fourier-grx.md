@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-20 | **4.4.63** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4463) | ✅ 支持中 |
+| 2026-10-21 | **4.4.64** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4464) | ✅ 支持中 |
+| 2026-10-20 | 4.4.63 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4463) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.62 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4462) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.61 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4461) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.60 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4460) | ❌ 不再支持 |
@@ -91,6 +92,22 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.64
+
+> 📅 2026-10-21 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**
+
+- **直线 move_length / move_offset 任务零位移保护**：目标位移为零时运动周期为 0，原实现会在扫掠阶段计算 `motion_t / 0.0` 产生 NaN 位置指令；现判零后直接保持当前位置并正常完成任务流程。
+
+🔧 **调整**
+
+- **直线 move_min / move_max 每拍指令变化钳制 0.25 → 0.5 mm**：加快关节顶死限位后 PD 误差的建立速度，力矩判据更快触发。注意该值按拍定义：P1（50 Hz）等效 25 mm/s，T1 / T2（100 Hz）等效 50 mm/s。
+
+其余功能与 v4.4.63 相同（含步态滤波/延迟补偿的物理量折算）。
+
+---
 
 ### 4.4.63
 

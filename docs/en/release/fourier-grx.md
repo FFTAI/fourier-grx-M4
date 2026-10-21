@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-20 | **4.4.63** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4463) | ✅ Active |
+| 2026-10-21 | **4.4.64** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4464) | ✅ Active |
+| 2026-10-20 | 4.4.63 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4463) | ❌ No longer supported |
 | 2026-10-20 | 4.4.62 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4462) | ❌ No longer supported |
 | 2026-10-20 | 4.4.61 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4461) | ❌ No longer supported |
 | 2026-10-20 | 4.4.60 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4460) | ❌ No longer supported |
@@ -92,6 +93,22 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.64
+
+> 📅 2026-10-21 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixes**
+
+- **Zero-displacement guard for the prismatic move_length / move_offset tasks**: with a zero target displacement the motion period is 0, and the old code computed `motion_t / 0.0` in the sweep stage, producing NaN position commands. The task now detects this up front, holds the current position, and completes normally.
+
+🔧 **Changes**
+
+- **Per-cycle command-change clamp of prismatic move_min / move_max relaxed from 0.25 mm to 0.5 mm**: faster PD-error build-up once the joint is pressed against the hard stop, so the torque criterion fires sooner. Note the value is per-cycle: equivalent to 25 mm/s on P1 (50 Hz) and 50 mm/s on T1 / T2 (100 Hz).
+
+Everything else is identical to v4.4.63 (including the physical-unit gait filter / delay-compensation scaling).
+
+---
 
 ### 4.4.63
 
