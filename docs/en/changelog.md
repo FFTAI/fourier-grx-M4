@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.32 (2026-10-21)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.64**: `fourier-grx-4.4.64-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-21 15:47, branch `m4-lfs`); install with `fourier-grx update 4.4.64-prerelease`
+- 🔧 What changed: **zero-displacement guard for the prismatic move_length / move_offset tasks** — with a zero target displacement the sweep period becomes 0 and the old code produced NaN position commands; the task now holds the current position and completes immediately; **the per-cycle command-change clamp of prismatic move_min / move_max is relaxed from 0.25 mm to 0.5 mm**, speeding up torque build-up once the joint is pressed against the hard stop (note the value is per-cycle: 25 mm/s on P1 at 50 Hz, 50 mm/s on T1/T2 at 100 Hz)
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.31 (2026-10-20)
 
 **Release**

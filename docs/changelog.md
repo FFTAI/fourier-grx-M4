@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.32 (2026-10-21)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.64**：`fourier-grx-4.4.64-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-21 15:47 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.64-prerelease`
+- 🔧 本版内容：**直线 move_length / move_offset 任务零位移保护**——目标位移为零时 `motion_to_target_period = 0`，原实现会在扫掠阶段产生 NaN 位置指令，现判零后直接保持当前位置完成；**直线 move_min / move_max 的每拍指令变化钳制由 0.25 mm 放宽至 0.5 mm**，加快顶死限位后的力矩建立速度（注意该值按拍定义：P1 50 Hz 下等效 25 mm/s，T1/T2 100 Hz 下等效 50 mm/s）
+- 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.64。中英文同步
+
 ### v1.2.31 (2026-10-20)
 
 **发布**
