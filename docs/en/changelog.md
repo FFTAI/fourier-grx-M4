@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.36 (2026-10-22)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.66**: `fourier-grx-4.4.66-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-22 20:32, branch `m4-lfs`); install with `fourier-grx update 4.4.66-prerelease`
+- ✨ What changed: **a new medium PD tier — the assist_adjust_dt Forward Walk / Mark Time tasks now use medium instead of hard for the whole task** — in the human-led, robot-follows assist scenario the hard tier was too stiff and fought the user; the medium tier is kp `[400,500,400,500]` / kd `[30×4]` on T1/T2 and kp `[350×4]` / kd `[30,25,30,25]` on M4LP1, and it no longer ramps with load detection; **T1/T2 hard-tier hip kd raised from 50 to 80**, eliminating the underdamped hard tier (no-load hip ζ 0.47 → 0.94, loaded 0.77)
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.35 (2026-10-22)
 
 **Release**

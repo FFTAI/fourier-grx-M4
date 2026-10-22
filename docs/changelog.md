@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.36 (2026-10-22)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.66**：`fourier-grx-4.4.66-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-22 20:32 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.66-prerelease`
+- ✨ 本版内容：**新增 medium PD 档，助力调节（assist_adjust_dt）前向行走 / 原地踏步任务由 hard 档改为全程 medium 档**——人主动、机器跟随调步频的助力场景下 hard 太硬与人较劲；medium 档 T1/T2 为 kp `[400,500,400,500]` / kd `[30×4]`，M4LP1 为 kp `[350×4]` / kd `[30,25,30,25]`，且不随负载检测爬升；**T1/T2 hard 档髋 kd 由 50 增至 80**，消除 hard 档欠阻尼（空载髋 ζ 0.47 → 0.94，载人 0.77）
+- 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.66。中英文同步
+
 ### v1.2.35 (2026-10-22)
 
 **发布**
