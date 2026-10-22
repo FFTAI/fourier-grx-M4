@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-22 | **4.4.65** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4465) | ✅ Active |
+| 2026-10-22 | **4.4.66** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4466) | ✅ Active |
+| 2026-10-22 | 4.4.65 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4465) | ❌ No longer supported |
 | 2026-10-21 | 4.4.64 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4464) | ❌ No longer supported |
 | 2026-10-20 | 4.4.63 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4463) | ❌ No longer supported |
 | 2026-10-20 | 4.4.62 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4462) | ❌ No longer supported |
@@ -94,6 +95,23 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.66
+
+> 📅 2026-10-22 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Medium PD tier**: the assist_adjust_dt Forward Walk / Mark Time tasks now use the **medium tier for the whole task** instead of hard — in the human-led, robot-follows assist scenario the hard tier was too stiff and fought the user. The medium tier is kp `[400,500,400,500]` / kd `[30×4]` on T1/T2 and kp `[350×4]` / kd `[30,25,30,25]` on M4LP1, and it does not ramp with load detection (implemented by overriding `configure_from_robot_param` to re-pin the gains after the baseline mapping — a plain `__init__` assignment would be overwritten by the baseline at task activation).
+  > ⚠️ This is a behaviour change: the assist tasks' stiffness drops from hard to medium — the assist feels noticeably softer. All other tasks (stand / passive walk / calibration / etc.) are unaffected.
+
+🔧 **Changes**
+
+- **T1/T2 hard-tier hip kd raised from 50 to 80**: fixes the underdamped hard tier — no-load hip ζ 0.47 → 0.94, loaded 0.77; knee kd stays 50 (ζ=0.93). M4LP1's hard tier is unchanged (500 / 45).
+
+Everything else is identical to v4.4.65 (including the feedforward variants 4124–4127).
+
+---
 
 ### 4.4.65
 

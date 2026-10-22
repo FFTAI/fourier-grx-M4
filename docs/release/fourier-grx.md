@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-22 | **4.4.65** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4465) | ✅ 支持中 |
+| 2026-10-22 | **4.4.66** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4466) | ✅ 支持中 |
+| 2026-10-22 | 4.4.65 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4465) | ❌ 不再支持 |
 | 2026-10-21 | 4.4.64 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4464) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.63 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4463) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.62 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4462) | ❌ 不再支持 |
@@ -93,6 +94,23 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.66
+
+> 📅 2026-10-22 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **medium PD 档**：助力调节（assist_adjust_dt）前向行走 / 原地踏步任务由 hard 档改为**全程 medium 档**——人主动、机器跟随调步频的助力场景下 hard 太硬与人较劲。medium 档 T1/T2 为 kp `[400,500,400,500]` / kd `[30×4]`，M4LP1 为 kp `[350×4]` / kd `[30,25,30,25]`，且不随负载检测爬升（实现上通过覆写 `configure_from_robot_param` 在基线映射后钉回 medium，纯 `__init__` 赋值会被激活时的基线覆盖为死代码）。
+  > ⚠️ 这是行为变化：助力调节任务的刚度由 hard 降为 medium，助力手感明显变软；其余任务（站立 / 被动行走 / 标定等）不受影响。
+
+🔧 **调整**
+
+- **T1/T2 hard 档髋 kd 由 50 增至 80**：消除 hard 档欠阻尼——空载髋 ζ 0.47 → 0.94，载人 0.77；膝 kd=50 不变（ζ=0.93）。M4LP1 的 hard 档不变（500 / 45）。
+
+其余功能与 v4.4.65 相同（含前馈任务变体 4124–4127）。
+
+---
 
 ### 4.4.65
 

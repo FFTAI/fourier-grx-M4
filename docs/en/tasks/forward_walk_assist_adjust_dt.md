@@ -98,3 +98,4 @@ Command interface:
 - `fourier-grx` v4.4.24: Adjusted the auto assist mode increments from symmetric ±0.01 to +0.02 (increased when the user exerts effort) / -0.01 (decreased when the user's effort is insufficient), speeding up the assist response.
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height / step lift height / double-support ratio parameter interfaces.
+- `fourier-grx` v4.4.66 switches this task's PD gains from the hard tier to the medium tier for the whole task (T1/T2: kp `[400,500,400,500]` / kd `[30×4]`; M4LP1: kp `[350×4]` / kd `[30,25,30,25]`): in the human-led, robot-follows assist scenario the hard tier was too stiff and fought the user; the medium tier does not ramp with load detection.

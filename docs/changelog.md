@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.37 (2026-10-22)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.66 正式发布**：`fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb`（2026-10-22 20:44 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.66`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.66 行与更新内容小节，4.4.65 转不再支持。本版要点：新增 medium PD 档，助力调节任务由 hard 档改为全程 medium 档（⚠️ 行为变化，助力手感变软）；T1/T2 hard 档髋 kd 增至 80（ζ 0.94）
+- 📄 助力调节任务页补充 medium 档说明。中英文同步
+
 ### v1.2.36 (2026-10-22)
 
 **发布**
