@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.34 (2026-10-22)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.65**：`fourier-grx-4.4.65-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-22 11:49 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.65-prerelease`
+- ✨ 本版内容：**新增前向行走 / 原地踏步的前馈任务变体（TID 4124–4127）**——速度前馈由实际下发目标数值微分生成并钳制到保护速度；POSITION_FF 变体走位置环 + v_ff（PID 参数集中在机型参数类，M4LP1 单独整定），PD_FF 变体保持 PD + v_ff（kd × 目标速度等效前馈力矩，注意 FSA v2 fast 协议无 velocity 字段，P1/T1 上前馈不生效、T2 生效）。配套：POSITION 链路全层透传 velocity_ff（fourier-core `ad7f1c0`）；**hard 档再整定为 kp `[800,1000]` / kd `[40,50]`**（膝 ζ=0.93；髋 ζ=0.47 偏欠阻尼，真机整定结果）；前向行走新增跟踪偏差统计（默认关闭）
+- 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.65。中英文同步
+
 ### v1.2.33 (2026-10-21)
 
 **发布**

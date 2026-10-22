@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.34 (2026-10-22)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.65**: `fourier-grx-4.4.65-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-22 11:49, branch `m4-lfs`); install with `fourier-grx update 4.4.65-prerelease`
+- ✨ What changed: **new feedforward variants of Forward Walk / Mark Time (TID 4124–4127)** — the velocity feedforward is derived by numerically differentiating the actually-commanded target and clamped to the protection velocity; the POSITION_FF variants run the position loop + v_ff (PID values centralised in the robot parameter class, M4LP1 tuned separately), the PD_FF variants keep PD + v_ff (kd × target velocity as an equivalent feedforward torque — note the FSA v2 fast protocol has no velocity field, so the feedforward is inert on P1/T1 and active on T2). Also: the POSITION chain now forwards velocity_ff end to end (fourier-core `ad7f1c0`); **the hard tier is retuned to kp `[800,1000]` / kd `[40,50]`** (knee ζ=0.93; hip ζ=0.47, underdamped — as tuned on the real robot); forward walk gains an optional track-deviation statistic (off by default)
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.33 (2026-10-21)
 
 **Release**
