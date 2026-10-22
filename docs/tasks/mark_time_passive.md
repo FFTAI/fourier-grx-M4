@@ -81,3 +81,4 @@ has_toc: true
 - `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。
 - `fourier-grx` v4.4.48 版本新增基座高度参数接口。
 - `fourier-grx` v4.4.54 版本补齐暂停运动指令 `command_pause` 的读取，暂停指令自此生效。
+- `fourier-grx` v4.4.65 版本新增两个前馈变体任务：位置环 + 速度前馈（TID 4125）与 PD + 速度前馈（TID 4127）。速度前馈由实际下发目标数值微分生成；POSITION 变体走执行器位置环（PID 参数见机型参数类），PD 变体由 kd × 目标速度等效为前馈力矩（注意：FSA v2 协议无 velocity 字段，PD 前馈仅 M4LT2 生效）。

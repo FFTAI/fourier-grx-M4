@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.35 (2026-10-22)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.65 is now stable**: `fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-22 12:00, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.65`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.65 row and release notes; 4.4.64 moves to "No longer supported". Highlights: new feedforward variants of Forward Walk / Mark Time (TID 4124–4127, POSITION_FF / PD_FF); hard tier retuned to kp `[800,1000]` / kd `[40,50]`; the POSITION chain forwards velocity_ff end to end
+- 📄 The [Forward Walk (Passive)](/fourier-grx-M4/docs/en/tasks/forward_walk_passive) and [Mark Time (Passive)](/fourier-grx-M4/docs/en/tasks/mark_time_passive) pages document the new variants
+
 ### v1.2.34 (2026-10-22)
 
 **Release**

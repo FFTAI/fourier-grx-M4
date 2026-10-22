@@ -82,3 +82,4 @@ Command Interface:
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height parameter interface.
 - `fourier-grx` v4.4.54 added the missing read of the pause command `command_pause`, so pausing now takes effect.
+- `fourier-grx` v4.4.65 added two feedforward task variants: position loop + velocity feedforward (TID 4125) and PD + velocity feedforward (TID 4127). The velocity feedforward is derived by numerically differentiating the actually-commanded target; the POSITION variant runs the actuator position loop (PID values in the robot parameter class), the PD variant maps kd × target velocity to an equivalent feedforward torque (note: the FSA v2 protocol has no velocity field, so the PD feedforward only takes effect on M4LT2).

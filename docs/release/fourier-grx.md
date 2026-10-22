@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-21 | **4.4.64** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4464) | ✅ 支持中 |
+| 2026-10-22 | **4.4.65** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4465) | ✅ 支持中 |
+| 2026-10-21 | 4.4.64 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4464) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.63 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4463) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.62 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4462) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.61 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4461) | ❌ 不再支持 |
@@ -92,6 +93,23 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.65
+
+> 📅 2026-10-22 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增**
+
+- **前向行走 / 原地踏步的前馈任务变体（TID 4124–4127）**：位置环 + 速度前馈（4124 / 4125）与 PD + 速度前馈（4126 / 4127）。速度前馈由实际下发的位置目标数值微分生成并钳制到保护速度；POSITION 变体走执行器位置环，PID 参数集中在机型参数类（`algo_rotary_position_control_kp` / `velocity kp/ki`，M4LP1 单独整定）；PD 变体由 kd × 目标速度等效为前馈力矩。注意：FSA v2 fast 协议无 velocity 字段，PD 前馈仅 M4LT2（v3 协议）生效，P1 / T1 上静默丢弃。配套底层修改：POSITION 控制链路全层透传 velocity_ff（fourier-core `ad7f1c0`），POSITION 模式下发目标速度，`velocity_control_ki = 0.0` 判空修复。POSITION_FF 变体关闭负载检测（位置环不使用 PD 增益）。前向行走另新增跟踪偏差统计（`flag_track_deviation_log` 默认关闭，仅循环行走段统计、10 s 窗口汇总打印）。
+
+🔧 **调整**
+
+- **hard 档整定为 kp `[800,1000]` / kd `[40,50]`**（髋 / 膝）：膝 ζ=0.93；髋 ζ=0.47 偏欠阻尼，系真机整定结果，支撑刚度显著提高。
+  > ⚠️ 这是行为变化：T1 / T2 的负载检测爬升终点（hard 档）变硬；M4LP1 的 hard 档不变（500 / 45）。
+
+其余功能与 v4.4.64 相同。
+
+---
 
 ### 4.4.64
 

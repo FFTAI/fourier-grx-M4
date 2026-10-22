@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-21 | **4.4.64** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4464) | ✅ Active |
+| 2026-10-22 | **4.4.65** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4465) | ✅ Active |
+| 2026-10-21 | 4.4.64 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4464) | ❌ No longer supported |
 | 2026-10-20 | 4.4.63 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4463) | ❌ No longer supported |
 | 2026-10-20 | 4.4.62 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4462) | ❌ No longer supported |
 | 2026-10-20 | 4.4.61 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4461) | ❌ No longer supported |
@@ -93,6 +94,23 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.65
+
+> 📅 2026-10-22 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Feedforward variants of Forward Walk / Mark Time (TID 4124–4127)**: position loop + velocity feedforward (4124 / 4125) and PD + velocity feedforward (4126 / 4127). The velocity feedforward is derived by numerically differentiating the actually-commanded position target and clamped to the protection velocity; the POSITION variants run the actuator position loop with PID values centralised in the robot parameter class (`algo_rotary_position_control_kp` / velocity kp/ki, M4LP1 tuned separately); the PD variants map kd × target velocity to an equivalent feedforward torque. Note: the FSA v2 fast protocol has no velocity field, so the PD feedforward is silently dropped on P1 / T1 and only takes effect on M4LT2 (v3 protocol). Supporting changes: the POSITION chain forwards velocity_ff end to end (fourier-core `ad7f1c0`), POSITION mode now sends the target velocity, and the `velocity_control_ki = 0.0` truthiness check is fixed. The POSITION_FF variants disable load detection (the position loop does not use PD gains). Forward Walk also gains an optional track-deviation statistic (`flag_track_deviation_log`, off by default, counted only during the cyclic-walking stage with a 10 s windowed summary).
+
+🔧 **Changes**
+
+- **Hard tier retuned to kp `[800,1000]` / kd `[40,50]`** (hip / knee): knee ζ=0.93; hip ζ=0.47 (underdamped — as tuned on the real robot, much stiffer loaded support).
+  > ⚠️ This is a behaviour change: on T1 / T2 the load-detection ramp endpoint (hard tier) is stiffer; M4LP1's hard tier is unchanged (500 / 45).
+
+Everything else is identical to v4.4.64.
+
+---
 
 ### 4.4.64
 

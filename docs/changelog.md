@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.35 (2026-10-22)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.65 正式发布**：`fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb`（2026-10-22 12:00 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.65`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.65 行与更新内容小节，4.4.64 转不再支持。本版要点：新增前向行走 / 原地踏步前馈任务变体（TID 4124–4127，POSITION_FF / PD_FF）；hard 档 kp `[800,1000]` / kd `[40,50]`；POSITION 链路全层透传 velocity_ff
+- 📄 [前向行走（被动）](/fourier-grx-M4/docs/tasks/forward_walk_passive)与[原地踏步（被动）](/fourier-grx-M4/docs/tasks/mark_time_passive)页补充新变体说明。中英文同步
+
 ### v1.2.34 (2026-10-22)
 
 **发布**
