@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.39 (2026-10-23)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.67 is now stable**: `fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-23 08:57, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.67`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.67 row and release notes; 4.4.66 moves to "No longer supported". Highlights: the FSA v3 clear-fault interface is implemented (previously a no-op); the v3 error-code parser that always returned None is fixed, so the actuator-error protection works again on M4LT2 (⚠️ behaviour change)
+- 📄 Chinese and English pages updated in sync
+
 ### v1.2.38 (2026-10-23)
 
 **Release**

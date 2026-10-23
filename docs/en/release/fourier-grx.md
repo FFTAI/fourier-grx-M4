@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-22 | **4.4.66** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4466) | ✅ Active |
+| 2026-10-23 | **4.4.67** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4467) | ✅ Active |
+| 2026-10-22 | 4.4.66 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4466) | ❌ No longer supported |
 | 2026-10-22 | 4.4.65 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4465) | ❌ No longer supported |
 | 2026-10-21 | 4.4.64 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4464) | ❌ No longer supported |
 | 2026-10-20 | 4.4.63 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4463) | ❌ No longer supported |
@@ -95,6 +96,20 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.67
+
+> 📅 2026-10-23 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Fixes** (fourier-core `46854a6`, affects only the M4LT2 FSA v3 chain)
+
+- **The FSA v3 clear-fault interface is now implemented**: `fast_set_clear_fault` was a no-op (it returned success after merely checking the device exists); faults are now cleared via Disable → Enable(NONE), with a warning logged on failure.
+- **Fixed the v3 error-code parser returning None unconditionally**: the old implementation never assigned `error_code` after parsing, so v3 actuator error codes never reached the robot layer and the actuator-error protection never triggered. The eight error words are now merged into an integer and returned; decoding + readable logging happen only when the error code changes (no spam at the 500 Hz subscription rate), and the function never raises so the subscription thread is protected.
+  > ⚠️ This is a behaviour change: on M4LT2 an actuator fault now switches the task to IDLE (the protection logic works again). M4LP1 / T1 use the v2 protocol and are unaffected.
+
+Everything else is identical to v4.4.66.
+
+---
 
 ### 4.4.66
 

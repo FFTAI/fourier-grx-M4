@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-22 | **4.4.66** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4466) | ✅ 支持中 |
+| 2026-10-23 | **4.4.67** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4467) | ✅ 支持中 |
+| 2026-10-22 | 4.4.66 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4466) | ❌ 不再支持 |
 | 2026-10-22 | 4.4.65 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4465) | ❌ 不再支持 |
 | 2026-10-21 | 4.4.64 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4464) | ❌ 不再支持 |
 | 2026-10-20 | 4.4.63 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4463) | ❌ 不再支持 |
@@ -94,6 +95,20 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.67
+
+> 📅 2026-10-23 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **修复**（fourier-core `46854a6`，仅影响 M4LT2 的 FSA v3 链路）
+
+- **实现 FSA v3 清错接口**：`fast_set_clear_fault` 原为空操作（仅检查设备存在即返回），现通过 Disable → Enable(NONE) 让执行器从故障状态恢复，失败时打印警告。
+- **修复 v3 错误码解析恒返回 None**：原实现解析后从未赋值 `error_code`，导致 v3 执行器错误码无法上传到机器人层、执行器错误保护实际不触发。现合并 8 个错误字为整数返回，仅在错误码变化时调用 `ParseErrCode` 解码并打印可读故障信息（订阅 500 Hz，消除刷屏），全程不抛异常以保护订阅线程。
+  > ⚠️ 这是行为变化：M4LT2 上执行器报错现在会触发任务切换 IDLE（保护逻辑恢复生效）。M4LP1 / T1 使用 v2 协议，不受影响。
+
+其余功能与 v4.4.66 相同。
+
+---
 
 ### 4.4.66
 

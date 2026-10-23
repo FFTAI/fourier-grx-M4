@@ -13,6 +13,14 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.39 (2026-10-23)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.67 正式发布**：`fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb`（2026-10-23 08:57 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.67`
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.67 行与更新内容小节，4.4.66 转不再支持。本版要点：FSA v3 清错接口实现（原为空操作）；v3 错误码解析恒返回 None 修复，M4LT2 执行器错误保护恢复生效（⚠️ 行为变化）
+- 📄 中英文同步
+
 ### v1.2.38 (2026-10-23)
 
 **发布**
