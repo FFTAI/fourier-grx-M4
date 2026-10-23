@@ -87,7 +87,7 @@ The download links above are all **stable channel** (`blaze`) builds. Pre-releas
 - Pre-release packages are **never** found by the automatic probe of `fourier-grx update` and are not listed in the table above.
 - Install one explicitly: `fourier-grx update <version>-prerelease`, e.g. `fourier-grx update 4.4.53-prerelease`. This syntax is available since v4.4.53; on earlier versions, install with `sudo dpkg -i <deb>` instead.
 - `fourier-grx install` is still required afterwards.
-- Current pre-release: `fourier-grx update 4.4.66-prerelease` (built 2026-10-22, `X-Variant` = `linux-arm64-cpu-m4l-prerelease`), adding a medium PD tier used end-to-end by the assist_adjust_dt tasks (instead of hard) and raising the T1/T2 hard-tier hip kd to 80 (fixing the underdamping); otherwise identical to 4.4.65 stable — see the [changelog](/fourier-grx-M4/docs/en/changelog).
+- Current pre-release: `fourier-grx update 4.4.67-prerelease` (built 2026-10-23, `X-Variant` = `linux-arm64-cpu-m4l-prerelease`), implementing the FSA v3 clear-fault interface (previously a no-op) and fixing the v3 error-code parser that always returned None (the actuator-error protection now actually triggers on M4LT2); otherwise identical to 4.4.66 stable — see the [changelog](/fourier-grx-M4/docs/en/changelog).
 - ⚠️ **Do not install `4.4.55-prerelease` on M4LP1**: that build (and the v4.4.52 – 4.4.55 stable builds) exits right after start on P1 because a joint-protection counter attribute is missing. Use `4.4.56-prerelease` or later. M4LT1 / M4LT2 are unaffected.
 
 For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs/en/reference/command_line_tool#pre-release-channel).

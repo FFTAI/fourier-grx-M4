@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.38 (2026-10-23)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.67**: `fourier-grx-4.4.67-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-23 08:46, branch `m4-lfs`); install with `fourier-grx update 4.4.67-prerelease`
+- 🐛 What changed (fourier-core `46854a6`): **the FSA v3 clear-fault interface is now implemented** (it was a no-op; faults are now cleared via Disable → Enable(NONE)); **fixed the v3 error-code parser returning None unconditionally** — actuator error codes now propagate to the robot layer again, so the actuator-error protection actually triggers on M4LT2 (⚠️ behaviour change: an actuator fault on T2 now switches the task to IDLE); error codes are decoded and logged only on change, eliminating log spam at the 500 Hz subscription rate
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.37 (2026-10-22)
 
 **Release**
