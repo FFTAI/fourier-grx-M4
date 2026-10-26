@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.41 (2026-10-26)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.68 is now stable**: `fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-26 17:08, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.68`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.68 row and release notes; 4.4.67 moves to "No longer supported". Highlights: the M4LT2 control rate is raised to 200 Hz (`control_period` 0.01 → 0.005; T1 stays at 100 Hz, P1 at 50 Hz); the hard tier is retuned to kp `[1000×4]` / kd `[60×4]` and the medium tier kp unified to `[500×4]`; the feedforward tasks (TID 4124–4127) now actually apply velocity feedforward, which never ran on their dispatch path; the joint home-position averaging window is defined in seconds; FSA v3 error codes are filtered by severity before they raise protection (⚠️ behaviour change: a level-1 warning no longer switches the task to IDLE)
+- 📄 The passive forward-walk / mark-time task pages and the forward-walk / mark-time assist-adjust (adjust_dt) task pages document this release
+- 📄 Chinese and English pages updated in sync
+
 ### v1.2.40 (2026-10-26)
 
 **Release**

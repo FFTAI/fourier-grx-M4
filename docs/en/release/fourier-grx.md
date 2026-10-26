@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-23 | **4.4.67** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4467) | ✅ Active |
+| 2026-10-26 | **4.4.68** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4468) | ✅ Active |
+| 2026-10-23 | 4.4.67 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4467) | ❌ No longer supported |
 | 2026-10-22 | 4.4.66 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4466) | ❌ No longer supported |
 | 2026-10-22 | 4.4.65 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4465) | ❌ No longer supported |
 | 2026-10-21 | 4.4.64 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4464) | ❌ No longer supported |
@@ -96,6 +97,35 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.68
+
+> 📅 2026-10-26 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New & changed**
+
+- **M4LT2 control rate raised to 200 Hz**: `control_period` changes from `0.01` (100 Hz) to `0.005` (200 Hz) in the four T2 configs (client / debug / offline / release). M4LT1 stays at 100 Hz and M4LP1 at 50 Hz. The loop delay roughly halves, leaving more phase margin for higher position gains.
+- **hard PD tier retuned** (M4LT1 / M4LT2; T2 inherits T1): kp `[800,1000,800,1000]` → `[1000,1000,1000,1000]`, kd `[80,50,80,50]` → `[60,60,60,60]`. From the CRBA inertias: hip ζ=0.63 unloaded / 0.52 loaded, knee ζ=1.12 / 1.04 (overdamped, which suppresses resonance at high stiffness).
+- **medium PD tier**: kp `[400,500,400,500]` → `[500,500,500,500]`, kd unchanged at `[30,30,30,30]`; the assist-adjust (adjust_dt) tasks use this tier throughout.
+- The passive forward-walk task's total reference-trajectory delay compensation drops from `0.12 s` to `0.06 s` (converted to a frame index from the control period); the mark-time task keeps `0.12 s`.
+- M4LP1 PD tiers unchanged (baseline kp 250 / kd 25, hard kp 500 / kd 45).
+
+🐛 **Fixes**
+
+- **The feedforward tasks' velocity feedforward never ran** (TID 4124 / 4125 / 4126 / 4127): `TaskM4LRotaryJointVelocityFeedforwardMixin` injected `v_ff` only in `function_component`, but these four tasks are scheduled as `STANDALONE` by default, so the feedforward was never called. A `function_standalone` hook is now wired up as well.
+- **The joint home-position averaging window** is now defined in seconds (`position_sample_time = 1.0 s`, converted to cycle counts from `control_period`) instead of a fixed 50 cycles. The old form would have shortened the averaging window to 0.5 s / 0.25 s at 100 Hz / 200 Hz, leaving encoder noise under-averaged.
+- **Removed ineffective delay-compensation terms**: in `forward_walk` / `mark_time`, `gait_trajectory_total_delay_compensation_index` was first summed from the filter + PD terms and then overwritten wholesale by the seconds-based conversion, so edits to those terms (e.g. `gait_trajectory_pd_control_delay_compensation_index`) had no effect. Only the seconds-based definition remains.
+- **fourier-core `f09669e`**: the FSA v3 error-code parser now **filters by severity** — only entries with `err_level ≥ 2` (warning-that-limits-function / error) in the SDK error dictionary are raised as faults to trigger protection; plain warnings (level 1) and informational entries are logged only, and bits undefined in the dictionary (persistent actuator status bits) are not treated as faults by default — set `GL_FSA_UNDEFINED_BIT_AS_FAULT` to `True` for strict mode.
+  > ⚠️ This is a behaviour change: versus v4.4.67, a level-1 warning no longer switches the task to IDLE, which reduces nuisance trips; genuine faults and function-limiting warnings still trigger protection.
+
+> ⚠️ **Upgrade notes**
+>
+> - With the M4LT2 control rate doubled, each control cycle's budget on the single-threaded scheduler drops from 10 ms to 5 ms. `control_check_frequency: true` in the config reports at runtime whether the control / communication rates are met; if you see periodic overruns, check CPU load and actuator link quality before deciding to roll `control_period` back.
+> - With hard kp raised to 1000, the position tracking error needed to reach the 140 N·m over-torque protection falls from about 10° to about 8°, so protection is entered more readily under strong external resistance — watch the protection frequency in high-load scenarios.
+
+Everything else is identical to v4.4.67.
+
+---
 
 ### 4.4.67
 

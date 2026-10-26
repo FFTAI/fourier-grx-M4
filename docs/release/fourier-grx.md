@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-23 | **4.4.67** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4467) | ✅ 支持中 |
+| 2026-10-26 | **4.4.68** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4468) | ✅ 支持中 |
+| 2026-10-23 | 4.4.67 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4467) | ❌ 不再支持 |
 | 2026-10-22 | 4.4.66 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4466) | ❌ 不再支持 |
 | 2026-10-22 | 4.4.65 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4465) | ❌ 不再支持 |
 | 2026-10-21 | 4.4.64 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4464) | ❌ 不再支持 |
@@ -95,6 +96,35 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.68
+
+> 📅 2026-10-26 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增与调整**
+
+- **M4LT2 控制频率提至 200 Hz**：`control_period` 由 `0.01`（100 Hz）改为 `0.005`（200 Hz），涉及 T2 的 client / debug / offline / release 四份 config。M4LT1 保持 100 Hz，M4LP1 保持 50 Hz。控制环延迟约减半，为提高位置增益留出相位裕度。
+- **hard 档 PD 整定**（M4LT1 / M4LT2，T2 继承 T1）：kp `[800,1000,800,1000]` → `[1000,1000,1000,1000]`，kd `[80,50,80,50]` → `[60,60,60,60]`。按 CRBA 惯量核算：髋 ζ=0.63（空载）/ 0.52（载人），膝 ζ=1.12 / 1.04（过阻尼，抑制高刚度下的谐振）。
+- **medium 档 PD**：kp `[400,500,400,500]` → `[500,500,500,500]`，kd 保持 `[30,30,30,30]`；助力调节（adjust_dt）任务全程使用该档。
+- 被动前向行走任务的参考轨迹总延迟补偿 `0.12 s` → `0.06 s`（按控制周期折算为帧索引）；原地踏步任务保持 `0.12 s`。
+- M4LP1 的 PD 档位不变（基线 kp 250 / kd 25，hard kp 500 / kd 45）。
+
+🐛 **修复**
+
+- **前馈任务的速度前馈从未生效**（TID 4124 / 4125 / 4126 / 4127）：`TaskM4LRotaryJointVelocityFeedforwardMixin` 只在 `function_component` 中注入 `v_ff`，而这四个任务默认以 `STANDALONE` 方式被调度，前馈因此从未被调用。现已同时挂上 `function_standalone` 钩子。
+- **关节归零位置平均窗口**由固定 50 拍改为按秒定义（`position_sample_time = 1.0 s`，任务内按 `control_period` 折算拍数）。原实现在 100 Hz / 200 Hz 下平均时长会缩短为 0.5 s / 0.25 s，编码器噪声平均不足。
+- **删除延迟补偿中的无效分项**：`forward_walk` / `mark_time` 里 `gait_trajectory_total_delay_compensation_index` 先按「滤波 + PD 分项」求和、随后又被按秒折算的赋值整体覆盖，导致对分项（如 `gait_trajectory_pd_control_delay_compensation_index`）的任何修改都不生效。现只保留按秒整定的一处定义。
+- **fourier-core `f09669e`**：FSA v3 错误码解析改为**按错误等级过滤**——只把 SDK 错误字典中 `err_level ≥ 2`（警告且限制部分功能 / 错误）的条目作为故障上抛以触发保护；普通警告（level 1）与信息级条目仅记录日志；错误字典未定义的位（执行器常驻状态位）默认不当作故障，需要严格模式时可将 `GL_FSA_UNDEFINED_BIT_AS_FAULT` 置为 `True`。
+  > ⚠️ 这是行为变化：较 v4.4.67，level 1 警告不再触发任务切换 IDLE，执行器误报减少；真正的故障与「警告且限制部分功能」仍会触发保护。
+
+> ⚠️ **升级提示**
+>
+> - M4LT2 控制频率翻倍后，单线程调度下每个控制周期的预算由 10 ms 降至 5 ms。config 中 `control_check_frequency: true` 会在运行期提示控制 / 通信频率是否达标；若出现周期性超时，请先观察 CPU 负载与执行器通信质量，再决定是否回退 `control_period`。
+> - hard 档 kp 提升到 1000 后，触发 140 N·m 过力矩保护所需的位置跟踪误差由约 10° 降到约 8°，受到较大外部阻力时更容易进入保护；请留意高负载场景下的保护频次。
+
+其余功能与 v4.4.67 相同。
+
+---
 
 ### 4.4.67
 
