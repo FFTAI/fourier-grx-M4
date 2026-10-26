@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-26 | **4.4.68** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4468) | ✅ Active |
+| 2026-10-26 | **4.4.69** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | ✅ Active |
+| 2026-10-26 | 4.4.68 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4468) | ❌ No longer supported |
 | 2026-10-23 | 4.4.67 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4467) | ❌ No longer supported |
 | 2026-10-22 | 4.4.66 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4466) | ❌ No longer supported |
 | 2026-10-22 | 4.4.65 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4465) | ❌ No longer supported |
@@ -97,6 +98,48 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.69
+
+> 📅 2026-10-26 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New**
+
+- **Sinusoidal-trajectory feedforward variants**: `SIN_WAVE_POSITION_FF` (4124, position loop + velocity feedforward) and `SIN_WAVE_PD_FF` (4110, PD + velocity feedforward). Curve, amplitude/frequency settings and Dynalink reporting are inherited from the original task.
+- **Harmonic forward-walk feedforward variants**: `FORWARD_WALK_HARMONIC_POSITION_FF` (4127) and `FORWARD_WALK_HARMONIC_PD_FF` (4113). Gait source and the three panel levels (amplitude / knee-restriction / cadence) are inherited from the harmonic task; the POSITION variant disables load detection and auto-adjust, the PD variant keeps the parent's gains and load-driven PD ramp.
+- Both families are registered per robot (P1 / T1 / T2); the harmonic variants' base class is not registered for `M4LZenoh` (the parent task does not exist on the Zenoh robot).
+- The feedforward family grows from 4 tasks to 8. Velocity feedforward is always differentiated from the position target actually dispatched, so it matches the filtered/clipped command exactly.
+- `sin_wave` promotes its hardcoded `JointControlMode.PD` to a `joint_control_mode` class attribute, which the POSITION variants override with `POSITION`; it also gains empty `_apply_robot_param_m4lp1` / `_apply_robot_param_m4lt1` hooks, aligning its structure with `forward_walk` / `mark_time` for future per-robot divergence.
+
+🐛 **Fixes**
+
+- **Web task misgrouping**: grouping was derived from numeric ranges (`< 4114` basic, `< 4120` assist, `< 4200` calibration). With the regrouping below, all eight feedforward tasks and the four locomotion tasks at 4128–4131 would have appeared under "rotary joint · calibration" in the web UI. Now segmented per block: feedforward (4110–4113, 4124–4127), assist (4114–4119), calibration (4120–4123), basic (4100–4106 and 4128–4131).
+- References invalidated by the regrouping were cleaned up: "TID 4113" in the harmonic planner docs became 4131, the harmonic feedforward variants' Zenoh note follows suit, and the reversed `# original …` annotations in the task enum are now explicit `was …` notes explaining how the IDs were reshuffled.
+
+> ⚠️ **Behaviour change: rotary-joint TIDs regrouped (breaking for integrators)**
+>
+> To group the feedforward variants by control mode, this release reshuffles the rotary-joint block, and **a given TID now maps to a different task**:
+>
+> | Task | v4.4.68 and earlier | v4.4.69 onwards |
+> |------|---------------------|-----------------|
+> | Sinusoidal trajectory | 4110 | **4128** |
+> | Passive forward walking | 4111 | **4129** |
+> | Passive marching in place | 4112 | **4130** |
+> | Harmonic-coefficient forward walking | 4113 | **4131** |
+> | Forward walking · POSITION + feedforward | 4124 | **4125** |
+> | Marching in place · POSITION + feedforward | 4125 | **4126** |
+> | Forward walking · PD + feedforward | 4126 | **4111** |
+> | Marching in place · PD + feedforward | 4127 | **4112** |
+> | The 4 new feedforward variants (sinusoidal / harmonic) | none (new) | 4124 / 4110 / 4127 / 4113 |
+>
+> - **4111 needs the most care**: after upgrading, a host that still calls 4111 gets "forward walking PD + feedforward" instead of passive forward walking. Use **4129**.
+> - Assist (4114–4119), calibration (4120–4123) and the 4100–4106 basic block keep their numbers.
+> - The "must stay aligned with m4" note in `TaskMenuM4L` spans the whole rotary-joint section. If the m4 product still uses the old numbering, the two now diverge — confirm with the m4 side before rolling out.
+> - Registry verified per robot: each TID maps to exactly one executable task, no enum aliasing; PD variants dispatch in PD mode, POSITION variants in POSITION mode, and the four original tasks remain in PD mode.
+
+Everything else is identical to v4.4.68.
+
+---
 
 ### 4.4.68
 

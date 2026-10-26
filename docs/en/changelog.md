@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.44 (2026-10-26)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.69 is now stable**: `fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-26 18:07, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.69`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.69 row and release notes; 4.4.68 moves to "No longer supported". Highlights: four new feedforward variants of the sinusoidal-trajectory and harmonic forward-walk tasks (feedforward family grows from 4 to 8); ⚠️ **the rotary-joint TIDs were regrouped** — the four basic action tasks move from 4110–4113 to 4128–4131 and PD + feedforward variants take over 4110–4113, so a given TID now maps to a different task and hosts must be updated; web task grouping is now segmented per block so locomotion and feedforward tasks are no longer mislabelled as calibration.
+- 📄 The [tasks list](/fourier-grx-M4/docs/en/tasks) gains a "Rotary joint TID changes in v4.4.69" mapping table; the passive forward-walk, passive marching and harmonic forward-walk task pages have their TIDs and update logs updated; references in [run types](/fourier-grx-M4/docs/en/reference/run_type) and the [user-data interface](/fourier-grx-M4/docs/en/reference/user) corrected. Chinese and English pages updated in sync
+
 ### v1.2.43 (2026-10-26)
 
 **Release**
