@@ -107,7 +107,7 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 - **M4LT2 control rate raised to 200 Hz**: `control_period` changes from `0.01` (100 Hz) to `0.005` (200 Hz) in the four T2 configs (client / debug / offline / release). M4LT1 stays at 100 Hz and M4LP1 at 50 Hz. The loop delay roughly halves, leaving more phase margin for higher position gains.
 - **hard PD tier retuned** (M4LT1 / M4LT2; T2 inherits T1): kp `[800,1000,800,1000]` → `[1000,1000,1000,1000]`, kd `[80,50,80,50]` → `[60,60,60,60]`. From the CRBA inertias: hip ζ=0.63 unloaded / 0.52 loaded, knee ζ=1.12 / 1.04 (overdamped, which suppresses resonance at high stiffness).
 - **medium PD tier**: kp `[400,500,400,500]` → `[500,500,500,500]`, kd unchanged at `[30,30,30,30]`; the assist-adjust (adjust_dt) tasks use this tier throughout.
-- The passive forward-walk task's total reference-trajectory delay compensation drops from `0.12 s` to `0.06 s` (converted to a frame index from the control period); the mark-time task keeps `0.12 s`.
+- The total reference-trajectory delay compensation drops from `0.12 s` to `0.06 s` for both the passive forward-walk and mark-time tasks (converted to a frame index from the control period: 12 frames at 200 Hz, 6 at 100 Hz).
 - M4LP1 PD tiers unchanged (baseline kp 250 / kd 25, hard kp 500 / kd 45).
 
 🐛 **Fixes**

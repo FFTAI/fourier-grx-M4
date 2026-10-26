@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.42 (2026-10-26)
+
+**Documentation**
+
+- 🐛 Corrected an inaccurate statement in the v4.4.68 notes: the docs said "the mark-time task keeps 0.12 s", but in fact **both the forward-walk and mark-time tasks were reduced to 0.06 s** (`fourier-grx` `8dda97da`).
+- 📋 Why they differed: that change landed after the `v4.4.68` tag commit (the tag points at `ac193cf1`, where mark_time is still 0.12 s), but it **is present in the released deb binaries** (run.bin was built at 16:54 and 17:05, both after the change). The behaviour of the published 4.4.68 packages is as described here.
+- 📄 Chinese and English pages updated in sync.
+
 ### v1.2.41 (2026-10-26)
 
 **Release**
@@ -32,7 +40,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 🔧 **hard tier retuned** (T1/T2): kp `[800,1000,...]` → `[1000×4]`, kd `[80,50,...]` → `[60×4]` (hip ζ=0.63 unloaded / 0.52 loaded, knee ζ=1.12 / 1.04 overdamped); medium tier kp unified to `[500×4]` (kd stays `[30×4]`). M4LP1 unchanged
 - 🐛 **The feedforward tasks' velocity feedforward never actually ran**: `TaskM4LRotaryJointVelocityFeedforwardMixin` injected `v_ff` only in `function_component`, but these four tasks (TID 4124–4127) are scheduled as `STANDALONE` by default, so the hook was never called. A `function_standalone` hook has been added
 - 🐛 **The joint home-position averaging window** is now defined in seconds (`position_sample_time = 1.0 s`): it was a fixed 50 cycles, so the averaging duration would have shrunk from 1.0 s to 0.25 s at the higher rate, leaving encoder noise under-averaged
-- 🔧 The forward-walk reference-trajectory total delay compensation is reduced from `0.12 s` to `0.06 s` (converted to a frame index from the control period); the delay-compensation component terms in `forward_walk` / `mark_time`, which were overwritten by a later assignment and had no effect when changed, have been removed
+- 🔧 The forward-walk and mark-time reference-trajectory total delay compensation is reduced from `0.12 s` to `0.06 s` for both tasks (converted to a frame index from the control period); the delay-compensation component terms in `forward_walk` / `mark_time`, which were overwritten by a later assignment and had no effect when changed, have been removed
 - 🐛 [fourier-core](https://gitlab.fftaicorp.com/rehab/fourier-core) `f09669e`: the FSA v3 error-code parser now **filters by severity** — only entries with `err_level ≥ 2` (warning-that-limits-function / error) are raised as faults and trigger protection; plain warnings (level 1) and informational entries are logged only, and status bits undefined in the error dictionary (persistent actuator status bits) are not treated as faults by default (⚠️ behaviour change vs 4.4.67: a level-1 warning no longer switches the task to IDLE, which reduces nuisance trips)
 - 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
 
