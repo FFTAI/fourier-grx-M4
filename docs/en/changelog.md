@@ -14,6 +14,19 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.40 (2026-10-26)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.68**: `fourier-grx-4.4.68-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-26 16:57, branch `m4-lfs`); install with `fourier-grx update 4.4.68-prerelease`
+- ✨ **M4LT2 control rate raised to 200 Hz**: `control_period` changes from `0.01` to `0.005` in each config (M4LT1 stays at 100 Hz, M4LP1 at 50 Hz). The halved loop delay allows higher position gains; protection debouncing, emergency-stop confirmation, the load-detection filter and PD ramp, and the gait smoothing filter are all defined in seconds, so their durations are unchanged once converted to cycle counts
+- 🔧 **hard tier retuned** (T1/T2): kp `[800,1000,...]` → `[1000×4]`, kd `[80,50,...]` → `[60×4]` (hip ζ=0.63 unloaded / 0.52 loaded, knee ζ=1.12 / 1.04 overdamped); medium tier kp unified to `[500×4]` (kd stays `[30×4]`). M4LP1 unchanged
+- 🐛 **The feedforward tasks' velocity feedforward never actually ran**: `TaskM4LRotaryJointVelocityFeedforwardMixin` injected `v_ff` only in `function_component`, but these four tasks (TID 4124–4127) are scheduled as `STANDALONE` by default, so the hook was never called. A `function_standalone` hook has been added
+- 🐛 **The joint home-position averaging window** is now defined in seconds (`position_sample_time = 1.0 s`): it was a fixed 50 cycles, so the averaging duration would have shrunk from 1.0 s to 0.25 s at the higher rate, leaving encoder noise under-averaged
+- 🔧 The forward-walk reference-trajectory total delay compensation is reduced from `0.12 s` to `0.06 s` (converted to a frame index from the control period); the delay-compensation component terms in `forward_walk` / `mark_time`, which were overwritten by a later assignment and had no effect when changed, have been removed
+- 🐛 [fourier-core](https://gitlab.fftaicorp.com/rehab/fourier-core) `f09669e`: the FSA v3 error-code parser now **filters by severity** — only entries with `err_level ≥ 2` (warning-that-limits-function / error) are raised as faults and trigger protection; plain warnings (level 1) and informational entries are logged only, and status bits undefined in the error dictionary (persistent actuator status bits) are not treated as faults by default (⚠️ behaviour change vs 4.4.67: a level-1 warning no longer switches the task to IDLE, which reduces nuisance trips)
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page updated accordingly
+
 ### v1.2.39 (2026-10-23)
 
 **Release**

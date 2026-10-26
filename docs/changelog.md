@@ -13,6 +13,19 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.40 (2026-10-26)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.68**：`fourier-grx-4.4.68-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-26 16:57 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.68-prerelease`
+- ✨ **M4LT2 控制频率提至 200 Hz**：各 config 的 `control_period` 由 `0.01` 改为 `0.005`（M4LT1 保持 100 Hz，M4LP1 保持 50 Hz）。提频后控制环延迟减半，允许更高的位置增益；保护消抖、急停确认、负载检测滤波与 PD 爬升、步态平滑滤波等时序机制均按秒定义，折算拍数后时长不变
+- 🔧 **hard 档整定**（T1/T2）：kp `[800,1000,...]` → `[1000×4]`，kd `[80,50,...]` → `[60×4]`（髋 ζ=0.63 空载 / 0.52 载人，膝 ζ=1.12 / 1.04 过阻尼）；medium 档 kp 统一为 `[500×4]`（kd 保持 `[30×4]`）。M4LP1 不变
+- 🐛 **前馈任务的速度前馈此前从未生效**：`TaskM4LRotaryJointVelocityFeedforwardMixin` 只在 `function_component` 中注入 `v_ff`，而这四个任务（TID 4124–4127）默认按 `STANDALONE` 方式调度，前馈从未被调用。已补 `function_standalone` 钩子
+- 🐛 **关节归零位置平均窗口**改按秒定义（`position_sample_time = 1.0 s`）：原固定 50 拍，提频后平均时长会由 1.0 s 缩到 0.25 s，编码器噪声平均不足
+- 🔧 行走任务的参考轨迹总延迟补偿由 `0.12 s` 收小为 `0.06 s`（随控制周期折算帧索引）；同时删除 `forward_walk` / `mark_time` 中被后续赋值覆盖、修改后不生效的延迟补偿分项
+- 🐛 [fourier-core](https://gitlab.fftaicorp.com/rehab/fourier-core) `f09669e`：FSA v3 错误码解析改为**按错误等级过滤**，只把 `err_level ≥ 2`（警告且限制部分功能 / 错误）的条目作为故障上抛触发保护；普通警告（level 1）与信息级仅记录日志，错误字典未定义的常驻状态位默认不当作故障（⚠️ 行为变化：较 4.4.67，level 1 警告不再触发任务切 IDLE，误报减少）
+- 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.68。中英文同步
+
 ### v1.2.39 (2026-10-23)
 
 **发布**
