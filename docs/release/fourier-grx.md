@@ -88,7 +88,7 @@ has_toc: true
 - 预发布包**不会**被 `fourier-grx update` 的自动探测发现，也不列入上表。
 - 安装方式：`fourier-grx update <版本>-prerelease`，例如 `fourier-grx update 4.4.53-prerelease`。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
 - 安装后仍需执行 `fourier-grx install` 完成部署。
-- 当前预发布：`fourier-grx update 4.4.68-prerelease`（2026-10-26 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为 M4LT2 控制频率提至 200 Hz、hard 档整定为 kp 1000 / kd 60 与 medium 档统一 kp 500、修复前馈任务（TID 4124–4127）速度前馈因调度路径未生效、归零位置平均窗口改按秒定义，以及 FSA v3 错误码按等级过滤上抛（⚠️ level 1 警告不再触发保护），其余与 4.4.67 正式版相同，详见 [更新日志](/fourier-grx-M4/docs/changelog)。
+- 当前预发布：`fourier-grx update 4.4.69-prerelease`（2026-10-26 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为新增正弦轨迹与谐波系数前向走路的四个前馈变体（TID 4124 / 4110 / 4127 / 4113），并因前馈变体分族对旋转关节任务编号重排：原 4110–4113 四个基础动作任务改到 4128–4131（⚠️ 同一编号对应的任务发生变化，上位机需同步，对照表见[任务列表](/fourier-grx-M4/docs/tasks)）；web 任务分组改为逐段划分，避免走路与前馈任务被误归入校准。其余与 4.4.68 正式版相同，详见 [更新日志](/fourier-grx-M4/docs/changelog)。
 - ⚠️ **M4LP1 请勿安装 `4.4.55-prerelease`**：该包（及 v4.4.52 ~ 4.4.55 正式版）在 P1 上会因缺失关节保护计数器属性而在启动后立即退出；请使用 `4.4.56-prerelease` 及以上。M4LT1 / M4LT2 不受影响。
 
 参数细节见 [命令行工具 · 预发布渠道](/fourier-grx-M4/docs/reference/command_line_tool#预发布渠道)。

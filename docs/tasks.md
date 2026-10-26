@@ -42,16 +42,39 @@ M4 机器人常见任务指令示例：
 | TASK_PRISMATIC_JOINT_AUTO_CALIBRATE            | 4210      | M4L  | 腿长调节关节自动校准（上电后需首先执行）          |
 | TASK_PRISMATIC_JOINT_MOVE_LENGTH               | 4206      | M4L  | 腿长调节（绝对位置指令）                     |
 | TASK_PRISMATIC_JOINT_MOVE_OFFSET               | 4207      | M4L  | 腿长相对调节（相对当前位置偏移，无需重新标定）      |
-| TASK_ROTARY_JOINT_FORWARD_WALK                 | 4111      | M4L  | 被动前向行走                        |
-| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC        | 4113      | M4L  | 谐波系数前向行走（回放预存步态曲线；幅度档 / 伸膝限制档 / 步频档） |
+| TASK_ROTARY_JOINT_FORWARD_WALK                 | 4129      | M4L  | 被动前向行走（v4.4.69 前为 4111）        |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC        | 4131      | M4L  | 谐波系数前向行走（回放预存步态曲线；幅度档 / 伸膝限制档 / 步频档；v4.4.69 前为 4113） |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD | 4116    | M4L  | 助力前向行走（调整 PD 参数）              |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT | 4118    | M4L  | 助力前向行走（调整 dt 参数）              |
-| TASK_ROTARY_JOINT_MARK_TIME                    | 4112      | M4L  | 被动原地踏步                        |
+| TASK_ROTARY_JOINT_MARK_TIME                    | 4130      | M4L  | 被动原地踏步（v4.4.69 前为 4112）        |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD   | 4117      | M4L  | 助力原地踏步（调整 PD 参数）              |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT   | 4119      | M4L  | 助力原地踏步（调整 dt 参数）              |
 | TASK_ROTARY_JOINT_HIGH_DAMPING                 | 4600      | M4LT2 | 急停触发时自动切换的高阻尼保护任务（kp≈0，kd=20，软制动）  |
 
 - All：表示所有傅利叶智能生产机型
+
+### v4.4.69 旋转关节任务编号变更
+
+自 `fourier-grx` v4.4.69 起，旋转关节任务按控制模式重新分族，**同一编号对应的任务发生了变化**，上位机需按下表同步：
+
+| 任务 | v4.4.68 及以前 | v4.4.69 起 |
+|------|---------------|-----------|
+| 正弦轨迹 | 4110 | **4128** |
+| 被动前向行走 | 4111 | **4129** |
+| 被动原地踏步 | 4112 | **4130** |
+| 谐波系数前向行走 | 4113 | **4131** |
+| 前向行走 · POSITION + 速度前馈 | 4124 | **4125** |
+| 原地踏步 · POSITION + 速度前馈 | 4125 | **4126** |
+| 前向行走 · PD + 速度前馈 | 4126 | **4111** |
+| 原地踏步 · PD + 速度前馈 | 4127 | **4112** |
+| 正弦轨迹 · POSITION + 速度前馈 | 无（本版新增） | **4124** |
+| 正弦轨迹 · PD + 速度前馈 | 无（本版新增） | **4110** |
+| 谐波系数前向行走 · POSITION + 速度前馈 | 无（本版新增） | **4127** |
+| 谐波系数前向行走 · PD + 速度前馈 | 无（本版新增） | **4113** |
+
+- ⚠️ **4110–4113 是语义变更，不是新增**：升级固件后仍用 4111 调用「被动前向行走」的上位机会拿到 PD + 速度前馈变体，被动前向行走请改用 **4129**。
+- 助力（4114–4119）与校准（4120–4123）编号保持不变。
+- 前馈变体家族由 4 个扩充到 8 个；POSITION 变体走驱动器位置环，PD 变体的速度前馈仅 M4LT2（FSA v3）生效，P1 / T1 上被协议层静默丢弃。
 
 > 说明：
 >

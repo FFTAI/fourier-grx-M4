@@ -53,7 +53,7 @@ The main features available via joystick in Fourier M4L debug mode include:
 | Actuator disable (soft e-stop) | 36 | No        | Disable all robot actuators              | Logo button<br/>(XBOX layout) |
 | Clear fault              | 34      | No         | Clear all robot joint alarms             | A<br/>(XBOX layout)          |
 | Stand posture control    | 4020    | No         | Slowly move all joints back to standing posture | X<br/>(XBOX layout)   |
-| Passive forward walking  | 4111    | No         | Passive forward walking task             | Y<br/>(XBOX layout)          |
+| Passive forward walking  | 4129    | No         | Passive forward walking task (4111 before v4.4.69) | Y<br/>(XBOX layout)          |
 
 ### Developer Mode
 

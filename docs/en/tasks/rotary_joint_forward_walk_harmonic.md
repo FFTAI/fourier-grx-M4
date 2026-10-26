@@ -11,13 +11,13 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4113**
+Task ID (TID): **4131** (since v4.4.69; previously 4113)
 
 Applicable Models: M4L (P1 / T1 / T2)
 
 Task Description:
 
-- Compared with [Passive Forward Walk (4111)](/fourier-grx-M4/docs/en/tasks/forward_walk_passive), only the **gait source** differs: 4111 derives a joint trajectory online from the LIPM inverted-pendulum model using step length / walking speed, while this task replays a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables.
+- Compared with [Passive Forward Walk (4129)](/fourier-grx-M4/docs/en/tasks/forward_walk_passive), only the **gait source** differs: 4111 derives a joint trajectory online from the LIPM inverted-pendulum model using step length / walking speed, while this task replays a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables.
 - Consequently the **curve shape is fixed**, selected from 16 curves by the "hip swing amplitude level" and the "knee restriction level"; the **timing** is set independently by the "cadence level". The three levels are orthogonal.
 - This task **commands joint angles only, not translation**: the forward travel of the base (pelvis) is not produced by the algorithm, so the actual distance covered depends on the user plus the exoskeleton as a whole. No step length is promised.
 - When the "stop motion flag" is set to true, the robot stops gradually (it finishes the current loop window, then runs a 1 s ending transition) rather than halting immediately.

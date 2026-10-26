@@ -14,6 +14,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.43 (2026-10-26)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.69**: `fourier-grx-4.4.69-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-26 17:56, branch `m4-lfs`); install with `fourier-grx update 4.4.69-prerelease`
+- ✨ **Four new feedforward tasks**: the sinusoidal-trajectory and harmonic-coefficient forward-walk tasks each gain POSITION and PD feedforward variants (TID 4124, 4110, 4127, 4113), growing the feedforward family from 4 to 8 tasks. The `JointControlMode.PD` that `sin_wave` had hardcoded is now a class attribute, which the POSITION variants override.
+- ⚠️ **Rotary-joint TIDs regrouped (breaking change for integrators)**: the four basic action tasks at 4110–4113 (sinusoidal trajectory / passive forward walking / passive marching in place / harmonic forward walking) move to **4128–4131**, and the vacated 4110–4113 are taken by the corresponding PD + feedforward variants; the POSITION variants shift to 4125 / 4126. **A given TID now maps to a different task** — hosts must follow the [mapping table on the tasks page](/fourier-grx-M4/docs/en/tasks); otherwise a host that still calls 4111 will get the feedforward variant instead of passive forward walking. Assist tasks (4114–4119) and calibration tasks (4120–4123) are unchanged.
+- 🐛 **Web task grouping fixed**: the grouping was derived from numeric ranges (`<4114` basic, `<4120` assist, `<4200` calibration), so after the regrouping all eight feedforward tasks and the four locomotion tasks at 4128–4131 would have shown up under "rotary joint · calibration". Now segmented per block.
+- 🔧 Cleaned up references invalidated by the regrouping: harmonic planner docs 4113 → 4131, the harmonic feedforward variants' Zenoh registration note, and the menu's trailing annotations (which read the wrong way round); `user.md` now lists all four feedforward variants among the tasks that publish the gait fields, and "quantised to whole 20 ms frames" is corrected to scale with the control period (5 ms steps on the 200 Hz M4LT2).
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page points at 4.4.69; the [tasks list](/fourier-grx-M4/docs/en/tasks), [run types](/fourier-grx-M4/docs/en/reference/run_type), [user-data interface](/fourier-grx-M4/docs/en/reference/user) and the individual task pages have their TIDs updated (historical changelog bullets keep the numbering of their time). Chinese and English pages updated in sync
+
 ### v1.2.42 (2026-10-26)
 
 **Documentation**

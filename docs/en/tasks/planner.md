@@ -59,7 +59,7 @@ Task ID (TID): **4407**
 
 Task Parameters: refer to [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
 
-The three panel levels (`param_1` hip swing amplitude, `param_2` knee extension restriction, `param_3` step frequency) are identical to the executing task 4113 and are likewise applied every control cycle. On top of the reference trajectory, this Planner also echoes the levels, so the host can preview the joint envelopes of all 4 × 4 = 16 curves and the 6 rhythm levels before the patient starts moving:
+The three panel levels (`param_1` hip swing amplitude, `param_2` knee extension restriction, `param_3` step frequency) are identical to the executing task 4131 and are likewise applied every control cycle. On top of the reference trajectory, this Planner also echoes the levels, so the host can preview the joint envelopes of all 4 × 4 = 16 curves and the 6 rhythm levels before the patient starts moving:
 
 | Reported field | Meaning |
 | :--- | :--- |

@@ -43,16 +43,39 @@ Common task command examples for M4 robots:
 | TASK_PRISMATIC_JOINT_AUTO_CALIBRATE               | 4210             | M4L               | Automatic prismatic joint calibration (must be performed first after power-on) |
 | TASK_PRISMATIC_JOINT_MOVE_LENGTH                  | 4206             | M4L               | Leg-length adjustment (absolute position command)                         |
 | TASK_PRISMATIC_JOINT_MOVE_OFFSET                  | 4207             | M4L               | Relative leg-length adjustment (offset from the current position, no re-calibration required) |
-| TASK_ROTARY_JOINT_FORWARD_WALK                    | 4111             | M4L               | Passive forward walking                                                   |
-| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC           | 4113             | M4L               | Harmonic-coefficient forward walking (pre-computed gait curves; amplitude / knee-restriction / cadence levels) |
+| TASK_ROTARY_JOINT_FORWARD_WALK                    | 4129             | M4L               | Passive forward walking (4111 before v4.4.69)                             |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC           | 4131             | M4L               | Harmonic-coefficient forward walking (pre-computed gait curves; amplitude / knee-restriction / cadence levels; 4113 before v4.4.69) |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD   | 4116             | M4L               | Assisted forward walking (adjust PD parameters)                           |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT   | 4118             | M4L               | Assisted forward walking (adjust dt parameters)                           |
-| TASK_ROTARY_JOINT_MARK_TIME                       | 4112             | M4L               | Passive marching in place                                                 |
+| TASK_ROTARY_JOINT_MARK_TIME                       | 4130             | M4L               | Passive marching in place (4112 before v4.4.69)                           |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD      | 4117             | M4L               | Assisted marching in place (adjust PD parameters)                         |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT      | 4119             | M4L               | Assisted marching in place (adjust dt parameters)                         |
 | TASK_ROTARY_JOINT_HIGH_DAMPING                    | 4600             | M4LT2             | High-damping protection task triggered automatically on emergency stop (kp≈0, kd=20, soft braking) |
 
 - All: Indicates all Fourier Intelligence production robot models.
+
+### Rotary joint TID changes in v4.4.69
+
+From `fourier-grx` v4.4.69 the rotary-joint tasks are regrouped by control mode, and **the task behind a given TID has changed** — integrators must update accordingly:
+
+| Task | v4.4.68 and earlier | v4.4.69 onwards |
+|------|---------------------|-----------------|
+| Sinusoidal trajectory | 4110 | **4128** |
+| Passive forward walking | 4111 | **4129** |
+| Passive marching in place | 4112 | **4130** |
+| Harmonic-coefficient forward walking | 4113 | **4131** |
+| Forward walking · POSITION + velocity feedforward | 4124 | **4125** |
+| Marching in place · POSITION + velocity feedforward | 4125 | **4126** |
+| Forward walking · PD + velocity feedforward | 4126 | **4111** |
+| Marching in place · PD + velocity feedforward | 4127 | **4112** |
+| Sinusoidal trajectory · POSITION + velocity feedforward | none (new) | **4124** |
+| Sinusoidal trajectory · PD + velocity feedforward | none (new) | **4110** |
+| Harmonic forward walking · POSITION + velocity feedforward | none (new) | **4127** |
+| Harmonic forward walking · PD + velocity feedforward | none (new) | **4113** |
+
+- ⚠️ **4110–4113 are redefinitions, not additions**: after upgrading, a host that still calls 4111 for passive forward walking will get the PD + feedforward variant instead. Use **4129**.
+- Assist tasks (4114–4119) and calibration tasks (4120–4123) keep their TIDs.
+- The feedforward family grows from 4 tasks to 8; POSITION variants run the actuator position loop, and the PD variants' velocity feedforward is effective only on M4LT2 (FSA v3) — it is silently dropped by the protocol on P1 / T1.
 
 > Note:
 >
