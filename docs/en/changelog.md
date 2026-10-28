@@ -14,6 +14,18 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.45 (2026-10-28)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.70**: `fourier-grx-4.4.70-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-28 13:23, branch `m4-lfs`); install with `fourier-grx update 4.4.70-prerelease`
+- 🔧 **hard PD tier retuned again** (M4LT1 / M4LT2; T2 inherits T1): kp `[1000×4]` → `[1500,1500,1500,1500]`, kd `[60×4]` → `[90,90,90,90]`. From the CRBA inertias: hip ζ=0.77 unloaded / 0.64 loaded, knee ζ=1.37 / 1.28 (overdamped); natural frequency 4.11 Hz at the hip, 7.29 Hz at the knee. M4LP1 unchanged (hard stays kp 500 / kd 45 — verified the new algorithm default does not leak into it).
+  > ⚠️ With the higher stiffness, the position tracking error needed to reach the 140 N·m over-torque protection falls from about 8° to about **5.3°**, so protection is entered more readily under strong external resistance.
+- 🔧 **Gait trajectory shaping retuned for 200 Hz** (forward walk and marching in place): the smoothing filter cutoff goes 2.5 → **8.0 Hz**, cutting group delay from about 59 ms (T1) / 61 ms (T2) to 15 ms / 17 ms — the filter is now nearly transparent and command tracking tighter; the total reference-trajectory delay compensation is halved from 0.06 s to **0.03 s** accordingly (that compensation is dominated by the filter's group delay — 3 frames at 100 Hz, 6 at 200 Hz).
+- 🔧 **The load-detection PD ramp floor** rises from 0.01 to **0.1**: the body still follows the 2.0 s exponential time constant, the tail now keeps closing in via the floor, so 350 → 1500 converges in about 8.7 s (T2) / 10.1 s (T1); the ceiling remains the remaining gap, so there is no overshoot.
+- ⚠️ **Behaviour change: keyboard-initiated walking default speed 0.25 → 0.5 m/s.** Applied in the keyboard branches of forward walking, assisted forward walking (adjust-PD) and assisted forward walking (adjust-dt); the knee-restriction, harmonic and feedforward variants inherit it. Since `T_step = step_length / walk_velocity`, **step duration halves and cadence doubles** at the same step length. The previous 0.25 was below the 0.5 default of both gait generators and is now aligned with them.
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page points at 4.4.70. Chinese and English pages updated in sync
+
 ### v1.2.44 (2026-10-26)
 
 **Release**
