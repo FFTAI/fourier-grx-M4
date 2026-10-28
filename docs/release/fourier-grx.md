@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-28 | **4.4.70** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4470) | ✅ 支持中 |
+| 2026-10-28 | **4.4.71** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4471) | ✅ 支持中 |
+| 2026-10-28 | 4.4.70 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4470) | ❌ 不再支持 |
 | 2026-10-26 | 4.4.69 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4469) | ❌ 不再支持 |
 | 2026-10-26 | 4.4.68 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4468) | ❌ 不再支持 |
 | 2026-10-23 | 4.4.67 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4467) | ❌ 不再支持 |
@@ -98,6 +99,50 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.71
+
+> 📅 2026-10-28 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **回退 v4.4.70 的整定**（数值回到 v4.4.69）
+
+| 项目 | v4.4.70 | v4.4.71 |
+|------|---------|---------|
+| hard 档 kp（T1/T2） | `[1500×4]` | **`[1000×4]`** |
+| hard 档 kd（T1/T2） | `[90×4]` | **`[60×4]`** |
+| 步态平滑滤波截止 | 8.0 Hz | **2.5 Hz** |
+| 参考轨迹总延迟补偿 | 0.03 s | **0.06 s** |
+| 负载检测 PD 爬升下限 | 0.1 | **0.01** |
+
+- 阻尼比随之回到髋 ζ=0.63（空载）/ 0.52（载人）、膝 ζ=1.12 / 1.04；触发 140 N·m 过力矩保护所需的跟踪误差回到约 8°。
+- M4LP1 全程未受影响（hard 仍为 kp 500 / kd 45）。
+- 除下述两项外，本版源码与 v4.4.69 一致（已逐文件与 `v4.4.69` 标签比对）。
+
+✨ **改进**
+
+- **急停高阻尼任务的日志区分触发成因**（TID 4600，仅 M4LT2）。原先无论何因都打印 "Emergency stop detected"，现场排查时无法判断是按钮、通信还是上位机。现在按标志位分别报告，多个成因同时成立时以 " and " 连接，均不成立时报告为手动进入：
+
+  | 成因 | 日志文本 |
+  |------|---------|
+  | ioboard 急停按钮（通信正常） | `Emergency stop (ioboard button) detected — switching to high-damping control.` |
+  | 全执行器通信超时（或与按钮同时） | `Emergency stop or all-actuator communication timeout detected — …` |
+  | 上位机心跳超时 | `Host heartbeat timeout detected — …` |
+  | 按钮 + 心跳同时 | `Emergency stop (ioboard button) and Host heartbeat timeout detected — …` |
+  | 手动下发 4600 | `High-damping task activated manually.` |
+
+  由于 `flag_emergent_stop` 由急停按钮与全执行器通信超时**共用**，二者无法从标志位本身区分，故在通信超时成立时据实并报而不臆断单一成因；`flag_all_actuator_timeout` 缺失时有兜底，不会抛异常。
+
+> ⚠️ **未随回退的项**
+>
+> **键盘行走默认速度维持 0.5 m/s**（v4.4.70 起，量纲为 m/s 而非归一化档位；`T_step = step_length / walk_velocity`，步长不变时步频相对 4.4.69 翻倍）。该值已随 4.4.70 正式发布，再次改回会让步频在两个版本间来回变化，故保持现状。需要慢速请用面板或上位机设置速度参数。
+
+📚 **文档修正**
+
+- 修正 8 处陈旧的拍数表述：秒制化与 M4LT2 提频到 200 Hz 后，「连续 5 个控制周期消抖」「连续超时 ≥ 50 个控制周期」「采样约 1 秒（50 个控制周期）」只在 50 Hz 下成立（T2 现为 200 拍），已统一改为按秒描述并注明拍数由控制周期折算。涉及保护机制、急停高阻尼、自动 / 手动校准 4 页（中英文各 4 页）。
+
+其余功能与 v4.4.69 相同。
+
+---
 
 ### 4.4.70
 

@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-28 | **4.4.70** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4470) | ✅ Active |
+| 2026-10-28 | **4.4.71** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4471) | ✅ Active |
+| 2026-10-28 | 4.4.70 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4470) | ❌ No longer supported |
 | 2026-10-26 | 4.4.69 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | ❌ No longer supported |
 | 2026-10-26 | 4.4.68 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4468) | ❌ No longer supported |
 | 2026-10-23 | 4.4.67 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4467) | ❌ No longer supported |
@@ -99,6 +100,50 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.71
+
+> 📅 2026-10-28 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **The v4.4.70 tuning is reverted** (values return to v4.4.69)
+
+| Item | v4.4.70 | v4.4.71 |
+|------|---------|---------|
+| hard tier kp (T1/T2) | `[1500×4]` | **`[1000×4]`** |
+| hard tier kd (T1/T2) | `[90×4]` | **`[60×4]`** |
+| Gait smoothing filter cutoff | 8.0 Hz | **2.5 Hz** |
+| Total delay compensation | 0.03 s | **0.06 s** |
+| Load-detection PD ramp floor | 0.1 | **0.01** |
+
+- Damping ratios return to hip ζ=0.63 unloaded / 0.52 loaded and knee ζ=1.12 / 1.04, and the tracking error needed to reach the 140 N·m over-torque protection goes back to about 8°.
+- M4LP1 was never affected (hard stays kp 500 / kd 45).
+- Apart from the two items below, this release's source matches v4.4.69 (verified file by file against the `v4.4.69` tag).
+
+✨ **Improvements**
+
+- **The emergency-stop high-damping task now logs which trigger fired** (TID 4600, M4LT2 only). Every path previously logged "Emergency stop detected", which could not distinguish button, communication and host causes during field debugging. Reasons are now derived from the flags, joined with " and " when several hold at once, and reported as a manual activation when none does:
+
+  | Cause | Log text |
+  |-------|----------|
+  | ioboard stop button (comms healthy) | `Emergency stop (ioboard button) detected — switching to high-damping control.` |
+  | All-actuator communication timeout (or with the button) | `Emergency stop or all-actuator communication timeout detected — …` |
+  | Host heartbeat timeout | `Host heartbeat timeout detected — …` |
+  | Button + heartbeat together | `Emergency stop (ioboard button) and Host heartbeat timeout detected — …` |
+  | Manual dispatch of 4600 | `High-damping task activated manually.` |
+
+  Because `flag_emergent_stop` is **shared** by the stop button and the all-actuator communication timeout, the two cannot be separated from the flag itself, so when the timeout also holds the message states both rather than guessing a single cause; a missing `flag_all_actuator_timeout` is handled defensively and never raises.
+
+> ⚠️ **Not reverted**
+>
+> **The keyboard walking default speed stays at 0.5 m/s** (since v4.4.70; the unit is m/s, not a normalized level — `T_step = step_length / walk_velocity`, so cadence is doubled relative to 4.4.69 at the same step length). This already shipped in 4.4.70, and flipping it back would make cadence oscillate between releases. Use the panel or host velocity parameter for a slower pace.
+
+📚 **Documentation fixes**
+
+- 8 stale cycle-count statements corrected: after the seconds-based refactor and M4LT2's move to 200 Hz, phrasings such as "debounced over 5 control cycles", "timed out for ≥ 50 consecutive control cycles" and "sampled for about 1 second (50 control cycles)" only held at 50 Hz (200 cycles on T2 now). They are now stated in seconds with the cycle count derived from the control period, across the protection, emergency-stop high-damping, and automatic / manual calibration pages (4 pages per language).
+
+Everything else is identical to v4.4.69.
+
+---
 
 ### 4.4.70
 

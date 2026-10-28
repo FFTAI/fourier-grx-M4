@@ -71,3 +71,4 @@ has_toc: true
 
 - `fourier-grx` v4.4.3 版本新增该功能（仅 M4LT2）。
 - `fourier-grx` v4.4.43 版本起，上位机心跳超时也会切换到本任务（此前仅硬件急停与全执行器超时触发）。
+- `fourier-grx` v4.4.71 版本：本任务的日志改为**区分触发成因**——原先无论何因都打印 "Emergency stop detected"，现在按 `flag_emergent_stop` 与 `flag_host_heartbeat_timeout` 分别报告（同时成立时以 " and " 连接，均不成立时报告为手动进入）。因 `flag_emergent_stop` 由 ioboard 急停按钮与全执行器通信超时共用，故再借 `flag_all_actuator_timeout` 区分：成立时报 "Emergency stop or all-actuator communication timeout"，否则报 "Emergency stop (ioboard button)"。同版修正本页「连续超时 ≥ 50 个控制周期」的陈旧表述（实为 1.0 s，拍数按控制周期折算，T2 200 Hz 下为 200 拍）。

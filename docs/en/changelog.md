@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.48 (2026-10-28)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.71 is now stable**: `fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-28 16:53, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.71`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.71 row and release notes; 4.4.70 moves to "No longer supported". Highlights: **the v4.4.70 tuning is reverted** (hard tier kp `[1000×4]` / kd `[60×4]`, gait smoothing filter cutoff 2.5 Hz, total delay compensation 0.06 s, load-detection PD ramp floor 0.01 — back to the 4.4.69 values); the emergency-stop high-damping task (TID 4600, M4LT2 only) now logs which trigger fired; and ⚠️ the keyboard walking default stays at 0.5 m/s rather than being reverted with the rest. Apart from those two items the source is identical to 4.4.69, file by file.
+- 📄 The high-damping task page gains a trigger-to-log-text table; the passive forward-walk, passive marching, assisted forward-walk (adjust-PD / adjust-dt) and harmonic forward-walk task pages record the reversion; and the 8 stale cycle-count statements across the protection, high-damping and automatic / manual calibration pages are now stated in seconds. Chinese and English pages updated in sync
+
 ### v1.2.47 (2026-10-28)
 
 **Release**
