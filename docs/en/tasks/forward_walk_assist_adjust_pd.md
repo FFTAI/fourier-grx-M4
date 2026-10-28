@@ -96,3 +96,4 @@ Command interface:
 - Added in `fourier-grx` v4.0.0.
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height / step lift height / double-support ratio parameter interfaces.
+- `fourier-grx` v4.4.70: ⚠️ the keyboard default walking speed doubles from 0.25 to 0.5 m/s (`T_step = step_length / walk_velocity`, so step duration halves at the same step length; the old 0.25 was below the gait generators' own 0.5 default and is now aligned). Panel and host settings still take precedence. This task keeps using the medium PD tier throughout, so the hard tier's rise to kp 1500 / kd 90 does not affect it; the inherited gait smoothing filter cutoff (2.5 → 8.0 Hz) and total delay compensation (0.06 → 0.03 s) do apply.

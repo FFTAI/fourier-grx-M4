@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.46 (2026-10-28)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.70 is now stable**: `fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-28 13:34, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.70`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.70 row and release notes; 4.4.69 moves to "No longer supported". Highlights: the hard tier rises to kp `[1500×4]` / kd `[90×4]` (T1/T2, P1 unchanged; hip ζ=0.77 unloaded, knee ζ=1.37 overdamped); the gait smoothing filter cutoff moves 2.5 → 8.0 Hz and the total delay compensation 0.06 → 0.03 s; the load-detection PD ramp floor goes 0.01 → 0.1; and ⚠️ **the keyboard-initiated walking default speed doubles from 0.25 to 0.5 m/s (cadence doubles at the same step length)**. The stiffer hard tier tightens the 140 N·m over-torque trip from about 8° of tracking error to about 5.3°.
+- 📄 The passive forward-walk, passive marching, assisted forward-walk (adjust-PD / adjust-dt) and harmonic forward-walk task pages document this release, each worded to what actually applies to that task: the assist tasks still use the medium tier throughout so the hard change does not reach them, and marching in place and the harmonic task are unaffected by the keyboard speed change. Chinese and English pages updated in sync
+
 ### v1.2.45 (2026-10-28)
 
 **Release**

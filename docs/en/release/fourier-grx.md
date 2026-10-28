@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-26 | **4.4.69** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | ✅ Active |
+| 2026-10-28 | **4.4.70** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4470) | ✅ Active |
+| 2026-10-26 | 4.4.69 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | ❌ No longer supported |
 | 2026-10-26 | 4.4.68 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4468) | ❌ No longer supported |
 | 2026-10-23 | 4.4.67 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4467) | ❌ No longer supported |
 | 2026-10-22 | 4.4.66 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4466) | ❌ No longer supported |
@@ -98,6 +99,26 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.70
+
+> 📅 2026-10-28 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Changed**
+
+- **hard PD tier retuned again** (M4LT1 / M4LT2; T2 inherits T1): kp `[1000×4]` → `[1500,1500,1500,1500]`, kd `[60×4]` → `[90,90,90,90]`. From the CRBA inertias: hip ζ=0.77 unloaded / 0.64 loaded, knee ζ=1.37 / 1.28 (overdamped); natural frequency 4.11 Hz at the hip, 7.29 Hz at the knee. M4LP1 unchanged — hard stays kp 500 / kd 45.
+- **Gait trajectory shaping retuned for 200 Hz** (forward walk and marching in place; the harmonic walk inherits it): smoothing filter cutoff 2.5 → 8.0 Hz, cutting group delay from about 59 ms (T1) / 61 ms (T2) to 15 ms / 17 ms; the total reference-trajectory delay compensation is halved from 0.06 s to 0.03 s accordingly (dominated by the filter's group delay — 3 frames at 100 Hz, 6 at 200 Hz).
+- **Load-detection PD ramp floor** raised from 0.01 to 0.1: the body still follows the 2.0 s exponential time constant while the tail now closes in via the floor, so baseline 350 → hard 1500 converges in about 8.7 s (T2) / 10.1 s (T1); the ceiling remains the remaining gap, so no overshoot.
+- **Keyboard-initiated walking default speed** 0.25 → 0.5 m/s (see the behaviour change below).
+
+> ⚠️ **Behaviour changes**
+>
+> - **Keyboard walking speed doubles**: the default `command_walk_velocity` in the keyboard branches of forward walking, assisted forward walking (adjust-PD) and assisted forward walking (adjust-dt) rises from 0.25 to 0.5 m/s, and the knee-restriction, harmonic and feedforward variants inherit it. Since `T_step = step_length / walk_velocity`, step duration halves and cadence doubles at the same step length. The old 0.25 was below the 0.5 default of both gait generators and is now aligned; to get the previous slow pace, set the velocity parameter back via the panel or host.
+> - **The hard tier is stiffer**: the tracking error needed to reach the 140 N·m over-torque protection falls from about 8° to about 5.3°, so protection trips sooner under strong resistance. The knee's natural frequency rises to 7.29 Hz, which costs more phase margin from control delay on the still-100 Hz M4LT1 — suspect that first if high-frequency knee buzzing appears.
+
+Everything else is identical to v4.4.69.
+
+---
 
 ### 4.4.69
 
