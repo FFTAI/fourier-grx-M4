@@ -18,7 +18,7 @@ Task Description:
 - Used to trigger the software-layer zero-point write after the user has **manually positioned the rotary joints at the desired zero posture**.
 - Calibration proceeds through two sequential steps:
   1. **Joint Servo Off**: Executes ServoOff so the user can freely move the joints to the target posture and hold them still.
-  2. **Set Home** (TID 4105): Samples joint position readings for approximately 1 second (50 control cycles) and takes the average, setting that average as the zero point (application-layer 0 rad reference position); afterwards, the joint target positions are automatically reset to the measured positions in the new coordinate frame, preventing a target-jump shock when the next task is enabled.
+  2. **Set Home** (TID 4105): Samples joint position readings for approximately 1 second (cycle count derived from the control period) and takes the average, setting that average as the zero point (application-layer 0 rad reference position); afterwards, the joint target positions are automatically reset to the measured positions in the new coordinate frame, preventing a target-jump shock when the next task is enabled.
 - Difference from Auto Calibrate (TID 4120):
 
   | | Manual Calibrate (TID 4121) | Auto Calibrate (TID 4120) |

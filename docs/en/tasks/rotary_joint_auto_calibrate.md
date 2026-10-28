@@ -19,7 +19,7 @@ Task Description:
 - Calibration proceeds through three sequential steps:
   1. **Border detection and return** (TID 4104): Drives each joint to its mechanical limit, then automatically retracts to a safe position upon detecting the boundary.
   2. **Joint Servo Off**: Disables all actuators so the joints drop naturally to a resting position under gravity.
-  3. **Set Home** (TID 4105): Samples joint position readings for approximately 1 second (50 control cycles) and takes the average, setting that average as the zero point (application-layer 0 rad reference position).
+  3. **Set Home** (TID 4105): Samples joint position readings for approximately 1 second (cycle count derived from the control period) and takes the average, setting that average as the zero point (application-layer 0 rad reference position).
 - It is recommended to run this task before starting any other motion task whenever the robot is powered on again or joint zero points are lost.
 
 Task Parameters:

@@ -14,6 +14,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.47 (2026-10-28)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.71**: `fourier-grx-4.4.71-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-28 16:42, branch `m4-lfs`); install with `fourier-grx update 4.4.71-prerelease`
+- 🔧 **The v4.4.70 tuning is reverted, back to v4.4.69 values**: hard tier kp `[1000×4]` / kd `[60×4]` (T1/T2; P1 stays 500 / 45), gait smoothing filter cutoff 8.0 → 2.5 Hz, total delay compensation 0.03 → 0.06 s, load-detection PD ramp floor 0.1 → 0.01. Compared file by file against `v4.4.69` — the revert is clean apart from the speed item below.
+- ⚠️ **The keyboard walking default speed stays at 0.5 m/s and was not reverted with the rest**: it took effect in v4.4.70 and has shipped, so flipping it back to 0.25 would make cadence oscillate between releases. Use the panel or host velocity parameter for a slower pace.
+- ✨ **The emergency-stop high-damping task now reports which trigger fired** (TID 4600, M4LT2 only). Previously every path logged "Emergency stop detected". Reasons are now derived from `flag_emergent_stop` and `flag_host_heartbeat_timeout`, joined with " and " when both hold, and reported as a manual activation when neither does. Because `flag_emergent_stop` is **shared** by the ioboard stop button and the all-actuator communication timeout, `flag_all_actuator_timeout` is consulted as well: when set, the message reads "Emergency stop or all-actuator communication timeout" (both can be true at once, so it states the ambiguity rather than asserting one cause), otherwise "Emergency stop (ioboard button)" — matching the three trigger sources listed on [that task page](/fourier-grx-M4/docs/en/tasks/emergency_stop_high_damping).
+- 🐛 **8 stale cycle-count statements corrected in the docs**: after the seconds-based refactor and M4LT2's move to 200 Hz, phrasings such as "debounced over 5 control cycles", "timed out for ≥ 50 consecutive control cycles" and "sampled for about 1 second (50 control cycles)" only held at 50 Hz (it is 200 cycles on T2 now). They are now stated in seconds with the cycle count derived from the control period, across the [protection](/fourier-grx-M4/docs/en/reference/protection), emergency-stop high-damping, and automatic / manual calibration pages (4 pages per language). Historical changelog figures are left as they were at the time.
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page points at 4.4.71. Chinese and English pages updated in sync
+
 ### v1.2.46 (2026-10-28)
 
 **Release**

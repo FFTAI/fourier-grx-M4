@@ -40,7 +40,7 @@ This task is triggered by any of the following three conditions:
 | Trigger Source | Trigger Condition | Description |
 |----------------|-------------------|-------------|
 | ioboard emergency switch | `ioboard.emergency_state == True` (sets `flag_emergent_stop`) | User presses the hardware emergency stop button on the robot backpack |
-| All-actuator communication timeout | All actuators time out for ≥ 50 consecutive control cycles (sets `flag_emergent_stop`) | Protective trigger due to communication anomaly |
+| All-actuator communication timeout | All actuators time out for ≥ 1.0 s (cycle count derived from the control period; sets `flag_emergent_stop`) | Protective trigger due to communication anomaly |
 | Host heartbeat timeout | `flag_host_heartbeat_timeout` is set | Protective trigger when the host loses communication with the robot |
 
 ## Module Info

@@ -20,12 +20,12 @@ While the M4L device is running, it continuously monitors joint velocity and joi
 
 | Protection | Monitored Object | Trigger Condition |
 |-----------|------------------|-------------------|
-| Velocity protection | Measured joint velocity of the 4 rotary joints (hip/knee) | Any rotary joint velocity exceeds the threshold (default 4.5 rad/s, tunable on hardware) for 5 consecutive control cycles |
-| Position protection | Measured joint position | Any joint position stays outside the "reasonable motion range" (published by the active task, see below) for 5 consecutive control cycles |
+| Velocity protection | Measured joint velocity of the 4 rotary joints (hip/knee) | Any rotary joint velocity exceeds the threshold (default 4.5 rad/s, tunable on hardware) for 0.1 s (cycle count derived from the control period) |
+| Position protection | Measured joint position | Any joint position stays outside the "reasonable motion range" (published by the active task, see below) for 0.1 s (cycle count derived from the control period) |
 
 Notes:
 
-- **Debounce**: both protections require 5 consecutive control cycles beyond the limit before triggering, to avoid false triggers from measurement noise;
+- **Debounce**: both protections require 0.1 s (cycle count derived from the control period) beyond the limit before triggering, to avoid false triggers from measurement noise;
 - **Velocity protection** only monitors the 4 rotary joints by default; the prismatic joints (leg-length adjustment) are not covered;
 - **Normal gait never triggers the protections**: validated by full-parameter-range closed-loop simulation (33 gait-parameter groups × walk/stop, including start-up and command-step transients) — within the allowed command parameter ranges, the measured peak joint velocity of mark-time/forward-walk is at worst ~3.5 rad/s (threshold 4.5 rad/s), and the joint position always stays inside the task-published reasonable range.
 

@@ -13,6 +13,17 @@ has_toc: true
 
 ## 2026 年 10 月
 
+### v1.2.47 (2026-10-28)
+
+**发布**
+
+- 📦 预发布渠道更新为 `fourier-grx` **v4.4.71**：`fourier-grx-4.4.71-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-28 16:42 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.71-prerelease`
+- 🔧 **回退 v4.4.70 的整定，数值回到 v4.4.69**：hard 档 kp `[1000×4]` / kd `[60×4]`（T1/T2，P1 仍 500 / 45）、步态平滑滤波截止 8.0 → 2.5 Hz、参考轨迹总延迟补偿 0.03 → 0.06 s、负载检测 PD 爬升下限 0.1 → 0.01。已逐文件与 `v4.4.69` 比对，除下一条所述的速度项外**回退干净**。
+- ⚠️ **键盘行走默认速度维持 0.5 m/s，本次未随其他项一并回退**：该值自 v4.4.70 起生效且已正式发布，若再改回 0.25 会让步频来回变化，故保持现状。需要慢速请用面板或上位机设置速度参数。
+- ✨ **急停高阻尼任务的日志区分触发成因**（TID 4600，仅 M4LT2）：原先无论何因都打印 "Emergency stop detected"。现在按 `flag_emergent_stop` 与 `flag_host_heartbeat_timeout` 分别报告，同时成立时以 " and " 连接，均不成立时报告为手动进入。由于 `flag_emergent_stop` 由 ioboard 急停开关与全执行器通信超时**共用**，进一步借 `flag_all_actuator_timeout` 区分：通信超时成立时报告 "Emergency stop or all-actuator communication timeout"（两者可能同时发生，故据实并报而不断言单一原因），否则报告 "Emergency stop (ioboard button)"。与[该页触发源表](/fourier-grx-M4/docs/tasks/emergency_stop_high_damping)所列的三种触发源对齐。
+- 🐛 **文档修正 8 处陈旧的拍数表述**：秒制化与 M4LT2 提频到 200 Hz 之后，「连续 5 个控制周期消抖」「连续超时 ≥ 50 个控制周期」「采样约 1 秒（50 个控制周期）」这三类说法只在 50 Hz 下成立（T2 现为 200 拍），已统一改为按秒描述并注明拍数由控制周期折算。涉及[保护机制](/fourier-grx-M4/docs/reference/protection)、急停高阻尼、自动 / 手动校准共 4 页（中英文各 4 页）。历史更新日志中的旧数值属当时事实，保持原样。
+- 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.71。中英文同步
+
 ### v1.2.46 (2026-10-28)
 
 **发布**

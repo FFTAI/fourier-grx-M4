@@ -90,7 +90,7 @@ has_toc: true
 - 预发布包**不会**被 `fourier-grx update` 的自动探测发现，也不列入上表。
 - 安装方式：`fourier-grx update <版本>-prerelease`，例如 `fourier-grx update 4.4.53-prerelease`。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
 - 安装后仍需执行 `fourier-grx install` 完成部署。
-- 当前预发布：`fourier-grx update 4.4.70-prerelease`（2026-10-28 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为 hard 档 PD 提至 kp 1500 / kd 90（T1/T2，P1 不变）、步态平滑滤波截止 2.5 → 8.0 Hz 并把参考轨迹总延迟补偿减半为 0.03 s、负载检测 PD 爬升下限提高到 0.1，以及 ⚠️ 键盘触发的行走默认速度由 0.25 提到 0.5 m/s（步长不变时步频翻倍）。其余与 4.4.69 正式版相同，详见 [更新日志](/fourier-grx-M4/docs/changelog)。
+- 当前预发布：`fourier-grx update 4.4.71-prerelease`（2026-10-28 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为**回退 v4.4.70 的整定**——hard 档回到 kp 1000 / kd 60、步态平滑滤波截止回到 2.5 Hz、参考轨迹总延迟补偿回到 0.06 s、负载检测 PD 爬升下限回到 0.01（数值与 4.4.69 一致；⚠️ 唯独键盘行走默认速度维持 0.5 m/s 未回退）；另将急停高阻尼任务（TID 4600，仅 M4LT2）的日志改为区分触发成因（硬件急停 / 全执行器通信超时 / 上位机心跳超时 / 手动）。除上述两项外，本版源码与 4.4.69 正式版一致（已逐文件比对）。详见 [更新日志](/fourier-grx-M4/docs/changelog)。
 - ⚠️ **M4LP1 请勿安装 `4.4.55-prerelease`**：该包（及 v4.4.52 ~ 4.4.55 正式版）在 P1 上会因缺失关节保护计数器属性而在启动后立即退出；请使用 `4.4.56-prerelease` 及以上。M4LT1 / M4LT2 不受影响。
 
 参数细节见 [命令行工具 · 预发布渠道](/fourier-grx-M4/docs/reference/command_line_tool#预发布渠道)。

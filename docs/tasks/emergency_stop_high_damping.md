@@ -39,7 +39,7 @@ has_toc: true
 | 触发源 | 触发条件 | 说明 |
 |--------|---------|------|
 | ioboard 急停开关 | `ioboard.emergency_state == True`（置位 `flag_emergent_stop`） | 用户按下机器人背包上的硬件急停按钮 |
-| 全执行器通信超时 | 所有执行器连续超时 ≥ 50 个控制周期（置位 `flag_emergent_stop`） | 通信异常导致的保护性触发 |
+| 全执行器通信超时 | 所有执行器连续超时 ≥ 1.0 s（拍数按控制周期折算；置位 `flag_emergent_stop`） | 通信异常导致的保护性触发 |
 | 上位机心跳超时 | `flag_host_heartbeat_timeout` 置位 | 上位机与机器人通信中断时的保护性触发 |
 
 ## 模块信息
