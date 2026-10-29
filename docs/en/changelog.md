@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## October 2026
 
+### v1.2.49 (2026-10-29)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.72**: `fourier-grx-4.4.72-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-29 17:17, branch `m4-lfs`); install with `fourier-grx update 4.4.72-prerelease`
+- 🔧 **Standing and knee-restriction standing now use the medium PD tier**: M4LP1 moves from baseline kp `[250×4]` / kd `[25×4]` to kp `[350×4]` / kd `[25×4]`; M4LT1 / M4LT2 move from kp `[350×4]` / kd `[35,25,35,25]` to kp `[500×4]` / kd `[30×4]`. The 0.2 s pure-damping warm-up is unchanged, with the medium tier restored afterwards; the baseline and hard tiers used by other tasks are unchanged.
+- 🔧 **M4LP1 medium-tier hip damping drops from 30 to 25**: kd `[30,25,30,25]` → `[25×4]`, with kp unchanged at `[350×4]`. Besides the standing tasks above, this also applies to the forward-walk and mark-time adjust-dt assist tasks and their knee-restriction variants.
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page points at 4.4.72. Chinese and English pages updated in sync
+
 ### v1.2.48 (2026-10-28)
 
 **Release**
