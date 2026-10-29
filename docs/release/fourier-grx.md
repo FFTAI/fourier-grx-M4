@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-28 | **4.4.71** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4471) | ✅ 支持中 |
+| 2026-10-29 | **4.4.72** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4472) | ✅ 支持中 |
+| 2026-10-28 | 4.4.71 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4471) | ❌ 不再支持 |
 | 2026-10-28 | 4.4.70 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4470) | ❌ 不再支持 |
 | 2026-10-26 | 4.4.69 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4469) | ❌ 不再支持 |
 | 2026-10-26 | 4.4.68 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4468) | ❌ 不再支持 |
@@ -99,6 +100,32 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.72
+
+> 📅 2026-10-29 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **站立与限膝站立改用 medium 档 PD**
+
+| 机型 | v4.4.71 kp | v4.4.71 kd | v4.4.72 kp | v4.4.72 kd |
+|------|------------|------------|------------|------------|
+| M4LP1 | `[250×4]` | `[25×4]` | **`[350×4]`** | `[25×4]` |
+| M4LT1 / M4LT2 | `[350×4]` | `[35,25,35,25]` | **`[500×4]`** | **`[30×4]`** |
+
+- 任务每次激活时都由机型参数重新写入 medium 档，避免被通用基线映射覆盖；限膝站立复用同一算法，因此同步生效。
+- 0.2 秒纯阻尼预热（kp=0）及约 5 秒站立位置插值不变，预热结束后恢复上述 medium 档。
+- 其他任务仍按原逻辑使用基线档或各自指定档位，基线档与 hard 档数值未改。
+
+🔧 **M4LP1 medium 档阻尼统一**
+
+- kd 由 `[30,25,30,25]` 改为 **`[25×4]`**，即左右髋阻尼 30 → 25，膝保持 25；kp 保持 `[350×4]`。
+- 除站立与限膝站立外，前向行走调步频助力、原地踏步调步频助力及两者的限膝变体也使用该档，因此同步生效。
+
+> ⚠️ **行为变化**：站立保持阶段的 kp 提高，位置约束较上一版更强；T1/T2 髋部 kd 同时由 35 调为 30、膝部由 25 调为 30。升级后首次真机验证建议先空载检查站立冲击与振动，再进行载人测试。
+
+其余功能与 v4.4.71 相同。
+
+---
 
 ### 4.4.71
 

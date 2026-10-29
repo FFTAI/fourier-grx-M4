@@ -117,3 +117,4 @@ has_toc: true
 - `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。
 - `fourier-grx` v4.4.48 版本新增抬腿高度/双支撑期占比参数接口（基座高度由膝限位角度与腿长自动计算）。
 - `fourier-grx` v4.4.54 版本补传助力系数，`grx.virtual_panel_command_param_3` 自此恢复可调，与 TID 4118、TID 4306 一致。
+- `fourier-grx` v4.4.72 版本将 M4LP1 medium 档 kd 由 `[30,25,30,25]` 统一为 `[25×4]`（髋部 30 → 25，膝部不变；kp 仍 `[350×4]`）。本任务全程使用该档，因此同步生效；T1/T2 不变。

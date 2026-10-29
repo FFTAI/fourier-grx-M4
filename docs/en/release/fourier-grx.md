@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-28 | **4.4.71** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4471) | ✅ Active |
+| 2026-10-29 | **4.4.72** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | ✅ Active |
+| 2026-10-28 | 4.4.71 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4471) | ❌ No longer supported |
 | 2026-10-28 | 4.4.70 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4470) | ❌ No longer supported |
 | 2026-10-26 | 4.4.69 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | ❌ No longer supported |
 | 2026-10-26 | 4.4.68 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4468) | ❌ No longer supported |
@@ -100,6 +101,32 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.72
+
+> 📅 2026-10-29 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Standing and knee-restriction standing switch to the medium PD tier**
+
+| Model | v4.4.71 kp | v4.4.71 kd | v4.4.72 kp | v4.4.72 kd |
+|-------|------------|------------|------------|------------|
+| M4LP1 | `[250×4]` | `[25×4]` | **`[350×4]`** | `[25×4]` |
+| M4LT1 / M4LT2 | `[350×4]` | `[35,25,35,25]` | **`[500×4]`** | **`[30×4]`** |
+
+- Every task activation now reapplies the model-specific medium tier after the generic baseline mapping; knee-restriction standing shares the same algorithm and inherits the change.
+- The 0.2 s pure-damping warm-up (kp = 0) and approximately 5 s interpolation to the standing posture are unchanged; the medium tier above is restored after warm-up.
+- Other tasks keep their existing baseline or explicitly selected tiers, and neither the baseline nor hard tier values changed.
+
+🔧 **M4LP1 medium-tier damping unified**
+
+- kd changes from `[30,25,30,25]` to **`[25×4]`**: hip damping drops from 30 to 25 on both sides while knee damping stays at 25; kp remains `[350×4]`.
+- Besides standing and knee-restriction standing, the forward-walk and mark-time adjust-dt assist tasks and their knee-restriction variants use this tier and inherit the change.
+
+> ⚠️ **Behaviour change**: kp is higher while holding the standing posture, giving stronger position constraint than in the previous release; on T1/T2, hip kd also changes from 35 to 30 and knee kd from 25 to 30. For the first on-robot check after upgrading, inspect standing impacts and vibration without a passenger before proceeding to loaded tests.
+
+Everything else is identical to v4.4.71.
+
+---
 
 ### 4.4.71
 

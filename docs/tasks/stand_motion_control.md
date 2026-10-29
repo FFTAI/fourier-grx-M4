@@ -53,3 +53,4 @@ has_toc: true
 ## 更新日志
 
 - `fourier-grx` v3.1.1 版本新增该功能。
+- `fourier-grx` v4.4.72 版本将本任务 PD 由基线档改为 medium 档：M4LP1 为 kp `[350×4]` / kd `[25×4]`，M4LT1 / M4LT2 为 kp `[500×4]` / kd `[30×4]`。0.2 秒纯阻尼预热不变，预热结束后恢复 medium 档。

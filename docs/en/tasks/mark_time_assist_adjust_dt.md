@@ -115,3 +115,4 @@ Command Interface:
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
 - `fourier-grx` v4.4.48 added the base height parameter interface.
 - `fourier-grx` v4.4.68 unifies the medium tier kp from `[400,500,400,500]` to `[500,500,500,500]` (kd unchanged at `[30,30,30,30]`), so the assist feel is slightly firmer than in v4.4.66. The M4LT2 control rate was also raised to 200 Hz (`control_period` 0.01 → 0.005); this task's timing parameters (debouncing, load-detection filter and PD ramp, gait smoothing filter) are defined in seconds, so their durations are unchanged once converted to cycle counts.
+- `fourier-grx` v4.4.72 unifies M4LP1 medium-tier kd from `[30,25,30,25]` to `[25×4]` (hip damping 30 → 25, knees unchanged; kp remains `[350×4]`). This task uses that tier throughout and inherits the change; T1/T2 are unchanged.

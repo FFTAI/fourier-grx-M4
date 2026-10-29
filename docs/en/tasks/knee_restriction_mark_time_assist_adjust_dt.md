@@ -123,3 +123,4 @@ Command interface:
 - `fourier-grx` v4.4.25 adjusted the auto-decrement applied when torque falls below the assist trigger force lower threshold from −0.01 to −0.001, avoiding assist instability caused by the assist ratio decaying too quickly in mark-time scenarios; the +0.02 increment for the upper threshold (since v4.4.24) remains unchanged.
 - `fourier-grx` v4.4.30 raised the auto-increment applied when torque exceeds the assist trigger force upper threshold from +0.02 to +0.04, further speeding up the assist response when the patient pushes.
 - `fourier-grx` v4.4.46 added the `rehab.step_frequency` reporting interface (unit: steps/min).
+- `fourier-grx` v4.4.72 unifies M4LP1 medium-tier kd from `[30,25,30,25]` to `[25×4]` (hip damping 30 → 25, knees unchanged; kp remains `[350×4]`). This task uses that tier throughout and inherits the change; T1/T2 are unchanged.

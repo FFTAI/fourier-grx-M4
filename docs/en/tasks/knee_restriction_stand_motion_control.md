@@ -70,3 +70,4 @@ Command interface:
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.
+- `fourier-grx` v4.4.72 switches this task from the baseline to the medium PD tier: M4LP1 uses kp `[350×4]` / kd `[25×4]`, and M4LT1 / M4LT2 use kp `[500×4]` / kd `[30×4]`. This task shares the standing algorithm; the 0.2 s pure-damping warm-up is unchanged, with the medium tier restored afterwards.
