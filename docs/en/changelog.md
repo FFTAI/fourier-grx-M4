@@ -12,6 +12,17 @@ nav_exclude: true
 
 This document records all significant updates to the Fourier-GRX-M4 SDK and its documentation.
 
+## November 2026
+
+### v1.2.51 (2026-11-02)
+
+**Release**
+
+- 📦 The pre-release channel moves to `fourier-grx` **v4.4.73**: `fourier-grx-4.4.73-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-11-02 17:26, branch `m4-lfs`); install with `fourier-grx update 4.4.73-prerelease`
+- 🐛 **Stale velocity and effort commands are cleared on task switching**: M4L rotary and prismatic-joint tasks now write `velocity=0` and `effort=0` whenever they dispatch PD or position targets, preventing feedforward from a previous task from continuing to affect the next one. Coverage includes standing, walking, marching, assist, test, border-and-return, movement, and emergency-stop high-damping tasks.
+- 🔧 **Feedforward behaviour is unchanged**: PD and POSITION feedforward variants still apply the differentiated velocity feedforward after dispatch and retain protection-speed clamping, so the new zeroing does not overwrite it.
+- 📄 The "current pre-release" line on the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) page points at 4.4.73. Chinese and English pages updated in sync
+
 ## October 2026
 
 ### v1.2.50 (2026-10-29)

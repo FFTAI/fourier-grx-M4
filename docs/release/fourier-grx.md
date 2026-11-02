@@ -92,7 +92,7 @@ has_toc: true
 - 预发布包**不会**被 `fourier-grx update` 的自动探测发现，也不列入上表。
 - 安装方式：`fourier-grx update <版本>-prerelease`，例如 `fourier-grx update 4.4.53-prerelease`。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
 - 安装后仍需执行 `fourier-grx install` 完成部署。
-- 当前预发布：`fourier-grx update 4.4.72-prerelease`（2026-10-29 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为**站立与限膝站立改用 medium 档 PD**（P1：kp 350 / kd `[25×4]`；T1/T2：kp 500 / kd `[30×4]`，0.2 秒纯阻尼预热不变），并将 **P1 medium 档 kd 统一为 `[25×4]`**，同步影响调步频助力任务及限膝变体；其他任务的基线档与 hard 档不变。详见 [更新日志](/fourier-grx-M4/docs/changelog)。
+- 当前预发布：`fourier-grx update 4.4.73-prerelease`（2026-11-02 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为 **M4L 任务下发 PD / 位置目标时显式清零速度 / 力矩指令**，防止上一任务的前馈值残留到下一任务；PD / POSITION 前馈任务随后写入有效前馈，语义不变。详见 [更新日志](/fourier-grx-M4/docs/changelog)。
 - ⚠️ **M4LP1 请勿安装 `4.4.55-prerelease`**：该包（及 v4.4.52 ~ 4.4.55 正式版）在 P1 上会因缺失关节保护计数器属性而在启动后立即退出；请使用 `4.4.56-prerelease` 及以上。M4LT1 / M4LT2 不受影响。
 
 参数细节见 [命令行工具 · 预发布渠道](/fourier-grx-M4/docs/reference/command_line_tool#预发布渠道)。
