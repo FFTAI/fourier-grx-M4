@@ -20,7 +20,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-10-29 | **4.4.72** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | ✅ Active |
+| 2026-11-02 | **4.4.73** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4473) | ✅ Active |
+| 2026-10-29 | 4.4.72 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | ❌ No longer supported |
 | 2026-10-28 | 4.4.71 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4471) | ❌ No longer supported |
 | 2026-10-28 | 4.4.70 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4470) | ❌ No longer supported |
 | 2026-10-26 | 4.4.69 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | ❌ No longer supported |
@@ -101,6 +102,25 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.73
+
+> 📅 2026-11-02 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **Stale velocity and effort commands are cleared between tasks**
+
+- When M4L rotary and prismatic tasks dispatch PD or position targets, they now explicitly write zero as the actuator velocity and effort targets, preventing feedforward values left by the previous task from taking effect after a task switch.
+- Coverage includes standing, knee-restriction standing, forward walking, marching, assist (adjust-PD / adjust-dt), joint tests, border-and-return, prismatic movement, and the M4LT2 emergency-stop high-damping task.
+- The high-damping task previously cleared these commands only on its `function_standalone()` path; the `function_component()` path could still inherit stale values. Both paths are now aligned.
+
+🔧 **Feedforward behaviour is unchanged**
+
+- PD and POSITION feedforward variants run the normal task output first, then the feedforward mixin writes the differentiated velocity feedforward, so the new zeroing does not overwrite valid feedforward.
+- Velocity feedforward continues to be clamped to the model-specific protection velocity, and effort feedforward remains zero.
+
+Everything else is identical to v4.4.72.
+
+---
 
 ### 4.4.72
 

@@ -19,7 +19,8 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
 |----------|------|------|----------|----------|
-| 2026-10-29 | **4.4.72** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4472) | ✅ 支持中 |
+| 2026-11-02 | **4.4.73** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4473) | ✅ 支持中 |
+| 2026-10-29 | 4.4.72 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4472) | ❌ 不再支持 |
 | 2026-10-28 | 4.4.71 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4471) | ❌ 不再支持 |
 | 2026-10-28 | 4.4.70 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4470) | ❌ 不再支持 |
 | 2026-10-26 | 4.4.69 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4469) | ❌ 不再支持 |
@@ -100,6 +101,25 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.73
+
+> 📅 2026-11-02 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **清除任务间残留的速度 / 力矩指令**
+
+- M4L 旋转关节与直线关节任务在下发 PD / 位置目标时，显式将执行器速度目标与力矩目标写为 0，防止上一任务留下的速度或力矩前馈在任务切换后继续生效。
+- 覆盖站立、限膝站立、前向行走、原地踏步、助力调 PD / 调 dt、关节测试、边界往返、直线关节移动，以及 M4LT2 急停高阻尼保护任务。
+- 高阻尼任务此前只在 `function_standalone()` 路径中清零，`function_component()` 路径仍可能继承残留值；本版两条路径均已对齐。
+
+🔧 **前馈控制语义保持不变**
+
+- PD / POSITION 前馈任务会先执行普通任务输出，再由前馈 mixin 写入数值微分得到的速度前馈。因此，任务输出中的清零不会覆盖有效前馈。
+- 速度前馈继续按机型保护速度限幅；力矩前馈仍保持 0。
+
+其余功能与 v4.4.72 相同。
+
+---
 
 ### 4.4.72
 

@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.52 (2026-11-02)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.73 is now stable**: `fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-02 17:37, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.73`
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.73 row and release notes; 4.4.72 moves to "No longer supported". Highlights: M4L tasks now clear velocity and effort commands when dispatching PD or position targets, preventing values left by the previous task from affecting the next one. Feedforward variants still write their valid velocity feedforward afterwards, preserving feedforward behaviour. The missing clearance in the high-damping task's component path was also fixed.
+- 📄 The Chinese and English emergency-stop high-damping task pages record this release. Chinese and English pages updated in sync
+
 ### v1.2.51 (2026-11-02)
 
 **Release**
