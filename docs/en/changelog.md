@@ -18,7 +18,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Documentation changes**
 
-- 📋 The [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) version table now splits the old single column into **Release Type** (official vs. internal build) and **Support** (long-term supported vs. no longer supported), so the two aspects are stated independently.
+- 📋 The [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) version table now splits the old single column into **Release Type** (official vs. internal build) and **Support** (long-term supported vs. no longer supported), so the two aspects are stated independently; on official rows the version number and release type are also set in bold.
 - ✅ **Long-term support scope clarified**: the three official releases 4.4.40, 4.4.43, and 4.4.72 are all kept under long-term support (4.4.40 and 4.4.43 were previously mislabelled as unsupported); internal builds are not covered.
 - 📄 Each official release section now carries a "Release type · Support" marker, and the release index and pre-release channel notes state the same long-term-support policy. Chinese and English pages updated in sync
 

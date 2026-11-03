@@ -16,7 +16,7 @@ nav_exclude: true
 
 > ⚠️ Only **4.4.40, 4.4.43, and 4.4.72** are genuine official Fourier-GRX releases, and all three are kept under **long-term support**. All other `blaze` packages are internal builds delivered through the `blaze` directory, are not official releases, and are not covered by long-term support.
 >
-> **Release Type** and **Support** are two independent columns: *Release Type* says whether a version is an official release or an internal build (`blaze` is only a delivery channel and does not imply an official release); *Support* says whether the version is still maintained. The two line up here — official releases are long-term supported, internal builds are not.
+> **Release Type** and **Support** are two independent columns: *Release Type* says whether a version is an official release or an internal build (`blaze` is only a delivery channel and does not imply an official release); *Support* says whether the version is still maintained. The two line up here — official releases are long-term supported, internal builds are not. On official rows both the version number and the release type are shown in **bold** so they stand out at a glance.
 >
 > New deployments should use the latest official release, **4.4.72**. Versions 4.4.40 and 4.4.43 remain within their support period, so machines already running them can stay put; no forced upgrade is required.
 >
@@ -25,7 +25,7 @@ nav_exclude: true
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
 | 2026-11-02 | 4.4.73 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4473) | Internal build | ❌ No longer supported |
-| 2026-10-29 | **4.4.72** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | Official | ✅ Long-term support |
+| 2026-10-29 | **4.4.72** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | **Official** | ✅ Long-term support |
 | 2026-10-28 | 4.4.71 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4471) | Internal build | ❌ No longer supported |
 | 2026-10-28 | 4.4.70 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4470) | Internal build | ❌ No longer supported |
 | 2026-10-26 | 4.4.69 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | Internal build | ❌ No longer supported |
@@ -51,10 +51,10 @@ nav_exclude: true
 | 2026-10-10 | 4.4.46 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4446) | Internal build | ❌ No longer supported |
 | 2026-10-10 | 4.4.45 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | Internal build | ❌ No longer supported |
 | 2026-10-08 | 4.4.44 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | Internal build | ❌ No longer supported |
-| 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | Official | ✅ Long-term support |
+| 2026-09-01 | **4.4.43** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | **Official** | ✅ Long-term support |
 | 2026-08-28 | 4.4.42 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4442) | Internal build | ❌ No longer supported |
 | 2026-08-28 | 4.4.41 | Delisted | [Details](#4441) | Internal build | ❌ No longer supported |
-| 2026-08-12 | 4.4.40 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | Official | ✅ Long-term support |
+| 2026-08-12 | **4.4.40** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | **Official** | ✅ Long-term support |
 | 2026-08-06 | 4.4.39 | Delisted | [Details](#4439) | Internal build | ❌ No longer supported |
 | 2026-08-03 | 4.4.38 | Delisted | [Details](#4438) | Internal build | ❌ No longer supported |
 | 2026-07-29 | 4.4.35 | Delisted | [Details](#4435) | Internal build | ❌ No longer supported |
