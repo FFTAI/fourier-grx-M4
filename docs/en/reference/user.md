@@ -154,7 +154,7 @@ Key description list:
 | `flag_robot_position_protection` | Robot position protection flag   | bool | 0: not triggered, 1: triggered              |
 
 > ℹ️ **Note**: `flag_robot_over_load`, `flag_robot_torque_protection`, `flag_robot_velocity_protection`, and `flag_robot_position_protection` are **latched** flags — once triggered they stay set until the host writes the matching `clear_flag_*` field on `robot/client` (write 1 to request the clear; the server then resets that request bit back to 0 by itself).
-> The over-torque flag in particular stopped being cleared on task exit as of `fourier-grx` **v4.4.74** (earlier versions cleared it when a stand / walk / march task ended), which makes it consistent with the other three; the host must clear it explicitly, otherwise it keeps reporting the most recent event.
+> The over-torque flag in particular stopped being cleared on task exit as of `fourier-grx` **v4.4.74** (earlier versions cleared it when a stand / walk / march task ended), which makes it consistent with the other three; the host must clear it explicitly, otherwise it keeps reporting the most recent event. Since **v4.4.75** the task-level torque protection only trips after the limit has been exceeded for 0.1 s in a row, so a momentary spike no longer sets the flag.
 
 **Robot Basic Information**
 

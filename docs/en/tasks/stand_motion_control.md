@@ -17,13 +17,13 @@ Task Description:
 
 - The robot slowly moves all joints back to the standing posture.
 - Typically used as a preparatory action before a motion task, or to restore the initial posture after motion ends.
-- Supports torque protection: when the torque of any joint exceeds the configured threshold, the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the overload flag; the task must be re-issued to continue.
+- Supports torque protection: when the torque of any joint exceeds the configured threshold continuously for at least 0.1 s (since v4.4.75), the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the torque-protection flag; the task must be re-issued to continue.
 
 Task Parameters:
 
 | Parameter | Type | Default | Range | Description |
 |-----------|------|---------|-------|-------------|
-| Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. When enabled, if the torque of any joint exceeds the "torque protection limit", the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the overload flag; the task must be re-issued to continue. |
+| Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. When enabled, if the torque of any joint exceeds the "torque protection limit" continuously for at least 0.1 s (since v4.4.75), the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the torque-protection flag; the task must be re-issued to continue. |
 | Torque protection limit | `float` | None | [0.0, 200.0] | The maximum allowable output torque for any joint during the standing process, in Nm. Only effective when torque protection is enabled; disabled by default. |
 
 > **Task Description**:
@@ -56,3 +56,4 @@ Command Interface:
 - Added in `fourier-grx` v3.1.1.
 - `fourier-grx` v4.4.72 switches this task from the baseline to the medium PD tier: M4LP1 uses kp `[350×4]` / kd `[25×4]`, and M4LT1 / M4LT2 use kp `[500×4]` / kd `[30×4]`. The 0.2 s pure-damping warm-up is unchanged, with the medium tier restored afterwards.
 - `fourier-grx` v4.4.74: the `flag_robot_torque_protection` flag set by this task's torque protection is now **latched** — it is no longer cleared when the task exits and must be cleared by the host writing `clear_flag_robot_torque_protection`. The protection behaviour itself is unchanged: the task still exits immediately to the idle task (`TASK_IDLE`).
+- `fourier-grx` v4.4.75: this task's software torque protection gains a **0.1 s debounce** — the limit must now be exceeded for 0.1 s in a row (5 cycles at 50 Hz, 10 at 100 Hz, 20 at 200 Hz) before protection trips, and a single cycle back at or below the limit resets the count. The action on tripping and the flag latching are unchanged. Protection used to act with zero delay, so a momentary torque spike could end the task by mistake.

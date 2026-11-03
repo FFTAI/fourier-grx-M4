@@ -37,7 +37,7 @@ Task Parameters:
 > Note:
 >
 > - In this task, the base height is computed automatically from the knee restriction angle and leg lengths; the `grx.virtual_panel_command_param_6` (base height) interface has no effect on this task.
-> - `command_switch_1` (enable torque protection) and `command_param_9` (torque protection limit) take effect for this task from `fourier-grx` v4.4.54: once enabled, if the real-time torque of any joint exceeds the limit, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set. In v4.4.53 and earlier, the knee-restriction variant did not run the torque-protection check, so these two interfaces had no effect.
+> - `command_switch_1` (enable torque protection) and `command_param_9` (torque protection limit) take effect for this task from `fourier-grx` v4.4.54: once enabled, if the real-time torque of any joint exceeds the limit continuously for at least 0.1 s (since v4.4.75), the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set. In v4.4.53 and earlier, the knee-restriction variant did not run the torque-protection check, so these two interfaces had no effect.
 
 > **Knee Restriction Angle Explained**:
 >
@@ -103,3 +103,4 @@ Command interface:
 - `fourier-grx` v4.4.48 added the step lift height / double-support ratio parameter interfaces (the base height is computed automatically from the knee restriction angle and leg lengths).
 - `fourier-grx` v4.4.54 restored the torque-protection check, so `command_switch_1` and `command_param_9` now take effect: on over-torque of any joint the task exits immediately to the idle task (`TASK_IDLE`).
 - `fourier-grx` v4.4.74: the `flag_robot_torque_protection` flag set by this task's torque protection is now **latched** — it is no longer cleared when the task exits and must be cleared by the host writing `clear_flag_robot_torque_protection`. The protection behaviour itself is unchanged: the task still exits immediately to the idle task (`TASK_IDLE`).
+- `fourier-grx` v4.4.75: this task's software torque protection gains a **0.1 s debounce** — the limit must now be exceeded for 0.1 s in a row (5 cycles at 50 Hz, 10 at 100 Hz, 20 at 200 Hz) before protection trips, and a single cycle back at or below the limit resets the count. The action on tripping and the flag latching are unchanged. Protection used to act with zero delay, so a momentary torque spike could end the task by mistake.

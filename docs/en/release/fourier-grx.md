@@ -24,6 +24,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-03 | 4.4.75 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4475) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.74 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4474) | Internal build | ❌ No longer supported |
 | 2026-11-02 | 4.4.73 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4473) | Internal build | ❌ No longer supported |
 | 2026-10-29 | **4.4.72** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | **Official** | ✅ Long-term support |
@@ -108,6 +109,25 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.75
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+
+> 📅 2026-11-03 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **A 0.1 s debounce is added to the task-level torque protection**
+
+- Standing, forward walking, mark time, the knee-restriction variants and the harmonic-coefficient walk used to trip on the first over-limit reading: one control cycle above the "torque protection limit" was enough to pause motion, set the over-torque flag and switch to the idle task, so momentary spikes such as a heel strike could end a perfectly good task.
+- Protection now requires the limit to be exceeded **continuously** for `torque_protection_debounce_period` (0.1 s); a single cycle back at or below the limit resets the counter. The number of cycles is derived from `control_period`, so the wall-clock window is the same on every model: 5 cycles at 50 Hz, 10 at 100 Hz, 20 at 200 Hz — 100 ms either way.
+- The counter is cleared on every task activation and while protection is disabled or no limit was sent, so nothing carries over between tasks.
+- 0.1 s matches `joint_protection_debounce_period` on the robot side, so the task-level and actuator-level protections now share one timing convention.
+- Everything after the trip is unchanged from v4.4.74: motion pauses, `flag_robot_torque_protection` is set and stays latched until the host writes `clear_flag_robot_torque_protection`, the task switches to `TASK_IDLE`, and the warning log states the confirmation window.
+- The hard safety net is untouched: the actuator overload protection driven by `joint_protect_effort` remains a separate channel with its own thresholds and behaviour.
+
+Everything else is unchanged from v4.4.74.
+
+---
 
 ### 4.4.74
 

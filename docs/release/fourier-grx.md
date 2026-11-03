@@ -23,6 +23,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 发布性质 | 支持状态 |
 |----------|------|------|----------|----------|----------|
+| 2026-11-03 | 4.4.75 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4475) | 内测构建 | ❌ 不再支持 |
 | 2026-11-03 | 4.4.74 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4474) | 内测构建 | ❌ 不再支持 |
 | 2026-11-02 | 4.4.73 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4473) | 内测构建 | ❌ 不再支持 |
 | 2026-10-29 | **4.4.72** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4472) | **正式发布** | ✅ 长期支持 |
@@ -107,6 +108,25 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.75
+
+> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布** &nbsp;·&nbsp; 支持状态：**不再支持**。当前正式版本仍为 4.4.72，其保持长期支持。
+
+> 📅 2026-11-03 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **任务软件力矩保护增加 0.1 s 消抖**
+
+- 站立、前向行走、原地踏步、膝关节受限变体与谐波系数前向行走的软件力矩保护，此前为「一超限即触发」：只要某个控制周期读到力矩超过「保护力矩限值」，当拍就暂停运动、置位过力矩标志并切到空闲任务。落地冲击、脚跟触地等瞬时尖峰因此可能误结束一次正常任务。
+- 本版改为需**连续**超限 `torque_protection_debounce_period`（0.1 s）才触发；任意一拍回落到限值及以下，计数立即清零。确认拍数按 `control_period` 折算，与机型控制频率无关：50 Hz 为 5 拍、100 Hz 为 10 拍、200 Hz 为 20 拍，实际时长恒为 100 ms。
+- 计数在每次任务激活时清零，且保护关闭或限值未下发时不累计，避免跨任务残留。
+- 取值与机器人侧执行器过载保护的 `joint_protection_debounce_period`（同为 0.1 s）保持一致，两层保护的时间口径统一。
+- 触发后的行为与 v4.4.74 相同：暂停运动、置位并保持锁存 `flag_robot_torque_protection`（需上位机写入 `clear_flag_robot_torque_protection` 清除）、切换至空闲任务（`TASK_IDLE`），日志按 warning 输出并标注确认时长。
+- 硬安全网不受影响：机器人侧按 `joint_protect_effort` 判定的执行器过载保护仍是独立通道，其触发条件与阈值均未改动。
+
+其余功能与 v4.4.74 相同。
+
+---
 
 ### 4.4.74
 

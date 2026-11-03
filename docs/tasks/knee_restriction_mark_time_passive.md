@@ -31,7 +31,7 @@ has_toc: true
 | 停止运动标志位   | `bool`  | false | (true, false) | 是否停止运动，true 表示停止，false 表示继续行走。             |
 | 暂停运动标志位   | `bool`  | false | (true, false) | 是否暂停运动，true 表示暂停，需重启任务才能继续行走。         |
 
-> 说明：`command_switch_1` / `command_param_9` 自 `fourier-grx` v4.4.54 起对本任务生效，启用后任一关节实时力矩超过限值时，机器人立即退出本任务并切换至空闲任务（`TASK_IDLE`），同时置位过力矩保护标志（v4.4.53 及更早版本未执行该判定）。基座高度由膝限位角度与腿长自动计算，`param_6` 不生效。
+> 说明：`command_switch_1` / `command_param_9` 自 `fourier-grx` v4.4.54 起对本任务生效，启用后任一关节实时力矩持续超过限值 0.1 s（v4.4.75 起）时，机器人立即退出本任务并切换至空闲任务（`TASK_IDLE`），同时置位过力矩保护标志（v4.4.53 及更早版本未执行该判定）。基座高度由膝限位角度与腿长自动计算，`param_6` 不生效。
 >
 > **膝关节受限角度说明**：
 >
@@ -90,3 +90,4 @@ has_toc: true
 - `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。
 - `fourier-grx` v4.4.54 版本恢复力矩保护判定，`command_switch_1` 与 `command_param_9` 自此生效：任一关节过力矩时立即退出本任务并切换至空闲任务（`TASK_IDLE`）；同时继承 TID 4112 的暂停指令读取，`command_pause` 自此生效。
 - `fourier-grx` v4.4.74 版本：本任务触发力矩保护后置位的过力矩保护标志 `flag_robot_torque_protection` 改为**锁存**，不再随任务退出自动清除，需上位机写入 `clear_flag_robot_torque_protection` 清除。保护触发后的动作不变：仍立即退出本任务并切换至空闲任务（`TASK_IDLE`）。
+- `fourier-grx` v4.4.75 版本：本任务的软件力矩保护增加 **0.1 s 消抖**——需连续超过「保护力矩限值」达 0.1 s（按控制周期折算：50 Hz 为 5 拍、100 Hz 为 10 拍、200 Hz 为 20 拍）才触发，任一拍回落到限值及以下即清零计数；触发后的动作与标志锁存行为不变。此前为零延时判定，瞬时力矩尖峰可能误退出任务。

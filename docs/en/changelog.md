@@ -14,6 +14,16 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.56 (2026-11-03)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.75 is an internal blaze build, not an official release**: `fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-03 16:29, branch `m4-lfs`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.75`
+- ✨ **A 0.1 s debounce was added to task-level torque protection**: standing, forward walking, mark time, the knee-restriction variants and the harmonic-coefficient walk used to trip on the first over-limit reading, so a momentary spike such as a heel strike could end a task by mistake. The limit must now be exceeded continuously for 0.1 s and a single cycle back below the limit resets the count; the cycle count comes from `control_period` (5/10/20 cycles at 50/100/200 Hz) so the window is always 100 ms, matching `joint_protection_debounce_period` on the robot side. Everything after a trip and the v4.4.74 flag latching are unchanged, and the actuator overload protection is untouched
+- 🔧 The debounce counter became a class attribute that is cleared on task activation, so tasks that override `function_on_activate()` without calling `super()` cannot hit a missing attribute
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.75 row (internal build · no longer supported) and release notes; the current official release remains **4.4.72**
+- 🔧 The standing task pages wrongly said the trip sets the "overload flag" — it is the torque-protection flag; corrected in 6 places across the Chinese and English pages, and seven task pages now describe the trigger as "exceeded for 0.1 s" rather than "exceeded, exit immediately". Chinese and English pages updated in sync
+
 ### v1.2.55 (2026-11-03)
 
 **Release**
