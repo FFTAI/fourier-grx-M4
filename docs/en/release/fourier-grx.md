@@ -24,6 +24,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-03 | 4.4.74 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4474) | Internal build | ❌ No longer supported |
 | 2026-11-02 | 4.4.73 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4473) | Internal build | ❌ No longer supported |
 | 2026-10-29 | **4.4.72** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | **Official** | ✅ Long-term support |
 | 2026-10-28 | 4.4.71 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4471) | Internal build | ❌ No longer supported |
@@ -107,6 +108,27 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.74
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+
+> 📅 2026-11-03 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🐛 **The over-torque protection flag is now latched**
+
+- The `flag_robot_torque_protection` flag set by torque protection used to be cleared on task exit (in `function_on_deactivate()` of stand, forward walk, mark time and their variants). Because the same cycle also switches to the idle task, the flag existed for a single control cycle and a 50 Hz host polling loop could miss the event entirely.
+- That automatic clearance is removed: the flag now stays set until the host writes `clear_flag_robot_torque_protection` on `robot/client` (write 1 to request the clear; the server resets that request bit itself).
+- The over-torque flag now matches the latching behaviour of `flag_robot_over_load`, `flag_robot_velocity_protection`, and `flag_robot_position_protection`.
+- The protection action is unchanged: on over-torque the robot still pauses movement and switches to the idle task (`TASK_IDLE`). The log line moves from info to warning and states that the host must clear the flag. See [User API · Robot state](/fourier-grx-M4/docs/en/reference/user#robotserver-interface-protocol-state-information).
+
+🔧 **The stand task reuses the base-class torque check**
+
+- The stand task carried an inline copy of the torque check that duplicated `_check_torque_protection()` in the base class; it now calls the base implementation so latching semantics live in one place. The condition and the resulting action are identical.
+
+Everything else is unchanged from v4.4.73.
+
+---
 
 ### 4.4.73
 

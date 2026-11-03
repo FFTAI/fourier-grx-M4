@@ -89,3 +89,4 @@ has_toc: true
 - `fourier-grx` v4.2.6 版本新增该功能。
 - `fourier-grx` v4.4.46 版本新增步频上报接口 `rehab.step_frequency`（单位：步/分钟）。
 - `fourier-grx` v4.4.54 版本恢复力矩保护判定，`command_switch_1` 与 `command_param_9` 自此生效：任一关节过力矩时立即退出本任务并切换至空闲任务（`TASK_IDLE`）；同时继承 TID 4112 的暂停指令读取，`command_pause` 自此生效。
+- `fourier-grx` v4.4.74 版本：本任务触发力矩保护后置位的过力矩保护标志 `flag_robot_torque_protection` 改为**锁存**，不再随任务退出自动清除，需上位机写入 `clear_flag_robot_torque_protection` 清除。保护触发后的动作不变：仍立即退出本任务并切换至空闲任务（`TASK_IDLE`）。

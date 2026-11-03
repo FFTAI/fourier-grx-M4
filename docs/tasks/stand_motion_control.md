@@ -54,3 +54,4 @@ has_toc: true
 
 - `fourier-grx` v3.1.1 版本新增该功能。
 - `fourier-grx` v4.4.72 版本将本任务 PD 由基线档改为 medium 档：M4LP1 为 kp `[350×4]` / kd `[25×4]`，M4LT1 / M4LT2 为 kp `[500×4]` / kd `[30×4]`。0.2 秒纯阻尼预热不变，预热结束后恢复 medium 档。
+- `fourier-grx` v4.4.74 版本：本任务触发力矩保护后置位的过力矩保护标志 `flag_robot_torque_protection` 改为**锁存**，不再随任务退出自动清除，需上位机写入 `clear_flag_robot_torque_protection` 清除。保护触发后的动作不变：仍立即退出本任务并切换至空闲任务（`TASK_IDLE`）。

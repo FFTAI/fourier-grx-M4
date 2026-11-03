@@ -23,6 +23,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 发布性质 | 支持状态 |
 |----------|------|------|----------|----------|----------|
+| 2026-11-03 | 4.4.74 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4474) | 内测构建 | ❌ 不再支持 |
 | 2026-11-02 | 4.4.73 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4473) | 内测构建 | ❌ 不再支持 |
 | 2026-10-29 | **4.4.72** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4472) | **正式发布** | ✅ 长期支持 |
 | 2026-10-28 | 4.4.71 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4471) | 内测构建 | ❌ 不再支持 |
@@ -106,6 +107,27 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.74
+
+> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布** &nbsp;·&nbsp; 支持状态：**不再支持**。当前正式版本仍为 4.4.72，其保持长期支持。
+
+> 📅 2026-11-03 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🐛 **过力矩保护标志改为锁存**
+
+- 触发力矩保护后置位的 `flag_robot_torque_protection`，此前会在任务退出时（站立 / 前向行走 / 原地踏步及其变体的 `function_on_deactivate()`）被自动清除。由于保护判定的同时就会切到空闲任务，标志实际只存在一个控制周期，50 Hz 的上位机通信循环有概率完全读不到这次事件。
+- 本版取消任务退出时的自动清除：标志保持置位，直到上位机在 `robot/client` 写入 `clear_flag_robot_torque_protection`（写 1 触发清除，服务端随后自行复位该清除位）。
+- 至此过力矩标志与 `flag_robot_over_load`、`flag_robot_velocity_protection`、`flag_robot_position_protection` 的锁存行为一致。
+- 保护动作本身不变：判定到超力矩后仍立即暂停运动并切换至空闲任务（`TASK_IDLE`）；告警日志由 info 提升为 warning，并注明该标志需由上位机清除。详见 [User API 接口协议 · 机器人状态](/fourier-grx-M4/docs/reference/user#robotserver-接口协议-状态信息)。
+
+🔧 **站立任务的力矩判定复用基类**
+
+- 站立任务内联的过力矩判定与基类 `_check_torque_protection()` 完全重复，本版改为直接调用基类实现，锁存等语义后续只需改一处；判定条件与动作完全等价。
+
+其余功能与 v4.4.73 相同。
+
+---
 
 ### 4.4.73
 

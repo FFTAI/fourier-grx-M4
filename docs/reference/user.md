@@ -152,6 +152,9 @@ key 说明列表：
 | `flag_robot_velocity_protection` | 机器人速度保护标志 | bool | 0: 未触发，1: 触发    |
 | `flag_robot_position_protection` | 机器人位置保护标志 | bool | 0: 未触发，1: 触发    |
 
+> ℹ️ **说明**：`flag_robot_over_load`、`flag_robot_torque_protection`、`flag_robot_velocity_protection`、`flag_robot_position_protection` 均为**锁存**标志——触发后一直保持置位，直到上位机在 `robot/client` 写入对应的 `clear_flag_*`（写 1 触发清除，服务端随后自动把该清除位复位为 0）。
+> 其中过力矩保护标志自 `fourier-grx` **v4.4.74** 起不再随任务退出自动清除（此前退出站立 / 行走 / 踏步任务时会清除），与其余三个标志的锁存行为一致；上位机需要显式清除，否则读到的始终是最近一次事件。
+
 **机器人基本信息**
 
 | key                    | 说明       | 数据类型   | 具体描述          |

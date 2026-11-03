@@ -13,6 +13,15 @@ has_toc: true
 
 ## 2026 年 11 月
 
+### v1.2.55 (2026-11-03)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.74 内测构建（非正式发布）**：`fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb`（2026-11-03 15:21 构建，分支 `m4-lfs`，`X-Variant` 为 `linux-arm64-cpu-m4l-blaze`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.74`
+- 🐛 **过力矩保护标志改为锁存**：此前站立 / 前向行走 / 原地踏步及其变体在任务退出时会清除 `flag_robot_torque_protection`，而保护判定的同一周期已切到空闲任务，标志实际只存在一个控制周期，50 Hz 上位机轮询有概率完全读不到这次事件。本版取消自动清除，标志保持置位直到上位机写入 `clear_flag_robot_torque_protection`，与过载 / 速度 / 位置三个保护的锁存行为一致；保护动作本身不变（仍立即暂停并切 `TASK_IDLE`），日志由 info 提升为 warning 并注明清除方式。详见 [User API 接口协议](/fourier-grx-M4/docs/reference/user#robotserver-接口协议-状态信息)
+- 🔧 站立任务内联的过力矩判定与基类 `_check_torque_protection()` 完全重复，改为复用基类实现，行为等价
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.74 行与更新内容小节（内测构建 · 不再支持）；当前正式版本仍为 **4.4.72**。站立、前向行走、原地踏步、三个膝关节受限变体与谐波系数前向行走共 7 个任务页补充本版说明。中英文同步
+
 ### v1.2.54 (2026-11-03)
 
 **文档调整**

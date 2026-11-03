@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.55 (2026-11-03)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.74 is an internal blaze build, not an official release**: `fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-03 15:21, branch `m4-lfs`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.74`
+- 🐛 **The over-torque protection flag is now latched**: stand, forward walk, mark time and their variants used to clear `flag_robot_torque_protection` on task exit, but since the same cycle already switches to the idle task the flag lasted a single control cycle and a 50 Hz host polling loop could miss the event entirely. The automatic clearance is removed, so the flag stays set until the host writes `clear_flag_robot_torque_protection`, matching how the overload, velocity and position flags latch. The protection action is unchanged (movement still stops and the task switches to `TASK_IDLE`); the log line moves to warning and names the clear field. See the [User API reference](/fourier-grx-M4/docs/en/reference/user#robotserver-interface-protocol-state-information)
+- 🔧 The stand task's inline torque check duplicated `_check_torque_protection()` in the base class and now calls the base implementation; behaviour is identical
+- 📋 The [firmware version table](/fourier-grx-M4/docs/release/fourier-grx) gains the 4.4.74 row (internal build · no longer supported) and its release notes; the current official release remains **4.4.72**. Seven task pages — stand, forward walk, mark time, the three knee-restriction variants and the harmonic-coefficient walk — record this release. Chinese and English pages updated in sync
+
 ### v1.2.54 (2026-11-03)
 
 **Documentation changes**
