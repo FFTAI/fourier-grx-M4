@@ -108,7 +108,7 @@ Run `fourier-grx install` to update the deployment layer — see [The Two Layers
 
 ### Pre-release Channel
 
-Pre-release builds carry `prerelease` (instead of `blaze` for stable builds) as the last segment of both the file name and the `X-Variant`, keeping the model segment unchanged, e.g. `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`.
+Pre-release builds carry `prerelease` instead of `blaze` as the last segment of both the file name and the `X-Variant`, keeping the model segment unchanged — e.g. `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`. A `blaze` suffix identifies the delivery channel, not official status; only 4.4.40, 4.4.43, and 4.4.72 are official releases.
 
 - The automatic probe above builds file names from the installed package's `X-Variant` (`...-blaze`), so it will **never** find a pre-release package.
 - Pre-release builds can only be installed explicitly with `<version>-prerelease`:

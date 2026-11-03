@@ -13,11 +13,19 @@ has_toc: true
 
 ## 2026 年 11 月
 
+### v1.2.53 (2026-11-03)
+
+**文档修正**
+
+- 📋 **统一 Fourier-GRX 发布版本口径**：真正的正式发布版本仅有 **4.4.40、4.4.43、4.4.72**；此前文档中把其他 `blaze` 包描述为正式发布或 stable 的表述已修正为内测构建 / 非正式发布。
+- ⚠️ **4.4.73 发布性质更正**：该包虽通过 `blaze` 目录交付，但不作为正式发布版本；当前正式版本仍为 **4.4.72**。
+- 📄 [固件发布](/fourier-grx-M4/docs/release)与 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)版本表现按「正式发布 / 内测构建」分类，历史更新日志、任务页和命令行说明已同步更正。中英文同步
+
 ### v1.2.52 (2026-11-02)
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.73 正式发布**：`fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb`（2026-11-02 17:37 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.73`
+- 📦 `fourier-grx` **v4.4.73 内测构建（非正式发布）**：`fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb`（2026-11-02 17:37 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.73`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.73 行与更新内容小节，4.4.72 转不再支持。本版要点：M4L 任务下发 PD / 位置目标时显式清零速度 / 力矩指令，避免上一任务的残留值参与下一任务控制；前馈任务随后写入有效速度前馈，语义不变。高阻尼任务 component 分支此前遗漏清零，本版一并补齐。
 - 📄 急停高阻尼任务中英文页补充本版更新说明。中英文同步
 
@@ -53,7 +61,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.71 正式发布**：`fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb`（2026-10-28 16:53 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.71`
+- 📦 `fourier-grx` **v4.4.71 内测构建（非正式发布）**：`fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb`（2026-10-28 16:53 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.71`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.71 行与更新内容小节，4.4.70 转不再支持。本版要点：**回退 v4.4.70 的整定**（hard 档 kp `[1000×4]` / kd `[60×4]`、步态平滑滤波截止 2.5 Hz、参考轨迹总延迟补偿 0.06 s、负载检测 PD 爬升下限 0.01，数值与 4.4.69 一致）；急停高阻尼任务（TID 4600，仅 M4LT2）日志区分触发成因；⚠️ 键盘行走默认速度维持 0.5 m/s 未随其他项回退。除这两项外源码与 4.4.69 逐文件一致。
 - 📄 急停高阻尼任务页新增触发成因与日志文本对照，被动前向行走、被动原地踏步、助力前向行走（调 PD / 调 dt）与谐波系数前向走路任务页标注本版回退；保护机制、急停高阻尼与自动 / 手动校准 4 页的 8 处陈旧拍数表述改为按秒描述。中英文同步
 
@@ -63,7 +71,7 @@ has_toc: true
 
 - 📦 预发布渠道更新为 `fourier-grx` **v4.4.71**：`fourier-grx-4.4.71-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-28 16:42 构建，分支 `m4-lfs`），安装方式 `fourier-grx update 4.4.71-prerelease`
 - 🔧 **回退 v4.4.70 的整定，数值回到 v4.4.69**：hard 档 kp `[1000×4]` / kd `[60×4]`（T1/T2，P1 仍 500 / 45）、步态平滑滤波截止 8.0 → 2.5 Hz、参考轨迹总延迟补偿 0.03 → 0.06 s、负载检测 PD 爬升下限 0.1 → 0.01。已逐文件与 `v4.4.69` 比对，除下一条所述的速度项外**回退干净**。
-- ⚠️ **键盘行走默认速度维持 0.5 m/s，本次未随其他项一并回退**：该值自 v4.4.70 起生效且已正式发布，若再改回 0.25 会让步频来回变化，故保持现状。需要慢速请用面板或上位机设置速度参数。
+- ⚠️ **键盘行走默认速度维持 0.5 m/s，本次未随其他项一并回退**：该值自 v4.4.70 起生效并随内测构建发布，若再改回 0.25 会让步频来回变化，故保持现状。需要慢速请用面板或上位机设置速度参数。
 - ✨ **急停高阻尼任务的日志区分触发成因**（TID 4600，仅 M4LT2）：原先无论何因都打印 "Emergency stop detected"。现在按 `flag_emergent_stop` 与 `flag_host_heartbeat_timeout` 分别报告，同时成立时以 " and " 连接，均不成立时报告为手动进入。由于 `flag_emergent_stop` 由 ioboard 急停开关与全执行器通信超时**共用**，进一步借 `flag_all_actuator_timeout` 区分：通信超时成立时报告 "Emergency stop or all-actuator communication timeout"（两者可能同时发生，故据实并报而不断言单一原因），否则报告 "Emergency stop (ioboard button)"。与[该页触发源表](/fourier-grx-M4/docs/tasks/emergency_stop_high_damping)所列的三种触发源对齐。
 - 🐛 **文档修正 8 处陈旧的拍数表述**：秒制化与 M4LT2 提频到 200 Hz 之后，「连续 5 个控制周期消抖」「连续超时 ≥ 50 个控制周期」「采样约 1 秒（50 个控制周期）」这三类说法只在 50 Hz 下成立（T2 现为 200 拍），已统一改为按秒描述并注明拍数由控制周期折算。涉及[保护机制](/fourier-grx-M4/docs/reference/protection)、急停高阻尼、自动 / 手动校准共 4 页（中英文各 4 页）。历史更新日志中的旧数值属当时事实，保持原样。
 - 📄 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx)页「当前预发布」指向 4.4.71。中英文同步
@@ -72,7 +80,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.70 正式发布**：`fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb`（2026-10-28 13:34 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.70`
+- 📦 `fourier-grx` **v4.4.70 内测构建（非正式发布）**：`fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb`（2026-10-28 13:34 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.70`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.70 行与更新内容小节，4.4.69 转不再支持。本版要点：hard 档提至 kp `[1500×4]` / kd `[90×4]`（T1/T2，P1 不变；髋 ζ=0.77 空载、膝 ζ=1.37 过阻尼）；步态平滑滤波截止 2.5 → 8.0 Hz、参考轨迹总延迟补偿 0.06 → 0.03 s；负载检测 PD 爬升下限 0.01 → 0.1；⚠️ **键盘触发的行走默认速度 0.25 → 0.5 m/s（步长不变时步频翻倍）**；hard 刚度提高使 140 N·m 过力矩保护的触发阈值由约 8° 跟踪误差收紧到约 5.3°。
 - 📄 被动前向行走、被动原地踏步、助力前向行走（调 PD / 调 dt）与谐波系数前向走路任务页补充本版说明，并按各任务实际适用范围分别措辞：助力任务仍全程使用 medium 档、hard 变更不适用；原地踏步与谐波走路不受键盘速度变更影响。中英文同步
 
@@ -92,7 +100,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.69 正式发布**：`fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb`（2026-10-26 18:07 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.69`
+- 📦 `fourier-grx` **v4.4.69 内测构建（非正式发布）**：`fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb`（2026-10-26 18:07 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.69`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.69 行与更新内容小节，4.4.68 转不再支持。本版要点：新增正弦轨迹与谐波系数前向走路的四个前馈变体（前馈家族 4 → 8 个）；⚠️ **旋转关节 TID 重排**——原 4110–4113 四个基础动作任务改到 4128–4131，4110–4113 由 PD + 前馈变体接手，同一编号对应的任务发生变化，上位机必须同步；web 任务分组改为逐段划分，避免走路 / 前馈任务被误归入校准。
 - 📄 [任务列表](/fourier-grx-M4/docs/tasks)新增「v4.4.69 旋转关节任务编号变更」对照表；被动前向行走、被动原地踏步、谐波系数前向走路三个任务页的 TID 与更新日志同步；[运行类型](/fourier-grx-M4/docs/reference/run_type)与[用户数据接口](/fourier-grx-M4/docs/reference/user)中的编号引用一并更正。中英文同步
 
@@ -119,7 +127,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.68 正式发布**：`fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb`（2026-10-26 17:08 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.68`
+- 📦 `fourier-grx` **v4.4.68 内测构建（非正式发布）**：`fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb`（2026-10-26 17:08 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.68`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.68 行与更新内容小节，4.4.67 转不再支持。本版要点：M4LT2 控制频率提至 200 Hz（`control_period` 0.01 → 0.005，T1 保持 100 Hz、P1 保持 50 Hz）；hard 档整定为 kp `[1000×4]` / kd `[60×4]`、medium 档 kp 统一为 `[500×4]`；修复前馈任务（TID 4124–4127）速度前馈因调度路径从未生效；关节归零位置平均窗口改按秒定义；FSA v3 错误码按等级过滤上抛（⚠️ 行为变化：level 1 警告不再触发任务切 IDLE）
 - 📄 被动前向行走 / 原地踏步任务页与前向行走 / 原地踏步助力调节（adjust_dt）任务页补充本版说明。中英文同步
 
@@ -140,7 +148,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.67 正式发布**：`fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb`（2026-10-23 08:57 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.67`
+- 📦 `fourier-grx` **v4.4.67 内测构建（非正式发布）**：`fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb`（2026-10-23 08:57 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.67`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.67 行与更新内容小节，4.4.66 转不再支持。本版要点：FSA v3 清错接口实现（原为空操作）；v3 错误码解析恒返回 None 修复，M4LT2 执行器错误保护恢复生效（⚠️ 行为变化）
 - 📄 中英文同步
 
@@ -156,7 +164,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.66 正式发布**：`fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb`（2026-10-22 20:44 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.66`
+- 📦 `fourier-grx` **v4.4.66 内测构建（非正式发布）**：`fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb`（2026-10-22 20:44 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.66`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.66 行与更新内容小节，4.4.65 转不再支持。本版要点：新增 medium PD 档，助力调节任务由 hard 档改为全程 medium 档（⚠️ 行为变化，助力手感变软）；T1/T2 hard 档髋 kd 增至 80（ζ 0.94）
 - 📄 助力调节任务页补充 medium 档说明。中英文同步
 
@@ -172,7 +180,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.65 正式发布**：`fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb`（2026-10-22 12:00 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.65`
+- 📦 `fourier-grx` **v4.4.65 内测构建（非正式发布）**：`fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb`（2026-10-22 12:00 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.65`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.65 行与更新内容小节，4.4.64 转不再支持。本版要点：新增前向行走 / 原地踏步前馈任务变体（TID 4124–4127，POSITION_FF / PD_FF）；hard 档 kp `[800,1000]` / kd `[40,50]`；POSITION 链路全层透传 velocity_ff
 - 📄 [前向行走（被动）](/fourier-grx-M4/docs/tasks/forward_walk_passive)与[原地踏步（被动）](/fourier-grx-M4/docs/tasks/mark_time_passive)页补充新变体说明。中英文同步
 
@@ -188,7 +196,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.64 正式发布**：`fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb`（2026-10-21 16:00 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.64`
+- 📦 `fourier-grx` **v4.4.64 内测构建（非正式发布）**：`fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb`（2026-10-21 16:00 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.64`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.64 行与更新内容小节，4.4.63 转不再支持。本版要点：直线 move_length / move_offset 零位移保护（修复 NaN 指令）；move_min / move_max 指令钳制 0.25 → 0.5 mm/拍
 - 📄 中英文同步
 
@@ -204,7 +212,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.63 正式发布**：`fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 21:56 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.63`
+- 📦 `fourier-grx` **v4.4.63 内测构建（非正式发布）**：`fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 21:56 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.63`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.63 行与更新内容小节，4.4.62 转不再支持。本版要点：步态平滑滤波按截止频率 2.5 Hz 折算、总延迟补偿按 0.12 s 物理时间折算，适配 T1/T2 的 100 Hz 控制周期（50 Hz 机型行为基本不变）
 - 📄 中英文同步
 
@@ -220,7 +228,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.62 正式发布**：`fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 20:38 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.62`
+- 📦 `fourier-grx` **v4.4.62 内测构建（非正式发布）**：`fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 20:38 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.62`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.62 行与更新内容小节，4.4.61 转不再支持。本版要点：T1/T2 控制周期提升至 100 Hz（⚠️ 行为变化，前置适配已随本版一并发布）；hard 档髋 kp 增至 700；负载检测 PD 爬升修复取整停滞（kp/kd 现在能精确爬到 hard 档）；P1 不受影响
 - 📄 中英文同步
 
@@ -236,7 +244,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.61 正式发布**：`fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 18:59 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.61`
+- 📦 `fourier-grx` **v4.4.61 内测构建（非正式发布）**：`fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 18:59 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.61`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.61 行与更新内容小节，4.4.60 转不再支持。本版要点：T1/T2 旋转关节基线增益改为独立 medium 档（起步更软，⚠️ 行为变化）；hard 档髋 kd 增至 50；P1 不受影响
 - 📄 中英文同步
 
@@ -252,7 +260,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.60 正式发布**：`fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 17:13 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.60`
+- 📦 `fourier-grx` **v4.4.60 内测构建（非正式发布）**：`fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 17:13 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.60`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.60 行与更新内容小节，4.4.59 转不再支持。本版要点：髋关节 hard 档 kd 由 30 增至 45，消除空载高频振动（ζ 0.45→0.67）；⚠️ 行为变化——T1 / T2 全部旋转关节任务的髋阻尼增大，动作手感更稳
 - 📄 中英文同步
 
@@ -268,7 +276,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.59 正式发布**：`fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 14:48 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.59`
+- 📦 `fourier-grx` **v4.4.59 内测构建（非正式发布）**：`fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 14:48 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.59`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.59 行与更新内容小节，4.4.58 转不再支持。本版要点：修复直线关节自动校准电机不动与旋转标定扫掠位置保护误触发（均自 v4.4.49 起存在；**用 v4.4.49 ~ 4.4.58 做过直线关节自动校准的机器请升级后重新校准**）；其余与 4.4.58 相同
 - 📄 [校准零点（直线关节）](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)与[自动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_auto_calibrate)页去掉「正式版待发布」标注并补发布页链接。中英文同步
 
@@ -284,7 +292,7 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.58 正式发布**：`fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 13:34 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.58`
+- 📦 `fourier-grx` **v4.4.58 内测构建（非正式发布）**：`fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb`（2026-10-20 13:34 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.58`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.58 行与更新内容小节，4.4.57 转不再支持。本版要点：直线关节到位判定的纯速度计时由 5 s 增至 25 s，消除校准行程末段在接触限位前约 3.5 mm 处的提前到位误判；其余功能与 4.4.57 相同
 - 📄 [直线关节零点校准](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)页去掉「正式版待发布」标注并补发布页链接。中英文同步
 
@@ -300,9 +308,9 @@ has_toc: true
 
 **发布**
 
-- 📦 `fourier-grx` **v4.4.57 正式发布**：`fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb`（2026-10-19 17:49 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.57`
+- 📦 `fourier-grx` **v4.4.57 内测构建（非正式发布）**：`fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb`（2026-10-19 17:49 构建，分支 `m4-lfs`），安装方式 `fourier-grx update`（自动探测）或 `fourier-grx update 4.4.57`
 - 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)补 4.4.57 行与更新内容小节，4.4.54 转不再支持。本版要点：M4LP1 启动即崩溃缺陷修复（影响面 v4.4.52 ~ 4.4.56-prerelease，**P1 请直接升级 v4.4.57**）；谐波系数前向行走 4113 与规划器 4407 正式提供；旋转关节 PD hard 档 kp 统一为 `[500,500,500,500]`（T1 / T2 起步刚度下降，⚠️ 行为变化）
-- ℹ️ v4.4.55 / v4.4.56 周期的功能随本版一并正式发布，这两个版本号未单独发布正式版
+- ℹ️ v4.4.55 / v4.4.56 周期的功能随本版一并以内测构建发布，这两个版本号未单独发布正式版
 - 📄 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)与[规划器](/fourier-grx-M4/docs/tasks/planner)页去掉「正式版待发布」标注并补发布页链接。中英文同步
 
 ### v1.2.18 (2026-10-19)
@@ -338,7 +346,7 @@ has_toc: true
 - 📦 `fourier-grx` **v4.4.55 预发布包**已构建并上传预发布渠道：`fourier-grx-4.4.55-linux-arm64-cpu-m4l-prerelease.deb`（2026-10-16 11:35，构建分支 `m4-lfs`，`X-Variant` = `linux-arm64-cpu-m4l-prerelease`）
 - ⬇️ 安装方式：`fourier-grx update 4.4.55-prerelease`，随后执行 `fourier-grx install` 完成部署。该包不会被 `fourier-grx update` 的无参自动探测发现，也不列入[固件版本表](/fourier-grx-M4/docs/release/fourier-grx)
 - ✨ 本版内容：谐波系数前向行走任务 [TID 4113](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic) 与其[规划器 TID 4407](/fourier-grx-M4/docs/tasks/planner)，`rehab/server` 新增 5 个步态档位回显字段，规划器停用时的清零范围扩展至 `rehab.gait_*`
-- ✅ 正式版已随 **v4.4.57** 发布（2026-10-19），下载链接见[固件版本表](/fourier-grx-M4/docs/release/fourier-grx)（4.4.55 / 4.4.56 未单独发布正式版）
+- ✅ 内测构建已随 **v4.4.57** 发布（2026-10-19），下载链接见[固件版本表](/fourier-grx-M4/docs/release/fourier-grx)（4.4.55 / 4.4.56 未单独发布正式版）
 
 ### v1.2.14 (2026-10-16)
 
@@ -348,7 +356,7 @@ has_toc: true
 - 🔧 补充规划器页两处此前未记载的行为：规划器虽不驱动关节，每周期仍会并入关节位置保护包络（只放宽、不收窄，复位后恢复）；停用时清零范围已扩展至 `rehab.gait_*` 全部档位回显字段
 - 📡 `rehab/server` 状态接口表中 5 个步态回显字段的发布方由「4113」改为「4113 / 4407」。中英文同步
 - 🔧 修正 `rehab/server` 中 4 个参考轨迹数组字段的说明：补上数组顺序 **[左髋, 左膝, 右髋, 右膝]**（步态类任务长度均为 4，实测覆盖 4111 / 4112 / 4113 / 4116 / 4117 / 4301 / 4302 / 4401 / 4407 / 4501，全家族一致）；并把 `reference_joint_position_max/min` 的统计范围由「整段轨迹」更正为「循环段（不含起步与结束过渡段）」，与代码实际行为对齐。中英文同步
-- ✅ 上述功能自 **v4.4.57** 起正式发布（2026-10-19；此前经 4.4.55 ~ 4.4.57 预发布包提供）
+- ✅ 上述功能自 **v4.4.57** 起通过内测构建提供（2026-10-19；此前经 4.4.55 ~ 4.4.57 预发布包提供）
 
 ### v1.2.13 (2026-10-16)
 
@@ -356,13 +364,13 @@ has_toc: true
 
 - ➕ 新增任务页 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)（TID 4113，M4L）：回放 Fourier 谐波系数步态曲线，**髋摆动幅度档**（`param_1`）、**伸膝限制档**（`param_2`）、**步频档**（`param_3`）三条正交通道；步频 22.9 ~ 49.2 步/分，对应技术要求 2.45 ~ 5.25 s/大步。中英文同步，并已加入任务总表与任务索引
 - 📡 `rehab/server` 状态接口表补充 5 个步态回显字段：`gait_name`、`gait_amplitude_level`、`gait_knee_restriction_deg`、`gait_speed_level`、`gait_stride_time_s`（中英文同步）
-- ⚠️ 该功能自 `fourier-grx` v4.4.55 起提供（本条目撰写时尚未定版本号，写作「大于 v4.4.54」，现确定为 v4.4.55，见 v1.2.15）；正式发布后需在 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 版本表补录下载链接
+- ⚠️ 该功能自 `fourier-grx` v4.4.55 起提供（本条目撰写时尚未定版本号，写作「大于 v4.4.54」，现确定为 v4.4.55，见 v1.2.15）；后续构建发布后需在 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 版本表补录下载链接
 
 ### v1.2.12 (2026-10-15)
 
 **文档更新**
 
-- 📦 `fourier-grx` v4.4.54 正式发布（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx#4454) 发布页），v4.4.53 转为不再支持。本次为缺陷修复版本：膝关节受限任务 4301 / 4302 的力矩保护恢复生效、4303 / 4304 / 4305 的助力系数恢复可调、原地踏步 4112 支持面板暂停指令、`*_sdk.yaml` 补齐 `communication` 段使 SDK User API 的 UDP 通道可用
+- 📦 `fourier-grx` v4.4.54 内测构建（非正式发布，详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx#4454) 发布页），v4.4.53 转为不再支持。本次为缺陷修复版本：膝关节受限任务 4301 / 4302 的力矩保护恢复生效、4303 / 4304 / 4305 的助力系数恢复可调、原地踏步 4112 支持面板暂停指令、`*_sdk.yaml` 补齐 `communication` 段使 SDK User API 的 UDP 通道可用
 - 🔧 相应撤销 6 个任务页中的「本接口不生效」标注，并恢复 4112 页面被删除的「暂停运动标志位」参数行与接口映射行（中英文同步）
 
 ---
@@ -391,7 +399,7 @@ has_toc: true
 
 **文档更新**
 
-- 📦 `fourier-grx` v4.4.53 正式发布：补录发布说明与下载链接，v4.4.51 转为不再支持（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
+- 📦 `fourier-grx` v4.4.53 内测构建发布：补录发布说明与下载链接，v4.4.51 转为不再支持（详见 [Fourier-GRX 固件](/fourier-grx-M4/docs/release/fourier-grx) 发布页）
 - 📖 预发布渠道 `fourier-grx update <版本>-prerelease` 语法自 v4.4.53 起可用，更早版本需 `sudo dpkg -i` 手动安装
 - ℹ️ v4.4.52 未正式发布，版本号由 4.4.51 直接进入 4.4.53
 
@@ -401,9 +409,9 @@ has_toc: true
 
 **文档更新**
 
-- 📖 **固件发布条目补齐**：补录 v4.4.49（内置 web 调试上位机、升级保留配置）、v4.4.50（web 界面二级分组/中文参数标签/虚拟用户腿长下发）、v4.4.51（虚拟面板草稿模式）三个已正式发布版本的中英文发布说明
+- 📖 **固件发布条目补齐**：补录 v4.4.49（内置 web 调试上位机、升级保留配置）、v4.4.50（web 界面二级分组/中文参数标签/虚拟用户腿长下发）、v4.4.51（虚拟面板草稿模式）三个内测版本（均非正式发布）的中英文发布说明
 - 🆕 **新增任务文档**：左腿 / 右腿旋转关节单独手动校准 `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG`（4122）/ `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG`（4123），中英文任务索引与手动校准任务页同步更新；这两个任务自 v4.4.53 起提供
-- ℹ️ **关于 v4.4.52 / v4.4.53**：这两个版本目前仅提供预发布构建（不在本页下载列表中）。预发布构建不会被 `fourier-grx update` 的自动探测发现，需显式安装：`fourier-grx update <版本>-prerelease`（例如 `fourier-grx update 4.4.53-prerelease`）。正式发布后将按本页惯例补录下载链接
+- ℹ️ **关于 v4.4.52 / v4.4.53**：这两个版本目前仅提供预发布构建（不在本页下载列表中）。预发布构建不会被 `fourier-grx update` 的自动探测发现，需显式安装：`fourier-grx update <版本>-prerelease`（例如 `fourier-grx update 4.4.53-prerelease`）。后续发布后将按本页惯例补录下载链接
 
 ---
 

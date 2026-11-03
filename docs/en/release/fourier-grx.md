@@ -14,74 +14,74 @@ nav_exclude: true
 
 ## Version List
 
-> ⚠️ Only the latest version is currently supported — always install/upgrade to the latest version; older versions are kept for historical reference only.
+> ⚠️ Only **4.4.40, 4.4.43, and 4.4.72** are genuine official Fourier-GRX releases. All other `blaze` packages are internal builds delivered through the `blaze` directory and must not be treated as official releases; the only currently supported official release is **4.4.72**.
 >
 > Builds earlier than **4.4.40** (and 4.4.41) have been removed from the download server and are marked "Delisted" below; those rows are kept so the change history remains readable.
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-11-02 | **4.4.73** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4473) | ✅ Active |
-| 2026-10-29 | 4.4.72 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | ❌ No longer supported |
-| 2026-10-28 | 4.4.71 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4471) | ❌ No longer supported |
-| 2026-10-28 | 4.4.70 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4470) | ❌ No longer supported |
-| 2026-10-26 | 4.4.69 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | ❌ No longer supported |
-| 2026-10-26 | 4.4.68 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4468) | ❌ No longer supported |
-| 2026-10-23 | 4.4.67 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4467) | ❌ No longer supported |
-| 2026-10-22 | 4.4.66 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4466) | ❌ No longer supported |
-| 2026-10-22 | 4.4.65 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4465) | ❌ No longer supported |
-| 2026-10-21 | 4.4.64 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4464) | ❌ No longer supported |
-| 2026-10-20 | 4.4.63 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4463) | ❌ No longer supported |
-| 2026-10-20 | 4.4.62 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4462) | ❌ No longer supported |
-| 2026-10-20 | 4.4.61 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4461) | ❌ No longer supported |
-| 2026-10-20 | 4.4.60 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4460) | ❌ No longer supported |
-| 2026-10-20 | 4.4.59 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4459) | ❌ No longer supported |
-| 2026-10-20 | 4.4.58 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4458) | ❌ No longer supported |
-| 2026-10-19 | 4.4.57 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4457) | ❌ No longer supported |
-| 2026-10-15 | 4.4.54 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4454) | ❌ No longer supported |
-| 2026-10-14 | 4.4.53 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4453) | ❌ No longer supported |
-| 2026-10-12 | 4.4.51 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4451) | ❌ Unsupported |
-| 2026-10-12 | 4.4.50 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4450) | ❌ Unsupported |
-| 2026-10-12 | 4.4.49 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4449) | ❌ Unsupported |
-| 2026-10-10 | 4.4.48 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4448) | ❌ Unsupported |
-| 2026-10-10 | 4.4.47 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4447) | ❌ Unsupported |
-| 2026-10-10 | 4.4.46 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4446) | ❌ Unsupported |
-| 2026-10-10 | 4.4.45 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | ❌ Unsupported |
-| 2026-10-08 | 4.4.44 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | ❌ Unsupported |
-| 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | ❌ Unsupported |
-| 2026-08-28 | 4.4.42 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4442) | ❌ No longer supported |
-| 2026-08-28 | 4.4.41 | Delisted | [Details](#4441) | ❌ No longer supported |
-| 2026-08-12 | 4.4.40 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | ❌ No longer supported |
-| 2026-08-06 | 4.4.39 | Delisted | [Details](#4439) | ❌ No longer supported |
-| 2026-08-03 | 4.4.38 | Delisted | [Details](#4438) | ❌ No longer supported |
-| 2026-07-29 | 4.4.35 | Delisted | [Details](#4435) | ❌ No longer supported |
-| 2026-07-29 | 4.4.34 | Delisted | [Details](#4434) | ❌ No longer supported |
-| 2026-07-29 | 4.4.33 | Delisted | [Details](#4433) | ❌ No longer supported |
-| 2026-07-28 | 4.4.32 | Delisted | [Details](#4432) | ❌ No longer supported |
-| 2026-07-24 | 4.4.31 | Delisted | [Details](#4431) | ❌ No longer supported |
-| 2026-07-24 | 4.4.30 | Delisted | [Details](#4430) | ❌ No longer supported |
-| 2026-07-24 | 4.4.29 | Delisted | [Details](#4429) | ❌ No longer supported |
-| 2026-07-23 | 4.4.28 | Delisted | [Details](#4428) | ❌ No longer supported |
-| 2026-07-17 | 4.4.27 | Delisted | [Details](#4427) | ❌ No longer supported |
-| 2026-07-17 | 4.4.26 | Delisted | [Details](#4426) | ❌ No longer supported |
-| 2026-07-16 | 4.4.25 | Delisted | [Details](#4425) | ❌ No longer supported |
-| 2026-07-16 | 4.4.24 | Delisted | [Details](#4424) | ❌ No longer supported |
-| 2026-07-06 | 4.4.23 | Delisted | [Details](#4423) | ❌ No longer supported |
-| 2026-07-02 | 4.4.22 | Delisted | [Details](#4422) | ❌ No longer supported |
-| 2026-07-01 | 4.4.21 | Delisted | [Details](#4421) | ❌ No longer supported |
-| 2026-06-30 | 4.4.20 | Delisted | [Details](#4420) | ❌ No longer supported |
-| 2026-06-30 | 4.4.19 | Delisted | [Details](#4419) | ❌ No longer supported |
-| 2026-06-30 | 4.4.14 | Delisted | [Details](#4414) | ❌ No longer supported |
-| 2026-06-29 | 4.4.10 | Delisted | [Details](#4410) | ❌ No longer supported |
-| 2026-06-29 | 4.4.9 | Delisted | [Details](#449) | ❌ No longer supported |
-| 2026-05-22 | 4.4.8 | Delisted | [Details](#448) | ❌ No longer supported |
-| 2026-05-22 | 4.4.7 | Delisted | [Details](#447) | ❌ No longer supported |
-| 2026-05-14 | 4.4.6 | Delisted | [Details](#446) | ❌ No longer supported |
-| 2026-05-14 | 4.4.5 | Delisted | [Details](#445) | ❌ No longer supported |
-| 2026-05-13 | 4.4.4 | Delisted | [Details](#444) | ❌ No longer supported |
-| 2026-05-11 | 4.4.3 | Delisted | [Details](#443) | ❌ No longer supported |
-| 2026-04-10 | 4.4.2 | Delisted | [Details](#442) | ❌ No longer supported |
-| 2026-04-08 | 4.4.1 | Delisted | [Details](#441) | ❌ No longer supported |
-| 2026-04-03 | 4.4.0 | Delisted | [Details](#440) | ❌ No longer supported |
+| 2026-11-02 | 4.4.73 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4473) | Internal build · ❌ Not official |
+| 2026-10-29 | **4.4.72** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4472) | Official · ✅ Active |
+| 2026-10-28 | 4.4.71 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4471) | Internal build · ❌ Not official |
+| 2026-10-28 | 4.4.70 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4470) | Internal build · ❌ Not official |
+| 2026-10-26 | 4.4.69 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4469) | Internal build · ❌ Not official |
+| 2026-10-26 | 4.4.68 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4468) | Internal build · ❌ Not official |
+| 2026-10-23 | 4.4.67 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4467) | Internal build · ❌ Not official |
+| 2026-10-22 | 4.4.66 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4466) | Internal build · ❌ Not official |
+| 2026-10-22 | 4.4.65 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4465) | Internal build · ❌ Not official |
+| 2026-10-21 | 4.4.64 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4464) | Internal build · ❌ Not official |
+| 2026-10-20 | 4.4.63 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4463) | Internal build · ❌ Not official |
+| 2026-10-20 | 4.4.62 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4462) | Internal build · ❌ Not official |
+| 2026-10-20 | 4.4.61 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4461) | Internal build · ❌ Not official |
+| 2026-10-20 | 4.4.60 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4460) | Internal build · ❌ Not official |
+| 2026-10-20 | 4.4.59 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4459) | Internal build · ❌ Not official |
+| 2026-10-20 | 4.4.58 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4458) | Internal build · ❌ Not official |
+| 2026-10-19 | 4.4.57 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4457) | Internal build · ❌ Not official |
+| 2026-10-15 | 4.4.54 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4454) | Internal build · ❌ Not official |
+| 2026-10-14 | 4.4.53 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4453) | Internal build · ❌ Not official |
+| 2026-10-12 | 4.4.51 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4451) | Internal build · ❌ Not official |
+| 2026-10-12 | 4.4.50 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4450) | Internal build · ❌ Not official |
+| 2026-10-12 | 4.4.49 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4449) | Internal build · ❌ Not official |
+| 2026-10-10 | 4.4.48 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4448) | Internal build · ❌ Not official |
+| 2026-10-10 | 4.4.47 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4447) | Internal build · ❌ Not official |
+| 2026-10-10 | 4.4.46 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4446) | Internal build · ❌ Not official |
+| 2026-10-10 | 4.4.45 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4445) | Internal build · ❌ Not official |
+| 2026-10-08 | 4.4.44 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4444) | Internal build · ❌ Not official |
+| 2026-09-01 | 4.4.43 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4443) | Official · ❌ No longer supported |
+| 2026-08-28 | 4.4.42 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4442) | Internal build · ❌ Not official |
+| 2026-08-28 | 4.4.41 | Delisted | [Details](#4441) | Internal build · ❌ Not official |
+| 2026-08-12 | 4.4.40 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4440) | Official · ❌ No longer supported |
+| 2026-08-06 | 4.4.39 | Delisted | [Details](#4439) | Internal build · ❌ Not official |
+| 2026-08-03 | 4.4.38 | Delisted | [Details](#4438) | Internal build · ❌ Not official |
+| 2026-07-29 | 4.4.35 | Delisted | [Details](#4435) | Internal build · ❌ Not official |
+| 2026-07-29 | 4.4.34 | Delisted | [Details](#4434) | Internal build · ❌ Not official |
+| 2026-07-29 | 4.4.33 | Delisted | [Details](#4433) | Internal build · ❌ Not official |
+| 2026-07-28 | 4.4.32 | Delisted | [Details](#4432) | Internal build · ❌ Not official |
+| 2026-07-24 | 4.4.31 | Delisted | [Details](#4431) | Internal build · ❌ Not official |
+| 2026-07-24 | 4.4.30 | Delisted | [Details](#4430) | Internal build · ❌ Not official |
+| 2026-07-24 | 4.4.29 | Delisted | [Details](#4429) | Internal build · ❌ Not official |
+| 2026-07-23 | 4.4.28 | Delisted | [Details](#4428) | Internal build · ❌ Not official |
+| 2026-07-17 | 4.4.27 | Delisted | [Details](#4427) | Internal build · ❌ Not official |
+| 2026-07-17 | 4.4.26 | Delisted | [Details](#4426) | Internal build · ❌ Not official |
+| 2026-07-16 | 4.4.25 | Delisted | [Details](#4425) | Internal build · ❌ Not official |
+| 2026-07-16 | 4.4.24 | Delisted | [Details](#4424) | Internal build · ❌ Not official |
+| 2026-07-06 | 4.4.23 | Delisted | [Details](#4423) | Internal build · ❌ Not official |
+| 2026-07-02 | 4.4.22 | Delisted | [Details](#4422) | Internal build · ❌ Not official |
+| 2026-07-01 | 4.4.21 | Delisted | [Details](#4421) | Internal build · ❌ Not official |
+| 2026-06-30 | 4.4.20 | Delisted | [Details](#4420) | Internal build · ❌ Not official |
+| 2026-06-30 | 4.4.19 | Delisted | [Details](#4419) | Internal build · ❌ Not official |
+| 2026-06-30 | 4.4.14 | Delisted | [Details](#4414) | Internal build · ❌ Not official |
+| 2026-06-29 | 4.4.10 | Delisted | [Details](#4410) | Internal build · ❌ Not official |
+| 2026-06-29 | 4.4.9 | Delisted | [Details](#449) | Internal build · ❌ Not official |
+| 2026-05-22 | 4.4.8 | Delisted | [Details](#448) | Internal build · ❌ Not official |
+| 2026-05-22 | 4.4.7 | Delisted | [Details](#447) | Internal build · ❌ Not official |
+| 2026-05-14 | 4.4.6 | Delisted | [Details](#446) | Internal build · ❌ Not official |
+| 2026-05-14 | 4.4.5 | Delisted | [Details](#445) | Internal build · ❌ Not official |
+| 2026-05-13 | 4.4.4 | Delisted | [Details](#444) | Internal build · ❌ Not official |
+| 2026-05-11 | 4.4.3 | Delisted | [Details](#443) | Internal build · ❌ Not official |
+| 2026-04-10 | 4.4.2 | Delisted | [Details](#442) | Internal build · ❌ Not official |
+| 2026-04-08 | 4.4.1 | Delisted | [Details](#441) | Internal build · ❌ Not official |
+| 2026-04-03 | 4.4.0 | Delisted | [Details](#440) | Internal build · ❌ Not official |
 
 ## Installation
 
@@ -89,13 +89,14 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 
 ## Pre-release Channel
 
-The download links above are all **stable channel** (`blaze`) builds. Pre-release channel builds use `prerelease` instead of `blaze` as the last segment of the file name and the `X-Variant`, leaving the model segment unchanged — for example `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`.
+A `blaze` package in the table above is **not necessarily an official release**. Only 4.4.40, 4.4.43, and 4.4.72 are official; all other `blaze` packages are internal builds. Pre-release channel builds use `prerelease` instead of `blaze` as the last segment of the file name and the `X-Variant`, leaving the model segment unchanged — for example `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`.
 
 - Pre-release packages are **never** found by the automatic probe of `fourier-grx update` and are not listed in the table above.
 - Install one explicitly: `fourier-grx update <version>-prerelease`, e.g. `fourier-grx update 4.4.53-prerelease`. This syntax is available since v4.4.53; on earlier versions, install with `sudo dpkg -i <deb>` instead.
 - `fourier-grx install` is still required afterwards.
+- Current latest official release: `fourier-grx update 4.4.72`. Versions 4.4.40 and 4.4.43 are historical official releases and are no longer recommended for installation.
 - Current pre-release: `fourier-grx update 4.4.73-prerelease` (built 2026-11-02, `X-Variant` = `linux-arm64-cpu-m4l-prerelease`), **clearing stale velocity and effort commands when M4L tasks dispatch PD or position targets**. Feedforward variants subsequently write their valid velocity feedforward, preserving existing feedforward behaviour. See the [changelog](/fourier-grx-M4/docs/en/changelog).
-- ⚠️ **Do not install `4.4.55-prerelease` on M4LP1**: that build (and the v4.4.52 – 4.4.55 stable builds) exits right after start on P1 because a joint-protection counter attribute is missing. Use `4.4.56-prerelease` or later. M4LT1 / M4LT2 are unaffected.
+- ⚠️ **Do not install `4.4.55-prerelease` on M4LP1**: that build (and the v4.4.52 – 4.4.55 blaze internal builds) exits right after start on P1 because a joint-protection counter attribute is missing. Use `4.4.56-prerelease` or later. M4LT1 / M4LT2 are unaffected.
 
 For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs/en/reference/command_line_tool#pre-release-channel).
 
@@ -104,6 +105,8 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ## Release Notes
 
 ### 4.4.73
+
+> ⚠️ Release status: **internal blaze build, not an official release**. The current official release remains 4.4.72.
 
 > 📅 2026-11-02 &nbsp;·&nbsp; Platform: `linux/arm64`
 
@@ -123,6 +126,8 @@ Everything else is identical to v4.4.72.
 ---
 
 ### 4.4.72
+
+> ✅ Release status: **official release**.
 
 > 📅 2026-10-29 &nbsp;·&nbsp; Platform: `linux/arm64`
 
@@ -441,16 +446,16 @@ Everything else is identical to v4.4.57 (Harmonic-Coefficient Forward Walk 4113 
 
 ✨ **Added**
 
-- **Harmonic-Coefficient Forward Walk (TID 4113) and its planner (TID 4407)**: replays a periodic joint curve sampled from the pre-stored Fourier harmonic coefficients of the Fourier-GRX main table; the trajectory shape is picked from 4 × 4 = 16 curves along the hip-swing-amplitude × knee-extension-limit axes, while timing is set independently by the cadence level. The planner variant only generates the preview and sends no joint commands. `rehab/server` gained 5 gait-level echo fields, and the planner deactivation clear now covers `rehab.gait_*`. See [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) and [Planner](/fourier-grx-M4/docs/en/tasks/planner). (Shipped through the v4.4.55 prerelease cycle; 4.4.55 / 4.4.56 never got their own stable release — this version makes the feature generally available.)
+- **Harmonic-Coefficient Forward Walk (TID 4113) and its planner (TID 4407)**: replays a periodic joint curve sampled from the pre-stored Fourier harmonic coefficients of the Fourier-GRX main table; the trajectory shape is picked from 4 × 4 = 16 curves along the hip-swing-amplitude × knee-extension-limit axes, while timing is set independently by the cadence level. The planner variant only generates the preview and sends no joint commands. `rehab/server` gained 5 gait-level echo fields, and the planner deactivation clear now covers `rehab.gait_*`. See [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) and [Planner](/fourier-grx-M4/docs/en/tasks/planner). (Shipped through the v4.4.55 prerelease cycle; 4.4.55 / 4.4.56 never got their own official release — this internal blaze build made the feature available.)
 
 🐛 **Fixed**
 
-- **M4LP1 control thread exiting right after start**: the joint-protection debounce counters were initialised in `RobotM4L._init_actuator()`, but the P1 variant overrides that method wholesale without calling `super()`, so the control thread raised `AttributeError` in the first control cycle. The counters are now initialised in the base constructor, where a variant override cannot skip them. The defect existed since v4.4.52 and was not fixed in the v4.4.53 / 4.4.54 stable releases (M4LT1 / M4LT2 were never affected); **M4LP1 users should upgrade directly to v4.4.57**.
+- **M4LP1 control thread exiting right after start**: the joint-protection debounce counters were initialised in `RobotM4L._init_actuator()`, but the P1 variant overrides that method wholesale without calling `super()`, so the control thread raised `AttributeError` in the first control cycle. The counters are now initialised in the base constructor, where a variant override cannot skip them. The defect existed since v4.4.52 and was not fixed in the v4.4.53 / 4.4.54 internal builds (M4LT1 / M4LT2 were never affected); **M4LP1 users should upgrade directly to v4.4.57**.
 
 🔧 **Changed**
 
 - **The rotary-joint PD hard-tier kp is flattened to `[500,500,500,500]`** (kd stays `[30,30,30,30]`, now aligned with the algorithm's built-in default): on M4LT1 / M4LT2 the baseline gain is a copy of the hard tier, so every rotary task (stand / forward walk / mark time / calibration / test) starts at a flat 500 instead of hip 600 / knee 500.
-  > ⚠️ Behaviour change: upgrading from the v4.4.53 / 4.4.54 stable releases lowers the T1 / T2 start-up stiffness (hip 600 → 500, knee 500 → 500) — the motion feels softer. M4LP1 keeps its soft `[250×4]` baseline; only its load-ramp target becomes a flat 500. The buttery / soft compliance interpolation of the assist_adjust_pd tasks is unaffected.
+  > ⚠️ Behaviour change: upgrading from the v4.4.53 / 4.4.54 internal builds lowers the T1 / T2 start-up stiffness (hip 600 → 500, knee 500 → 500) — the motion feels softer. M4LP1 keeps its soft `[250×4]` baseline; only its load-ramp target becomes a flat 500. The buttery / soft compliance interpolation of the assist_adjust_pd tasks is unaffected.
 - Removed the never-implemented streamlit UI and its process mount (cleanup).
 
 ---

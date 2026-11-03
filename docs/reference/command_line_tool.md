@@ -107,7 +107,7 @@ fourier-grx update --help                 # 显示帮助信息
 
 ### 预发布渠道
 
-预发布构建的文件名与 `X-Variant` 末段为 `prerelease`（正式版为 `blaze`），机型段保持不变，例如 `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`。
+预发布构建的文件名与 `X-Variant` 末段为 `prerelease`（`blaze` 仅表示渠道，不保证是正式发布版；正式版本仅为 4.4.40、4.4.43、4.4.72），机型段保持不变，例如 `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`。
 
 - 上述自动探测按已安装包的 `X-Variant`（`...-blaze`）拼文件名，**永远不会**发现预发布包。
 - 只能通过 `<version>-prerelease` 显式安装：

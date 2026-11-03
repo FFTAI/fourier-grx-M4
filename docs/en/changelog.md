@@ -14,11 +14,19 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.53 (2026-11-03)
+
+**Documentation correction**
+
+- 📋 **Fourier-GRX release classification unified**: only **4.4.40, 4.4.43, and 4.4.72** are genuine official releases. Earlier descriptions that presented other `blaze` packages as official or stable have been corrected to internal builds / not official releases.
+- ⚠️ **4.4.73 reclassified**: although the package is delivered through the `blaze` directory, it is not an official release; the current official release remains **4.4.72**.
+- 📄 The [Firmware Releases](/fourier-grx-M4/docs/en/release) and [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) version tables now distinguish official from internal builds, and historical changelog, task, and command-line references have been synchronized. Chinese and English pages updated in sync
+
 ### v1.2.52 (2026-11-02)
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.73 is now stable**: `fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-02 17:37, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.73`
+- 📦 `fourier-grx` **v4.4.73 was an internal blaze build, not an official release**: `fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-02 17:37, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.73`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.73 row and release notes; 4.4.72 moves to "No longer supported". Highlights: M4L tasks now clear velocity and effort commands when dispatching PD or position targets, preventing values left by the previous task from affecting the next one. Feedforward variants still write their valid velocity feedforward afterwards, preserving feedforward behaviour. The missing clearance in the high-damping task's component path was also fixed.
 - 📄 The Chinese and English emergency-stop high-damping task pages record this release. Chinese and English pages updated in sync
 
@@ -37,7 +45,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.72 is now stable**: `fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-29 17:28, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.72`
+- 📦 `fourier-grx` **v4.4.72 is now officially released**: `fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-29 17:28, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.72`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.72 row and release notes; 4.4.71 moves to "No longer supported". Highlights: standing and knee-restriction standing switch to the medium PD tier (P1: kp 350 / kd `[25×4]`; T1/T2: kp 500 / kd `[30×4]`); P1 medium-tier hip damping drops from 30 to 25, also affecting the adjust-dt assist tasks and knee-restriction variants. The 0.2 s pure-damping warm-up and the baseline and hard tiers used by other tasks are unchanged.
 - 📄 Six task pages — standing, knee-restriction standing, forward-walk and mark-time adjust-dt assist, and their knee-restriction variants — document this release. Chinese and English pages updated in sync
 
@@ -54,7 +62,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.71 is now stable**: `fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-28 16:53, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.71`
+- 📦 `fourier-grx` **v4.4.71 was an internal blaze build, not an official release**: `fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-28 16:53, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.71`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.71 row and release notes; 4.4.70 moves to "No longer supported". Highlights: **the v4.4.70 tuning is reverted** (hard tier kp `[1000×4]` / kd `[60×4]`, gait smoothing filter cutoff 2.5 Hz, total delay compensation 0.06 s, load-detection PD ramp floor 0.01 — back to the 4.4.69 values); the emergency-stop high-damping task (TID 4600, M4LT2 only) now logs which trigger fired; and ⚠️ the keyboard walking default stays at 0.5 m/s rather than being reverted with the rest. Apart from those two items the source is identical to 4.4.69, file by file.
 - 📄 The high-damping task page gains a trigger-to-log-text table; the passive forward-walk, passive marching, assisted forward-walk (adjust-PD / adjust-dt) and harmonic forward-walk task pages record the reversion; and the 8 stale cycle-count statements across the protection, high-damping and automatic / manual calibration pages are now stated in seconds. Chinese and English pages updated in sync
 
@@ -73,7 +81,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.70 is now stable**: `fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-28 13:34, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.70`
+- 📦 `fourier-grx` **v4.4.70 was an internal blaze build, not an official release**: `fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-28 13:34, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.70`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.70 row and release notes; 4.4.69 moves to "No longer supported". Highlights: the hard tier rises to kp `[1500×4]` / kd `[90×4]` (T1/T2, P1 unchanged; hip ζ=0.77 unloaded, knee ζ=1.37 overdamped); the gait smoothing filter cutoff moves 2.5 → 8.0 Hz and the total delay compensation 0.06 → 0.03 s; the load-detection PD ramp floor goes 0.01 → 0.1; and ⚠️ **the keyboard-initiated walking default speed doubles from 0.25 to 0.5 m/s (cadence doubles at the same step length)**. The stiffer hard tier tightens the 140 N·m over-torque trip from about 8° of tracking error to about 5.3°.
 - 📄 The passive forward-walk, passive marching, assisted forward-walk (adjust-PD / adjust-dt) and harmonic forward-walk task pages document this release, each worded to what actually applies to that task: the assist tasks still use the medium tier throughout so the hard change does not reach them, and marching in place and the harmonic task are unaffected by the keyboard speed change. Chinese and English pages updated in sync
 
@@ -93,7 +101,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.69 is now stable**: `fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-26 18:07, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.69`
+- 📦 `fourier-grx` **v4.4.69 was an internal blaze build, not an official release**: `fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-26 18:07, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.69`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.69 row and release notes; 4.4.68 moves to "No longer supported". Highlights: four new feedforward variants of the sinusoidal-trajectory and harmonic forward-walk tasks (feedforward family grows from 4 to 8); ⚠️ **the rotary-joint TIDs were regrouped** — the four basic action tasks move from 4110–4113 to 4128–4131 and PD + feedforward variants take over 4110–4113, so a given TID now maps to a different task and hosts must be updated; web task grouping is now segmented per block so locomotion and feedforward tasks are no longer mislabelled as calibration.
 - 📄 The [tasks list](/fourier-grx-M4/docs/en/tasks) gains a "Rotary joint TID changes in v4.4.69" mapping table; the passive forward-walk, passive marching and harmonic forward-walk task pages have their TIDs and update logs updated; references in [run types](/fourier-grx-M4/docs/en/reference/run_type) and the [user-data interface](/fourier-grx-M4/docs/en/reference/user) corrected. Chinese and English pages updated in sync
 
@@ -120,7 +128,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.68 is now stable**: `fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-26 17:08, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.68`
+- 📦 `fourier-grx` **v4.4.68 was an internal blaze build, not an official release**: `fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-26 17:08, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.68`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.68 row and release notes; 4.4.67 moves to "No longer supported". Highlights: the M4LT2 control rate is raised to 200 Hz (`control_period` 0.01 → 0.005; T1 stays at 100 Hz, P1 at 50 Hz); the hard tier is retuned to kp `[1000×4]` / kd `[60×4]` and the medium tier kp unified to `[500×4]`; the feedforward tasks (TID 4124–4127) now actually apply velocity feedforward, which never ran on their dispatch path; the joint home-position averaging window is defined in seconds; FSA v3 error codes are filtered by severity before they raise protection (⚠️ behaviour change: a level-1 warning no longer switches the task to IDLE)
 - 📄 The passive forward-walk / mark-time task pages and the forward-walk / mark-time assist-adjust (adjust_dt) task pages document this release
 - 📄 Chinese and English pages updated in sync
@@ -142,7 +150,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.67 is now stable**: `fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-23 08:57, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.67`
+- 📦 `fourier-grx` **v4.4.67 was an internal blaze build, not an official release**: `fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-23 08:57, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.67`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.67 row and release notes; 4.4.66 moves to "No longer supported". Highlights: the FSA v3 clear-fault interface is implemented (previously a no-op); the v3 error-code parser that always returned None is fixed, so the actuator-error protection works again on M4LT2 (⚠️ behaviour change)
 - 📄 Chinese and English pages updated in sync
 
@@ -158,7 +166,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.66 is now stable**: `fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-22 20:44, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.66`
+- 📦 `fourier-grx` **v4.4.66 was an internal blaze build, not an official release**: `fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-22 20:44, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.66`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.66 row and release notes; 4.4.65 moves to "No longer supported". Highlights: a new medium PD tier used end-to-end by the assist_adjust_dt tasks instead of hard (⚠️ behaviour change — the assist feel is softer); T1/T2 hard-tier hip kd raised to 80 (ζ 0.94)
 - 📄 The assist-adjust task pages document the medium tier
 
@@ -174,7 +182,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.65 is now stable**: `fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-22 12:00, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.65`
+- 📦 `fourier-grx` **v4.4.65 was an internal blaze build, not an official release**: `fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-22 12:00, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.65`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.65 row and release notes; 4.4.64 moves to "No longer supported". Highlights: new feedforward variants of Forward Walk / Mark Time (TID 4124–4127, POSITION_FF / PD_FF); hard tier retuned to kp `[800,1000]` / kd `[40,50]`; the POSITION chain forwards velocity_ff end to end
 - 📄 The [Forward Walk (Passive)](/fourier-grx-M4/docs/en/tasks/forward_walk_passive) and [Mark Time (Passive)](/fourier-grx-M4/docs/en/tasks/mark_time_passive) pages document the new variants
 
@@ -190,7 +198,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.64 is now stable**: `fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-21 16:00, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.64`
+- 📦 `fourier-grx` **v4.4.64 was an internal blaze build, not an official release**: `fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-21 16:00, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.64`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.64 row and release notes; 4.4.63 moves to "No longer supported". Highlights: zero-displacement guard for the prismatic move_length / move_offset tasks (fixes NaN commands); move_min / move_max command clamp relaxed 0.25 → 0.5 mm per cycle
 - 📄 Chinese and English pages updated in sync
 
@@ -206,7 +214,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.63 is now stable**: `fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 21:56, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.63`
+- 📦 `fourier-grx` **v4.4.63 was an internal blaze build, not an official release**: `fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 21:56, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.63`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.63 row and release notes; 4.4.62 moves to "No longer supported". Highlight: the gait smoothing filter and delay compensation are defined in physical units and scale with the control period, completing the adaptation to the T1/T2 100 Hz control rate (50 Hz models essentially unchanged)
 - 📄 Chinese and English pages updated in sync
 
@@ -222,7 +230,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.62 is now stable**: `fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 20:38, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.62`
+- 📦 `fourier-grx` **v4.4.62 was an internal blaze build, not an official release**: `fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 20:38, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.62`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.62 row and release notes; 4.4.61 moves to "No longer supported". Highlights: the T1/T2 control rate goes to 100 Hz (⚠️ behaviour change, with the timing-adaptation prerequisites shipping in this same version); hard-tier hip kp raised to 700; the load-detection PD ramp rounding stall is fixed (kp/kd now reach the hard tier exactly); M4LP1 is unaffected
 - 📄 Chinese and English pages updated in sync
 
@@ -238,7 +246,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.61 is now stable**: `fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 18:59, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.61`
+- 📦 `fourier-grx` **v4.4.61 was an internal blaze build, not an official release**: `fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 18:59, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.61`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.61 row and release notes; 4.4.60 moves to "No longer supported". Highlights: the T1/T2 rotary baseline gain becomes a standalone medium tier (softer start-up — ⚠️ behaviour change); hard-tier hip kd raised to 50; M4LP1 unaffected
 - 📄 Chinese and English pages updated in sync
 
@@ -254,7 +262,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.60 is now stable**: `fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 17:13, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.60`
+- 📦 `fourier-grx` **v4.4.60 was an internal blaze build, not an official release**: `fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 17:13, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.60`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.60 row and release notes; 4.4.59 moves to "No longer supported". Highlight: hip-joint hard-tier kd raised from 30 to 45, eliminating the no-load high-frequency vibration (ζ 0.45→0.67); ⚠️ behaviour change — all T1 / T2 rotary tasks get more hip damping and feel steadier
 - 📄 Chinese and English pages updated in sync
 
@@ -270,9 +278,9 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.59 is now stable**: `fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 14:48, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.59`
+- 📦 `fourier-grx` **v4.4.59 was an internal blaze build, not an official release**: `fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 14:48, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.59`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.59 row and release notes; 4.4.58 moves to "No longer supported". Highlights: fixes the prismatic-joint auto calibration not moving the motor and a position-protection false trigger mid-sweep in the rotary calibration (both present since v4.4.49 — **machines whose prismatic joints were auto-calibrated on v4.4.49 – 4.4.58 should be recalibrated after upgrading**); otherwise identical to 4.4.58
-- 📄 The [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint) and [Rotary Joint Auto Calibration](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate) pages drop the "stable release pending" notes and link to the release page
+- 📄 The [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint) and [Rotary Joint Auto Calibration](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate) pages drop the "official release pending" notes and link to the release page
 
 ### v1.2.22 (2026-10-20)
 
@@ -286,9 +294,9 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.58 is now stable**: `fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 13:34, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.58`
+- 📦 `fourier-grx` **v4.4.58 was an internal blaze build, not an official release**: `fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-20 13:34, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.58`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.58 row and release notes; 4.4.57 moves to "No longer supported". Highlight: the velocity-only arrival timer of the prismatic-joint calibration goes from 5 s to 25 s, removing the premature "arrived" call up to ~3.5 mm before the hard stop in the tail of the sweep; otherwise identical to 4.4.57
-- 📄 The [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint) page drops the "stable release pending" note and links to the release page
+- 📄 The [Prismatic Joint Zero Calibration](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint) page drops the "official release pending" note and links to the release page
 
 ### v1.2.20 (2026-10-20)
 
@@ -302,10 +310,10 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Release**
 
-- 📦 `fourier-grx` **v4.4.57 is now stable**: `fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-19 17:49, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.57`
+- 📦 `fourier-grx` **v4.4.57 was an internal blaze build, not an official release**: `fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb` (built 2026-10-19 17:49, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.57`
 - 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.57 row and release notes; 4.4.54 moves to "No longer supported". Highlights: the M4LP1 start-up crash is fixed (affected range v4.4.52 – 4.4.56-prerelease — **on P1, upgrade directly to v4.4.57**); the Harmonic-Coefficient Forward Walk task 4113 and planner 4407 become generally available; the rotary-joint PD hard-tier kp is flattened to `[500,500,500,500]` (lower T1 / T2 start-up stiffness — ⚠️ behaviour change)
-- ℹ️ Everything from the v4.4.55 / v4.4.56 prerelease cycles ships as stable in this version; 4.4.55 and 4.4.56 never got their own stable releases
-- 📄 The [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) and [Planner](/fourier-grx-M4/docs/en/tasks/planner) pages drop the "stable release pending" notes and link to the release page
+- ℹ️ Everything from the v4.4.55 / v4.4.56 prerelease cycles ships as an internal blaze build in this version; 4.4.55 and 4.4.56 never got their own official releases
+- 📄 The [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) and [Planner](/fourier-grx-M4/docs/en/tasks/planner) pages drop the "official release pending" notes and link to the release page
 
 ### v1.2.18 (2026-10-19)
 
@@ -340,7 +348,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 📦 A **prerelease build of `fourier-grx` v4.4.55** has been built and uploaded to the pre-release channel: `fourier-grx-4.4.55-linux-arm64-cpu-m4l-prerelease.deb` (built 2026-10-16 11:35, branch `m4-lfs`, `X-Variant` = `linux-arm64-cpu-m4l-prerelease`)
 - ⬇️ Install with `fourier-grx update 4.4.55-prerelease`, then run `fourier-grx install` to deploy. The package is not found by the argument-free automatic probe of `fourier-grx update` and is not listed in the [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx)
 - ✨ Contents: the [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) task (TID 4113) and its [planner](/fourier-grx-M4/docs/en/tasks/planner) (TID 4407), 5 new gait level echo fields in `rehab/server`, and a widened deactivation clear covering `rehab.gait_*`
-- ✅ Shipped as stable with **v4.4.57** (2026-10-19); the download link is in the [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) (4.4.55 / 4.4.56 never got their own stable releases)
+- ✅ Shipped as an internal blaze build in **v4.4.57** (2026-10-19); the download link is in the [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) (4.4.55 / 4.4.56 never got their own official releases)
 
 ### v1.2.14 (2026-10-16)
 
@@ -358,13 +366,13 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 - ➕ Added the task page [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic) (TID 4113, M4L): replays Fourier harmonic-coefficient gait curves with three orthogonal panel levels — **hip swing amplitude** (`param_1`), **knee restriction** (`param_2`) and **cadence** (`param_3`); cadence spans 22.9 ~ 49.2 steps/min, i.e. the required 2.45 ~ 5.25 s per stride. Chinese and English pages added, along with the task table and index entries
 - 📡 Documented 5 new gait echo fields in the `rehab/server` status table: `gait_name`, `gait_amplitude_level`, `gait_knee_restriction_deg`, `gait_speed_level`, `gait_stride_time_s`
-- ⚠️ This feature is available from `fourier-grx` v4.4.55 (this entry was written before the version number was assigned and said "later than v4.4.54"; it is now fixed as v4.4.55, see v1.2.15); once the stable release ships, add its download link to the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) table
+- ⚠️ This feature is available from `fourier-grx` v4.4.55 (this entry was written before the version number was assigned and said "later than v4.4.54"; it is now fixed as v4.4.55, see v1.2.15); once a later build ships, add its download link to the [Fourier-GRX firmware](/fourier-grx-M4/docs/en/release/fourier-grx) table
 
 ### v1.2.12 (2026-10-15)
 
 **Documentation Updates**
 
-- 📦 `fourier-grx` v4.4.54 officially released (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx#4454) release page); v4.4.53 moved to unsupported. This is a bug-fix release: torque protection works again in the knee-restriction tasks 4301 / 4302, the assist coefficient is adjustable again in 4303 / 4304 / 4305, mark time (4112) honours the panel pause command, and the `communication` section was added to `*_sdk.yaml` so the SDK User API UDP channel works again
+- 📦 `fourier-grx` v4.4.54 was an internal blaze build, not an official release (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx#4454) release page); v4.4.53 moved to unsupported. This is a bug-fix release: torque protection works again in the knee-restriction tasks 4301 / 4302, the assist coefficient is adjustable again in 4303 / 4304 / 4305, mark time (4112) honours the panel pause command, and the `communication` section was added to `*_sdk.yaml` so the SDK User API UDP channel works again
 - 🔧 Retracted the "this interface has no effect" notes on the 6 affected task pages and restored the "Pause motion flag" parameter and interface-mapping rows that had been removed from the 4112 page (both languages)
 
 ---
@@ -393,7 +401,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Documentation Updates**
 
-- 📦 `fourier-grx` v4.4.53 officially released: its release notes and download link have been added, and v4.4.51 moved to unsupported (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
+- 📦 `fourier-grx` v4.4.53 was an internal blaze build, not an official release: its release notes and download link have been added, and v4.4.51 moved to unsupported (see the [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) release page)
 - 📖 The pre-release channel syntax `fourier-grx update <version>-prerelease` is available since v4.4.53; earlier versions must install manually with `sudo dpkg -i`
 - ℹ️ v4.4.52 was never officially released; the version number goes directly from 4.4.51 to 4.4.53
 
@@ -403,9 +411,9 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 **Documentation Updates**
 
-- 📖 **Release entries backfilled**: added the Chinese and English release notes for the three already officially released versions v4.4.49 (built-in web debugging host, configuration preserved on upgrade), v4.4.50 (web UI second-level grouping / Chinese parameter labels / virtual user leg length commands), and v4.4.51 (virtual panel draft mode)
+- 📖 **Release entries backfilled**: added the Chinese and English release notes for the three internal blaze builds v4.4.49 (built-in web debugging host, configuration preserved on upgrade), v4.4.50 (web UI second-level grouping / Chinese parameter labels / virtual user leg length commands), and v4.4.51 (virtual panel draft mode) — three internal blaze builds, none of them official releases
 - 🆕 **New task documentation**: left-leg / right-leg separate manual rotary joint calibration `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_LEFT_LEG` (4122) / `TASK_ROTARY_JOINT_MANUAL_CALIBRATE_RIGHT_LEG` (4123); the Chinese and English task indexes and the manual calibration task page are updated accordingly; these two tasks are available since v4.4.53
-- ℹ️ **About v4.4.52 / v4.4.53**: these two versions currently provide pre-release builds only (not listed in the download lists on this page). Pre-release builds are not discovered by the automatic probing of `fourier-grx update` and must be installed explicitly: `fourier-grx update <version>-prerelease` (e.g. `fourier-grx update 4.4.53-prerelease`). Download links will be added following this page's conventions once they are officially released
+- ℹ️ **About v4.4.52 / v4.4.53**: these two versions currently provide pre-release builds only (not listed in the download lists on this page). Pre-release builds are not discovered by the automatic probing of `fourier-grx update` and must be installed explicitly: `fourier-grx update <version>-prerelease` (e.g. `fourier-grx update 4.4.53-prerelease`). Download links will be added following this page's conventions once they ship
 
 ---
 
