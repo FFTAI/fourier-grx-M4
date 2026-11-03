@@ -24,6 +24,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-03 | 4.4.76 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4476) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.75 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4475) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.74 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4474) | Internal build | ❌ No longer supported |
 | 2026-11-02 | 4.4.73 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4473) | Internal build | ❌ No longer supported |
@@ -109,6 +110,30 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.76
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+
+> 📅 2026-11-03 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **The standing arrival check now waits for the robot to settle**
+
+- Standing and knee-restriction standing used to move to the hold stage as soon as the interpolation timer expired (0.2 s warm-up + 5.0 s ramp). Finishing the timer only means the *commanded* target reached the standing posture — the measured position still lags it by a dynamic error, and switching at that instant discards the support torque tied to that error, which reads as a twitch.
+- A settle confirmation is added on top of the timer: after the target is pinned, the position must stay within **0.01 rad** of where it was at the start of the window **and** every rotary joint must stay below **0.05 rad/s**, for 0.2 s in a row. Any renewed movement restarts the window. The test uses *position change within the window* rather than *error against the standing posture*, because under load the PD steady-state error `tau / kp` is never zero and the latter could never be satisfied.
+- The wait is capped at **2.5 s**, after which the task proceeds and logs a warning with the position change and peak velocity, so it can never hang.
+- Until the robot is settled, `motion_ratio` is capped at 99.9% and `flag_task_finish` is delayed along with the stage, so a host no longer sees "standing complete" early.
+- Setting `flag_settle_check = False`, or running without position feedback, falls back to the previous time-only behaviour.
+- Both conditions are needed: velocity alone is fooled by the slow ramp itself (3–5° over 5 s is about 0.01–0.02 rad/s, already under the 0.05 rad/s velocity gate), while a position window alone would miss in-place oscillation with zero net displacement — which is why the check only starts after the ramp ends.
+
+✨ **Faster hand-off into the gait start position**
+
+- The transition from the current posture into the gait start position is halved from 5.0 s to 2.5 s for forward walking and mark time, making the entry into the gait tighter. The parameter is defined in seconds and converted through `control_period`, so the real duration is identical on 50 / 100 / 200 Hz models.
+- Variants that share the control model are affected as well: knee restriction, assist (adjust-PD / adjust-dt), the feedforward versions (POSITION_FF / PD_FF) and the harmonic-coefficient walk.
+
+Everything else is unchanged from v4.4.75.
+
+---
 
 ### 4.4.75
 

@@ -14,6 +14,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.57 (2026-11-03)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.76 is an internal blaze build, not an official release**: `fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-03 17:37, branch `m4-lfs`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.76`
+- ✨ **The standing arrival check now waits for the robot to settle**: standing and knee-restriction standing used to enter the hold stage the moment the interpolation timer expired, while the measured position still lagged the target by a dynamic error — switching then discarded the support torque tied to that error and read as a twitch. The target now has to stay put for 0.2 s in a row («position change within the window ≤ 0.01 rad and |velocity| ≤ 0.05 rad/s on every rotary joint»), a renewed movement restarts the window, and a 2.5 s cap lets the task through with a warning so it can never hang. Until then `motion_ratio` is capped at 99.9% and `flag_task_finish` is delayed to match; `flag_settle_check = False` or a missing position feedback restores the time-only behaviour. The test deliberately uses the position change inside the window rather than the error against the standing posture, because under load the PD steady-state error `tau/kp` is never zero
+- ✨ **Faster hand-off into the gait start position**: forward walking and mark time now take 2.5 s instead of 5.0 s to move from the current posture to the gait start position. The parameter is defined in seconds and converted through `control_period`, so the real duration is the same at 50 / 100 / 200 Hz, and the knee-restriction, assist, feedforward and harmonic-coefficient variants that share the control model inherit the change
+- 🔧 Implementation cleanups found in review: `post_ramp_t` and `settle_t` now share the single `self.dt` time base; the stage transition reads `flag_settled` so the flag is no longer write-only; the comment example now matches the real `motion_to_stand_period` (5 s)
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.76 row (internal build · no longer supported) and release notes; the current official release remains **4.4.72**
+- 📄 The standing task description now covers the settle check and the 99.9% completion cap; the settle change is recorded on the standing and knee-restriction standing pages and the shorter hand-off on the forward walk, mark time, harmonic walk and two knee-restriction pages — 14 pages in total. Chinese and English pages updated in sync
+
 ### v1.2.56 (2026-11-03)
 
 **Release**
