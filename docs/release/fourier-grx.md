@@ -13,74 +13,78 @@ has_toc: true
 
 ## 版本列表
 
-> ⚠️ Fourier-GRX 真正的正式发布版本仅有 **4.4.40、4.4.43、4.4.72**。其余 `blaze` 包均为此前经 `blaze` 目录交付的内测构建，不能视为正式发布；当前唯一受支持的正式版本为 **4.4.72**。
+> ⚠️ Fourier-GRX 真正的正式发布版本仅有 **4.4.40、4.4.43、4.4.72**，这三个版本作为正式版本**保持长期支持**。其余 `blaze` 包均为此前经 `blaze` 目录交付的内测构建，不能视为正式发布，也不纳入长期支持范围。
+>
+> 表中「发布性质」与「支持状态」是两列独立信息：**发布性质**说明该版本是正式发布还是内测构建（`blaze` 仅是交付渠道，不代表正式发布）；**支持状态**说明该版本是否仍在长期支持中。二者相互对应——正式发布即长期支持，内测构建则否。
+>
+> 新部署设备推荐安装最新的正式版本 **4.4.72**；4.4.40 与 4.4.43 仍在支持期内，已稳定运行的设备可继续留用，无需强制升级。
 >
 > 早于 **4.4.40** 的版本（以及 4.4.41）安装包已从下载服务器移除，下表对应位置标注为「已下架」；这些版本仍保留在表中，以便查阅更新内容。
 
-| 发布日期 | 版本 | 下载 | 更新内容 | 支持状态 |
-|----------|------|------|----------|----------|
-| 2026-11-02 | 4.4.73 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4473) | 内测构建 · ❌ 非正式 |
-| 2026-10-29 | **4.4.72** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4472) | 正式发布 · ✅ 支持中 |
-| 2026-10-28 | 4.4.71 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4471) | 内测构建 · ❌ 非正式 |
-| 2026-10-28 | 4.4.70 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4470) | 内测构建 · ❌ 非正式 |
-| 2026-10-26 | 4.4.69 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4469) | 内测构建 · ❌ 非正式 |
-| 2026-10-26 | 4.4.68 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4468) | 内测构建 · ❌ 非正式 |
-| 2026-10-23 | 4.4.67 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4467) | 内测构建 · ❌ 非正式 |
-| 2026-10-22 | 4.4.66 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4466) | 内测构建 · ❌ 非正式 |
-| 2026-10-22 | 4.4.65 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4465) | 内测构建 · ❌ 非正式 |
-| 2026-10-21 | 4.4.64 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4464) | 内测构建 · ❌ 非正式 |
-| 2026-10-20 | 4.4.63 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4463) | 内测构建 · ❌ 非正式 |
-| 2026-10-20 | 4.4.62 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4462) | 内测构建 · ❌ 非正式 |
-| 2026-10-20 | 4.4.61 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4461) | 内测构建 · ❌ 非正式 |
-| 2026-10-20 | 4.4.60 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4460) | 内测构建 · ❌ 非正式 |
-| 2026-10-20 | 4.4.59 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4459) | 内测构建 · ❌ 非正式 |
-| 2026-10-20 | 4.4.58 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4458) | 内测构建 · ❌ 非正式 |
-| 2026-10-19 | 4.4.57 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4457) | 内测构建 · ❌ 非正式 |
-| 2026-10-15 | 4.4.54 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4454) | 内测构建 · ❌ 非正式 |
-| 2026-10-14 | 4.4.53 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4453) | 内测构建 · ❌ 非正式 |
-| 2026-10-12 | 4.4.51 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4451) | 内测构建 · ❌ 非正式 |
-| 2026-10-12 | 4.4.50 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4450) | 内测构建 · ❌ 非正式 |
-| 2026-10-12 | 4.4.49 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4449) | 内测构建 · ❌ 非正式 |
-| 2026-10-10 | 4.4.48 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4448) | 内测构建 · ❌ 非正式 |
-| 2026-10-10 | 4.4.47 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4447) | 内测构建 · ❌ 非正式 |
-| 2026-10-10 | 4.4.46 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4446) | 内测构建 · ❌ 非正式 |
-| 2026-10-10 | 4.4.45 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4445) | 内测构建 · ❌ 非正式 |
-| 2026-10-08 | 4.4.44 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4444) | 内测构建 · ❌ 非正式 |
-| 2026-09-01 | 4.4.43 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4443) | 正式发布 · ❌ 不再支持 |
-| 2026-08-28 | 4.4.42 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4442) | 内测构建 · ❌ 非正式 |
-| 2026-08-28 | 4.4.41 | 已下架 | [详情](#4441) | 内测构建 · ❌ 非正式 |
-| 2026-08-12 | 4.4.40 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4440) | 正式发布 · ❌ 不再支持 |
-| 2026-08-06 | 4.4.39 | 已下架 | [详情](#4439) | 内测构建 · ❌ 非正式 |
-| 2026-08-03 | 4.4.38 | 已下架 | [详情](#4438) | 内测构建 · ❌ 非正式 |
-| 2026-07-29 | 4.4.35 | 已下架 | [详情](#4435) | 内测构建 · ❌ 非正式 |
-| 2026-07-29 | 4.4.34 | 已下架 | [详情](#4434) | 内测构建 · ❌ 非正式 |
-| 2026-07-29 | 4.4.33 | 已下架 | [详情](#4433) | 内测构建 · ❌ 非正式 |
-| 2026-07-28 | 4.4.32 | 已下架 | [详情](#4432) | 内测构建 · ❌ 非正式 |
-| 2026-07-24 | 4.4.31 | 已下架 | [详情](#4431) | 内测构建 · ❌ 非正式 |
-| 2026-07-24 | 4.4.30 | 已下架 | [详情](#4430) | 内测构建 · ❌ 非正式 |
-| 2026-07-24 | 4.4.29 | 已下架 | [详情](#4429) | 内测构建 · ❌ 非正式 |
-| 2026-07-23 | 4.4.28 | 已下架 | [详情](#4428) | 内测构建 · ❌ 非正式 |
-| 2026-07-17 | 4.4.27 | 已下架 | [详情](#4427) | 内测构建 · ❌ 非正式 |
-| 2026-07-17 | 4.4.26 | 已下架 | [详情](#4426) | 内测构建 · ❌ 非正式 |
-| 2026-07-16 | 4.4.25 | 已下架 | [详情](#4425) | 内测构建 · ❌ 非正式 |
-| 2026-07-16 | 4.4.24 | 已下架 | [详情](#4424) | 内测构建 · ❌ 非正式 |
-| 2026-07-06 | 4.4.23 | 已下架 | [详情](#4423) | 内测构建 · ❌ 非正式 |
-| 2026-07-02 | 4.4.22 | 已下架 | [详情](#4422) | 内测构建 · ❌ 非正式 |
-| 2026-07-01 | 4.4.21 | 已下架 | [详情](#4421) | 内测构建 · ❌ 非正式 |
-| 2026-06-30 | 4.4.20 | 已下架 | [详情](#4420) | 内测构建 · ❌ 非正式 |
-| 2026-06-30 | 4.4.19 | 已下架 | [详情](#4419) | 内测构建 · ❌ 非正式 |
-| 2026-06-30 | 4.4.14 | 已下架 | [详情](#4414) | 内测构建 · ❌ 非正式 |
-| 2026-06-29 | 4.4.10 | 已下架 | [详情](#4410) | 内测构建 · ❌ 非正式 |
-| 2026-06-29 | 4.4.9 | 已下架 | [详情](#449) | 内测构建 · ❌ 非正式 |
-| 2026-05-22 | 4.4.8 | 已下架 | [详情](#448) | 内测构建 · ❌ 非正式 |
-| 2026-05-22 | 4.4.7 | 已下架 | [详情](#447) | 内测构建 · ❌ 非正式 |
-| 2026-05-14 | 4.4.6 | 已下架 | [详情](#446) | 内测构建 · ❌ 非正式 |
-| 2026-05-14 | 4.4.5 | 已下架 | [详情](#445) | 内测构建 · ❌ 非正式 |
-| 2026-05-13 | 4.4.4 | 已下架 | [详情](#444) | 内测构建 · ❌ 非正式 |
-| 2026-05-11 | 4.4.3 | 已下架 | [详情](#443) | 内测构建 · ❌ 非正式 |
-| 2026-04-10 | 4.4.2 | 已下架 | [详情](#442) | 内测构建 · ❌ 非正式 |
-| 2026-04-08 | 4.4.1 | 已下架 | [详情](#441) | 内测构建 · ❌ 非正式 |
-| 2026-04-03 | 4.4.0 | 已下架 | [详情](#440) | 内测构建 · ❌ 非正式 |
+| 发布日期 | 版本 | 下载 | 更新内容 | 发布性质 | 支持状态 |
+|----------|------|------|----------|----------|----------|
+| 2026-11-02 | 4.4.73 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4473) | 内测构建 | ❌ 不再支持 |
+| 2026-10-29 | **4.4.72** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4472) | 正式发布 | ✅ 长期支持 |
+| 2026-10-28 | 4.4.71 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.71-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4471) | 内测构建 | ❌ 不再支持 |
+| 2026-10-28 | 4.4.70 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.70-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4470) | 内测构建 | ❌ 不再支持 |
+| 2026-10-26 | 4.4.69 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.69-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4469) | 内测构建 | ❌ 不再支持 |
+| 2026-10-26 | 4.4.68 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.68-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4468) | 内测构建 | ❌ 不再支持 |
+| 2026-10-23 | 4.4.67 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.67-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4467) | 内测构建 | ❌ 不再支持 |
+| 2026-10-22 | 4.4.66 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.66-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4466) | 内测构建 | ❌ 不再支持 |
+| 2026-10-22 | 4.4.65 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.65-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4465) | 内测构建 | ❌ 不再支持 |
+| 2026-10-21 | 4.4.64 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.64-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4464) | 内测构建 | ❌ 不再支持 |
+| 2026-10-20 | 4.4.63 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.63-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4463) | 内测构建 | ❌ 不再支持 |
+| 2026-10-20 | 4.4.62 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.62-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4462) | 内测构建 | ❌ 不再支持 |
+| 2026-10-20 | 4.4.61 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.61-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4461) | 内测构建 | ❌ 不再支持 |
+| 2026-10-20 | 4.4.60 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.60-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4460) | 内测构建 | ❌ 不再支持 |
+| 2026-10-20 | 4.4.59 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.59-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4459) | 内测构建 | ❌ 不再支持 |
+| 2026-10-20 | 4.4.58 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.58-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4458) | 内测构建 | ❌ 不再支持 |
+| 2026-10-19 | 4.4.57 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.57-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4457) | 内测构建 | ❌ 不再支持 |
+| 2026-10-15 | 4.4.54 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.54-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4454) | 内测构建 | ❌ 不再支持 |
+| 2026-10-14 | 4.4.53 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.53-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4453) | 内测构建 | ❌ 不再支持 |
+| 2026-10-12 | 4.4.51 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.51-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4451) | 内测构建 | ❌ 不再支持 |
+| 2026-10-12 | 4.4.50 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.50-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4450) | 内测构建 | ❌ 不再支持 |
+| 2026-10-12 | 4.4.49 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.49-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4449) | 内测构建 | ❌ 不再支持 |
+| 2026-10-10 | 4.4.48 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.48-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4448) | 内测构建 | ❌ 不再支持 |
+| 2026-10-10 | 4.4.47 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.47-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4447) | 内测构建 | ❌ 不再支持 |
+| 2026-10-10 | 4.4.46 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.46-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4446) | 内测构建 | ❌ 不再支持 |
+| 2026-10-10 | 4.4.45 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.45-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4445) | 内测构建 | ❌ 不再支持 |
+| 2026-10-08 | 4.4.44 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.44-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4444) | 内测构建 | ❌ 不再支持 |
+| 2026-09-01 | 4.4.43 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.43-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4443) | 正式发布 | ✅ 长期支持 |
+| 2026-08-28 | 4.4.42 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.42-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4442) | 内测构建 | ❌ 不再支持 |
+| 2026-08-28 | 4.4.41 | 已下架 | [详情](#4441) | 内测构建 | ❌ 不再支持 |
+| 2026-08-12 | 4.4.40 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.40-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4440) | 正式发布 | ✅ 长期支持 |
+| 2026-08-06 | 4.4.39 | 已下架 | [详情](#4439) | 内测构建 | ❌ 不再支持 |
+| 2026-08-03 | 4.4.38 | 已下架 | [详情](#4438) | 内测构建 | ❌ 不再支持 |
+| 2026-07-29 | 4.4.35 | 已下架 | [详情](#4435) | 内测构建 | ❌ 不再支持 |
+| 2026-07-29 | 4.4.34 | 已下架 | [详情](#4434) | 内测构建 | ❌ 不再支持 |
+| 2026-07-29 | 4.4.33 | 已下架 | [详情](#4433) | 内测构建 | ❌ 不再支持 |
+| 2026-07-28 | 4.4.32 | 已下架 | [详情](#4432) | 内测构建 | ❌ 不再支持 |
+| 2026-07-24 | 4.4.31 | 已下架 | [详情](#4431) | 内测构建 | ❌ 不再支持 |
+| 2026-07-24 | 4.4.30 | 已下架 | [详情](#4430) | 内测构建 | ❌ 不再支持 |
+| 2026-07-24 | 4.4.29 | 已下架 | [详情](#4429) | 内测构建 | ❌ 不再支持 |
+| 2026-07-23 | 4.4.28 | 已下架 | [详情](#4428) | 内测构建 | ❌ 不再支持 |
+| 2026-07-17 | 4.4.27 | 已下架 | [详情](#4427) | 内测构建 | ❌ 不再支持 |
+| 2026-07-17 | 4.4.26 | 已下架 | [详情](#4426) | 内测构建 | ❌ 不再支持 |
+| 2026-07-16 | 4.4.25 | 已下架 | [详情](#4425) | 内测构建 | ❌ 不再支持 |
+| 2026-07-16 | 4.4.24 | 已下架 | [详情](#4424) | 内测构建 | ❌ 不再支持 |
+| 2026-07-06 | 4.4.23 | 已下架 | [详情](#4423) | 内测构建 | ❌ 不再支持 |
+| 2026-07-02 | 4.4.22 | 已下架 | [详情](#4422) | 内测构建 | ❌ 不再支持 |
+| 2026-07-01 | 4.4.21 | 已下架 | [详情](#4421) | 内测构建 | ❌ 不再支持 |
+| 2026-06-30 | 4.4.20 | 已下架 | [详情](#4420) | 内测构建 | ❌ 不再支持 |
+| 2026-06-30 | 4.4.19 | 已下架 | [详情](#4419) | 内测构建 | ❌ 不再支持 |
+| 2026-06-30 | 4.4.14 | 已下架 | [详情](#4414) | 内测构建 | ❌ 不再支持 |
+| 2026-06-29 | 4.4.10 | 已下架 | [详情](#4410) | 内测构建 | ❌ 不再支持 |
+| 2026-06-29 | 4.4.9 | 已下架 | [详情](#449) | 内测构建 | ❌ 不再支持 |
+| 2026-05-22 | 4.4.8 | 已下架 | [详情](#448) | 内测构建 | ❌ 不再支持 |
+| 2026-05-22 | 4.4.7 | 已下架 | [详情](#447) | 内测构建 | ❌ 不再支持 |
+| 2026-05-14 | 4.4.6 | 已下架 | [详情](#446) | 内测构建 | ❌ 不再支持 |
+| 2026-05-14 | 4.4.5 | 已下架 | [详情](#445) | 内测构建 | ❌ 不再支持 |
+| 2026-05-13 | 4.4.4 | 已下架 | [详情](#444) | 内测构建 | ❌ 不再支持 |
+| 2026-05-11 | 4.4.3 | 已下架 | [详情](#443) | 内测构建 | ❌ 不再支持 |
+| 2026-04-10 | 4.4.2 | 已下架 | [详情](#442) | 内测构建 | ❌ 不再支持 |
+| 2026-04-08 | 4.4.1 | 已下架 | [详情](#441) | 内测构建 | ❌ 不再支持 |
+| 2026-04-03 | 4.4.0 | 已下架 | [详情](#440) | 内测构建 | ❌ 不再支持 |
 
 ## 安装方法
 
@@ -93,7 +97,7 @@ has_toc: true
 - 预发布包**不会**被 `fourier-grx update` 的自动探测发现，也不列入上表。
 - 安装方式：`fourier-grx update <版本>-prerelease`，例如 `fourier-grx update 4.4.53-prerelease`。该语法自 v4.4.53 起可用，更早版本请用 `sudo dpkg -i <deb>` 手动安装。
 - 安装后仍需执行 `fourier-grx install` 完成部署。
-- 当前最新正式版本：`fourier-grx update 4.4.72`。4.4.40 与 4.4.43 为历史正式版本，当前不再推荐安装。
+- 当前最新正式版本：`fourier-grx update 4.4.72`。4.4.40 与 4.4.43 同为正式发布版本并保持长期支持，可作为旧设备的稳定基线，但新部署建议使用 4.4.72。
 - 当前预发布：`fourier-grx update 4.4.73-prerelease`（2026-11-02 构建，`X-Variant` 为 `linux-arm64-cpu-m4l-prerelease`），内容为 **M4L 任务下发 PD / 位置目标时显式清零速度 / 力矩指令**，防止上一任务的前馈值残留到下一任务；PD / POSITION 前馈任务随后写入有效前馈，语义不变。详见 [更新日志](/fourier-grx-M4/docs/changelog)。
 - ⚠️ **M4LP1 请勿安装 `4.4.55-prerelease`**：该包（及 v4.4.52 ~ 4.4.55 的 blaze 内测构建）在 P1 上会因缺失关节保护计数器属性而在启动后立即退出；请使用 `4.4.56-prerelease` 及以上。M4LT1 / M4LT2 不受影响。
 
@@ -105,7 +109,7 @@ has_toc: true
 
 ### 4.4.73
 
-> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布**。当前正式版本仍为 4.4.72。
+> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布** &nbsp;·&nbsp; 支持状态：**不再支持**。当前正式版本仍为 4.4.72，其保持长期支持。
 
 > 📅 2026-11-02 &nbsp;·&nbsp; 平台：`linux/arm64`
 
@@ -126,7 +130,7 @@ has_toc: true
 
 ### 4.4.72
 
-> ✅ 发布性质：**正式发布版本**。
+> ✅ 发布性质：**正式发布版本** &nbsp;·&nbsp; 支持状态：**长期支持**。
 
 > 📅 2026-10-29 &nbsp;·&nbsp; 平台：`linux/arm64`
 
@@ -602,6 +606,8 @@ has_toc: true
 
 ### 4.4.43
 
+> ✅ 发布性质：**正式发布版本** &nbsp;·&nbsp; 支持状态：**长期支持**。
+
 > 📅 2026-09-01 &nbsp;·&nbsp; 平台：`linux/arm64`
 
 🔧 **调整**
@@ -636,6 +642,8 @@ has_toc: true
 ---
 
 ### 4.4.40
+
+> ✅ 发布性质：**正式发布版本** &nbsp;·&nbsp; 支持状态：**长期支持**。
 
 > 📅 2026-08-12 &nbsp;·&nbsp; 平台：`linux/arm64`
 

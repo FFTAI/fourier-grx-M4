@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.54 (2026-11-03)
+
+**Documentation changes**
+
+- 📋 The [Fourier-GRX Firmware](/fourier-grx-M4/docs/en/release/fourier-grx) version table now splits the old single column into **Release Type** (official vs. internal build) and **Support** (long-term supported vs. no longer supported), so the two aspects are stated independently.
+- ✅ **Long-term support scope clarified**: the three official releases 4.4.40, 4.4.43, and 4.4.72 are all kept under long-term support (4.4.40 and 4.4.43 were previously mislabelled as unsupported); internal builds are not covered.
+- 📄 Each official release section now carries a "Release type · Support" marker, and the release index and pre-release channel notes state the same long-term-support policy. Chinese and English pages updated in sync
+
 ### v1.2.53 (2026-11-03)
 
 **Documentation correction**
@@ -27,7 +35,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 **Release**
 
 - 📦 `fourier-grx` **v4.4.73 was an internal blaze build, not an official release**: `fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-02 17:37, branch `m4-lfs`); install with `fourier-grx update` (auto probe) or `fourier-grx update 4.4.73`
-- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.73 row and release notes; 4.4.72 moves to "No longer supported". Highlights: M4L tasks now clear velocity and effort commands when dispatching PD or position targets, preventing values left by the previous task from affecting the next one. Feedforward variants still write their valid velocity feedforward afterwards, preserving feedforward behaviour. The missing clearance in the high-damping task's component path was also fixed.
+- 📋 The [firmware version table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.73 row and release notes; 4.4.73 is an internal build, while 4.4.72 remains the current official release and stays under long-term support. Highlights: M4L tasks now clear velocity and effort commands when dispatching PD or position targets, preventing values left by the previous task from affecting the next one. Feedforward variants still write their valid velocity feedforward afterwards, preserving feedforward behaviour. The missing clearance in the high-damping task's component path was also fixed.
 - 📄 The Chinese and English emergency-stop high-damping task pages record this release. Chinese and English pages updated in sync
 
 ### v1.2.51 (2026-11-02)

@@ -14,4 +14,4 @@ nav_exclude: true
 | Fourier-M4  | 2.0.6    | [⬇ Download](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [View all versions →](./release/fourier-m4) |
 | IO Board    | **1.0.0.3** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.3_20260721.zip) | [View all versions →](./release/ioboard) |
 
-> ℹ️ The Fourier-GRX entry is the latest **official release**. Only 4.4.40, 4.4.43, and 4.4.72 are official Fourier-GRX releases; all other `blaze` packages are internal builds. Pre-release (`prerelease`) channel builds are not listed here; see [Fourier-GRX Firmware · Pre-release channel](./release/fourier-grx#pre-release-channel) for how to install them.
+> ℹ️ The Fourier-GRX entry is the latest **official release**. Only 4.4.40, 4.4.43, and 4.4.72 are official Fourier-GRX releases, and all three are kept under **long-term support**; all other `blaze` packages are internal builds without long-term support. Pre-release (`prerelease`) channel builds are not listed here; see [Fourier-GRX Firmware · Pre-release channel](./release/fourier-grx#pre-release-channel) for how to install them.
