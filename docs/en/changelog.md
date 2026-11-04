@@ -14,6 +14,14 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.61 (2026-11-04)
+
+**Fixes**
+
+- 🐛 **Fixed the firmware release table rendering as raw text**: the previous revision placed the generator's HTML comment markers directly against the table, but kramdown treats an HTML comment as block-level raw HTML and swallows everything up to the next blank line, so the table was never parsed as Markdown — the live page showed the bare pipe characters, with the separator row's `--` typeset as `—`. Both release pages now keep one blank line on each side of every marker
+- 🔧 **`tools/gen_release_table.py` now validates its own layout**: assembly is normalised to "blank line → marker → blank line → table → blank line → marker → blank line", and the check runs before writing, so this class of layout regression can no longer ship silently
+- 📄 Rendering only — the table data (row order, dates, release class, support status) is identical to v1.2.60. English and Chinese kept in sync
+
 ### v1.2.60 (2026-11-04)
 
 **Release**

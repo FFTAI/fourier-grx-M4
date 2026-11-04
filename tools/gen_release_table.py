@@ -169,11 +169,22 @@ def locate_table(lines: list[str]) -> tuple[int, int]:
 
 
 def region_of(lines: list[str]) -> tuple[list[str], list[str], list[str], bool]:
-    """返回 (前缀, 表格区域, 后缀, 是否需要补标记)。"""
+    """返回 (前缀, 表格区域, 后缀, 是否需要补标记)。
+
+    标记与表格之间必须各留一个空行：kramdown 把 HTML 注释当作块级原始 HTML，
+    注释后直到下一个空行之前的内容会被一并吞进这个 HTML 块，表格就不再按
+    Markdown 解析，页面上会显示成一堆裸管道文本。这里顺手把区域首尾的空行
+    剥掉，保证重复运行不会越攒越多。
+    """
     begin = next((i for i, l in enumerate(lines) if l.strip() == BEGIN), None)
     end = next((i for i, l in enumerate(lines) if l.strip() == END), None)
     if begin is not None and end is not None and end > begin:
-        return lines[: begin + 1], lines[begin + 1:end], lines[end:], False
+        region = lines[begin + 1:end]
+        while region and not region[0].strip():
+            region.pop(0)
+        while region and not region[-1].strip():
+            region.pop()
+        return lines[: begin + 1], region, lines[end:], False
     first, last = locate_table(lines)
     return lines[:first], lines[first:last + 1], lines[last + 1:], True
 
@@ -244,9 +255,41 @@ def render(lang: str, text: str, data: dict[str, dict], ledger: dict, page: path
 
     order = sorted(merged.items(), key=lambda kv: version_key(kv[0]), reverse=True)
     body = [header_line, sep_line] + ["| " + " | ".join(cells) + " |" for _v, cells in order]
-    if need_markers:
-        return "\n".join(pre + [BEGIN] + body + [END] + post), notes
-    return "\n".join(pre + body + post), notes
+    # 统一拼装：标记从 pre/post 里摘出来重新放，两侧恰好一个空行，重复运行不增不减
+    if pre and pre[-1].strip() == BEGIN:
+        pre = pre[:-1]
+    if post and post[0].strip() == END:
+        post = post[1:]
+    while pre and not pre[-1].strip():
+        pre.pop()
+    while post and not post[0].strip():
+        post.pop(0)
+    # 标记外侧也要恰好一个空行：紧贴上一段（尤其是引用块 >）会被 kramdown
+    # 当作懒延续行吞进上一个块，注释连同表格一起不解析
+    out = "\n".join((pre + [""] if pre else []) + [BEGIN, ""] + body + ["", END] + ([""] + post if post else []))
+    check_shape(out, page)
+    return out, notes
+
+
+def check_shape(text: str, page: pathlib.Path) -> None:
+    """断言标记与表格之间确有空行——不成立就不写文件。
+
+    kramdown 把 HTML 注释当作块级原始 HTML，注释之后直到下一个空行前的内容
+    会被吞进同一个 HTML 块，表格因此不按 Markdown 解析，页面上显示成一堆裸
+    管道文本（4.4.78 发布后线上就是这个问题）。
+    """
+    lines = text.split("\n")
+    for marker, inside, outside in ((BEGIN, 1, -1), (END, -1, 1)):
+        at = [k for k, l in enumerate(lines) if l.strip() == marker]
+        if len(at) != 1:
+            raise SystemExit(f"ERROR: {page.name} 生成结果里 {marker[:20]}… 出现 {len(at)} 次，应为 1 次")
+        for step in (inside, outside):
+            probe = at[0] + step
+            if not (0 <= probe < len(lines)):
+                continue
+            if lines[probe].strip():
+                side = "内侧（表格）" if step == inside else "外侧（相邻内容）"
+                raise SystemExit(f"ERROR: {page.name} 的 {marker[:20]}… {side}缺空行，kramdown 会把整表吞成原始 HTML")
 
 
 def check_prose(text: str, ledger: dict, page: pathlib.Path) -> list[str]:

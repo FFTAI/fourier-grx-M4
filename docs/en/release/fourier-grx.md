@@ -23,6 +23,7 @@ nav_exclude: true
 > Builds earlier than **4.4.40** (and 4.4.41) have been removed from the download server and are marked "Delisted" below; those rows are kept so the change history remains readable.
 
 <!-- BEGIN GENERATED version-table —— 由 tools/gen_release_table.py 维护，请勿手改 -->
+
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
 | 2026-11-04 | 4.4.78 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4478) | Internal build | ❌ No longer supported |
@@ -92,6 +93,7 @@ nav_exclude: true
 | 2026-04-10 | 4.4.2 | Delisted | [Details](#442) | Internal build | ❌ No longer supported |
 | 2026-04-08 | 4.4.1 | Delisted | [Details](#441) | Internal build | ❌ No longer supported |
 | 2026-04-03 | 4.4.0 | Delisted | [Details](#440) | Internal build | ❌ No longer supported |
+
 <!-- END GENERATED version-table -->
 
 ## Installation
