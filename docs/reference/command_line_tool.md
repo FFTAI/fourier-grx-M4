@@ -57,10 +57,12 @@ has_toc: true
 
 `update` 从 Fourier 服务器检查新版本，并完成下载与 `dpkg` 安装。它**只覆盖上面的软件包层**，装完仍需执行 `fourier-grx install`。
 
+自 **v4.4.77** 起，版本清单来自服务器上的发布索引 `grx/manifest.json`（由仓库 `scripts/release_meta.py` 维护），下载完成后还会按索引记录的 `sha256` 校验，校验不过不会安装。
+
 ### 用法
 
 ```bash
-fourier-grx update                        # 探测可用新版本，交互式选择安装
+fourier-grx update                        # 读发布索引列出可升级版本，交互式选择安装
 fourier-grx update <version>              # 直接安装指定版本，机型变体自动从已安装包读取
 fourier-grx update <version>-<渠道>        # 安装指定渠道的构建，如 4.4.53-prerelease
 fourier-grx update --help                 # 显示帮助信息
@@ -68,38 +70,43 @@ fourier-grx update --help                 # 显示帮助信息
 
 机型变体指软件包的平台/机型标识符（deb 的 `X-Variant` 字段），例如 `linux-arm64-cpu-m4l-blaze`，由已安装的软件包自动提供，无需手动输入。
 
-### 自动探测范围
+### 版本来源
 
-不带参数执行时，按当前版本向更高版本探测：
-
-- 当前次版本：`patch + 1` 至 `patch + 20`，连续 5 次 404 即停止
-- 下一主/次版本：只探 `minor + 1`（patch 0~10，连续 3 次 404 停止）与 `major + 1` 的 `minor 0`（patch 0~5，连续 3 次 404 停止）
+- **发布索引（v4.4.77 起）**：读取服务器上的 `grx/manifest.json`，一次请求取回该机型变体的全部已发布版本、发布性质与 `sha256`，列表按版本号升序，没有窗口限制。
+- **退回探测（索引不可用时）**：索引拉取失败（离线、老服务器）时退回按版本号逐个 HTTP HEAD 探测——当前次版本 `patch + 1` 至 `patch + 20`（连续 5 次 404 停止）、下一 `minor`（patch 0~10，连续 3 次 404 停止）、下一 `major` 的 `minor 0`（patch 0~5，连续 3 次 404 停止）。该窗口意味着停在某个较旧版本时可能看不见之后的部分补丁版本，属于退回路径的已知局限。
+- 索引显示「没有更新版本」时，客户端还会额外抽查紧邻的下一个版本号（1 次 HEAD），以防有包绕过发布流程上传而未登记进索引。
 
 ### 运行流程
 
 1. 从 deb 记录中读取当前版本号和机型变体
-2. 向服务器逐版本探测可用的新版本（HTTP HEAD 请求）
-3. 列出所有可用的更新版本，标注最新一个
-4. 提示选择版本编号（直接回车安装最新，输入 `n` 取消）
-5. 下载所选版本的 `.deb` 软件包
-6. 执行 `sudo dpkg -i` 完成安装
+2. 拉取发布索引，取回该变体所有比当前更新的版本及其 `sha256`
+3. 索引不可用时退回逐个版本探测
+4. 列出候选版本，标注最新一个与各自的发布性质
+5. 提示选择版本编号（直接回车安装最新，输入 `n` 取消）
+6. 下载所选版本的 `.deb` 软件包，按索引记录的 `sha256` 校验
+7. 执行 `sudo dpkg -i` 完成安装
 
 ### 示例输出
 
 ```text
-当前版本 / Current version : 4.4.4
+当前版本 / Current version : 4.4.71
 当前变体 / Current variant  : linux-arm64-cpu-m4l-blaze
 正在检查更新... / Checking for updates...
 
 发现以下新版本 / Found the following newer versions:
 ----------------------------------------------------
-  [1] v4.4.5  fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb
-  [2] v4.4.6  fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb
-  [3] v4.4.7  fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb  ← 最新 latest
+  [1] v4.4.72  fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb  [正式版本 · 长期支持]
+  [2] v4.4.73  fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [3] v4.4.74  fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [4] v4.4.75  fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [5] v4.4.76  fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [6] v4.4.77  fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb  [内测构建]  ← 最新 latest
 ----------------------------------------------------
 
-请选择要安装的版本编号（直接回车安装最新 [3]，输入 n 取消）:
+请选择要安装的版本编号（直接回车安装最新 [6]，输入 n 取消）:
 ```
+
+确认后依次输出 `正在下载 / Downloading: …`、`校验通过 / checksum ok: <sha256>`、`正在安装 / Installing: …`。若索引里没有该版本的 `sha256` 记录（历史包），会输出「索引里没有这个版本的 sha256 记录，跳过校验」并继续安装。
 
 ### 安装完成后
 

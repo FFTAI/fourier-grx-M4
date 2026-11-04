@@ -26,7 +26,7 @@ nav_exclude: true
 The robot's controller computer typically has only one wired Ethernet port, which serves two roles at the same time:
 
 - **Connecting to the actuator LAN** (default static IP `192.168.137.220/24`; see [Joint Sequence](/fourier-grx-M4/docs/en/reference/joint_sequence) for the actuator address range)
-- **Accessing the internet** (downloading installation packages, probing for new versions via `fourier-grx update`, etc.)
+- **Accessing the internet** (downloading installation packages, checking for new versions via the release index with `fourier-grx update`, etc.)
 
 On site there is often no router that can both "provide internet access" and "be on the same subnet as the robot". The simplest solution is to let the laptop or tablet you carry connect via its own WiFi, then **share** that network to its wired Ethernet port, and connect the robot's controller computer directly with a single Ethernet cable.
 

@@ -14,6 +14,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.58 (2026-11-04)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.77 internal build (not an official release)**: `fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-04 11:01, branch `m4-lfs`, package `X-Commit` = `9904486a0f39`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.77`
+- ✨ **`fourier-grx update` now reads the release index**: one request returns every later version of the variant, each labelled with its release type (official / internal build / pre-release), and the download is verified against the index `sha256` before `dpkg -i` runs; the client falls back to the old probing when the index is unavailable. This also removes the old probe's blind spot — it only looked at "current version + 20 patch numbers", so a device on 4.4.53 could never see anything past 4.4.73. Measured: one check went from 26 HEAD requests / ~5.7 s to a single GET / ~0.5 s
+- ✨ **Packages carry their own identity**: the deb metadata gains `X-Release-Class`, `X-Commit` (suffixed `-dirty` when the working tree was not clean) and `X-Build-Time`, so any device can be traced to an exact commit and official releases are distinguishable from internal builds inside the package
+- 🔧 **Build and release pipeline**: every build ends with an automatic artifact check (required control fields, version identical across source / `uv.lock` / installed metadata, version string embedded in the binary), so a failing artifact never reaches the upload; releases run through `scripts/release.sh`, which rolls back the local commit and tag if any step fails; `make` now declares its default goal explicitly (the added guard rule had made a bare `make` a no-op that still reported success)
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.77 row and a notes section (internal build · no longer supported); the current official release remains **4.4.72**
+- 📄 The command line tool and firmware update pages were rewritten around `fourier-grx update`: where the version list comes from, the workflow, example output, and the note that a device needs one `dpkg` install before the new check applies. English and Chinese kept in sync
+
 ### v1.2.57 (2026-11-03)
 
 **Release**

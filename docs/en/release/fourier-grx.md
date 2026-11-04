@@ -24,6 +24,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-04 | 4.4.77 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4477) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.76 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4476) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.75 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4475) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.74 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4474) | Internal build | ❌ No longer supported |
@@ -110,6 +111,32 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.77
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+
+> 📅 2026-11-04 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **`fourier-grx update` now reads the release index**
+
+- One request lists every later version of the machine variant, each entry labelled with its release type (**official** / internal build / pre-release). The old "current version + 20 patch numbers" window is gone: measured on a device pinned to 4.4.53, the old client could never see anything beyond 4.4.73.
+- After downloading, the package is verified against the `sha256` recorded in the index before `dpkg -i` runs; a mismatch aborts the installation. `fourier-grx update <version>` verifies the same way.
+- If the index cannot be fetched (offline, older server) the client falls back to the previous version-by-version probing, behaving exactly as before.
+- A check now costs one GET (~0.5 s) instead of 26 HEAD requests (~5.7 s), measured on a 4.4.53 device.
+
+✨ **Packages now carry their own identity**
+
+- The deb metadata gains `X-Release-Class` (`stable` / `beta` / `prerelease`), `X-Commit` (12-character commit, with a `-dirty` suffix when the working tree was not clean) and `X-Build-Time`. Any device can be traced back to an exact commit, and official releases are told apart from internal builds by the package itself rather than by a table in the documentation.
+
+🔧 **Build and release pipeline**
+
+- Every build now ends with an automatic artifact check: required control fields present, version identical across source / lockfile / installed metadata, and the version string embedded in the binary correct. A failing artifact never reaches the upload step.
+- Releases go through a single script in the repository (version bump → build → verify → upload → tag → push); any failing step rolls back the local commit and tag, so a "version bumped but no package" state cannot be left behind.
+
+Everything else is unchanged from v4.4.76 — no motion control, protection threshold or calibration changes in this build.
+
+---
 
 ### 4.4.76
 

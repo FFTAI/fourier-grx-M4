@@ -58,10 +58,12 @@ What `fourier-grx install` does:
 
 `update` checks the Fourier server for newer versions and handles the download and `dpkg` installation. It covers **only the package layer** above — you still need to run `fourier-grx install` afterwards.
 
+Since **v4.4.77** the version list comes from the release index `grx/manifest.json` on the server (maintained by `scripts/release_meta.py` in the repository), and the downloaded file is verified against the `sha256` recorded there — a mismatch aborts the installation.
+
 ### Usage
 
 ```bash
-fourier-grx update                        # Probe available newer versions and install interactively
+fourier-grx update                        # List newer versions from the release index and install interactively
 fourier-grx update <version>              # Install a specific version; the variant is read from the installed package
 fourier-grx update <version>-<channel>    # Install a specific channel build, e.g. 4.4.53-prerelease
 fourier-grx update --help                 # Show help information
@@ -69,38 +71,43 @@ fourier-grx update --help                 # Show help information
 
 The variant is the package's platform/model identifier (the deb `X-Variant` field), e.g. `linux-arm64-cpu-m4l-blaze`. It is supplied automatically by the installed package and never needs to be typed.
 
-### Automatic probing range
+### Where the version list comes from
 
-Without arguments, versions newer than the current one are probed:
-
-- Current minor version: `patch + 1` through `patch + 20`, stopping after 5 consecutive 404s
-- Next versions: only `minor + 1` (patch 0-10, stopping after 3 consecutive 404s) and `minor 0` of `major + 1` (patch 0-5, stopping after 3 consecutive 404s)
+- **Release index (since v4.4.77)**: `grx/manifest.json` is fetched once and carries every published version of this variant together with its release class and `sha256`. Entries are listed in ascending version order with no window limit.
+- **Fallback probing (when the index is unavailable)**: if the index cannot be fetched (offline, older server), the client falls back to HTTP HEAD probing version by version — `patch + 1` through `patch + 20` of the current minor version (stopping after 5 consecutive 404s), `minor + 1` (patch 0-10, stop after 3), and `minor 0` of `major + 1` (patch 0-5, stop after 3). Because of that window, some later patch versions may stay invisible to a device sitting on an old release; this is a known limitation of the fallback path only.
+- When the index reports nothing newer, the client additionally spot-checks the immediately next version number with one HEAD request, in case a package was uploaded without updating the index.
 
 ### Workflow
 
 1. Reads the currently installed version number and variant from the deb record
-2. Probes the server for available newer versions, version by version (HTTP HEAD requests)
-3. Lists all available newer versions and marks the latest one
-4. Prompts the user to select a version number (press Enter to install the latest version, enter `n` to cancel)
-5. Downloads the `.deb` package for the selected version
-6. Completes the installation with `sudo dpkg -i`
+2. Fetches the release index and collects all versions of this variant that are newer than the installed one, together with their `sha256`
+3. Falls back to version-by-version probing if the index is unavailable
+4. Lists the candidates, marking the latest one and each entry's release class
+5. Prompts the user to select a version number (press Enter to install the latest version, enter `n` to cancel)
+6. Downloads the `.deb` package for the selected version and verifies its `sha256`
+7. Completes the installation with `sudo dpkg -i`
 
 ### Example Output
 
 ```text
-Current version : 4.4.4
+Current version : 4.4.71
 Current variant  : linux-arm64-cpu-m4l-blaze
 Checking for updates...
 
 Found the following newer versions:
 ----------------------------------------------------
-  [1] v4.4.5  fourier-grx-4.4.5-linux-arm64-cpu-m4l-blaze.deb
-  [2] v4.4.6  fourier-grx-4.4.6-linux-arm64-cpu-m4l-blaze.deb
-  [3] v4.4.7  fourier-grx-4.4.7-linux-arm64-cpu-m4l-blaze.deb  ← latest
+  [1] v4.4.72  fourier-grx-4.4.72-linux-arm64-cpu-m4l-blaze.deb  [正式版本 · 长期支持]
+  [2] v4.4.73  fourier-grx-4.4.73-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [3] v4.4.74  fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [4] v4.4.75  fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [5] v4.4.76  fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [6] v4.4.77  fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb  [内测构建]  ← latest
 ----------------------------------------------------
 
-Select the version number to install (press Enter for latest [3], or n to cancel):
+Select the version number to install (press Enter for latest [6], or n to cancel):
 ```
+
+标签为中文输出：`[正式版本 · 长期支持]` = official release, long-term supported；`[内测构建]` = internal build；`[预发布]` = pre-release. After you pick a version the client prints `Downloading: …`, then `checksum ok: <sha256>` and `Installing: …`. If the index has no `sha256` for that release (older packages), it prints a note saying verification is skipped and continues.
 
 ### After Installation Completes
 

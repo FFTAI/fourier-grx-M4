@@ -47,15 +47,21 @@ fourier-grx list
 
 ## Option 1: Use the `fourier-grx update` command (Recommended)
 
-`fourier-grx update` automatically reads the currently installed version and hardware variant, probes the [Firmware Releases](/fourier-grx-M4/docs/en/release) cloud storage for newer versions, and supports interactive selection.
+`fourier-grx update` automatically reads the currently installed version and hardware variant, queries the release index in the [Firmware Releases](/fourier-grx-M4/docs/en/release) cloud storage, lists the versions available for upgrade, and supports interactive selection.
 
-### Automatically probe and select interactively
+> ℹ️ Since **v4.4.77**, `fourier-grx update` reads the release index `manifest.json`: one request lists every later version of this variant, each entry labelled with its release class (**official** / internal build / pre-release), and the downloaded package is verified against the `sha256` recorded in the index before installation. If the index cannot be fetched, it falls back to the old version-by-version probing.
+>
+> This also closes an upgrade blind spot: the old probe only looked at "current version + 20 patch numbers", so a device stuck on 4.4.53 could never see anything past 4.4.73. The index has no such window.
+>
+> Note that this logic lives in the client script, so a device has to be brought onto a new package via `dpkg` once before it benefits; clients older than 4.4.77 still probe the old way.
+
+### List newer versions and select interactively
 
 ```bash
 fourier-grx update
 ```
 
-This lists the newer versions found (subsequent patches of the same minor version, the next minor version, and the next major version). Enter a number to select a version to install, press Enter to install the latest version, or enter `n` to cancel.
+This lists every later version of the variant (ascending, with the newest marked `← 最新 latest`), each labelled with its release class. Enter a number to select a version to install, press Enter to install the latest version, or enter `n` to cancel.
 
 ### Install a specific version directly
 
