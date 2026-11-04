@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.63 (2026-11-04)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.78 re-released as an official release**: rebuilt with `make ROBOT=m4l CHANNEL=stable` and uploaded over the artifact of the same name, so the embedded `X-Release-Class` is now `stable`, `X-Commit` is `ea95ec2c04ba-clean`, `X-Build-Time` is `2026-11-04T08:26:34Z`, sha256 `8acc34f192e58358b249875e4191fcd9ac57d4be33daa62830803c200711a91b`. The earlier `beta`-marked artifact (sha256 `d9e16897…`) was replaced, and `fourier-grx version` now prints `release: stable（正式版本 official release）`
+- 🔧 **Fixed `ALLOW_OVERWRITE=1` being ignored by `make upload_cos`**: the object-existence check in the Makefile refused unconditionally while its own message told users to pass that variable, leaving a manual `coscmd` call as the only way to re-release one version. It now honours the flag and prints an overwrite warning; without it the behaviour is unchanged and still refuses up front, so `coscmd`'s interactive prompt cannot hang a script or CI job
+- ✅ **The re-release path was verified on this machine**: `fourier-grx update 4.4.78` downloaded the package, verified it against the new checksum in the index and reinstalled over the same version; all 12 metadata and provenance checks pass afterwards. A field-by-field diff of the release index shows only the 4.4.78 entry changed — sha256 / size / url of the other 63 artifacts are untouched
+- 📄 The only source difference between the two builds is `release/channels.json` and `scripts/release_meta.py`, neither of which is packaged, so motion-control behaviour is identical. The 4.4.78 sections on both release pages now record the post-re-release package identity, and four `fourier-grx version` sample outputs across the Chinese and English pages carry the new values. English and Chinese kept in sync
+
 ### v1.2.62 (2026-11-04)
 
 **Release class**
@@ -21,7 +30,7 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 📌 **4.4.78 recognised as an official release**: it joins 4.4.40, 4.4.43 and 4.4.72 under long-term support and becomes the recommended version for new deployments. The `release/channels.json` ledger records `channel=stable` / `lts=true`, and the table row turns into a bolded "Official · Long-term support" row
 - 🔧 **`scripts/release_meta.py` gains a `promote` subcommand**: recognising an already published internal build means updating the COS `manifest.json` and that artifact's `.meta.json` as well as the ledger — `publish` takes `channel` from the package's `X-Release-Class`, and `rebuild` prefers those authoritative records, so a ledger-only edit gets reset to `beta` by the next rebuild. The command refuses when the ledger has no stable entry, and `prerelease` / `test` artifacts of the same version are never promoted in passing
 - ✅ **The release index is in sync**: 4.4.78 now reads `channel=stable` / `lts=true` in `manifest.json`, `latest[linux-arm64-cpu-m4l-blaze].stable` moved from 4.4.72 to 4.4.78, and a field-by-field diff shows the other 63 artifacts unchanged in sha256 / size / url; `fourier-grx update` now labels 4.4.78 as `[正式版本 · 长期支持]` (official, long-term supported)
-- ⚠️ **The package was not rebuilt**: the embedded `X-Release-Class` of 4.4.78 is still `beta`, so `fourier-grx version` keeps printing "internal build" on that package; the ledger and the release index define the release class, and the 4.4.78 sections on both release pages say so
+- ⚠️ **The package was not rebuilt at that point**: that change touched only the ledger and the release index, so the embedded `X-Release-Class` of 4.4.78 was still `beta` and `fourier-grx version` kept printing "internal build" on it. The `stable` re-release recorded in v1.2.63 removes that inconsistency
 - 📄 Eight statements of the official-version set across the Chinese and English release pages, the release overview and the command-line reference now list all four versions; the per-section note "The current official release remains 4.4.72" was reworded to "The latest official release at the time was 4.4.72". English and Chinese kept in sync
 
 ### v1.2.61 (2026-11-04)

@@ -156,9 +156,9 @@ fourier-grx version
 version: 4.4.78
 branch:  m4-lfs
 variant: linux-arm64-cpu-m4l-blaze
-release: beta（内测构建 internal build）
-commit:  1127cfbbd4fa-clean
-built:   2026-11-04T03:27:13Z
+release: stable（正式版本 official release）
+commit:  ea95ec2c04ba-clean
+built:   2026-11-04T08:26:34Z
 ```
 
 ## Related Links

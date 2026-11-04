@@ -118,9 +118,15 @@ has_toc: true
 
 ### 4.4.78
 
-> ✅ 发布性质：**正式发布**（2026-11-04 由 `blaze` 内测构建追认） &nbsp;·&nbsp; 支持状态：**长期支持**。包体未重新构建，包内 `X-Release-Class` 仍写 `beta`，`fourier-grx version` 会照旧打印内测字样；发布性质以台账 `release/channels.json` 与发布索引 `manifest.json` 为准。
+> ✅ 发布性质：**正式发布** &nbsp;·&nbsp; 支持状态：**长期支持**。本版最初以 `blaze` 内测构建发布，同日追认为正式版本后以 `CHANNEL=stable` 重新构建并覆盖同名对象发布。
 
 > 📅 2026-11-04 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+📦 **包身份（重发后）**
+
+- 当前发布包：`X-Commit` `ea95ec2c04ba-clean`、`X-Release-Class` `stable`、`X-Build-Time` `2026-11-04T08:26:34Z`，sha256 `8acc34f192e58358b249875e4191fcd9ac57d4be33daa62830803c200711a91b`。
+- 被覆盖的首个包：`X-Commit` `1127cfbbd4fa-clean`、`X-Release-Class` `beta`，sha256 `d9e16897b4ad2bc680e5c1e9594873a0a8076d52c156fddf0ce263dfa350bcde`。`fourier-grx update` 按索引里的新校验和取包，装了旧包的设备升级到同一版本号时会换成重发包。
+- 两次构建的源码差异只有 `release/channels.json` 与 `scripts/release_meta.py`，都不进包体（`run.spec` 只收 `src/`、`fourier-core/` 与 `release/run.py`、`scripts/rthooks/`），运动控制行为一致。
 
 ✨ **`fourier-grx version` 输出可追溯信息**
 

@@ -119,9 +119,15 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 
 ### 4.4.78
 
-> ✅ Release type: **official release** (recognised on 2026-11-04 from the `blaze` internal build) &nbsp;·&nbsp; Support: **long-term support**. The package was not rebuilt, so its embedded `X-Release-Class` still reads `beta` and `fourier-grx version` keeps printing the internal-build label; the `release/channels.json` ledger and the `manifest.json` release index are authoritative for release class.
+> ✅ Release type: **official release** &nbsp;·&nbsp; Support: **long-term support**. This version first shipped as a `blaze` internal build and was rebuilt with `CHANNEL=stable` on the same day after being recognised as official, overwriting the artifact of the same name.
 
 > 📅 2026-11-04 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+📦 **Package identity (after the re-release)**
+
+- Current artifact: `X-Commit` `ea95ec2c04ba-clean`, `X-Release-Class` `stable`, `X-Build-Time` `2026-11-04T08:26:34Z`, sha256 `8acc34f192e58358b249875e4191fcd9ac57d4be33daa62830803c200711a91b`.
+- Superseded first artifact: `X-Commit` `1127cfbbd4fa-clean`, `X-Release-Class` `beta`, sha256 `d9e16897b4ad2bc680e5c1e9594873a0a8076d52c156fddf0ce263dfa350bcde`. `fourier-grx update` verifies downloads against the checksum now in the index, so machines holding the older package pick up the rebuilt one when they move to this version number.
+- The two builds differ only in `release/channels.json` and `scripts/release_meta.py`, neither of which is packaged (`run.spec` collects `src/`, `fourier-core/`, `release/run.py` and `scripts/rthooks/` only), so motion-control behaviour is unchanged.
 
 ✨ **`fourier-grx version` now reports provenance**
 

@@ -13,6 +13,15 @@ has_toc: true
 
 ## 2026 年 11 月
 
+### v1.2.63 (2026-11-04)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.78 以正式版本重发**：以 `make ROBOT=m4l CHANNEL=stable` 重新构建并覆盖同名对象，包内 `X-Release-Class` 转为 `stable`、`X-Commit` 为 `ea95ec2c04ba-clean`、`X-Build-Time` 为 `2026-11-04T08:26:34Z`（北京时间 16:26），sha256 `8acc34f192e58358b249875e4191fcd9ac57d4be33daa62830803c200711a91b`；此前带 `beta` 标记的包（sha256 `d9e16897…`）已被同名对象覆盖，`fourier-grx version` 现在打印 `release: stable（正式版本 official release）`
+- 🔧 **修复 `make upload_cos` 的 `ALLOW_OVERWRITE=1` 不生效**：Makefile 里的对象存在性检查无条件拒绝，提示语却又让使用者加这个变量，同版本重发只能手工敲 `coscmd`。现在该变量确实放行并打印覆盖警告；不加时行为不变，仍然先拒绝，以免 `coscmd` 的交互确认挂住脚本或 CI
+- ✅ **重发链路在本机验证通过**：`fourier-grx update 4.4.78` 完成下载、按索引里的新校验和校验、dpkg 覆盖安装，安装后元数据与可追溯性检查 12/12 通过；发布索引逐字段比对只有 4.4.78 一条变化，其余 63 个产物的 sha256 / size / url 未动
+- 📄 两次构建的源码差异只有 `release/channels.json` 与 `scripts/release_meta.py`，都不进包体，运动控制行为一致。两张发布页的 4.4.78 小节改为记录重发后的包身份，中英另有 4 处 `fourier-grx version` 样例输出同步为新值。中英文同步
+
 ### v1.2.62 (2026-11-04)
 
 **发布性质**
@@ -20,7 +29,7 @@ has_toc: true
 - 📌 **4.4.78 追认为正式版本**：与 4.4.40、4.4.43、4.4.72 一并纳入长期支持，并作为新部署推荐版本。台账 `release/channels.json` 登记 `channel=stable` / `lts=true`，版本表该行随之转为加粗的「正式发布 · 长期支持」
 - 🔧 **`scripts/release_meta.py` 新增 `promote` 子命令**：事后追认已发布的内测构建时，除台账外还要同步 COS 上的 `manifest.json` 与该产物的 `.meta.json`——`publish` 写入的 `channel` 取自包内 `X-Release-Class`，而 `rebuild` 优先沿用这些权威记录，只改台账会被下一次 rebuild 抹回 `beta`。台账未登记 stable 时直接拒绝，`prerelease` / `test` 渠道产物不会被顺带提升
 - ✅ **发布索引已同步**：`manifest.json` 里 4.4.78 变为 `channel=stable` / `lts=true`，`latest[linux-arm64-cpu-m4l-blaze].stable` 由 4.4.72 变为 4.4.78，其余 63 个产物的 sha256 / size / url 逐字段核对无变化；`fourier-grx update` 现在把 4.4.78 标为 `[正式版本 · 长期支持]`
-- ⚠️ **包体未重新构建**：4.4.78 的 `X-Release-Class` 仍是打包时写死的 `beta`，在该包上 `fourier-grx version` 照旧打印「内测构建」；发布性质以台账与发布索引为准，两张发布页的 4.4.78 小节已写明这一点
+- ⚠️ **当时包体未重新构建**：那一次只改台账与发布索引，4.4.78 的 `X-Release-Class` 仍是打包时写死的 `beta`，在该包上 `fourier-grx version` 照旧打印「内测构建」；该不一致由 v1.2.63 记录的 `stable` 重发消除
 - 📄 中英两侧的发布页、版本汇总页与命令行工具页共 8 处正式版本集合叙述同步为四个版本；历史小节里的「当前正式版本仍为 4.4.72」改为「发布当时最新正式版本为 4.4.72」。中英文同步
 
 ### v1.2.61 (2026-11-04)
