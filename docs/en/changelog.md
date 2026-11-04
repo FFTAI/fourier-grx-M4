@@ -14,6 +14,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.60 (2026-11-04)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.78 internal build (not an official release)**: `fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-04 11:38, branch `m4-lfs`, package `X-Commit` = `1127cfbbd4fa`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.78`
+- ✨ **`fourier-grx version` now reports provenance**: besides the version it prints `branch` / `variant` / `release` / `commit` / `built`, so one command identifies the exact commit and delivery channel. Packages older than 4.4.77 print a note about the missing fields instead of blank values, and a machine without the package now exits non-zero like the other subcommands
+- 🔧 **`make upload_cos` refuses to overwrite an existing object**: `coscmd` prompts for confirmation before overwriting, which hangs scripts and CI; it now aborts with the alternatives spelled out, and `ALLOW_OVERWRITE=1` opts in. Small metadata objects (`.sha256` / `.meta.json` / `manifest.json`) are idempotent and may still be overwritten
+- 🔧 **The release script drives this documentation site**: after uploading and verifying the remote it runs `tools/gen_release_table.py --write` against both release pages — the 4.4.78 table row was written by that script
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.78 row and notes section (internal build · no longer supported); the current official release remains **4.4.72**
+- 📄 Both release pages get a 4.4.78 notes section; the table region on each page is delimited by generation markers. English and Chinese kept in sync
+
 ### v1.2.59 (2026-11-04)
 
 **Tooling and process**

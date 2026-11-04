@@ -148,8 +148,17 @@ fourier-grx config
 # View the current configuration and confirm it matches what you had before the update
 fourier-grx list
 
-# Check the currently installed version
+# Check the currently installed version and provenance (since v4.4.78: branch / variant / release class / commit / build time)
 fourier-grx version
+```
+
+```text
+version: 4.4.78
+branch:  m4-lfs
+variant: linux-arm64-cpu-m4l-blaze
+release: beta（内测构建 internal build）
+commit:  1127cfbbd4fa-clean
+built:   2026-11-04T03:27:13Z
 ```
 
 ## Related Links

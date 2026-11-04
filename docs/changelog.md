@@ -13,6 +13,17 @@ has_toc: true
 
 ## 2026 年 11 月
 
+### v1.2.60 (2026-11-04)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.78 内测构建（非正式发布）**：`fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb`（2026-11-04 11:38 构建，分支 `m4-lfs`，包内 `X-Commit` 为 `1127cfbbd4fa`、`X-Release-Class` 为 `beta`、`X-Variant` 为 `linux-arm64-cpu-m4l-blaze`），安装方式 `fourier-grx update`（读发布索引）或 `fourier-grx update 4.4.78`
+- ✨ **`fourier-grx version` 输出可追溯信息**：在版本号之外打印 `branch` / `variant` / `release` / `commit` / `built`，现场一条命令即可定位提交与发布渠道；4.4.77 之前的包会提示字段缺失而不是打印空值，未安装时按其它子命令口径报错退出
+- 🔧 **`make upload_cos` 拒绝覆盖已有对象**：`coscmd` 覆盖前会交互式确认，脚本与 CI 里会挂住，现在改为直接拒绝并给出办法，确需重发同一版本时用 `ALLOW_OVERWRITE=1`；元数据对象（`.sha256` / `.meta.json` / `manifest.json`）本就幂等，仍允许覆盖
+- 🔧 **发布脚本联动文档站**：上传并核对远端后自动运行 `tools/gen_release_table.py --write` 刷新两张发布页的版本表——本次 4.4.78 表格行即由该脚本写入
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)新增 4.4.78 行与更新内容小节（内测构建 · 不再支持），当前正式版本仍为 **4.4.72**
+- 📄 中英发布页各新增 4.4.78 更新内容小节，两页表格区域由生成标记圈定。中英文同步
+
 ### v1.2.59 (2026-11-04)
 
 **工具与流程**

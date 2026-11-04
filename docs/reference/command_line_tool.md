@@ -14,7 +14,7 @@ has_toc: true
 
 | 子命令               | 说明                                             |
 |-------------------|------------------------------------------------|
-| `version`         | 显示当前 Fourier-GRX-M4 SDK 的版本信息                  |
+| `version`         | 显示版本号与可追溯信息（分支 / 变体 / 发布性质 / 提交号 / 构建时间）          |
 | `install`         | 部署 Fourier-GRX-M4 SDK 运行环境，并配置机器人型号与运行模式        |
 | `uninstall`       | 删除 `~/fourier-grx` 部署目录                        |
 | `config`          | 重新配置 Fourier-GRX-M4 SDK 的启动参数                  |
@@ -136,6 +136,30 @@ fourier-grx update 4.4.53-prerelease
 - **权限要求**：安装步骤需要 `sudo` 权限，系统会提示输入密码。
 
 ---
+
+## `fourier-grx version` 详细说明
+
+自 **v4.4.78** 起，除版本号外还会打印安装包携带的可追溯字段：
+
+```text
+version: 4.4.78
+branch:  m4-lfs
+variant: linux-arm64-cpu-m4l-blaze
+release: beta（内测构建 internal build）
+commit:  1127cfbbd4fa-clean
+built:   2026-11-04T03:27:13Z
+```
+
+| 字段 | 含义 |
+|------|------|
+| `version` | dpkg 包版本号 |
+| `branch` | 构建时所在分支 |
+| `variant` | 平台 / 机型 / 构建类型，决定 `fourier-grx update` 匹配哪一批安装包 |
+| `release` | 发布性质：`stable` 正式版本（长期支持）、`beta` 内测构建、`prerelease` 预发布 |
+| `commit` | 12 位提交号；带 `-dirty` 说明构建时工作区有未提交改动，这类包不应对外交付 |
+| `built` | 构建时间（UTC） |
+
+字段取自 deb 元数据，`dpkg -s fourier-grx` 能看到同样的内容。4.4.77 及更早的包没有 `X-Release-Class` / `X-Commit`，此时只打印已有字段并提示版本过旧；未通过 dpkg 安装时打印错误并返回非零。
 
 ## `fourier-grx web` 详细说明
 

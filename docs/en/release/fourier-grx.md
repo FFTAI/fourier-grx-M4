@@ -25,6 +25,7 @@ nav_exclude: true
 <!-- BEGIN GENERATED version-table —— 由 tools/gen_release_table.py 维护，请勿手改 -->
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-04 | 4.4.78 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4478) | Internal build | ❌ No longer supported |
 | 2026-11-04 | 4.4.77 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4477) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.76 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4476) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.75 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4475) | Internal build | ❌ No longer supported |
@@ -113,6 +114,27 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.78
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+
+> 📅 2026-11-04 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **`fourier-grx version` now reports provenance**
+
+- Besides the version number it prints `branch` / `variant` / `release` (release class, with a bilingual explanation) / `commit` / `built`, so one command on a field machine pins the exact commit and delivery channel.
+- Only packages built from 4.4.77 onwards carry these fields; on older packages the command prints a note saying so instead of empty values.
+- When fourier-grx is not installed via dpkg the command errors out with a non-zero status, like the other subcommands, instead of printing an empty `version:` line.
+
+🔧 **Release and build**
+
+- `make upload_cos` now refuses to run when the object already exists on COS: `coscmd` asks for interactive confirmation before overwriting, which hangs scripts and CI. Re-publishing the same version takes an explicit `ALLOW_OVERWRITE=1`.
+- After uploading and verifying the remote, the release script automatically runs the documentation site's table generator, so the version tables on both release pages are no longer maintained by hand (rows are only ever added; delisted historical rows are preserved).
+
+Everything else is unchanged from v4.4.77 — no motion control, protection threshold or calibration changes in this build.
+
+---
 
 ### 4.4.77
 

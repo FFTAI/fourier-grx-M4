@@ -147,8 +147,17 @@ fourier-grx config
 # 查看当前配置信息，核对是否与更新前一致
 fourier-grx list
 
-# 查看当前安装的版本号
+# 查看当前安装的版本号与可追溯信息（v4.4.78 起还会打印分支 / 变体 / 发布性质 / 提交号 / 构建时间）
 fourier-grx version
+```
+
+```text
+version: 4.4.78
+branch:  m4-lfs
+variant: linux-arm64-cpu-m4l-blaze
+release: beta（内测构建 internal build）
+commit:  1127cfbbd4fa-clean
+built:   2026-11-04T03:27:13Z
 ```
 
 ## 相关链接

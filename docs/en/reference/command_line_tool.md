@@ -15,7 +15,7 @@ Run `fourier-grx` in a terminal to list all sub-commands. The supported sub-comm
 
 | Sub-command       | Description                                                                                         |
 |-------------------|-----------------------------------------------------------------------------------------------------|
-| `version`         | Display the current Fourier-GRX-M4 SDK version information                                          |
+| `version`         | Display the SDK version plus provenance (branch, variant, release class, commit, build time)       |
 | `install`         | Deploy the Fourier-GRX-M4 SDK runtime environment; prompts for the robot model and run type         |
 | `uninstall`       | Remove the `~/fourier-grx` deployment directory                                                     |
 | `config`          | Configure the startup parameters for the Fourier-GRX-M4 SDK                                        |
@@ -137,6 +137,30 @@ fourier-grx update 4.4.53-prerelease
 - **Permission requirements**: the installation step requires `sudo` privileges; the system will prompt for a password.
 
 ---
+
+## `fourier-grx version` Detailed Instructions
+
+Since **v4.4.78** the command also prints the provenance fields carried by the package:
+
+```text
+version: 4.4.78
+branch:  m4-lfs
+variant: linux-arm64-cpu-m4l-blaze
+release: beta（内测构建 internal build）
+commit:  1127cfbbd4fa-clean
+built:   2026-11-04T03:27:13Z
+```
+
+| Field | Meaning |
+|-------|---------|
+| `version` | dpkg package version |
+| `branch` | Branch the build was made from |
+| `variant` | Platform / model / build type; decides which packages `fourier-grx update` matches |
+| `release` | Release type: `stable` (official, long-term supported), `beta` (internal build), `prerelease` |
+| `commit` | 12-character commit id; a `-dirty` suffix means the working tree had uncommitted changes, such packages must not be shipped |
+| `built` | Build time (UTC) |
+
+The values come from the deb metadata, so `dpkg -s fourier-grx` shows the same information. Packages from 4.4.77 and earlier lack `X-Release-Class` / `X-Commit`; the command then prints only what exists plus a note about the older package. If fourier-grx was not installed with dpkg it prints an error and exits non-zero.
 
 ## `fourier-grx web` Detailed Instructions
 

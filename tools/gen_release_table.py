@@ -102,23 +102,22 @@ def load_ledger(explicit: str | None) -> tuple[dict, pathlib.Path | None]:
 
 
 def releases_from_manifest(manifest: dict) -> dict[str, dict]:
-    """version -> {channel, lts, url, date, variants}。
+    """version -> {channel, lts, url, date}，取文档所讲的那条线（m4l-blaze）。
 
-    只取文档所讲的这条线（linux-arm64-cpu-m4l-blaze）：只发过预发布渠道的版本
-    不进这张表（页面另有「预发布渠道」一节），只存在于 c1 变体的版本同理。
+    读 releases 明细而不是扁平 index：index 是给设备端 shell 用的精简视图，只有
+    version/variant/channel/sha256/lts，没有 url 和时间，用它生成表格会把新行的
+    下载列写成「已下架」。只发过预发布或 c1 渠道的版本不进这张表。
     """
     out: dict[str, dict] = {}
-    for row in manifest.get("index") or []:
-        version = str(row.get("v") or "")
-        variant = str(row.get("variant") or "")
-        if not version or variant != DOC_VARIANT:
+    for version, blob in (manifest.get("releases") or {}).items():
+        art = (blob.get("artifacts") or {}).get(DOC_VARIANT)
+        if not art or not version:
             continue
         out[version] = {
-            "channel": row.get("channel") or "beta",
-            "lts": bool(row.get("lts")),
-            "url": row.get("url"),
-            "date": (row.get("uploaded_at") or row.get("published_at") or row.get("build_time") or "")[:10] or None,
-            "variants": [variant],
+            "channel": art.get("channel") or "beta",
+            "lts": bool(art.get("lts")),
+            "url": art.get("url"),
+            "date": (art.get("uploaded_at") or art.get("published_at") or art.get("build_time") or "")[:10] or None,
         }
     return out
 
@@ -126,11 +125,12 @@ def releases_from_manifest(manifest: dict) -> dict[str, dict]:
 def other_channel_versions(manifest: dict, shown: dict[str, dict]) -> dict[str, list[str]]:
     """这条线之外的版本（只在预发布 / c1 渠道出现），用于提示而不是静默丢弃。"""
     others: dict[str, set[str]] = {}
-    for row in manifest.get("index") or []:
-        version = str(row.get("v") or "")
-        variant = str(row.get("variant") or "")
-        if version and version not in shown and variant != DOC_VARIANT:
-            others.setdefault(variant, set()).add(version)
+    for version, blob in (manifest.get("releases") or {}).items():
+        if not version or version in shown:
+            continue
+        for variant in (blob.get("artifacts") or {}):
+            if variant != DOC_VARIANT:
+                others.setdefault(variant, set()).add(version)
     return {k: sorted(v, key=version_key) for k, v in sorted(others.items())}
 
 
@@ -189,18 +189,33 @@ def render(lang: str, text: str, data: dict[str, dict], ledger: dict, page: path
     sep_line = region[region.index(header_line) + 1]
 
     detail_heads = set(re.findall(r"^### (\d+\.\d+\.\d+)$", text, re.M))
+    c = CELLS[lang]
     missing_in_index: list[str] = []
     merged: dict[str, list[str]] = {}
     for cells in parse_rows(region):
         version = cells[1].strip().strip("*").strip()
         kind, sup, bold, channel = classify(version, data.get(version), ledger, lang)
         entry = data.get(version)
+        cells = list(cells)
         if entry is None:
             missing_in_index.append(version)
-        elif channel == "stable" and ((ledger.get("releases") or {}).get(version) or {}).get("channel") != "stable":
-            notes.append(f"{version}: 索引标为 stable，但台账未登记，按正式版本渲染——请补台账")
-        ver_cell = f"**{version}**" if bold else version
+        else:
+            if channel == "stable" and ((ledger.get("releases") or {}).get(version) or {}).get("channel") != "stable":
+                notes.append(f"{version}: 索引标为 stable，但台账未登记，按正式版本渲染——请补台账")
+            # 自愈：数据源说对象在，就把此前生成错的空日期 / 占位下载列修回来
+            if not cells[0] and entry.get("date"):
+                cells[0] = entry["date"]
+                notes.append(f"{version}: 补齐空的发布日期列")
+            if cells[2] == c["delisted"] and entry.get("url"):
+                cells[2] = c["download"].format(url=entry["url"])
+                notes.append(f"{version}: 下载列原本是「{c['delisted']}」，但索引里对象存在，已改回链接")
+            elif entry.get("url") and entry["url"] not in cells[2] and "http" in cells[2]:
+                notes.append(f"{version}: 下载链接与索引里的 URL 不同，未自动改写，请人工确认")
         anchor = "#" + version.replace(".", "")
+        if cells[3] == c["detail_todo"] and version in detail_heads:
+            cells[3] = c["detail"].format(anchor=anchor[1:])
+            notes.append(f"{version}: 更新内容小节已存在，补齐详情链接")
+        ver_cell = f"**{version}**" if bold else version
         if f"({anchor})" in cells[3] and version not in detail_heads:
             notes.append(f"{version}: 详情链接指向的小节不存在")
         if version in merged:

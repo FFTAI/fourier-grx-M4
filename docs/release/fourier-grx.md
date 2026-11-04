@@ -24,6 +24,7 @@ has_toc: true
 <!-- BEGIN GENERATED version-table —— 由 tools/gen_release_table.py 维护，请勿手改 -->
 | 发布日期 | 版本 | 下载 | 更新内容 | 发布性质 | 支持状态 |
 |----------|------|------|----------|----------|----------|
+| 2026-11-04 | 4.4.78 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4478) | 内测构建 | ❌ 不再支持 |
 | 2026-11-04 | 4.4.77 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4477) | 内测构建 | ❌ 不再支持 |
 | 2026-11-03 | 4.4.76 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4476) | 内测构建 | ❌ 不再支持 |
 | 2026-11-03 | 4.4.75 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4475) | 内测构建 | ❌ 不再支持 |
@@ -112,6 +113,27 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.78
+
+> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布** &nbsp;·&nbsp; 支持状态：**不再支持**。当前正式版本仍为 4.4.72，其保持长期支持。
+
+> 📅 2026-11-04 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **`fourier-grx version` 输出可追溯信息**
+
+- 除版本号外，现在还会输出 `branch` / `variant` / `release`（发布性质，带中英文说明）/ `commit` / `built` 五项，现场报障时一条命令就能定位到具体提交与发布渠道。
+- 从 4.4.77 起的安装包才带这些字段；在更老的包上运行时额外提示「该包早于 4.4.77 打包」，不打印空值。
+- 未通过 dpkg 安装时按其它子命令的口径报错并返回非零，不再打印一行空的 `version:`。
+
+🔧 **发布与构建**
+
+- `make upload_cos` 遇到 COS 上已存在的同名对象时直接拒绝并说明办法：`coscmd` 覆盖前会交互式确认，在脚本或 CI 里会一直挂着。确实要重发同一版本时显式加 `ALLOW_OVERWRITE=1`。
+- 发布脚本在上传并核对远端之后，自动调用文档站的版本表生成器刷新两张发布页的版本表，版本表不再靠手抄维护（表格行只增不删，已下架历史行原样保留）。
+
+其余功能与 v4.4.77 相同，本次没有运动控制、保护阈值或标定流程的改动。
+
+---
 
 ### 4.4.77
 
