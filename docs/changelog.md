@@ -20,6 +20,7 @@ has_toc: true
 - 📦 `fourier-grx` **v4.4.78 以正式版本重发**：以 `make ROBOT=m4l CHANNEL=stable` 重新构建并覆盖同名对象，包内 `X-Release-Class` 转为 `stable`、`X-Commit` 为 `ea95ec2c04ba-clean`、`X-Build-Time` 为 `2026-11-04T08:26:34Z`（北京时间 16:26），sha256 `8acc34f192e58358b249875e4191fcd9ac57d4be33daa62830803c200711a91b`；此前带 `beta` 标记的包（sha256 `d9e16897…`）已被同名对象覆盖，`fourier-grx version` 现在打印 `release: stable（正式版本 official release）`
 - 🔧 **修复 `make upload_cos` 的 `ALLOW_OVERWRITE=1` 不生效**：Makefile 里的对象存在性检查无条件拒绝，提示语却又让使用者加这个变量，同版本重发只能手工敲 `coscmd`。现在该变量确实放行并打印覆盖警告；不加时行为不变，仍然先拒绝，以免 `coscmd` 的交互确认挂住脚本或 CI
 - ✅ **重发链路在本机验证通过**：`fourier-grx update 4.4.78` 完成下载、按索引里的新校验和校验、dpkg 覆盖安装，安装后元数据与可追溯性检查 12/12 通过；发布索引逐字段比对只有 4.4.78 一条变化，其余 63 个产物的 sha256 / size / url 未动
+- 🏷️ **tag `v4.4.78` 移到重发提交**：原指向版本号提交 `1127cfbb`，现指向 `ea95ec2c`，与当前发布包的 `X-Commit` 相同，`git describe` 和 `release_meta.py` 从 tag 反推的提交号因此与发布索引里的记录一致。tag 是强推改写，早先已拉取过 `v4.4.78` 的克隆要执行 `git fetch --tags --force` 才会更新本地引用
 - 📄 两次构建的源码差异只有 `release/channels.json` 与 `scripts/release_meta.py`，都不进包体，运动控制行为一致。两张发布页的 4.4.78 小节改为记录重发后的包身份，中英另有 4 处 `fourier-grx version` 样例输出同步为新值。中英文同步
 
 ### v1.2.62 (2026-11-04)
