@@ -14,11 +14,11 @@ nav_exclude: true
 
 ## Version List
 
-> ⚠️ Only **4.4.40, 4.4.43, and 4.4.72** are genuine official Fourier-GRX releases, and all three are kept under **long-term support**. All other `blaze` packages are internal builds delivered through the `blaze` directory, are not official releases, and are not covered by long-term support.
+> ⚠️ Only **4.4.40, 4.4.43, 4.4.72, and 4.4.78** are genuine official Fourier-GRX releases, and all four are kept under **long-term support**. All other `blaze` packages are internal builds delivered through the `blaze` directory, are not official releases, and are not covered by long-term support (4.4.78 likewise shipped as a `blaze` internal build and was recognised as an official release on 2026-11-04).
 >
 > **Release Type** and **Support** are two independent columns: *Release Type* says whether a version is an official release or an internal build (`blaze` is only a delivery channel and does not imply an official release); *Support* says whether the version is still maintained. The two line up here — official releases are long-term supported, internal builds are not. On official rows both the version number and the release type are shown in **bold** so they stand out at a glance.
 >
-> New deployments should use the latest official release, **4.4.72**. Versions 4.4.40 and 4.4.43 remain within their support period, so machines already running them can stay put; no forced upgrade is required.
+> New deployments should use the latest official release, **4.4.78**. Versions 4.4.40, 4.4.43 and 4.4.72 remain within their support period, so machines already running them can stay put; no forced upgrade is required.
 >
 > Builds earlier than **4.4.40** (and 4.4.41) have been removed from the download server and are marked "Delisted" below; those rows are kept so the change history remains readable.
 
@@ -26,7 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
-| 2026-11-04 | 4.4.78 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4478) | Internal build | ❌ No longer supported |
+| 2026-11-04 | **4.4.78** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4478) | **Official** | ✅ Long-term support |
 | 2026-11-04 | 4.4.77 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4477) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.76 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4476) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.75 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4475) | Internal build | ❌ No longer supported |
@@ -102,12 +102,12 @@ For first-time installation, see [Firmware Installation (First-Time Setup)](/fou
 
 ## Pre-release Channel
 
-A `blaze` package in the table above is **not necessarily an official release**. Only 4.4.40, 4.4.43, and 4.4.72 are official; all other `blaze` packages are internal builds. Pre-release channel builds use `prerelease` instead of `blaze` as the last segment of the file name and the `X-Variant`, leaving the model segment unchanged — for example `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`.
+A `blaze` package in the table above is **not necessarily an official release**. Only 4.4.40, 4.4.43, 4.4.72, and 4.4.78 are official; all other `blaze` packages are internal builds. Pre-release channel builds use `prerelease` instead of `blaze` as the last segment of the file name and the `X-Variant`, leaving the model segment unchanged — for example `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`.
 
 - Pre-release packages are **never** found by the automatic probe of `fourier-grx update` and are not listed in the table above.
 - Install one explicitly: `fourier-grx update <version>-prerelease`, e.g. `fourier-grx update 4.4.53-prerelease`. This syntax is available since v4.4.53; on earlier versions, install with `sudo dpkg -i <deb>` instead.
 - `fourier-grx install` is still required afterwards.
-- Current latest official release: `fourier-grx update 4.4.72`. Versions 4.4.40 and 4.4.43 are also official releases and remain long-term supported, so they are a stable baseline for existing machines; new deployments should use 4.4.72.
+- Current latest official release: `fourier-grx update 4.4.78`. Versions 4.4.40, 4.4.43 and 4.4.72 are also official releases and remain long-term supported, so they are a stable baseline for existing machines; new deployments should use 4.4.78.
 - Current pre-release: `fourier-grx update 4.4.73-prerelease` (built 2026-11-02, `X-Variant` = `linux-arm64-cpu-m4l-prerelease`), **clearing stale velocity and effort commands when M4L tasks dispatch PD or position targets**. Feedforward variants subsequently write their valid velocity feedforward, preserving existing feedforward behaviour. See the [changelog](/fourier-grx-M4/docs/en/changelog).
 - ⚠️ **Do not install `4.4.55-prerelease` on M4LP1**: that build (and the v4.4.52 – 4.4.55 blaze internal builds) exits right after start on P1 because a joint-protection counter attribute is missing. Use `4.4.56-prerelease` or later. M4LT1 / M4LT2 are unaffected.
 
@@ -119,7 +119,7 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 
 ### 4.4.78
 
-> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+> ✅ Release type: **official release** (recognised on 2026-11-04 from the `blaze` internal build) &nbsp;·&nbsp; Support: **long-term support**. The package was not rebuilt, so its embedded `X-Release-Class` still reads `beta` and `fourier-grx version` keeps printing the internal-build label; the `release/channels.json` ledger and the `manifest.json` release index are authoritative for release class.
 
 > 📅 2026-11-04 &nbsp;·&nbsp; Platform: `linux/arm64`
 
@@ -140,7 +140,7 @@ Everything else is unchanged from v4.4.77 — no motion control, protection thre
 
 ### 4.4.77
 
-> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.72, which remains long-term supported.
 
 > 📅 2026-11-04 &nbsp;·&nbsp; Platform: `linux/arm64`
 
@@ -166,7 +166,7 @@ Everything else is unchanged from v4.4.76 — no motion control, protection thre
 
 ### 4.4.76
 
-> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.72, which remains long-term supported.
 
 > 📅 2026-11-03 &nbsp;·&nbsp; Platform: `linux/arm64`
 
@@ -190,7 +190,7 @@ Everything else is unchanged from v4.4.75.
 
 ### 4.4.75
 
-> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.72, which remains long-term supported.
 
 > 📅 2026-11-03 &nbsp;·&nbsp; Platform: `linux/arm64`
 
@@ -209,7 +209,7 @@ Everything else is unchanged from v4.4.74.
 
 ### 4.4.74
 
-> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.72, which remains long-term supported.
 
 > 📅 2026-11-03 &nbsp;·&nbsp; Platform: `linux/arm64`
 
@@ -230,7 +230,7 @@ Everything else is unchanged from v4.4.73.
 
 ### 4.4.73
 
-> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The current official release remains 4.4.72, which is long-term supported.
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.72, which remains long-term supported.
 
 > 📅 2026-11-02 &nbsp;·&nbsp; Platform: `linux/arm64`
 

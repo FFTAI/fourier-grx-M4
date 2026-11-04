@@ -4,11 +4,13 @@
     "发布性质台账 / Release-class ledger.",
     "只有这里显式登记的版本算正式发布（channel=stable）；未登记的 blaze 包一律按内测构建（beta）处理。",
     "Only versions listed here are official releases; every other blaze artifact is an internal build.",
-    "lts=true 表示长期支持。由 scripts/release.sh --channel stable 自动追加条目。"
+    "lts=true 表示长期支持。由 scripts/release.sh --channel stable 自动追加条目。",
+    "事后追认已发布的内测构建为正式版本：改这里之后再跑 scripts/release_meta.py promote --version X 同步 COS 上的 manifest 与 meta.json。"
   ],
   "releases": {
     "4.4.40": { "channel": "stable", "lts": true },
     "4.4.43": { "channel": "stable", "lts": true },
-    "4.4.72": { "channel": "stable", "lts": true }
+    "4.4.72": { "channel": "stable", "lts": true },
+    "4.4.78": { "channel": "stable", "lts": true }
   }
 }

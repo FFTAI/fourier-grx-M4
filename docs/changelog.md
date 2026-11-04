@@ -13,6 +13,16 @@ has_toc: true
 
 ## 2026 年 11 月
 
+### v1.2.62 (2026-11-04)
+
+**发布性质**
+
+- 📌 **4.4.78 追认为正式版本**：与 4.4.40、4.4.43、4.4.72 一并纳入长期支持，并作为新部署推荐版本。台账 `release/channels.json` 登记 `channel=stable` / `lts=true`，版本表该行随之转为加粗的「正式发布 · 长期支持」
+- 🔧 **`scripts/release_meta.py` 新增 `promote` 子命令**：事后追认已发布的内测构建时，除台账外还要同步 COS 上的 `manifest.json` 与该产物的 `.meta.json`——`publish` 写入的 `channel` 取自包内 `X-Release-Class`，而 `rebuild` 优先沿用这些权威记录，只改台账会被下一次 rebuild 抹回 `beta`。台账未登记 stable 时直接拒绝，`prerelease` / `test` 渠道产物不会被顺带提升
+- ✅ **发布索引已同步**：`manifest.json` 里 4.4.78 变为 `channel=stable` / `lts=true`，`latest[linux-arm64-cpu-m4l-blaze].stable` 由 4.4.72 变为 4.4.78，其余 63 个产物的 sha256 / size / url 逐字段核对无变化；`fourier-grx update` 现在把 4.4.78 标为 `[正式版本 · 长期支持]`
+- ⚠️ **包体未重新构建**：4.4.78 的 `X-Release-Class` 仍是打包时写死的 `beta`，在该包上 `fourier-grx version` 照旧打印「内测构建」；发布性质以台账与发布索引为准，两张发布页的 4.4.78 小节已写明这一点
+- 📄 中英两侧的发布页、版本汇总页与命令行工具页共 8 处正式版本集合叙述同步为四个版本；历史小节里的「当前正式版本仍为 4.4.72」改为「发布当时最新正式版本为 4.4.72」。中英文同步
+
 ### v1.2.61 (2026-11-04)
 
 **修复**

@@ -14,6 +14,16 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.62 (2026-11-04)
+
+**Release class**
+
+- 📌 **4.4.78 recognised as an official release**: it joins 4.4.40, 4.4.43 and 4.4.72 under long-term support and becomes the recommended version for new deployments. The `release/channels.json` ledger records `channel=stable` / `lts=true`, and the table row turns into a bolded "Official · Long-term support" row
+- 🔧 **`scripts/release_meta.py` gains a `promote` subcommand**: recognising an already published internal build means updating the COS `manifest.json` and that artifact's `.meta.json` as well as the ledger — `publish` takes `channel` from the package's `X-Release-Class`, and `rebuild` prefers those authoritative records, so a ledger-only edit gets reset to `beta` by the next rebuild. The command refuses when the ledger has no stable entry, and `prerelease` / `test` artifacts of the same version are never promoted in passing
+- ✅ **The release index is in sync**: 4.4.78 now reads `channel=stable` / `lts=true` in `manifest.json`, `latest[linux-arm64-cpu-m4l-blaze].stable` moved from 4.4.72 to 4.4.78, and a field-by-field diff shows the other 63 artifacts unchanged in sha256 / size / url; `fourier-grx update` now labels 4.4.78 as `[正式版本 · 长期支持]` (official, long-term supported)
+- ⚠️ **The package was not rebuilt**: the embedded `X-Release-Class` of 4.4.78 is still `beta`, so `fourier-grx version` keeps printing "internal build" on that package; the ledger and the release index define the release class, and the 4.4.78 sections on both release pages say so
+- 📄 Eight statements of the official-version set across the Chinese and English release pages, the release overview and the command-line reference now list all four versions; the per-section note "The current official release remains 4.4.72" was reworded to "The latest official release at the time was 4.4.72". English and Chinese kept in sync
+
 ### v1.2.61 (2026-11-04)
 
 **Fixes**

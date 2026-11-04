@@ -100,10 +100,11 @@ fourier-grx update --help                 # 显示帮助信息
   [3] v4.4.74  fourier-grx-4.4.74-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
   [4] v4.4.75  fourier-grx-4.4.75-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
   [5] v4.4.76  fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
-  [6] v4.4.77  fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb  [内测构建]  ← 最新 latest
+  [6] v4.4.77  fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb  [内测构建]
+  [7] v4.4.78  fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb  [正式版本 · 长期支持]  ← 最新 latest
 ----------------------------------------------------
 
-请选择要安装的版本编号（直接回车安装最新 [6]，输入 n 取消）:
+请选择要安装的版本编号（直接回车安装最新 [7]，输入 n 取消）:
 ```
 
 确认后依次输出 `正在下载 / Downloading: …`、`校验通过 / checksum ok: <sha256>`、`正在安装 / Installing: …`。若索引里没有该版本的 `sha256` 记录（历史包），会输出「索引里没有这个版本的 sha256 记录，跳过校验」并继续安装。
@@ -114,7 +115,7 @@ fourier-grx update --help                 # 显示帮助信息
 
 ### 预发布渠道
 
-预发布构建的文件名与 `X-Variant` 末段为 `prerelease`（`blaze` 仅表示渠道，不保证是正式发布版；正式版本仅为 4.4.40、4.4.43、4.4.72），机型段保持不变，例如 `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`。
+预发布构建的文件名与 `X-Variant` 末段为 `prerelease`（`blaze` 仅表示渠道，不保证是正式发布版；正式版本仅为 4.4.40、4.4.43、4.4.72、4.4.78），机型段保持不变，例如 `fourier-grx-4.4.53-linux-arm64-cpu-m4l-prerelease.deb`。
 
 - 上述自动探测按已安装包的 `X-Variant`（`...-blaze`）拼文件名，**永远不会**发现预发布包。
 - 只能通过 `<version>-prerelease` 显式安装：
