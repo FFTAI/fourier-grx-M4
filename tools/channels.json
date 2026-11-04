@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "comment": [
+    "发布性质台账 / Release-class ledger.",
+    "只有这里显式登记的版本算正式发布（channel=stable）；未登记的 blaze 包一律按内测构建（beta）处理。",
+    "Only versions listed here are official releases; every other blaze artifact is an internal build.",
+    "lts=true 表示长期支持。由 scripts/release.sh --channel stable 自动追加条目。"
+  ],
+  "releases": {
+    "4.4.40": { "channel": "stable", "lts": true },
+    "4.4.43": { "channel": "stable", "lts": true },
+    "4.4.72": { "channel": "stable", "lts": true }
+  }
+}

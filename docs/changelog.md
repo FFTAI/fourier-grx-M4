@@ -13,6 +13,16 @@ has_toc: true
 
 ## 2026 年 11 月
 
+### v1.2.59 (2026-11-04)
+
+**工具与流程**
+
+- 🔧 固件发布页的版本表改由仓库内脚本从发布索引 `manifest.json` 与正式版本台账生成：行只增不删，「发布性质 / 支持状态」两列按数据源刷新，加粗规则随之统一。表格区域由 `BEGIN/END GENERATED` 注释圈定，区域内不要再手工增删行。
+- ➕ 生成脚本提供 `--check`（漂移检测，退出码非 0 即有漂移，可接入 CI）、`--write`（重新生成）、`--manifest <文件>`（离线校验）、`--print-latest`。`fourier-grx` 仓库的发布脚本在上传成功后会自动调用它刷新版本表。
+- 📋 `tools/channels.json` 是 `fourier-grx/release/channels.json` 的镜像，只在看不到代码工作副本时作为后备；两份不一致时 `--check` 会报错。
+- 📄 贡献指南补充了生成区域的约定与提交前检查项（中英同步）。
+- ℹ️ `fourier-grx version` 将从下一个固件构建起同时输出 branch / variant / release class / commit / build time；v4.4.77 仍只打印版本号。
+
 ### v1.2.58 (2026-11-04)
 
 **发布**
