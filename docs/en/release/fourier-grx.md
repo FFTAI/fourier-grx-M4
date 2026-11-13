@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-13 | 4.4.79 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.79-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4479) | Internal build | ❌ No longer supported |
 | 2026-11-04 | **4.4.78** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4478) | **Official** | ✅ Long-term support |
 | 2026-11-04 | 4.4.77 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4477) | Internal build | ❌ No longer supported |
 | 2026-11-03 | 4.4.76 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4476) | Internal build | ❌ No longer supported |
@@ -116,6 +117,24 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.79
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-13 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New harmonic-coefficient assist forward-walk tasks 4132 (PD adjust) / 4133 (cadence adjust)**
+
+- Gait source is identical to [4131 harmonic forward walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic): playback of the Fourier-coefficient trajectory from the fourier-m4 x4 master table — curve shape set by the amplitude / knee-restriction levels, cadence set by the cadence level.
+- **4132 PD adjust**: assist semantics as in [4116](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd) — the assist ratio interpolates PD gains between buttery and soft, applied once when the task starts; load detection and automatic PD climbing are disabled.
+- **4133 cadence adjust**: assist semantics as in [4118](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt) — the assist ratio maps to playback speed play_speed (0.5–1.0×), can auto-adjust against "actuator torque vs Pinocchio gravity compensation"; PD stays at the medium tier throughout.
+- The three panel levels (amplitude / knee restriction / cadence) keep the 4131 semantics; the assist ratio moves to `param_4` (`param_3` is taken by cadence). 4133 can also enable auto assist adjustment with `switch_1`.
+- Two task pages added — [PD adjust](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd) and [cadence adjust](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt); the [task table](/fourier-grx-M4/docs/en/tasks) and the 4131 page are updated; the dynalink `gait_*` fields now cover 4132 / 4133.
+
+Everything else is unchanged from v4.4.78 — no motion-control, protection-threshold or calibration-flow changes.
+
+---
 
 ### 4.4.78
 

@@ -13,6 +13,15 @@ has_toc: true
 
 ## 2026 年 11 月
 
+### v1.2.64 (2026-11-13)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.79 内测构建（非正式发布）**：`fourier-grx-4.4.79-linux-arm64-cpu-m4l-blaze.deb`（2026-11-13 10:48 构建，分支 `m4-lfs`，包内 `X-Commit` 为 `f20a677606c1`、`X-Release-Class` 为 `beta`、`X-Variant` 为 `linux-arm64-cpu-m4l-blaze`），安装方式 `fourier-grx update`（读发布索引）或 `fourier-grx update 4.4.79`，sha256 `c28dc804838cba1f3938eda368a49984cfdd0e10f4e0e1e69618d3a583cf5f67`
+- ✨ **新增谐波系数助力前向行走任务 4132 / 4133**：4132 助力调 PD（助力系数在 buttery ↔ soft 间插值增益，仅任务开启时调整一次，负载检测与自动爬升关闭）；4133 助力调步频（助力系数映射回放速度 0.5..1.0 倍速，可按「执行器力矩 vs Pinocchio 重力补偿」自动增减，PD 固定 medium 档）。面板三档同 4131，助力系数走 `param_4`；新增两页任务说明，任务总表、4131 页与 dynalink `gait_*` 字段说明同步
+- 🔧 **修复 `fourier-grx update` 下载在弱网链路下必失败的问题**（`release/deb_run.sh`）：原实现 300 s 硬上限、无断点续传、无重试，325 MB 包在慢链路上下载必然中断（本版实装验证时现场复现：300 s 仅下到 59%）。改为 `curl -C -` 断点续传 + 最多 5 次重试，单次上限放宽到 600 s，完整性仍由索引里的 sha256 校验兜底。注意该修复在本版发布之后合入（commit `a11864b2`），随 4.4.80 起交付
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)新增 4.4.79 行与更新内容小节（内测构建 · 不再支持），当前正式版本仍为 **4.4.78**。中英文同步
+
 ### v1.2.63 (2026-11-04)
 
 **发布**

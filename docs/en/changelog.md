@@ -14,6 +14,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.64 (2026-11-13)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.79 internal build (not an official release)**: `fourier-grx-4.4.79-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-13 10:48 CST, branch `m4-lfs`, package `X-Commit` = `f20a677606c1`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.79`, sha256 `c28dc804838cba1f3938eda368a49984cfdd0e10f4e0e1e69618d3a583cf5f67`
+- ✨ **New harmonic-coefficient assist forward-walk tasks 4132 / 4133**: 4132 adjusts PD (assist ratio interpolates gains between buttery and soft, applied once at task start, load detection and auto climbing disabled); 4133 adjusts cadence (assist ratio maps to playback speed 0.5–1.0×, can auto-adjust against "actuator torque vs Pinocchio gravity compensation", PD fixed at the medium tier). Panel levels match 4131 with the assist ratio on `param_4`; two task pages added, and the task table, the 4131 page and the dynalink `gait_*` field docs are updated
+- 🔧 **Fixed `fourier-grx update` downloads failing on slow networks** (`release/deb_run.sh`): the old code had a hard 300 s cap with no resume and no retry, so the 325 MB package always failed on a slow link (reproduced during this release's install verification: 59% in 300 s). Downloads now use `curl -C -` resume with up to 5 retries and a 600 s per-attempt cap, with integrity still guaranteed by the sha256 check against the index. Note the fix landed after this release (commit `a11864b2`) and ships from 4.4.80 onwards
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.79 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.63 (2026-11-04)
 
 **Release**

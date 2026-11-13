@@ -46,6 +46,8 @@ M4 机器人常见任务指令示例：
 | TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC        | 4131      | M4L  | 谐波系数前向行走（回放预存步态曲线；幅度档 / 伸膝限制档 / 步频档；v4.4.69 前为 4113） |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD | 4116    | M4L  | 助力前向行走（调整 PD 参数）              |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT | 4118    | M4L  | 助力前向行走（调整 dt 参数）              |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD | 4132 | M4L | 谐波系数助力前向行走（调整 PD 参数；面板三档同 4131，助力系数在 param_4；v4.4.79 新增） |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT | 4133 | M4L | 谐波系数助力前向行走（调整 dt 参数；面板三档同 4131，助力系数在 param_4；v4.4.79 新增） |
 | TASK_ROTARY_JOINT_MARK_TIME                    | 4130      | M4L  | 被动原地踏步（v4.4.69 前为 4112）        |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD   | 4117      | M4L  | 助力原地踏步（调整 PD 参数）              |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT   | 4119      | M4L  | 助力原地踏步（调整 dt 参数）              |
@@ -107,6 +109,8 @@ M4 机器人常见任务指令示例：
 - [站立姿态控制](/fourier-grx-M4/docs/tasks/stand_motion_control)
 - [被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)
 - [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)
+- [谐波系数助力前向行走（调整 PD 参数）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
+- [谐波系数助力前向行走（调整 dt 参数）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
 - [助力前向行走（调整 PD 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)
 - [助力前向行走（调整 dt 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)
 - [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)

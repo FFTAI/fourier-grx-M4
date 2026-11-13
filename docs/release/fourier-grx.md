@@ -25,6 +25,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 发布性质 | 支持状态 |
 |----------|------|------|----------|----------|----------|
+| 2026-11-13 | 4.4.79 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.79-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4479) | 内测构建 | ❌ 不再支持 |
 | 2026-11-04 | **4.4.78** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4478) | **正式发布** | ✅ 长期支持 |
 | 2026-11-04 | 4.4.77 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4477) | 内测构建 | ❌ 不再支持 |
 | 2026-11-03 | 4.4.76 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.76-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4476) | 内测构建 | ❌ 不再支持 |
@@ -115,6 +116,24 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.79
+
+> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布** &nbsp;·&nbsp; 支持状态：**不再支持**。发布当时最新正式版本为 4.4.78，仍保持长期支持。
+
+> 📅 2026-11-13 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增谐波系数助力前向行走任务 4132（调 PD）/ 4133（调步频）**
+
+- 步态来源与 [4131 谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)完全一致：回放 fourier-m4 x4 主表 Fourier 系数轨迹，曲线形状由幅度档 / 伸膝限制档决定，节奏由步频档决定。
+- **4132 调 PD**：助力语义同 [4116](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)——助力系数在 buttery 与 soft 之间插值 PD 增益，只在任务开启时调整一次；负载检测与自动 PD 爬升关闭。
+- **4133 调步频**：助力语义同 [4118](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)——助力系数映射到回放速度 play_speed（0.5..1.0 倍速），可按「执行器力矩 vs Pinocchio 重力补偿」自动增减；PD 全程固定 medium 档。
+- 面板三档（幅度 / 伸膝限制 / 步频）与 4131 同套语义，助力系数挪到 `param_4`（`param_3` 已被步频占用）；4133 另可用 `switch_1` 打开自动助力调整。
+- 文档站新增[调 PD](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)与[调步频](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)两页任务说明，[任务总表](/fourier-grx-M4/docs/tasks)与 4131 页同步更新；dynalink `gait_*` 系列字段的适用任务扩展至 4132 / 4133。
+
+其余功能与 v4.4.78 相同，本次没有运动控制、保护阈值或标定流程的改动。
+
+---
 
 ### 4.4.78
 

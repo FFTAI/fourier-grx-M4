@@ -47,6 +47,8 @@ Common task command examples for M4 robots:
 | TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC           | 4131             | M4L               | Harmonic-coefficient forward walking (pre-computed gait curves; amplitude / knee-restriction / cadence levels; 4113 before v4.4.69) |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD   | 4116             | M4L               | Assisted forward walking (adjust PD parameters)                           |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT   | 4118             | M4L               | Assisted forward walking (adjust dt parameters)                           |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD | 4132      | M4L               | Harmonic-coefficient assisted forward walking (adjust PD; same three panel levels as 4131, assist ratio on param_4; added in v4.4.79) |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT | 4133      | M4L               | Harmonic-coefficient assisted forward walking (adjust dt; same three panel levels as 4131, assist ratio on param_4; added in v4.4.79) |
 | TASK_ROTARY_JOINT_MARK_TIME                       | 4130             | M4L               | Passive marching in place (4112 before v4.4.69)                           |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD      | 4117             | M4L               | Assisted marching in place (adjust PD parameters)                         |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT      | 4119             | M4L               | Assisted marching in place (adjust dt parameters)                         |
@@ -108,6 +110,8 @@ The pages below are the primary task descriptions organized in this repository a
 - [Standing Posture Control](/fourier-grx-M4/docs/en/tasks/stand_motion_control)
 - [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive)
 - [Harmonic-Coefficient Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
+- [Harmonic-Coefficient Assisted Forward Walking (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
+- [Harmonic-Coefficient Assisted Forward Walking (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
 - [Assisted Forward Walking (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
 - [Assisted Forward Walking (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
 - [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive)
