@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-13 | 4.4.81 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.81-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4481) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.80 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.80-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4480) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.79 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.79-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4479) | Internal build | ❌ No longer supported |
 | 2026-11-04 | **4.4.78** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4478) | **Official** | ✅ Long-term support |
@@ -118,6 +119,31 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.81
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-13 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New harmonic assist forward-walk planners 4408 / 4409**
+
+- **4408** is the plan-only counterpart of 4132 PD assist, and **4409** corresponds to 4133 cadence assist. Panel `param_1`–`param_4` match the executing tasks; 4409 also supports the `switch_1` automatic-assist preview.
+- Both planners register on M4LP1 / M4LT1 / M4LT2 / M4LZenoh. They generate and report reference trajectories, cadence and harmonic gait levels without sending PD or position targets to the robot.
+- The Planner page and dynalink `gait_*` field descriptions now cover 4408 / 4409.
+
+🐛 **Fixed missing buffer initialization on Planner activation**
+
+- The Planner non-enabling activation path did not initialize buffers, so the first execution could access the nonexistent `robot_joint_target_position` during position-protection updates and raise `AttributeError`.
+- Activation now initializes input / output buffers, resets the torque-protection counter and applies robot-specific parameters. It still does not enter the normal task activation path that re-enables actuators.
+- Simulated runs of 4408 / 4409 verified activation, trajectory generation, reporting and exit cleanup, with zero joint-target writes throughout.
+
+🐛 **Fixed the model-specific registration path of 4132 / 4133**
+
+- The two harmonic assist executing tasks introduced in 4.4.79 called model-parameter hooks absent from their inheritance chain, which could raise `AttributeError` during registration. They now set the load-detection threshold directly from the actual model (P1 = 50 J, T1/T2 = 30 J).
+- Both tasks have `flag_load_detection=False`, so this threshold does not participate in runtime control; their trajectories and assist algorithms are unchanged.
+
+---
 
 ### 4.4.80
 

@@ -14,6 +14,16 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.66 (2026-11-13)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.81 internal build (not an official release)**: `fourier-grx-4.4.81-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-13 13:11 CST, branch `m4-lfs`, package `X-Commit` = `a558587fb3a7`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.81`, sha256 `2b1b3fa98e6ad4a104c85ac6d6dc4e514f1c05abcadce907117a01e71b097e39`
+- ✨ **New harmonic assist planners 4408 / 4409**: plan-only counterparts of 4132 PD assist and 4133 cadence assist, with identical panel mappings and automatic-assist preview on 4409. Both register on P1/T1/T2/Zenoh, generating and reporting reference trajectories, cadence and gait levels without sending control targets. The Planner page and dynalink `gait_*` field docs are updated
+- 🐛 **Fixed missing buffer initialization on Planner activation**: the non-enabling path now initializes input / output buffers, resets the torque-protection counter and applies robot parameters, preventing position-protection updates from accessing a nonexistent `robot_joint_target_position`. Actuators are still not re-enabled. Both new planners were verified to make zero joint writes, and all 15 M4LT2 Planner classes passed register / activate / deactivate regression checks
+- 🐛 **Fixed the model-specific registration path of 4132 / 4133**: the two executing tasks from 4.4.79 called model-parameter hooks absent from their inheritance chain; they now set the load-detection threshold directly from the actual model. Load detection remains disabled in both tasks, and their trajectories and assist algorithms are unchanged
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.81 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.65 (2026-11-13)
 
 **Release**
