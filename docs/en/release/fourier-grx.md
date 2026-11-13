@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-13 | 4.4.80 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.80-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4480) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.79 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.79-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4479) | Internal build | ❌ No longer supported |
 | 2026-11-04 | **4.4.78** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4478) | **Official** | ✅ Long-term support |
 | 2026-11-04 | 4.4.77 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.77-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4477) | Internal build | ❌ No longer supported |
@@ -117,6 +118,35 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.80
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-13 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Less repeated work and log spam in the control loop**
+
+- Forward walking, mark-time and harmonic gait models now cache generated trajectories. The first `STAGE_INIT` still forces generation; while waiting to start in `STAGE_START`, the trajectory is rebuilt only when a parameter that actually feeds generation changes, rather than on every control cycle.
+- Motion progress in forward walking, mark-time and sine-wave tasks is logged in 1% steps. Standing logs its damping countdown in 0.1 s steps and deduplicates settle progress and state. Harmonic tasks no longer resend and log an unchanged cadence level.
+- These changes do not alter trajectory contents, PD tiers, protection thresholds or motion-state transition conditions.
+
+🛠️ **Complete state cleanup on task switches and exit**
+
+- POSITION_FF tasks restore the position- and velocity-loop PID values saved on entry; tasks with velocity feedforward clear target velocity on exit so it cannot leak into the next task.
+- Transient actuator commands (SERVO_ON / SERVO_OFF / SET_HOME / CLEAR_FAULT and similar) clear their transient control mode when a task aborts or exits. Subset tasks such as single-leg calibration touch only their own actuators.
+- Normal and Planner tasks now consistently reset reference trajectories, motion progress, cadence, task start / pause flags and gait-level echoes on exit. `flag_task_finish` survives Idle and is cleared when the next non-Idle task activates.
+
+✅ **Calibration components now follow their full lifecycle**
+
+- Automatic and manual calibration component switches run the old component's `on_deactivate` followed by the new component's `on_activate`; switching no longer merely replaces the component key and leaves the previous component's state behind.
+- Activating the software home-setting component no longer re-enables actuators that were powered off. It backs up software home, application direction and offset on entry, rolls them back if calibration exits unfinished, and keeps them after a complete commit.
+
+🔧 **Updater downloads now tolerate slow networks**
+
+- Includes the `fourier-grx update` download fix landed after 4.4.79: `curl -C -` resume, up to 5 retries and a 600 s limit per attempt. Integrity is still verified against the release index sha256 before installation.
+
+---
 
 ### 4.4.79
 

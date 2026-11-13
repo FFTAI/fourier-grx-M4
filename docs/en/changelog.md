@@ -14,6 +14,16 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.65 (2026-11-13)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.80 internal build (not an official release)**: `fourier-grx-4.4.80-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-13 12:30 CST, branch `m4-lfs`, package `X-Commit` = `3fcd774d30dd`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.80`, sha256 `06529b98ef17c8388070dce23a21e0e9ed359622547c55000acc354642f51593`
+- 🔧 **Less repeated work in the control loop**: forward-walk, mark-time and harmonic models reuse trajectories while waiting to start when the generation-parameter signature is unchanged, and always regenerate after a parameter change. Motion-progress and standing-countdown logs are deduplicated by percentage or time step, and harmonic tasks skip unchanged cadence commands. Review and tests with real algorithm objects confirmed cache hits and invalidation; task registration remains 56 / 56 / 57 across the three models
+- 🛠️ **Complete task-exit cleanup and calibration lifecycle**: POSITION_FF restores PID values and velocity feedforward is cleared on exit; transient actuator modes are cleared only within each task's actuator scope. Normal and Planner tasks reset report fields on exit while the finish event survives Idle. Calibration component switches now run full deactivation / activation, software home setting no longer re-enables actuators, and unfinished calibration rolls back software home, direction and offset
+- ⬇️ **The slow-network download fix now ships in the package**: the post-4.4.79 updater change adds `curl -C -` resume, up to 5 retries and a 600 s per-attempt cap from this version onwards; the index sha256 is still verified before installation
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.80 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.64 (2026-11-13)
 
 **Release**
