@@ -14,6 +14,16 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.67 (2026-11-16)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.82 internal build (not an official release)**: `fourier-grx-4.4.82-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-16 19:52 CST, branch `m4-lfs`, package `X-Commit` = `bb1df43ad2f7`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.82`, sha256 `02759129137da0c5a62d5967c3247bd96ce2cd06441215da2df44e966ae26017`
+- 🔧 **Retuned target periods for the six harmonic-walk cadence levels**: levels 1–6 now target **5.25 / 5.00 / 4.50 / 4.00 / 3.50 / 3.00 s per stride**, with the fastest level slowed from 2.45 s to 3.0 s. At 50 Hz the actual periods are 5.24 / 5.00 / 4.50 / 4.00 / 3.50 / 3.00 s, or about 22.9 / 24.0 / 26.7 / 30.0 / 34.3 / 40.0 steps/min. Only playback timing changes; curve coefficients, PD tiers and protection thresholds are untouched
+- 📄 Updated the cadence documentation for harmonic walk 4131, assist 4132 / 4133, feedforward variants and planners 4407–4409. Chinese and English task tables and the User API `gait_speed_level` / `gait_stride_time_s` examples now use the new quantisation
+- ✅ Verified frame counts, actual periods and cadence at every level under 50 / 100 / 200 Hz. The real control model regenerates after a level change and reuses its cache otherwise; task registration remains 58 / 58 / 59
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.82 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.66 (2026-11-13)
 
 **Release**

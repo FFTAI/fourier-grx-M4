@@ -29,7 +29,7 @@ Task Parameters:
 |-----------|------|---------|-------|-------------|
 | Hip swing amplitude level | `int` | 2 | [1, 4] | First axis of curve selection. The difference between the four levels is almost entirely the hip swing amplitude (see table below). Invalid or unsent values fall back to level 2. |
 | Knee restriction level | `int` | 1 | [1, 4] | Second axis of curve selection: levels 1/2/3/4 set the knee extension floor to 0 / 5 / 10 / 15° (the whole knee curve is lifted, and the hip shifts forward by the same amount). Values are clipped to 1..4. |
-| Cadence level | `int` | 3 | [1, 6] | Changes timing only, not the curve shape. Level 1 is the slowest (5.25 s per stride) up to level 6 (2.45 s per stride). Invalid or ≤ 0 values keep the current level. |
+| Cadence level | `int` | 3 | [1, 6] | Changes timing only, not the curve shape. Level 1 is the slowest (5.25 s per stride) up to level 6 (3.0 s per stride). Invalid or ≤ 0 values keep the current level. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop after the current loop window. |
 | Pause motion flag | `bool` | false | (true, false) | Whether to pause motion. The task must be restarted to resume walking. |
@@ -56,13 +56,13 @@ Task Parameters:
 | 3 (10°) | 10.0° | 55° | −14.8° |
 | 4 (15°) | 15.0° | 55° | −17.3° |
 
-**Cadence level** ("stride" = one left step + one right step = one full left-right cycle; the requirement range is 2.45 ~ 5.25 s per stride):
+**Cadence level** ("stride" = one left step + one right step = one full left-right cycle; the requirement range is 3.0 ~ 5.25 s per stride):
 
 | Level | 1 | 2 | 3 (default) | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
-| Stride time (actual, quantised to whole 20 ms frames) | 5.24 s | 4.82 s | 3.98 s | 3.34 s | 2.84 s | 2.44 s |
-| Step time | 2.62 s | 2.41 s | 1.99 s | 1.67 s | 1.42 s | 1.22 s |
-| Step frequency | 22.9 | 24.9 | 30.2 | 35.9 | 42.3 | 49.2 steps/min |
+| Stride time (actual, quantised to whole 20 ms frames) | 5.24 s | 5.00 s | 4.50 s | 4.00 s | 3.50 s | 3.00 s |
+| Step time | 2.62 s | 2.50 s | 2.25 s | 2.00 s | 1.75 s | 1.50 s |
+| Step frequency | 22.9 | 24.0 | 26.7 | 30.0 | 34.3 | 40.0 steps/min |
 
 > Joint ranges versus hardware travel: hip approximately −30°…+15° (travel −90°…+40°) and knee 0°…55° (travel 0°…110°); every level stays within the limits.
 
@@ -126,3 +126,4 @@ Command interface:
 - `fourier-grx` v4.4.75: this task's software torque protection gains a **0.1 s debounce** — the limit must now be exceeded for 0.1 s in a row (5 cycles at 50 Hz, 10 at 100 Hz, 20 at 200 Hz) before protection trips, and a single cycle back at or below the limit resets the count. The action on tripping and the flag latching are unchanged. Protection used to act with zero delay, so a momentary torque spike could end the task by mistake.
 - `fourier-grx` v4.4.76: the transition from the current posture into the gait start position is shortened from 5.0 s to **2.5 s**, so entering the gait is snappier (the parameter is defined in seconds, so the real duration is the same on 50 / 100 / 200 Hz models). The knee-restriction, assist and feedforward variants that share this control model are affected too.
 - `fourier-grx` v4.4.79: two assist variants of this task are added — PD-adjust assist (**4132**) and cadence (dt)-adjust assist (**4133**). The gait source and the three panel levels (amplitude / knee restriction / cadence) are identical to this task, with the assist ratio moved to `param_4`; the assist semantics match 4116 / 4118 respectively. See [Harmonic-Coefficient Assist Forward Walk (PD Adjustment)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd) and [Harmonic-Coefficient Assist Forward Walk (dt Adjustment)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt).
+- `fourier-grx` v4.4.82: target stride times for the six cadence levels change to **5.25 / 5.00 / 4.50 / 4.00 / 3.50 / 3.00 s**, with the fastest level slowed from 2.45 s to 3.0 s. Only playback timing changes; curve shapes are unchanged. Assist, feedforward and planner variants inherit the new timing.

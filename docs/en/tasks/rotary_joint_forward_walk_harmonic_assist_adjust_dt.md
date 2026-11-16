@@ -29,7 +29,7 @@ Task Parameters:
 |-----------|------|---------|-------|-------------|
 | Hip swing amplitude level | `int` | 2 | [1, 4] | Same as 4131: first axis of curve selection. The difference between the four levels is almost entirely the hip swing amplitude. Invalid or unsent values fall back to level 2. |
 | Knee restriction level | `int` | 1 | [1, 4] | Same as 4131: levels 1/2/3/4 set the knee extension floor to 0 / 5 / 10 / 15°. Values are clipped to 1..4. |
-| Cadence level | `int` | 3 | [1, 6] | Same as 4131: sets the "normal timing" of the trajectory. Level 1 is the slowest (5.25 s per stride) up to level 6 (2.45 s per stride). Invalid or ≤ 0 values keep the current level. |
+| Cadence level | `int` | 3 | [1, 6] | Same as 4131: sets the "normal timing" of the trajectory. Level 1 is the slowest (5.25 s per stride) up to level 6 (3.0 s per stride). Invalid or ≤ 0 values keep the current level. |
 | Assist ratio | `float` | 0.0 | [0.0, 1.0] | Playback-speed adjustment ratio (play_speed = 0.5 + ratio × 0.5). 0 = 0.5× slowest, 1 = normal speed of the selected cadence level. Treated as 0 when unsent. |
 | Automatic assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode (switch_1). Once enabled, the algorithm judges every control period: during the swing phase, if the measured hip torque exceeds "gravity-compensation torque + 2.0 Nm" the assist ratio is increased by +0.02, and if it falls below the gravity-compensation torque it is decreased by -0.01; the ratio is always clipped to [0.0, 1.0]. Once enabled, `param_4` no longer takes effect. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |

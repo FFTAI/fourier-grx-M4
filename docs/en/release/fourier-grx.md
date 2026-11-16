@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-16 | 4.4.82 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.82-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4482) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.81 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.81-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4481) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.80 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.80-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4480) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.79 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.79-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4479) | Internal build | ❌ No longer supported |
@@ -119,6 +120,26 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.82
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-16 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Retuned target stride periods for the six harmonic-walk cadence levels**
+
+- Target stride times for levels 1–6 change from approximately `5.25 / 4.83 / 3.98 / 3.34 / 2.85 / 2.45 s` to **`5.25 / 5.00 / 4.50 / 4.00 / 3.50 / 3.00 s`**. The fastest level is slowed from 2.45 s to 3.0 s, and the default level 3 now targets 4.5 s.
+- At 50 Hz, the quantised actual stride times are `5.24 / 5.00 / 4.50 / 4.00 / 3.50 / 3.00 s`, corresponding to about `22.9 / 24.0 / 26.7 / 30.0 / 34.3 / 40.0 steps/min`. At 100 / 200 Hz every target, including 5.25 s at level 1, lands on a whole frame.
+- This applies to harmonic forward walk 4131, its feedforward variants, assist variants 4132 / 4133 and planners 4407–4409. Panel level numbers and the default level are unchanged.
+- Only playback timing changes: Fourier coefficients, joint-curve shapes, PD tiers and protection thresholds are untouched. Cadence changes still trigger regeneration through the existing signature cache.
+
+✅ **Verification**
+
+- Frame counts, actual periods and cadence were checked at every level under 50 / 100 / 200 Hz control periods, all matching the intended quantisation.
+- The real control model confirmed that switching level 3 to 6 regenerates a 3.0 s trajectory while an unchanged level reuses the cache; task registration remains 58 / 58 / 59 across the three models.
+
+---
 
 ### 4.4.81
 

@@ -29,7 +29,7 @@ Task Parameters:
 |-----------|------|---------|-------|-------------|
 | Hip swing amplitude level | `int` | 2 | [1, 4] | Same as 4131: first axis of curve selection. The difference between the four levels is almost entirely the hip swing amplitude. Invalid or unsent values fall back to level 2. |
 | Knee restriction level | `int` | 1 | [1, 4] | Same as 4131: levels 1/2/3/4 set the knee extension floor to 0 / 5 / 10 / 15°. Values are clipped to 1..4. |
-| Cadence level | `int` | 3 | [1, 6] | Same as 4131: changes timing only, not the curve shape. Level 1 is the slowest (5.25 s per stride) up to level 6 (2.45 s per stride). Invalid or ≤ 0 values keep the current level. |
+| Cadence level | `int` | 3 | [1, 6] | Same as 4131: changes timing only, not the curve shape. Level 1 is the slowest (5.25 s per stride) up to level 6 (3.0 s per stride). Invalid or ≤ 0 values keep the current level. |
 | Assist ratio | `float` | 0.0 | [0.0, 1.0] | PD stiffness adjustment ratio. 0 = buttery (most compliant), 1 = soft (least compliant). The interpolation formula and gain table are exactly the same as 4116 — see [its documentation](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd). Treated as 0 when unsent. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop after the current loop window. |
