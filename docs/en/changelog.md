@@ -14,6 +14,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.68 (2026-11-17)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.84 internal build (not an official release)**: `fourier-grx-4.4.84-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-17 17:40 CST, branch `m4-lfs`, package `X-Commit` = `0115c4d32bbb`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.84`, sha256 `b959f5726935d64d2dff8dd0f4a9cca6d5fa658cd0f45f24c9428f68ca3b840b`
+- 🔧 **Visual timing compensation for PD_FF tasks on P1/T1**: `algo_gait_ff_replica_time=0.10 s`, moving total reference compensation from 0.06 s to 0.16 s at 100 Hz. Only PD_FF activation enables it; normal gait, POSITION_FF and Planner tasks do not, and T2 uses 0. Only the host reference curve changes, actual joint targets do not, and repeated activation does not accumulate it
+- 🔧 **T2 PD FF classes now have separate implementations** for future model-specific tuning, without changing TIDs, task-registration counts or runtime semantics
+- 🛠️ **New gait development tools**: `AlgorithmGaitGeneratorDSPHighLift` re-solves swing-leg IK for target ground clearance over the original DSP output and applies zero-phase smoothing; the comparison animation shows Harmonic / DSP / DSP+lift together. These are development-only tools, not registered robot tasks, and do not affect existing control
+- ✅ Verified compensation scope across normal / POSITION_FF / Planner / PD_FF tasks, repeated activation and unchanged actual targets. HighLift produced an actual lift peak of about 0.149 m in the default scenario, with finite position and velocity outputs
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.84 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.67 (2026-11-16)
 
 **Release**

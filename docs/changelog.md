@@ -13,6 +13,17 @@ has_toc: true
 
 ## 2026 年 11 月
 
+### v1.2.68 (2026-11-17)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.84 内测构建（非正式发布）**：`fourier-grx-4.4.84-linux-arm64-cpu-m4l-blaze.deb`（2026-11-17 17:40 构建，分支 `m4-lfs`，包内 `X-Commit` 为 `0115c4d32bbb`、`X-Release-Class` 为 `beta`、`X-Variant` 为 `linux-arm64-cpu-m4l-blaze`），安装方式 `fourier-grx update`（读发布索引）或 `fourier-grx update 4.4.84`，sha256 `b959f5726935d64d2dff8dd0f4a9cca6d5fa658cd0f45f24c9428f68ca3b840b`
+- 🔧 **P1/T1 的 PD_FF 任务增加可视化时序补偿**：`algo_gait_ff_replica_time=0.10 s`，100 Hz 下参考轨迹总补偿由 0.06 s 变为 0.16 s；仅 PD_FF 激活标记后生效，普通步态、POSITION_FF 与 Planner 不补偿，T2 为 0。只改变上位机参考曲线，不修改实际关节目标，重复激活不累加
+- 🔧 **T2 PD FF 类拆分独立实现**：便于后续按机型整定，TID、任务注册数量与运行语义不变
+- 🛠️ **新增步态开发工具**：`AlgorithmGaitGeneratorDSPHighLift` 在原 DSP 上按目标离地高度重解摆动腿 IK 并做零相位平滑；对比动画支持 Harmonic / DSP / DSP+lift 三方法同屏。仅供开发对比，未注册为机器人任务，不影响现有控制
+- ✅ 验证普通 / POSITION_FF / Planner / PD_FF 的补偿范围、重复激活和实际目标不变；HighLift 默认工况实际抬脚峰值约 0.149 m，输出位置和速度均为有限值
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)新增 4.4.84 行与更新内容小节（内测构建 · 不再支持），当前正式版本仍为 **4.4.78**。中英文同步
+
 ### v1.2.67 (2026-11-16)
 
 **发布**

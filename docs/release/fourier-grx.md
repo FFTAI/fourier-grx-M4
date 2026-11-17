@@ -25,6 +25,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 发布性质 | 支持状态 |
 |----------|------|------|----------|----------|----------|
+| 2026-11-17 | 4.4.84 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.84-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4484) | 内测构建 | ❌ 不再支持 |
 | 2026-11-16 | 4.4.82 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.82-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4482) | 内测构建 | ❌ 不再支持 |
 | 2026-11-13 | 4.4.81 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.81-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4481) | 内测构建 | ❌ 不再支持 |
 | 2026-11-13 | 4.4.80 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.80-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4480) | 内测构建 | ❌ 不再支持 |
@@ -119,6 +120,26 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.84
+
+> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布** &nbsp;·&nbsp; 支持状态：**不再支持**。发布当时最新正式版本为 4.4.78，仍保持长期支持。
+
+> 📅 2026-11-17 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **P1/T1 的 PD_FF 步态参考轨迹增加可视化时序补偿**
+
+- 新增机型参数 `algo_gait_ff_replica_time`：P1/T1 为 **0.10 s**，T2 为 **0**。仅 PD_FF 任务在激活时通过 mixin 设置补偿标记；100 Hz 下 P1/T1 的总补偿由 0.06 s 变为 0.16 s，T2 不变。
+- 普通步态、POSITION_FF 和 Planner 不启用该补偿。仅改变 `_update_reference_trajectory_buffer()` 选取的上位机参考曲线，用于改善显示时的时序对齐；**不修改实际关节位置、速度或力矩目标**，也不改变 PD 档位与保护阈值。
+- 基线值在首次激活时捕获，重复进入任务不会累加补偿。T2 的 PD FF 类拆出独立任务实现以便后续按机型整定，但 TID、注册数量和运行语义不变。
+
+🛠️ **新增步态开发对比工具**
+
+- 新增 `AlgorithmGaitGeneratorDSPHighLift`：在原 DSP 输出上按目标离地高度重解摆动腿 IK，并提供零相位平滑；当前仅供算法开发与对比，未注册为机器人任务，不影响现有运动控制。
+- `harmonic_dsp_gait_compare_animation.py` 支持 Harmonic / DSP / DSP+lift 三方法同屏对比，可调抬脚峰值、相位和平滑时间。
+- 默认开发工况下 HighLift 生成验证通过，实际抬脚峰值约 0.149 m，输出位置与速度均为有限值。
+
+---
 
 ### 4.4.82
 

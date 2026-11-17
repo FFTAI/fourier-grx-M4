@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-17 | 4.4.84 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.84-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4484) | Internal build | ❌ No longer supported |
 | 2026-11-16 | 4.4.82 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.82-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4482) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.81 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.81-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4481) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.80 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.80-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4480) | Internal build | ❌ No longer supported |
@@ -120,6 +121,26 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.84
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-17 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Visual timing compensation for PD_FF gait references on P1/T1**
+
+- Adds the robot parameter `algo_gait_ff_replica_time`: **0.10 s** on P1/T1 and **0** on T2. Only PD_FF tasks set the compensation marker through their mixin on activation; at 100 Hz the total compensation on P1/T1 moves from 0.06 s to 0.16 s, while T2 is unchanged.
+- Normal gait tasks, POSITION_FF and Planner tasks do not enable this compensation. Only the host-side reference curve selected by `_update_reference_trajectory_buffer()` changes, improving visual time alignment. **Actual joint position, velocity and effort targets are not modified**, and neither PD tiers nor protection thresholds change.
+- The baseline is captured on first activation so repeated task entry cannot accumulate compensation. T2 PD FF tasks now have separate implementations for future model-specific tuning, with no TID, registration-count or runtime-semantics change.
+
+🛠️ **New gait development and comparison tools**
+
+- Adds `AlgorithmGaitGeneratorDSPHighLift`, which re-solves swing-leg IK for a target ground clearance on top of the original DSP output and applies zero-phase smoothing. It is currently a development/comparison tool only, is not registered as a robot task and does not affect existing motion control.
+- `harmonic_dsp_gait_compare_animation.py` can now compare Harmonic / DSP / DSP+lift side by side, with adjustable lift peak, phase and smoothing time.
+- HighLift generation passed in the default development scenario, producing an actual lift peak of about 0.149 m and finite position and velocity outputs.
+
+---
 
 ### 4.4.82
 
