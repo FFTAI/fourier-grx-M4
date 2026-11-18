@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Auto-Start on Boot
+parent: Usage Guide
 nav_order: 5.2
-parent: "Usage Guide"
 nav_exclude: true
 ---
 

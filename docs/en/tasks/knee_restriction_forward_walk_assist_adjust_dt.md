@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Assist Forward Walk (Knee Restriction, Adjust dt Parameter)
-nav_order: 4.20
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.23
 has_toc: true
 nav_exclude: true
 ---
 
 # Assist Forward Walk (Knee Restriction, Adjust dt Parameter)
+
+* TOC
+{:toc}
 
 ## Task Info
 

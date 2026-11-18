@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 速度保护与位置保护
-nav_order: 3.9
 parent: 参考指南
+nav_order: 3.9
 has_toc: true
 ---
 

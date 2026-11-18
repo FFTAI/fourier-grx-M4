@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 性能相关
-nav_order: 6.5
 parent: 常见问题
+nav_order: 6.5
 ---
 
 # 性能相关

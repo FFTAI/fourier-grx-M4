@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 站立姿态控制
-nav_order: 4.10
 parent: 任务描述
+nav_order: 4.10
 has_toc: true
 ---
 
 # 站立姿态控制
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **4020**
+任务值 (TID)： **4020**
 
 任务描述：
 

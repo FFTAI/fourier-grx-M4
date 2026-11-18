@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 程序运行日志
-nav_order: 5.3
 parent: 常用操作
+nav_order: 5.3
 ---
 
 # 程序运行日志

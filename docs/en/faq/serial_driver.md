@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Windows Serial Driver Installation
-nav_order: 6.7
 parent: FAQ
+nav_order: 6.7
 has_toc: true
 nav_exclude: true
 ---

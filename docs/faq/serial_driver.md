@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Windows 串口驱动安装
-nav_order: 6.7
 parent: 常见问题
+nav_order: 6.7
 has_toc: true
 ---
 

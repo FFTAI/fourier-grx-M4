@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Servo Reboot
-nav_order: 4.3
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.03
 has_toc: true
 nav_exclude: true
 ---
 
 # Servo Reboot
+
+* TOC
+{:toc}
 
 ## Task Info
 

@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 执行器失能
-nav_order: 4.2
 parent: 任务描述
+nav_order: 4.02
 has_toc: true
 ---
 
 # 执行器失能
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **36**
+任务值 (TID)： **36**
 
 任务描述：
 

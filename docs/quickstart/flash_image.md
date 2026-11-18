@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 系统烧录镜像
-nav_order: 1.1
 parent: 快速开始
+nav_order: 1.1
 has_toc: true
 ---
 

@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Move by Offset (Prismatic Joint)
-nav_order: 4.25
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.28
 has_toc: true
 nav_exclude: true
 ---
 
 # Move by Offset (Prismatic Joint / Leg-Length Adjustment Joint)
+
+* TOC
+{:toc}
 
 ## Task Info
 

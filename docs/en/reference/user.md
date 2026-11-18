@@ -1,13 +1,13 @@
 ---
 layout: default
 title: User API
+parent: Reference Guide
 nav_order: 3.1
-parent: "Reference Guide"
 has_toc: true
 nav_exclude: true
 ---
 
-# Reference Guide — User API
+# User API
 
 * TOC
 {:toc}
@@ -50,7 +50,7 @@ Key description list:
 
 ### robot/server Interface Protocol (State Information)
 
-**Sensor Information**
+#### Sensor Information
 
 | Key                                     | Description                  | Type         | Details                                                           |
 |-----------------------------------------|------------------------------|--------------|-------------------------------------------------------------------|
@@ -59,7 +59,7 @@ Key description list:
 | `sensor_imus_angular_velocity_value`    | IMU angular velocity         | array(float) | Angular velocity [x, y, z] for each IMU, unit: rad/s             |
 | `sensor_imus_linear_acceleration_value` | IMU linear acceleration      | array(float) | Linear acceleration [x, y, z] for each IMU, unit: m/s²           |
 
-**Actuator Flags**
+#### Actuator Flags
 
 | Key                        | Description                        | Type        | Details                                      |
 |----------------------------|------------------------------------|-------------|----------------------------------------------|
@@ -68,7 +68,7 @@ Key description list:
 | `flag_actuator_enables`    | Actuator enable status             | array(bool) | Whether each actuator is enabled             |
 | `flag_actuator_error`      | Actuator error status              | array(bool) | Whether each actuator has an error           |
 
-**Actuator Measured Information**
+#### Actuator Measured Information
 
 | Key                              | Description                      | Type         | Details                                               |
 |----------------------------------|----------------------------------|--------------|-------------------------------------------------------|
@@ -79,7 +79,7 @@ Key description list:
 | `actuator_measured_effort`       | Actuator measured torque         | array(float) | Measured torque, unit: Nm                             |
 | `actuator_measured_current`      | Actuator measured current        | array(float) | Measured current, unit: A                             |
 
-**Actuator Command Information**
+#### Actuator Command Information
 
 | Key                             | Description                       | Type         | Details                                               |
 |---------------------------------|-----------------------------------|--------------|-------------------------------------------------------|
@@ -90,7 +90,7 @@ Key description list:
 | `actuator_output_effort`        | Actuator command torque           | array(float) | Command torque, unit: Nm                              |
 | `actuator_output_current`       | Actuator command current          | array(float) | Command current, unit: A                              |
 
-**Joint Status Words**
+#### Joint Status Words
 
 | Key                       | Description             | Type       | Details                              |
 |---------------------------|-------------------------|------------|--------------------------------------|
@@ -98,7 +98,7 @@ Key description list:
 | `joint_control_word`      | Joint control word      | array(int) | Control word of each joint           |
 | `joint_status_word`       | Joint status word       | array(int) | Status word of each joint            |
 
-**Joint Application-Layer Information**
+#### Joint Application-Layer Information
 
 | Key                          | Description                          | Type         | Details                                                          |
 |------------------------------|--------------------------------------|--------------|------------------------------------------------------------------|
@@ -106,7 +106,7 @@ Key description list:
 | `joint_application_velocity` | Joint application-layer target velocity | array(float) | Target joint velocity written by the application layer, unit: rad/s or m/s     |
 | `joint_application_effort`   | Joint application-layer target torque   | array(float) | Target joint torque written by the application layer, unit: Nm                 |
 
-**Joint Measured Information**
+#### Joint Measured Information
 
 | Key                           | Description                    | Type         | Details                                  |
 |-------------------------------|--------------------------------|--------------|------------------------------------------|
@@ -117,7 +117,7 @@ Key description list:
 | `joint_measured_effort`       | Joint measured torque          | array(float) | Measured torque, unit: Nm                |
 | `joint_measured_current`      | Joint measured current         | array(float) | Measured current, unit: A                |
 
-**Joint Command Information**
+#### Joint Command Information
 
 | Key                         | Description                  | Type         | Details                                  |
 |-----------------------------|------------------------------|--------------|------------------------------------------|
@@ -128,7 +128,7 @@ Key description list:
 | `joint_output_effort`       | Joint command torque         | array(float) | Command torque, unit: Nm                 |
 | `joint_output_current`      | Joint command current        | array(float) | Command current, unit: A                 |
 
-**End-Effector Measured Information**
+#### End-Effector Measured Information
 
 | Key                                  | Description                         | Type         | Details                                       |
 |--------------------------------------|-------------------------------------|--------------|-----------------------------------------------|
@@ -137,7 +137,7 @@ Key description list:
 | `end_effector_measured_acceleration` | End-effector measured acceleration  | array(float) | Measured acceleration, unit: m/s²             |
 | `end_effector_measured_effort`       | End-effector measured torque        | array(float) | Measured torque, unit: Nm                     |
 
-**Robot Status Flags**
+#### Robot Status Flags
 
 | Key                            | Description                        | Type | Details                                     |
 |--------------------------------|------------------------------------|------|---------------------------------------------|
@@ -156,7 +156,7 @@ Key description list:
 > ℹ️ **Note**: `flag_robot_over_load`, `flag_robot_torque_protection`, `flag_robot_velocity_protection`, and `flag_robot_position_protection` are **latched** flags — once triggered they stay set until the host writes the matching `clear_flag_*` field on `robot/client` (write 1 to request the clear; the server then resets that request bit back to 0 by itself).
 > The over-torque flag in particular stopped being cleared on task exit as of `fourier-grx` **v4.4.74** (earlier versions cleared it when a stand / walk / march task ended), which makes it consistent with the other three; the host must clear it explicitly, otherwise it keeps reporting the most recent event. Since **v4.4.75** the task-level torque protection only trips after the limit has been exceeded for 0.1 s in a row, so a momentary spike no longer sets the flag.
 
-**Robot Basic Information**
+#### Robot Basic Information
 
 | Key                    | Description            | Type   | Details                                  |
 |------------------------|------------------------|--------|------------------------------------------|
@@ -167,7 +167,7 @@ Key description list:
 
 ### task/server Interface Protocol (State Information)
 
-**Task State Information**
+#### Task State Information
 
 | Key                      | Description                | Type | Details                                                                                                                                                     |
 |--------------------------|----------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -178,7 +178,7 @@ Key description list:
 | `robot_task_state`       | Robot task state           | int  | Current robot task state (TID value). If `flag_task_command_update` in task/client is set to True, this value is updated to `robot_task_command` from task/client |
 | `robot_task_state_data`  | Robot task state data      | dict | Additional state data for the current task; content varies by task                                                                                          |
 
-**Module State Information**
+#### Module State Information
 
 | Key                          | Description                 | Type | Details                                         |
 |------------------------------|-----------------------------|------|-------------------------------------------------|

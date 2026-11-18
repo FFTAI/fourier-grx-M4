@@ -1,14 +1,18 @@
 ---
 layout: default
 title: 设置零点
-nav_order: 4.5
 parent: 任务描述
+nav_order: 4.05
 has_toc: true
 ---
 
 # 设置零点（全部关节）
 
-> ⚠️ **该任务（TID=999）暂未实现。** TID 999 定义在通用机器人任务表 `TaskMenuGRX.TASK_SET_HOME` 中，`TaskMenuM4L`（4000–4999 段）没有对应实现。
+## 任务信息
+
+任务值 (TID)：**999**
+
+> ⚠️ **该任务暂未实现。** TID 999 定义在通用机器人任务表 `TaskMenuGRX.TASK_SET_HOME` 中，`TaskMenuM4L`（4000–4999 段）没有对应实现。
 >
 > M4L 机器人请使用以下专项校准任务替代：
 > - 旋转关节（髋/膝）零点自动校准 → [自动校准（旋转关节）TID=4120](/fourier-grx-M4/docs/tasks/rotary_joint_auto_calibrate)

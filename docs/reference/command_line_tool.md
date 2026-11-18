@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 命令行工具
-nav_order: 3.7
 parent: 参考指南
+nav_order: 3.7
 has_toc: true
 ---
 

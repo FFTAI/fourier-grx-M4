@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 调整长度（直线关节）
-nav_order: 4.24
 parent: 任务描述
+nav_order: 4.27
 has_toc: true
 ---
 
 # 调整长度（直线关节、腿长调节关节）
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **4206**
+任务值 (TID)： **4206**
 
 任务描述：
 

@@ -1,14 +1,15 @@
 ---
 layout: default
 title: Developer 接口
-nav_order: 2.2
 parent: 示例代码
-toc: true          # 启用目录
-toc_min_header: 2  # 最小显示标题层级（如 H2）
-toc_max_header: 3  # 最大显示标题层级（如 H3）
+nav_order: 2.2
+has_toc: true
 ---
 
 # Developer 接口
+
+* TOC
+{:toc}
 
 Fourier-GRX Developer 接口是针对开发者底层开发提供的二次开发接口，
 直接调用底层硬件接口，

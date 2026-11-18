@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Stand Motion Control (Knee Restriction)
-nav_order: 4.17
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.20
 has_toc: true
 nav_exclude: true
 ---
 
 # Stand Motion Control (Knee Restriction)
+
+* TOC
+{:toc}
 
 ## Task Info
 

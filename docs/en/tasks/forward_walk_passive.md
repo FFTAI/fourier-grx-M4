@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Passive Forward Walk
+parent: Task Description
 nav_order: 4.11
-parent: "Task Description"
 has_toc: true
 nav_exclude: true
 ---
 
 # Passive Forward Walk
+
+* TOC
+{:toc}
 
 ## Task Info
 

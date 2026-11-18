@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Resource Files
+parent: Reference Guide
 nav_order: 3.4
-parent: "Reference Guide"
 has_toc: true
 nav_exclude: true
 ---

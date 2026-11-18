@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 机器人数据记录
-nav_order: 5.4
 parent: 常用操作
+nav_order: 5.4
 has_toc: true
 ---
 
@@ -13,7 +13,7 @@ has_toc: true
 
 机器人数据记录（关节位置/速度/力矩、IMU 等）默认**关闭**，启用步骤如下：
 
-**第一步：创建记录专用配置文件**
+## 第一步：创建记录专用配置文件
 
 复制当前配置文件并命名为 `config_M4L_T1_record.yaml`，在文件末尾添加：
 
@@ -23,7 +23,7 @@ record:
   path: "~/fourier-grx/record/m4l"
 ```
 
-**第二步：切换启动模式**
+## 第二步：切换启动模式
 
 打开 `~/fourier-grx/run.sh`，将 `run_type` 改为 `record`：
 
@@ -33,7 +33,7 @@ run_type="record"
 
 > ℹ️ 这里的 `record` 不是内置运行模式，只是借用配置文件命名规则 `config_<型号>_<版本>_<run_type>.yaml` 指向上一步新建的文件。`fourier-grx config` 的模式列表中没有 `record`，如需再次进入记录模式，只能直接编辑 `run.sh`。
 
-**第三步：启动**
+## 第三步：启动
 
 ```bash
 fourier-grx start

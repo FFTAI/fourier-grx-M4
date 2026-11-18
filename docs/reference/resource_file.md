@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 资源文件
-nav_order: 3.4
 parent: 参考指南
+nav_order: 3.4
 has_toc: true
 ---
 

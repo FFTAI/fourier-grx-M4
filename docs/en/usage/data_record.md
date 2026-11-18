@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Robot Data Recording
+parent: Usage Guide
 nav_order: 5.4
-parent: "Usage Guide"
 has_toc: true
 nav_exclude: true
 ---
@@ -14,7 +14,7 @@ nav_exclude: true
 
 Robot data recording (joint positions, velocities, torques, IMU, etc.) is **disabled by default**. To enable it:
 
-**Step 1: Create a recording configuration file**
+## Step 1: Create a recording configuration file
 
 Copy your current config file and name it `config_M4L_T1_record.yaml`. Add the following at the end of the file:
 
@@ -24,7 +24,7 @@ record:
   path: "~/fourier-grx/record/m4l"
 ```
 
-**Step 2: Switch the startup mode**
+## Step 2: Switch the startup mode
 
 Open `~/fourier-grx/run.sh` and set `run_type` to `record`:
 
@@ -34,7 +34,7 @@ run_type="record"
 
 > ℹ️ `record` is not a built-in run type — it only borrows the file naming rule `config_<model>_<version>_<run_type>.yaml` to point at the file created in the previous step. `record` does not appear in the `fourier-grx config` run-type list, so to enter recording mode again you have to edit `run.sh` directly.
 
-**Step 3: Start**
+## Step 3: Start
 
 ```bash
 fourier-grx start

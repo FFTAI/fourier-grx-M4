@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 自动校准（旋转关节）
-nav_order: 4.7
 parent: 任务描述
+nav_order: 4.07
 has_toc: true
 ---
 
 # 自动校准（旋转关节）
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **4120**
+任务值 (TID)： **4120**
 
 任务描述：
 

@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Set Home (Rotary Joint)
-nav_order: 4.6
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.06
 has_toc: true
 nav_exclude: true
 ---
 
 # Set Home (Rotary Joint)
+
+* TOC
+{:toc}
 
 ## Task Info
 

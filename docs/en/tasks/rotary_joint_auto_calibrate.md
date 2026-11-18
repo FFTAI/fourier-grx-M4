@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Auto Calibrate (Rotary Joint)
-nav_order: 4.7
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.07
 has_toc: true
 nav_exclude: true
 ---
 
 # Auto Calibrate (Rotary Joint)
+
+* TOC
+{:toc}
 
 ## Task Info
 

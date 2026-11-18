@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 高阻尼保护（急停响应）
-nav_order: 4.27
 parent: 任务描述
+nav_order: 4.30
 has_toc: true
 ---
 
 # 高阻尼保护（急停响应）
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **4600**
+任务值 (TID)： **4600**
 
 适用机型：**M4LT2**
 

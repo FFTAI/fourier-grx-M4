@@ -8,11 +8,18 @@ nav_exclude: true
 
 # Changelog
 
-{:toc}
-
 This document records all significant updates to the Fourier-GRX-M4 SDK and its documentation.
 
 ## November 2026
+
+### v1.2.69 (2026-11-18)
+
+**Documentation Cleanup**
+
+- 🗂️ **Navigation and grouping**: task pages are reordered as Basic Control → Zero/Calibration → Motion → Knee Restriction → Leg-Length Adjustment → Planner → Emergency Protection, with `nav_order` 4.01–4.30. Two decimal places are used throughout to avoid the numeric collision between `4.1` and `4.10`. `docs/tasks.md` now sets `has_children`, so the sidebar can expand all task pages, and the module notes move out of the task index into a dedicated Robot Modules section.
+- 📄 **Formatting**: front matter now follows the order `layout` / `title` / `parent` / `nav_order` / `has_children` / `has_toc` / `nav_exclude`. The ineffective `toc` / `toc_min_header` / `toc_max_header` metadata is removed, and task pages gain a real `* TOC` / `{:toc}` table of contents. Pseudo-headings in `run_type`, `reference/user`, `usage/calibrate`, and `usage/data_record` are converted to proper heading levels, and H1s in `reference/user` and related pages are corrected.
+- 🔗 **Links and content**: fixed the relative links to version-history pages in `docs/release.md`, the duplicate User entry in the examples index, and the M4 / M4L wording in `docs/tasks.md`; Chinese task pages now use consistent full-width punctuation.
+- 🌐 **Bilingual parity**: heading structure and task TIDs match across 72 Chinese/English page pairs. Internal links, anchors, and table parsing were checked across 146 pages, with no broken internal links found.
 
 ### v1.2.68 (2026-11-17)
 

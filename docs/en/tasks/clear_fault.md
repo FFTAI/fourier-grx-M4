@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Clear Fault
-nav_order: 4.4
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.04
 has_toc: true
 nav_exclude: true
 ---
 
 # Clear Fault
+
+* TOC
+{:toc}
 
 ## Task Info
 

@@ -3,12 +3,12 @@ layout: default
 title: Fourier-GRX-M4 SDK
 nav_order: 0
 has_children: false
-toc: true          # 启用目录
-toc_min_header: 2  # 最小显示标题层级（如 H2）
-toc_max_header: 3  # 最大显示标题层级（如 H3）
 ---
 
 # 欢迎来到 Fourier-GRX-M4 SDK 开发文档
+
+* TOC
+{:toc}
 
 > 本页为中文首页，英文文档见 [English](/fourier-grx-M4/docs/en/)。
 

@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Calibrate Home (Prismatic Joint)
-nav_order: 4.9
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.09
 has_toc: true
 nav_exclude: true
 ---
 
 # Auto Calibrate (Prismatic Joint / Leg-Length Adjustment Joint)
+
+* TOC
+{:toc}
 
 ## Task Info
 

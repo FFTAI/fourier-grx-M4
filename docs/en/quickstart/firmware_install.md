@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Firmware Installation (First-Time Setup)
+parent: Quick Start
 nav_order: 1.2
-parent: "Quick Start"
 has_toc: true
 nav_exclude: true
 ---

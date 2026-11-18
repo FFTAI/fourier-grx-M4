@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 安装问题
-nav_order: 6.2
 parent: 常见问题
+nav_order: 6.2
 ---
 
 # 安装问题

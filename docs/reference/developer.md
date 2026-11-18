@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Developer 接口
-nav_order: 3.2
 parent: 参考指南
+nav_order: 3.2
 has_toc: true
 ---
 
-# 参考指南 Developer 接口
+# Developer 接口
 
 * TOC
 {:toc}

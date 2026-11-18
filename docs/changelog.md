@@ -7,11 +7,18 @@ has_toc: true
 
 # 更新日志
 
-{:toc}
-
 本文档记录了 Fourier-GRX-M4 SDK 及其文档的所有重要更新。
 
 ## 2026 年 11 月
+
+### v1.2.69 (2026-11-18)
+
+**文档整理**
+
+- 🗂️ **导航与分组**：任务页按「基础控制 → 零点与校准 → 运动 → 膝关节受限 → 腿长调节 → 规划器 → 急停保护」重排为 `nav_order` 4.01–4.30；统一使用两位小数，修复 `4.1` 与 `4.10` 数值相同导致的排序冲突。`docs/tasks.md` 补充 `has_children`，侧边栏可展开全部任务页；模块说明从「任务文档索引」移入独立的「机器人模块」章节。
+- 📄 **格式统一**：全库 front matter 按 `layout` / `title` / `parent` / `nav_order` / `has_children` / `has_toc` / `nav_exclude` 排序；移除无效的 `toc` / `toc_min_header` / `toc_max_header` 元数据，为任务页补充 `* TOC` / `{:toc}` 正文目录；`run_type`、`reference/user`、`usage/calibrate`、`usage/data_record` 的伪标题改为正确标题层级，并修正 `reference/user` 等页面的 H1。
+- 🔗 **链接与内容**：修复 `docs/release.md` 中指向版本历史页的相对链接、示例索引中重复的 User 入口，以及 `docs/tasks.md` 将 M4L 任务表误写为 M4 的表述；统一中文任务页的标点。
+- 🌐 **双语同步**：72 对中英文页面的标题层级与任务 TID 保持一致；校验 146 个页面的站内链接、锚点与表格解析，未发现站内失效链接。
 
 ### v1.2.68 (2026-11-17)
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Configuration File
+parent: Reference Guide
 nav_order: 3.5
-parent: "Reference Guide"
 has_toc: true
 nav_exclude: true
 ---

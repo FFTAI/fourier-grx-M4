@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Network Configuration
-nav_order: 6.4
 parent: FAQ
+nav_order: 6.4
 nav_exclude: true
 ---
 

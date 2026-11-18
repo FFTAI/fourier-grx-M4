@@ -8,6 +8,9 @@ nav_exclude: true
 
 # Welcome to the Fourier-GRX-M4 SDK Documentation
 
+* TOC
+{:toc}
+
 > This is the English home page. For the Chinese documentation, see [中文](/fourier-grx-M4/).
 
 ## Introduction

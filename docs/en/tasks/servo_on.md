@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Servo On
-nav_order: 4.1
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.01
 has_toc: true
 nav_exclude: true
 ---
 
 # Servo On
+
+* TOC
+{:toc}
 
 ## Task Info
 

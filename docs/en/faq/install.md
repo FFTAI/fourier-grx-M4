@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Installation Issues
-nav_order: 6.2
 parent: FAQ
+nav_order: 6.2
 nav_exclude: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Communication Interface
-nav_order: 3.0
 parent: Reference Guide
+nav_order: 3.0
 has_toc: true
 nav_exclude: true
 ---
@@ -20,7 +20,7 @@ This page describes the communication mechanism used by the Fourier-GRX-M4 SDK U
 
 Communication follows a **server / client** model:
 
-```
+```text
 ┌───────────────────────────────────┐       LAN (UDP)          ┌───────────────────────────────────┐
 │        Robot Main Board           │  ─── State Data ────►    │       User Computer (SDK)          │
 │        (SyncServer)               │  ◄── Control Cmds ────   │      (SyncClientSocket)            │
@@ -57,7 +57,7 @@ After startup, the server broadcasts a msgpack packet containing its `IP` and `P
 
 The client binds to a random local port and starts a background thread listening on broadcast port `9527`. As soon as the first broadcast packet is received, discovery is complete; all subsequent data is exchanged on the data port `5566`.
 
-```
+```text
 Server                          Client
   │                               │
   │── broadcast {host, port} ────►│  (every ~1 s, port 9527)

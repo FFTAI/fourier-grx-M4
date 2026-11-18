@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Network Connection and Remote Login
+parent: Usage Guide
 nav_order: 5.5
-parent: "Usage Guide"
 has_toc: true
 nav_exclude: true
 ---

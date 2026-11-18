@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Run Type
+parent: Reference Guide
 nav_order: 3.6
-parent: "Reference Guide"
 has_toc: true
 nav_exclude: true
 ---
@@ -33,7 +33,7 @@ The available run types are listed below:
 | B   | server mode      | server        | For the SDK PubSub API; exchanges data with the server over Zenoh                    | ❌       | ✅        |
 | C   | Offline debug    | offline       | For **offline** debugging; for internal testing only                              | ❌       | ❌        |
 
-### Debug Mode
+## Debug Mode
 
 In debug mode, the robot primarily uses a **joystick** 🎮 to invoke internal algorithms and perform motion tasks.
 Task switching is achieved using combinations of the `L1`, `L2`, `R1`, and `R2` buttons on the joystick.
@@ -55,7 +55,7 @@ The main features available via joystick in Fourier M4L debug mode include:
 | Stand posture control    | 4020    | No         | Slowly move all joints back to standing posture | X<br/>(XBOX layout)   |
 | Passive forward walking  | 4129    | No         | Passive forward walking task (4111 before v4.4.69) | Y<br/>(XBOX layout)          |
 
-### Developer Mode
+## Developer Mode
 
 In developer mode, users can refer to the open development interface for secondary development.
 The development interface and example programs can be found at:

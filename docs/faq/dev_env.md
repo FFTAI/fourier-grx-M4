@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 开发环境问题
-nav_order: 6.6
 parent: 常见问题
+nav_order: 6.6
 ---
 
 # 开发环境问题

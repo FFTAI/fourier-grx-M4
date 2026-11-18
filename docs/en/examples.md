@@ -2,8 +2,8 @@
 layout: default
 title: Examples
 nav_order: 2
-has_toc: true
 has_children: true
+has_toc: true
 nav_exclude: true
 ---
 
@@ -25,7 +25,7 @@ These examples cover different levels of development. Choose them according to t
 
 - [User API Examples](/fourier-grx-M4/docs/en/examples/user): For high-level application development. Can run on the robot's main controller or any other computer on the same LAN.
 - [Developer API Examples](/fourier-grx-M4/docs/en/examples/developer): For low-level development. Must run on the robot's main controller.
-- The [User API Examples](/fourier-grx-M4/docs/en/examples/user) page also lists the **raw UDP socket examples**, which talk to the robot using only the Python standard library and need no `fourier_grx` SDK installation — useful for quickly checking the protocol on a machine without the SDK environment.
+- [Raw UDP Socket Examples](/fourier-grx-M4/docs/en/examples/user#udp-raw-socket-examples-no-sdk-required): Talk to the robot using only the Python standard library and need no `fourier_grx` SDK installation — useful for quickly checking the protocol on a machine without the SDK environment.
 - For interface field descriptions and protocol details, refer to the [Reference Guide](/fourier-grx-M4/docs/en/reference) alongside these examples.
 
 ## External Example Code Repository

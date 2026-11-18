@@ -1,14 +1,15 @@
 ---
 layout: default
 title: User 接口
-nav_order: 2.1
 parent: 示例代码
-toc: true          # 启用目录
-toc_min_header: 2  # 最小显示标题层级（如 H2）
-toc_max_header: 3  # 最大显示标题层级（如 H3）
+nav_order: 2.1
+has_toc: true
 ---
 
 # User 接口
+
+* TOC
+{:toc}
 
 Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通信。
 
@@ -20,7 +21,7 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
    ```bash
    # 修改 fourier-grx 配置
    fourier-grx config
-   
+
    # 运行模式选择「开发者模式」(sdk)
    ```
 
@@ -49,10 +50,10 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
     ```bash
     # 激活开发环境（虚拟环境位于 $HOME/fourier-grx/.venv）
     source $HOME/fourier-grx/.venv/bin/activate
-   
+
     # 克隆示例代码仓库（如尚未克隆）
     git clone https://github.com/FFTAI/fourier-grx-M4.git
-   
+
     # 进入 demo 目录并运行示例
     cd fourier-grx-M4/demo/user
     python demo_{示例名称}.py

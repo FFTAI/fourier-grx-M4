@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 执行器错误码
-nav_order: 3.8
 parent: 参考指南
+nav_order: 3.8
 has_toc: true
 ---
 
@@ -26,7 +26,7 @@ has_toc: true
 | CanComTimeOut        | 1   | 2               | 0x02            | ESP与STM握手失败 | 开机检测 | 无法使能电机 | 检查版本匹配并重启             |
 | OverCurrnt           | 2   | 4               | 0x04            | 电流过大        | 实时检测 | 无法使能电机 | 重启                    |
 | OverVbus             | 3   | 8               | 0x08            | 电压过高        | 实时检测 | 无法使能电机 | 重启                    |
-| UnderVbus            | 4   | 16              | 0x10            | 电压过低        | 实时检测 | 无法使能电机 | 重启                    |            
+| UnderVbus            | 4   | 16              | 0x10            | 电压过低        | 实时检测 | 无法使能电机 | 重启                    |
 | OverTempTrip         | 5   | 32              | 0x20            |             |      |        |                       |
 | OverTempMos          | 6   | 64              | 0x40            | MOS过温       | 实时检测 | 无法使能电机 | 重启                    |
 | OverPhaseACurrent    | 7   | 128             | 0x80            | A相电流过大      | 实时检测 | 无法使能电机 | 重启                    |

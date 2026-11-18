@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Hardware Issues
-nav_order: 6.1
 parent: FAQ
+nav_order: 6.1
 nav_exclude: true
 ---
 

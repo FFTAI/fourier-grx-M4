@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 网络连接与远程登录
-nav_order: 5.5
 parent: 常用操作
+nav_order: 5.5
 has_toc: true
 ---
 

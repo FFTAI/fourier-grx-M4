@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 站立姿态控制（膝关节受限）
-nav_order: 4.17
 parent: 任务描述
+nav_order: 4.20
 has_toc: true
 ---
 
 # 站立姿态控制（膝关节受限）
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **4300**
+任务值 (TID)： **4300**
 
 任务描述：
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: System Flashing Issues
-nav_order: 6.8
 parent: FAQ
+nav_order: 6.8
 nav_exclude: true
 ---
 

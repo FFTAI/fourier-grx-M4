@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 启动配置文件
-nav_order: 3.5
 parent: 参考指南
+nav_order: 3.5
 has_toc: true
 ---
 

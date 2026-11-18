@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Initialization Issues
-nav_order: 6.3
 parent: FAQ
+nav_order: 6.3
 nav_exclude: true
 ---
 

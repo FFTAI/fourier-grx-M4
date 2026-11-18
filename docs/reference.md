@@ -2,8 +2,8 @@
 layout: default
 title: 参考指南
 nav_order: 3
-has_toc: true
 has_children: true
+has_toc: true
 ---
 
 # 参考指南

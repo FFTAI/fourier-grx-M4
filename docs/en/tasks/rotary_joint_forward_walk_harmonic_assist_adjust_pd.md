@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Harmonic-Coefficient Assist Forward Walk (PD Adjustment)
-nav_order: 4.29
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.13
 has_toc: true
 nav_exclude: true
 ---
 
 # Harmonic-Coefficient Assist Forward Walk (PD Adjustment)
+
+* TOC
+{:toc}
 
 ## Task Info
 

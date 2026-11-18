@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Command Line Tool
+parent: Reference Guide
 nav_order: 3.7
-parent: "Reference Guide"
 has_toc: true
 nav_exclude: true
 ---

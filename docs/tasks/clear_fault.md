@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 清除错误
-nav_order: 4.4
 parent: 任务描述
+nav_order: 4.04
 has_toc: true
 ---
 
 # 清除错误
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **34**
+任务值 (TID)： **34**
 
 任务描述：
 

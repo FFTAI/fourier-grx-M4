@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Actuator Error Codes
+parent: Reference Guide
 nav_order: 3.8
-parent: "Reference Guide"
 has_toc: true
 nav_exclude: true
 ---

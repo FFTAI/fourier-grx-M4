@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Fourier-M4 Firmware
-parent: "Firmware Releases"
+parent: Firmware Releases
 nav_order: 2
 has_toc: true
 nav_exclude: true

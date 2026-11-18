@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 初始化问题
-nav_order: 6.3
 parent: 常见问题
+nav_order: 6.3
 ---
 
 # 初始化问题

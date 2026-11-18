@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Harmonic-Coefficient Assist Forward Walk (dt Adjustment)
-nav_order: 4.30
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.14
 has_toc: true
 nav_exclude: true
 ---
 
 # Harmonic-Coefficient Assist Forward Walk (dt Adjustment)
+
+* TOC
+{:toc}
 
 ## Task Info
 

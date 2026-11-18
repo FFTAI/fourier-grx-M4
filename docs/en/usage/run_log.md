@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Program Run Logging
+parent: Usage Guide
 nav_order: 5.3
-parent: "Usage Guide"
 nav_exclude: true
 ---
 

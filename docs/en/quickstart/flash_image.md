@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Flash System Image
+parent: Quick Start
 nav_order: 1.1
-parent: "Quick Start"
 has_toc: true
 nav_exclude: true
 ---

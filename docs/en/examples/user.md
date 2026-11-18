@@ -1,15 +1,16 @@
 ---
 layout: default
 title: User Interface
+parent: Examples
 nav_order: 2.1
-parent: "Examples"
+has_toc: true
 nav_exclude: true
-toc: true
-toc_min_header: 2
-toc_max_header: 3
 ---
 
 # User Interface
+
+* TOC
+{:toc}
 
 The Fourier-GRX User Interface is designed for high-level application development and communicates with the robot over the network.
 

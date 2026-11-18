@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Joint Sequence
+parent: Reference Guide
 nav_order: 3.3
-parent: "Reference Guide"
 has_toc: true
 nav_exclude: true
 ---

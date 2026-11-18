@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 执行器重启
-nav_order: 4.3
 parent: 任务描述
+nav_order: 4.03
 has_toc: true
 ---
 
 # 执行器重启
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **41**
+任务值 (TID)： **41**
 
 任务描述：
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 程序开机自启动
-nav_order: 5.2
 parent: 常用操作
+nav_order: 5.2
 ---
 
 # 程序开机自启动

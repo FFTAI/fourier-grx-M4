@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Joint Zero Calibration
+parent: Usage Guide
 nav_order: 5.1
-parent: "Usage Guide"
 has_toc: true
 nav_exclude: true
 ---
@@ -16,14 +16,14 @@ nav_exclude: true
 
 ## Pre-Startup Checklist
 
-**Hardware**
+### Hardware
 
 - ✅ Robot power is connected
 - ✅ Gamepad is properly connected
 - ✅ Network connection is normal
 - ✅ Locking pins are inserted into the joint positioning holes (for manual calibration)
 
-**Software**
+### Software
 
 - ✅ SDK is correctly installed and `fourier-grx start` runs successfully
 
@@ -64,19 +64,19 @@ Press `Ctrl+C` twice to exit the program.
 
 ## Important Notes
 
-**Pin Management**
+### Pin Management
 
 - Manual calibration (TID 4103 / 4203): insert pins before execution
 - Automatic calibration (TID 4120 / 4210): no pins required
 - After calibration, **remove all pins** before running any motion task
 
-**Safety**
+### Safety
 
 - TID 4210: the leg-length mechanism moves automatically — maintain a safe distance
 - TID 4120: rotary joints slowly travel to their mechanical limits — ensure joints are unobstructed
 - Keep the emergency stop button within reach at all times
 
-**Troubleshooting**
+### Troubleshooting
 
 - Auto calibration timed out: check if the motor driver is reporting an alarm; execute Clear Fault (TID 34) and retry
 - Calibration succeeded but motion is abnormal: re-run the calibration task for the affected direction

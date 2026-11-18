@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Development Environment Issues
-nav_order: 6.6
 parent: FAQ
+nav_order: 6.6
 nav_exclude: true
 ---
 

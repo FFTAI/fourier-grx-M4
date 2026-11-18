@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Planner
-nav_order: 4.26
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.29
 has_toc: true
 nav_exclude: true
 ---
 
 # Planner
+
+* TOC
+{:toc}
 
 The Planner is an auxiliary task for trajectory-tracking tasks. It generates joint motion trajectory sequences for display on the host computer along with possible trajectory generation results. Planner tasks do not run the task activate/deactivate flow, so the robot itself does not execute trajectory-tracking motion.
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: M4L Robot
+parent: Quick Start
 nav_order: 1.5
-parent: "Quick Start"
 has_toc: true
 nav_exclude: true
 ---
@@ -18,7 +18,7 @@ Once you have the robot, the first step is to power it on.
 
 1. Turn on the robot's power switch. (The button on the backpack is the power supply 🔋 button.)
 2. Make sure the robot's emergency stop button is released.
-3. Confirm that the indicator lights on all joint actuators show a <span style="color: purple;">slow purple blink</span> (normal operating state).
+3. Confirm that the indicator lights on all joint actuators show a **slow purple blink** (normal operating state).
 
 ## Logging In
 

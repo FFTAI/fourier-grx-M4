@@ -2,6 +2,7 @@
 layout: default
 title: Task Description
 nav_order: 4
+has_children: true
 has_toc: true
 nav_exclude: true
 ---
@@ -16,14 +17,14 @@ nav_exclude: true
 > Tasks not listed in this chapter may still appear when using a gamepad to control the robot and select tasks. This indicates the task may still be under development, or has been partially deprecated (not yet removed from the menu).
 > Therefore, it is recommended that developers exercise caution when selecting tasks not listed in this chapter during gamepad operation. Only attempt the task commands listed in the [Task Description](/fourier-grx-M4/docs/en/tasks) section of this technical documentation.
 
-## Tasks and Modules
+## Task Commands
 
 Robot task command list 🎏:
 
 - Task commands are defined via enum classes: `fourier_grx.task.menu.TaskMenuM4L` for the M4L robots, and `fourier_grx.task.menu.TaskMenuRobotReal` for the common power-off / power-on / clear-fault commands, as detailed below.
 - The specific `Task Value (TID)` may vary depending on the robot model or `fourier-grx` version. **Always refer to the actual task information for the authoritative values.**
 
-Common task command examples for M4 robots:
+Common task command examples for M4L robots:
 
 | Task Command                                      | Task Value (TID) | Applicable Models | Task Description                                                          |
 |---------------------------------------------------|------------------|-------------------|---------------------------------------------------------------------------|
@@ -84,6 +85,16 @@ From `fourier-grx` v4.4.69 the rotary-joint tasks are regrouped by control mode,
 > - `TaskMenuM4L` also contains several implemented tasks that are not expanded in this chapter; they are mainly used as internal calibration steps and for joint-level debugging: 4104 (border detection and return), 4105 (software-layer set home), 4110 (rotary joint sine wave test), 4100 / 4200 (joint PD test), 4203 / 4204 / 4205 (prismatic joint set home and end-limit moves, where 4204 is the internal step of the 4210 auto calibration).
 > - The following enum entries have no implementation in the current firmware and are kept as placeholders only: 4000, 4010, 4011, 4101, 4102, 4106, 4114, 4115, 4201, 4202. They may still appear in the gamepad task list — do not use them in production workflows.
 
+## Robot Modules
+
+Robot module command list 🎏:
+
+- A module can be understood as a sub-task unit within a task. Because sub-tasks can have **mutually exclusive or combinable** relationships with each other, they are managed as **modules** rather than plain sub-tasks.
+- When one of several mutually exclusive modules is activated, the others are automatically suspended by the control program.
+- Combinable modules can be activated and switched independently without affecting each other.
+- The lifecycle management of modules is handled entirely within the control program; the upper layer does not need to worry about the risks of module switching.
+- The `Module Value (MID)` is closely tied to the robot model and may change with version updates. If a module task does not execute as expected, update to the latest firmware and **refer to the module information described in the specific task page for authoritative values**.
+
 ---
 
 ## Task Documentation Index
@@ -140,14 +151,6 @@ The pages below are the primary task descriptions organized in this repository a
 ### Emergency Protection Tasks
 
 - [High-Damping Protection (Emergency Stop Response, M4LT2)](/fourier-grx-M4/docs/en/tasks/emergency_stop_high_damping)
-
-Robot module command list 🎏:
-
-- A module can be understood as a sub-task unit within a task. Because sub-tasks can have **mutually exclusive or combinable** relationships with each other, they are managed as **modules** rather than plain sub-tasks.
-- When one of several mutually exclusive modules is activated, the others are automatically suspended by the control program.
-- Combinable modules can be activated and switched independently without affecting each other.
-- The lifecycle management of modules is handled entirely within the control program; the upper layer does not need to worry about the risks of module switching.
-- The `Module Value (MID)` is closely tied to the robot model and may change with version updates. If a module task does not execute as expected, update to the latest firmware and **refer to the module information described in the specific task page for authoritative values**.
 
 ## Task Switching
 

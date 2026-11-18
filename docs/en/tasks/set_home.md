@@ -1,15 +1,19 @@
 ---
 layout: default
 title: Set Home
-nav_order: 4.5
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.05
 has_toc: true
 nav_exclude: true
 ---
 
 # Set Home (All Joints)
 
-> ⚠️ **This task (TID=999) is not yet implemented.** TID 999 is defined in the general robot task table `TaskMenuGRX.TASK_SET_HOME`; `TaskMenuM4L` (the 4000–4999 range) has no matching implementation.
+## Task Info
+
+Task ID (TID): **999**
+
+> ⚠️ **This task is not yet implemented.** TID 999 is defined in the general robot task table `TaskMenuGRX.TASK_SET_HOME`; `TaskMenuM4L` (the 4000–4999 range) has no matching implementation.
 >
 > For the M4L robot, please use the following dedicated calibration tasks instead:
 > - Rotary joint (hip/knee) automatic zero-point calibration → [Auto Calibrate (Rotary Joint) TID=4120](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate)

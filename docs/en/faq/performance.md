@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Performance
-nav_order: 6.5
 parent: FAQ
+nav_order: 6.5
 nav_exclude: true
 ---
 

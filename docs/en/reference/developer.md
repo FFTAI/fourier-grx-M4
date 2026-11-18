@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Developer API
+parent: Reference Guide
 nav_order: 3.2
-parent: "Reference Guide"
 has_toc: true
 nav_exclude: true
 ---
 
-# Reference Guide — Developer API
+# Developer API
 
 * TOC
 {:toc}

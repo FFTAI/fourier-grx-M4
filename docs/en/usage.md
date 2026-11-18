@@ -2,8 +2,8 @@
 layout: default
 title: Usage Guide
 nav_order: 5
-has_toc: true
 has_children: true
+has_toc: true
 nav_exclude: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 硬件问题
-nav_order: 6.1
 parent: 常见问题
+nav_order: 6.1
 ---
 
 # 硬件问题

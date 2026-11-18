@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Adjust Length (Prismatic Joint)
-nav_order: 4.24
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.27
 has_toc: true
 nav_exclude: true
 ---
 
 # Adjust Length (Prismatic Joint / Leg-Length Adjustment Joint)
+
+* TOC
+{:toc}
 
 ## Task Info
 

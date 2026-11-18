@@ -48,7 +48,7 @@ MessagePack 编解码由本目录下的 `mini_msgpack.py` 用标准库 `struct` 
 | `demo_servo_off.py` | 执行器失能（TASK_SERVO_OFF = 36） |
 | `demo_servo_reboot.py` | 执行器重启（TASK_SERVO_REBOOT = 41） |
 | `demo_clear_fault.py` | 清除故障（TASK_CLEAR_FAULT = 34） |
-| `demo_walk.py` | 定时行走：启动任务（4111），通过虚拟面板开始行走，5 秒后停止 |
+| `demo_walk.py` | 定时行走：启动被动前向行走任务（4129；v4.4.69 前为 4111），通过虚拟面板开始行走，5 秒后停止 |
 
 **状态读取（server → client 推送）**
 

@@ -1,15 +1,16 @@
 ---
 layout: default
 title: Developer Interface
+parent: Examples
 nav_order: 2.2
-parent: "Examples"
+has_toc: true
 nav_exclude: true
-toc: true
-toc_min_header: 2
-toc_max_header: 3
 ---
 
 # Developer Interface
+
+* TOC
+{:toc}
 
 The Fourier-GRX Developer Interface is a secondary development interface provided for low-level development.
 It calls the underlying hardware interfaces directly and is intended for low-level development work.

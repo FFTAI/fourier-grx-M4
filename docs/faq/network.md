@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 网络配置
-nav_order: 6.4
 parent: 常见问题
+nav_order: 6.4
 ---
 
 # 网络配置

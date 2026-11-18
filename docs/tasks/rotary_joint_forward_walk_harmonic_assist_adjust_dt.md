@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 谐波系数助力前向行走（调整 dt 参数）
-nav_order: 4.30
 parent: 任务描述
+nav_order: 4.14
 has_toc: true
 ---
 
 # 谐波系数助力前向行走（调整 dt 参数）
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **4133**（v4.4.79 起新增）
+任务值 (TID)： **4133**（v4.4.79 起新增）
 
 适用机型：M4L（P1 / T1 / T2）
 

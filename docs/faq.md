@@ -2,8 +2,8 @@
 layout: default
 title: 常见问题
 nav_order: 6
-has_toc: true
 has_children: true
+has_toc: true
 ---
 
 # 常见问题解答（FAQ）

@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Assist Forward Walk (Adjust PD Parameter)
-nav_order: 4.12
-parent: "Task Description"
+parent: Task Description
+nav_order: 4.15
 has_toc: true
 nav_exclude: true
 ---
 
 # Assist Forward Walk (Adjust PD Parameter)
+
+* TOC
+{:toc}
 
 ## Task Info
 

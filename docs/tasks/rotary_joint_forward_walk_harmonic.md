@@ -1,16 +1,19 @@
 ---
 layout: default
 title: 谐波系数前向行走
-nav_order: 4.28
 parent: 任务描述
+nav_order: 4.12
 has_toc: true
 ---
 
 # 谐波系数前向行走
 
+* TOC
+{:toc}
+
 ## 任务信息
 
-任务值 (TID): **4131**（v4.4.69 起；此前为 4113）
+任务值 (TID)： **4131**（v4.4.69 起；此前为 4113）
 
 适用机型：M4L（P1 / T1 / T2）
 

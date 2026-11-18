@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 系统烧录问题
-nav_order: 6.8
 parent: 常见问题
+nav_order: 6.8
 ---
 
 # 系统烧录问题

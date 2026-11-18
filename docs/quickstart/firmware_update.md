@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 固件更新
-nav_order: 1.3
 parent: 快速开始
+nav_order: 1.3
 has_toc: true
 ---
 

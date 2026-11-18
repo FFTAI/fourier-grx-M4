@@ -1,7 +1,7 @@
 ---
 layout: default
 title: IO Board Firmware
-parent: "Firmware Releases"
+parent: Firmware Releases
 nav_order: 3
 has_toc: true
 nav_exclude: true
