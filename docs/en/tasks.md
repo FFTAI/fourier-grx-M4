@@ -50,6 +50,8 @@ Common task command examples for M4L robots:
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT   | 4118             | M4L               | Assisted forward walking (adjust dt parameters)                           |
 | TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD | 4132      | M4L               | Harmonic-coefficient assisted forward walking (adjust PD; same three panel levels as 4131, assist ratio on param_4; added in v4.4.79) |
 | TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT | 4133      | M4L               | Harmonic-coefficient assisted forward walking (adjust dt; same three panel levels as 4131, assist ratio on param_4; added in v4.4.79) |
+| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) | 4134 | M4L | High-lift DSP forward walking (`param_3` sets the target lift peak in cm; added in v4.4.85) |
+| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_PD_FF](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) | 4135 | M4L | High-lift DSP forward walking + velocity feedforward (added in v4.4.85) |
 | TASK_ROTARY_JOINT_MARK_TIME                       | 4130             | M4L               | Passive marching in place (4112 before v4.4.69)                           |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD      | 4117             | M4L               | Assisted marching in place (adjust PD parameters)                         |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT      | 4119             | M4L               | Assisted marching in place (adjust dt parameters)                         |

@@ -21,6 +21,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 🔗 **Links and content**: fixed the relative links to version-history pages in `docs/release.md`, the duplicate User entry in the examples index, and the M4 / M4L wording in `docs/tasks.md`; Chinese task pages now use consistent full-width punctuation.
 - 🌐 **Bilingual parity**: heading structure and task TIDs match across 72 Chinese/English page pairs. Internal links, anchors, and table parsing were checked across 146 pages, with no broken internal links found.
 
+### v1.2.70 (2026-11-20)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.85 internal build (not an official release)**: `fourier-grx-4.4.85-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-20 18:00 CST, branch `m4-lfs`, package `X-Commit` = `8235360da62e`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.85`, sha256 `caac567d219ce51dab2f2d7f10db38ea125baeaee954262d1540ccf95b834cc7`
+- ✨ **New high-lift DSP forward-walk tasks 4134 / 4135**: re-solve swing-leg IK for target ground clearance, with velocity feedforward on 4135. `param_3` sets the final lift target in cm, defaulting to 10 cm and clipped to 5–25 cm. Chinese and English task pages and task-table entries are added; comparison tooling covers Harmonic / DSP / DSP+lift and 10/15 cm lift
+- 🔧 **Rock PD ramp after standing settles**: standing and knee-restriction standing ramp linearly from medium over 1.0 s to kp `[5000,2500,5000,2500]` / kd `[120,60,120,60]`. Progress remains capped at 99.9% during the ramp, with completion reported only at rock. Task pages document the behaviour and recommend unloaded validation first
+- 🔧 **Gait PD outputs now use one decimal place**: load-driven climbing, assist interpolation and the standing ramp share the same quantisation. The minimum nonzero climbing increment is now 0.1, still reaching hard exactly without overshoot
+- ✅ Verified the complete standing state machine on all three models, P1/T1 load climbing and assist interpolation, and registration / 15 cm trajectory generation for 4134/4135. Task counts are 60 / 60 / 61
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.85 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.68 (2026-11-17)
 
 **Release**

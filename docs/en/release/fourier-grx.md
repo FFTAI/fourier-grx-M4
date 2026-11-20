@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-20 | 4.4.85 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.85-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4485) | Internal build | ❌ No longer supported |
 | 2026-11-17 | 4.4.84 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.84-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4484) | Internal build | ❌ No longer supported |
 | 2026-11-16 | 4.4.82 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.82-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4482) | Internal build | ❌ No longer supported |
 | 2026-11-13 | 4.4.81 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.81-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4481) | Internal build | ❌ No longer supported |
@@ -121,6 +122,32 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.85
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-20 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New high-lift DSP forward-walk tasks 4134 / 4135**
+
+- 4134 re-solves swing-leg hip / knee angles for a target ground clearance over the normal DSP trajectory; 4135 is its PD + velocity-feedforward variant. Both support P1/T1/T2.
+- Panel `param_3` sets the compensated target lift peak in **cm**, defaulting to 10 cm and clipped to 5–25 cm. `param_7` remains the original pre-compensation DSP foot lift, a different semantic.
+- Lift parameters are included in the generation signature, so changes before start trigger regeneration; they do not switch the active trajectory mid-walk. Task documentation and Harmonic / DSP / DSP+lift offline comparison tooling are included.
+- Velocity fields on P1/T1 remain limited by FSA v2 fast. PD_FF reference compensation is visualization-only and does not modify actual joint targets.
+
+🔧 **Medium → rock PD ramp after standing settles**
+
+- Standing and knee-restriction standing hold their target posture after settling and linearly ramp Kp/Kd to rock over **1.0 s**. On every model, rock is kp `[5000,2500,5000,2500]` / kd `[120,60,120,60]`.
+- `motion_ratio` remains capped at **99.9%** during the ramp; 100% and task completion, including `flag_task_finish`, are reported only after rock is reached.
+- This is a significant stiffness behaviour change. After upgrading, first check standing impact, vibration and torque protection without a load before loaded testing.
+
+🔧 **Gait PD outputs now use one decimal place**
+
+- Load-driven climbing, assist PD interpolation and the standing rock ramp now consistently use `round(..., 1)`. The minimum nonzero climbing increment changes from 0.01 to 0.1; the tail still reaches hard exactly without overshoot.
+- Verified the complete standing state machine on P1/T1/T2, load-driven climbing and assist interpolation on P1/T1, and registration / trajectory generation for 4134/4135. Task counts are now **60 / 60 / 61**.
+
+---
 
 ### 4.4.84
 
