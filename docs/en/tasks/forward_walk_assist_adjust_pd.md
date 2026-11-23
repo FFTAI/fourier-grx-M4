@@ -31,7 +31,7 @@ Task Parameters:
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for joint PD control stiffness, in the range [0.0, 1.0]. A lower value makes joints more compliant, leaving more room for the patient's own effort; a higher value increases joint stiffness and trajectory-tracking capability. |
 | Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while walking, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
-| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. **This task uses the vhip gait generator, so this parameter has no effect** (only the DSP generator of TID 4129 / 4301 uses it). Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
+| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. **This task uses the DSP gait generator, and this parameter participates in trajectory generation**. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
 
@@ -99,9 +99,9 @@ Command interface:
 
 ### Algorithm Operation
 
-This task combines a VHIP gait generator with adjustable PD feedback, separating **trajectory shape** from **tracking stiffness**:
+This task combines a DSP gait generator with adjustable PD feedback, separating **trajectory shape** from **tracking stiffness**:
 
-1. **VHIP geometry**: `T_step=S_g/v` establishes each step. Stance COM motion follows `ẍ=(g/h)x`, the support foot remains fixed, and the swing foot follows forward and half-cosine lift profiles. Two-link cosine relations convert every frame to hip/knee angles, followed by URDF conversion and velocity differentiation. There is no DSP segmentation, so the double-support parameter `param_8` is unused.
+1. **DSP geometry**: `T_step=S_g/v` establishes each step. Single-support COM motion follows `ẍ=(g/h)x`, double support transfers the COM between feet, and the swing foot follows parameterized advance and lift profiles. Two-link inverse kinematics converts every frame to hip/knee angles, followed by URDF conversion and velocity differentiation. The double-support parameter `param_8` participates in trajectory generation.
 2. **Assist interpolation**: only during startup, `r∈[0,1]` maps to `Kp=100+100r` and `Kd=10+10r` for all four rotary joints. The trajectory array is not regenerated when `r` changes; only feedback response changes.
 3. **Torque formation**: `τ≈Kp(q_ref−q_meas)+Kd(ω_ref−ω_meas)` shows the effect. Low `r` produces less opposition to the same active deviation, while high `r` corrects errors more strongly toward passive guidance.
 4. **Execution**: start, loop, and ending stages retain common state-machine and position-smoothing logic, but load detection and automatic gain ramping are disabled so they cannot overwrite manual assist. Changes to `r` require a restart.

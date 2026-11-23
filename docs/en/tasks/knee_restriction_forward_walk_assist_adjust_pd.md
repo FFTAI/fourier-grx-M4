@@ -32,7 +32,7 @@ Task Parameters:
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for joint PD control stiffness, in the range [0.0, 1.0]. A lower value makes joints more compliant, leaving more room for the patient's own effort; a higher value increases joint stiffness and trajectory-tracking capability. |
 | Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
-| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. **This task uses the vhip gait generator, so this parameter has no effect** (only the DSP generator of TID 4129 / 4301 uses it). Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
+| Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. **This task uses the DSP gait generator, and this parameter participates in trajectory generation**. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
 
@@ -116,10 +116,10 @@ Command interface:
 
 ### Algorithm Operation
 
-Three distinct layers operate here: **common knee restriction and base geometry, VHIP trajectory generation, and startup PD interpolation**.
+Three distinct layers operate here: **common knee restriction and base geometry, DSP trajectory generation, and startup PD interpolation**.
 
 1. **Restriction preprocessing**: `θ=max(θ_left,θ_right)` feeds `α=atan2(L_s·sinθ,L_t+L_s·cosθ)`, `β=θ−α`, and `h=L_t·cosα+L_s·cosβ`. The same `θ` applies to both knees and `h` becomes generator base height, so current behavior is not independent left/right restriction.
-2. **VHIP generation**: stance COM motion follows `ẍ=(g/h)x` while the swing foot advances and lifts through a half-cosine. After two-link IK, `q_knee=max(q_knee,θ)` is applied before smoothing and differentiation. No DSP double-support segmentation occurs, so `param_8` is ineffective.
+2. **DSP generation**: single-support COM motion follows `ẍ=(g/h)x`, double support transfers the COM between feet, and the swing foot advances and lifts. After two-link IK, `q_knee=max(q_knee,θ)` is applied before smoothing and differentiation. The double-support parameter `param_8` participates in trajectory generation.
 3. **Startup stiffness**: `r` maps to `Kp=100+100r` and `Kd=10+10r`, and PD produces corrective torque from position/velocity errors. `θ` determines the reference lower bound; `r` determines how rigidly that reference is tracked.
 4. **Fixed run parameters**: load detection and automatic PD ramping are disabled, and `r` is written only during startup. Changing restriction or assist values while running does not immediately rebuild the current trajectory or gains; restart the task as required.
 
