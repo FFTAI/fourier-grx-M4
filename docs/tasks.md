@@ -153,6 +153,10 @@ M4L 机器人常见任务指令示例：
 
 - [高阻尼保护（急停响应，M4LT2）](/fourier-grx-M4/docs/tasks/emergency_stop_high_damping)
 
+### 算法专题
+
+- [步态生成算法对比](/fourier-grx-M4/docs/tasks/gait_generation_algorithms)
+
 ## 任务切换
 
 在使用不同方式进行机器人控制时，任务切换的方式可能会有所不同，以下是常见的任务切换方式：

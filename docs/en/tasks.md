@@ -154,6 +154,10 @@ The pages below are the primary task descriptions organized in this repository a
 
 - [High-Damping Protection (Emergency Stop Response, M4LT2)](/fourier-grx-M4/docs/en/tasks/emergency_stop_high_damping)
 
+### Algorithm Topics
+
+- [Gait Generation Algorithms](/fourier-grx-M4/docs/en/tasks/gait_generation_algorithms)
+
 ## Task Switching
 
 The method for switching tasks differs depending on how the robot is being controlled. The following table summarizes common task-switching methods:
