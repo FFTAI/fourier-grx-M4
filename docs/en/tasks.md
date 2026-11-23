@@ -130,6 +130,7 @@ The pages below are the primary task descriptions organized in this repository a
 - [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive)
 - [Assisted Marching in Place (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_pd)
 - [Assisted Marching in Place (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
+- [High-Lift DSP Forward Walk](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift)
 
 ### Knee-Restriction Tasks
 

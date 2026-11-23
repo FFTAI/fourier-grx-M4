@@ -28,6 +28,7 @@
     initBackToTop();
     initMobileNav();
     initSearchMobile();
+    initNavGroups();
   });
 
   function initTheme() {
@@ -377,6 +378,17 @@
 
     button.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  function initNavGroups() {
+    document.addEventListener("click", function (event) {
+      var label = event.target.closest(".grx-nav-group-label");
+      if (!label) return;
+      var item = label.closest(".nav-list-item");
+      if (!item) return;
+      var toggle = item.querySelector(":scope > .nav-list-expander");
+      if (toggle) toggle.click();
     });
   }
 

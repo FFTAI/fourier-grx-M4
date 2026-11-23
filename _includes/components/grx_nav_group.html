@@ -1,0 +1,13 @@
+<li class="nav-list-item grx-nav-group{% if include.active %} active{% endif %}">
+  <button class="nav-list-expander btn-reset" aria-label="{{ include.title }} submenu" aria-expanded="{% if include.active %}true{% else %}false{% endif %}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+  </button>
+  <div class="grx-nav-group-label">{{ include.title }}</div>
+  <ul class="nav-list">
+    {% for child in include.pages %}
+      <li class="nav-list-item{% if page.url == child.url %} active{% endif %}">
+        <a href="{{ child.url | relative_url }}" class="nav-list-link{% if page.url == child.url %} active{% endif %}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</li>

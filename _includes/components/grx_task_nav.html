@@ -1,0 +1,47 @@
+{%- comment -%}
+  Task navigation grouped by the categories used in docs/tasks.md.
+{%- endcomment -%}
+{% assign pages = include.pages %}
+{% assign is_task_detail = false %}
+{% if page.url contains '/docs/tasks/' or page.url contains '/docs/en/tasks/' %}{% assign is_task_detail = true %}{% endif %}
+{% assign no = page.nav_order %}
+
+{% assign basic = pages | where_exp: "item", "item.nav_order >= 4.01" | where_exp: "item", "item.nav_order <= 4.05" | sort: "nav_order" %}
+{% assign calibration = pages | where_exp: "item", "item.nav_order >= 4.06" | where_exp: "item", "item.nav_order <= 4.09" | sort: "nav_order" %}
+{% assign motion = pages | where_exp: "item", "item.nav_order >= 4.10" | where_exp: "item", "item.nav_order <= 4.19" %}
+{% assign high_lift = pages | where: "title", "高抬腿 DSP 前向行走" %}
+{% assign motion = motion | concat: high_lift | sort: "nav_order" %}
+{% assign knee = pages | where_exp: "item", "item.nav_order >= 4.20" | where_exp: "item", "item.nav_order <= 4.26" | sort: "nav_order" %}
+{% assign leg = pages | where_exp: "item", "item.nav_order >= 4.27" | where_exp: "item", "item.nav_order <= 4.28" | sort: "nav_order" %}
+{% assign planner = pages | where: "title", "规划器" %}
+{% assign emergency = pages | where_exp: "item", "item.nav_order == 4.30" | sort: "nav_order" %}
+{% assign algorithm = pages | where_exp: "item", "item.nav_order == 4.31" | sort: "nav_order" %}
+
+{% assign active_basic = false %}
+{% assign active_calibration = false %}
+{% assign active_motion = false %}
+{% assign active_knee = false %}
+{% assign active_leg = false %}
+{% assign active_planner = false %}
+{% assign active_emergency = false %}
+{% assign active_algorithm = false %}
+{% if is_task_detail and no %}
+  {% if no >= 4.01 and no <= 4.05 %}{% assign active_basic = true %}{% endif %}
+  {% if no >= 4.06 and no <= 4.09 %}{% assign active_calibration = true %}{% endif %}
+  {% if no >= 4.10 and no <= 4.19 %}{% assign active_motion = true %}{% endif %}
+  {% if no >= 4.20 and no <= 4.26 %}{% assign active_knee = true %}{% endif %}
+  {% if no >= 4.27 and no <= 4.28 %}{% assign active_leg = true %}{% endif %}
+  {% if no >= 4.30 and no <= 4.30 %}{% assign active_emergency = true %}{% endif %}
+  {% if no >= 4.31 and no <= 4.31 %}{% assign active_algorithm = true %}{% endif %}
+  {% if page.title == '规划器' %}{% assign active_planner = true %}{% endif %}
+  {% if page.title == '高抬腿 DSP 前向行走' %}{% assign active_motion = true %}{% endif %}
+{% endif %}
+
+{% include components/grx_nav_group.html title="基础控制任务" pages=basic active=active_basic %}
+{% include components/grx_nav_group.html title="零点与校准任务" pages=calibration active=active_calibration %}
+{% include components/grx_nav_group.html title="运动任务" pages=motion active=active_motion %}
+{% include components/grx_nav_group.html title="膝关节受限任务" pages=knee active=active_knee %}
+{% include components/grx_nav_group.html title="腿长调节任务" pages=leg active=active_leg %}
+{% include components/grx_nav_group.html title="规划器" pages=planner active=active_planner %}
+{% include components/grx_nav_group.html title="急停保护任务" pages=emergency active=active_emergency %}
+{% include components/grx_nav_group.html title="算法专题" pages=algorithm active=active_algorithm %}

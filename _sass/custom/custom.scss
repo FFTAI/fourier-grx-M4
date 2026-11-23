@@ -552,6 +552,25 @@ html.search-active .grx-topbar {
   border-left: 1px solid var(--grx-border);
 }
 
+#site-nav .nav-list .nav-list .nav-list {
+  padding-left: 10px;
+  margin-left: 0;
+  border-left: 0;
+}
+
+#site-nav .grx-nav-group-label {
+  padding: 8px 32px 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--grx-ink-400);
+  cursor: pointer;
+}
+
+#site-nav .nav-list-item.active > .grx-nav-group-label {
+  color: var(--grx-ink-900);
+}
+
 #site-nav .nav-list .nav-list .nav-list-link {
   display: block;
   min-height: 0;

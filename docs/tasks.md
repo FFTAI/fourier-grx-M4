@@ -129,6 +129,7 @@ M4L 机器人常见任务指令示例：
 - [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)
 - [助力原地踏步（调整 PD 参数）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_pd)
 - [助力原地踏步（调整 dt 参数）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
+- [高抬腿 DSP 前向行走](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)
 
 ### 膝关节受限任务
 

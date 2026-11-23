@@ -1,0 +1,61 @@
+{%- comment -%}
+  Sidebar navigation with second-level groups for 任务描述 and 参考指南.
+  The base tree still follows the theme's parent/title front matter.
+{%- endcomment -%}
+{% assign top_pages = site.html_pages
+  | where_exp: "item", "item.title != nil"
+  | where_exp: "item", "item.parent == nil"
+  | where_exp: "item", "item.nav_exclude != true"
+  | sort: "nav_order" %}
+
+<nav aria-label="Main" id="site-nav" class="site-nav">
+  <ul class="nav-list">
+    {% for node in top_pages %}
+      {% assign children = site.html_pages
+        | where_exp: "item", "item.title != nil"
+        | where: "parent", node.title
+        | where_exp: "item", "item.nav_exclude != true"
+        | sort: "nav_order" %}
+      {% assign active_parent = page.parent %}
+      {% if page.url contains '/docs/en/quickstart' %}{% assign active_parent = '快速开始' %}
+      {% elsif page.url contains '/docs/en/examples' %}{% assign active_parent = '示例代码' %}
+      {% elsif page.url contains '/docs/en/reference' %}{% assign active_parent = '参考指南' %}
+      {% elsif page.url contains '/docs/en/tasks' %}{% assign active_parent = '任务描述' %}
+      {% elsif page.url contains '/docs/en/usage' %}{% assign active_parent = '常用操作' %}
+      {% elsif page.url contains '/docs/en/faq' %}{% assign active_parent = '常见问题' %}
+      {% elsif page.url contains '/docs/en/release' %}{% assign active_parent = '固件发布' %}
+      {% elsif page.url contains '/docs/en/changelog' %}{% assign active_parent = '更新日志' %}
+      {% elsif page.url contains '/docs/en/contributing' %}{% assign active_parent = '贡献指南' %}
+      {% endif %}
+      {% assign node_active = false %}
+      {% if page.url == node.url or active_parent == node.title %}{% assign node_active = true %}{% endif %}
+      <li class="nav-list-item{% if node_active %} active{% endif %}">
+        {% if children.size > 0 %}
+          <button class="nav-list-expander btn-reset" aria-label="{{ node.title }} submenu" aria-expanded="{% if node_active %}true{% else %}false{% endif %}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+          </button>
+        {% endif %}
+        <a href="{{ node.url | relative_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}"{% if page.url == node.url %} aria-current="page"{% endif %}>{{ node.title }}</a>
+        {% if children.size > 0 %}
+          {% if node.title == '任务描述' %}
+            <ul class="nav-list">
+              {% include components/grx_task_nav.html pages=children %}
+            </ul>
+          {% elsif node.title == '参考指南' %}
+            <ul class="nav-list">
+              {% include components/grx_reference_nav.html pages=children %}
+            </ul>
+          {% else %}
+            <ul class="nav-list">
+              {% for child in children %}
+                <li class="nav-list-item{% if page.url == child.url %} active{% endif %}">
+                  <a href="{{ child.url | relative_url }}" class="nav-list-link{% if page.url == child.url %} active{% endif %}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
