@@ -58,7 +58,13 @@ Command Interface:
 
 ### Algorithm Operation
 
-The task starts with a short damping-only transition to reduce enable shock, then interpolates from the measured joint angles toward a reference stance with all four rotary joints at 0 rad. It confirms settling through position-change and velocity windows before ramping up holding stiffness and maintaining position. Optional torque protection uses a sustained-overlimit decision and exits to the idle task when triggered.
+Standing control is a staged **damping takeover → timed interpolation → feedback settling check → stiffness-ramped hold**, not an immediate write of zero to all four joints:
+
+1. **Damping warmup**: for the first 0.2 s, `Kp=0` and the position target follows `q_ref=q_meas`, leaving only `Kd` damping. This avoids a position jump when the previous task's target differs from the current posture.
+2. **Posture interpolation**: measured `q0` is latched again at the end of warmup, followed by `r=min(t/5,1)` and `q_ref=q0+(q_stand−q0)r` for about five seconds. Normal standing uses `q_stand=[0,0,0,0]`, tracked by medium-tier PD feedback.
+3. **Mechanical settling**: completed interpolation means only that the reference arrived. For 0.2 consecutive seconds, the algorithm requires `max|q_meas−q_window| ≤ 0.01 rad` and `max|ω_meas| ≤ 0.05 rad/s`. It checks stillness within a window rather than zero target error because loaded PD can retain steady-state error. A 2.5-second timeout permits continuation with a warning.
+4. **Holding-stiffness ramp**: while holding the stance, Kp/Kd move from medium to rock over one second using `K=K_start+(K_rock−K_start)r`. Only then do `motion_ratio` and the finish flag reach completion.
+5. **Independent protection**: the task layer separately counts measured torque above the limit for 0.1 s, exits to `TASK_IDLE`, and latches the protection flag. This branch is outside posture interpolation and does not automatically resume standing.
 
 ### Rehabilitation and Clinical Use
 

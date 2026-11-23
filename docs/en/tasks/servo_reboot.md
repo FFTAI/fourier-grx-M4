@@ -46,7 +46,13 @@ This task requires no additional command parameters. Send TID=41 to trigger it. 
 
 ### Algorithm Operation
 
-This task reboots every actuator so that it reloads its configuration and initializes its internal state; all actuators remain disabled afterwards. This is a hardware state-management procedure. It generates no trajectory, preserves no previous run parameters, and does not automatically resume the previous training task.
+This task reboots the actuators through a complete state-reset sequence:
+
+1. In `ACTUATOR_SPACE`, every actuator receives `SERVO_REBOOT` and all motion targets are cleared. The actuators then reload their internal configuration and state.
+2. The task clears buffered position-loop, velocity-loop, effort-loop, and PD `Kp/Kd` targets so gains cached before reboot are not reused.
+3. Control modes return to `NONE` and the task switches to `TASK_IDLE`. The actuators remain disabled until a later task enables them and writes new control parameters.
+
+There is no trajectory interpolation and no training-state save/resume. Rebooting resets the device and command state; it does not remove the physical cause of a mechanical obstruction, overtemperature condition, or communication failure.
 
 ### Rehabilitation and Clinical Use
 

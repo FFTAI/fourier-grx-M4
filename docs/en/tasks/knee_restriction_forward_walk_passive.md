@@ -27,8 +27,8 @@ Task Parameters:
 |-----------|------|---------|-------|-------------|
 | Upper leg length | `float` | 0.5 | [0.3, 0.6] | The robot's upper leg (thigh) length, in m. |
 | Lower leg length | `float` | 0.5 | [0.3, 0.6] | The robot's lower leg (shank) length, in m. |
-| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the left knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
-| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the right knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
+| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Left restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
+| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
 | Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
@@ -44,7 +44,7 @@ Task Parameters:
 
 > **Knee Restriction Angle Explained**:
 >
-> This parameter sets the minimum bend angle the knee joint must maintain throughout the entire motion (unit: rad). The algorithm clamps any knee joint angle in the trajectory that falls below this value to the specified value, ensuring the knee never extends beyond the set limit. Designed for patients whose knee extension function is restricted and who cannot fully straighten the knee.
+> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -103,7 +103,13 @@ Command interface:
 
 ### Algorithm Operation
 
-The DSP generator creates a forward gait from step length, speed, foot lift, and double-support ratio. It then clips each knee reference to its own minimum flexion angle and automatically determines base height from leg length and restriction. The actuators track the modified periodic trajectory; the algorithm does not adapt knee restriction in response to pain or voluntary effort.
+This task adds **knee-restriction geometry preprocessing** before normal DSP forward walking; the operation order directly shapes the final posture:
+
+1. **Common restriction**: left/right inputs become `θ=max(θ_left,θ_right)`, and this single value is used for both knees rather than producing two independent lower bounds.
+2. **Base-height calculation**: `α=atan2(L_s·sinθ,L_t+L_s·cosθ)`, `β=θ−α`, and `h=L_t·cosα+L_s·cosβ` produce the DSP base-height input. Larger `θ` generally lowers geometric standing height, which is why `param_6` cannot independently override base height here.
+3. **DSP generation**: `T_dsp=r·T_step` and `T_ssp=T_step−T_dsp` allocate support phases. SSP COM motion follows `ẍ=(g/h)x`; DSP holds both feet while Hermite interpolation transfers the COM, and the swing foot follows a half-cosine lift.
+4. **Restriction after IK**: foot/COM geometry is converted to URDF joint angles before `q_knee←max(q_knee,θ)`. Low-pass smoothing and final position differentiation follow, so reported envelopes include restriction and post-processing rather than the original unrestricted DSP curve.
+5. **Execution and load adjustment**: start/loop/end playback and outer EMA smoothing match normal forward walking. Positive mechanical energy above 30 J ramps PD toward hard. Torque and tracking error affect control and protection but never recompute `θ` online.
 
 ### Rehabilitation and Clinical Use
 

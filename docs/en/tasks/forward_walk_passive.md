@@ -88,7 +88,13 @@ Command interface:
 
 ### Algorithm Operation
 
-The DSP gait generator uses leg lengths, step length, walking speed, base height, foot-lift height, and double-support ratio to generate a periodic reference trajectory. A start transition moves from the current posture to the gait start, after which the joint controllers track position and velocity references. Step duration follows from step length and speed. A stop command finishes through a transition rather than freezing the joints immediately. Geometry changes made while running do not alter the trajectory already generated.
+The control chain has four layers: **gait geometry → two-link inverse kinematics → trajectory conditioning → PD tracking with load-based gain adjustment**.
+
+1. **Single/double support timing**: hip extension is scaled and internal step length is compensated to preserve the intended foot displacement. For compensated internal step length `S_g`, `T_step=S_g/v`, `T_dsp=r_dsp·T_step`, and `T_ssp=T_step−T_dsp`. Double support therefore reallocates the step timeline rather than appending a pause.
+2. **COM and foot trajectories**: during single support (SSP), horizontal COM motion uses the linear inverted-pendulum approximation `ẍ=ω²x`, `ω=sqrt(g/h)`. During double support (DSP), both feet remain fixed while a cubic Hermite spline transfers the COM with position and velocity continuity. Swing-foot horizontal motion uses a smooth velocity profile; vertical motion is `z=h_lift·(1−cos(2πτ))/2`, returning to zero at both ends and peaking mid-swing.
+3. **Foot position to joint angles**: for each frame, `dx,dz` locate the foot relative to the COM and `d=sqrt(dx²+dz²)` is limited to leg length. The law of cosines gives `q_knee=π−acos((L_thigh²+L_shank²−d²)/(2L_thighL_shank))`; hip angle follows from `atan2(dz,dx)` and the second cosine relation. Angles are converted to the URDF frame, scaled/restricted/smoothed, and differentiated to produce consistent reference velocities.
+4. **State-machine playback**: measured positions are held before start. Starting triggers a 2.5-second linear move to the first gait frame, followed by start, loop, and ending segments. Each position passes through `q_cmd[k]=(1−α)q_cmd[k−1]+αq_ref[k]` and joint-limit clipping before PD control. Stop is evaluated at the loop-window boundary rather than freezing immediately.
+5. **Load-based stiffness**: `P_i=τ_i·ω_i` is low-pass filtered, and positive power is accumulated as `E=Σ max(P_i,0)·Δt`. If `E>30 J` at the step boundary, load is declared and Kp/Kd ramp toward the hard tier. This changes tracking stiffness, not patient-weight estimates or the generated gait geometry.
 
 ### Rehabilitation and Clinical Use
 

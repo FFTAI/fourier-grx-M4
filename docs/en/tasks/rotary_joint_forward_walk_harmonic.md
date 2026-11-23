@@ -121,7 +121,13 @@ Command interface:
 
 ### Algorithm Operation
 
-Stored Fourier harmonic coefficients reconstruct periodic joint curves. Hip-amplitude and knee-extension-restriction levels select the curve shape, while the cadence level sets its playback rhythm. The trajectory is generated before starting and then replayed cyclically for the joint controllers. It is not adapted online to patient performance, nor recomputed from step length, walking speed, or leg length through inverse kinematics.
+The core principle is **offline curve fitting with online phase-based playback**, unlike real-time DSP/VHIP geometry:
+
+1. **Coefficient selection**: hip amplitude and knee-extension restriction form `4×4` gait keys. Each stores left/right hip and knee Fourier coefficients already converted to URDF radians. No COM, foot, or inverse-kinematics calculation occurs at runtime.
+2. **Harmonic reconstruction**: each joint uses `q(φ)=a0+Σ[k=1..K](a_k·cos(2πkφ)+b_k·sin(2πkφ))`, with `φ∈[0,1)` and `K=10` in the current tables. `a0` sets mean posture, lower harmonics define the main gait shape, and higher terms add local detail. Left/right phase offsets are embedded in their separate coefficients.
+3. **Adding a time axis**: cadence selects target stride time `T_stride`, quantized as `N=round(T_stride/Δt)` frames and an actual period `N·Δt`. Frame `n` has `φ=(n mod N)/N`. Cadence therefore changes playback rate without changing curve shape; reported cadence is `60/(N·Δt/2)` steps/min.
+4. **Transitions and looping**: cubic Hermite segments join the standing reference to cycle frame zero, with endpoint slopes bounded for monotonicity. Loop windows contain complete left/right cycles for phase-continuous wraparound. Output is clipped to hip `−90°…40°` and knee `0°…110°`, and final positions are differentiated for velocity.
+5. **Common execution pipeline**: measured positions are held before a 2.5-second entry to the first gait frame, followed by start, loop, and ending playback. Outer position smoothing, output limits, load-energy detection, and PD ramping remain active. Interaction torque can affect load detection and tracking error but never rewrites the Fourier coefficients online.
 
 ### Rehabilitation and Clinical Use
 

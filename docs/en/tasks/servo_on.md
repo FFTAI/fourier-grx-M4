@@ -45,7 +45,13 @@ This task requires no additional command parameters. Send TID=35 to trigger it.
 
 ### Algorithm Operation
 
-This task generates no motion trajectory. It sends an enable command to every actuator so that the motors can output torque, and the task state machine updates the start and finish flags from actuator responses. Enabling is a prerequisite for position or torque control; it does not mean that the robot is already in a safe posture.
+This task is an **actuator control-mode state machine**, with no trajectory generation or closed-loop posture control:
+
+1. **Enable command**: on `STAGE_INIT`, the workspace switches to `ACTUATOR_SPACE`. Every actuator receives `SERVO_ON`, while position, velocity, effort, and current targets are cleared so the enable command is not combined with stale motion targets.
+2. **End the transient command**: during `STAGE_START` / `STAGE_RUN`, control modes return to `NONE` and the actuators retain their enabled state. The task computes no new output from joint errors.
+3. **Exit**: after `STAGE_FINISH`, the task switches to `TASK_IDLE`; a subsequent standing or gait task must supply the actual position targets and PD gains.
+
+“Enable complete” therefore means that this control-mode sequence has executed. It does not establish a particular robot posture or stable patient weight-bearing.
 
 ### Rehabilitation and Clinical Use
 

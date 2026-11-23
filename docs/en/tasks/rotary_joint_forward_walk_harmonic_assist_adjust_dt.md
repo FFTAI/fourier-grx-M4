@@ -89,7 +89,12 @@ Command interface:
 
 ### Algorithm Operation
 
-The reference still comes from stored harmonic coefficients. The assist ratio changes trajectory time advancement through `play_speed=0.5+0.5×assist_ratio`, providing 50%–100% playback speed without changing curve shape or medium-tier PD stiffness. During swing, automatic mode compares measured hip torque with gravity-compensation thresholds and increases or decreases the bounded ratio.
+This task changes the **phase timeline's playback speed**, not the harmonic curve itself:
+
+1. **Base trajectory**: amplitude, restriction, and cadence first determine `q(φ)` and `T_stride` exactly as in TID 4131. Assist processing occurs after generation and does not refit the Fourier coefficients.
+2. **Time scaling**: manual mode maps `r` to `v_play=0.5+0.5r` and advances `Δt_motion=Δt_control·v_play` each cycle. Actual period is approximately `T_actual=T_base/v_play`: `r=0` roughly doubles it and `r=1` restores the selected cadence. Kp/Kd remain at the medium tier regardless of `r`.
+3. **Automatic decisions**: only during the loop and the relevant leg's swing, with `G>0` and negative hip reference velocity, `τ>G+2.0 Nm` gives `r←r+0.02`, while `τ<G` gives `r←r−0.01`. Other phases leave it unchanged before clipping to `[0,1]`. Unequal increments make acceleration faster than deceleration.
+4. **Feedback location**: torque changes only subsequent trajectory-index progression. It adds no direct assistive torque and does not alter the angular envelope. Because measured torque includes both patient and device effects, this is a heuristic rhythm rule, not a general patient-intent detector or proof of assist-as-needed behavior.
 
 ### Rehabilitation and Clinical Use
 

@@ -75,7 +75,13 @@ This task requires no additional command parameters and is triggered automatical
 
 ### Algorithm Operation
 
-After an emergency stop, all-actuator communication timeout, or host heartbeat timeout, the controller continuously sets each rotary-joint position target to its measured position and applies near-zero position gain with high velocity gain. Torque mainly opposes motion speed to dissipate joint energy. Without a position-holding spring term, the task can slow rapid limb motion but cannot actively support body weight or maintain a prescribed stance.
+High-damping protection turns the normal PD controller into a **velocity-energy dissipator centered on the current position**:
+
+1. **Trigger**: a hardware emergency stop, all-actuator communication timeout, or host heartbeat timeout sets the protection flag, and the task manager automatically switches to TID 4600 without waiting for a gait-loop boundary.
+2. **Follow measured position each frame**: `q_ref[k]=q_meas[k]`, with `Kp=0.001` because zero is not accepted and `Kd=20`. PD torque can be approximated as `τ=Kp(q_ref−q_meas)+Kd(ω_ref−ω_meas)`.
+3. **Damping torque**: position reference equals measurement, so the position term is nearly zero. With velocity reference cleared, the main output is `τ≈−20·ω_meas`, opposing current motion. Instantaneous mechanical power `P=τ·ω≈−20·ω²≤0` dissipates joint energy instead of injecting a return-to-posture spring force.
+4. **Clear inherited output**: both component and standalone paths zero velocity and effort feedforward targets so previous-task terms cannot be added to damping torque. At zero speed, damping torque is also nearly zero; no active return to standing occurs.
+5. **Remain after release**: clearing the emergency signal does not automatically leave this mode; a later task must explicitly take control. High damping can reduce rapid flailing but has no position term for continuous static support and provides neither fall prevention nor posture recognition.
 
 ### Rehabilitation and Clinical Use
 

@@ -45,7 +45,13 @@ This task requires no additional command parameters. Send TID=36 to trigger it. 
 
 ### Algorithm Operation
 
-This task sends a disable command to all actuators rather than planning joint motion. Torque output stops and the task state is updated. The joints are then no longer actively held by the motors and can move under gravity or external force; there is no controlled lowering, posture-holding, or damping algorithm in this task.
+This task works in `ACTUATOR_SPACE` and removes active torque through control-mode transitions rather than planning a return-to-safe-posture trajectory:
+
+1. On entry, target actuators receive `SERVO_OFF` and their position, velocity, effort, and current targets are cleared. Internal procedures such as single-leg calibration can provide a subset of actuator indices.
+2. The next stage commands zero effort in `EFFORT` mode before returning to `NONE`, preventing inheritance of the previous effort command.
+3. The state machine finishes by switching to `TASK_IDLE`. There is no position feedback, gravity compensation, or velocity damping; subsequent joint behavior is governed by gravity, friction, and external support.
+
+Disabling is therefore not controlled braking. The device can drop rapidly or remain temporarily in place because of friction, and this task actively regulates neither outcome.
 
 ### Rehabilitation and Clinical Use
 

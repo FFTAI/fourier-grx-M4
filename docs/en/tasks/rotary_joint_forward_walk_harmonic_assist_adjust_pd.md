@@ -87,7 +87,14 @@ Command interface:
 
 ### Algorithm Operation
 
-This task combines fixed harmonic-coefficient trajectories with adjustable PD tracking. Amplitude, knee restriction, and cadence select the reference; the assist ratio interpolates between two preset gain sets and changes how strongly position and velocity errors produce joint torque. A low ratio permits greater tracking deviation, while a high ratio provides stronger trajectory guidance. The ratio is written during startup, so changes made while walking require a task restart.
+Two independent branches operate here: **harmonic generation** determines where the joints should go, while **adjustable PD** determines how strongly they are pulled back to that reference.
+
+1. **Reference branch**: as in TID 4131, `q(φ)=a0+Σ(a_k·cos(2πkφ)+b_k·sin(2πkφ))` reconstructs the selected curve. Amplitude and restriction select coefficients; cadence changes phase progression through a quantized period. Assist ratio is not read by this branch, so it cannot stretch or shift the reference.
+2. **Gain interpolation**: for `r∈[0,1]`, startup computes `Kp=100+(200−100)r` and `Kd=10+(20−10)r`. These gains enter `τ≈Kp(q_ref−q_meas)+Kd(ω_ref−ω_meas)`, so the same error produces stronger corrective torque at higher `r`.
+3. **Difference from passive harmonic walking**: load-energy detection and automatic PD ramping are explicitly disabled so they cannot overwrite the selected assist level. Startup-latched `r` is therefore the only source of gain adjustment.
+4. **Timing boundary**: interpolation runs only in `STAGE_INIT/STAGE_START`. Trajectory indices continue advancing when `r` changes during walking, but Kp/Kd are not updated until the task is stopped and restarted.
+
+`r=0` is not zero torque; it selects the buttery preset. `r=1` is not added feedforward assistance; it selects stronger soft-tier error feedback.
 
 ### Rehabilitation and Clinical Use
 

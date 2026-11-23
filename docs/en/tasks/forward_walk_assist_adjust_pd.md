@@ -98,7 +98,14 @@ Command interface:
 
 ### Algorithm Operation
 
-The gait generator first creates a reference from leg lengths, step length, speed, and related parameters. The assist ratio then linearly interpolates the PD gains. Position and velocity errors produce less corrective torque at a low ratio, allowing the patient to deviate actively from the reference, and more corrective torque at a high ratio. Trajectory shape and stiffness are independent settings; the ratio is written only during startup.
+This task combines a VHIP gait generator with adjustable PD feedback, separating **trajectory shape** from **tracking stiffness**:
+
+1. **VHIP geometry**: `T_step=S_g/v` establishes each step. Stance COM motion follows `ẍ=(g/h)x`, the support foot remains fixed, and the swing foot follows forward and half-cosine lift profiles. Two-link cosine relations convert every frame to hip/knee angles, followed by URDF conversion and velocity differentiation. There is no DSP segmentation, so the double-support parameter `param_8` is unused.
+2. **Assist interpolation**: only during startup, `r∈[0,1]` maps to `Kp=100+100r` and `Kd=10+10r` for all four rotary joints. The trajectory array is not regenerated when `r` changes; only feedback response changes.
+3. **Torque formation**: `τ≈Kp(q_ref−q_meas)+Kd(ω_ref−ω_meas)` shows the effect. Low `r` produces less opposition to the same active deviation, while high `r` corrects errors more strongly toward passive guidance.
+4. **Execution**: start, loop, and ending stages retain common state-machine and position-smoothing logic, but load detection and automatic gain ramping are disabled so they cannot overwrite manual assist. Changes to `r` require a restart.
+
+Assist ratio is not a torque percentage. `r=0` retains buttery PD torque, and `r=1` is only soft-tier feedback—not a claim that the robot supplies 100% of the patient's movement.
 
 ### Rehabilitation and Clinical Use
 

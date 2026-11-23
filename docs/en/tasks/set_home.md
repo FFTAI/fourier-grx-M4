@@ -26,7 +26,14 @@ Task ID (TID): **999**
 
 ### Algorithm Operation
 
-TID 999 is currently only an enum placeholder; it has no executable calibration algorithm and cannot set any joint zero. Zero calibration establishes a reference between sensor readings and software joint coordinates. On M4L, this must be done through the dedicated rotary- and prismatic-joint tasks.
+TID 999 is only an enum placeholder. No executable M4L control model is registered for it, so there is no receive-sample-write pipeline and no joint can be calibrated through this TID.
+
+M4L zero calibration has two distinct aspects:
+
+- **Coordinate offset construction**: encoder positions are used to map a mechanical posture to application-layer `0 rad` or a prismatic reference, so that `q_application = f(q_encoder, home_offset, direction)` remains consistent across tasks.
+- **Joint-specific procedures**: rotary joints require mechanical-boundary detection or a manually selected zero followed by position sampling. Prismatic joints establish leg-length coordinates through full-travel limit detection. Actuator direction, units, persistence, and reboot requirements differ, so one unimplemented generic TID cannot replace both.
+
+M4L therefore requires the dedicated rotary- and prismatic-joint tasks. This page is not an executable calibration entry point.
 
 ### Rehabilitation and Clinical Use
 

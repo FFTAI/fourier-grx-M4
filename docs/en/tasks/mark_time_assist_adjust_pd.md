@@ -93,7 +93,14 @@ Command Interface:
 
 ### Algorithm Operation
 
-The task generates an in-place stepping reference and interpolates PD gains with the assist ratio. A low ratio reduces corrective torque from position and velocity errors, leaving more room for active movement around the reference; a high ratio constrains tracking more strongly. Foot lift and step period define the reference action, while the ratio changes joint stiffness only during startup.
+This task chains in-place geometric generation with adjustable PD stiffness:
+
+1. **Reference action**: foot-lift height `h` determines the half-cosine vertical trajectory and fore/aft amplitude `L_max=min(2h,L_thigh)`; step period sets left/right alternation. Two-link IK converts the foot path to joint angles. Assist ratio plays no part here, so it changes neither lift height nor curve shape.
+2. **Feedback gains**: startup maps `r∈[0,1]` to `Kp=100+100r` and `Kd=10+10r`, interpolating from buttery to soft. Feedback is approximately `τ=Kp(q_ref−q_meas)+Kd(ω_ref−ω_meas)`, so low `r` reduces corrective torque for the same deviation and high `r` constrains tracking more strongly.
+3. **Cyclic execution**: position references retain outer first-order smoothing and travel limits before PD. Load detection and automatic gain ramping are disabled so measured energy cannot replace the chosen assist level with hard-tier gains.
+4. **Latch timing**: Kp/Kd update only in `STAGE_INIT/STAGE_START`; changing `r` during motion requires a restart. `r=0` still retains minimum-tier PD rather than disabling the actuators or guaranteeing zero torque.
+
+Active participation therefore comes from more compliant error feedback, not real-time assistive-torque modulation based on measured patient effort.
 
 ### Rehabilitation and Clinical Use
 

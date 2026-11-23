@@ -87,7 +87,14 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 
 ### Algorithm Operation
 
-The task performs a boundary sweep and return, disables the joints so they settle under gravity, averages position samples, and writes the software zero. Boundary detection establishes a mechanical-travel reference, while averaging reduces stationary reading noise. The resulting 0 rad is an application-layer coordinate, not the patient's anatomical hip or knee neutral.
+Automatic calibration chains three subtasks: **rate-limited boundary detection → return to a safe position → stationary sampling and software zeroing**.
+
+1. **Boundary detection**: starting from measured positions, each command changes by at most `0.004 rad` per control cycle as hips move toward MIN and knees toward MAX. Each joint independently requires `|τ| ≥ threshold` and `|ω| ≤ 0.01 rad/s` for 0.2 s before freezing its target; joints need not all reach their limits in the same cycle. A timeout prevents an indefinite sweep.
+2. **Return and disable**: after detection, joints return by fixed angular offsets with a position tolerance. `SERVO_OFF` then lets them settle under gravity and mechanical constraints. The detected boundary is a machine reference, never a patient range-of-motion measurement.
+3. **Average and set zero**: approximately one second of samples produces `q̄ = (1/N) Σ q_i`, which is written to application-layer `home_position`; application directions and offsets are restored. The transformed encoder coordinate then corresponds to the new `0 rad`.
+4. **Prevent target jumps**: targets are synchronized with measured positions in the new coordinates so the next task cannot inherit sweep-era targets. An unfinished calibration can roll back the saved zero and direction configuration.
+
+The algorithm estimates a device coordinate reference. It recognizes neither patient anatomy nor clinical range restrictions, and it does not alter the mechanical boundary to accommodate them.
 
 ### Rehabilitation and Clinical Use
 

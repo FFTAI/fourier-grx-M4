@@ -56,7 +56,14 @@ Command Interface:
 
 ### Algorithm Operation
 
-The task clips the four panel length values, converts them into prismatic-actuator coordinates, and sends them as absolute target positions relative to the calibrated zero. It adjusts the mechanical thigh and shank extension segments; it does not derive anatomical leg lengths from height or imaging. `motion_ratio` reports command-sequence progress, not actual positioning error.
+Absolute leg-length adjustment consists of **coordinate conversion → synchronized duration calculation → quintic S-curve position tracking**:
+
+1. **Command conversion**: the four inputs represent left thigh, left shank, right thigh, and right shank. Because panel length and actuator position have opposite directions, `x_target=−L_command` is clipped to `[-0.095,0] m`; the zero comes from prismatic calibration.
+2. **Latch endpoints and duration**: startup records measured `x0` and target `x1`. All joints share `T=max_i(|x1_i−x0_i|/0.0015)`, set by the longest-duration joint so different displacements finish together.
+3. **S-curve generation**: `r=clip(t/T,0,1)`, `s(r)=6r⁵−15r⁴+10r³`, and `x_ref=x0+(x1−x0)s(r)`. Zero first and second derivatives at both ends reduce extension-mechanism start/stop shock.
+4. **PD tracking and completion**: prismatic PD feedback (default `Kp=100,Kd=1`) tracks `x_ref`, then holds the target and sets completion. Completion is driven mainly by the reference timeline, with no additional displacement tolerance or settling check, so measured position must still be checked for friction, self-locking, or load-dependent residual error.
+
+The algorithm knows no anatomical leg length; it only moves mechanical extension segments between absolute coordinates.
 
 ### Rehabilitation and Clinical Use
 

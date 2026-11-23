@@ -112,7 +112,14 @@ Command Interface:
 
 ### Algorithm Operation
 
-After the in-place trajectory is generated, the assist ratio maps playback to 50%–100% of baseline by changing trajectory time advancement each cycle; PD stiffness remains at the medium tier. Automatic mode compares measured joint torque with configurable absolute upper and lower thresholds and increases or decreases the ratio. The current implementation adds no gravity-compensation term.
+This task adds time scaling and torque-threshold feedback to an in-place reference array:
+
+1. **Unchanged reference**: foot lift and step period first determine the foot path, joint angles, and left/right sequence. Assist does not rerun IK, so angular range and fore/aft amplitude remain independent of the ratio.
+2. **Trajectory clock**: manual mode uses `v_play=0.5+0.5r`, advancing `Δt_motion=Δt_control·v_play` and producing approximately `T_actual=T_base/v_play`. Kp/Kd remain medium, so slow playback is not lower stiffness and fast playback is not added assistive torque.
+3. **Automatic conditions**: only during the loop, target-leg swing, `G<0`, and negative hip reference velocity does the algorithm compare hip torque. Gravity compensation is currently zeroed, so absolute thresholds apply directly: `τ>τ_upper` gives `r+=0.04`, `τ<τ_lower` gives `r−=0.001`, otherwise no change, followed by clipping. Thresholds come from `param_4/param_5`.
+4. **Asymmetric response**: the much larger upward increment raises rhythm quickly after upper-threshold crossings, while the small downward decrement produces a slow fallback. Torque changes only subsequent playback time; it is not added to PD output and does not replan the current lift.
+
+Torque direction, swing state, and reference velocity jointly gate this heuristic; a single torque peak alone is not treated as voluntary patient effort.
 
 ### Rehabilitation and Clinical Use
 

@@ -99,7 +99,14 @@ Command interface:
 
 ### Algorithm Operation
 
-The task generates a forward gait and uses the assist ratio to scale trajectory time advancement each control cycle. Playback ranges from 50% to 100% of the baseline while PD gains remain at the medium tier. During swing, automatic mode compares measured hip torque with gravity-compensation-related thresholds and changes the ratio in fixed increments. It adjusts rhythm rather than replanning gait shape.
+This task adds **trajectory-time scaling feedback** to a VHIP forward gait rather than providing assistance by reducing PD stiffness:
+
+1. **Fixed geometry**: step length, speed, leg lengths, and foot lift first produce the complete COM, foot, and joint-reference arrays through the usual inverted-pendulum and inverse-kinematics calculations. Assist only reads these arrays and does not change their angular envelope.
+2. **Playback mapping**: `r` determines `v_play=0.5+0.5r`; motion time advances by `Δt_motion=Δt_control·v_play`, with index `floor(t_motion/Δt_control)`. Slowing playback holds each reference frame longer, approximately `T_actual=T_base/v_play`, rather than recomputing a slower gait.
+3. **Automatic mode**: during the loop, only a swinging leg with `G>0` and negative hip reference velocity is evaluated. `τ_hip>G+2.0 Nm` gives `r+=0.02`; `τ_hip<G` gives `r−=0.01`, followed by `[0,1]` clipping. Pinocchio computes `G` from current posture, and unequal increments make acceleration and deceleration asymmetric.
+4. **Control output**: positions retain outer smoothing and travel limits, tracked by medium-tier PD. Load detection and automatic stiffness ramping are disabled. Torque changes subsequent `v_play` only; it is never appended directly to actuator effort.
+
+“More assist” therefore means faster reference playback and a shorter actual gait cycle, not higher Kp/Kd or a fixed percentage of assistive force.
 
 ### Rehabilitation and Clinical Use
 

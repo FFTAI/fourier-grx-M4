@@ -83,7 +83,13 @@ Command Interface:
 
 ### Algorithm Operation
 
-The gait generator uses leg lengths, foot-lift height, step period, and base height to create an alternating in-place trajectory. After a start transition, the joint controllers track its position and velocity references. No horizontal base translation is planned; foot lift changes swing amplitude and step period changes rhythm. Stop uses an ending transition, and optional torque protection requires a sustained overlimit.
+In-place stepping uses the VHIP two-link geometry generator while fixing the COM and support point: **alternating periodic foot motion → hip/knee IK → cyclic playback**.
+
+1. **Timing**: the input step period directly becomes `T_step`. One leg swings while the other supports, then roles reverse on the next step; reported cadence is `60/T_step` steps/min. Unlike forward walking, period is not derived from step length divided by speed.
+2. **Foot trajectories**: support-foot position, horizontal COM position, and base height remain fixed. Swing-foot height is `z=h·(1−cos(2πτ))/2`, and fore/aft motion is `x=L_max·sin(πτ)`, where `L_max=min(2h,L_thigh)`. The foot returns to its original horizontal position at the end of each cycle, producing no continuing translation.
+3. **Joint references**: each frame computes foot-to-COM distance `d`; the law of cosines gives knee angle, while `atan2` and another cosine relation give hip angle before URDF conversion. Knee restriction is applied during generation. The generator adds no further low-pass filter to avoid extra in-place delay; reference velocity comes from position differences.
+4. **Execution**: measured posture is held before a 2.5-second move to the first frame and subsequent two-step looping. Outer `q_cmd[k]=(1−α)q_cmd[k−1]+αq_ref[k]` smoothing and clipping still apply. Stop enters the ending segment at a cycle boundary; pause holds current output.
+5. **Load detection**: positive `P=τω` accumulates step energy with a `70 J` threshold, after which PD ramps toward hard. This energy includes both device and patient mechanical work and is not a direct measure of voluntary patient work.
 
 ### Rehabilitation and Clinical Use
 

@@ -92,7 +92,14 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 
 ### Algorithm Operation
 
-The task disables the selected rotary joints, lets staff position and hold the mechanical zero, averages about one second of position readings, and writes an application-layer zero offset. It then synchronizes the control target with the measured position in the new coordinates to reduce a target jump on the next enable. The algorithm cannot judge whether the manually selected posture is anatomically or mechanically correct.
+Manual calibration assigns zero-posture selection to the operator and coordinate computation to the state machine:
+
+1. **Scope selection**: the two-leg task handles all four rotary joints. Single-leg variants use joint indices to disable and calibrate only the selected side; the other side is outside that calibration flow.
+2. **Disable and position**: after `SERVO_OFF`, the operator moves the joints to the intended mechanical zero and holds them there. The algorithm does not judge posture correctness; it only relies on stable readings during sampling.
+3. **Average estimate**: approximately one second of encoder samples gives `q̄ = (1/N) Σ q_i`, reducing quantization and jitter compared with a single sample. The mean is written to application-layer `home_position`, and the original direction and application offset are restored.
+4. **Commit and prevent jumps**: targets are reset to measured positions in the new coordinates to prevent an old target from being restored at the next enable. An unfinished sequence can roll back the saved zero and direction configuration.
+
+Calibration quality therefore depends primarily on the manually selected posture and sampling stability. The algorithm does not convert a patient's comfortable posture into a standard mechanical zero.
 
 ### Rehabilitation and Clinical Use
 

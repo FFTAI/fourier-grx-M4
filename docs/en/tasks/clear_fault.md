@@ -45,7 +45,13 @@ This task requires no additional command parameters; sending TID=34 triggers it.
 
 ### Algorithm Operation
 
-This task asks the actuators to clear latched fault states and finishes according to their feedback. It resets fault flags only; it does not repair overcurrent, overtemperature, communication loss, mechanical obstruction, or other root causes. Faults that cannot be cleared remain visible in `grx.robot_error_codes`.
+This task resets latched fault bits; it is not a fault-diagnosis algorithm:
+
+1. Every actuator receives `CLEAR_FAULT`, requesting removal of resettable fault states, while motion targets are cleared.
+2. The task then writes zero effort and returns to `NONE`, preventing the clear operation from being combined with the previous task's torque output, before switching to `TASK_IDLE`.
+3. The host reads the actual actuator-reported codes through `grx.robot_error_codes` to determine whether the latched bits really cleared. Task completion alone does not prove that every fault disappeared.
+
+Overcurrent, overtemperature, encoder faults, communication loss, and mechanical obstruction each have physical causes that this task neither identifies nor repairs. Non-resettable faults remain reported, making a post-clear error-code check part of the control workflow.
 
 ### Rehabilitation and Clinical Use
 

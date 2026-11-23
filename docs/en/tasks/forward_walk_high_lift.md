@@ -56,7 +56,15 @@ Task description:
 
 ### Algorithm Operation
 
-The algorithm first generates a normal DSP forward gait and calculates swing-foot position. During swing, it uses inverse kinematics to modify only the swing-side hip and knee angles for the target clearance peak, then applies zero-phase smoothing. Compensation occurs during trajectory generation before starting. Kinematic reachability can limit the target near a straight-leg posture or a joint-travel boundary. TID 4135 only adds velocity feedforward to this result.
+High-lift walking adds **foot-height recompensation based on the actual joint trajectory** after a complete DSP generation pass; it does not simply amplify `param_7`:
+
+1. **Original DSP result**: normal DSP has already performed COM/foot planning, two-link inverse kinematics, hip-extension scaling, and low-pass filtering. Those later operations change actual foot position, so the original `step_height` need not equal the final trajectory's real clearance peak.
+2. **Forward-kinematics evaluation**: current joint angles give ankle position relative to the hip, for example `x_ankle=−L_t·sin(q_h)−L_s·sin(q_h+q_k)` and `z_ankle=−L_t·cos(q_h)−L_s·cos(q_h+q_k)`. The lower of the two feet defines the ground reference for actual swing clearance.
+3. **Lift-only target window**: within each swing interval, normalized phase `s` and peak phase `p` define `w(s)=6x⁵−15x⁴+10x³`, with `x=s/p` before the peak and `x=(1−s)/(1−p)` afterwards. `clearance=smooth_max(base_clearance,H_lift·w(s))` never lowers an already-higher original trajectory; a 2 mm `smooth_max` transition reduces slope switching.
+4. **IK with horizontal position preserved**: swing-foot `x` remains fixed while `z` rises to the target, and two-link IK re-solves hip/knee angles before clipping to hip `−90°…40°` and knee `0°…110°`. Near full extension, `d→L_t+L_s`, knee angle is highly sensitive to foot height, and the achievable peak can fall below `H_lift`.
+5. **Zero-phase smoothing and output**: a centered binomial kernel smooths the final joint sequences without phase shift, with the window capped at 40% of the shortest swing interval. Positions are differentiated again for velocity and actual foot-height diagnostics before entering the normal DSP start/loop/end and PD pipeline.
+
+TID 4135 leaves this compensation unchanged and only adds velocity feedforward during execution; actuator effectiveness depends on the FSA protocol version.
 
 ### Rehabilitation and Clinical Use
 

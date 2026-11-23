@@ -27,8 +27,8 @@ Task Parameters:
 |-----------|------|---------|-------|-------------|
 | Upper leg length | `float` | 0.5 | [0.3, 0.6] | The robot's upper leg (thigh) length, in m. |
 | Lower leg length | `float` | 0.5 | [0.3, 0.6] | The robot's lower leg (shank) length, in m. |
-| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the left knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
-| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the right knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
+| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Left restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
+| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Step height | `float` | 0.1 | [0.1, 0.4] | The leg-lift height for each step, in m. |
 | Step period | `float` | 1.0 | [0.5, 4.0] | The cycle duration for one complete stepping cycle, in s. A smaller value means a higher step frequency; a larger value means a slower step. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
@@ -39,7 +39,7 @@ Task Parameters:
 >
 > **Knee Restriction Angle Explained**:
 >
-> This parameter sets the minimum bend angle the knee joint must maintain throughout the entire motion (unit: rad). The algorithm clamps any knee joint angle in the trajectory that falls below this value to the specified value, ensuring the knee never extends beyond the set limit. Designed for patients whose knee extension function is restricted and who cannot fully straighten the knee.
+> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -92,11 +92,17 @@ Command interface:
 
 ### Algorithm Operation
 
-The task generates alternating in-place steps, clips each knee reference to its own restriction, and automatically calculates base height from leg length and knee restriction before cyclic joint tracking. Foot-lift height and step period control amplitude and rhythm. No forward translation is planned, and the algorithm does not relax restrictions in response to patient feedback.
+Knee-restricted in-place stepping follows **common restriction → base height → periodic foot trajectory → IK and clipping → PD playback**:
+
+1. **Common `θ` and `h`**: current code uses `θ=max(θ_left,θ_right)` for both knees. `α=atan2(L_s·sinθ,L_t+L_s·cosθ)`, `β=θ−α`, and `h=L_t·cosα+L_s·cosβ` determine base height; left/right inputs do not form independent bounds.
+2. **In-place foot motion**: the COM does not advance relative to the support point and base height stays `h`. Swing height is `z=h_lift·(1−cos(2πτ))/2` and horizontal motion is `x=L_max·sin(πτ)`, returning to the original position each step. Step period directly sets alternation rhythm.
+3. **IK and clipping**: `d=sqrt(dx²+dz²)` and cosine relations produce joint angles, followed by URDF conversion and `q_knee=max(q_knee,θ)`. Reference velocity is differentiated from the position sequence during inverse kinematics. Clipping changes the reference, not the measured-position feedback.
+4. **Tracking and load adjustment**: after entering the first frame, two-step looping, outer first-order smoothing, and output clipping continue. Step energy above 70 J ramps PD toward hard without rewriting `θ` or the trajectory.
+5. **Stop and protection**: stop enters the ending segment at a loop boundary, while sustained 0.1-second over-torque exits the task. Neither branch automatically reduces `θ` or moves the joint to a patient-comfortable posture.
 
 ### Rehabilitation and Clinical Use
 
-- Passive stepping within a restricted range may be used under external support after assessing each knee's extension range and setting a margin. Do not use the task to force improvement of extension restriction.
+- Passive stepping within a restricted range may be used under external support after assessing each knee's extension range and setting a margin. The larger input applies to both legs, so confirm that the other side also tolerates it; do not use the task to force improvement of extension restriction.
 - Start with low foot lift and a longer period, observing left/right loading, pelvic compensation, and actual knee angles before progressing. Suspension or fall protection remains necessary even without forward travel.
 - Enable torque protection and stop for pain, spasticity, abnormal resistance, or marked loading asymmetry. Clipping constrains the reference only; actual safety still requires measured states and clinical observation.
 

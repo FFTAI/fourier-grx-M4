@@ -144,7 +144,14 @@ Task Parameters: refer to [Assist Mark Time (Knee Restriction, Adjust dt Paramet
 
 ### Algorithm Operation
 
-The Planner reuses the executing task's gait generation, knee restriction, harmonic-curve selection, and assist calculations. It reports reference positions, velocities, extrema, cadence, and related fields every control cycle, but does not run the execution activation flow or send position/PD targets to the joints. It therefore previews the intended algorithmic trajectory, not actual device tracking or patient response.
+The Planner inherits each executing task's algorithm while cutting actuator output out of the task lifecycle: **run only the control model's computation and reporting paths**.
+
+1. **Same model**: each Planner inherits its executing counterpart, so DSP/VHIP COM and foot generation, IK, harmonic phase sampling, common knee restriction, PD interpolation, and dt playback clocks use the same code rather than a separate approximate preview.
+2. **Replacement activation**: activation initializes buffers, model parameters, and the position-protection envelope without running the full motion activation sequence. `_function_meta()` still advances the algorithm every control cycle, so references advance in time and automatic dt assist evaluates current feedback.
+3. **No robot write**: computed `joint_target_position` and Kp/Kd remain in model/report buffers instead of being written to robot joints. `rehab.reference_joint_position/velocity` is model output, not encoder measurement, and the Planner itself does not make patient or device follow it.
+4. **Preview metrics**: per-joint `max/min` values cover the cyclic segment, cadence comes from the generated period, and harmonic tasks additionally report keys and levels. Deactivation clears reports and resets the protection envelope.
+
+It answers “what reference would these inputs and model state produce?” It cannot validate actual tracking error, actuator torque, patient tolerance, or adequacy of external support.
 
 ### Rehabilitation and Clinical Use
 

@@ -26,8 +26,8 @@ Task Parameters:
 |-----------|------|---------|-------|-------------|
 | Upper leg length | `float` | 0.5 | [0.3, 0.6] | The robot's upper leg (thigh) length, in m. |
 | Lower leg length | `float` | 0.5 | [0.3, 0.6] | The robot's lower leg (shank) length, in m. |
-| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the left knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
-| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the right knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
+| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Left restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
+| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for joint PD control stiffness, in the range [0.0, 1.0]. A lower value makes joints more compliant, leaving more room for the patient's own effort; a higher value increases joint stiffness and trajectory-tracking capability. |
@@ -40,7 +40,7 @@ Task Parameters:
 
 > **Knee Restriction Angle Explained**:
 >
-> This parameter sets the minimum bend angle the knee joint must maintain throughout the entire motion (unit: rad). The algorithm clamps any knee joint angle in the trajectory that falls below this value to the specified value, ensuring the knee never extends beyond the set limit. Designed for patients whose knee extension function is restricted and who cannot fully straighten the knee.
+> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -115,7 +115,14 @@ Command interface:
 
 ### Algorithm Operation
 
-A parameterized forward gait is generated first, then each knee reference is clipped to its minimum flexion angle and base height is calculated automatically. The assist ratio interpolates PD gains for tracking this modified trajectory: a low ratio permits more deviation, while a high ratio constrains it more strongly. Knee restriction sets the reference boundary and assist sets tracking stiffness; one cannot substitute for the other.
+Three distinct layers operate here: **common knee restriction and base geometry, VHIP trajectory generation, and startup PD interpolation**.
+
+1. **Restriction preprocessing**: `θ=max(θ_left,θ_right)` feeds `α=atan2(L_s·sinθ,L_t+L_s·cosθ)`, `β=θ−α`, and `h=L_t·cosα+L_s·cosβ`. The same `θ` applies to both knees and `h` becomes generator base height, so current behavior is not independent left/right restriction.
+2. **VHIP generation**: stance COM motion follows `ẍ=(g/h)x` while the swing foot advances and lifts through a half-cosine. After two-link IK, `q_knee=max(q_knee,θ)` is applied before smoothing and differentiation. No DSP double-support segmentation occurs, so `param_8` is ineffective.
+3. **Startup stiffness**: `r` maps to `Kp=100+100r` and `Kd=10+10r`, and PD produces corrective torque from position/velocity errors. `θ` determines the reference lower bound; `r` determines how rigidly that reference is tracked.
+4. **Fixed run parameters**: load detection and automatic PD ramping are disabled, and `r` is written only during startup. Changing restriction or assist values while running does not immediately rebuild the current trajectory or gains; restart the task as required.
+
+With low `r`, actual positions can deviate further, so a reference satisfying `θ` does not guarantee that measured knee angle never falls below it. Safety still requires feedback and mechanical protection.
 
 ### Rehabilitation and Clinical Use
 

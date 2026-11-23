@@ -68,7 +68,14 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 
 ### Algorithm Operation
 
-Each prismatic joint follows an S-curve toward its mechanical stop. The algorithm detects contact using torque and speed criteria, supplemented by a sustained-low-speed criterion when torque buildup is insufficient. It then disables the actuator and writes the current position as the software zero. This calibrates the leg-length adjustment coordinate; it does not measure the patient's anatomical thigh or shank length.
+The central operation is **detecting real mechanical contact during a slow S-curve sweep**, not simply moving for a fixed duration:
+
+1. **Trajectory**: with entry position `x0`, the target is `x0 + 0.2 m` and the 120-second profile is `r=clip(t/T,0,1)`, `s(r)=6r⁵−15r⁴+10r³`, `x_ref=x0+0.2·s(r)`. Zero first and second derivatives at both ends reduce start/end shock.
+2. **Error limiting**: each target is also constrained to ±0.0005 m around the measured position, preventing an excessive reference gap when feedback lags. A joint detected at its stop switches to holding its measured position.
+3. **Dual contact criteria**: the primary criterion is `|τ| ≥ 6 Nm` and `|v| ≤ 0.001 m/s` for 0.2 s. The fallback is `r ≥ 0.20` with low speed for 25 s, covering contact with insufficient torque buildup. The 25-second window exceeds the S-curve's natural low-speed ending region, reducing premature detection.
+4. **Set zero**: after all joints are detected, the actuators are disabled, measured positions become prismatic software zeros, and subsequent control targets are synchronized.
+
+The result is only a leg-length-adjustment coordinate origin. The algorithm knows neither anatomical limb length nor whether low speed comes from a normal stop or an external obstruction, so people and obstacles must be cleared first.
 
 ### Rehabilitation and Clinical Use
 

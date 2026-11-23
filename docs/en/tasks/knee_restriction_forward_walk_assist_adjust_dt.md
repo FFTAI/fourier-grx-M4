@@ -29,8 +29,8 @@ Task Parameters:
 |-----------|------|---------|-------|-------------|
 | Upper leg length | `float` | 0.5 | [0.3, 0.6] | The robot's upper leg (thigh) length, in m. |
 | Lower leg length | `float` | 0.5 | [0.3, 0.6] | The robot's lower leg (shank) length, in m. |
-| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the left knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
-| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the right knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
+| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Left restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
+| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
 | Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal walking pace); a lower value plays it slower, giving the patient more time to follow the motion. |
@@ -44,7 +44,7 @@ Task Parameters:
 
 > **Knee Restriction Angle Explained**:
 >
-> This parameter sets the minimum bend angle the knee joint must maintain throughout the entire motion (unit: rad). The algorithm clamps any knee joint angle in the trajectory that falls below this value to the specified value, ensuring the knee never extends beyond the set limit. Designed for patients whose knee extension function is restricted and who cannot fully straighten the knee.
+> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -118,7 +118,14 @@ Command interface:
 
 ### Algorithm Operation
 
-The generated forward gait first receives independent left/right knee-angle lower bounds and an automatically calculated base height. The assist ratio then scales trajectory time advancement between 50% and 100% of baseline playback. Automatic mode adjusts this ratio from swing-phase hip torque relative to gravity-compensation thresholds; neither knee restriction nor medium-tier PD stiffness changes with playback speed.
+This task runs in the order **modify trajectory first, then scale its clock**:
+
+1. **Common restriction and base height**: `θ=max(θ_left,θ_right)` applies to both knees. `α=atan2(L_s·sinθ,L_t+L_s·cosθ)`, `β=θ−α`, and `h=L_t·cosα+L_s·cosβ` determine base height, so the two inputs are not independent limits and `param_6` no longer controls this height.
+2. **Restricted VHIP trajectory**: COM motion follows `ẍ=(g/h)x`; foot paths become hip/knee angles through two-link IK, followed by `q_knee=max(q_knee,θ)` and smoothing. The angular envelope is fixed before assist processing.
+3. **Manual time scaling**: `v_play=0.5+0.5r` advances trajectory time by `Δt_control·v_play` each cycle, producing approximately `T_base/v_play`. Medium-tier Kp/Kd remain fixed, so `r` changes only reference-frame dwell time.
+4. **Automatic time feedback**: during target-leg swing with `G>0` and negative hip reference velocity, `τ_hip>G+2.0 Nm` gives `r+=0.02` and `τ_hip<G` gives `r−=0.01`, then clipping. Torque changes subsequent indices only, not restriction, PD gains, or direct effort output.
+
+Even while automatic playback speed varies, the reference retains the same `θ`; actual knee motion still depends on medium PD, patient interaction, and external constraints.
 
 ### Rehabilitation and Clinical Use
 

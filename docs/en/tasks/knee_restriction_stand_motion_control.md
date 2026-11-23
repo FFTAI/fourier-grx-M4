@@ -26,14 +26,14 @@ Task Parameters:
 |-----------|------|---------|-------|-------------|
 | Upper leg length | `float` | 0.5 | [0.3, 0.6] | The robot's upper leg (thigh) length, in m. |
 | Lower leg length | `float` | 0.5 | [0.3, 0.6] | The robot's lower leg (shank) length, in m. |
-| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the left knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
-| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Minimum bend angle limit for the right knee joint, in rad. The knee joint angle in the motion trajectory will never fall below this value (i.e., it will not over-extend beyond this limit). 0.0 means no restriction (full extension allowed). |
+| Left knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Left restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
+| Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Enable torque protection | `bool` | false | (true, false) | Whether to enable torque protection. When enabled, if the torque of any joint exceeds the torque protection limit continuously for at least 0.1 s (since v4.4.75), the task exits immediately and switches to the idle task (`TASK_IDLE`), and sets the torque-protection flag; the task must be re-issued to continue. |
 | Torque protection limit | `float` | None | [0.0, 200.0] | Maximum allowable output torque for any joint during the standing process, in Nm. Only effective when torque protection is enabled; disabled by default. |
 
 > **Knee Restriction Angle Explained**:
 >
-> This parameter sets the minimum bend angle the knee joint must maintain throughout the entire motion (unit: rad). The algorithm clamps any knee joint angle in the trajectory that falls below this value to the specified value, ensuring the knee never extends beyond the set limit. Designed for patients whose knee extension function is restricted and who cannot fully straighten the knee.
+> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then sets both knee targets in the standing reference to the same `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -74,11 +74,17 @@ Command interface:
 
 ### Algorithm Operation
 
-This task adds a lower bound on each knee reference angle to normal standing control. During interpolation from the current posture, any knee reference below its restriction is clipped to that angle, independently for the left and right legs. Damping warmup, settling confirmation, and the holding-stiffness transition still follow. Knee restriction changes the target trajectory; it is neither a measurement of actual joint position nor a mechanical stop.
+Restricted standing first uses two-link geometry to **construct a flexed standing target**, then reuses the normal standing state machine:
+
+1. **Combine left/right inputs**: although the interface exposes `knee_restriction_left/right`, current code uses `θ=max(θ_left,θ_right)` for both legs. Restriction is not independent by side; the larger input determines both final knee targets.
+2. **Standing geometry**: with thigh/shank lengths `L_t,L_s`, `α=atan2(L_s·sinθ,L_t+L_s·cosθ)` and `β=θ−α` decompose the posture, producing `q_stand=[−α,θ,−α,θ]`. Geometric base height is `h=L_t·cosα+L_s·cosβ`, explaining the forward inclination and lower stance associated with greater knee flexion.
+3. **Damping and interpolation**: a 0.2-second `Kp=0` damping warmup is followed by latched `q0` and `q_ref=q0+(q_stand−q0)·min(t/5,1)`, avoiding a direct jump into the restricted stance.
+4. **Settling and holding**: after interpolation, position-window change must stay within 0.01 rad and speed within 0.05 rad/s for 0.2 consecutive seconds. Kp/Kd then ramp from medium to rock over one second while the restricted target is held; only then does `motion_ratio` reach 100%.
+5. **Protection boundary**: torque protection reads actual actuator feedback, not reference angles. Target `θ` cannot prevent additional motion caused by external forces and is no substitute for mechanical stops or clinical supervision.
 
 ### Rehabilitation and Clinical Use
 
-- Assess passive knee extension, pain, and spasticity for each leg, then set left/right restrictions with an individualized safety margin. Do not assume symmetry or use this parameter to force progressive extension.
+- Assess passive knee extension, pain, and spasticity for each leg before setting the inputs with an individualized safety margin. Because the larger input applies to both legs, check the overall stance for the side needing more restriction; never use this parameter to force progressive extension.
 - A larger restriction creates a more flexed support posture and changes loading and torque demand. Introduce it briefly under external support and observe actual knee angles, trunk compensation, and torque rather than relying on target angles alone.
 - This is not active sit-to-stand or balance training; `motion_ratio=100%` only indicates completion of the device sequence. Stop for pain, resistance, or abnormal torque. Software clipping does not replace hardware limits or clinical supervision.
 

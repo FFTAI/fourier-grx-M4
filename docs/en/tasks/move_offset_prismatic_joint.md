@@ -64,7 +64,14 @@ Command Interface:
 
 ### Algorithm Operation
 
-On entry, the task records the four measured prismatic-joint positions and adds the clipped relative offsets to form new targets, then advances along a time-based S-curve. Target calculation does not depend on the absolute zero, but actual arrival is still affected by friction, self-locking, and mechanical travel. Completion means the time sequence ended; actual positions must be checked separately.
+Relative adjustment shares the absolute task's S-curve executor but constructs its targets differently:
+
+1. **Direction and offset clipping**: panel offsets are multiplied by `−1` for actuator direction and each is clipped to `[-0.02,+0.02] m`. This limits one command, not accumulated position or remaining mechanical travel.
+2. **Target from measured position**: startup latches `x0=x_measured` and computes `x_target=x0+Δx`. Both use the same coordinate system, so zero offset cancels in the subtraction and small relative moves do not depend on the absolute zero's numerical value.
+3. **Synchronized duration**: `T=max_i(|Δx_i|/0.0015)`, then `r=clip(t/T,0,1)`, `s=6r⁵−15r⁴+10r³`, and `x_ref=x0+Δx·s(r)` produce smooth synchronized motion.
+4. **Timeline completion**: PD tracks the reference, but there is no measured-arrival tolerance; the task holds the target and completes when time expires. Friction, self-locking, or load can prevent a small command from producing equal actual displacement, and repeated commands can accumulate toward a mechanical boundary.
+
+“Independent of zero” therefore describes only relative-displacement mathematics. It permits neither skipped travel checks nor the assumption that completion proves actual adjustment.
 
 ### Rehabilitation and Clinical Use
 

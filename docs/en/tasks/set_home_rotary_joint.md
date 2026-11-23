@@ -60,7 +60,13 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 
 ### Algorithm Operation
 
-The task disables the actuators, writes the current encoder positions as their absolute zeros, waits for the writes, and reboots them. This rebuilds the device coordinate reference; it does not calculate an anatomical neutral position or measure joint range of motion. The mechanical posture at zeroing determines where subsequent 0 rad references lie.
+The task modifies the **actuator-level absolute encoder zero** through a fixed state machine, rather than setting an application-layer averaged offset:
+
+1. `SERVO_OFF` stops active torque before zeroing so that the write does not run concurrently with position control.
+2. `ABSOLUTE_ZERO` writes the current encoder sample as the actuator's absolute zero, followed by a one-second wait. There is no averaging or posture recognition: whatever the current position is becomes the new zero.
+3. `SERVO_REBOOT` restarts the actuators, followed by a ten-second wait so the new zero is consistent with the reloaded state. Current joint positions are then read and logged.
+
+Unlike TID 4121, this task changes the actuator's stored absolute reference and reboots it. TID 4121 averages position samples and changes only the application-layer `home_position` offset. Neither method identifies anatomical hip or knee neutral from body landmarks.
 
 ### Rehabilitation and Clinical Use
 
