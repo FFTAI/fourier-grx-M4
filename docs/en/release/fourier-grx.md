@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-23 | 4.4.86 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.86-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4486) | Internal build | ❌ No longer supported |
 | 2026-11-20 | 4.4.85 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.85-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4485) | Internal build | ❌ No longer supported |
 | 2026-11-17 | 4.4.84 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.84-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4484) | Internal build | ❌ No longer supported |
 | 2026-11-16 | 4.4.82 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.82-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4482) | Internal build | ❌ No longer supported |
@@ -122,6 +123,30 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.86
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **no longer supported**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-23 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **Rehab gains assist and reserved reporting fields**
+
+- `assist_ratio` reports the effective assist ratio of the active task: the clamped host command in manual mode, or the controller's current torque-adjusted value in DT automatic mode. It is cleared on task exit and is not a measure of patient active effort.
+- Adds `active_ratio`, but **its calculation is not implemented and it remains 0, so it must not be used to assess patient participation**. The planned definition is accumulated active-effort time divided by valid training time, not a torque or mechanical-work contribution. It is also cleared on task exit.
+
+🔧 **Non-harmonic assist forward walking now defaults to DSP**
+
+- Assist forward walking with PD adjustment (4116) and dt adjustment (4118) changes its default gait generator from VHIP to DSP, matching normal forward walking. Knee-restriction assist tasks inherit the same default.
+- Harmonic tasks, calls that explicitly select a generator and PD-tier semantics are unchanged.
+
+🛠️ **New assist experiment and analysis tooling**
+
+- Adds PD/DT and DSP/Harmonic parameter-matrix capture and analysis scripts for automatic assist changes, cadence, torque, tracking error, cycle smoothness and kinematic active-ratio feasibility.
+- Fixes the recorder's stale passive harmonic TID 4113 to the correct **4131**, preventing accidental use of the PD_FF variant.
+- Large raw telemetry directories are excluded as local artifacts rather than committed to Git history; analysis scripts and selected comparison plots are included.
+
+---
 
 ### 4.4.85
 

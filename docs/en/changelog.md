@@ -21,6 +21,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 🔗 **Links and content**: fixed the relative links to version-history pages in `docs/release.md`, the duplicate User entry in the examples index, and the M4 / M4L wording in `docs/tasks.md`; Chinese task pages now use consistent full-width punctuation.
 - 🌐 **Bilingual parity**: heading structure and task TIDs match across 72 Chinese/English page pairs. Internal links, anchors, and table parsing were checked across 146 pages, with no broken internal links found.
 
+### v1.2.71 (2026-11-23)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.86 internal build (not an official release)**: `fourier-grx-4.4.86-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-23 16:49 CST, branch `m4-lfs`, package `X-Commit` = `725d965268d8`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.86`, sha256 `a35aa7d80a79b47f7e9fb7662cedc14a9dcf14991ccb8d5642c5c9fc28f06fdc`
+- 🔧 **Rehab adds `assist_ratio` and `active_ratio`**: the former reports the effective assist ratio—the clamped command in manual mode or the torque-adjusted value in DT automatic mode. The latter is only a reserved field fixed at 0 and must not be used to assess patient participation. Both clear on task exit, with Chinese and English User API docs updated
+- 🔧 **Non-harmonic assist forward walking now defaults to DSP**: 4116 / 4118 change their default generator from VHIP to DSP, matching normal forward walking; knee-restriction assist tasks inherit the default
+- 🛠️ **New assist experiment-matrix and analysis tooling**: covers PD/DT and DSP/Harmonic matrices, automatic assist, tracking error, smoothness and kinematic active-ratio feasibility. The recorder now uses the correct passive harmonic TID 4131 instead of the stale 4113
+- 📄 Roughly 752 MB of raw telemetry is excluded as local artifacts rather than committed to Git history; analysis scripts and selected comparison plots are included
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.86 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.70 (2026-11-20)
 
 **Release**
