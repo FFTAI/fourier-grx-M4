@@ -57,6 +57,7 @@ has_toc: true
 | 任务启动标志     | `task.flag_task_start`                    |
 | 任务结束标志     | `task.flag_task_finish`                   |
 | 运行比例       | `rehab.motion_ratio`                      |
+| 当前助力系数     | `rehab.assist_ratio`                      |
 | 步频         | `rehab.step_frequency`                    |
 | 当前步态键名     | `rehab.gait_name`                         |
 | 髋摆动幅度等级    | `rehab.gait_amplitude_level`              |

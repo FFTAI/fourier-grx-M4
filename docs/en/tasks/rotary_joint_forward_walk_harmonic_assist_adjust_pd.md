@@ -57,6 +57,7 @@ Status interface:
 | Task start flag | `task.flag_task_start` |
 | Task finish flag | `task.flag_task_finish` |
 | Motion ratio | `rehab.motion_ratio` |
+| Current assist ratio | `rehab.assist_ratio` |
 | Step frequency | `rehab.step_frequency` |
 | Current gait key | `rehab.gait_name` |
 | Hip swing amplitude level | `rehab.gait_amplitude_level` |
