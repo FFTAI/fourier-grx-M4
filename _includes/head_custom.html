@@ -1,32 +1,20 @@
-<style>
-.lang-switcher {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  font-size: 0.8rem;
-  vertical-align: middle;
-}
-.lang-switcher a {
-  padding: 2px 6px;
-  text-decoration: none;
-  color: var(--nav-child-link-color, #27262b);
-  border-radius: 3px;
-  transition: background 0.15s, color 0.15s;
-  white-space: nowrap;
-}
-.lang-switcher a:hover {
-  background: var(--sidebar-color, #f5f6fa);
-  text-decoration: none;
-}
-.lang-switcher a.lang-active {
-  color: var(--link-color, #7253ed);
-  font-weight: 700;
-}
-.lang-switcher .lang-sep {
-  color: var(--border-color, #ddd);
-  font-size: 0.9em;
-  user-select: none;
-}
-</style>
+<meta name="theme-color" content="#ffffff">
+<script>
+  (function () {
+    try {
+      var stored = window.localStorage.getItem("grx-theme");
+      var theme = stored;
+      if (theme !== "dark" && theme !== "light") {
+        theme =
+          window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (error) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
 
 {% include dify_chatbot.html %}

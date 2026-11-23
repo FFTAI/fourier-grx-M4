@@ -1,0 +1,71 @@
+{% assign page_lang = page.lang | default: 'zh-CN' %}
+{% if page.url contains '/docs/en' %}{% assign page_lang = 'en' %}{% endif %}
+{% assign is_en = false %}
+{% if page_lang == 'en' %}{% assign is_en = true %}{% endif %}
+{% assign is_task = false %}
+{% if page.url contains '/docs/tasks/' or page.url contains '/docs/en/tasks/' %}{% assign is_task = true %}{% endif %}
+<!DOCTYPE html>
+<html lang="{{ page_lang }}">
+{% include head.html %}
+<body class="grx-body{% if page.landing %} grx-landing-page{% endif %}{% if is_task %} grx-task-page{% endif %}">
+  <a class="skip-to-main" href="#main-content">{% if is_en %}Skip to main content{% else %}跳到正文{% endif %}</a>
+  {% include icons/icons.html %}
+  {% include grx_icons.html %}
+  {% include components/grx_topbar.html %}
+
+  {% if page.landing %}
+    <div class="main grx-main--full" id="top">
+      <div class="main-content-wrap grx-content-wrap">
+        <div id="main-content" class="main-content">
+          {% include landing.html lang=page_lang %}
+        </div>
+      </div>
+      {% if site.search_enabled != false %}
+        {% include components/search_footer.html %}
+      {% endif %}
+    </div>
+  {% else %}
+    {% assign show_nav = true %}
+    {% if page.nav_enabled == false %}{% assign show_nav = false %}{% endif %}
+    {% if show_nav %}{% include components/grx_sidebar.html %}{% endif %}
+    <div class="main{% unless show_nav %} grx-main--full{% endunless %}" id="top">
+      <div class="main-content-wrap grx-content-wrap">
+        <div class="grx-doc-body">
+          <div class="grx-doc-main">
+            {% include components/breadcrumbs.html %}
+            <div id="main-content" class="main-content">
+              <main>
+                {% if site.heading_anchors != false %}
+                  {% capture content_html %}{% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" anchorAttrs="aria-labelledby=\"%html_id%\"" %}{% endcapture %}
+                {% else %}
+                  {% capture content_html %}{{ content }}{% endcapture %}
+                {% endif %}
+                {% assign content_html = content_html | replace: '<table', '<div class="table-wrapper"><table' | replace: '</table>', '</table></div>' %}
+                {{ content_html }}
+
+                {% if page.has_toc != false %}
+                  {% include components/children_nav.html %}
+                {% endif %}
+              </main>
+              {% include components/grx_footer.html %}
+            </div>
+          </div>
+          {% if show_nav %}{% include components/grx_toc.html %}{% endif %}
+        </div>
+      </div>
+      {% if site.search_enabled != false %}
+        {% include components/search_footer.html %}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <button id="grx-top-btn" type="button" aria-label="{% if is_en %}Back to top{% else %}返回顶部{% endif %}" title="{% if is_en %}Back to top{% else %}返回顶部{% endif %}">
+    <svg class="grx-icon grx-icon--md" aria-hidden="true"><use href="#grx-arrow-up"></use></svg>
+  </button>
+
+  {% if site.mermaid %}
+    {% include components/mermaid.html %}
+  {% endif %}
+  <script src="{{ '/assets/js/grx-ui.js' | relative_url }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% assign is_en = false %}
+{% if page.lang == 'en' or page.url contains '/docs/en' %}{% assign is_en = true %}{% endif %}
+{% assign base = '/docs' %}
+{% if is_en %}{% assign base = '/docs/en' %}{% endif %}
+{% assign doc_version = site.doc_version | default: 'v1.2.71' %}
+{% assign quickstart_path = base | append: '/quickstart' %}
+{% assign reference_path = base | append: '/reference' %}
+{% assign tasks_path = base | append: '/tasks' %}
+{% assign changelog_path = base | append: '/changelog' %}
+{% assign github_url = 'https://github.com/FFTAI/fourier-grx-M4' %}
+{% if site.aux_links %}
+  {% for link in site.aux_links %}
+    {% assign candidate = link[1] | first %}
+    {% if candidate %}
+      {% if candidate contains '://' %}
+        {% assign github_url = candidate %}
+      {% else %}
+        {% assign github_url = candidate | prepend: 'https:' %}
+      {% endif %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<header class="grx-topbar" id="main-header">
+  <div class="grx-topbar__inner">
+    <button id="menu-button" class="grx-icon-btn grx-menu-btn" type="button" aria-label="{% if is_en %}Menu{% else %}菜单{% endif %}" aria-expanded="false">
+      <svg class="grx-icon grx-icon--lg" aria-hidden="true"><use href="#grx-menu"></use></svg>
+    </button>
+
+    <a class="grx-brand" href="{% if is_en %}{{ '/docs/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}">
+      <img class="grx-brand__logo" src="{{ '/assets/images/fourier-f-mark.png' | relative_url }}" alt="Fourier" width="34" height="27">
+      <span class="grx-brand__text">
+        <strong>Fourier GRX-M4</strong> <span>SDK {% if is_en %}Docs{% else %}文档{% endif %}</span>
+      </span>
+    </a>
+
+    <nav class="grx-topnav" aria-label="{% if is_en %}Primary navigation{% else %}主导航{% endif %}">
+      <a href="{{ quickstart_path | relative_url }}"{% if page.url contains quickstart_path %} class="is-active" aria-current="page"{% endif %}>{% if is_en %}Quick Start{% else %}快速开始{% endif %}</a>
+      <a href="{{ reference_path | relative_url }}"{% if page.url contains reference_path %} class="is-active" aria-current="page"{% endif %}>{% if is_en %}Reference{% else %}参考指南{% endif %}</a>
+      <a href="{{ tasks_path | relative_url }}"{% if page.url contains tasks_path %} class="is-active" aria-current="page"{% endif %}>{% if is_en %}Tasks{% else %}任务描述{% endif %}</a>
+      <a href="{{ changelog_path | relative_url }}"{% if page.url contains changelog_path %} class="is-active" aria-current="page"{% endif %}>{% if is_en %}Changelog{% else %}更新日志{% endif %}</a>
+    </nav>
+
+    <span class="grx-topbar__spacer"></span>
+
+    <div class="grx-search" id="grx-search">
+      {% include components/search_header.html %}
+      <kbd>⌘K</kbd>
+    </div>
+
+    <span class="grx-version" title="{% if is_en %}Documentation version{% else %}文档版本{% endif %}">
+      <span class="grx-version__dot"></span>
+      <code>{{ doc_version }}</code>
+    </span>
+
+    <div class="grx-lang" id="grx-lang">
+      <button type="button" class="grx-lang__btn" id="grx-lang-btn" aria-haspopup="true" aria-expanded="false">
+        <svg class="grx-icon grx-icon--sm" aria-hidden="true"><use href="#grx-globe"></use></svg>
+        <span id="grx-lang-label">{% if is_en %}English{% else %}中文{% endif %}</span>
+        <svg class="grx-icon grx-icon--xs" aria-hidden="true"><use href="#grx-chevron-down"></use></svg>
+      </button>
+      <div class="grx-lang__menu" role="menu">
+        <a id="lang-zh-btn" href="#" role="menuitem">中文</a>
+        <a id="lang-en-btn" href="#" role="menuitem">English</a>
+      </div>
+    </div>
+
+    <a class="grx-icon-btn grx-topbar__github" href="{{ github_url }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg class="grx-icon grx-icon--md" aria-hidden="true"><use href="#grx-github"></use></svg>
+    </a>
+
+    <button class="grx-icon-btn grx-topbar__theme" id="grx-theme-toggle" type="button" aria-label="{% if is_en %}Toggle dark mode{% else %}切换深色模式{% endif %}" title="{% if is_en %}Toggle dark mode{% else %}切换深色模式{% endif %}">
+      <svg class="grx-icon grx-icon--md grx-theme-icon grx-theme-icon--moon" aria-hidden="true"><use href="#grx-moon"></use></svg>
+      <svg class="grx-icon grx-icon--md grx-theme-icon grx-theme-icon--sun" aria-hidden="true"><use href="#grx-sun"></use></svg>
+    </button>
+  </div>
+</header>

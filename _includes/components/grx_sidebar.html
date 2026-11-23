@@ -1,0 +1,13 @@
+<header class="side-bar grx-sidebar" id="grx-sidebar">
+  <div class="grx-sidebar__inner">
+    {% include_cached components/site_nav.html %}
+    <div class="grx-sidebar__foot">
+      {% capture nav_footer_custom %}{% include nav_footer_custom.html %}{% endcapture %}
+      {% if nav_footer_custom != "" %}
+        {{ nav_footer_custom }}
+      {% else %}
+        Fourier-GRX-M4 SDK
+      {% endif %}
+    </div>
+  </div>
+</header>

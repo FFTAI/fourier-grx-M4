@@ -3,58 +3,8 @@ layout: default
 title: Fourier-GRX-M4 SDK
 nav_order: 0
 has_children: false
+landing: true
+nav_enabled: false
 nav_exclude: true
+lang: en
 ---
-
-# Welcome to the Fourier-GRX-M4 SDK Documentation
-
-* TOC
-{:toc}
-
-> This is the English home page. For the Chinese documentation, see [中文](/fourier-grx-M4/).
-
-## Introduction
-
-The Fourier-GRX-M4 SDK is a software development kit provided by Fourier Intelligence. It offers a set of APIs for installing, configuring, and controlling Fourier Intelligence's M4 and M4L series robot products.
-
-The SDK is designed to be simple and easy to use, providing high-level interfaces to control robot motion and read sensor data. It currently focuses on Python-based secondary development.
-
-## Getting Started
-
-[Quick Start](/fourier-grx-M4/docs/en/quickstart) is the recommended way to begin using the Fourier-GRX-M4 SDK. This step-by-step guide will help you install the required libraries and run simple programs to control your robot.
-
-[Examples](/fourier-grx-M4/docs/en/examples) demonstrates how to use the SDK library and can serve as a reference for developing your own applications.
-
-[Reference Guide](/fourier-grx-M4/docs/en/reference) contains detailed API documentation for the SDK library and can be used as a reference while developing your applications.
-
-[Task Description](/fourier-grx-M4/docs/en/tasks) documents the motion and calibration tasks the robot can run, one page per task, covering how to trigger them, their parameters, and precautions.
-
-[Usage Guide](/fourier-grx-M4/docs/en/usage) covers routine operations: joint zero-position calibration, auto-start on boot, run logs, data recording, and network connection. For firmware installation, see [Quick Start - Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install); for firmware upgrades, see [Quick Start - Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update).
-
-[FAQ](/fourier-grx-M4/docs/en/faq) collects troubleshooting for hardware, installation, initialization, networking, and performance. If your problem is not listed, you are welcome to [contribute](/fourier-grx-M4/docs/en/contributing) and help us improve.
-
-[Firmware Releases](/fourier-grx-M4/docs/en/release) lists published firmware versions together with their downloads and notes.
-
-## Supported Platforms and Versions
-
-| Hardware            | OS                   | Python Version | Tested | Passed |
-|---------------------|----------------------|----------------|--------|--------|
-| ARM RK3588          | Ubuntu 20.04 LTS     | Python 3.11    | ✅     | ✅     |
-| X64 INTEL           | Ubuntu 22.04 LTS     | Python 3.11    | ✅     | ✅     |
-| X64 AMD             | Ubuntu 22.04 LTS     | Python 3.11    | ✅     | ✅     |
-|                     | Windows              | Python 3.11    |        |        |
-|                     | MacOS                | Python 3.11    |        |        |
-
-> ℹ️ **Note**:
->
-> The Fourier-GRX-M4 SDK provides two levels of interfaces: User and Developer.
-> - The User API communicates with the robot over the network and has no strict platform or language restrictions, but development on Ubuntu is still recommended.
-> - The Developer API is based on the Python library.
-
-## Changelog
-
-See the [Changelog](/fourier-grx-M4/docs/en/changelog) for the latest updates to the documentation.
-
-## Contributing
-
-Please read our [Contributing Guide](/fourier-grx-M4/docs/en/contributing) for more information.

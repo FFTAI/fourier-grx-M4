@@ -1,0 +1,153 @@
+{% assign is_en = false %}
+{% if include.lang == 'en' %}{% assign is_en = true %}{% endif %}
+{% assign base = '/docs' %}
+{% if is_en %}{% assign base = '/docs/en' %}{% endif %}
+{% assign fw_version = site.firmware_version | default: '4.4.78' %}
+{% assign fw_support = site.firmware_support | default: '长期支持' %}
+{% assign support_email = site.support_email | default: 'xin.chen@fftai.com' %}
+{% assign github_url = 'https://github.com/FFTAI/fourier-grx-M4' %}
+{% if site.aux_links %}
+  {% for link in site.aux_links %}
+    {% assign candidate = link[1] | first %}
+    {% if candidate %}
+      {% if candidate contains '://' %}
+        {% assign github_url = candidate %}
+      {% else %}
+        {% assign github_url = candidate | prepend: 'https:' %}
+      {% endif %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="grx-landing">
+  <section class="grx-hero">
+    <div class="grx-hero__inner">
+      <div class="grx-eyebrow">{% if is_en %}Fourier Intelligence robot documentation{% else %}傅利叶智能机器人开发文档{% endif %}</div>
+      <div class="grx-hero__title-row">
+        <h1 class="grx-hero__title">Fourier-GRX-M4 SDK</h1>
+        <a class="grx-fw-chip" href="{{ base | append: '/release' | relative_url }}">
+          <span class="grx-fw-chip__dot"></span>
+          {% if is_en %}Official firmware {{ fw_version }} (LTS){% else %}正式固件 {{ fw_version }}（{{ fw_support }}）{% endif %}
+        </a>
+      </div>
+      <p class="grx-hero__subtitle">
+        {% if is_en %}
+          A software development kit for installing, configuring, and controlling Fourier Intelligence M4 / M4L robots. It provides User and Developer interfaces and supports Python-based secondary development.
+        {% else %}
+          用于安装、配置与控制傅利叶智能 M4 / M4L 机器人的软件开发工具包，提供 User 与 Developer 两级接口，支持 Python 二次开发。
+        {% endif %}
+      </p>
+      <div class="grx-actions">
+        <a class="grx-btn grx-btn--primary" href="{{ base | append: '/quickstart' | relative_url }}">
+          {% if is_en %}Quick Start{% else %}快速开始{% endif %}
+          <svg class="grx-icon grx-icon--sm" aria-hidden="true"><use href="#grx-arrow-right"></use></svg>
+        </a>
+        <a class="grx-btn grx-btn--ghost" href="{{ github_url }}" target="_blank" rel="noopener noreferrer">
+          <svg class="grx-icon grx-icon--sm" aria-hidden="true"><use href="#grx-github"></use></svg>
+          {% if is_en %}GitHub repository{% else %}GitHub 仓库{% endif %}
+        </a>
+      </div>
+      <div class="grx-meta">
+        <span class="grx-meta__chip">Ubuntu 20.04 / 22.04</span>
+        <span class="grx-meta__chip">Python 3.11</span>
+        <span class="grx-meta__chip">{% if is_en %}ARM RK3588 and x64{% else %}ARM RK3588 与 x64{% endif %}</span>
+      </div>
+      <p class="grx-meta-note">{% if is_en %}Windows / macOS: Python 3.11 (not tested){% else %}Windows / macOS：Python 3.11（未测试）{% endif %}</p>
+    </div>
+  </section>
+
+  <section class="grx-section" aria-labelledby="grx-device-title">
+    <div class="grx-section__head">
+      <h2 class="grx-section__title" id="grx-device-title">{% if is_en %}Start from your device state{% else %}从您的设备状态开始{% endif %}</h2>
+      <p class="grx-section__sub">{% if is_en %}Choose the entry point that best matches your current situation.{% else %}选择最符合当前情况的入口，进入对应流程{% endif %}</p>
+    </div>
+    <div class="grx-device-grid">
+      <a class="grx-card" href="{{ base | append: '/quickstart/firmware_install' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-download"></use></svg></span>
+        <span class="grx-card__title">{% if is_en %}New device{% else %}全新设备{% endif %}</span>
+        <span class="grx-card__desc">{% if is_en %}First-time setup is not complete yet. Download and deploy the firmware, then configure the robot model.{% else %}尚未完成首次安装。下载并部署固件，完成型号配置。{% endif %}</span>
+        <span class="grx-card__link">{% if is_en %}Firmware installation{% else %}固件安装流程{% endif %} <svg class="grx-icon grx-icon--xs" aria-hidden="true"><use href="#grx-arrow-right"></use></svg></span>
+      </a>
+      <a class="grx-card" href="{{ base | append: '/quickstart/m4l' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-play"></use></svg></span>
+        <span class="grx-card__title">{% if is_en %}Installed (M4L){% else %}已完成安装（M4L）{% endif %}</span>
+        <span class="grx-card__desc">{% if is_en %}Power on, log in, start the control program, and enter walking mode.{% else %}开机、登录系统并启动控制程序，进入行走状态。{% endif %}</span>
+        <span class="grx-card__link">{% if is_en %}M4L startup{% else %}M4L 启动流程{% endif %} <svg class="grx-icon grx-icon--xs" aria-hidden="true"><use href="#grx-arrow-right"></use></svg></span>
+      </a>
+      <a class="grx-card" href="{{ base | append: '/quickstart/firmware_update' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-rotate"></use></svg></span>
+        <span class="grx-card__title">{% if is_en %}Update firmware{% else %}升级固件{% endif %}</span>
+        <span class="grx-card__desc">{% if is_en %}Use <code>fourier-grx update</code> to move to the latest official release.{% else %}使用 <code>fourier-grx update</code> 升级到最新正式版本。{% endif %}</span>
+        <span class="grx-card__link">{% if is_en %}Update guide{% else %}固件更新流程{% endif %} <svg class="grx-icon grx-icon--xs" aria-hidden="true"><use href="#grx-arrow-right"></use></svg></span>
+      </a>
+      <a class="grx-card" href="{{ base | append: '/reference' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-code"></use></svg></span>
+        <span class="grx-card__title">{% if is_en %}Developer{% else %}开发者{% endif %}</span>
+        <span class="grx-card__desc">{% if is_en %}User and Developer API references, plus runnable example code.{% else %}User 与 Developer 接口参考，以及可直接运行的示例代码。{% endif %}</span>
+        <span class="grx-card__link">{% if is_en %}API reference{% else %}查看 API 参考{% endif %} <svg class="grx-icon grx-icon--xs" aria-hidden="true"><use href="#grx-arrow-right"></use></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="grx-section grx-section--docs" aria-labelledby="grx-docs-title">
+    <div class="grx-section__head">
+      <h2 class="grx-section__title" id="grx-docs-title">{% if is_en %}Popular documentation{% else %}常用文档{% endif %}</h2>
+    </div>
+    <div class="grx-docs-grid">
+      <a class="grx-card grx-doc-card" href="{{ base | append: '/quickstart' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-rocket"></use></svg></span>
+        <span class="grx-doc-card__body">
+          <span class="grx-doc-card__title">{% if is_en %}Quick Start{% else %}快速开始{% endif %}</span>
+          <span class="grx-doc-card__desc">{% if is_en %}Step-by-step setup and first boot{% else %}分步安装与首次启动{% endif %}</span>
+        </span>
+      </a>
+      <a class="grx-card grx-doc-card" href="{{ base | append: '/examples' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-file-code"></use></svg></span>
+        <span class="grx-doc-card__body">
+          <span class="grx-doc-card__title">{% if is_en %}Examples{% else %}示例代码{% endif %}</span>
+          <span class="grx-doc-card__desc">{% if is_en %}User, Developer, and UDP examples{% else %}User、Developer 与 UDP 示例{% endif %}</span>
+        </span>
+      </a>
+      <a class="grx-card grx-doc-card" href="{{ base | append: '/reference' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-book"></use></svg></span>
+        <span class="grx-doc-card__body">
+          <span class="grx-doc-card__title">{% if is_en %}Reference{% else %}参考指南{% endif %}</span>
+          <span class="grx-doc-card__desc">{% if is_en %}APIs, configuration, and CLI{% else %}接口、配置与命令行{% endif %}</span>
+        </span>
+      </a>
+      <a class="grx-card grx-doc-card" href="{{ base | append: '/tasks' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-list-check"></use></svg></span>
+        <span class="grx-doc-card__body">
+          <span class="grx-doc-card__title">{% if is_en %}Tasks{% else %}任务描述{% endif %}</span>
+          <span class="grx-doc-card__desc">{% if is_en %}All task TIDs and parameters{% else %}全部任务 TID 与参数{% endif %}</span>
+        </span>
+      </a>
+      <a class="grx-card grx-doc-card" href="{{ base | append: '/usage' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-wrench"></use></svg></span>
+        <span class="grx-doc-card__body">
+          <span class="grx-doc-card__title">{% if is_en %}Usage{% else %}常用操作{% endif %}</span>
+          <span class="grx-doc-card__desc">{% if is_en %}Calibration, logs, and networking{% else %}校准、日志与网络配置{% endif %}</span>
+        </span>
+      </a>
+      <a class="grx-card grx-doc-card" href="{{ base | append: '/faq' | relative_url }}">
+        <span class="grx-card__icon"><svg class="grx-icon" aria-hidden="true"><use href="#grx-help"></use></svg></span>
+        <span class="grx-doc-card__body">
+          <span class="grx-doc-card__title">{% if is_en %}FAQ{% else %}常见问题{% endif %}</span>
+          <span class="grx-doc-card__desc">{% if is_en %}Hardware and software troubleshooting{% else %}硬件与软件排障问答{% endif %}</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="grx-landing-footer">
+    <div class="grx-landing-footer__inner">
+      <span>{% if is_en %}Fourier-GRX-M4 SDK documentation. Always refer to the latest version.{% else %}Fourier-GRX-M4 SDK 文档，内容以最新版本为准{% endif %}</span>
+      <div class="grx-landing-footer__links">
+        <a href="{{ base | append: '/contributing' | relative_url }}">{% if is_en %}Contributing{% else %}贡献指南{% endif %}</a>
+        <a href="{{ github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="mailto:{{ support_email }}">{% if is_en %}Support{% else %}技术支持{% endif %} {{ support_email }}</a>
+      </div>
+    </div>
+  </footer>
+</div>

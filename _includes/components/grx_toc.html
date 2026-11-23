@@ -1,0 +1,6 @@
+{% assign is_en = false %}
+{% if page.lang == 'en' or page.url contains '/docs/en' %}{% assign is_en = true %}{% endif %}
+<aside class="grx-toc" id="grx-toc" aria-label="{% if is_en %}On this page{% else %}本页目录{% endif %}">
+  <div class="grx-toc__label">{% if is_en %}On this page{% else %}本页目录{% endif %}</div>
+  <nav class="grx-toc__nav" id="grx-toc-nav"></nav>
+</aside>

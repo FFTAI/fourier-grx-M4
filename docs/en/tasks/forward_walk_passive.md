@@ -5,6 +5,12 @@ parent: Task Description
 nav_order: 4.11
 has_toc: true
 nav_exclude: true
+steps:
+  - Power-on self-check
+  - Joint zero calibration
+  - Standing posture
+  - Passive forward walk
+current_step: 4
 ---
 
 # Passive Forward Walk
@@ -21,6 +27,16 @@ Task Description:
 - The robot uses the given parameters to generate a joint trajectory sequence for forward walking, and the actuators track that trajectory to achieve passive forward walking.
 - When the "stop motion flag" is set to true, the robot will gradually stop rather than halt immediately.
 - If the task enters a torque protection state, the robot will pause motion and set the "task pause flag" to true. The task must be restarted to resume walking.
+
+> **Danger: prepare before entering walking mode**
+>
+> Before pressing Y to enter walking mode, confirm the emergency stop is available, the area around the robot is clear, and support is in place. Pressing the logo button disables the robot and it will go limp; prevent it from falling or hitting anything.
+
+> ⚠️ **Version change: TID semantics**
+>
+> Since v4.4.69, 4111 maps to the PD + velocity feed-forward variant. Use 4129 for passive forward walking, and update the host task table after a firmware upgrade to avoid calling the wrong task.
+
+{% include components/grx_steps.html steps=page.steps current=page.current_step %}
 
 Task Parameters:
 

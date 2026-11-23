@@ -2,6 +2,12 @@ title: Fourier-GRX-M4 SDK
 description: 开发文档
 remote_theme: just-the-docs/just-the-docs
 
+# 文档版本与固件版本（首页与页头版本徽章使用）
+doc_version: "v1.2.71"
+firmware_version: "4.4.78"
+firmware_support: "长期支持"
+support_email: "xin.chen@fftai.com"
+
 # 插件配置
 plugins:
   - jekyll-relative-links
@@ -14,6 +20,8 @@ logo_alt: "Fourier Intelligence"
 
 # 搜索和导航配置
 search_enabled: true
+search:
+  button: false
 collapse_navigation: true
 navigation_fixed: true
 navigation_sticky: true
