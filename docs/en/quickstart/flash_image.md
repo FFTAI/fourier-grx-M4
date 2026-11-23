@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Flash System Image
+title: Image Flashing
 parent: Quick Start
 nav_order: 1.1
 has_toc: true
 nav_exclude: true
 ---
 
-# Flash System Image
+# Image Flashing
 
 * TOC
 {:toc}

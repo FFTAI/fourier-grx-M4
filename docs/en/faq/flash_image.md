@@ -8,7 +8,7 @@ nav_exclude: true
 
 # System Flashing Issues
 
-> ℹ️ **Note**: The following issues are related to [Flashing the System Image](/fourier-grx-M4/docs/en/quickstart/flash_image) (LubanCat-RK3588 control board).
+> ℹ️ **Note**: The following issues are related to [Image Flashing](/fourier-grx-M4/docs/en/quickstart/flash_image) (LubanCat-RK3588 control board).
 
 ## What if the PC does not detect the device?
 

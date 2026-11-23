@@ -14,11 +14,11 @@ has_toc: true
 
 | 设备状态 | 推荐入口 | 主要内容 |
 |----------|----------|----------|
-| 已完成安装，使用 M4L 系列机器人 | [M4L 机器人](/fourier-grx-M4/docs/quickstart/m4l) | 开机、登录、启动控制程序、网页调试和二次开发环境配置 |
-| 全新设备，或尚未完成首次安装 | [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install) | 下载安装包、部署运行内容并配置机器人型号 |
+| 全新设备，或尚未完成首次安装 | [固件安装](/fourier-grx-M4/docs/quickstart/firmware_install) | 下载安装包、部署运行内容并配置机器人型号 |
 | 已完成首次安装，只需升级固件 | [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update) | 使用 `fourier-grx update` 或手动安装包升级，并完成部署 |
-| 系统损坏，或确需更换系统镜像 | [系统烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) | 为适用的 LubanCat-RK3588 控制板烧录系统；正常使用时无需烧录 |
+| 系统损坏，或确需更换系统镜像 | [镜像烧录](/fourier-grx-M4/docs/quickstart/flash_image) | 为适用的 LubanCat-RK3588 控制板烧录系统；正常使用时无需烧录 |
 | 使用旧版 M4 软件 | [M4 机器人](/fourier-grx-M4/docs/quickstart/m4) | 查阅旧版操作流程；该页面已废弃，支持新版软件的设备应改用 M4L 流程 |
+| 已完成安装，使用 M4L 系列机器人 | [M4L 机器人](/fourier-grx-M4/docs/quickstart/m4l) | 开机、登录、启动控制程序、网页调试和二次开发环境配置 |
 
 ## 完成安装后的使用流程
 

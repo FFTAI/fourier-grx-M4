@@ -1,12 +1,12 @@
 ---
 layout: default
-title: 固件安装（首次安装）
+title: 固件安装
 parent: 快速开始
 nav_order: 1.2
 has_toc: true
 ---
 
-# 固件安装（首次安装）
+# 固件安装
 
 * TOC
 {:toc}

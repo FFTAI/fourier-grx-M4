@@ -7,7 +7,7 @@ nav_order: 6.8
 
 # 系统烧录问题
 
-> ℹ️ **说明**：以下问题与 [系统烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image)（LubanCat-RK3588 控制板卡）操作相关。
+> ℹ️ **说明**：以下问题与 [镜像烧录](/fourier-grx-M4/docs/quickstart/flash_image)（LubanCat-RK3588 控制板卡）操作相关。
 
 ## 电脑没有识别到设备怎么办？
 

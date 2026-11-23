@@ -17,7 +17,7 @@ nav_exclude: true
 > This page explains how to **share a WiFi network from a laptop or tablet to its wired Ethernet port** when **no router / wireless-to-wired device** is available, providing network connectivity to the robot's controller computer and enabling remote login to the controller computer system via **SSH** or a **web terminal**.
 >
 > This method is commonly used in the following scenarios:
-> - During [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install), internet access is required to download the installation packages (images before 20260805 use **DHCP** on the wired network by default; **images from 20260805 onward are automatically configured with the static IP `192.168.137.220` after flashing**)
+> - During [Firmware Installation](/fourier-grx-M4/docs/en/quickstart/firmware_install), internet access is required to download the installation packages (images before 20260805 use **DHCP** on the wired network by default; **images from 20260805 onward are automatically configured with the static IP `192.168.137.220` after flashing**)
 > - During a [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update), temporary internet access is required to run `fourier-grx update`
 > - No router/switch is available on site, so a laptop/tablet must be connected directly to the robot via an Ethernet cable
 
@@ -45,7 +45,7 @@ On site there is often no router that can both "provide internet access" and "be
 >
 > - If the PC has multiple wired ports/virtual adapters, make sure the one selected in step 5 is **the one actually connected to the robot** — choosing the wrong one will prevent connectivity.
 > - **System images from 20260805 onward** are automatically configured with the static IP `192.168.137.220` after flashing — no scanning needed, the robot is directly reachable.
-> - If the robot's network is still in **DHCP** mode (an older image that has not yet been installed), the robot will automatically obtain a dynamic IP from the `192.168.137.x` subnet once sharing takes effect; you can use the [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) script provided on the [Flash System Image](/fourier-grx-M4/docs/en/quickstart/flash_image) page to scan for the actual address.
+> - If the robot's network is still in **DHCP** mode (an older image that has not yet been installed), the robot will automatically obtain a dynamic IP from the `192.168.137.x` subnet once sharing takes effect; you can use the [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) script provided on the [Image Flashing](/fourier-grx-M4/docs/en/quickstart/flash_image) page to scan for the actual address.
 > - If the robot already has a **static IP** (`192.168.137.220` — first-time installation completed, or flashed with a 20260805-or-later image), it is directly reachable at that fixed address once sharing takes effect, with no scanning required.
 
 ## Method 2: Share the Network from a macOS PC
@@ -75,7 +75,7 @@ ping 192.168.137.220
 
 If you receive replies, the network is connected and you can proceed with SSH login.
 
-If the robot has not yet been configured with a static IP (still in DHCP mode — only the case for an older image that has not been installed), use the [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) script to scan the LAN for the actual assigned IP address; see the [Flash System Image](/fourier-grx-M4/docs/en/quickstart/flash_image) page for detailed usage.
+If the robot has not yet been configured with a static IP (still in DHCP mode — only the case for an older image that has not been installed), use the [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) script to scan the LAN for the actual assigned IP address; see the [Image Flashing](/fourier-grx-M4/docs/en/quickstart/flash_image) page for detailed usage.
 
 ## Web Terminal Login (20260805 and Later Images)
 
@@ -126,7 +126,7 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
 ## Related Links
 
-- [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install): complete installation procedure for a brand-new device
+- [Firmware Installation](/fourier-grx-M4/docs/en/quickstart/firmware_install): complete installation procedure for a brand-new device
 - [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update): version upgrade procedure for an already-installed device
-- [Flash System Image](/fourier-grx-M4/docs/en/quickstart/flash_image): detailed usage of the `network_scanner.ps1` script
+- [Image Flashing](/fourier-grx-M4/docs/en/quickstart/flash_image): detailed usage of the `network_scanner.ps1` script
 - [Communication Interface](/fourier-grx-M4/docs/en/reference/communication): recommendations for network communication between the robot and the SDK

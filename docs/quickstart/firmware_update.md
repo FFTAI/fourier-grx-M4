@@ -15,7 +15,7 @@ has_toc: true
 >
 > 本页面用于说明**已经完成过首次安装**的设备（有线网络已配置为静态 IP，可正常运行 `fourier-grx`）升级到新版本固件的流程。
 >
-> 如果是**全新设备**或**尚未完成过首次安装**（网络仍为 DHCP 自动获取模式），请参考 [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)。
+> 如果是**全新设备**或**尚未完成过首次安装**（网络仍为 DHCP 自动获取模式），请参考 [固件安装](/fourier-grx-M4/docs/quickstart/firmware_install)。
 
 ## 与首次安装的区别
 
@@ -164,5 +164,5 @@ built:   2026-11-04T08:26:34Z
 
 - [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection)：无路由器环境下，通过笔记本/平板共享网络并 SSH 远程登录机器人主控电脑
 - [固件发布](/fourier-grx-M4/docs/release)：查看所有版本及更新内容
-- [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)：全新设备的完整安装流程
+- [固件安装](/fourier-grx-M4/docs/quickstart/firmware_install)：全新设备的完整安装流程
 - [运行模式](/fourier-grx-M4/docs/reference/run_type)：开发者模式 / 发布模式说明

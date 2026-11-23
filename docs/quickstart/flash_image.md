@@ -1,12 +1,12 @@
 ---
 layout: default
-title: 系统烧录镜像
+title: 镜像烧录
 parent: 快速开始
 nav_order: 1.1
 has_toc: true
 ---
 
-# 系统烧录镜像
+# 镜像烧录
 
 * TOC
 {:toc}

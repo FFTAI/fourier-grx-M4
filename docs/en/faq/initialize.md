@@ -14,7 +14,7 @@ nav_exclude: true
 
 **Solution**:
 
-1. Confirm the robot model is configured correctly — see [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install)
+1. Confirm the robot model is configured correctly — see [Firmware Installation](/fourier-grx-M4/docs/en/quickstart/firmware_install)
 2. Restart the robot and try again
 
 ## Actuator Self-Check Failure

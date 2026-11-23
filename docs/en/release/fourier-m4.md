@@ -21,7 +21,7 @@ nav_exclude: true
 
 ## Installation
 
-> ⚠️ **Deprecated**: the `fourier-m4` software is no longer actively maintained. If your device supports the newer `fourier-grx`, it is recommended to install `fourier-grx` instead — see [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install) for first-time installation and [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update) for upgrades.
+> ⚠️ **Deprecated**: the `fourier-m4` software is no longer actively maintained. If your device supports the newer `fourier-grx`, it is recommended to install `fourier-grx` instead — see [Firmware Installation](/fourier-grx-M4/docs/en/quickstart/firmware_install) for first-time installation and [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update) for upgrades.
 
 ```bash
 # Install the fourier-m4-xxx.deb file; the fourier-m4 program tool will be available on the system afterwards

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Firmware Installation (First-Time Setup)
+title: Firmware Installation
 parent: Quick Start
 nav_order: 1.2
 has_toc: true
 nav_exclude: true
 ---
 
-# Firmware Installation (First-Time Setup)
+# Firmware Installation
 
 * TOC
 {:toc}

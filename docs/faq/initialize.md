@@ -13,7 +13,7 @@ nav_order: 6.3
 
 **解决方案**：
 
-1. 确认机器人型号配置正确，参见 [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)
+1. 确认机器人型号配置正确，参见 [固件安装](/fourier-grx-M4/docs/quickstart/firmware_install)
 2. 重启机器人后重试
 
 ## 执行器自检失败

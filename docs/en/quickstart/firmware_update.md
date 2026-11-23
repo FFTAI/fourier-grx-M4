@@ -16,7 +16,7 @@ nav_exclude: true
 >
 > This page describes how to upgrade to a new firmware version on a device that has **already completed first-time installation** (the wired network is already configured with a static IP and `fourier-grx` runs normally).
 >
-> If this is a **brand-new device** or first-time installation has not been completed yet (the network is still in DHCP mode), see [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install) instead.
+> If this is a **brand-new device** or first-time installation has not been completed yet (the network is still in DHCP mode), see [Firmware Installation](/fourier-grx-M4/docs/en/quickstart/firmware_install) instead.
 
 ## Differences from first-time installation
 
@@ -165,5 +165,5 @@ built:   2026-11-04T08:26:34Z
 
 - [Network Connection and Remote Login](/fourier-grx-M4/docs/en/usage/network_connection): share a network from a laptop/tablet and log in to the robot controller via SSH when no router is available
 - [Firmware Releases](/fourier-grx-M4/docs/en/release): view all versions and release notes
-- [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install): the complete installation workflow for a brand-new device
+- [Firmware Installation](/fourier-grx-M4/docs/en/quickstart/firmware_install): the complete installation workflow for a brand-new device
 - [Run Mode](/fourier-grx-M4/docs/en/reference/run_type): Developer Mode vs. Release Mode

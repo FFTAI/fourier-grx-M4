@@ -105,7 +105,7 @@ nav_exclude: true
 
 ## Installation
 
-For first-time installation, see [Firmware Installation (First-Time Setup)](/fourier-grx-M4/docs/en/quickstart/firmware_install). To upgrade an already-installed device, see [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update).
+For first-time installation, see [Firmware Installation](/fourier-grx-M4/docs/en/quickstart/firmware_install). To upgrade an already-installed device, see [Firmware Update](/fourier-grx-M4/docs/en/quickstart/firmware_update).
 
 ## Pre-release Channel
 

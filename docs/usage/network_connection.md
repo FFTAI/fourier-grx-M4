@@ -16,7 +16,7 @@ has_toc: true
 > 本页面用于说明在**没有路由器 / 无线转有线设备**的情况下，如何通过**笔记本电脑或平板电脑共享 WiFi 网络到有线网口**，为机器人主控电脑提供网络连接，并通过 **SSH** 或 **Web 终端** 远程登录到主控电脑系统。
 >
 > 该方法常用于以下场景：
-> - [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install) 时，需要外网下载安装包（20260805 之前的镜像有线网络默认处于 **DHCP 自动获取 IP** 模式；**20260805 及以后的镜像烧录后自动配置静态 IP `192.168.137.220`**）
+> - [固件安装](/fourier-grx-M4/docs/quickstart/firmware_install) 时，需要外网下载安装包（20260805 之前的镜像有线网络默认处于 **DHCP 自动获取 IP** 模式；**20260805 及以后的镜像烧录后自动配置静态 IP `192.168.137.220`**）
 > - [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update) 时，需要临时访问外网执行 `fourier-grx update`
 > - 现场没有可用的路由器/交换机，只能用笔记本/平板直接网线连接机器人
 
@@ -74,7 +74,7 @@ ping 192.168.137.220
 
 如果能收到回复，说明网络已经连通，可以继续进行 SSH 登录。
 
-如果机器人尚未配置静态 IP（仍为 DHCP 模式，仅旧版镜像未安装时），请使用 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描局域网确认实际分配到的 IP 地址，具体用法参见 [系统烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) 页面。
+如果机器人尚未配置静态 IP（仍为 DHCP 模式，仅旧版镜像未安装时），请使用 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描局域网确认实际分配到的 IP 地址，具体用法参见 [镜像烧录](/fourier-grx-M4/docs/quickstart/flash_image) 页面。
 
 ## Web 终端登录（20260805 及以后镜像）
 
@@ -125,7 +125,7 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
 ## 相关链接
 
-- [固件安装（首次安装）](/fourier-grx-M4/docs/quickstart/firmware_install)：全新设备的完整安装流程
+- [固件安装](/fourier-grx-M4/docs/quickstart/firmware_install)：全新设备的完整安装流程
 - [固件更新](/fourier-grx-M4/docs/quickstart/firmware_update)：已安装设备的版本升级流程
-- [系统烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image)：`network_scanner.ps1` 脚本的详细用法
+- [镜像烧录](/fourier-grx-M4/docs/quickstart/flash_image)：`network_scanner.ps1` 脚本的详细用法
 - [通信接口](/fourier-grx-M4/docs/reference/communication)：机器人与 SDK 之间的网络通信建议
