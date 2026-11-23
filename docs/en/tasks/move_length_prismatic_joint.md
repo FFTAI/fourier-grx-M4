@@ -52,6 +52,20 @@ Command Interface:
 | Right thigh adjustment length | `grx.virtual_panel_command_param_3` |
 | Right shank adjustment length | `grx.virtual_panel_command_param_4` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The task clips the four panel length values, converts them into prismatic-actuator coordinates, and sends them as absolute target positions relative to the calibrated zero. It adjusts the mechanical thigh and shank extension segments; it does not derive anatomical leg lengths from height or imaging. `motion_ratio` reports command-sequence progress, not actual positioning error.
+
+### Rehabilitation and Clinical Use
+
+- Trained staff should fit leg lengths from patient measurements, joint alignment, and strap positions, preferably unloaded or reliably supported. Do not change lengths during gait.
+- Check left/right thigh and shank targets against actual positions and align the exoskeleton hip and knee axes with the patient's joints. Do not alter lengths casually to compensate for zero errors, strap migration, or abnormal posture.
+- After adjustment, inspect skin pressure, motion clearance, symmetry, and standing posture before starting a low-risk task. The finish flag does not replace actual-position and fitting checks.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.1.19.

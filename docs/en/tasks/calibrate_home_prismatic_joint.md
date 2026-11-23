@@ -64,6 +64,20 @@ Command interface:
 
 This task requires no command parameters. Send the corresponding TID to trigger it. The calibration cannot be interrupted or tuned from the panel parameters.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+Each prismatic joint follows an S-curve toward its mechanical stop. The algorithm detects contact using torque and speed criteria, supplemented by a sustained-low-speed criterion when torque buildup is insufficient. It then disables the actuator and writes the current position as the software zero. This calibrates the leg-length adjustment coordinate; it does not measure the patient's anatomical thigh or shank length.
+
+### Rehabilitation and Clinical Use
+
+- Calibration traverses the full adjustment range and presses against a mechanical stop. Perform it with the patient off the device, the robot suspended or stably supported, and both legs unobstructed. It must not be used to stretch a patient's limb.
+- After every power-up, complete this calibration before setting leg length from the patient's measurements. Check left/right travel and target positions so that a zero error is not mistaken for an anatomical leg-length difference.
+- For premature stopping, prolonged contact with the stop, abnormal noise, or marked left/right discrepancies, stop before fitting or training and investigate mechanical resistance or faults.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.1.17.

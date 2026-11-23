@@ -111,6 +111,20 @@ Command interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+A parameterized forward gait is generated first, then each knee reference is clipped to its minimum flexion angle and base height is calculated automatically. The assist ratio interpolates PD gains for tracking this modified trajectory: a low ratio permits more deviation, while a high ratio constrains it more strongly. Knee restriction sets the reference boundary and assist sets tracking stiffness; one cannot substitute for the other.
+
+### Rehabilitation and Clinical Use
+
+- Establish left/right restrictions from their respective clinical ranges before adjusting assist. Do not use higher stiffness to push a patient toward a restricted boundary or lower stiffness as a way to increase anatomical range.
+- To encourage active participation, reduce the ratio gradually under external support and check that actual knee angles remain safe without pelvic or trunk compensation. Restart and reassess after each adjustment.
+- Restricted posture changes base height and loading. Start with short steps, low speed, and low foot lift. Stop for pain, spasticity, marked resistance, or fatigue; neither reference deviation nor assist ratio directly measures strength or participation.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.

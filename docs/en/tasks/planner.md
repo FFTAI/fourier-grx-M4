@@ -140,6 +140,21 @@ Task ID (TID): **4506**
 
 Task Parameters: refer to [Assist Mark Time (Knee Restriction, Adjust dt Parameter)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The Planner reuses the executing task's gait generation, knee restriction, harmonic-curve selection, and assist calculations. It reports reference positions, velocities, extrema, cadence, and related fields every control cycle, but does not run the execution activation flow or send position/PD targets to the joints. It therefore previews the intended algorithmic trajectory, not actual device tracking or patient response.
+
+### Rehabilitation and Clinical Use
+
+- Before treatment, clinical and engineering staff can preview joint ranges, cadence, and left/right trajectories to screen obviously unsuitable parameter combinations before unloaded and supervised execution tests.
+- Disable the actuators as required and retain device support. No Planner torque output does not make the whole preparation workflow risk-free; subsequent enabling and trajectory entry require separate assessment.
+- A successful preview does not establish patient tolerance or verify actual foot clearance, dynamic balance, strap fitting, or torque safety. First execution still needs conservative parameters and external protection.
+- Do not record Planner reference extrema, cadence, or assist calculations as the patient's measured range, walking ability, or treatment outcome.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Planner tasks (TID 4401–4406) added in `fourier-grx` v4.3.0.

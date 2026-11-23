@@ -108,6 +108,20 @@ Command Interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+After the in-place trajectory is generated, the assist ratio maps playback to 50%–100% of baseline by changing trajectory time advancement each cycle; PD stiffness remains at the medium tier. Automatic mode compares measured joint torque with configurable absolute upper and lower thresholds and increases or decreases the ratio. The current implementation adds no gravity-compensation term.
+
+### Rehabilitation and Clinical Use
+
+- A low ratio lengthens playback time only; it does not reduce joint stiffness or foot-lift height. For slower responses or limited tolerance, begin with a longer period and lower playback speed, then adjust one setting at a time.
+- Absolute torque thresholds require careful professional validation for the device and patient and should not be copied across patients. Torque changes can also reflect spasticity, resistance, or device dynamics rather than voluntary effort.
+- Increasing automatic assist means faster rhythm. Stop for a sudden cadence increase, left/right instability, pain, or fatigue and inspect the thresholds and fitting. External support and continuous observation remain necessary.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.

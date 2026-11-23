@@ -117,6 +117,21 @@ Command interface:
 
 > `grx.virtual_panel_command_param_4` ~ `param_8` (including base height, step lift height and double-support ratio) and `grx.virtual_user_*_leg_length_*` have no effect in this task; see "Parameters with no effect here" above.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+Stored Fourier harmonic coefficients reconstruct periodic joint curves. Hip-amplitude and knee-extension-restriction levels select the curve shape, while the cadence level sets its playback rhythm. The trajectory is generated before starting and then replayed cyclically for the joint controllers. It is not adapted online to patient performance, nor recomputed from step length, walking speed, or leg length through inverse kinematics.
+
+### Rehabilitation and Clinical Use
+
+- Fixed curves provide repeatable guidance but do not replace individualized gait assessment. Begin with a lower hip amplitude and slower cadence, confirm tolerance, and change only one of amplitude or speed at a time.
+- Select the knee-extension restriction from the physician/therapist's measured range to keep the reference away from restricted positions. Do not use it to force extension or treat contracture.
+- This task commands hip and knee angles only. Actual translation, step length, and stability still depend on the patient and external support. Enable torque protection and monitor actual gait; levels and reference curves do not indicate independent walking ability.
+- If a fixed curve does not match the patient's range, symmetry, or gait goal, stop and select a more suitable task rather than physically forcing the patient to follow it.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - v4.4.55: this task was added (TID 4113).

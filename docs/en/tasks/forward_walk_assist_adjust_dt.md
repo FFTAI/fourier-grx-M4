@@ -95,6 +95,20 @@ Command interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The task generates a forward gait and uses the assist ratio to scale trajectory time advancement each control cycle. Playback ranges from 50% to 100% of the baseline while PD gains remain at the medium tier. During swing, automatic mode compares measured hip torque with gravity-compensation-related thresholds and changes the ratio in fixed increments. It adjusts rhythm rather than replanning gait shape.
+
+### Rehabilitation and Clinical Use
+
+- This mode can support rhythm-matching practice, but “more assist” here means faster playback, not greater assistive torque. Reduce the ratio when the patient needs more response time and increase gradually as tolerated.
+- Measured torque reflects the patient and device together and cannot independently distinguish voluntary effort, spasticity, contact, or device load. Introduce automatic mode slowly and briefly with continuous observation; leave automatic mode for unexpected acceleration or rhythm fluctuations.
+- Set step length, base speed, and foot lift for the patient's range and tolerance. Automatic adjustment is neither balance control nor a safety function. Assess actual gait, compensation, and fatigue as well.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.

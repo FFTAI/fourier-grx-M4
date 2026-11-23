@@ -119,6 +119,20 @@ Command interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The in-place trajectory receives independent knee-angle lower bounds and an automatically calculated base height. The assist ratio then adjusts playback between 50% and 100% of baseline. Automatic mode compares measured joint torque with absolute upper/lower thresholds and changes the ratio in fixed steps. Only time advancement changes; knee restriction, lift amplitude, and medium-tier PD stiffness remain unchanged.
+
+### Rehabilitation and Clinical Use
+
+- Set restrictions for each knee's clinical range, then begin with low foot lift, a long period, and slow playback. Slower playback provides more following time but does not reduce the flexed posture imposed by restriction or device stiffness.
+- Validate absolute torque thresholds carefully for each patient. Torque can also reflect spasticity, resistance, or device load and is not a direct measure of voluntary effort. Leave automatic mode for unexpected acceleration or instability and reassess.
+- Continuously observe actual knee angles, left/right loading, pain, and fatigue with external support. Task completion or steady cadence alone does not demonstrate safe, effective treatment.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.

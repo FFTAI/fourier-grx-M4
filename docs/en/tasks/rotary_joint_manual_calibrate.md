@@ -88,6 +88,20 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 - Prismatic joint zero points **must** be recalibrated every power-on (TID=4210) and are not affected by this task.
 - This task cannot be triggered while a motion task is running — exit the current task before performing calibration.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The task disables the selected rotary joints, lets staff position and hold the mechanical zero, averages about one second of position readings, and writes an application-layer zero offset. It then synchronizes the control target with the measured position in the new coordinates to reduce a target jump on the next enable. The algorithm cannot judge whether the manually selected posture is anatomically or mechanically correct.
+
+### Rehabilitation and Clinical Use
+
+- Staff familiar with the standard zero should perform manual calibration with the patient off the device. During single-leg calibration, the other leg may still hold torque, so support and guarding remain necessary.
+- Do not use the patient's limb to define the device zero or treat the patient's current comfortable posture as the standard zero. Keep the device still during sampling and verify standing and gait reference postures unloaded afterwards.
+- Use approved parameters such as knee restriction for patient-specific adaptation rather than changing the device zero, which would make coordinates inconsistent across tasks.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.4.22.

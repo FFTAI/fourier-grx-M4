@@ -60,6 +60,20 @@ Command Interface:
 | Right thigh adjustment offset | `grx.virtual_panel_command_param_3` |
 | Right shank adjustment offset | `grx.virtual_panel_command_param_4` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+On entry, the task records the four measured prismatic-joint positions and adds the clipped relative offsets to form new targets, then advances along a time-based S-curve. Target calculation does not depend on the absolute zero, but actual arrival is still affected by friction, self-locking, and mechanical travel. Completion means the time sequence ended; actual positions must be checked separately.
+
+### Rehabilitation and Clinical Use
+
+- Use for small fitting adjustments under supported conditions, not while the patient is walking or bearing weight through the device. Availability after a software restart does not remove the need for normal leg-length calibration and fitting checks before treatment.
+- Make only the necessary small adjustment and verify actual positions and joint alignment afterwards. Repeated relative commands accumulate, so confirm remaining mechanical travel rather than relying on the single-command ±0.02 m clip.
+- Small offsets may not produce actual motion because of friction. Do not keep stacking commands to force numerical agreement. Stop for binding, abnormal resistance, pressure, or pain and inspect the mechanism and straps.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.4.37.

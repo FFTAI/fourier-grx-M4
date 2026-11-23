@@ -85,6 +85,20 @@ Command interface:
 
 > ⚠️ Unlike 4118: the **assist ratio is on `param_4`** (`param_3` is taken by the cadence level); `param_1` / `param_2` are the amplitude / knee-restriction levels, not step length / walking speed. Host software must use the mapping in this table instead of reusing 4118's parameter positions.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The reference still comes from stored harmonic coefficients. The assist ratio changes trajectory time advancement through `play_speed=0.5+0.5×assist_ratio`, providing 50%–100% playback speed without changing curve shape or medium-tier PD stiffness. During swing, automatic mode compares measured hip torque with gravity-compensation thresholds and increases or decreases the bounded ratio.
+
+### Rehabilitation and Clinical Use
+
+- A low ratio means a slower, easier-to-follow rhythm, not lower joint stiffness or a smaller passive range. For patients who need more response time, reduce playback speed first and progress toward the selected level's normal rhythm as tolerated.
+- Automatic assist uses total joint torque, which can also include device gravity, friction, and inertial effects. It is not a direct measure of voluntary muscle force or intention. Observe the changing rhythm and stop for unexpected acceleration, fatigue, or deteriorating movement quality.
+- Select the fixed curve, knee restriction, and base cadence before adjusting playback. Do not raise cadence level and assist ratio together. External support and continuous clinical monitoring remain necessary.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Changelog
 
 - `fourier-grx` v4.4.79: task added (TID 4133). Gait source and the three panel levels are identical to 4131; dt-assist semantics are identical to 4118 (assist ratio → play_speed ∈ [0.5, 1.0], automatic assist mode supported, PD fixed at the medium tier).

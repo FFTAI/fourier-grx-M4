@@ -42,6 +42,20 @@ Command Interface:
 
 This task requires no additional command parameters. Send TID=41 to trigger it. After the reboot is complete, actuators will return to the Servo Off state — send Servo On (TID=35) again to enable them.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+This task reboots every actuator so that it reloads its configuration and initializes its internal state; all actuators remain disabled afterwards. This is a hardware state-management procedure. It generates no trajectory, preserves no previous run parameters, and does not automatically resume the previous training task.
+
+### Rehabilitation and Clinical Use
+
+- Use rebooting only when actuator state explicitly needs resetting, not as a routine pause or a general fault-retry button during treatment. Preferably remove the patient from the device; otherwise provide full mechanical support and manual protection.
+- After rebooting, recheck fault codes, joint zero references, leg-length calibration, and current posture before enabling and selecting a task. Do not continue directly from the previous gait cycle.
+- If the same alarm or abnormality returns, stop clinical use and arrange engineering investigation rather than using repeated reboots in place of diagnosis.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Provided since early `fourier-grx` versions (already present in v2.0.5, the earliest release in this repository’s public history).

@@ -83,6 +83,20 @@ Command interface:
 
 > ⚠️ Unlike 4116: the **assist ratio is on `param_4`** (`param_3` is taken by the cadence level); `param_1` / `param_2` are the amplitude / knee-restriction levels, not step length / walking speed. Host software must use the mapping in this table instead of reusing 4116's parameter positions.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+This task combines fixed harmonic-coefficient trajectories with adjustable PD tracking. Amplitude, knee restriction, and cadence select the reference; the assist ratio interpolates between two preset gain sets and changes how strongly position and velocity errors produce joint torque. A low ratio permits greater tracking deviation, while a high ratio provides stronger trajectory guidance. The ratio is written during startup, so changes made while walking require a task restart.
+
+### Rehabilitation and Clinical Use
+
+- To encourage active participation, gradually reduce the ratio only while safety and movement quality are maintained. Increase guidance when the patient cannot tolerate trajectory deviations. Restart before judging a new setting; a newly displayed value is not necessarily the active one.
+- Lower stiffness leaves room for self-generated motion but does not identify patient intention or quantify voluntary effort. Assess measured deviations, compensation, fatigue, and reported symptoms rather than the ratio alone.
+- Establish tolerance at low amplitude and slow rhythm before adjusting stiffness. Set knee restriction from the clinical range. External fall protection remains necessary because neither a fixed trajectory nor PD control guarantees balance.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Changelog
 
 - `fourier-grx` v4.4.79: task added (TID 4132). Gait source and the three panel levels are identical to 4131; PD-assist semantics are identical to 4116 (assist ratio interpolates between buttery and soft, written once at task start).

@@ -84,6 +84,21 @@ Command interface:
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Torque protection limit | `grx.virtual_panel_command_param_9` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The DSP gait generator uses leg lengths, step length, walking speed, base height, foot-lift height, and double-support ratio to generate a periodic reference trajectory. A start transition moves from the current posture to the gait start, after which the joint controllers track position and velocity references. Step duration follows from step length and speed. A stop command finishes through a transition rather than freezing the joints immediately. Geometry changes made while running do not alter the trajectory already generated.
+
+### Rehabilitation and Clinical Use
+
+- Passive guidance can help a therapist assess tolerance to low-load, repeatable joint motion, but it is not active walking practice. Start with shorter steps, lower speed and foot lift, and full external support; adjust one parameter at a time according to pain, fatigue, and movement quality.
+- A larger double-support ratio lengthens that phase of the reference gait, but it does not replace suspension, fall protection, or manual guarding and does not prove whole-body balance.
+- Enable and individualize torque protection. Continue to observe actual joint positions, foot clearance, straps, and skin. `reference_joint_*` describes commanded motion, not the patient's measured gait or treatment outcome.
+- Stop and reassess for resistance, pain, increased spasticity, foot contact, or abnormal vital signs.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.

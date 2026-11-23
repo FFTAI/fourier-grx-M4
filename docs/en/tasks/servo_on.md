@@ -41,6 +41,20 @@ Command Interface:
 
 This task requires no additional command parameters. Send TID=35 to trigger it.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+This task generates no motion trajectory. It sends an enable command to every actuator so that the motors can output torque, and the task state machine updates the start and finish flags from actuator responses. Enabling is a prerequisite for position or torque control; it does not mean that the robot is already in a safe posture.
+
+### Rehabilitation and Clinical Use
+
+- This is a preparation or shutdown step, not a rehabilitation exercise in itself. Before enabling, complete the patient assessment and check straps and joint alignment. Stabilize the device with suspension, a support frame, or manual guarding to prevent sudden movement as torque is established.
+- Enter a standing or gait task only after this task finishes. For abnormal noise, pain, visible misalignment, or an alarm during enabling, stop using the facility's emergency procedure rather than repeatedly retrying.
+- The finish flag only confirms actuator enablement; it does not establish that the patient can bear weight or begin training.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Provided since early `fourier-grx` versions (already present in v2.0.5, the earliest release in this repository’s public history).

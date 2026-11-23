@@ -79,6 +79,20 @@ Command Interface:
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Torque protection limit | `grx.virtual_panel_command_param_9` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The gait generator uses leg lengths, foot-lift height, step period, and base height to create an alternating in-place trajectory. After a start transition, the joint controllers track its position and velocity references. No horizontal base translation is planned; foot lift changes swing amplitude and step period changes rhythm. Stop uses an ending transition, and optional torque protection requires a sustained overlimit.
+
+### Rehabilitation and Clinical Use
+
+- In-place stepping can provide passive joint motion and gait-rhythm familiarization without forward travel, but suspension or reliable support is still required. “In place” does not remove fall risk.
+- Start with low foot lift and a longer step period. Progress only after checking hip/knee range, weight-bearing tolerance, and foot clearance. Keep the target within the patient's comfortable range rather than using it for forced stretching.
+- Enable torque protection and observe actual symmetry, pain, spasticity, and fatigue. `motion_ratio` and cadence describe task execution, not active participation or functional walking ability.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.

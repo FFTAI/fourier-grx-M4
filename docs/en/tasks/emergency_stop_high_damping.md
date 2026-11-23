@@ -71,6 +71,21 @@ This task requires no additional command parameters and is triggered automatical
 | Safety characteristic | Soft braking — limbs do not drop instantly | Robot goes limp immediately |
 | Recovery method | Manually switch to another task | Requires re-powering and task switch |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+After an emergency stop, all-actuator communication timeout, or host heartbeat timeout, the controller continuously sets each rotary-joint position target to its measured position and applies near-zero position gain with high velocity gain. Torque mainly opposes motion speed to dissipate joint energy. Without a position-holding spring term, the task can slow rapid limb motion but cannot actively support body weight or maintain a prescribed stance.
+
+### Rehabilitation and Clinical Use
+
+- Treat high damping as soft braking that buys response time, not as safe standing or a mode for continuing treatment. Staff must still support the patient and device immediately and check pain, skin, joint positions, and possible mechanical injury.
+- Releasing the emergency stop does not resume training. Identify the trigger and confirm communication and hardware status before disabling, transferring the patient, or entering a preparation task according to local procedure. Do not resume gait directly with the cause unresolved.
+- TID 4600 is not recommended as a routine pause or active-relaxation exercise. Damping depends on speed and model, and the patient can still move or slowly fall; maintain external fall protection.
+- Recurrent emergency stops or heartbeat timeouts during training require stopping clinical use and investigating configuration, network, and device issues.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.4.3 (M4LT2 only).

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: High-Lift DSP Forward Walk
+parent: Task Description
 nav_order: 4.29
-parent: "Task Description"
 has_toc: true
 nav_exclude: true
 ---
@@ -51,6 +51,21 @@ Task description:
 | Start / stop / pause | `grx.virtual_panel_command_start` / `stop` / `pause` |
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Reference trajectories, progress and cadence | `rehab.reference_joint_*`, `rehab.motion_ratio`, `rehab.step_frequency` |
+
+## Principle Explanation
+
+### Algorithm Operation
+
+The algorithm first generates a normal DSP forward gait and calculates swing-foot position. During swing, it uses inverse kinematics to modify only the swing-side hip and knee angles for the target clearance peak, then applies zero-phase smoothing. Compensation occurs during trajectory generation before starting. Kinematic reachability can limit the target near a straight-leg posture or a joint-travel boundary. TID 4135 only adds velocity feedforward to this result.
+
+### Rehabilitation and Clinical Use
+
+- After the patient tolerates normal forward walking, this task can provide guidance when more swing-foot clearance is needed. Higher lift should not be equated directly with improved independent walking or fall prevention.
+- Start at the default or a lower target and increase in small steps, evaluating each change separately rather than raising foot lift, step length, and speed together. Observe actual clearance, trunk compensation, pelvic posture, and stance-side stability instead of relying on `param_3` alone.
+- The target is not a measurement of actual foot lift. For pain, restricted hip/knee motion, stance-side instability, or marked asymmetry, reduce the target or return to normal DSP walking and reassess fitting.
+- Feedforward behavior depends on the model protocol, so clinical comparisons across models must not assume identical control action.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
 
 ## Update Log
 

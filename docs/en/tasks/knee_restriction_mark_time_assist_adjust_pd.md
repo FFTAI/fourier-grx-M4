@@ -102,6 +102,20 @@ Command interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The in-place reference first receives independent left/right knee-angle lower bounds and is then tracked with adjustable PD control. A low assist ratio reduces corrective stiffness and permits more active deviation; a high ratio constrains the restricted trajectory more strongly. Base height follows leg length and restriction, while foot lift and step period define the action; assist does not change these geometry parameters.
+
+### Rehabilitation and Clinical Use
+
+- Confirm that restrictions lie within the comfortable clinical range before adjusting assist. To encourage participation, reduce stiffness gradually while checking actual knee angles and compensation rather than pursuing deviation for its own sake.
+- Higher stiffness follows the restricted trajectory more strongly and can increase interaction near its boundary. For pain, resistance, or abnormal torque, stop and inspect restriction, foot lift, and assist together.
+- Restart after changing assist. Begin with low foot lift and a slow rhythm under external support. Deviation and torque are not direct measures of strength or rehabilitation effect.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.

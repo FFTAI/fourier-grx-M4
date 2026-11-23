@@ -89,6 +89,20 @@ Command Interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The task generates an in-place stepping reference and interpolates PD gains with the assist ratio. A low ratio reduces corrective torque from position and velocity errors, leaving more room for active movement around the reference; a high ratio constrains tracking more strongly. Foot lift and step period define the reference action, while the ratio changes joint stiffness only during startup.
+
+### Rehabilitation and Clinical Use
+
+- For patients with some active stepping ability, reduce stiffness gradually under protection to encourage participation; increase it when clearer passive guidance is needed. Restart after every change and reassess quality and tolerance.
+- Establish a stable action with low foot lift and a slow period before changing assist. Low stiffness does not reduce movement amplitude, and high stiffness does not inherently improve treatment effect.
+- Tracking deviation and joint torque alone do not measure patient strength or effort. Interpret them with clinical observation, pain, and fatigue. External support and fall protection remain necessary for in-place stepping.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.

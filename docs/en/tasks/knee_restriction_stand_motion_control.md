@@ -70,6 +70,20 @@ Command interface:
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Torque protection limit | `grx.virtual_panel_command_param_9` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+This task adds a lower bound on each knee reference angle to normal standing control. During interpolation from the current posture, any knee reference below its restriction is clipped to that angle, independently for the left and right legs. Damping warmup, settling confirmation, and the holding-stiffness transition still follow. Knee restriction changes the target trajectory; it is neither a measurement of actual joint position nor a mechanical stop.
+
+### Rehabilitation and Clinical Use
+
+- Assess passive knee extension, pain, and spasticity for each leg, then set left/right restrictions with an individualized safety margin. Do not assume symmetry or use this parameter to force progressive extension.
+- A larger restriction creates a more flexed support posture and changes loading and torque demand. Introduce it briefly under external support and observe actual knee angles, trunk compensation, and torque rather than relying on target angles alone.
+- This is not active sit-to-stand or balance training; `motion_ratio=100%` only indicates completion of the device sequence. Stop for pain, resistance, or abnormal torque. Software clipping does not replace hardware limits or clinical supervision.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.

@@ -83,6 +83,20 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 - Prismatic joint zero points **must** be recalibrated every power-on (TID=4210).
 - This task cannot be triggered while a motion task is running — exit the current task before performing calibration.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The task performs a boundary sweep and return, disables the joints so they settle under gravity, averages position samples, and writes the software zero. Boundary detection establishes a mechanical-travel reference, while averaging reduces stationary reading noise. The resulting 0 rad is an application-layer coordinate, not the patient's anatomical hip or knee neutral.
+
+### Rehabilitation and Clinical Use
+
+- Calibration actively drives joints to mechanical limits and includes an unpowered settling phase. Perform it only with the patient off the device, both feet clear of the ground, and the motion space unobstructed. Never use it to measure or forcibly improve a patient's range of motion.
+- After calibration, check the zero posture and left/right symmetry unloaded before fitting and standing preparation. For sweep timeout, excessive position error, or abnormal resistance, stop and follow the fault procedure rather than repeating sweeps to force completion.
+- Standard mechanical calibration is still required for patients with contracture, bony block, or postoperative restrictions. Clinical adaptation belongs in the approved restriction and training parameters.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.4.0.

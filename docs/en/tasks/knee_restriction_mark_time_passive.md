@@ -88,6 +88,20 @@ Command interface:
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Torque protection limit | `grx.virtual_panel_command_param_9` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The task generates alternating in-place steps, clips each knee reference to its own restriction, and automatically calculates base height from leg length and knee restriction before cyclic joint tracking. Foot-lift height and step period control amplitude and rhythm. No forward translation is planned, and the algorithm does not relax restrictions in response to patient feedback.
+
+### Rehabilitation and Clinical Use
+
+- Passive stepping within a restricted range may be used under external support after assessing each knee's extension range and setting a margin. Do not use the task to force improvement of extension restriction.
+- Start with low foot lift and a longer period, observing left/right loading, pelvic compensation, and actual knee angles before progressing. Suspension or fall protection remains necessary even without forward travel.
+- Enable torque protection and stop for pain, spasticity, abnormal resistance, or marked loading asymmetry. Clipping constrains the reference only; actual safety still requires measured states and clinical observation.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.

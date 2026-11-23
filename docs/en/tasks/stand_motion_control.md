@@ -54,6 +54,21 @@ Command Interface:
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Torque protection limit | `grx.virtual_panel_command_param_9` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The task starts with a short damping-only transition to reduce enable shock, then interpolates from the measured joint angles toward a reference stance with all four rotary joints at 0 rad. It confirms settling through position-change and velocity windows before ramping up holding stiffness and maintaining position. Optional torque protection uses a sustained-overlimit decision and exits to the idle task when triggered.
+
+### Rehabilitation and Clinical Use
+
+- Use this task to return to a neutral stance under supported conditions before or after training. For first use or unknown tolerance, provide suspension/fall protection and close therapist supervision; enable torque protection with an individualized limit.
+- The task follows a preset stance. It detects neither the patient's intention to stand nor dynamic balance. `motion_ratio=100%` therefore does not establish safe standing or weight-bearing capacity.
+- Zero radians is a device reference, not a suitable posture for every patient. For knee extension restriction, pain, spasticity, or marked alignment abnormalities, assess first and select the appropriate restricted task or reconsider suitability instead of forcing full extension.
+- The holding phase is relatively stiff. Stop and reassess for pain, resistance, abnormal torque, or posture deviation rather than letting the patient continue to oppose the device.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v3.1.1.

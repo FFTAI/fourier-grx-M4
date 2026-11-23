@@ -114,6 +114,20 @@ Command interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The generated forward gait first receives independent left/right knee-angle lower bounds and an automatically calculated base height. The assist ratio then scales trajectory time advancement between 50% and 100% of baseline playback. Automatic mode adjusts this ratio from swing-phase hip torque relative to gravity-compensation thresholds; neither knee restriction nor medium-tier PD stiffness changes with playback speed.
+
+### Rehabilitation and Clinical Use
+
+- Set restrictions from the clinical range, then begin with shorter steps, low foot lift, and slow rhythm. A lower ratio provides more following time but does not relax the knee boundary or reduce joint stiffness.
+- Automatic assist reacts to combined patient/device torque and cannot distinguish voluntary effort, spasticity, or mechanical resistance. With restricted patients, watch knee angles and rhythm particularly closely and stop for unexpected acceleration or torque.
+- If pain, compensation, or stance instability persists at a slow rhythm, reassess restriction and gait geometry instead of simply changing playback speed. Fall protection and clinical supervision remain necessary.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.

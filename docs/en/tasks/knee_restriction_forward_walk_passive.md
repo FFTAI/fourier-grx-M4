@@ -99,6 +99,21 @@ Command interface:
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Torque protection limit | `grx.virtual_panel_command_param_9` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The DSP generator creates a forward gait from step length, speed, foot lift, and double-support ratio. It then clips each knee reference to its own minimum flexion angle and automatically determines base height from leg length and restriction. The actuators track the modified periodic trajectory; the algorithm does not adapt knee restriction in response to pain or voluntary effort.
+
+### Rehabilitation and Clinical Use
+
+- Use restriction to avoid undesired extension positions, basing each side on the clinically measured range with a safety margin—not on diagnosis alone or a shared default.
+- Restriction changes base height and support posture. Initially use shorter steps, lower speed and foot lift, and a larger double-support ratio under external support while observing actual knee angles, pelvic compensation, and stance stability.
+- The task remains passive trajectory tracking; it neither treats contracture nor guarantees balance. Enable torque protection and stop for pain, resistance, abnormal torque, or unexpected actual posture rather than forcing operation with a larger restriction.
+- Software clipping is not a mechanical stop, and reference trajectories do not replace measured joint angles or clinical outcome assessment.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.2.6.

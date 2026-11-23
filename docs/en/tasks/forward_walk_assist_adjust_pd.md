@@ -94,6 +94,20 @@ Command interface:
 | Start motion flag | `grx.virtual_panel_command_start` |
 | Stop motion flag | `grx.virtual_panel_command_stop` |
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The gait generator first creates a reference from leg lengths, step length, speed, and related parameters. The assist ratio then linearly interpolates the PD gains. Position and velocity errors produce less corrective torque at a low ratio, allowing the patient to deviate actively from the reference, and more corrective torque at a high ratio. Trajectory shape and stiffness are independent settings; the ratio is written only during startup.
+
+### Rehabilitation and Clinical Use
+
+- For patients with some active movement, start with enough guidance to maintain a safe action and gradually reduce the ratio under therapist protection. Increase it when stronger passive guidance is needed; a lower value is not universally better.
+- Stop and restart after each ratio change, then reassess. Tracking error reflects divergence from the reference but is also shaped by device mechanics and PD control, so it is not a direct measure of strength or recovery.
+- Set step length, speed, and foot lift before adjusting stiffness. Stop for pain, marked resistance, abnormal compensation, or fatigue. This task does not guarantee dynamic balance, so external support and guarding remain necessary.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.0.0.

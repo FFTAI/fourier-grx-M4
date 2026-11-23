@@ -22,6 +22,20 @@ Task ID (TID): **999**
 >
 > For the complete calibration procedure, refer to [Joint Zero Calibration](/fourier-grx-M4/docs/en/usage/calibrate).
 
+## Principle Explanation
+
+### Algorithm Operation
+
+TID 999 is currently only an enum placeholder; it has no executable calibration algorithm and cannot set any joint zero. Zero calibration establishes a reference between sensor readings and software joint coordinates. On M4L, this must be done through the dedicated rotary- and prismatic-joint tasks.
+
+### Rehabilitation and Clinical Use
+
+- Do not try this placeholder while a patient is wearing the device, and do not interpret a lack of motion or errors as successful calibration. Select the dedicated task in the maintenance procedure with the patient off the device.
+- Zero references determine the physical posture represented by later trajectories. An incorrect zero can produce asymmetry or move joints toward uncomfortable positions. Check the device unloaded after calibration before clinical preparation.
+- Staff should not set an arbitrary zero to accommodate deformity, contracture, or a painful posture. Such needs require joint clinical and engineering assessment and the approved restriction and fitting parameters.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added interface placeholder in `fourier-grx` v2.2.14 (not yet implemented).

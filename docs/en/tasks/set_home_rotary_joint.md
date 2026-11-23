@@ -56,6 +56,20 @@ Command Interface:
 
 This task requires no command parameters. Send the corresponding TID to trigger it.
 
+## Principle Explanation
+
+### Algorithm Operation
+
+The task disables the actuators, writes the current encoder positions as their absolute zeros, waits for the writes, and reboots them. This rebuilds the device coordinate reference; it does not calculate an anatomical neutral position or measure joint range of motion. The mechanical posture at zeroing determines where subsequent 0 rad references lie.
+
+### Rehabilitation and Clinical Use
+
+- Because this task disables and reboots actuators, trained staff should perform it with the patient off the device and the robot suspended or reliably supported. It is not a posture-adjustment function during treatment.
+- Set the standard mechanical zero specified by engineering. Do not use a patient's painful, contracted, or end-range posture as zero. Afterwards, verify left/right posture and joint directions unloaded before fitting the patient.
+- If asymmetry or abnormal trajectories recur after calibration, stop clinical use and inspect the mechanical assembly, encoders, and calibration procedure rather than repeatedly re-zeroing to mask the problem.
+
+> These clinical suggestions support professional judgement and do not replace assessment by a physician/therapist, the product instructions, or local safety procedures.
+
 ## Update Log
 
 - Added in `fourier-grx` v4.1.19.
