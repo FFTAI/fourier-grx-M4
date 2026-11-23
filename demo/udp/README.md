@@ -1,3 +1,12 @@
+---
+layout: default
+title: UDP 示例（纯 Python socket 实现）
+parent: 示例代码
+nav_order: 2.3
+has_toc: true
+permalink: /demo/udp/
+---
+
 # UDP 示例（纯 Python socket 实现）
 
 本目录下的示例演示如何**不依赖 `fourier_grx` SDK**，仅使用 Python 标准库

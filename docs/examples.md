@@ -24,7 +24,7 @@ has_toc: true
 
 - [User 接口示例](/fourier-grx-M4/docs/examples/user)：适用于高层应用开发，可在机器人主控电脑或同一局域网内的其他电脑上运行。
 - [Developer 接口示例](/fourier-grx-M4/docs/examples/developer)：适用于底层开发，需要在机器人主控电脑上运行。
-- [UDP 纯 socket 示例](/fourier-grx-M4/docs/examples/user#udp-纯-socket-示例无-sdk-依赖)：只用 Python 标准库与机器人通信，不需要安装 `fourier_grx` SDK，适合在不想搭建 SDK 环境的电脑上快速验证协议。
+- [UDP 示例（纯 Python socket 实现）](/fourier-grx-M4/demo/udp/)：只用 Python 标准库与机器人通信，不需要安装 `fourier_grx` SDK，适合在不想搭建 SDK 环境的电脑上快速验证协议。
 - 如需查看接口字段和协议说明，请结合[参考指南](/fourier-grx-M4/docs/reference)一起阅读。
 
 ## 外部示例代码仓库
