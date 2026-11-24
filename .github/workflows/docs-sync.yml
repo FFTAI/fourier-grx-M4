@@ -1,0 +1,51 @@
+name: 同步文档到 DocsGPT
+
+# DocsGPT 侧的索引是 local 快照，它自己不会拉上游（AUTH_TYPE=simple_jwt 下
+# sync_worker 也会跳过这类源），所以文档合进 main 之后由本工作流推一次。
+# 同步是按文件 sha256 增量的：没改动时约 1 秒返回 no_changes，有改动时只重嵌入
+# 变更文件（实测 2 个文件变更 → 171 块 / 约 14 秒）。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "tools/sync_docsgpt.py"
+      - ".github/workflows/docs-sync.yml"
+  workflow_dispatch: {}
+
+# 同步是「整源替换」语义，两个并发运行会互相踩踏，所以排队而不是并行或取消
+concurrency:
+  group: docsgpt-docs-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 同步 docs/ 到 DocsGPT
+        env:
+          # 只对本工作流用到的两个端点有效，由云端 Caddy 换成 DocsGPT 内部凭据；
+          # 不是 JWT 签名密钥，泄露也碰不到其它接口
+          DOCSGPT_SYNC_TOKEN: ${{ secrets.DOCSGPT_SYNC_TOKEN }}
+        run: python3 tools/sync_docsgpt.py --check -v
+
+      - name: 问答抽样体检（不阻塞）
+        # 只做信号，不当门禁：生成有随机性，失败时看日志但不染红流水线。
+        # 依赖只有 stdlib + PyYAML，runner 自带 PyYAML
+        continue-on-error: true
+        run: |
+          python3 -m pip install --quiet pyyaml
+          python3 tools/docsgpt-benchmark/run_benchmark.py \
+            --mode answer --category release_version,release_range \
+            --limit 8 --concurrency 4 || true
