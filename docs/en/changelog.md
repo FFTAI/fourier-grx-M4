@@ -27,15 +27,6 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 🔁 **Documentation sync moved into CI**: merges to `main` are synced into DocsGPT incrementally per file by `.github/workflows/docs-sync.yml`; the sync token is exchanged for internal credentials at the edge for two endpoints only, and the publicly exposed DocsGPT surface was narrowed to the five endpoints the assistant actually calls
 
 
-### v1.2.69 (2026-11-18)
-
-**Documentation Cleanup**
-
-- 🗂️ **Navigation and grouping**: task pages are reordered as Basic Control → Zero/Calibration → Motion → Knee Restriction → Leg-Length Adjustment → Planner → Emergency Protection, with `nav_order` 4.01–4.30. Two decimal places are used throughout to avoid the numeric collision between `4.1` and `4.10`. `docs/tasks.md` now sets `has_children`, so the sidebar can expand all task pages, and the module notes move out of the task index into a dedicated Robot Modules section.
-- 📄 **Formatting**: front matter now follows the order `layout` / `title` / `parent` / `nav_order` / `has_children` / `has_toc` / `nav_exclude`. The ineffective `toc` / `toc_min_header` / `toc_max_header` metadata is removed, and task pages gain a real `* TOC` / `{:toc}` table of contents. Pseudo-headings in `run_type`, `reference/user`, `usage/calibrate`, and `usage/data_record` are converted to proper heading levels, and H1s in `reference/user` and related pages are corrected.
-- 🔗 **Links and content**: fixed the relative links to version-history pages in `docs/release.md`, the duplicate User entry in the examples index, and the M4 / M4L wording in `docs/tasks.md`; Chinese task pages now use consistent full-width punctuation.
-- 🌐 **Bilingual parity**: heading structure and task TIDs match across 72 Chinese/English page pairs. Internal links, anchors, and table parsing were checked across 146 pages, with no broken internal links found.
-
 ### v1.2.71 (2026-11-23)
 
 **Release**
@@ -57,6 +48,15 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 🔧 **Gait PD outputs now use one decimal place**: load-driven climbing, assist interpolation and the standing ramp share the same quantisation. The minimum nonzero climbing increment is now 0.1, still reaching hard exactly without overshoot
 - ✅ Verified the complete standing state machine on all three models, P1/T1 load climbing and assist interpolation, and registration / 15 cm trajectory generation for 4134/4135. Task counts are 60 / 60 / 61
 - 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.85 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
+### v1.2.69 (2026-11-18)
+
+**Documentation Cleanup**
+
+- 🗂️ **Navigation and grouping**: task pages are reordered as Basic Control → Zero/Calibration → Motion → Knee Restriction → Leg-Length Adjustment → Planner → Emergency Protection, with `nav_order` 4.01–4.30. Two decimal places are used throughout to avoid the numeric collision between `4.1` and `4.10`. `docs/tasks.md` now sets `has_children`, so the sidebar can expand all task pages, and the module notes move out of the task index into a dedicated Robot Modules section.
+- 📄 **Formatting**: front matter now follows the order `layout` / `title` / `parent` / `nav_order` / `has_children` / `has_toc` / `nav_exclude`. The ineffective `toc` / `toc_min_header` / `toc_max_header` metadata is removed, and task pages gain a real `* TOC` / `{:toc}` table of contents. Pseudo-headings in `run_type`, `reference/user`, `usage/calibrate`, and `usage/data_record` are converted to proper heading levels, and H1s in `reference/user` and related pages are corrected.
+- 🔗 **Links and content**: fixed the relative links to version-history pages in `docs/release.md`, the duplicate User entry in the examples index, and the M4 / M4L wording in `docs/tasks.md`; Chinese task pages now use consistent full-width punctuation.
+- 🌐 **Bilingual parity**: heading structure and task TIDs match across 72 Chinese/English page pairs. Internal links, anchors, and table parsing were checked across 146 pages, with no broken internal links found.
 
 ### v1.2.68 (2026-11-17)
 
