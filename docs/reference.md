@@ -16,6 +16,11 @@ has_toc: true
 - [User 接口](/fourier-grx-M4/docs/reference/user)：面向高层应用开发，通过网络与机器人通信。
 - [Developer 接口](/fourier-grx-M4/docs/reference/developer)：面向底层控制开发，直接调用 Python 开发库。
 
+## 运行时与任务
+
+- [运行时架构](/fourier-grx-M4/docs/reference/runtime_architecture)：进程、线程、控制循环、通信链路和数据通路。
+- [任务生命周期与切换](/fourier-grx-M4/docs/reference/task_lifecycle)：任务注册、激活、切换、模块和安全覆盖。
+
 ## 机器人与配置
 
 - [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence)：关节顺序、索引和数据字段说明。

@@ -94,6 +94,8 @@ Then open `http://192.168.137.220:8000` in a browser on any computer in the same
 
 For options and port details, see [Command Line Tool · `fourier-grx web`](/fourier-grx-M4/docs/en/reference/command_line_tool#fourier-grx-web-detailed-instructions).
 
+> ℹ️ Patient management, training settings, reports, and EEG integration are provided by the on-site M4 upper computer. `fourier-grx web` is intended for engineering debugging and quick troubleshooting.
+
 ---
 
 ## Development Environment Setup

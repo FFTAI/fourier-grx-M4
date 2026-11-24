@@ -17,6 +17,11 @@ This section consolidates the core reference documentation for the Fourier-GRX-M
 - [User API](/fourier-grx-M4/docs/en/reference/user): For high-level application development, communicating with the robot over the network.
 - [Developer API](/fourier-grx-M4/docs/en/reference/developer): For low-level control development, calling the Python SDK library directly.
 
+## Runtime & Tasks
+
+- [Runtime Architecture](/fourier-grx-M4/docs/en/reference/runtime_architecture): Processes, threads, control loops, communication paths, and data flow.
+- [Task Lifecycle and Switching](/fourier-grx-M4/docs/en/reference/task_lifecycle): Task registration, activation, switching, modules, and safety overrides.
+
 ## Robot & Configuration
 
 - [Joint Sequence](/fourier-grx-M4/docs/en/reference/joint_sequence): Joint order, indices, and data field descriptions.

@@ -169,6 +169,8 @@ The method for switching tasks differs depending on how the robot is being contr
 |                    | Physical Gamepad | Physical Keyboard  | User API (Communication)                                          | Developer API (Communication)                                                         |
 |--------------------|------------------|--------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | Task Selection     | `L1` button      | `Up`/`Down` keys   | Send `Task Value (TID)` via `task.robot_task_command`            |                                                                                       |
-| Task Confirmation  | `L2` button      | `Enter` key        | Send `1` via `task.flag_task_command_update` to confirm update   | Send `Task Value (TID)` via `control_system.robot_control_set_task_command(TID)`     |
+| Task Confirmation  | `L2` double-click | `Enter` key       | Send `1` via `task.flag_task_command_update` to confirm update   | Send `Task Value (TID)` via `control_system.robot_control_set_task_command(TID)`     |
 | Module Selection   | `R1` button      |                    | Send `Module Value (MID)` via `task.robot_component_command`     |                                                                                       |
-| Module Confirmation| `R2` button      |                    | Send `1` via `task.flag_component_command_update` to confirm update | Send `Module Value (MID)` via `control_system.robot_control_set_task_component(MID)` |
+| Module Confirmation| `R2` double-click |                   | Send `1` via `task.flag_component_command_update` to confirm update | Send `Module Value (MID)` via `control_system.robot_control_set_task_component(MID)` |
+
+> ℹ️ For task registration, switch order, hook lifecycle, and safety overrides, see [Task Lifecycle and Switching](/fourier-grx-M4/docs/en/reference/task_lifecycle).

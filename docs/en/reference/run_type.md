@@ -39,8 +39,8 @@ In debug mode, the robot primarily uses a **joystick** 🎮 to invoke internal a
 Task switching is achieved using combinations of the `L1`, `L2`, `R1`, and `R2` buttons on the joystick.
 The currently selected and confirmed task status is printed in the terminal; to see it, you must start the program from a terminal window.
 
-- `L1` is used to cycle through task selections; `L2` is used to confirm and execute a task
-- `R1` is used to cycle through module selections; `R2` is used to confirm and execute a module
+- `L1` cycles through task selections; **double-click** `L2` within 0.3 s to confirm and execute a task
+- `R1` cycles through module selections; **double-click** `R2` within 0.3 s to confirm and execute a module
 
 > ℹ️ **Note**:
 >

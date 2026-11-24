@@ -23,6 +23,7 @@
 <div class="grx-landing">
   <section class="grx-hero">
     <div class="grx-hero__inner">
+      <div class="grx-hero__content">
       <div class="grx-eyebrow">{% if is_en %}Fourier Intelligence robot documentation{% else %}傅利叶智能机器人开发文档{% endif %}</div>
       <div class="grx-hero__title-row">
         <h1 class="grx-hero__title">Fourier-GRX-M4 SDK</h1>
@@ -49,9 +50,13 @@
         </a>
       </div>
       <div class="grx-meta">
-        <span class="grx-meta__chip">Ubuntu 20.04 / 22.04</span>
-        <span class="grx-meta__chip">Python 3.11</span>
+        <span class="grx-meta__chip">Ubuntu 22.04</span>
+        <span class="grx-meta__chip">Python 3.10 / 3.11</span>
         <span class="grx-meta__chip">{% if is_en %}ARM RK3588 and x64{% else %}ARM RK3588 与 x64{% endif %}</span>
+      </div>
+      </div>
+      <div class="grx-hero__media">
+        <img src="{{ '/assets/images/m4l-exoskeleton.png' | relative_url }}" alt="{% if is_en %}Fourier M4L rehabilitation exoskeleton{% else %}傅利叶 M4L 康复外骨骼{% endif %}">
       </div>
     </div>
   </section>

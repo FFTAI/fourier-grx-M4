@@ -90,6 +90,8 @@ fourier-grx web
 
 参数与端口说明见 [命令行工具 · `fourier-grx web`](/fourier-grx-M4/docs/reference/command_line_tool#fourier-grx-web-详细说明)。
 
+> ℹ️ 患者管理、训练设置、训练报告和脑电接入由现场 M4 上位机提供；`fourier-grx web` 更适合工程调试和快速排查。
+
 ---
 
 ## 二次开发环境配置

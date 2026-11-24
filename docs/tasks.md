@@ -168,6 +168,8 @@ M4L 机器人常见任务指令示例：
 |      | 物理手柄    | 物理键盘          | 通信 User 接口                                     | 通信 Developer 接口                                                       |
 |------|---------|---------------|------------------------------------------------|-----------------------------------------------------------------------|
 | 任务选择 | `L1` 按键 | `up`/`down` 键 | `task.robot_task_command` 发送 `任务值 (TID)`       |                                                                       |
-| 任务确认 | `L2` 按键 | `enter` 键     | `task.flag_task_command_update` 发送 1 确认更新      | `control_system.robot_control_set_task_command(TID)` 发送 `任务值 (TID)`   |
+| 任务确认 | `L2` 双击 | `enter` 键     | `task.flag_task_command_update` 发送 1 确认更新      | `control_system.robot_control_set_task_command(TID)` 发送 `任务值 (TID)`   |
 | 模块选择 | `R1` 按键 |               | `task.robot_component_command` 发送 `模块值 (MID)`  |                                                                       |
-| 模块确认 | `R2` 按键 |               | `task.flag_component_command_update` 发送 1 确认更新 | `control_system.robot_control_set_task_component(MID)` 发送 `模块值 (MID)` |
+| 模块确认 | `R2` 双击 |               | `task.flag_component_command_update` 发送 1 确认更新 | `control_system.robot_control_set_task_component(MID)` 发送 `模块值 (MID)` |
+
+> ℹ️ 任务注册、切换顺序、回调生命周期和安全覆盖的完整说明，见[任务生命周期与切换](/fourier-grx-M4/docs/reference/task_lifecycle)。
