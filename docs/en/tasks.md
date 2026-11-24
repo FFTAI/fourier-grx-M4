@@ -105,9 +105,9 @@ The pages below are the primary task descriptions organized in this repository a
 
 ### Basic Control Tasks
 
-- [Actuator Enable](/fourier-grx-M4/docs/en/tasks/servo_on)
-- [Actuator Disable](/fourier-grx-M4/docs/en/tasks/servo_off)
-- [Actuator Reboot](/fourier-grx-M4/docs/en/tasks/servo_reboot)
+- [Servo On](/fourier-grx-M4/docs/en/tasks/servo_on)
+- [Servo Off](/fourier-grx-M4/docs/en/tasks/servo_off)
+- [Servo Reboot](/fourier-grx-M4/docs/en/tasks/servo_reboot)
 - [Clear Fault](/fourier-grx-M4/docs/en/tasks/clear_fault)
 - [Set Home](/fourier-grx-M4/docs/en/tasks/set_home)
 
@@ -116,7 +116,7 @@ The pages below are the primary task descriptions organized in this repository a
 - [Set Home (Rotary Joint)](/fourier-grx-M4/docs/en/tasks/set_home_rotary_joint)
 - [Auto Calibrate (Rotary Joint)](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate)
 - [Manual Calibrate (Rotary Joint)](/fourier-grx-M4/docs/en/tasks/rotary_joint_manual_calibrate)
-- [Calibrate Home (Prismatic Joint)](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint)
+- [Auto Calibrate (Prismatic Joint)](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint)
 
 ### Passive Motion Control
 

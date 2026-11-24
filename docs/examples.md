@@ -72,5 +72,5 @@ python -c "import fourier_grx"
 
 运行具体的示例程序，请参考各个接口页面中的说明：
 
-- [User 接口](/fourier-grx-M4/docs/examples/user)（含 UDP 纯 socket 示例）
-- [Developer 接口](/fourier-grx-M4/docs/examples/developer)
+- [User 接口示例](/fourier-grx-M4/docs/examples/user)（含 UDP 纯 socket 示例）
+- [Developer 接口示例](/fourier-grx-M4/docs/examples/developer)

@@ -1,22 +1,22 @@
 ---
 layout: default
-title: Configuration File
+title: Startup Configuration File
 parent: Reference Guide
 nav_order: 3.5
 has_toc: true
 nav_exclude: true
 ---
 
-# Configuration File
+# Startup Configuration File
 
 * TOC
 {:toc}
 
-The Configuration File is used in the Fourier-GRX SDK to configure the startup parameters for the robot. Users can customize the robot behavior by modifying this file.
+The Startup Configuration File is used in the Fourier-GRX SDK to configure the startup parameters for the robot. Users can customize the robot behavior by modifying this file.
 
-## Configuration File Path
+## Startup Configuration File Path
 
-When starting `fourier-grx`, the path to the Configuration File must be specified via the `--config` parameter.
+When starting `fourier-grx`, the path to the Startup Configuration File must be specified via the `--config` parameter.
 When using `fourier-grx start` to launch the robot, the specific configuration file in use can be found in `~/fourier-grx/run.sh`.
 
 Which configuration file is used depends on the `robot_type`, `robot_version`, and `run_type` fields in `run.sh`.
@@ -33,9 +33,9 @@ run_type="custom"
 # When starting the robot with `fourier-grx start`, ~/fourier-grx/config/m4l/config_M4L_T1_custom.yaml will be used as the configuration file.
 ```
 
-## Configuration File Contents
+## Startup Configuration File Contents
 
-The Configuration File is a YAML-formatted file that contains various robot configuration parameters. The following sections describe the available options.
+The Startup Configuration File is a YAML-formatted file that contains various robot configuration parameters. The following sections describe the available options.
 
 ### Logging
 

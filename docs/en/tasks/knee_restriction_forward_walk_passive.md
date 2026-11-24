@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Passive Forward Walk (Knee Restriction)
+title: Passive Forward Walking (Knee Restriction)
 parent: Task Description
 nav_order: 4.21
 has_toc: true
 nav_exclude: true
 ---
 
-# Passive Forward Walk (Knee Restriction)
+# Passive Forward Walking (Knee Restriction)
 
 * TOC
 {:toc}

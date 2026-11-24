@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Harmonic-Coefficient Assist Forward Walk (dt Mode)
+title: Harmonic-Coefficient Assisted Forward Walking (dt Mode)
 parent: Task Description
 nav_order: 4.14
 has_toc: true
 nav_exclude: true
 ---
 
-# Harmonic-Coefficient Assist Forward Walk (dt Mode)
+# Harmonic-Coefficient Assisted Forward Walking (dt Mode)
 
 * TOC
 {:toc}
@@ -20,8 +20,8 @@ Applicable Models: M4L (P1 / T1 / T2)
 
 Task Description:
 
-- The gait source is identical to [Harmonic-Coefficient Forward Walk (4131)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic): a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables. The **curve shape is fixed** (selected from 16 curves by the amplitude level and the knee restriction level); the **timing** is set by the cadence level.
-- The assist semantics are identical to [Assist Forward Walk (dt Mode, 4118)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt): the assist ratio maps to the trajectory **playback speed** (play_speed ∈ [0.5, 1.0]). A larger ratio plays faster (closer to the normal cadence of the selected level); a smaller ratio plays slower, giving the patient more time to follow the motion. An automatic assist mode is available, in which the algorithm raises or lowers the assist ratio from the measured joint torque.
+- The gait source is identical to [Harmonic-Coefficient Forward Walking (4131)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic): a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables. The **curve shape is fixed** (selected from 16 curves by the amplitude level and the knee restriction level); the **timing** is set by the cadence level.
+- The assist semantics are identical to [Assisted Forward Walking (dt Mode, 4118)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt): the assist ratio maps to the trajectory **playback speed** (play_speed ∈ [0.5, 1.0]). A larger ratio plays faster (closer to the normal cadence of the selected level); a smaller ratio plays slower, giving the patient more time to follow the motion. An automatic assist mode is available, in which the algorithm raises or lowers the assist ratio from the measured joint torque.
 - Difference from 4118: **4118 generates its trajectory online with the LIPM model from step length / walking speed, while this task replays a fixed curve from the coefficient table**. Consequently there are no step-length / walking-speed / base-height / step-height / double-support-ratio parameters; the first three panel levels are exactly the same as 4131 (amplitude / knee restriction / cadence), and the assist ratio moves to `param_4`.
 - The PD gains are **fixed at the medium tier for the whole task** (same as 4118: in assist scenarios the human leads and the machine follows the cadence — the hard tier is too stiff and fights the user) and do not vary with load.
 - This task **commands joint angles only, not translation**: the forward travel of the base (pelvis) is not produced by the algorithm, so the actual distance covered depends on the user plus the exoskeleton as a whole.
@@ -70,7 +70,7 @@ Status interface:
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
 | Reference trajectory position min | `rehab.reference_joint_position_min` |
 
-> The five gait report fields have the same semantics as 4131; see the interface section of [Harmonic-Coefficient Forward Walk](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic).
+> The five gait report fields have the same semantics as 4131; see the interface section of [Harmonic-Coefficient Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic).
 
 Command interface:
 

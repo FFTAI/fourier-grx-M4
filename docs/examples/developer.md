@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Developer 接口
+title: Developer 接口示例
 parent: 示例代码
 nav_order: 2.2
 has_toc: true
 ---
 
-# Developer 接口
+# Developer 接口示例
 
 * TOC
 {:toc}

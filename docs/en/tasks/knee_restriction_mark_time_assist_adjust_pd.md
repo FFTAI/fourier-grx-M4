@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Assist Mark Time (Knee Restriction, PD Mode)
+title: Assisted Marching in Place (Knee Restriction, PD Mode)
 parent: Task Description
 nav_order: 4.25
 has_toc: true
 nav_exclude: true
 ---
 
-# Assist Mark Time (Knee Restriction, PD Mode)
+# Assisted Marching in Place (Knee Restriction, PD Mode)
 
 * TOC
 {:toc}

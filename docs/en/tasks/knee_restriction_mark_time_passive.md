@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Passive Mark Time (Knee Restriction)
+title: Passive Marching in Place (Knee Restriction)
 parent: Task Description
 nav_order: 4.24
 has_toc: true
 nav_exclude: true
 ---
 
-# Passive Mark Time (Knee Restriction)
+# Passive Marching in Place (Knee Restriction)
 
 * TOC
 {:toc}

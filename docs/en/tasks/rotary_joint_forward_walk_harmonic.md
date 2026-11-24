@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Harmonic-Coefficient Forward Walk
+title: Harmonic-Coefficient Forward Walking
 parent: Task Description
 nav_order: 4.12
 has_toc: true
 nav_exclude: true
 ---
 
-# Harmonic-Coefficient Forward Walk
+# Harmonic-Coefficient Forward Walking
 
 * TOC
 {:toc}
@@ -20,7 +20,7 @@ Applicable Models: M4L (P1 / T1 / T2)
 
 Task Description:
 
-- Compared with [Passive Forward Walk (4129)](/fourier-grx-M4/docs/en/tasks/forward_walk_passive), only the **gait source** differs: 4111 derives a joint trajectory online from the LIPM inverted-pendulum model using step length / walking speed, while this task replays a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables.
+- Compared with [Passive Forward Walking (4129)](/fourier-grx-M4/docs/en/tasks/forward_walk_passive), only the **gait source** differs: 4111 derives a joint trajectory online from the LIPM inverted-pendulum model using step length / walking speed, while this task replays a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables.
 - Consequently the **curve shape is fixed**, selected from 16 curves by the "hip swing amplitude level" and the "knee restriction level"; the **timing** is set independently by the "cadence level". The three levels are orthogonal.
 - This task **commands joint angles only, not translation**: the forward travel of the base (pelvis) is not produced by the algorithm, so the actual distance covered depends on the user plus the exoskeleton as a whole. No step length is promised.
 - When the "stop motion flag" is set to true, the robot stops gradually (it finishes the current loop window, then runs a 1 s ending transition) rather than halting immediately.
@@ -149,5 +149,5 @@ The core principle is **offline curve fitting with online phase-based playback**
 - `fourier-grx` v4.4.74: the `flag_robot_torque_protection` flag set by this task's torque protection is now **latched** — it is no longer cleared when the task exits and must be cleared by the host writing `clear_flag_robot_torque_protection`. The protection behaviour itself is unchanged: the task still exits immediately to the idle task (`TASK_IDLE`).
 - `fourier-grx` v4.4.75: this task's software torque protection gains a **0.1 s debounce** — the limit must now be exceeded for 0.1 s in a row (5 cycles at 50 Hz, 10 at 100 Hz, 20 at 200 Hz) before protection trips, and a single cycle back at or below the limit resets the count. The action on tripping and the flag latching are unchanged. Protection used to act with zero delay, so a momentary torque spike could end the task by mistake.
 - `fourier-grx` v4.4.76: the transition from the current posture into the gait start position is shortened from 5.0 s to **2.5 s**, so entering the gait is snappier (the parameter is defined in seconds, so the real duration is the same on 50 / 100 / 200 Hz models). The knee-restriction, assist and feedforward variants that share this control model are affected too.
-- `fourier-grx` v4.4.79: two assist variants of this task are added — PD-adjust assist (**4132**) and cadence (dt)-adjust assist (**4133**). The gait source and the three panel levels (amplitude / knee restriction / cadence) are identical to this task, with the assist ratio moved to `param_4`; the assist semantics match 4116 / 4118 respectively. See [Harmonic-Coefficient Assist Forward Walk (PD Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd) and [Harmonic-Coefficient Assist Forward Walk (dt Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt).
+- `fourier-grx` v4.4.79: two assist variants of this task are added — PD-adjust assist (**4132**) and cadence (dt)-adjust assist (**4133**). The gait source and the three panel levels (amplitude / knee restriction / cadence) are identical to this task, with the assist ratio moved to `param_4`; the assist semantics match 4116 / 4118 respectively. See [Harmonic-Coefficient Assisted Forward Walking (PD Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd) and [Harmonic-Coefficient Assisted Forward Walking (dt Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt).
 - `fourier-grx` v4.4.82: target stride times for the six cadence levels change to **5.25 / 5.00 / 4.50 / 4.00 / 3.50 / 3.00 s**, with the fastest level slowed from 2.45 s to 3.0 s. Only playback timing changes; curve shapes are unchanged. Assist, feedforward and planner variants inherit the new timing.

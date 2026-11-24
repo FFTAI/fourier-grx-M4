@@ -1,18 +1,18 @@
 ---
 layout: default
-title: Developer Interface
+title: Developer API Examples
 parent: Examples
 nav_order: 2.2
 has_toc: true
 nav_exclude: true
 ---
 
-# Developer Interface
+# Developer API Examples
 
 * TOC
 {:toc}
 
-The Fourier-GRX Developer Interface is a secondary development interface provided for low-level development.
+The Fourier-GRX Developer API is a secondary development interface provided for low-level development.
 It calls the underlying hardware interfaces directly and is intended for low-level development work.
 
 To guarantee real-time performance, these examples must be run on the robot controller.
@@ -45,8 +45,8 @@ To guarantee real-time performance, these examples must be run on the robot cont
 
 ### Notes
 
-1. The Developer Interface requires deeper knowledge of robot internals.
-2. It is recommended to become familiar with the User Interface before using the Developer Interface.
+1. The Developer API requires deeper knowledge of robot internals.
+2. It is recommended to become familiar with the User API before using the Developer API.
 3. Make sure to back up important configuration files.
 4. When debugging, it is recommended to operate in a safe environment.
 

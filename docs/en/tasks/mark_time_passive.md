@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Passive Mark Time
+title: Passive Marching in Place
 parent: Task Description
 nav_order: 4.17
 has_toc: true
 nav_exclude: true
 ---
 
-# Passive Mark Time
+# Passive Marching in Place
 
 * TOC
 {:toc}
@@ -18,7 +18,7 @@ Task ID (TID): **4130** (since v4.4.69; previously 4112)
 
 Task Description:
 
-- The robot generates a joint motion trajectory sequence for mark time based on the given parameters, and drives the actuators to track that trajectory, achieving Passive Mark Time.
+- The robot generates a joint motion trajectory sequence for mark time based on the given parameters, and drives the actuators to track that trajectory, achieving Passive Marching in Place.
 - When the "stop motion flag" is set to true, the robot will gradually slow down and stop rather than halting immediately.
 - Once torque protection is triggered, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set. This task must be sent again before stepping can continue.
 

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Assist Mark Time (PD Mode)
+title: Assisted Marching in Place (PD Mode)
 parent: Task Description
 nav_order: 4.18
 has_toc: true
 nav_exclude: true
 ---
 
-# Assist Mark Time (PD Mode)
+# Assisted Marching in Place (PD Mode)
 
 * TOC
 {:toc}
@@ -18,7 +18,7 @@ Task ID (TID): **4117**
 
 Task Description:
 
-- The robot generates a joint motion trajectory sequence for mark time based on the given parameters, and drives the actuators to track that trajectory, achieving Assist Mark Time.
+- The robot generates a joint motion trajectory sequence for mark time based on the given parameters, and drives the actuators to track that trajectory, achieving Assisted Marching in Place.
 
 Task Parameters:
 

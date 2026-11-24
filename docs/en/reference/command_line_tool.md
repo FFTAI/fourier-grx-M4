@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Command Line Tool
+title: Command-Line Tool
 parent: Reference Guide
 nav_order: 3.7
 has_toc: true
 nav_exclude: true
 ---
 
-# Command Line Tool
+# Command-Line Tool
 
 After installing the Fourier-GRX-M4 SDK, use the `fourier-grx` command line tool to manage and control the robot.
 

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Assist Forward Walk (PD Mode)
+title: Assisted Forward Walking (PD Mode)
 parent: Task Description
 nav_order: 4.15
 has_toc: true
 nav_exclude: true
 ---
 
-# Assist Forward Walk (PD Mode)
+# Assisted Forward Walking (PD Mode)
 
 * TOC
 {:toc}

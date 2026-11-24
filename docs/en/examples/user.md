@@ -1,18 +1,18 @@
 ---
 layout: default
-title: User Interface
+title: User API Examples
 parent: Examples
 nav_order: 2.1
 has_toc: true
 nav_exclude: true
 ---
 
-# User Interface
+# User API Examples
 
 * TOC
 {:toc}
 
-The Fourier-GRX User Interface is designed for high-level application development and communicates with the robot over the network.
+The Fourier-GRX User API is designed for high-level application development and communicates with the robot over the network.
 
 You can run these examples on the robot controller or on any computer connected to the same LAN as the robot.
 

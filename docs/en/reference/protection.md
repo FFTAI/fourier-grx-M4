@@ -83,4 +83,4 @@ Once triggered, the controller performs the following steps:
 | `clear_flag_robot_velocity_protection` | Client → Server | Write 1 to clear the velocity protection flag |
 | `clear_flag_robot_position_protection` | Client → Server | Write 1 to clear the position protection flag |
 
-For the complete protocol definitions, see [User Interface](/fourier-grx-M4/docs/en/reference/user).
+For the complete protocol definitions, see [User API](/fourier-grx-M4/docs/en/reference/user).

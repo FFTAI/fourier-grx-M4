@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Assist Mark Time (dt Mode)
+title: Assisted Marching in Place (dt Mode)
 parent: Task Description
 nav_order: 4.19
 has_toc: true
 nav_exclude: true
 ---
 
-# Assist Mark Time (dt Mode)
+# Assisted Marching in Place (dt Mode)
 
 * TOC
 {:toc}
@@ -18,7 +18,7 @@ Task ID (TID): **4119**
 
 Task Description:
 
-- The robot generates a joint motion trajectory sequence for mark time based on the given parameters, and drives the actuators to track that trajectory, achieving Assist Mark Time.
+- The robot generates a joint motion trajectory sequence for mark time based on the given parameters, and drives the actuators to track that trajectory, achieving Assisted Marching in Place.
 - When the "stop motion flag" is set to true, the robot will gradually slow down and stop rather than halting immediately.
 - The assist intensity is controlled by the assist ratio: a higher value causes the trajectory to play faster (closer to normal step frequency); a lower value plays more slowly, giving the patient more time to follow the motion.
 - An automatic assist mode is available. When the "auto assist mode flag" is enabled, the robot automatically adjusts the assist ratio every control cycle based on measured joint torques, without requiring manual setting.

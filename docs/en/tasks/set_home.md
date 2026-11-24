@@ -18,7 +18,7 @@ Task ID (TID): **999**
 > For the M4L robot, please use the following dedicated calibration tasks instead:
 > - Rotary joint (hip/knee) automatic zero-point calibration → [Auto Calibrate (Rotary Joint) TID=4120](/fourier-grx-M4/docs/en/tasks/rotary_joint_auto_calibrate)
 > - Rotary joint zero-point manual setting → [Set Home (Rotary Joint) TID=4103](/fourier-grx-M4/docs/en/tasks/set_home_rotary_joint)
-> - Prismatic joint (leg length) calibration → [Calibrate Home (Prismatic Joint) TID=4210](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint)
+> - Prismatic joint (leg length) calibration → [Auto Calibrate (Prismatic Joint) TID=4210](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint)
 >
 > For the complete calibration procedure, refer to [Joint Zero Calibration](/fourier-grx-M4/docs/en/usage/calibrate).
 

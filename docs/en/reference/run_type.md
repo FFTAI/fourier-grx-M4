@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Run Type
+title: Run Modes
 parent: Reference Guide
 nav_order: 3.6
 has_toc: true
 nav_exclude: true
 ---
 
-# Run Type
+# Run Modes
 
 * TOC
 {:toc}
@@ -24,7 +24,7 @@ The available run types are listed below:
 - ❌ Not available
 - ⚠️ Not yet released; functionality incomplete
 
-| No. | Run Type         | Config Value  | Description                                                                      | End User | Developer |
+| No. | Run Modes         | Config Value  | Description                                                                      | End User | Developer |
 |-----|------------------|---------------|----------------------------------------------------------------------------------|----------|-----------|
 | 1   | release mode     | release       | For factory-deployed robots; uses the **host PC** for robot control by default   | ✅       | ❌        |
 | 2   | debug mode       | debug         | For developer debugging; uses a **joystick** for robot control by default         | ❌       | ✅        |

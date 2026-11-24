@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Stand Motion Control
+title: Standing Posture Control
 parent: Task Description
 nav_order: 4.10
 has_toc: true
 nav_exclude: true
 ---
 
-# Stand Motion Control
+# Standing Posture Control
 
 * TOC
 {:toc}

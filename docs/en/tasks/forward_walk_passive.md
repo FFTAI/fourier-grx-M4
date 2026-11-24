@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Passive Forward Walk
+title: Passive Forward Walking
 parent: Task Description
 nav_order: 4.11
 has_toc: true
@@ -13,7 +13,7 @@ steps:
 current_step: 4
 ---
 
-# Passive Forward Walk
+# Passive Forward Walking
 
 * TOC
 {:toc}

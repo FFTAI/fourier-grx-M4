@@ -1,12 +1,12 @@
 ---
 layout: default
-title: User 接口
+title: User 接口示例
 parent: 示例代码
 nav_order: 2.1
 has_toc: true
 ---
 
-# User 接口
+# User 接口示例
 
 * TOC
 {:toc}
