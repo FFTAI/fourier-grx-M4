@@ -2,9 +2,21 @@
   Reference navigation grouped by the categories used in docs/reference.md.
 {%- endcomment -%}
 {% assign pages = include.pages %}
+{% assign is_en = false %}
+{% if include.lang == 'en' %}{% assign is_en = true %}{% endif %}
 {% assign is_reference_detail = false %}
 {% if page.url contains '/docs/reference/' or page.url contains '/docs/en/reference/' %}{% assign is_reference_detail = true %}{% endif %}
 {% assign no = page.nav_order %}
+
+{% if is_en %}
+  {% assign label_interfaces = 'Interfaces' %}
+  {% assign label_robot_config = 'Robot &amp; Configuration' %}
+  {% assign label_tools = 'Tools &amp; Troubleshooting' %}
+{% else %}
+  {% assign label_interfaces = '接口参考' %}
+  {% assign label_robot_config = '机器人与配置' %}
+  {% assign label_tools = '工具与排障' %}
+{% endif %}
 
 {% assign interfaces = pages | where_exp: "item", "item.nav_order >= 3.0" | where_exp: "item", "item.nav_order <= 3.2" | sort: "nav_order" %}
 {% assign robot_config = pages | where_exp: "item", "item.nav_order >= 3.3" | where_exp: "item", "item.nav_order <= 3.6" | sort: "nav_order" %}
@@ -19,6 +31,6 @@
   {% if no >= 3.7 and no <= 3.9 %}{% assign active_tools = true %}{% endif %}
 {% endif %}
 
-{% include components/grx_nav_group.html title="接口参考" pages=interfaces active=active_interfaces %}
-{% include components/grx_nav_group.html title="机器人与配置" pages=robot_config active=active_robot_config %}
-{% include components/grx_nav_group.html title="工具与排障" pages=tools active=active_tools %}
+{% include components/grx_nav_group.html title=label_interfaces pages=interfaces active=active_interfaces %}
+{% include components/grx_nav_group.html title=label_robot_config pages=robot_config active=active_robot_config %}
+{% include components/grx_nav_group.html title=label_tools pages=tools active=active_tools %}
