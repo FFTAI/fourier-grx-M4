@@ -1,0 +1,528 @@
+# DocsGPT 问答质量基准 / DocsGPT answer-quality benchmark
+#
+# 每条用例都带 evidence（文档出处），期望值一律从文档正文抄录，不来自模型回答。
+# 用途：升级 DocsGPT、更换 embedding / 检索器 / 分块参数、或重新同步文档之后，
+# 跑一遍确认问答链路仍然有效。见同目录 README.md。
+#
+# 判定约定（详见 README）：
+#   cite      检索必须引用到的文件（按 source 路径前缀匹配，全部满足）
+#   cite_any  检索引用到其中任意一个文件即可
+#   all_of    回答正文必须包含的每一段文字（大小写不敏感的子串匹配）
+#   any_of    每个子列表内部是“或”，各子列表之间是“与”
+#   none_of   回答正文一旦出现其中任意一段文字即判失败
+#   absent    文档里没有答案，期望模型明确说“找不到”，而不是编造内容
+
+target:
+  # 问答档（answer）只需要已发布 Agent 的公开 key，它随站点配置一起放在仓库里
+  api_host: "https://chenxin199305.tech/fourier/fourier-grx-M4/docsGPT"
+  agent_key_from_config: "_config.yaml"
+  # 检索档（retrieve）额外需要 DocsGPT 主机上的 JWT 密钥，不从仓库读取
+  source_id: "085202e8-aa20-4ca7-9ea9-de0cf52de557"
+
+grading:
+  # absent 用例认为“正确拒答”的标志词
+  refusal_markers:
+    - "没有足够信息"
+    - "没有找到"
+    - "找不到"
+    - "未找到"
+    - "没有相关"
+    - "没有记录"
+    - "资料中没有"
+    - "资料里没"
+    - "文档中没有"
+    - "文档里没"
+    - "没有覆盖"
+    - "未能找到"
+    - "无法确认"
+    - "不存在"
+    - "尚未发布"
+    - "没有这个版本"
+    - "no information"
+    - "not found"
+    - "not documented"
+    - "no such"
+  # 检索窗口：cite / cite_any 在前 N 个引用里找
+  cite_top_k: 20
+
+cases:
+  # ── 单个版本的改动内容：这一类是历史上最先坏掉的（版本号排不进检索窗口）──
+  - id: rel-4486
+    category: release_version
+    question: "fourier-grx 4.4.86 版本改了什么？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.86"]
+    any_of: [["active_ratio", "assist_ratio"], ["4131", "DSP"]]
+    evidence: "docs/release/fourier-grx.md:126"
+
+  - id: rel-4485
+    category: release_version
+    question: "4.4.85 版本有哪些改动？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.85"]
+    any_of: [["4134", "4135"], ["rock", "高抬腿"]]
+    evidence: "docs/release/fourier-grx.md:150"
+
+  - id: rel-4484
+    category: release_version
+    question: "fourier-grx 4.4.84 更新了什么内容"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.84"]
+    any_of: [["algo_gait_ff_replica_time", "PD_FF"], ["0.10", "0.16"]]
+    evidence: "docs/release/fourier-grx.md:176"
+
+  - id: rel-4482
+    category: release_version
+    question: "4.4.82 这个版本做了什么？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.82"]
+    any_of: [["谐波", "步频"], ["5.00", "4.50", "3.00", "3.0 s"]]
+    evidence: "docs/release/fourier-grx.md:196"
+
+  - id: rel-4481
+    category: release_version
+    question: "4.4.81 版本改了哪些东西？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.81"]
+    any_of: [["4408", "4409"], ["AttributeError", "缓冲区", "注册"]]
+    evidence: "docs/release/fourier-grx.md:216"
+
+  - id: rel-4480
+    category: release_version
+    question: "4.4.80 版本更新了什么？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.80"]
+    any_of: [["轨迹", "缓存"], ["断点续传", "curl -C", "600"]]
+    evidence: "docs/release/fourier-grx.md:241"
+
+  - id: rel-4479
+    category: release_version
+    question: "4.4.79 版本新增了什么任务？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.79"]
+    any_of: [["4132", "4133"]]
+    evidence: "docs/release/fourier-grx.md:270"
+
+  - id: rel-4478
+    category: release_version
+    question: "4.4.78 作为正式发布版本改了什么？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.78"]
+    any_of: [["version"], ["ALLOW_OVERWRITE", "upload_cos", "可追溯"]]
+    evidence: "docs/release/fourier-grx.md:288"
+
+  - id: rel-4472
+    category: release_version
+    question: "4.4.72 版本把站立的 PD 调成了什么？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.72"]
+    any_of: [["medium"], ["350", "500"]]
+    evidence: "docs/release/fourier-grx.md:426"
+
+  - id: rel-4467
+    category: release_version
+    question: "4.4.67 修了 FSA v3 的什么问题？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.67"]
+    any_of: [["错误码"], ["M4LT2", "IDLE", "清错"]]
+    evidence: "docs/release/fourier-grx.md:589"
+
+  - id: rel-4464
+    category: release_version
+    question: "move_min 和 move_max 的每拍钳制是在哪个版本从 0.25 改成 0.5 的？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.64"]
+    any_of: [["0.5 mm", "0.5mm", "0.5"]]
+    evidence: "docs/release/fourier-grx.md:637"
+
+  - id: rel-4448
+    category: release_version
+    question: "4.4.48 给上位机新增了哪几个虚拟面板参数？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.48"]
+    any_of: [["base_height"], ["step_height"], ["dsp_ratio"]]
+    evidence: "docs/release/fourier-grx.md:827"
+
+  - id: rel-4443
+    category: release_version
+    question: "4.4.43 正式版改动了什么？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.43"]
+    any_of: [["心跳"], ["host_heartbeat_counter"]]
+    evidence: "docs/release/fourier-grx.md:902"
+
+  - id: rel-4440
+    category: release_version
+    question: "4.4.40 版本做了什么调整？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.40"]
+    any_of: [["DynalinkCore"], ["序列号", "robot"]]
+    evidence: "docs/release/fourier-grx.md:939"
+
+  # ── 跨版本区间：需要同时召回多个版本小节 ──
+  - id: range-78-86-bugs
+    category: release_range
+    question: "fourier-grx 4.4.78 到 4.4.86 之间有哪些 bug 修复？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.86"]
+    any_of: [["4131", "4.4.80", "断点续传", "upload_cos"]]
+    evidence: "docs/release/fourier-grx.md:126,241,288"
+    note: "这条是触发本次检索迁移的原始问题"
+
+  - id: range-78-86-assist
+    category: release_range
+    question: "4.4.79 到 4.4.86 之间，助力相关的任务有哪些变化？"
+    all_of: ["4132"]
+    any_of: [["4133", "4408", "4409", "DSP"]]
+    evidence: "docs/release/fourier-grx.md:126,216,270"
+
+  - id: range-harmonic-history
+    category: release_range
+    question: "谐波系数步态相关的任务是从哪些版本陆续加进来的？"
+    all_of: ["4131"]
+    any_of: [["4132", "4133", "4408", "4409"]]
+    evidence: "docs/release/fourier-grx.md:270,216"
+
+  # ── 发布性质 / 支持状态 / 正式版本清单 ──
+  - id: meta-official-releases
+    category: release_meta
+    question: "Fourier-GRX 哪些版本是正式发布版本？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.40", "4.4.43", "4.4.72", "4.4.78"]
+    evidence: "docs/release/fourier-grx.md:16"
+
+  - id: meta-recommend
+    category: release_meta
+    question: "新部署的设备推荐安装哪个 fourier-grx 版本？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.78"]
+    evidence: "docs/release/fourier-grx.md:20"
+
+  - id: meta-blaze-not-official
+    category: release_meta
+    question: "带 blaze 的版本是不是正式发布版本？"
+    cite: ["docs/release/fourier-grx.md"]
+    any_of: [["不是", "不等于", "内测", "并非"]]
+    evidence: "docs/release/fourier-grx.md:16,111"
+
+  - id: meta-unsupported-41
+    category: release_meta
+    question: "4.4.41 这个版本还能下载到吗？"
+    cite: ["docs/release/fourier-grx.md"]
+    any_of: [["已下架", "移除", "不能下载", "无法下载"]]
+    evidence: "docs/release/fourier-grx.md:22,69"
+
+  - id: meta-release-date
+    category: release_meta
+    question: "4.4.82 是什么时候发布的？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["4.4.82"]
+    any_of: [["2026-11-16"]]
+    evidence: "docs/release/fourier-grx.md:199"
+
+  - id: meta-4483-absent
+    category: release_meta
+    question: "fourier-grx 4.4.83 版本更新了什么？"
+    absent: true
+    evidence: "docs/release/fourier-grx.md 无 4.4.83 小节"
+    note: "文档里没有 4.4.83，正确行为是说明查不到，不要拿相邻版本充数"
+
+  - id: meta-4487-absent
+    category: release_meta
+    question: "4.4.87 版本的 changelog 说了什么？"
+    absent: true
+    evidence: "docs/release/fourier-grx.md 只到 4.4.86"
+
+  # ── 预发布渠道 ──
+  - id: pre-install-syntax
+    category: prerelease
+    question: "怎么安装 fourier-grx 的预发布版本？"
+    cite_any: ["docs/release/fourier-grx.md", "docs/reference/command_line_tool.md"]
+    any_of: [["prerelease"], ["fourier-grx update"]]
+    evidence: "docs/release/fourier-grx.md:114"
+
+  - id: pre-autodetect
+    category: prerelease
+    question: "fourier-grx update 自动探测会发现预发布包吗？"
+    any_of: [["不会", "不会发现", "不列入", "不会自动"]]
+    evidence: "docs/release/fourier-grx.md:113"
+
+  - id: pre-p1-warning
+    category: prerelease
+    question: "M4LP1 能装 4.4.55-prerelease 吗？"
+    any_of: [["不要", "不能", "不可", "请勿"], ["4.4.56"]]
+    evidence: "docs/release/fourier-grx.md:118"
+    note: "安全相关：P1 上该包启动后立即退出"
+
+  - id: pre-still-install
+    category: prerelease
+    question: "装完预发布包还需要做什么？"
+    all_of: ["fourier-grx install"]
+    evidence: "docs/release/fourier-grx.md:115"
+
+  # ── 命令行工具 ──
+  - id: cli-two-layers
+    category: cli
+    question: "只执行 dpkg -i 之后机器人会用上新版本吗？"
+    cite: ["docs/reference/command_line_tool.md"]
+    any_of: [["不会", "不会用上", "还需要", "仍需"], ["fourier-grx install"]]
+    evidence: "docs/reference/command_line_tool.md:45"
+
+  - id: cli-update-version
+    category: cli
+    question: "怎么用命令行安装指定版本的 fourier-grx？"
+    cite: ["docs/reference/command_line_tool.md"]
+    all_of: ["fourier-grx update"]
+    evidence: "docs/reference/command_line_tool.md:66"
+
+  - id: cli-version-fields
+    category: cli
+    question: "fourier-grx version 会输出哪些信息？"
+    cite: ["docs/reference/command_line_tool.md"]
+    all_of: ["version"]
+    any_of: [["branch"], ["variant"], ["release"], ["commit"], ["built"]]
+    evidence: "docs/reference/command_line_tool.md:141"
+
+  - id: cli-dirty
+    category: cli
+    question: "commit 号后面带 -dirty 说明什么？"
+    cite: ["docs/reference/command_line_tool.md"]
+    any_of: [["未提交", "工作区"], ["不应对外交付", "不交付", "不要交付"]]
+    evidence: "docs/reference/command_line_tool.md:159"
+
+  - id: cli-variant-missing
+    category: cli
+    question: "fourier-grx update 报缺少变体信息怎么办？"
+    cite: ["docs/reference/command_line_tool.md"]
+    any_of: [["dpkg -i"], ["较新", "新版本"]]
+    evidence: "docs/reference/command_line_tool.md:133"
+
+  - id: cli-release-class
+    category: cli
+    question: "release 字段里的 stable 和 beta 分别是什么意思？"
+    cite: ["docs/reference/command_line_tool.md"]
+    any_of: [["正式", "长期支持"], ["内测"]]
+    evidence: "docs/reference/command_line_tool.md:157"
+
+  # ── 任务与 TID ──
+  - id: task-4131
+    category: tasks
+    question: "任务 4131 是什么？"
+    cite: ["docs/tasks/rotary_joint_forward_walk_harmonic.md"]
+    all_of: ["4131"]
+    any_of: [["谐波"]]
+    evidence: "docs/tasks/rotary_joint_forward_walk_harmonic.md"
+
+  - id: task-4132-4133
+    category: tasks
+    question: "4132 和 4133 这两个任务有什么区别？"
+    any_of: [["4132"], ["4133"], ["PD", "步频"]]
+    evidence: "docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd.md"
+
+  - id: task-4134-4135
+    category: tasks
+    question: "4134 和 4135 高抬腿任务有什么区别？"
+    any_of: [["4134"], ["4135"], ["PD", "前馈"]]
+    evidence: "docs/release/fourier-grx.md:150"
+
+  - id: task-4116-4118
+    category: tasks
+    question: "4116 和 4118 这两个助力任务分别是调什么参数的？"
+    any_of: [["4116"], ["4118"], ["PD", "步频", "dt"]]
+    evidence: "docs/tasks/forward_walk_assist_adjust_pd.md"
+
+  - id: task-planner-4408
+    category: tasks
+    question: "规划器 4408 和 4409 对应哪两个执行版任务？"
+    any_of: [["4132"], ["4133"]]
+    evidence: "docs/release/fourier-grx.md:216"
+
+  - id: task-harmonic-assist-param
+    category: tasks
+    question: "谐波助力任务的助力系数放在哪个面板参数上？"
+    any_of: [["param_4"], ["param_3", "步频"]]
+    evidence: "docs/release/fourier-grx.md:270"
+
+  - id: task-planner-no-output
+    category: tasks
+    question: "规划器任务会向机器人下发 PD 或位置目标吗？"
+    any_of: [["不会", "不下发", "不向机器人下发"], ["参考轨迹"]]
+    evidence: "docs/release/fourier-grx.md:216"
+
+  # ── 面板参数取值范围 ──
+  - id: param-base-height
+    category: params
+    question: "基座高度 base_height 的取值范围是多少？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["base_height"]
+    any_of: [["0.6", "1.2"]]
+    evidence: "docs/release/fourier-grx.md:840"
+
+  - id: param-step-height
+    category: params
+    question: "抬腿高度 step_height 默认值和范围是多少？"
+    any_of: [["0.05", "0.2"], ["0.1"]]
+    evidence: "docs/release/fourier-grx.md:841"
+
+  - id: param-dsp-ratio
+    category: params
+    question: "双支撑期占比 dsp_ratio 在什么步态下才生效？"
+    any_of: [["生成器", "generator"], ["DSP", "dsp"]]
+    evidence: "docs/release/fourier-grx.md:842"
+
+  - id: param-knee-base
+    category: params
+    question: "膝限位任务的基座高度可以用 param_6 设置吗？"
+    any_of: [["不能", "不生效", "由膝限位角度", "自动计算"]]
+    evidence: "docs/release/fourier-grx.md:842"
+
+  - id: param-take-effect
+    category: params
+    question: "行走途中修改步态参数会立刻生效吗？"
+    any_of: [["不会", "不会立即", "下次起步", "轨迹重新生成", "不即时"]]
+    evidence: "docs/release/fourier-grx.md:842,150"
+
+  - id: param-high-lift-cm
+    category: params
+    question: "高抬腿任务的 param_3 是用什么单位设置抬脚高度的？"
+    any_of: [["cm", "厘米"], ["10"], ["5", "25"]]
+    evidence: "docs/release/fourier-grx.md:150"
+
+  # ── 安全与排障 ──
+  - id: safety-heartbeat
+    category: troubleshoot
+    question: "上位机心跳超时阈值是多少？"
+    cite: ["docs/reference/communication.md"]
+    all_of: ["host_heartbeat_timeout"]
+    any_of: [["6.0", "6 秒", "6s"]]
+    evidence: "docs/reference/communication.md:126"
+
+  - id: safety-hex-heartbeat
+    category: troubleshoot
+    question: "HEX 协议发 HEART_BEAT 命令会刷新心跳计时器吗？"
+    cite: ["docs/reference/communication.md"]
+    any_of: [["刷新"], ["共用", "同一", "同样", "4196", "4197"]]
+    evidence: "docs/reference/communication.md:134"
+
+  - id: err-can-timeout
+    category: troubleshoot
+    question: "执行器错误码 CanComTimeOut 是什么意思，要怎么处理？"
+    cite: ["docs/reference/actuator_error_code.md"]
+    all_of: ["CanComTimeOut"]
+    any_of: [["握手"], ["重启", "版本匹配"]]
+    evidence: "docs/reference/actuator_error_code.md:25"
+
+  - id: err-encoder-cali
+    category: troubleshoot
+    question: "EncoderNotCali 这个错误码该怎么清除？"
+    cite: ["docs/reference/actuator_error_code.md"]
+    all_of: ["EncoderNotCali"]
+    any_of: [["重新校准", "校准"]]
+    evidence: "docs/reference/actuator_error_code.md:35"
+
+  - id: safety-knee-boundary
+    category: troubleshoot
+    question: "膝限位任务为什么会一运动就触发位置保护？"
+    all_of: ["4.4.48"]
+    any_of: [["边界"], ["位置保护"]]
+    evidence: "docs/release/fourier-grx.md:843"
+
+  - id: safety-t2-fsa-behavior
+    category: troubleshoot
+    question: "M4LT2 上执行器报错会导致任务切到 IDLE 吗？"
+    all_of: ["4.4.67"]
+    any_of: [["IDLE", "切换"], ["v3", "M4LT2"]]
+    evidence: "docs/release/fourier-grx.md:589"
+
+  - id: safety-4485-stiffness
+    category: troubleshoot
+    question: "升级到 4.4.85 之后站立刚度有什么变化，需要注意什么？"
+    all_of: ["4.4.85"]
+    any_of: [["rock"], ["空载", "回归", "验证"]]
+    evidence: "docs/release/fourier-grx.md:150"
+
+  # ── 康复 ──
+  - id: rehab-assist-ratio
+    category: rehab
+    question: "assist_ratio 上报的是不是患者主动用力的占比？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["assist_ratio"]
+    any_of: [["不是", "并非", "不等于"], ["系数", "助力"]]
+    evidence: "docs/release/fourier-grx.md:131"
+
+  - id: rehab-active-ratio
+    category: rehab
+    question: "active_ratio 可以用来评估患者主动参与度吗？"
+    cite: ["docs/release/fourier-grx.md"]
+    all_of: ["active_ratio"]
+    any_of: [["不能", "不可以", "尚", "固定为 0", "还未"]]
+    evidence: "docs/release/fourier-grx.md:132"
+
+  - id: rehab-pd-vs-dt
+    category: rehab
+    question: "PD 助力和 DT 助力有什么区别？"
+    any_of: [["步频", "play_speed", "速度"], ["增益", "Kp", "kp", "PD 档"]]
+    evidence: "docs/rehab/therapist_guide.md:112"
+
+  - id: rehab-quit-zero
+    category: rehab
+    question: "助力任务退出的时候这些系数字段会怎样？"
+    any_of: [["清零", "清 0", "归零"]]
+    evidence: "docs/release/fourier-grx.md:131"
+
+  # ── 英文问法（多语言检索链路）──
+  - id: en-4486
+    category: bilingual
+    question: "What changed in fourier-grx 4.4.86?"
+    cite_any: ["docs/en/release/fourier-grx.md", "docs/release/fourier-grx.md"]
+    all_of: ["4.4.86"]
+    any_of: [["active_ratio", "assist_ratio"], ["DSP", "4131"]]
+    evidence: "docs/en/release/fourier-grx.md"
+
+  - id: en-official
+    category: bilingual
+    question: "Which Fourier-GRX versions are official long-term-support releases?"
+    cite_any: ["docs/en/release/fourier-grx.md", "docs/release/fourier-grx.md"]
+    all_of: ["4.4.40", "4.4.43", "4.4.72", "4.4.78"]
+    evidence: "docs/en/release/fourier-grx.md"
+
+  - id: en-install
+    category: bilingual
+    question: "How do I install a specific fourier-grx version from the command line?"
+    cite_any: ["docs/en/reference/command_line_tool.md", "docs/reference/command_line_tool.md"]
+    all_of: ["fourier-grx update"]
+    evidence: "docs/en/reference/command_line_tool.md"
+
+  - id: en-clamp
+    category: bilingual
+    question: "In which release did the move_min / move_max per-step clamp change from 0.25 to 0.5 mm?"
+    cite_any: ["docs/en/release/fourier-grx.md", "docs/release/fourier-grx.md"]
+    all_of: ["4.4.64"]
+    any_of: [["0.5"]]
+    evidence: "docs/en/release/fourier-grx.md"
+
+  - id: en-heartbeat
+    category: bilingual
+    question: "What is the default host heartbeat timeout?"
+    cite_any: ["docs/en/reference/communication.md", "docs/reference/communication.md"]
+    any_of: [["6.0", "6 seconds", "6 s", "host_heartbeat_timeout"]]
+    evidence: "docs/en/reference/communication.md"
+
+  # ── 需要跨页综合 ──
+  - id: cross-upgrade-flow
+    category: cross
+    question: "从下载 deb 包到机器人跑上新固件，完整步骤是什么？"
+    any_of: [["dpkg", "fourier-grx update"], ["fourier-grx install"]]
+    evidence: "docs/reference/command_line_tool.md:34,45"
+
+  - id: cross-assist-choose
+    category: cross
+    question: "想要调节助力大小但保持节奏不变，应该选哪个任务？"
+    any_of: [["4116", "4132"], ["PD"]]
+    evidence: "docs/tasks/forward_walk_assist_adjust_pd.md"
+
+  - id: cross-harmonic-params
+    category: cross
+    question: "谐波系数步态的面板档位和 4131 是同一套语义吗？助力系数在哪个参数上？"
+    any_of: [["param_4"], ["同一", "一致", "相同"]]
+    evidence: "docs/release/fourier-grx.md:270"
