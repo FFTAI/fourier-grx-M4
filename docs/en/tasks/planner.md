@@ -32,29 +32,29 @@ Task ID (TID): **4402**
 
 Task Parameters: refer to [Passive Mark Time](/fourier-grx-M4/docs/en/tasks/mark_time_passive)
 
-## Assist Forward Walk (Adjust PD Parameter)
+## Assist Forward Walk (PD Mode)
 
 Task ID (TID): **4403**
 
-Task Parameters: refer to [Assist Forward Walk (Adjust PD Parameter)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
+Task Parameters: refer to [Assist Forward Walk (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
 
-## Assist Mark Time (Adjust PD Parameter)
+## Assist Mark Time (PD Mode)
 
 Task ID (TID): **4404**
 
-Task Parameters: refer to [Assist Mark Time (Adjust PD Parameter)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_pd)
+Task Parameters: refer to [Assist Mark Time (PD Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_pd)
 
-## Assist Forward Walk (Adjust dt Parameter)
+## Assist Forward Walk (dt Mode)
 
 Task ID (TID): **4405**
 
-Task Parameters: refer to [Assist Forward Walk (Adjust dt Parameter)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
+Task Parameters: refer to [Assist Forward Walk (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
 
-## Assist Mark Time (Adjust dt Parameter)
+## Assist Mark Time (dt Mode)
 
 Task ID (TID): **4406**
 
-Task Parameters: refer to [Assist Mark Time (Adjust dt Parameter)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
+Task Parameters: refer to [Assist Mark Time (dt Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
 
 ## Harmonic-Coefficient Forward Walk
 
@@ -88,19 +88,19 @@ The knee **extension floor** equals the restriction level of that row (0 / 5 / 1
 
 > 📌 The hip forward-swing peak is capped at 30° (−30° in the URDF frame) in the source data tables: the larger the knee restriction, the further forward the whole hip curve sits, and at levels 3 and 4 the top of the curve is clipped flat, so **the angular range of the amplitude levels converges**. What remains distinguishable is the curve shape (swing timing and peak position). If the host needs the amplitude levels to be visually obvious, pair them with knee restriction levels 1 or 2.
 
-## Harmonic-Coefficient Assisted Forward Walk (Adjust PD Parameters)
+## Harmonic-Coefficient Assisted Forward Walk (PD Mode)
 
 Task ID (TID): **4408**
 
-Task Parameters: refer to [Harmonic-Coefficient Assisted Forward Walk (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
+Task Parameters: refer to [Harmonic-Coefficient Assisted Forward Walk (PD Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
 
 The panel mapping is identical to executing task 4132: `param_1` hip swing amplitude, `param_2` knee extension restriction, `param_3` cadence level, and `param_4` assist ratio. The Planner evaluates the assist-dependent PD level and generates and reports the reference trajectory, but does not send PD or position targets to the robot.
 
-## Harmonic-Coefficient Assisted Forward Walk (Adjust dt Parameters)
+## Harmonic-Coefficient Assisted Forward Walk (dt Mode)
 
 Task ID (TID): **4409**
 
-Task Parameters: refer to [Harmonic-Coefficient Assisted Forward Walk (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
+Task Parameters: refer to [Harmonic-Coefficient Assisted Forward Walk (dt Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
 
 The panel mapping is identical to executing task 4133: `param_1` hip swing amplitude, `param_2` knee extension restriction, `param_3` cadence level, and `param_4` assist ratio; `switch_1` enables automatic assist. The Planner adjusts reference-trajectory playback progress according to the assist ratio and also evaluates the torque-based automatic-assist logic when enabled, but does not send control targets to the robot.
 
@@ -116,29 +116,29 @@ Task ID (TID): **4502**
 
 Task Parameters: refer to [Passive Mark Time (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_passive)
 
-## Assist Forward Walk (Knee Restriction, Adjust PD Parameter)
+## Assist Forward Walk (Knee Restriction, PD Mode)
 
 Task ID (TID): **4503**
 
-Task Parameters: refer to [Assist Forward Walk (Knee Restriction, Adjust PD Parameter)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_pd)
+Task Parameters: refer to [Assist Forward Walk (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_pd)
 
-## Assist Mark Time (Knee Restriction, Adjust PD Parameter)
+## Assist Mark Time (Knee Restriction, PD Mode)
 
 Task ID (TID): **4504**
 
-Task Parameters: refer to [Assist Mark Time (Knee Restriction, Adjust PD Parameter)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
+Task Parameters: refer to [Assist Mark Time (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
 
-## Assist Forward Walk (Knee Restriction, Adjust dt Parameter)
+## Assist Forward Walk (Knee Restriction, dt Mode)
 
 Task ID (TID): **4505**
 
-Task Parameters: refer to [Assist Forward Walk (Knee Restriction, Adjust dt Parameter)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_dt)
+Task Parameters: refer to [Assist Forward Walk (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_dt)
 
-## Assist Mark Time (Knee Restriction, Adjust dt Parameter)
+## Assist Mark Time (Knee Restriction, dt Mode)
 
 Task ID (TID): **4506**
 
-Task Parameters: refer to [Assist Mark Time (Knee Restriction, Adjust dt Parameter)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
+Task Parameters: refer to [Assist Mark Time (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
 
 ## Principle Explanation
 

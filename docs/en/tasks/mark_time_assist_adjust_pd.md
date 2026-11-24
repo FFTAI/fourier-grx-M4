@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Assist Mark Time (Adjust PD Parameter)
+title: Assist Mark Time (PD Mode)
 parent: Task Description
 nav_order: 4.18
 has_toc: true
 nav_exclude: true
 ---
 
-# Assist Mark Time (Adjust PD Parameter)
+# Assist Mark Time (PD Mode)
 
 * TOC
 {:toc}

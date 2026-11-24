@@ -1,12 +1,12 @@
 ---
 layout: default
-title: 助力原地踏步（调整 PD 参数）
+title: 助力原地踏步（PD 模式）
 parent: 任务描述
 nav_order: 4.18
 has_toc: true
 ---
 
-# 助力原地踏步（调整 PD 参数）
+# 助力原地踏步（PD 模式）
 
 * TOC
 {:toc}

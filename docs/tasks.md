@@ -45,15 +45,15 @@ M4L 机器人常见任务指令示例：
 | TASK_PRISMATIC_JOINT_MOVE_OFFSET               | 4207      | M4L  | 腿长相对调节（相对当前位置偏移，无需重新标定）      |
 | TASK_ROTARY_JOINT_FORWARD_WALK                 | 4129      | M4L  | 被动前向行走（v4.4.69 前为 4111）        |
 | TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC        | 4131      | M4L  | 谐波系数前向行走（回放预存步态曲线；幅度档 / 伸膝限制档 / 步频档；v4.4.69 前为 4113） |
-| TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD | 4116    | M4L  | 助力前向行走（调整 PD 参数）              |
-| TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT | 4118    | M4L  | 助力前向行走（调整 dt 参数）              |
-| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD | 4132 | M4L | 谐波系数助力前向行走（调整 PD 参数；面板三档同 4131，助力系数在 param_4；v4.4.79 新增） |
-| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT | 4133 | M4L | 谐波系数助力前向行走（调整 dt 参数；面板三档同 4131，助力系数在 param_4；v4.4.79 新增） |
+| TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD | 4116    | M4L  | 助力前向行走（PD 模式）              |
+| TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT | 4118    | M4L  | 助力前向行走（dt 模式）              |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD | 4132 | M4L | 谐波系数助力前向行走（PD 模式；面板三档同 4131，助力系数在 param_4；v4.4.79 新增） |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT | 4133 | M4L | 谐波系数助力前向行走（dt 模式；面板三档同 4131，助力系数在 param_4；v4.4.79 新增） |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/tasks/forward_walk_high_lift) | 4134 | M4L | 高抬腿 DSP 前向行走（`param_3` 设置目标抬脚峰值，单位 cm；v4.4.85 新增） |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_PD_FF](/fourier-grx-M4/docs/tasks/forward_walk_high_lift) | 4135 | M4L | 高抬腿 DSP 前向行走 + 速度前馈（v4.4.85 新增） |
 | TASK_ROTARY_JOINT_MARK_TIME                    | 4130      | M4L  | 被动原地踏步（v4.4.69 前为 4112）        |
-| TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD   | 4117      | M4L  | 助力原地踏步（调整 PD 参数）              |
-| TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT   | 4119      | M4L  | 助力原地踏步（调整 dt 参数）              |
+| TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD   | 4117      | M4L  | 助力原地踏步（PD 模式）              |
+| TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT   | 4119      | M4L  | 助力原地踏步（dt 模式）              |
 | TASK_ROTARY_JOINT_HIGH_DAMPING                 | 4600      | M4LT2 | 急停触发时自动切换的高阻尼保护任务（kp≈0，kd=20，软制动）  |
 
 - All：表示所有傅利叶智能生产机型
@@ -127,22 +127,22 @@ M4L 机器人常见任务指令示例：
 
 ### 助力运动控制
 
-- [谐波系数助力前向行走（调整 PD 参数）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
-- [谐波系数助力前向行走（调整 dt 参数）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
-- [助力前向行走（调整 PD 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)
-- [助力前向行走（调整 dt 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)
-- [助力原地踏步（调整 PD 参数）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_pd)
-- [助力原地踏步（调整 dt 参数）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
+- [谐波系数助力前向行走（PD 模式）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
+- [谐波系数助力前向行走（dt 模式）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
+- [助力前向行走（PD 模式）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)
+- [助力前向行走（dt 模式）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)
+- [助力原地踏步（PD 模式）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_pd)
+- [助力原地踏步（dt 模式）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
 
 ### 膝关节受限任务
 
 - [站立姿态控制（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_stand_motion_control)
 - [被动前向行走（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive)
-- [助力前向行走（膝关节受限，调整 PD 参数）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_pd)
-- [助力前向行走（膝关节受限，调整 dt 参数）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_dt)
+- [助力前向行走（膝关节受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_pd)
+- [助力前向行走（膝关节受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_dt)
 - [被动原地踏步（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_passive)
-- [助力原地踏步（膝关节受限，调整 PD 参数）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
-- [助力原地踏步（膝关节受限，调整 dt 参数）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
+- [助力原地踏步（膝关节受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
+- [助力原地踏步（膝关节受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
 
 ### 腿长调节任务
 

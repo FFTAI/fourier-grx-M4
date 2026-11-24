@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Assist Forward Walk (Adjust dt Parameter)
+title: Assist Forward Walk (dt Mode)
 parent: Task Description
 nav_order: 4.16
 has_toc: true
 nav_exclude: true
 ---
 
-# Assist Forward Walk (Adjust dt Parameter)
+# Assist Forward Walk (dt Mode)
 
 * TOC
 {:toc}

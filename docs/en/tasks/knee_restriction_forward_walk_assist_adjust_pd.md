@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Assist Forward Walk (Knee Restriction, Adjust PD Parameter)
+title: Assist Forward Walk (Knee Restriction, PD Mode)
 parent: Task Description
 nav_order: 4.22
 has_toc: true
 nav_exclude: true
 ---
 
-# Assist Forward Walk (Knee Restriction, Adjust PD Parameter)
+# Assist Forward Walk (Knee Restriction, PD Mode)
 
 * TOC
 {:toc}

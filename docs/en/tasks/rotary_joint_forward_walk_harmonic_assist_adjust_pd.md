@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Harmonic-Coefficient Assist Forward Walk (PD Adjustment)
+title: Harmonic-Coefficient Assist Forward Walk (PD Mode)
 parent: Task Description
 nav_order: 4.13
 has_toc: true
 nav_exclude: true
 ---
 
-# Harmonic-Coefficient Assist Forward Walk (PD Adjustment)
+# Harmonic-Coefficient Assist Forward Walk (PD Mode)
 
 * TOC
 {:toc}
@@ -21,7 +21,7 @@ Applicable Models: M4L (P1 / T1 / T2)
 Task Description:
 
 - The gait source is identical to [Harmonic-Coefficient Forward Walk (4131)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic): a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables. The **curve shape is fixed** (selected from 16 curves by the amplitude level and the knee restriction level); the **timing** is set by the cadence level.
-- The assist semantics are identical to [Assist Forward Walk (PD Adjustment, 4116)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd): the assist ratio linearly interpolates the PD control gains between buttery (most compliant) and soft (least compliant). A smaller ratio makes the joints more compliant and leaves more room for the patient to actively contribute torque.
+- The assist semantics are identical to [Assist Forward Walk (PD Mode, 4116)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd): the assist ratio linearly interpolates the PD control gains between buttery (most compliant) and soft (least compliant). A smaller ratio makes the joints more compliant and leaves more room for the patient to actively contribute torque.
 - Difference from 4116: **4118 generates its trajectory online with the LIPM model from step length / walking speed, while this task replays a fixed curve from the coefficient table**. Consequently there are no step-length / walking-speed / base-height / step-height / double-support-ratio parameters; the first three panel levels are exactly the same as 4131 (amplitude / knee restriction / cadence), and the assist ratio moves to `param_4`.
 - Load detection and automatic PD ramping are disabled in this task (the assist level is set directly by the host).
 - This task **commands joint angles only, not translation**: the forward travel of the base (pelvis) is not produced by the algorithm, so the actual distance covered depends on the user plus the exoskeleton as a whole.

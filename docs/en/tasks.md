@@ -128,22 +128,22 @@ The pages below are the primary task descriptions organized in this repository a
 
 ### Assisted Motion Control
 
-- [Harmonic-Coefficient Assisted Forward Walking (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
-- [Harmonic-Coefficient Assisted Forward Walking (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
-- [Assisted Forward Walking (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
-- [Assisted Forward Walking (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
-- [Assisted Marching in Place (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_pd)
-- [Assisted Marching in Place (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
+- [Harmonic-Coefficient Assisted Forward Walking (PD Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
+- [Harmonic-Coefficient Assisted Forward Walking (dt Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
+- [Assisted Forward Walking (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
+- [Assisted Forward Walking (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
+- [Assisted Marching in Place (PD Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_pd)
+- [Assisted Marching in Place (dt Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
 
 ### Knee-Restriction Tasks
 
 - [Standing Posture Control (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_stand_motion_control)
 - [Passive Forward Walking (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_passive)
-- [Assisted Forward Walking (Knee Restriction, Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_pd)
-- [Assisted Forward Walking (Knee Restriction, Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_dt)
+- [Assisted Forward Walking (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_pd)
+- [Assisted Forward Walking (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_dt)
 - [Passive Marching in Place (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_passive)
-- [Assisted Marching in Place (Knee Restriction, Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
-- [Assisted Marching in Place (Knee Restriction, Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
+- [Assisted Marching in Place (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
+- [Assisted Marching in Place (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
 
 ### Leg-Length Adjustment Tasks
 
