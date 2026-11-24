@@ -30,10 +30,10 @@
       avatar: {{ docsgpt_avatar | jsonify }},
       heroIcon: {{ docsgpt_avatar | jsonify }},
       buttonIcon: {{ docsgpt_avatar | jsonify }},
-      buttonBg: {{ docsgpt.button_color | default: "#7924fd" | jsonify }},
+      buttonBg: {{ docsgpt.button_color | default: "#6920d8" | jsonify }},
       buttonText: isPreview
         ? (isEnglish ? "Preview DocsGPT" : "预览 DocsGPT")
-        : (isEnglish ? "Ask M4 Assistant" : "询问 M4 助手"),
+        : (isEnglish ? "Ask AI Assistant" : "询问 AI 助手"),
       title: isPreview
         ? "DocsGPT Widget Preview"
         : (isEnglish ? "M4 SDK Assistant" : "M4 SDK 助手"),

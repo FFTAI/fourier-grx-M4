@@ -58,7 +58,7 @@ docsgpt:
   api_host: "https://chenxin199305.tech/fourier/fourier-grx-M4/docsGPT"
   script_url: "https://unpkg.com/docsgpt@0.13.0/dist/legacy/browser.js"
   avatar: "/assets/images/fourier-f-mark.png"
-  button_color: "#7924fd"
+  button_color: "#6920d8"
 
 # 其他配置
 heading_anchors: true

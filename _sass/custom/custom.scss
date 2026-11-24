@@ -1353,6 +1353,16 @@ html.search-active .grx-topbar {
   bottom: 88px;
 }
 
+#docsgpt-chatbot > button {
+  font-family: var(--grx-font-sans);
+  font-weight: 600;
+  color: #fff;
+}
+
+#docsgpt-chatbot > button > img {
+  filter: brightness(0) invert(1);
+}
+
 /* ---------- Landing page ---------- */
 
 .grx-landing-page .main,
