@@ -117,19 +117,22 @@ M4L 机器人常见任务指令示例：
 - [手动校准（旋转关节）](/fourier-grx-M4/docs/tasks/rotary_joint_manual_calibrate)
 - [校准零点（直线关节）](/fourier-grx-M4/docs/tasks/calibrate_home_prismatic_joint)
 
-### 运动任务
+### 被动运动控制
 
 - [站立姿态控制](/fourier-grx-M4/docs/tasks/stand_motion_control)
 - [被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)
 - [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)
+- [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)
+- [高抬腿 DSP 前向行走](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)
+
+### 助力运动控制
+
 - [谐波系数助力前向行走（调整 PD 参数）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
 - [谐波系数助力前向行走（调整 dt 参数）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
 - [助力前向行走（调整 PD 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)
 - [助力前向行走（调整 dt 参数）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)
-- [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)
 - [助力原地踏步（调整 PD 参数）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_pd)
 - [助力原地踏步（调整 dt 参数）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
-- [高抬腿 DSP 前向行走](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)
 
 ### 膝关节受限任务
 

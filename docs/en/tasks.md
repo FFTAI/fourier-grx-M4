@@ -118,19 +118,22 @@ The pages below are the primary task descriptions organized in this repository a
 - [Manual Calibrate (Rotary Joint)](/fourier-grx-M4/docs/en/tasks/rotary_joint_manual_calibrate)
 - [Calibrate Home (Prismatic Joint)](/fourier-grx-M4/docs/en/tasks/calibrate_home_prismatic_joint)
 
-### Motion Tasks
+### Passive Motion Control
 
 - [Standing Posture Control](/fourier-grx-M4/docs/en/tasks/stand_motion_control)
 - [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive)
 - [Harmonic-Coefficient Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
+- [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive)
+- [High-Lift DSP Forward Walk](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift)
+
+### Assisted Motion Control
+
 - [Harmonic-Coefficient Assisted Forward Walking (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
 - [Harmonic-Coefficient Assisted Forward Walking (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
 - [Assisted Forward Walking (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
 - [Assisted Forward Walking (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
-- [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive)
 - [Assisted Marching in Place (Adjust PD Parameters)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_pd)
 - [Assisted Marching in Place (Adjust dt Parameters)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
-- [High-Lift DSP Forward Walk](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift)
 
 ### Knee-Restriction Tasks
 

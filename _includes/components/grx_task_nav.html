@@ -11,7 +11,8 @@
 {% if is_en %}
   {% assign label_basic = 'Basic Control Tasks' %}
   {% assign label_calibration = 'Home &amp; Calibration Tasks' %}
-  {% assign label_motion = 'Motion Tasks' %}
+  {% assign label_passive_motion = 'Passive Motion Control' %}
+  {% assign label_assist_motion = 'Assisted Motion Control' %}
   {% assign label_knee = 'Knee-Restriction Tasks' %}
   {% assign label_leg = 'Leg-Length Adjustment Tasks' %}
   {% assign label_planner = 'Planner' %}
@@ -22,7 +23,8 @@
 {% else %}
   {% assign label_basic = '基础控制任务' %}
   {% assign label_calibration = '零点与校准任务' %}
-  {% assign label_motion = '运动任务' %}
+  {% assign label_passive_motion = '被动运动控制' %}
+  {% assign label_assist_motion = '助力运动控制' %}
   {% assign label_knee = '膝关节受限任务' %}
   {% assign label_leg = '腿长调节任务' %}
   {% assign label_planner = '规划器' %}
@@ -34,9 +36,13 @@
 
 {% assign basic = pages | where_exp: "item", "item.nav_order >= 4.01" | where_exp: "item", "item.nav_order <= 4.05" | sort: "nav_order" %}
 {% assign calibration = pages | where_exp: "item", "item.nav_order >= 4.06" | where_exp: "item", "item.nav_order <= 4.09" | sort: "nav_order" %}
-{% assign motion = pages | where_exp: "item", "item.nav_order >= 4.10" | where_exp: "item", "item.nav_order <= 4.19" %}
+{% assign passive_motion = pages | where_exp: "item", "item.nav_order >= 4.10" | where_exp: "item", "item.nav_order <= 4.12" %}
+{% assign passive_mark = pages | where_exp: "item", "item.nav_order == 4.17" %}
 {% assign high_lift = pages | where: "title", high_lift_title %}
-{% assign motion = motion | concat: high_lift | sort: "nav_order" %}
+{% assign passive_motion = passive_motion | concat: passive_mark | concat: high_lift | sort: "nav_order" %}
+{% assign assist_a = pages | where_exp: "item", "item.nav_order >= 4.13" | where_exp: "item", "item.nav_order <= 4.16" %}
+{% assign assist_b = pages | where_exp: "item", "item.nav_order >= 4.18" | where_exp: "item", "item.nav_order <= 4.19" %}
+{% assign assist_motion = assist_a | concat: assist_b | sort: "nav_order" %}
 {% assign knee = pages | where_exp: "item", "item.nav_order >= 4.20" | where_exp: "item", "item.nav_order <= 4.26" | sort: "nav_order" %}
 {% assign leg = pages | where_exp: "item", "item.nav_order >= 4.27" | where_exp: "item", "item.nav_order <= 4.28" | sort: "nav_order" %}
 {% assign planner = pages | where: "title", planner_title %}
@@ -45,7 +51,8 @@
 
 {% assign active_basic = false %}
 {% assign active_calibration = false %}
-{% assign active_motion = false %}
+{% assign active_passive_motion = false %}
+{% assign active_assist_motion = false %}
 {% assign active_knee = false %}
 {% assign active_leg = false %}
 {% assign active_planner = false %}
@@ -54,18 +61,22 @@
 {% if is_task_detail and no %}
   {% if no >= 4.01 and no <= 4.05 %}{% assign active_basic = true %}{% endif %}
   {% if no >= 4.06 and no <= 4.09 %}{% assign active_calibration = true %}{% endif %}
-  {% if no >= 4.10 and no <= 4.19 %}{% assign active_motion = true %}{% endif %}
+  {% if no >= 4.10 and no <= 4.12 %}{% assign active_passive_motion = true %}{% endif %}
+  {% if no == 4.17 %}{% assign active_passive_motion = true %}{% endif %}
+  {% if no >= 4.13 and no <= 4.16 %}{% assign active_assist_motion = true %}{% endif %}
+  {% if no >= 4.18 and no <= 4.19 %}{% assign active_assist_motion = true %}{% endif %}
   {% if no >= 4.20 and no <= 4.26 %}{% assign active_knee = true %}{% endif %}
   {% if no >= 4.27 and no <= 4.28 %}{% assign active_leg = true %}{% endif %}
   {% if no >= 4.30 and no <= 4.30 %}{% assign active_emergency = true %}{% endif %}
   {% if no >= 4.31 and no <= 4.31 %}{% assign active_algorithm = true %}{% endif %}
   {% if page.title == planner_title %}{% assign active_planner = true %}{% endif %}
-  {% if page.title == high_lift_title %}{% assign active_motion = true %}{% endif %}
+  {% if page.title == high_lift_title %}{% assign active_passive_motion = true %}{% endif %}
 {% endif %}
 
 {% include components/grx_nav_group.html title=label_basic pages=basic active=active_basic %}
 {% include components/grx_nav_group.html title=label_calibration pages=calibration active=active_calibration %}
-{% include components/grx_nav_group.html title=label_motion pages=motion active=active_motion %}
+{% include components/grx_nav_group.html title=label_passive_motion pages=passive_motion active=active_passive_motion %}
+{% include components/grx_nav_group.html title=label_assist_motion pages=assist_motion active=active_assist_motion %}
 {% include components/grx_nav_group.html title=label_knee pages=knee active=active_knee %}
 {% include components/grx_nav_group.html title=label_leg pages=leg active=active_leg %}
 {% include components/grx_nav_group.html title=label_planner pages=planner active=active_planner %}
