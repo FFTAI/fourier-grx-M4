@@ -13,6 +13,7 @@
 行为：只重写两张发布页里被标记的表格区域，**行只增不删**。
 
   - 每行的「发布性质 / 支持状态」两列按数据源刷新（版本号加粗规则随之统一）
+  - 高于最新正式版本的内测构建默认「支持中」，更早的内测构建「不再支持」
   - 索引里有、表里没有的版本作为新行插入到正确位置
   - 已下架（安装包已从下载服务器移除）的行原样保留：索引里没有对象不等于该行该消失
   - 表里有、索引里没有的行只告警，不改写下载链接
@@ -54,6 +55,7 @@ CELLS = {
         "official_kind": "**正式发布**",
         "official_sup": "✅ 长期支持",
         "beta_kind": "内测构建",
+        "beta_active": "✅ 支持中",
         "beta_sup": "❌ 不再支持",
         "other_kind": {"prerelease": "预发布", "test": "内部验证构建"},
         "detail": "[详情](#{anchor})",
@@ -65,6 +67,7 @@ CELLS = {
         "official_kind": "**Official**",
         "official_sup": "✅ Long-term support",
         "beta_kind": "Internal build",
+        "beta_active": "✅ Active",
         "beta_sup": "❌ No longer supported",
         "other_kind": {"prerelease": "Pre-release", "test": "Internal test build"},
         "detail": "[Details](#{anchor})",
@@ -80,6 +83,11 @@ def version_key(version: str) -> tuple:
     if not m:
         return (-1, -1, -1, version)
     return (int(m.group(1)), int(m.group(2)), int(m.group(3)), m.group(4))
+
+
+def latest_stable_version(ledger: dict) -> str | None:
+    stable = (version for version, entry in (ledger.get("releases") or {}).items() if entry.get("channel") == "stable")
+    return max(stable, key=version_key, default=None)
 
 
 def load_manifest(source: str) -> dict:
@@ -141,9 +149,11 @@ def classify(version: str, entry: dict | None, ledger: dict, lang: str) -> tuple
     channel = (entry or {}).get("channel", "beta")
     if official or channel == "stable":
         return c["official_kind"], c["official_sup"], True, "stable"
+    latest_stable = latest_stable_version(ledger)
+    support = c["beta_active"] if latest_stable and version_key(version) > version_key(latest_stable) else c["beta_sup"]
     if channel in c["other_kind"]:
-        return c["other_kind"][channel], c["beta_sup"], False, channel
-    return c["beta_kind"], c["beta_sup"], False, channel
+        return c["other_kind"][channel], support, False, channel
+    return c["beta_kind"], support, False, channel
 
 
 def parse_rows(lines: list[str]) -> list[list[str]]:
