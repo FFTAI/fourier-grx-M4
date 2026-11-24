@@ -14,6 +14,11 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 
+# 仓库工具目录不生成站点页面：上面的 defaults 会把仓库里所有 .md 都当作页面，
+# tools/ 下的 README 是写给维护者的，不该出现在文档站导航里
+exclude:
+  - tools/
+
 # Logo 配置
 logo: "/assets/images/fourier_logo.png"
 logo_alt: "Fourier Intelligence"
