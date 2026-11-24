@@ -53,9 +53,9 @@ kramdown:
 # 这里不要填写 Personal Access Token 或模型供应商密钥。
 # 自托管 DocsGPT 时把 api_host 改为 API 地址（默认端口为 7091）。
 docsgpt:
-  api_key: ""
-  preview: true
-  api_host: "https://gptcloud.arc53.com"
+  api_key: "b6549156-f279-430d-80af-a19fcb28ee9c"
+  preview: false
+  api_host: "https://chenxin199305.tech/fourier/fourier-grx-M4/docsGPT"
   script_url: "https://unpkg.com/docsgpt@0.13.0/dist/legacy/browser.js"
   avatar: "/assets/images/fourier-f-mark.png"
   button_color: "#7924fd"
