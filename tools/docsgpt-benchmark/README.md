@@ -58,6 +58,31 @@ python3 tools/docsgpt-benchmark/run_benchmark.py --json report.json        # 落
 3. **锚点不能是问句里已经出现的词**：只要模型把问题复述一遍就能及格，这条用例等于没写。跨语言/跨页用例尤其注意 `PD`、`DSP`、`会`、`4132` 这类回声锚点，跑 `--audit-anchors` 可以扫出来
 4. 加一条 `absent` 用例（文档里没有的东西），这是唯一能抓住“一本正经胡说”的题型
 
+## 自动化
+
+文档合进 `main` 之后，`.github/workflows/docs-sync.yml` 会自动做两件事：
+
+1. `python3 tools/sync_docsgpt.py --check` —— 把 `docs/` 打包推给 DocsGPT 增量同步
+2. 抽样跑几条本基准（不阻塞，只作信号）
+
+凭据模型：`simple_jwt` 模式下 DocsGPT 发不出 PAT（`auth_type_supports_pats` 只允许
+默认/oidc），所以 CI 持有的是一个**同步令牌**（仓库 secret `DOCSGPT_SYNC_TOKEN`）。
+云端 Caddy 只在对 `manage_source_files` / `task_status` 两个端点校验该令牌通过后，
+才把它换成 DocsGPT 内部凭据——CI 既拿不到 `JWT_SECRET_KEY`（那等于能伪造任意身份），
+也用不到其它接口。顺带 DocsGPT 的公网接口面已收敛到 widget 真正调用的 5 个端点
+（`/stream` 与 `/api/{feedback,search,store_attachment,task_status}`），其余管理端点
+在边缘返回 403。
+
+注意 `sync` 是**整源替换**语义：zip 里没有的文件会被从源中删除，所以同步脚本要求
+`docs/` 至少 120 个 markdown 才肯上传，CI 在 docs 缺失的分支上会直接失败而不是清空语料。
+
+手动补一次同步（例如改完检索参数想立刻验证）：
+
+```bash
+DOCSGPT_TOKEN=$(现签的 JWT) python3 tools/sync_docsgpt.py --check   # 在 DocsGPT 主机上
+python3 tools/sync_docsgpt.py --dry-run                            # 只体检
+```
+
 ## 现状
 
 基线（2026-11-24，DocsGPT 1.1.0 + pgvector hybrid + chunks=20，语料对齐 HEAD）：
