@@ -47,13 +47,18 @@ kramdown:
   toc_levels: 2..3  # 正文目录只收录 H2/H3，避免把页面标题本身列进目录
   syntax_highlighter: rouge
 
-# Dify AI 问答机器人
-# 在 Dify 控制台（应用 -> 访问 API / 嵌入）获取嵌入 token 后填入即可启用；
-# token 为空时组件不加载。自建 Dify 时修改 base_url 为你的 Dify 域名。
-dify_chatbot:
-  token: ""
-  base_url: "https://udify.app"
-  button_color: "#7253ed"
+# DocsGPT 文档问答机器人
+# 发布 DocsGPT Classic Agent 后，在 Access Details 中取得 API key 并填入即可启用；
+# api_key 为空且 preview 为 false 时组件不加载。preview 仅用于官方演示 Agent 的界面预览。
+# 这里不要填写 Personal Access Token 或模型供应商密钥。
+# 自托管 DocsGPT 时把 api_host 改为 API 地址（默认端口为 7091）。
+docsgpt:
+  api_key: ""
+  preview: true
+  api_host: "https://gptcloud.arc53.com"
+  script_url: "https://unpkg.com/docsgpt@0.13.0/dist/legacy/browser.js"
+  avatar: "/assets/images/fourier-f-mark.png"
+  button_color: "#7924fd"
 
 # 其他配置
 heading_anchors: true

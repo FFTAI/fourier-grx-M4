@@ -4,10 +4,13 @@
 {% if page_lang == 'en' %}{% assign is_en = true %}{% endif %}
 {% assign is_task = false %}
 {% if page.url contains '/docs/tasks/' or page.url contains '/docs/en/tasks/' %}{% assign is_task = true %}{% endif %}
+{% assign docsgpt_enabled = false %}
+{% if site.docsgpt and site.docsgpt.preview %}{% assign docsgpt_enabled = true %}{% endif %}
+{% if site.docsgpt and site.docsgpt.api_key and site.docsgpt.api_key != "" %}{% assign docsgpt_enabled = true %}{% endif %}
 <!DOCTYPE html>
 <html lang="{{ page_lang }}">
 {% include head.html %}
-<body class="grx-body{% if page.landing %} grx-landing-page{% endif %}{% if is_task %} grx-task-page{% endif %}">
+<body class="grx-body{% if page.landing %} grx-landing-page{% endif %}{% if is_task %} grx-task-page{% endif %}{% if docsgpt_enabled %} grx-docsgpt-enabled{% endif %}">
   <a class="skip-to-main" href="#main-content">{% if is_en %}Skip to main content{% else %}跳到正文{% endif %}</a>
   {% include icons/icons.html %}
   {% include grx_icons.html %}
@@ -67,5 +70,6 @@
     {% include components/mermaid.html %}
   {% endif %}
   <script src="{{ '/assets/js/grx-ui.js' | relative_url }}" defer></script>
+  {% include docsgpt_chatbot.html %}
 </body>
 </html>

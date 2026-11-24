@@ -1349,6 +1349,10 @@ html.search-active .grx-topbar {
   border-color: var(--grx-brand);
 }
 
+.grx-docsgpt-enabled #grx-top-btn {
+  bottom: 88px;
+}
+
 /* ---------- Landing page ---------- */
 
 .grx-landing-page .main,

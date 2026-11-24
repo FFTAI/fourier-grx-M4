@@ -1,0 +1,75 @@
+{% comment %}
+  DocsGPT 文档问答组件。
+  在 _config.yaml 的 docsgpt.api_key 中填入已发布 Agent 的 API key 后自动启用。
+  api_key 为空且 preview 为 true 时使用 DocsGPT 官方演示 Agent，仅供界面预览。
+  自托管 DocsGPT 时把 api_host 改为 API 地址（默认为 http://localhost:7091）。
+{% endcomment %}
+{% assign docsgpt = site.docsgpt %}
+{% assign docsgpt_preview = false %}
+{% if docsgpt.preview and docsgpt.api_key == "" %}{% assign docsgpt_preview = true %}{% endif %}
+{% if docsgpt_enabled %}
+{% assign docsgpt_api_host = docsgpt.api_host | default: "https://gptcloud.arc53.com" %}
+{% assign docsgpt_script_url = docsgpt.script_url | default: "https://unpkg.com/docsgpt@0.13.0/dist/legacy/browser.js" %}
+{% assign docsgpt_avatar = docsgpt.avatar | default: "/assets/images/fourier-f-mark.png" | relative_url %}
+<div id="docsgpt-chatbot"></div>
+<script src="{{ docsgpt_script_url }}" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof window.renderDocsGPTWidget !== "function") {
+      console.error("DocsGPT widget failed to load.");
+      return;
+    }
+
+    var isEnglish = document.documentElement.lang.toLowerCase().indexOf("en") === 0;
+    var isPreview = {{ docsgpt_preview | jsonify }};
+    var theme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+
+    window.renderDocsGPTWidget("docsgpt-chatbot", {
+      apiHost: {{ docsgpt_api_host | jsonify }},
+      {% unless docsgpt_preview %}apiKey: {{ docsgpt.api_key | jsonify }},{% endunless %}
+      avatar: {{ docsgpt_avatar | jsonify }},
+      heroIcon: {{ docsgpt_avatar | jsonify }},
+      buttonIcon: {{ docsgpt_avatar | jsonify }},
+      buttonBg: {{ docsgpt.button_color | default: "#7924fd" | jsonify }},
+      buttonText: isPreview
+        ? (isEnglish ? "Preview DocsGPT" : "预览 DocsGPT")
+        : (isEnglish ? "Ask M4 Assistant" : "询问 M4 助手"),
+      title: isPreview
+        ? "DocsGPT Widget Preview"
+        : (isEnglish ? "M4 SDK Assistant" : "M4 SDK 助手"),
+      description: isPreview
+        ? (isEnglish ? "UI preview using the public DocsGPT demo agent" : "使用 DocsGPT 官方演示 Agent 的界面预览")
+        : (isEnglish ? "Answers based on the Fourier-GRX-M4 documentation" : "基于 Fourier-GRX-M4 文档回答"),
+      heroTitle: isPreview
+        ? "DocsGPT Widget Preview"
+        : (isEnglish ? "How can I help?" : "你好，我是 M4 SDK 助手"),
+      heroDescription: isPreview
+        ? (isEnglish
+            ? "This preview does not answer from the M4 documentation. Configure a published M4 agent for production use."
+            : "当前预览不会根据 M4 文档回答。正式使用请配置已导入 M4 文档并发布的 Agent。")
+        : (isEnglish
+            ? "AI-generated answers may contain errors. Check the cited sources and follow all safety instructions when operating the robot."
+            : "答案由 AI 根据文档生成，请核对引用来源。涉及机器人操作时，请遵循原文中的安全要求。"),
+      suggestedQuestions: isPreview
+        ? (isEnglish
+            ? ["What is DocsGPT?", "How do I self-host DocsGPT?"]
+            : ["什么是 DocsGPT？", "如何自托管 DocsGPT？"])
+        : (isEnglish
+            ? [
+                "How do I install the Fourier-GRX SDK?",
+                "How do I connect to the M4 robot over the network?",
+                "How do I troubleshoot initialization failures?"
+              ]
+            : [
+                "如何安装 Fourier-GRX SDK？",
+                "如何连接 M4 机器人网络？",
+                "如何排查初始化失败？"
+              ]),
+      locale: isEnglish ? "en" : "zh",
+      theme: theme,
+      showSources: true,
+      collectFeedback: true
+    });
+  });
+</script>
+{% endif %}
