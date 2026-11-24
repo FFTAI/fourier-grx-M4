@@ -2,7 +2,7 @@
 {% if page.lang == 'en' or page.url contains '/docs/en' %}{% assign is_en = true %}{% endif %}
 {% assign base = '/docs' %}
 {% if is_en %}{% assign base = '/docs/en' %}{% endif %}
-{% assign doc_version = site.doc_version | default: 'v1.2.71' %}
+{% assign doc_version = site.doc_version | default: 'v1.2.72' %}
 {% assign quickstart_path = base | append: '/quickstart' %}
 {% assign reference_path = base | append: '/reference' %}
 {% assign tasks_path = base | append: '/tasks' %}

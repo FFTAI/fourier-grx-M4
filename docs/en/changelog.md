@@ -12,6 +12,21 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.72 (2026-11-24)
+
+**Documentation Updates**
+
+- 🆕 **New guide pages**: runtime architecture, task lifecycle and switching, therapist guide for rehab training, EEG brain-computer-interface integration, and the M4L quick start, in both languages
+- 🗂️ **Site redesign and navigation**: applied the Kimi Design documentation theme; motion tasks split into passive and assist groups, second-level sidebar groups added, page naming and terminology unified, and assist modes relabelled "PD mode" and "dt mode"
+- 📋 **Firmware version table**: support status refreshed to "supported" for the seven internal builds `fourier-grx` 4.4.79-4.4.86, in both languages
+
+**Tooling and process**
+
+- 🤖 **DocsGPT assistant added to the docs site**: floating bottom-right entry with bilingual copy, Fourier brand icon and source citations; only the published agent's public key is used, model keys never enter the repository
+- 🧪 **New answer-quality benchmark** `tools/docsgpt-benchmark/`: 66 question/answer cases whose expectations are quoted from the documentation with sources, graded in answer and retrieval tiers, with CI gates and an anchor-validity audit; baseline and known gaps are listed in its README
+- 🔁 **Documentation sync moved into CI**: merges to `main` are synced into DocsGPT incrementally per file by `.github/workflows/docs-sync.yml`; the sync token is exchanged for internal credentials at the edge for two endpoints only, and the publicly exposed DocsGPT surface was narrowed to the five endpoints the assistant actually calls
+
+
 ### v1.2.69 (2026-11-18)
 
 **Documentation Cleanup**
