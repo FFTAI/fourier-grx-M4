@@ -36,7 +36,7 @@ sudo systemctl disable rocs-wifi   # Permanently disable (takes effect after reb
 
 ## Disable IPv6 on the Windows Host's Wired Adapter
 
-**Question**: The Windows host is directly connected to the robot over Ethernet and shares its network, and domain name resolution fails or communication times out.
+**Question**: The Windows host is directly connected to the robot over Ethernet and shares its network, and domain name resolution fails, communication times out, or the robot stutters occasionally during operation.
 
 **Solution**: Disable IPv6 on the wired adapter that connects the host to the robot.
 
