@@ -20,7 +20,7 @@ nav_order: 6.5
 
 **排查步骤**：
 
-1. 关闭 IPv6（主控电脑及局域网内其他设备）
+1. 关闭 IPv6（主控电脑、上位机及局域网内其他设备），Windows 上位机的操作方法见 [关闭 Windows 上位机有线网 IPv6](/fourier-grx-M4/docs/faq/network#关闭-windows-上位机有线网-ipv6)
 2. 检查执行器连接线是否松动
 3. 监控网络延迟和丢包情况
 

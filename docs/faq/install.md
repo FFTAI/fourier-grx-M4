@@ -31,4 +31,5 @@ nav_order: 6.2
 1. 确认镜像烧录的是 [20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz)
 2. 执行 `ifconfig`，确认 IP 地址为 `192.168.137.xxx` 网段
 3. 尝试 `ping www.baidu.com`。如果 ping 不通，说明上位机没有成功共享网络给 LubanCAT，需要重启上位机的网络共享，具体配置步骤见 [网络连接与远程登录](/fourier-grx-M4/docs/usage/network_connection)
-4. 如果重启网络共享后仍无法访问，尝试整机重启
+4. 如果仍无法解析，在 Windows 上位机连接 LubanCAT 的有线网卡上关闭 IPv6，操作方法见 [关闭 Windows 上位机有线网 IPv6](/fourier-grx-M4/docs/faq/network#关闭-windows-上位机有线网-ipv6)
+5. 如果以上步骤仍无法访问，尝试整机重启

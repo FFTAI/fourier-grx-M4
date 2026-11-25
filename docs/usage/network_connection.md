@@ -46,6 +46,7 @@ has_toc: true
 > - **20260805 及以后的系统镜像**烧录后自动配置静态 IP `192.168.137.220`，无需扫描，可直接访问。
 > - 如果机器人当前网络仍为 **DHCP** 模式（旧版镜像且尚未执行过安装），共享网络生效后机器人会自动从 `192.168.137.x` 网段获取一个动态 IP；具体地址可以使用 [烧录镜像](/fourier-grx-M4/docs/quickstart/flash_image) 页面提供的 [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) 脚本扫描确认。
 > - 如果机器人已经是**静态 IP**（`192.168.137.220`，已完成过首次安装或使用了 20260805 及以后的镜像），共享网络生效后可直接通过该固定地址访问，无需扫描。
+> - 如果共享网络后仍无法解析域名或出现通信超时，可在连接机器人的有线网卡上关闭 IPv6，操作方法见 [关闭 Windows 上位机有线网 IPv6](/fourier-grx-M4/docs/faq/network#关闭-windows-上位机有线网-ipv6)。
 
 ## 方式二：macOS 电脑共享网络
 

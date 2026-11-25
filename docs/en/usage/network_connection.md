@@ -47,6 +47,7 @@ On site there is often no router that can both "provide internet access" and "be
 > - **System images from 20260805 onward** are automatically configured with the static IP `192.168.137.220` after flashing — no scanning needed, the robot is directly reachable.
 > - If the robot's network is still in **DHCP** mode (an older image that has not yet been installed), the robot will automatically obtain a dynamic IP from the `192.168.137.x` subnet once sharing takes effect; you can use the [`network_scanner.ps1`](/fourier-grx-M4/assets/scripts/network_scanner.ps1) script provided on the [Image Flashing](/fourier-grx-M4/docs/en/quickstart/flash_image) page to scan for the actual address.
 > - If the robot already has a **static IP** (`192.168.137.220` — first-time installation completed, or flashed with a 20260805-or-later image), it is directly reachable at that fixed address once sharing takes effect, with no scanning required.
+> - If domain name resolution still fails or communication times out after sharing the network, disable IPv6 on the wired adapter connected to the robot; see [Disable IPv6 on the Windows Host's Wired Adapter](/fourier-grx-M4/docs/en/faq/network#disable-ipv6-on-the-windows-hosts-wired-adapter).
 
 ## Method 2: Share the Network from a macOS PC
 

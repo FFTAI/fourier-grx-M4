@@ -21,7 +21,7 @@ nav_exclude: true
 
 **Troubleshooting**:
 
-1. Disable IPv6 (on the main controller and other devices on the LAN)
+1. Disable IPv6 (on the main controller, host PC, and other devices on the LAN); for a Windows host, see [Disable IPv6 on the Windows Host's Wired Adapter](/fourier-grx-M4/docs/en/faq/network#disable-ipv6-on-the-windows-hosts-wired-adapter)
 2. Check for loose actuator connection cables
 3. Monitor network latency and packet loss
 
