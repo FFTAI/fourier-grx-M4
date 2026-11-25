@@ -11,6 +11,6 @@ has_children: true
 |------|----------|------|----------|
 | Fourier-GRX | **4.4.78**（正式版） | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.78-linux-arm64-cpu-m4l-blaze.deb) | [查看全部版本 →](/fourier-grx-M4/docs/release/fourier-grx) |
 | Fourier-M4  | 2.0.6    | [⬇ 下载](https://fourier-m4-1302548221.cos.ap-shanghai.myqcloud.com/fourier-m4-2.0.6.deb) | [查看全部版本 →](/fourier-grx-M4/docs/release/fourier-m4) |
-| IO Board    | **1.0.0.3** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.3_20260721.zip) | [查看全部版本 →](/fourier-grx-M4/docs/release/ioboard) |
+| IO Board    | **1.0.0.4** | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.4_20261119.zip) | [查看全部版本 →](/fourier-grx-M4/docs/release/ioboard) |
 
 > ℹ️ 表中为 Fourier-GRX 最新**正式发布**版本。Fourier-GRX 真正的正式发布版本仅有 4.4.40、4.4.43、4.4.72、4.4.78，四者均保持**长期支持**；其他 `blaze` 包为内测构建，不纳入长期支持。预发布渠道（`prerelease`）不在此列出，安装方式见 [Fourier-GRX 固件 · 预发布渠道](/fourier-grx-M4/docs/release/fourier-grx#预发布渠道)。

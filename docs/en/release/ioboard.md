@@ -16,7 +16,8 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Support |
 |---------------|---------|----------|----------------|---------|
-| 2026-07-21 | **1.0.0.3** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.3_20260721.zip) | [Details](#1003) | ✅ Active |
+| 2026-11-19 | **1.0.0.4** | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.4_20261119.zip) | [Details](#1004) | ✅ Active |
+| 2026-07-21 | 1.0.0.3 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.3_20260721.zip) | [Details](#1003) | ✅ Active |
 | 2026-05-12 | 1.0.0.2 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/m4/ioboard_v1.0.0.2_20260512.zip) | [Details](#1002) | ✅ Active |
 
 ## Flashing Instructions
@@ -37,6 +38,16 @@ Hardware platform: ESP32-WROOM-32D
 ---
 
 ## Release Notes
+
+### 1.0.0.4
+
+> 📅 2026-11-19 &nbsp;·&nbsp; Platform: ESP32-WROOM-32D
+
+🔧 **Changed**
+
+- **Voltage display fix**: fixed a voltage display bug; the battery level can now correctly display up to 100%
+
+---
 
 ### 1.0.0.3
 
