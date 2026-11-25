@@ -21,3 +21,14 @@ nav_order: 6.2
 
 1. 确认输入符合提示：机器人型号、副版本用**数字编号**，主版本与运行模式还可用 **A/B/C 字母**；不要输入选项名称文本
 2. 重启安装程序后重新配置
+
+## 镜像烧录后无法解析域名
+
+**现象**：在 LubanCAT 上执行 `wget` 等下载命令时，提示 `域名解析出现暂时性错误` 或 `无法解析主机地址`，无法访问外网。
+
+**解决方案**：
+
+1. 确认镜像烧录的是 [20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/20260805_ubuntu-22.04-desktop-arm64-lubancat-4.img.xz)
+2. 执行 `ifconfig`，确认 IP 地址为 `192.168.137.xxx` 网段
+3. 尝试 `ping www.baidu.com`。如果 ping 不通，说明上位机没有成功共享网络给 LubanCAT，需要重启上位机的网络共享
+4. 如果重启网络共享后仍无法访问，尝试整机重启
