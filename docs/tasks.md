@@ -51,8 +51,8 @@ M4L 机器人常见任务指令示例：
 | TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT | 4133 | M4L | 谐波系数助力前向行走（dt 模式；面板三档同 4131，助力系数在 param_4；v4.4.79 新增） |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/tasks/forward_walk_high_lift) | 4134 | M4L | 高抬腿 DSP 前向行走（`param_3` 设置目标抬脚峰值，单位 cm；v4.4.85 新增） |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_PD_FF](/fourier-grx-M4/docs/tasks/forward_walk_high_lift) | 4135 | M4L | 高抬腿 DSP 前向行走 + 速度前馈（v4.4.85 新增） |
-| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/tasks/forward_walk_high_lift) | 4136 | M4L | 高抬腿 DSP 助力前向行走（调 PD；v4.4.87 新增） |
-| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/tasks/forward_walk_high_lift) | 4137 | M4L | 高抬腿 DSP 助力前向行走（调 dt；v4.4.87 新增） |
+| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist) | 4136 | M4L | 高抬腿 DSP 助力前向行走（调 PD；v4.4.87 新增） |
+| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist) | 4137 | M4L | 高抬腿 DSP 助力前向行走（调 dt；v4.4.87 新增） |
 | TASK_ROTARY_JOINT_MARK_TIME                    | 4130      | M4L  | 被动原地踏步（v4.4.69 前为 4112）        |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD   | 4117      | M4L  | 助力原地踏步（PD 模式）              |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT   | 4119      | M4L  | 助力原地踏步（dt 模式）              |
@@ -133,6 +133,7 @@ M4L 机器人常见任务指令示例：
 - [谐波系数助力前向行走（dt 模式）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
 - [助力前向行走（PD 模式）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)
 - [助力前向行走（dt 模式）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)
+- [高抬腿 DSP 助力前向行走](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist)
 - [助力原地踏步（PD 模式）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_pd)
 - [助力原地踏步（dt 模式）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
 

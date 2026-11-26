@@ -15,8 +15,6 @@ nav_exclude: true
 |---|---|---|
 | High-lift DSP forward walk | **4134** | PD |
 | High-lift DSP forward walk + velocity feedforward | **4135** | PD + velocity feedforward |
-| High-lift DSP assist forward walk (PD) | **4136** | PD-adjust assist |
-| High-lift DSP assist forward walk (dt) | **4137** | dt-adjust assist |
 
 Applicable models: M4L (P1 / T1 / T2).
 
@@ -25,6 +23,7 @@ Task description:
 - Adds swing-foot lift compensation to normal DSP forward walking. The generator evaluates the actual foot position produced by the original DSP trajectory, re-solves hip / knee angles for a target ground clearance during swing, and applies zero-phase smoothing.
 - The compensation addresses lift lost through hip-angle scaling and smoothing. It does not alter the support-leg trajectory or promise forward base travel.
 - 4135 reuses the trajectory and panel parameters of 4134 and adds velocity feedforward. T2 sends it directly through FSA v3. FSA v2 fast frames on P1/T1 have no velocity field; the related reference compensation affects visualization only and does not modify actual joint targets.
+- The assist variants 4136 / 4137 reuse this trajectory and the DSP parameters, adding the assist ratio on `param_4`; they change only the execution layer (PD gains or playback speed). See [High-Lift DSP Assisted Forward Walk](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist).
 - Start, stop, pause, torque protection and Dynalink reporting are inherited from [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive).
 
 ## Task Parameters
@@ -45,12 +44,11 @@ Task description:
 
 ## Interface Info
 
-4134–4137 use the same state and command interfaces as passive forward walking, with assist ratio on `param_4` for 4136 / 4137:
+4134 / 4135 use the same state and command interfaces as passive forward walking:
 
 | Parameter | Interface Mapping |
 |---|---|
 | Target lift peak | `grx.virtual_panel_command_param_3` |
-| Assist ratio (4136 / 4137 only) | `grx.virtual_panel_command_param_4` |
 | Start / stop / pause | `grx.virtual_panel_command_start` / `stop` / `pause` |
 | Enable torque protection | `grx.virtual_panel_command_switch_1` |
 | Reference trajectories, progress and cadence | `rehab.reference_joint_*`, `rehab.motion_ratio`, `rehab.step_frequency` |
@@ -81,5 +79,5 @@ TID 4135 leaves this compensation unchanged and only adds velocity feedforward d
 ## Update Log
 
 - `fourier-grx` v4.4.85: added 4134 / 4135. The default lift target is 10 cm and can be raised to 15 cm; Harmonic / DSP / DSP+lift comparison tooling is included for offline trajectory inspection.
-- `fourier-grx` v4.4.87: added 4136 / 4137 high-lift assist tasks, Beta lift windows and angular-acceleration limits. The default peak phase is 0.42 and the target height is 15 cm; actual lift is about 10 cm in the current default scenario.
+- `fourier-grx` v4.4.87: added Beta lift windows and angular-acceleration limits. The default peak phase is 0.42 and the target height is 15 cm; actual lift is about 10 cm in the current default scenario. The same version added assist variants 4136 / 4137, documented in [High-Lift DSP Assisted Forward Walk](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist).
 - `fourier-grx` v4.4.88: switches to actual-height solving with a 10 cm target. Smoothing is normalized by step time (sigma 0.08×T_step, base smoothing 0.10×T_step); acceleration becomes a diagnostic, while peak mode preserves the original semantics.

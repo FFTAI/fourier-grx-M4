@@ -2,7 +2,7 @@
 layout: default
 title: 高阻尼保护（急停响应，M4LT2）
 parent: 任务描述
-nav_order: 4.30
+nav_order: 4.31
 has_toc: true
 ---
 
