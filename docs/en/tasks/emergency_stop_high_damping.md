@@ -2,7 +2,7 @@
 layout: default
 title: High-Damping Protection (Emergency Stop Response, M4LT2)
 parent: Task Description
-nav_order: 4.30
+nav_order: 4.31
 has_toc: true
 nav_exclude: true
 ---

@@ -2,7 +2,7 @@
 layout: default
 title: Gait Generation Algorithms
 parent: Task Description
-nav_order: 4.31
+nav_order: 4.32
 has_toc: true
 nav_exclude: true
 ---
