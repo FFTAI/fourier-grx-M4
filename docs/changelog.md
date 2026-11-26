@@ -26,6 +26,17 @@ has_toc: true
 - 🔁 **文档同步进入 CI**：合并到 `main` 后由 `.github/workflows/docs-sync.yml` 按文件增量同步到 DocsGPT；同步令牌仅在边缘节点对指定端点换取内部凭据，同时把 DocsGPT 的公网接口面收敛为助手实际调用的 5 个端点
 
 
+### v1.2.73 (2026-11-26)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.87 内测构建（非正式发布）**：`fourier-grx-4.4.87-linux-arm64-cpu-m4l-blaze.deb`（2026-11-26 18:05 构建，分支 `m4-lfs`，包内 `X-Commit` 为 `0dd07e804d45`、`X-Release-Class` 为 `beta`、`X-Variant` 为 `linux-arm64-cpu-m4l-blaze`），安装方式 `fourier-grx update`（读发布索引）或 `fourier-grx update 4.4.87`，sha256 `75d2b706e762674e3f3fead1f5fd48a7374e2c14f0f24f8928084e696fd088d4`
+- ✨ **新增高抬腿 DSP 助力任务 4136 / 4137**：4136 调 PD、4137 调 dt，轨迹与 4134 一致；`param_3` 设置抬脚目标，`param_4` 设置助力系数，支持 P1/T1/T2/Zenoh，任务注册数为 62 / 62 / 63
+- 🔧 **高抬腿平顺度优化**：Beta 抬升窗默认 `lift_shape=4.0`，峰值相位改为 0.42；新增按秒搜索高斯 sigma 的角加速度约束，默认 500 deg/s²，兼容旧 smootherstep 与不限加速度模式
+- 🔧 **默认抬脚目标调整为 15 cm**：实际峰值受关节可达性和加速度约束影响，50/200 Hz 生成检查约为 9.8 / 10.0 cm，目标值不等于实测抬脚高度
+- 🛠️ 新增 DSP 与 DSP high lift 对比动画；中英文任务页补充 4136 / 4137、面板映射、算法原理与更新说明
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)新增 4.4.87 行与更新内容小节（内测构建 · 不再支持），当前正式版本仍为 **4.4.78**。中英文同步
+
 ### v1.2.71 (2026-11-23)
 
 **发布**

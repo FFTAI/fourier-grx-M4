@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-26 | 4.4.87 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.87-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4487) | Internal build | ✅ Active |
 | 2026-11-23 | 4.4.86 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.86-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4486) | Internal build | ✅ Active |
 | 2026-11-20 | 4.4.85 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.85-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4485) | Internal build | ✅ Active |
 | 2026-11-17 | 4.4.84 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.84-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4484) | Internal build | ✅ Active |
@@ -123,6 +124,26 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.87
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **Active**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-26 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+✨ **New high-lift DSP assist tasks 4136 / 4137**
+
+- **4136 adjusts PD**, interpolating between buttery and soft only at startup. **4137 adjusts dt**, mapping assist ratio to 0.5–1.0× playback speed with automatic-assist support. Both use the same high-lift DSP trajectory as 4134.
+- `param_3` sets the lift target and `param_4` sets assist ratio; `param_6/7/8` retain the 4134 semantics. Both register on P1/T1/T2/Zenoh, bringing task counts to **62 / 62 / 63**.
+
+🔧 **Smoother high-lift trajectories**
+
+- Adds a Beta lift window with default `lift_shape=4.0`; the original smootherstep remains available with `lift_shape=0`. The default peak phase moves from 0.34 to **0.42**, separating foot-lift peaks from joint-velocity zero crossings.
+- After the existing binomial smoothing, a Gaussian-sigma search in seconds now limits joint angular acceleration to **500 deg/s²** by default, using a consistent physical time scale at 50 and 200 Hz. `lift_acc_limit=0` disables the limit.
+- The final default lift target is **15 cm**. Actual peaks depend on joint reachability and acceleration limits—about **9.8 / 10.0 cm** in the 50 / 200 Hz generation checks, so the target is not a measured lift height.
+- Adds a DSP vs DSP high-lift comparison animation with skeletons, actual ground clearance, target windows and joint angular velocities.
+
+---
 
 ### 4.4.86
 

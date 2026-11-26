@@ -25,6 +25,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 发布性质 | 支持状态 |
 |----------|------|------|----------|----------|----------|
+| 2026-11-26 | 4.4.87 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.87-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4487) | 内测构建 | ✅ 支持中 |
 | 2026-11-23 | 4.4.86 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.86-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4486) | 内测构建 | ✅ 支持中 |
 | 2026-11-20 | 4.4.85 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.85-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4485) | 内测构建 | ✅ 支持中 |
 | 2026-11-17 | 4.4.84 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.84-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4484) | 内测构建 | ✅ 支持中 |
@@ -122,6 +123,26 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.87
+
+> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布** &nbsp;·&nbsp; 支持状态：**支持中**。发布当时最新正式版本为 4.4.78，仍保持长期支持。
+
+> 📅 2026-11-26 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+✨ **新增高抬腿 DSP 助力任务 4136 / 4137**
+
+- **4136 调 PD**：助力系数在 buttery 与 soft 之间插值，只在启动阶段调整一次；**4137 调 dt**：助力系数映射到 0.5～1.0 倍回放速度，支持自动助力。轨迹与 4134 的高抬腿 DSP 一致。
+- 面板 `param_3` 设置目标抬脚高度，`param_4` 设置助力系数；`param_6/7/8` 与 4134 相同。均注册到 P1/T1/T2/Zenoh，任务注册数变为 **62 / 62 / 63**。
+
+🔧 **高抬腿轨迹平顺度优化**
+
+- 新增 Beta 抬升窗，默认 `lift_shape=4.0`；原 smootherstep 可通过 `lift_shape=0` 恢复。默认峰值相位由 0.34 调整到 **0.42**，错开脚端峰值与关节速度零点。
+- 在原有 binomial 平滑后，新增按秒搜索高斯 sigma 的角加速度约束，默认上限 **500 deg/s²**，50 Hz 与 200 Hz 使用一致的物理时间尺度；`lift_acc_limit=0` 可关闭限制。
+- 默认目标抬脚高度最终调整为 **15 cm**。实际峰值受关节可达性和加速度约束影响，50 Hz / 200 Hz 实测约为 **9.8 / 10.0 cm**，目标值不等于实际抬脚测量值。
+- 新增 DSP 与 DSP high lift 对比动画，展示骨架、实际离地高度、目标窗及关节角速度。
+
+---
 
 ### 4.4.86
 

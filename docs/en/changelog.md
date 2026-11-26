@@ -27,6 +27,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 🔁 **Documentation sync moved into CI**: merges to `main` are synced into DocsGPT incrementally per file by `.github/workflows/docs-sync.yml`; the sync token is exchanged for internal credentials at the edge for two endpoints only, and the publicly exposed DocsGPT surface was narrowed to the five endpoints the assistant actually calls
 
 
+### v1.2.73 (2026-11-26)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.87 internal build (not an official release)**: `fourier-grx-4.4.87-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-26 18:05 CST, branch `m4-lfs`, package `X-Commit` = `0dd07e804d45`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.87`, sha256 `75d2b706e762674e3f3fead1f5fd48a7374e2c14f0f24f8928084e696fd088d4`
+- ✨ **New high-lift DSP assist tasks 4136 / 4137**: 4136 adjusts PD and 4137 adjusts dt, using the same trajectory as 4134. `param_3` sets the lift target and `param_4` the assist ratio. Both support P1/T1/T2/Zenoh, bringing task counts to 62 / 62 / 63
+- 🔧 **Smoother high-lift trajectories**: Beta lift window defaults to `lift_shape=4.0`, with peak phase 0.42. A Gaussian sigma search in seconds limits angular acceleration to 500 deg/s² by default, while legacy smootherstep and unlimited modes remain available
+- 🔧 **Default lift target changed to 15 cm**: actual peaks depend on joint reachability and acceleration limits—about 9.8 / 10.0 cm in 50 / 200 Hz generation checks, so the target is not a measured lift height
+- 🛠️ Added a DSP vs DSP high-lift comparison animation. Chinese and English task docs now cover 4136 / 4137, panel mappings, algorithm details and version notes
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.87 row and notes section (internal build · no longer supported); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.71 (2026-11-23)
 
 **Release**
