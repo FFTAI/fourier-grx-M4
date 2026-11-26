@@ -26,6 +26,17 @@ has_toc: true
 - 🔁 **文档同步进入 CI**：合并到 `main` 后由 `.github/workflows/docs-sync.yml` 按文件增量同步到 DocsGPT；同步令牌仅在边缘节点对指定端点换取内部凭据，同时把 DocsGPT 的公网接口面收敛为助手实际调用的 5 个端点
 
 
+### v1.2.74 (2026-11-26)
+
+**发布**
+
+- 📦 `fourier-grx` **v4.4.88 内测构建（非正式发布）**：`fourier-grx-4.4.88-linux-arm64-cpu-m4l-blaze.deb`（2026-11-26 20:23 构建，分支 `m4-lfs`，包内 `X-Commit` 为 `51fe35cfb43f`、`X-Release-Class` 为 `beta`、`X-Variant` 为 `linux-arm64-cpu-m4l-blaze`），安装方式 `fourier-grx update`（读发布索引）或 `fourier-grx update 4.4.88`，sha256 `9fcf7a972d6c9195100129f96d270be970602312a20c3cd135bf40bf0923d232`
+- 🔧 **高抬腿改为最终实际高度反解**：默认 actual 模式以 10 cm 为最终离地目标，生成器二分反解原始抬升目标，使平滑后稳态峰值进入 ±5 mm 容差；50/200 Hz、0.25～1.0 m/s 均验证命中
+- 🔧 **平滑按单步时间归一化**：高斯 sigma 默认 0.08×T_step，binomial 基础平滑默认 0.10×T_step，仍可显式指定绝对时间，避免不同步速下平滑强度漂移
+- 🔧 **角加速度改为输出诊断**：actual 默认不限加速度，可选 `lift_acc_limit` 硬上限；`lift_height_reached` / `lift_acc_cap_met` 标记结果，原始目标与 sigma 可读取。peak 兼容模式保留原始 IK 目标和 500 deg/s² 默认限制
+- 🛠️ 新增固定上限 vs 自动反解对比动画；任务文档更新 actual/peak 语义、容差和诊断字段
+- 📋 [固件版本表](/fourier-grx-M4/docs/release/fourier-grx)新增 4.4.88 行与更新内容小节（内测构建 · 支持中），当前正式版本仍为 **4.4.78**。中英文同步
+
 ### v1.2.73 (2026-11-26)
 
 **发布**

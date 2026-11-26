@@ -33,7 +33,7 @@ Task description:
 |---|---|---|---|
 | `param_1` | Step length | 0.5 m | Same as normal forward walk |
 | `param_2` | Walking velocity | 0.5 m/s | Same as normal forward walk |
-| `param_3` | Compensated target lift peak | 15 cm | Unit: cm, accepted range 5–25 cm; ≤0 or unsent keeps the current value. Actual peaks can be substantially lower due to reachability and acceleration limits |
+| `param_3` | Final actual ground-clearance target | 10 cm | Unit: cm, accepted range 5–25 cm; ≤0 or unsent keeps the current value. The generator solves the raw target so the smoothed actual peak lands within ±5 mm of the goal |
 | `param_6` | Base height | Automatic | Same as normal forward walk |
 | `param_7` | Original DSP foot-lift height | 0.10 m | Applies before compensation and differs from the final ground-clearance target on `param_3` |
 | `param_8` | Double-support ratio | 0.2 | DSP generation parameter |
@@ -65,7 +65,7 @@ High-lift walking adds **foot-height recompensation based on the actual joint tr
 2. **Forward-kinematics evaluation**: current joint angles give ankle position relative to the hip, for example `x_ankle=−L_t·sin(q_h)−L_s·sin(q_h+q_k)` and `z_ankle=−L_t·cos(q_h)−L_s·cos(q_h+q_k)`. The lower of the two feet defines the ground reference for actual swing clearance.
 3. **Lift-only target window**: a Beta lift window is constructed within each swing interval with default `lift_shape=4.0` and peak phase `p=0.42`, separating the foot-lift peak from joint-velocity zero crossings. `clearance=smooth_max(base_clearance,H_lift·w(s))` never lowers an already-higher original trajectory; a 2 mm `smooth_max` transition reduces slope switching. `lift_shape=0` restores the original smootherstep.
 4. **IK with horizontal position preserved**: swing-foot `x` remains fixed while `z` rises to the target, and two-link IK re-solves hip/knee angles before clipping to hip `−90°…40°` and knee `0°…110°`. Near full extension, `d→L_t+L_s`, knee angle is highly sensitive to foot height, and the achievable peak can fall below `H_lift`.
-5. **Zero-phase smoothing and output**: a binomial kernel first removes per-frame IK corners. A Gaussian sigma search in seconds then limits angular acceleration to 500 deg/s² by default, using the same physical time scale at different control frequencies; `lift_acc_limit=0` disables it. Positions are differentiated again for velocity and actual foot-height diagnostics before entering the normal DSP start/loop/end and PD pipeline.
+5. **Zero-phase smoothing and output**: a binomial kernel with default `0.10 × T_step` first removes per-frame IK corners, followed by Gaussian smoothing with default `sigma = 0.08 × T_step`. In actual mode, bisection finds the raw target needed to bring the final actual peak within ±5 mm of the goal. Acceleration is diagnostic by default, with an optional hard `lift_acc_limit`. Positions are differentiated again for velocity and actual foot-height diagnostics before entering the normal DSP start/loop/end and PD pipeline.
 
 TID 4135 leaves this compensation unchanged and only adds velocity feedforward during execution; actuator effectiveness depends on the FSA protocol version.
 
@@ -82,3 +82,4 @@ TID 4135 leaves this compensation unchanged and only adds velocity feedforward d
 
 - `fourier-grx` v4.4.85: added 4134 / 4135. The default lift target is 10 cm and can be raised to 15 cm; Harmonic / DSP / DSP+lift comparison tooling is included for offline trajectory inspection.
 - `fourier-grx` v4.4.87: added 4136 / 4137 high-lift assist tasks, Beta lift windows and angular-acceleration limits. The default peak phase is 0.42 and the target height is 15 cm; actual lift is about 10 cm in the current default scenario.
+- `fourier-grx` v4.4.88: switches to actual-height solving with a 10 cm target. Smoothing is normalized by step time (sigma 0.08×T_step, base smoothing 0.10×T_step); acceleration becomes a diagnostic, while peak mode preserves the original semantics.

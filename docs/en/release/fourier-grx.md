@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-26 | 4.4.88 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.88-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4488) | Internal build | ✅ Active |
 | 2026-11-26 | 4.4.87 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.87-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4487) | Internal build | ✅ Active |
 | 2026-11-23 | 4.4.86 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.86-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4486) | Internal build | ✅ Active |
 | 2026-11-20 | 4.4.85 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.85-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4485) | Internal build | ✅ Active |
@@ -124,6 +125,30 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.88
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **Active**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-26 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+🔧 **High lift now solves for final actual height**
+
+- The default `lift_height_mode="actual"` makes `lift_peak_height` the **final actual ground-clearance target**, defaulting to **10 cm** rather than merely the raw target passed to IK.
+- A bisection solver finds the raw lift target needed to bring the steady-state peak after binomial and Gaussian smoothing within ±5 mm of the goal. Generation checks at 50/200 Hz and 0.25–1.0 m/s all reach 10 cm.
+- Gaussian smoothing defaults to `sigma = 0.08 × T_step`, while binomial base smoothing defaults to `0.10 × T_step`, so smoothing strength no longer drifts with walking speed. Absolute times can still be supplied explicitly.
+
+🔧 **Angular acceleration becomes a diagnostic**
+
+- Actual mode has no acceleration limit by default; `lift_acc_effective_deg` is now an output diagnostic. An optional `lift_acc_limit` provides a hard cap. If the base DSP trajectory already exceeds it, the height solution is retained and `lift_acc_cap_met=False` is reported.
+- `lift_height_reached` reports whether the actual peak is within tolerance, while `lift_raw_target` and `lift_smooth_sigma` expose the solved values.
+- `lift_height_mode="peak"` retains the original raw-IK-target semantics and default 500 deg/s² cap for backwards-compatible behaviour.
+
+🛠️ **New fixed-cap vs automatic-solve comparison animation**
+
+- `dsp_high_lift_manual_vs_auto_animation.py` compares fixed acceleration caps with automatic height solving, showing raw targets, actual peaks, sigma and acceleration diagnostics at different speeds.
+
+---
 
 ### 4.4.87
 

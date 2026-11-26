@@ -25,6 +25,7 @@ has_toc: true
 
 | 发布日期 | 版本 | 下载 | 更新内容 | 发布性质 | 支持状态 |
 |----------|------|------|----------|----------|----------|
+| 2026-11-26 | 4.4.88 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.88-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4488) | 内测构建 | ✅ 支持中 |
 | 2026-11-26 | 4.4.87 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.87-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4487) | 内测构建 | ✅ 支持中 |
 | 2026-11-23 | 4.4.86 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.86-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4486) | 内测构建 | ✅ 支持中 |
 | 2026-11-20 | 4.4.85 | [⬇ 下载](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.85-linux-arm64-cpu-m4l-blaze.deb) | [详情](#4485) | 内测构建 | ✅ 支持中 |
@@ -123,6 +124,30 @@ has_toc: true
 ---
 
 ## 更新内容
+
+### 4.4.88
+
+> ⚠️ 发布性质：**内测构建（blaze 渠道），非正式发布** &nbsp;·&nbsp; 支持状态：**支持中**。发布当时最新正式版本为 4.4.78，仍保持长期支持。
+
+> 📅 2026-11-26 &nbsp;·&nbsp; 平台：`linux/arm64`
+
+🔧 **高抬腿改为最终实际高度反解**
+
+- 默认 `lift_height_mode="actual"`，`lift_peak_height` 现在表示**最终实际离地峰值**，默认 **10 cm**，不再只是写入 IK 的原始目标。
+- 生成器使用二分法反解原始抬升目标，使二项式与高斯平滑后的稳态实际峰值进入目标 ±5 mm 容差；50/200 Hz、0.25～1.0 m/s 的测试均命中 10 cm。
+- 高斯平滑宽度默认 `sigma = 0.08 × T_step`，binomial 基础平滑默认 `0.10 × T_step`，避免固定绝对时间在不同步速下产生不同强度；仍可显式指定绝对时间。
+
+🔧 **角加速度改为输出诊断**
+
+- actual 模式默认不限加速度，`lift_acc_effective_deg` 只作为诊断输出。可选传入 `lift_acc_limit` 作为硬上限；若原 DSP 已超限，会保留高度解并标记 `lift_acc_cap_met=False`。
+- `lift_height_reached` 标记实际高度是否进入容差，`lift_raw_target` 和 `lift_smooth_sigma` 可直接查看反解结果。
+- 兼容 `lift_height_mode="peak"`：保留原始 IK 目标语义与默认 500 deg/s² 加速度限制，便于复现旧行为。
+
+🛠️ **新增手动上限 vs 自动反解对比动画**
+
+- `dsp_high_lift_manual_vs_auto_animation.py` 对比固定加速度上限与自动高度反解的原始目标、实际峰值、sigma 和加速度诊断，便于评估不同步速下的策略差异。
+
+---
 
 ### 4.4.87
 

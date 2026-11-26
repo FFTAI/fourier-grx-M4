@@ -27,6 +27,17 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 - 🔁 **Documentation sync moved into CI**: merges to `main` are synced into DocsGPT incrementally per file by `.github/workflows/docs-sync.yml`; the sync token is exchanged for internal credentials at the edge for two endpoints only, and the publicly exposed DocsGPT surface was narrowed to the five endpoints the assistant actually calls
 
 
+### v1.2.74 (2026-11-26)
+
+**Release**
+
+- 📦 `fourier-grx` **v4.4.88 internal build (not an official release)**: `fourier-grx-4.4.88-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-26 20:23 CST, branch `m4-lfs`, package `X-Commit` = `51fe35cfb43f`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.88`, sha256 `9fcf7a972d6c9195100129f96d270be970602312a20c3cd135bf40bf0923d232`
+- 🔧 **High lift now solves for final actual height**: actual mode targets 10 cm by default. A bisection solver finds the raw lift target that brings the smoothed steady-state peak within ±5 mm, verified at 50/200 Hz and 0.25–1.0 m/s
+- 🔧 **Smoothing is normalized by step time**: Gaussian sigma defaults to 0.08×T_step and binomial base smoothing to 0.10×T_step, with absolute times still supported, preventing speed-dependent smoothing drift
+- 🔧 **Angular acceleration becomes a diagnostic**: actual mode is unlimited by default, with optional `lift_acc_limit`. `lift_height_reached` / `lift_acc_cap_met` expose the outcome, raw target and sigma. Peak mode preserves the original IK-target semantics and 500 deg/s² default cap
+- 🛠️ Added a fixed-cap vs automatic-solve comparison animation. Task docs now explain actual/peak semantics, tolerance and diagnostic fields
+- 📋 [Firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains the 4.4.88 row and notes section (internal build · Active); the current official release remains **4.4.78**. English and Chinese kept in sync
+
 ### v1.2.73 (2026-11-26)
 
 **Release**
