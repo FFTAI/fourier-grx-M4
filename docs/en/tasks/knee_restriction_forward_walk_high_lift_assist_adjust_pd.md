@@ -2,7 +2,7 @@
 layout: default
 title: Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode)
 parent: Task Description
-nav_order: 4.292
+nav_order: 4.248
 has_toc: true
 nav_exclude: true
 ---

@@ -156,17 +156,17 @@ The pages below are the primary task descriptions organized in this repository a
 
 - [Standing Posture Control (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_stand_motion_control)
 - [Passive Forward Walking (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_passive)
+- [Passive Forward Walking – Harmonic Fitting (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic)
+- [Passive Forward Walking – High-Lift (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift)
+- [Passive Marching in Place (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_passive)
 - [Assisted Forward Walking (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_pd)
 - [Assisted Forward Walking (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_dt)
-- [Passive Marching in Place (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_passive)
-- [Assisted Marching in Place (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
-- [Assisted Marching in Place (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
-- [Passive Forward Walking – High-Lift (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift)
-- [Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd)
-- [Assisted Forward Walking – High-Lift (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_dt)
-- [Passive Forward Walking – Harmonic Fitting (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic)
 - [Assisted Forward Walking – Harmonic Fitting (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_pd)
 - [Assisted Forward Walking – Harmonic Fitting (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_dt)
+- [Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd)
+- [Assisted Forward Walking – High-Lift (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_dt)
+- [Assisted Marching in Place (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
+- [Assisted Marching in Place (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
 
 ### Leg-Length Adjustment Tasks
 
