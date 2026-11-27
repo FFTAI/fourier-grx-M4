@@ -2,7 +2,7 @@
 layout: default
 title: Assisted Forward Walking – Harmonic Fitting (Knee Restriction, PD Mode)
 parent: Task Description
-nav_order: 4.303
+nav_order: 4.293
 has_toc: true
 nav_exclude: true
 ---
@@ -60,4 +60,4 @@ The additional floor clips the table-driven knee curve and can change its shape.
 
 ## Update Log
 
-- Development version: adds harmonic knee-restricted PD assist task 4310 and Planner 4510, combining table and virtual-user restrictions.
+- `fourier-grx` v4.4.90: adds harmonic knee-restricted PD assist task 4310 and Planner 4510, combining table and virtual-user restrictions.

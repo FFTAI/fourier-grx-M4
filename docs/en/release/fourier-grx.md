@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-27 | 4.4.90 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.90-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4490) | Internal build | ✅ Active |
 | 2026-11-27 | 4.4.89 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.89-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4489) | Internal build | ✅ Active |
 | 2026-11-26 | 4.4.88 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.88-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4488) | Internal build | ✅ Active |
 | 2026-11-26 | 4.4.87 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.87-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4487) | Internal build | ✅ Active |
@@ -126,6 +127,35 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.90
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **Active**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-27 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+**New knee-restricted assist and Planner tasks**
+
+- High-lift DSP: **4308 (PD) / 4309 (dt)** combine the high-lift and assist behavior of 4136 / 4137 with a shared knee floor; Planners are **4508 / 4509**. High-lift assist without the additional restriction gains Planners **4411 / 4412**.
+- Harmonic fitting: **4310 (PD) / 4311 (dt)** add virtual-user knee floors to 4132 / 4133. The stricter of the coefficient-table restriction and additional user restriction wins; Planners are **4510 / 4511**.
+- All Planners generate and report references without driving joints. Zenoh/P1/T1/T2 registration counts are now **61 / 75 / 75 / 76**.
+
+**Safer calibration defaults**
+
+- Prismatic MoveMax / MoveMin and rotary border detection now use **a copy of the current measured position** as the default PD target before a stage-specific output exists, avoiding a jump toward zero from a nonzero initial posture.
+
+**Documentation corrections**
+
+- Corrected generator mappings: normal forward PD/dt assist defaults to DSP, while in-place assist retains VHIP. Documented assist-ratio default 0.0 and the separate `None` fallback to 1.0.
+- Updated high-lift Beta windows, normalized smoothing, actual-height solving and knee-restriction behavior. Removed fixed 20 ms assumptions, corrected harmonic default cadence level 3, per-model control periods and the Planner lightweight activation path.
+- Added the passive harmonic entry (4131) and four assist pages to the knee-restriction group, distinguishing coefficient-table and additional virtual-user restrictions. Reordered new pages to `nav_order` 4.291–4.296 so they are no longer filtered out of the sidebar.
+
+**Verification**
+
+- All new TIDs, model types, multiple-inheritance routing and Planner compute-only paths pass. Additional harmonic restriction, regeneration after parameter changes and unchanged normal-harmonic regression checks pass.
+- High-lift PD/dt assist produces finite outputs and preserves both knee floors at 0.35 rad, with actual lift around 10 cm. All three calibration models return the measured position as an independent initial-target copy.
+
+---
 
 ### 4.4.89
 

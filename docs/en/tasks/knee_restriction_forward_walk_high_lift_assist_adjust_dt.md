@@ -2,7 +2,7 @@
 layout: default
 title: Assisted Forward Walking – High-Lift (Knee Restriction, dt Mode)
 parent: Task Description
-nav_order: 4.302
+nav_order: 4.296
 has_toc: true
 nav_exclude: true
 ---
@@ -66,4 +66,4 @@ Confirm the knee restriction, lift target and playback speed independently befor
 
 ## Update Log
 
-- Development version: adds knee-restricted high-lift dt assist task 4309 and Planner 4509. The non-knee high-lift dt assist Planner is 4412.
+- `fourier-grx` v4.4.90: adds knee-restricted high-lift dt assist task 4309 and Planner 4509. The non-knee high-lift dt assist Planner is 4412.

@@ -2,7 +2,7 @@
 layout: default
 title: 助力前向行走 高抬腿（膝受限，dt 模式）
 parent: 任务描述
-nav_order: 4.302
+nav_order: 4.296
 has_toc: true
 ---
 
@@ -65,4 +65,4 @@ has_toc: true
 
 ## 更新日志
 
-- 开发中：新增膝受限高抬腿 dt 助力任务 4309 及规划器 4509；无膝限高抬腿 dt 助力规划器为 4412。
+- `fourier-grx` v4.4.90：新增膝受限高抬腿 dt 助力任务 4309 及规划器 4509；无膝限高抬腿 dt 助力规划器为 4412。

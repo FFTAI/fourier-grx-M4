@@ -161,10 +161,11 @@ M4L 机器人常见任务指令示例：
 - [助力原地踏步（膝受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
 - [助力原地踏步（膝受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
 - [被动前向行走 高抬腿（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift)
-- [助力前向行走 高抬腿（膝受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd)
-- [助力前向行走 高抬腿（膝受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_dt)
+- [被动前向行走 谐波拟合（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_harmonic)
 - [助力前向行走 谐波拟合（膝受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_pd)
 - [助力前向行走 谐波拟合（膝受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_dt)
+- [助力前向行走 高抬腿（膝受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd)
+- [助力前向行走 高抬腿（膝受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_dt)
 
 ### 腿长调节任务
 

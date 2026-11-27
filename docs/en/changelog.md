@@ -12,6 +12,18 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.76 (2026-11-27)
+
+**Release**
+
+- `fourier-grx` **v4.4.90 internal build (not an official release)**: `fourier-grx-4.4.90-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-27 14:38 CST, branch `m4-lfs`, package `X-Commit` = `f4567f89ed81`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.90`, sha256 `4d0e81e73e08e3f099483d335fb183464157e749925baf28360c67445af9079a`
+- Added knee-restricted high-lift PD/dt assist **4308 / 4309** with Planners **4508 / 4509**, high-lift assist Planners **4411 / 4412**, and harmonic knee-restricted PD/dt assist **4310 / 4311** with Planners **4510 / 4511**. The stricter of the coefficient-table and virtual-user knee restrictions wins. Zenoh/P1/T1/T2 registration counts are **61 / 75 / 75 / 76**
+- Prismatic MoveMax / MoveMin and rotary border detection now default the PD target to a copy of the measured position instead of zeros, preventing a jump toward zero from a nonzero initial posture
+- Verified all new TIDs, model types, multiple-inheritance routing, panel/user mappings and Planner compute-only paths. Additional harmonic restriction and cache regeneration, high-lift knee floors and initial targets of all three calibration models pass
+- Documentation corrections cover default DSP for normal forward assist, VHIP for in-place assist, assist-ratio default 0.0, high-lift Beta windows and actual-height solving, control periods, harmonic default cadence level 3 and Planner lightweight activation. A total of 30 Chinese/English page pairs were revised
+- Added the passive harmonic entry (4131) and four high-lift / harmonic assist pages to the knee-restriction group, clearly distinguishing coefficient-table and additional virtual-user restrictions. Fixed new pages disappearing from the sidebar because their `nav_order` exceeded 4.30; the group is now ordered consistently as 4.291–4.296
+- The [firmware release table](/fourier-grx-M4/docs/en/release/fourier-grx) gains a 4.4.90 row and notes section (internal build · Active); the current official release remains **4.4.78**
+
 ### v1.2.75 (2026-11-27)
 
 **Release**

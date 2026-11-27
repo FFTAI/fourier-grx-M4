@@ -2,7 +2,7 @@
 layout: default
 title: Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode)
 parent: Task Description
-nav_order: 4.301
+nav_order: 4.295
 has_toc: true
 nav_exclude: true
 ---
@@ -64,4 +64,4 @@ Confirm the knee restriction, lift target and assist ratio independently before 
 
 ## Update Log
 
-- Development version: adds knee-restricted high-lift PD assist task 4308 and Planner 4508. The non-knee high-lift PD assist Planner is 4411.
+- `fourier-grx` v4.4.90: adds knee-restricted high-lift PD assist task 4308 and Planner 4508. The non-knee high-lift PD assist Planner is 4411.
