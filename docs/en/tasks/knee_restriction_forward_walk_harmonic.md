@@ -2,7 +2,7 @@
 layout: default
 title: Passive Forward Walking – Harmonic Fitting (Knee Restriction)
 parent: Task Description
-nav_order: 4.292
+nav_order: 4.294
 has_toc: true
 nav_exclude: true
 ---

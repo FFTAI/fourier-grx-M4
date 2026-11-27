@@ -2,7 +2,7 @@
 layout: default
 title: Assisted Forward Walking – Harmonic Fitting (Knee Restriction, dt Mode)
 parent: Task Description
-nav_order: 4.294
+nav_order: 4.296
 has_toc: true
 nav_exclude: true
 ---
