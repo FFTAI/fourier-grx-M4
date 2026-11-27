@@ -35,16 +35,16 @@ Task Parameters:
 | Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Step height | `float` | 0.1 | [0.1, 0.4] | The leg-lift height for each step, in m. |
 | Step period | `float` | 1.0 | [0.5, 4.0] | The cycle duration for one complete stepping cycle, in s. A smaller value means a higher step frequency; a larger value means a slower step. |
-| Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal stepping cadence); a lower value plays it slower, giving the patient more time to follow the motion. |
+| Assist ratio | `float` | 0.0 | [0.0, 1.0] | Scaling factor for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal stepping cadence); a lower value plays it slower, giving the patient more time to follow the motion. |
 | Assist trigger force upper | `float` | 2.0 | [-∞, +∞] | Absolute torque threshold that triggers an **increase** in assist ratio, in Nm. When measured joint torque exceeds this value, assist ratio increases by 0.04. Only active in auto assist mode. |
 | Assist trigger force lower | `float` | 1.0 | [-∞, +∞] | Absolute torque threshold that triggers a **decrease** in assist ratio, in Nm. When measured joint torque falls below this value, assist ratio decreases by 0.001. Only active in auto assist mode. |
-| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio each control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory (+0.04 when the patient pushes, −0.001 when the patient is not contributing), with no manual setting required; the assist ratio is always clamped to [0.0, 1.0]. |
+| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio each control cycle using absolute torque thresholds gated by swing state, gravity-term sign, and hip reference velocity; the cycle duration is set by the model's `control_period` (+0.04 when the patient pushes, −0.001 when the patient is not contributing), with no manual setting required; the assist ratio is always clamped to [0.0, 1.0]. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue stepping. |
 
 > **Knee Restriction Angle Explained**:
 >
-> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
+> Unsent virtual-user inputs default to 0.0 on both sides; when no virtual-user source is connected, missing values fall back to 0.2 rad (about 10°). The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -57,8 +57,9 @@ Task Parameters:
 >
 > The assist ratio controls pacing by adjusting the trajectory playback speed (play\_speed). The formula is:
 >
+> - An unsent virtual-panel value defaults to 0.0. Only an actual `None` input, when neither panel nor joystick supplies a value, falls back to 1.0.
 > - **play\_speed** = 0.5 + assist ratio × 0.5, so play\_speed ∈ [0.5, 1.0]
-> - Trajectory time advance per control cycle: Δt = 0.02 s × play\_speed
+> - Trajectory time advance per control cycle: Δt_motion = `control_period` × play\_speed
 >
 > | Assist Ratio | play\_speed | Effect |
 > |--------------|-------------|--------|

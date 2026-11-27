@@ -70,9 +70,11 @@ Task Parameters:
 
 | Level | 1 | 2 | 3 (default) | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
-| Stride time (actual, quantised to whole 20 ms frames) | 5.24 s | 5.00 s | 4.50 s | 4.00 s | 3.50 s | 3.00 s |
-| Step time | 2.62 s | 2.50 s | 2.25 s | 2.00 s | 1.75 s | 1.50 s |
-| Step frequency | 22.9 | 24.0 | 26.7 | 30.0 | 34.3 | 40.0 steps/min |
+| Target stride time | 5.25 s | 5.00 s | 4.50 s | 4.00 s | 3.50 s | 3.00 s |
+| P1 actual stride time (50 Hz, whole 20 ms frames) | 5.24 s | 5.00 s | 4.50 s | 4.00 s | 3.50 s | 3.00 s |
+| P1 step time / frequency | 2.62 s / 22.9 | 2.50 s / 24.0 | 2.25 s / 26.7 | 2.00 s / 30.0 | 1.75 s / 34.3 | 1.50 s / 40.0 steps/min |
+
+> T1 (100 Hz) and T2 (200 Hz) quantize to whole 10 ms and 5 ms frames respectively. Every target above is an integer multiple of those periods, so their actual stride time equals the target. For custom control periods, use the reported `rehab.gait_stride_time_s` value.
 
 > Joint ranges versus hardware travel: hip approximately −30°…+15° (travel −90°…+40°) and knee 0°…55° (travel 0°…110°); every level stays within the limits.
 

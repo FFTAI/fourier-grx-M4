@@ -32,7 +32,7 @@ Task Parameters:
 | Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
-| Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for joint PD control stiffness, in the range [0.0, 1.0]. A lower value makes joints more compliant, leaving more room for the patient's own effort; a higher value increases joint stiffness and trajectory-tracking capability. |
+| Assist ratio | `float` | 0.0 | [0.0, 1.0] | Scaling factor for joint PD control stiffness, in the range [0.0, 1.0]. A lower value makes joints more compliant, leaving more room for the patient's own effort; a higher value increases joint stiffness and trajectory-tracking capability. |
 | Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. **This task uses the DSP gait generator, and this parameter participates in trajectory generation**. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
@@ -42,7 +42,7 @@ Task Parameters:
 
 > **Knee Restriction Angle Explained**:
 >
-> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
+> Unsent virtual-user inputs default to 0.0 on both sides; when no virtual-user source is connected, missing values fall back to 0.2 rad (about 10°). The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -55,6 +55,7 @@ Task Parameters:
 >
 > The assist ratio adjusts joint stiffness by linearly interpolating the PD control gains of the actuators. The formula is:
 >
+> - An unsent virtual-panel value defaults to 0.0. Only an actual `None` input, when neither panel nor joystick supplies a value, falls back to 1.0.
 > - **Kp** = (200 − 100) × assist ratio + 100, so Kp ∈ [100, 200]
 > - **Kd** = (20 − 10) × assist ratio + 10, so Kd ∈ [10, 20]
 >

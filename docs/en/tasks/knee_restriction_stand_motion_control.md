@@ -35,7 +35,7 @@ Task Parameters:
 
 > **Knee Restriction Angle Explained**:
 >
-> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then sets both knee targets in the standing reference to the same `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
+> Unsent virtual-user inputs default to 0.0 on both sides; when no virtual-user source is connected, missing values fall back to 0.2 rad (about 10°). The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then sets both knee targets in the standing reference to the same `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|

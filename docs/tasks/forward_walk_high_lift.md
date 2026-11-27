@@ -23,7 +23,7 @@ has_toc: true
 - 目标是补偿髋角缩放与平滑造成的实际抬脚损失，不改变支撑腿轨迹，也不承诺基座前进量。
 - 4135 复用 4134 的轨迹与面板参数，仅增加速度前馈。T2 的 FSA v3 协议会直接下发速度前馈；P1/T1 的 FSA v2 fast 帧没有速度字段，相关参考轨迹补偿只影响可视化，不修改实际关节目标。
 - 助力版本 4136 / 4137 复用本任务的轨迹生成与 DSP 参数，并增加 `param_4` 助力系数，仅在执行阶段调整 PD 增益或轨迹回放速度，见[助力前向行走 高抬腿（PD 模式）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist)与[助力前向行走 高抬腿（dt 模式）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist_adjust_dt)。
-- 膝受限版本 4307 复用本任务的轨迹并叠加伸膝限制，见[被动前向行走 高抬腿（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift)。
+- 膝受限版本 4307 复用 4134 的高抬腿轨迹与面板参数，并叠加[膝受限前向行走](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive)的用户输入和基座高度计算：左右伸膝限制取较大值，作为双腿共同的最小膝角；高抬腿逆解和平滑后仍保持该限位。`param_6` 对 4307 不生效。虚拟用户未发送时限制默认为 0.0，未接入虚拟用户输入源时回退为 0.2 rad，详见[被动前向行走 高抬腿（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift)。
 - 启动、停止、暂停、过力矩保护及 Dynalink 上报均沿用[被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)。
 
 任务参数：

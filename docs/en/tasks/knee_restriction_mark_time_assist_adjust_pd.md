@@ -32,13 +32,13 @@ Task Parameters:
 | Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Step height | `float` | 0.1 | [0.1, 0.4] | The leg-lift height for each step, in m. |
 | Step period | `float` | 1.0 | [0.5, 4.0] | The cycle duration for one complete stepping cycle, in s. A smaller value means a higher step frequency; a larger value means a slower step. |
-| Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for joint PD control stiffness, in the range [0.0, 1.0]. A lower value makes joints more compliant, leaving more room for the patient's own effort; a higher value increases joint stiffness and trajectory-tracking capability. |
+| Assist ratio | `float` | 0.0 | [0.0, 1.0] | Scaling factor for joint PD control stiffness, in the range [0.0, 1.0]. A lower value makes joints more compliant, leaving more room for the patient's own effort; a higher value increases joint stiffness and trajectory-tracking capability. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue stepping. |
 
 > **Knee Restriction Angle Explained**:
 >
-> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
+> Unsent virtual-user inputs default to 0.0 on both sides; when no virtual-user source is connected, missing values fall back to 0.2 rad (about 10°). The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -51,6 +51,7 @@ Task Parameters:
 >
 > The assist ratio adjusts joint stiffness by linearly interpolating the PD control gains of the actuators. The formula is:
 >
+> - An unsent virtual-panel value defaults to 0.0. Only an actual `None` input, when neither panel nor joystick supplies a value, falls back to 1.0.
 > - **Kp** = (200 − 100) × assist ratio + 100, so Kp ∈ [100, 200]
 > - **Kd** = (20 − 10) × assist ratio + 10, so Kd ∈ [10, 20]
 >

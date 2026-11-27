@@ -104,7 +104,7 @@ run_type="custom"
 |-----------------------------|-----------|--------|----------|-----------------------------------------|-------|
 | robot: name                 | 机器人名称     | string | 按机型      | "M4L", "M4LP1", "M4LT1", "M4LT2", "M4LZenoh" | 否     |
 | robot: backend              | 机器人通信后端类型 | string | "Real"   | "Real"                                  | 否     |
-| robot: control_period       | 控制周期      | float  | 0.02     | 单位为秒                                    | 否     |
+| robot: control_period       | 控制周期      | float  | 按机型：P1/Zenoh 0.02，T1 0.01，T2 0.005 | 单位为秒；对应 50/100/200 Hz | 否     |
 | communication: period       | 通信周期      | float  | 0.02     | 单位为秒（顶层 `communication` 段）              | 否     |
 
 > ℹ️ **机器人型号说明**

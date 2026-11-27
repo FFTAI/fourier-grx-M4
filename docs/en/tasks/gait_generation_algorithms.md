@@ -73,7 +73,7 @@ Three execution layers sit outside the generator and must be distinguished from 
 
 | Scheme | Primary trajectory source | COM vertical trajectory | Double support | Foot-height control | Main current use |
 |---|---|---|---|---|---|
-| VHIP | LIPM + parameterized feet + online IK | Geometric relation from leg length to support distance | No separate DSP segment | Input `step_height` shapes the foot curve directly | In-place stepping and PD/dt assisted forward walking |
+| VHIP | LIPM + parameterized feet + online IK | Geometric relation from leg length to support distance | No separate DSP segment | Input `step_height` shapes the foot curve directly | In-place stepping and forward configurations explicitly selected by developers |
 | FHIP | LIPM horizontally + parameterized vertical motion + online IK | Quadratic parabola | No separate DSP segment | Same as VHIP | Developer-selectable forward/in-place generator |
 | DSP | LIPM in SSP + Hermite transfer in DSP + online IK | Geometric height in SSP, continuous Hermite effective distance in DSP | Explicit `T_dsp` allocation | `step_height` plus smoothed swing-foot velocity profile | Passive forward walking and knee-restricted variant |
 | High-lift DSP | Secondary compensation after normal DSP output | Inherited from DSP | Inherited from DSP | FK evaluation followed by second IK for actual clearance | Forward walking requiring more swing-foot clearance |
@@ -149,9 +149,10 @@ Here `r_com` controls mid-DSP transfer speed, with internal default `dsp_com_rat
 Normal DSP's `step_height` is a pre-IK foot target. Hip-angle scaling and smoothing subsequently change the actual foot height produced by the final joint trajectory. High-lift DSP therefore adds a second geometric pass:
 
 1. **FK evaluation**: current hip/knee angles produce ankle position relative to the hip. The lower of the two feet defines the ground reference for original-trajectory clearance.
-2. **Target window**: swing uses `w(s)=6x⁵−15x⁴+10x³`, peaking at `lift_peak_phase`. The target is `smooth_max(base_clearance,H_lift·w(s))`, which raises but never lowers portions already above the target.
-3. **Second IK**: swing-foot horizontal `x` remains fixed while only `z` changes; swing-side hip/knee angles are re-solved and the stance trajectory is untouched.
-4. **Constraints and smoothing**: angles are clipped to mechanical travel and smoothed by a centered binomial kernel without phase shift. Velocities and actual foot-height diagnostics are then recomputed.
+2. **Target window**: swing uses a Beta lift window by default (`lift_shape=4.0`) with peak phase `lift_peak_phase=0.42`. The target is `smooth_max(base_clearance,H_lift·w(s))`, which raises but never lowers portions already above the target. `lift_shape=0` restores the original smootherstep.
+3. **Second IK**: swing-foot horizontal `x` remains fixed while only `z` changes; swing-side hip/knee angles are re-solved. Normal high-lift tasks leave stance untouched, while the knee-restricted variant preserves the shared knee-angle floor on both legs.
+4. **Constraints and smoothing**: angles are clipped to mechanical travel, smoothed by a centered binomial kernel with default duration `0.10×T_step`, then by Gaussian smoothing with default `sigma=0.08×T_step`. Velocities and actual foot-height diagnostics are recomputed.
+5. **Actual-height solving**: in default `lift_height_mode="actual"`, bisection finds the raw IK target that brings the smoothed steady-state actual peak within ±5 mm of `param_3`. Angular acceleration is diagnostic by default, with an optional hard `lift_acc_limit`. `lift_height_mode="peak"` preserves the original raw-IK-target semantics.
 
 Two height parameters must be distinguished:
 
@@ -198,11 +199,11 @@ Task comparison therefore requires more than “VHIP or DSP”: also confirm PD 
 
 | Generator | Corresponding task or entry point | Main adjustable parameters |
 |---|---|---|
-| VHIP | [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive), [Assisted Forward Walking PD](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd), [Assisted Forward Walking dt](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt), and corresponding knee-restricted tasks | Leg lengths, step length/speed or step period, foot lift, base height, assist ratio |
+| VHIP | [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive) and its assist/knee-restricted variants; developers can also select it explicitly in forward control models | Leg lengths, step period, foot lift, base height, assist ratio |
 | FHIP | `gait_generator_type="fhip"` in developer control models; no independent public TID | Similar to VHIP, but vertical trajectory is quadratic |
-| DSP | [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive), [Passive Forward Walking with Knee Restriction](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_passive) | Step length, speed, leg lengths, base height, foot lift, double-support ratio |
-| High-lift DSP | [Passive Forward Walking – High-Lift](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) (TID 4134–4137), [Passive Forward Walking – High-Lift (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift) (TID 4307) | DSP parameters plus compensated target lift peak `param_3`; the knee-restricted variant also reads user leg lengths and left/right knee restrictions |
-| Harmonic | [Passive Forward Walking – Harmonic Fitting](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic), [Harmonic Assist PD](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd), [Harmonic Assist dt](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt) | Hip amplitude, knee extension restriction, cadence, assist ratio |
+| DSP | [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive), normal assisted forward walking [PD](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd) / [dt](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt), and corresponding knee-restricted tasks | Step length, speed, leg lengths, base height, foot lift, double-support ratio, assist ratio |
+| High-lift DSP | [Passive Forward Walking – High-Lift](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) (TID 4134–4137), [Passive Forward Walking – High-Lift (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift) (TID 4307–4309) | DSP parameters plus compensated target lift peak `param_3`; assist variants also use `param_4`, and knee-restricted variants read user leg lengths and left/right knee restrictions |
+| Harmonic | [Passive Forward Walking – Harmonic Fitting](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic), [Harmonic Assist PD](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd), [Harmonic Assist dt](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt), and knee-restricted variants 4310 / 4311 | Hip amplitude, table knee restriction, cadence, assist ratio; knee-restricted variants add a virtual-user knee-angle floor |
 | Multi-scheme preview | [Planner](/fourier-grx-M4/docs/en/tasks/planner) | Reuses executing-task generators and reports references without driving joints |
 
 Corresponding source files are under `src/fourier_grx/algorithm/m4l/` in the `fourier-grx` repository:
@@ -220,7 +221,8 @@ Algorithm selection should combine engineering constraints with training goals, 
 | Training or engineering need | Scheme to consider first | Rationale and cautions |
 |---|---|---|
 | Explicitly adjustable double support | DSP | Timing is clear, but ratio does not guarantee balance; external support remains necessary |
-| In-place stepping or PD/dt assist | VHIP | Intuitive parameters and direct task mapping; PD changes stiffness while dt changes rhythm |
+| In-place stepping or in-place PD/dt assist | VHIP | Intuitive parameters and direct task mapping for in-place assist; PD changes stiffness while dt changes rhythm |
+| Normal forward PD/dt assist | DSP (default) | Normal forward assist and knee-restricted variants default to DSP since v4.4.86; PD changes stiffness while dt changes rhythm, and developers can still explicitly select another generator |
 | Compare alternative COM vertical models | FHIP and VHIP | Useful for development evaluation; FHIP is not a default public task and needs unloaded validation |
 | Insufficient actual clearance with normal DSP | High-lift DSP | Compensates the final joint trajectory; start conservatively and observe actual clearance and stance stability |
 | Fixed-shape, repeatable joint curves | Harmonic | Repeatable across sessions, but no online personalization from leg length or patient performance |

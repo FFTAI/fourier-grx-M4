@@ -15,7 +15,7 @@ nav_exclude: true
 |---|---|---|
 | Assisted forward walking – high-lift (PD Mode) | **4136** | PD-mode assist |
 
-Applicable models: M4L (P1 / T1 / T2).
+Applicable models: M4L (P1 / T1 / T2). Planner counterpart: **4411**. The knee-restricted variant is **4308**, with Planner **4508**; see [Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd).
 
 Task description:
 

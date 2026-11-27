@@ -72,7 +72,7 @@ has_toc: true
 
 | 方案 | 轨迹的主要来源 | 质心垂直轨迹 | 双支撑处理 | 足高控制方式 | 当前主要用途 |
 |---|---|---|---|---|---|
-| VHIP | LIPM + 参数化足端 + 在线逆运动学 | 由腿长到支撑点距离的几何关系计算 | 无独立 DSP 段 | 输入 `step_height` 直接生成足端曲线 | 原地踏步、PD/dt 助力前向行走 |
+| VHIP | LIPM + 参数化足端 + 在线逆运动学 | 由腿长到支撑点距离的几何关系计算 | 无独立 DSP 段 | 输入 `step_height` 直接生成足端曲线 | 原地踏步、开发者显式选择的前向配置 |
 | FHIP | LIPM 水平运动 + 参数化垂直运动 + 在线逆运动学 | 二次抛物线 | 无独立 DSP 段 | 与 VHIP 相同 | 开发者可选的前向/踏步生成器 |
 | DSP | SSP 的 LIPM + DSP 的 Hermite 转移 + 在线逆运动学 | SSP 几何高度，DSP 连续 Hermite 有效距离 | 显式分配 `T_dsp` | `step_height` + 平滑摆动脚速度剖面 | 被动前向行走及其膝限版本 |
 | 高抬腿 DSP | 普通 DSP 输出后的二次补偿 | 继承 DSP | 继承 DSP | 正运动学评估后按实际离地目标二次逆解 | 需要更大摆动脚间隙的前向行走 |
@@ -148,9 +148,10 @@ DSP（Double Support Phase）在 VHIP 类模型基础上，把每一步拆成单
 普通 DSP 的 `step_height` 是逆运动学之前的足端目标。经过髋角缩放和平滑后，最终关节角对应的实际足高会改变。高抬腿 DSP 因此在原 DSP 输出之后增加第二次几何处理：
 
 1. **正运动学评估**：用当前髋膝角计算踝相对髋的位置，并以两脚中较低者作为地面参考，得到原轨迹的实际离地间隙。
-2. **构造目标窗**：在摆动区间使用 `w(s)=6x⁵−15x⁴+10x³`，峰值位于 `lift_peak_phase`；目标为 `smooth_max(base_clearance,H_lift·w(s))`，只抬升、不压低原轨迹已经更高的部分。
-3. **二次逆运动学**：保持该帧摆动脚水平位置 `x` 不变，仅修改高度 `z`，重新求解摆动侧髋膝角；支撑腿轨迹不变。
-4. **约束与平滑**：髋膝角限制在机械行程内，再以当前帧为中心的二项式核进行零相位平滑，最后重新差分速度并计算实际足高诊断值。
+2. **构造目标窗**：摆动区间默认使用 Beta 形抬升窗（`lift_shape=4.0`），峰值相位 `lift_peak_phase=0.42`；目标为 `smooth_max(base_clearance,H_lift·w(s))`，只抬升、不压低原轨迹已经更高的部分。`lift_shape=0` 可退回原 smootherstep。
+3. **二次逆运动学**：保持该帧摆动脚水平位置 `x` 不变，仅修改高度 `z`，重新求解摆动侧髋膝角；普通高抬腿任务不修改支撑腿轨迹，膝受限版本会对双腿保持共同膝角下限。
+4. **约束与平滑**：髋膝角限制在机械行程内，先以默认 `0.10×T_step` 的二项式核做零相位基础平滑，再以默认 `sigma=0.08×T_step` 做高斯平滑，最后重新差分速度并计算实际足高诊断值。
+5. **实际高度反解**：默认 `lift_height_mode="actual"` 时，生成器通过二分法反解写入 IK 的原始目标，使平滑后的稳态实际峰值进入 `param_3` 目标 ±5 mm 容差；角加速度默认只作诊断，可显式设置 `lift_acc_limit` 硬上限。`lift_height_mode="peak"` 保留旧的原始 IK 目标语义。
 
 需要区分两个高度参数：
 
@@ -197,11 +198,11 @@ DSP（Double Support Phase）在 VHIP 类模型基础上，把每一步拆成单
 
 | 生成方案 | 对应任务或入口 | 主要可调参数 |
 |---|---|---|
-| VHIP | [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)、[助力前向行走 PD](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)、[助力前向行走 dt](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt) 及对应膝限任务 | 腿长、步长/步速或踏步周期、抬脚高度、基座高度、助力系数 |
+| VHIP | [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)及其助力、膝限变体；前向控制模型也可由开发者显式选择 | 腿长、踏步周期、抬脚高度、基座高度、助力系数 |
 | FHIP | 开发者控制模型的 `gait_generator_type="fhip"`，无独立公开 TID | 与 VHIP 类似，但垂直轨迹为二次曲线 |
-| DSP | [被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)、[被动前向行走（膝限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive) | 步长、步速、腿长、基座高度、抬脚高度、双支撑期占比 |
-| 高抬腿 DSP | [被动前向行走 高抬腿](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)（TID 4134–4137）、[被动前向行走 高抬腿（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift)（TID 4307） | DSP 参数 + 补偿后目标抬脚峰值 `param_3`；膝限版另读取用户腿长与左右伸膝限制 |
-| 谐波系数 | [被动前向行走 谐波拟合](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)、[谐波助力 PD](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)、[谐波助力 dt](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt) | 髋幅度档、伸膝限制档、步频档、助力系数 |
+| DSP | [被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)、[普通助力前向行走 PD](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd) / [dt](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt) 及对应膝限任务 | 步长、步速、腿长、基座高度、抬脚高度、双支撑期占比、助力系数 |
+| 高抬腿 DSP | [被动前向行走 高抬腿](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)（TID 4134–4137）、[被动前向行走 高抬腿（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift)（TID 4307–4309） | DSP 参数 + 补偿后目标抬脚峰值 `param_3`；助力版另用 `param_4`，膝限版另读取用户腿长与左右伸膝限制 |
+| 谐波系数 | [被动前向行走 谐波拟合](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)、[谐波助力 PD](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)、[谐波助力 dt](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)及对应膝受限任务（4310 / 4311） | 髋幅度档、系数表伸膝限制档、步频档、助力系数；膝限版另有虚拟用户额外膝角下限 |
 | 多方案预览 | [规划器](/fourier-grx-M4/docs/tasks/planner) | 复用对应执行版生成器，只上报参考，不驱动关节 |
 
 对应源码位于 `fourier-grx` 仓库的 `src/fourier_grx/algorithm/m4l/`：
@@ -219,7 +220,8 @@ DSP（Double Support Phase）在 VHIP 类模型基础上，把每一步拆成单
 | 训练或工程需求 | 优先理解的方案 | 选择原因与注意事项 |
 |---|---|---|
 | 需要明确调整双支撑期 | DSP | 时序含义清晰，但双支撑比例不等于实际平衡保障；仍需外部支撑 |
-| 需要原地踏步或 PD/dt 助力 | VHIP | 参数直观且与助力任务对应；PD 调刚度、dt 调节奏，不能混为同一“助力强度” |
+| 需要原地踏步或原地 PD/dt 助力 | VHIP | 参数直观且与原地助力任务对应；PD 调刚度、dt 调节奏，不能混为同一“助力强度” |
+| 需要普通前向 PD/dt 助力 | DSP（默认） | v4.4.86 起普通前向助力及膝限变体默认 DSP；PD 调刚度、dt 调节奏，开发者仍可显式选择其他生成器 |
 | 需要比较不同质心垂直模型 | FHIP 与 VHIP | 适合开发评估，FHIP 不是默认公开任务，启用前需空载验证 |
 | 普通 DSP 的实际足部间隙不足 | 高抬腿 DSP | 直接针对最终关节轨迹补偿；从保守目标开始，观察实际间隙和支撑侧稳定性 |
 | 需要固定形状、可重复的关节曲线 | 谐波系数 | 便于跨次重复，但不能按患者腿长或实时表现在线个性化 |

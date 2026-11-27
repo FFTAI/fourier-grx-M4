@@ -15,7 +15,7 @@ nav_exclude: true
 |---|---|---|
 | Assisted forward walking – high-lift (dt Mode) | **4137** | dt-mode assist |
 
-Applicable models: M4L (P1 / T1 / T2).
+Applicable models: M4L (P1 / T1 / T2). Planner counterpart: **4412**. The knee-restricted variant is **4309**, with Planner **4509**; see [Assisted Forward Walking – High-Lift (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_dt).
 
 Task description:
 

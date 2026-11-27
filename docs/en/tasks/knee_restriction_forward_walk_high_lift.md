@@ -15,7 +15,7 @@ nav_exclude: true
 |---|---|---|
 | Passive forward walking – high-lift (knee restriction) | **4307** | PD |
 
-Applicable models: M4L (P1 / T1 / T2). Planner counterpart: **4507**, which generates and reports references without driving the joints.
+Applicable models: M4L (P1 / T1 / T2). Planner counterpart: **4507**, which generates and reports references without driving the joints. Assist variants are **4308 (PD) / 4309 (dt)**, with Planners **4508 / 4509**.
 
 Task description:
 

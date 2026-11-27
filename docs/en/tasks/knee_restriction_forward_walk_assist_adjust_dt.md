@@ -35,8 +35,8 @@ Task Parameters:
 | Right knee restriction angle | `float` | 0.0 | [0.0, 1.0] | Right restriction input in rad. The larger of the left/right inputs becomes the common minimum flexion reference for both knees. 0.0 means no restriction (full extension allowed). |
 | Step length | `float` | 0.5 | [0.2, 0.8] | The length of each step, in m. |
 | Walking speed | `float` | 0.5 | [0.1, 1.2] | The target forward speed, in m/s. Single-step duration = step length ÷ walking speed (e.g., with step length 0.5 m and speed 0.5 m/s, each step takes approximately 1.0 s). |
-| Assist ratio | `float` | 0.5 | [0.0, 1.0] | Scaling factor for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal walking pace); a lower value plays it slower, giving the patient more time to follow the motion. |
-| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the algorithm decides every control cycle (20 ms): during the swing phase, if the measured hip joint torque exceeds “gravity-compensated torque + 2.0 Nm” the assist ratio increases by 0.02, and if it falls below the gravity-compensated torque it decreases by 0.01; no manual setting is required. The assist ratio is always clamped to [0.0, 1.0]. While auto mode is on, `param_3` no longer applies. |
+| Assist ratio | `float` | 0.0 | [0.0, 1.0] | Scaling factor for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal walking pace); a lower value plays it slower, giving the patient more time to follow the motion. |
+| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the algorithm decides every control cycle, whose duration is set by the model's `control_period`: during the swing phase, if the measured hip joint torque exceeds “gravity-compensated torque + 2.0 Nm” the assist ratio increases by 0.02, and if it falls below the gravity-compensated torque it decreases by 0.01; no manual setting is required. The assist ratio is always clamped to [0.0, 1.0]. While auto mode is on, `param_3` no longer applies. |
 | Step lift height | `float` | 0.1 | [0.05, 0.2] | The maximum lift height of the swing foot, in m. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Double-support ratio | `float` | 0.2 | [0.1, 0.3] | The proportion of the double-support phase within a single step cycle. When ≤ 0 or not sent, the default value is used. Values outside the range are clipped. **This task uses the DSP gait generator, and this parameter participates in trajectory generation**. Takes effect at the next start of walking (trajectory regeneration); changes made while walking do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start motion. true = start; false = do not start (has no effect if motion is already running). |
@@ -46,7 +46,7 @@ Task Parameters:
 
 > **Knee Restriction Angle Explained**:
 >
-> The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
+> Unsent virtual-user inputs default to 0.0 on both sides; when no virtual-user source is connected, missing values fall back to 0.2 rad (about 10°). The left/right inputs are candidate restrictions. Current code first computes `θ=max(θ_left,θ_right)`, then clamps both knee references to at least `θ`. This affects the algorithmic reference, not independent mechanical stops on the actual joints. When clinical restrictions differ by side, interpret device behavior using the larger restriction requirement.
 >
 > | Restriction Angle | Effect |
 > |-------------------|--------|
@@ -59,8 +59,9 @@ Task Parameters:
 >
 > The assist ratio controls pacing by adjusting the trajectory playback speed (play\_speed). The formula is:
 >
+> - An unsent virtual-panel value defaults to 0.0. Only an actual `None` input, when neither panel nor joystick supplies a value, falls back to 1.0.
 > - **play\_speed** = 0.5 + assist ratio × 0.5, so play\_speed ∈ [0.5, 1.0]
-> - Trajectory time advance per control cycle: Δt = 0.02 s × play\_speed
+> - Trajectory time advance per control cycle: Δt_motion = `control_period` × play\_speed
 >
 > | Assist Ratio | play\_speed | Effect |
 > |--------------|-------------|--------|

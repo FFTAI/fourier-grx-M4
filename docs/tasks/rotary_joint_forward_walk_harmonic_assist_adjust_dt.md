@@ -17,7 +17,7 @@ has_toc: true
 |---|---|---|
 | 助力前向行走 谐波拟合（dt 模式） | **4133** | 助力（dt 模式） |
 
-适用机型：M4L（P1 / T1 / T2）
+适用机型：M4L（P1 / T1 / T2）。对应规划器 **4409**；虚拟用户膝受限版本为 **4311**，对应规划器 **4511**，见[助力前向行走 谐波拟合（膝受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_dt)。
 
 任务描述：
 

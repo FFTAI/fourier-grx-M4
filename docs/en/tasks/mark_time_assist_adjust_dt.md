@@ -33,10 +33,10 @@ Task Parameters:
 | Shank length | `float` | 0.5 | [0.3, 0.6] | The robot's shank length, in m. |
 | Step lift height | `float` | 0.1 | [0.1, 0.4] | The leg lift height for each step, in m. |
 | Step cycle | `float` | 1.0 | [0.5, 4.0] | The single-step cycle for mark time — the time required to complete one full stepping cycle, in s. A smaller value means a higher step frequency; a larger value means slower stepping. |
-| Assist ratio | `float` | 0.5 | [0.0, 1.0] | The adjustment coefficient for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal step frequency); a lower value plays more slowly, giving the patient more time to follow the motion. |
+| Assist ratio | `float` | 0.0 | [0.0, 1.0] | The adjustment coefficient for trajectory playback speed, in the range [0.0, 1.0]. A higher value plays the trajectory faster (closer to normal step frequency); a lower value plays more slowly, giving the patient more time to follow the motion. |
 | Assist trigger force upper | `float` | 2.0 | [-∞, +∞] | Torque threshold that triggers an **increase** in assist ratio in auto assist mode, in Nm. When measured joint torque exceeds this value, the assist ratio automatically increases by 0.04. |
 | Assist trigger force lower | `float` | 1.0 | [-∞, +∞] | Torque threshold that triggers a **decrease** in assist ratio in auto assist mode, in Nm. When measured joint torque falls below this value, the assist ratio automatically decreases by 0.001. |
-| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio every control cycle (20 ms) based on the deviation between measured joint torques and the reference trajectory (+0.04 when the patient exerts effort, -0.001 when the patient's effort is insufficient), without manual setting. The assist ratio is always clamped to [0.0, 1.0]. |
+| Auto assist mode flag | `bool` | false | (true, false) | Whether to enable automatic assist mode. When enabled, the system automatically adjusts the assist ratio every control cycle using absolute torque thresholds gated by swing state, gravity-term sign, and hip reference velocity; the cycle duration is set by the model's `control_period` (+0.04 when the patient exerts effort, -0.001 when the patient's effort is insufficient), without manual setting. The assist ratio is always clamped to [0.0, 1.0]. |
 | Base height (pelvis height) | `float` | None | [0.6, 1.2] | The height of the base (pelvis) above the ground while stepping, in m. When ≤ 0 or not sent, it is automatically set to the sum of the thigh and shank lengths. Values outside the range are clipped. Takes effect at the next start of stepping (trajectory regeneration); changes made while stepping do not affect the trajectory currently being executed. |
 | Start motion flag | `bool` | false | (true, false) | Whether to start the motion. true = start; false = do not start (has no effect if already started). |
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop the motion. true = stop; false = continue stepping. |
@@ -47,8 +47,9 @@ Task Parameters:
 >
 > The assist ratio controls the pace by adjusting the trajectory playback speed (play\_speed). The formula is:
 >
+> - An unsent virtual-panel value defaults to 0.0. Only an actual `None` input, when neither panel nor joystick supplies a value, falls back to 1.0.
 > - **play\_speed** = 0.5 + assist\_ratio × 0.5, so play\_speed ∈ [0.5, 1.0]
-> - Trajectory time advance per control cycle: Δt = 0.02 s × play\_speed
+> - Trajectory time advance per control cycle: Δt_motion = `control_period` × play\_speed
 >
 > | Assist Ratio | play\_speed | Effect |
 > |-------------|-------------|--------|

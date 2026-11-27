@@ -105,7 +105,7 @@ The Startup Configuration File is a YAML-formatted file that contains various ro
 |-----------------------|-------------------|--------|-----------|-------------------------------------------------------------------------|---------------|
 | robot: name           | Robot name        | string | by model  | "M4L", "M4LP1", "M4LT1", "M4LT2", "M4LZenoh"                 | No            |
 | robot: backend        | Robot communication backend type | string | "Real" | "Real"      | No            |
-| robot: control_period | Control period    | float  | 0.02    | Unit: seconds   | No            |
+| robot: control_period | Control period    | float  | Model-dependent: P1/Zenoh 0.02, T1 0.01, T2 0.005 | Unit: seconds; corresponding to 50/100/200 Hz | No            |
 | communication: period | Communication period | float | 0.02   | Unit: seconds (top-level `communication` section) | No            |
 
 > ℹ️ **Robot Model Notes**

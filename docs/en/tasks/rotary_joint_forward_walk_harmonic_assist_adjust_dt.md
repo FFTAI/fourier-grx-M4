@@ -18,7 +18,7 @@ nav_exclude: true
 |---|---|---|
 | Assisted Forward Walking – Harmonic Fitting (dt Mode) | **4133** | Assist (dt Mode) |
 
-Applicable Models: M4L (P1 / T1 / T2)
+Applicable Models: M4L (P1 / T1 / T2). Planner counterpart: **4409**. The virtual-user knee-restricted variant is **4311**, with Planner **4511**; see [Assisted Forward Walking – Harmonic Fitting (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_dt).
 
 Task Description:
 

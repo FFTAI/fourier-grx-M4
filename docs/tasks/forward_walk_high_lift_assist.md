@@ -14,7 +14,7 @@ has_toc: true
 |---|---|---|
 | 助力前向行走 高抬腿（PD 模式） | **4136** | 助力（PD 模式） |
 
-适用机型：M4L（P1 / T1 / T2）。
+适用机型：M4L（P1 / T1 / T2）。对应规划器 **4411**；膝受限版本为 **4308**，对应规划器 **4508**，见[助力前向行走 高抬腿（膝受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd)。
 
 任务描述：
 

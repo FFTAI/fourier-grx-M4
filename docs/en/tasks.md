@@ -55,8 +55,18 @@ Common task command examples for M4L robots:
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) | 4136 | M4L | Assisted forward walking – high-lift (PD Mode; added in v4.4.87) |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt) | 4137 | M4L | Assisted forward walking – high-lift (dt Mode; added in v4.4.87) |
 | [TASK_ROTARY_JOINT_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift) | 4307 | M4L | Passive forward walking – high-lift (knee restriction; added in v4.4.89) |
+| [TASK_ROTARY_JOINT_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd) | 4308 | M4L | Assisted forward walking – high-lift (knee restriction, PD mode) |
+| [TASK_ROTARY_JOINT_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_dt) | 4309 | M4L | Assisted forward walking – high-lift (knee restriction, dt mode) |
+| [TASK_ROTARY_JOINT_KNEE_RESTRICTION_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_pd) | 4310 | M4L | Assisted forward walking – harmonic fitting (knee restriction, PD mode) |
+| [TASK_ROTARY_JOINT_KNEE_RESTRICTION_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_dt) | 4311 | M4L | Assisted forward walking – harmonic fitting (knee restriction, dt mode) |
 | [TASK_ROTARY_JOINT_PLANNER_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/planner) | 4410 | M4L | Passive forward walking – high-lift Planner (reference only, no joint output; added in v4.4.89) |
+| [TASK_ROTARY_JOINT_PLANNER_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/planner) | 4411 | M4L | High-lift PD assist Planner (reference only, no joint output) |
+| [TASK_ROTARY_JOINT_PLANNER_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/planner) | 4412 | M4L | High-lift dt assist Planner (reference only, no joint output) |
 | [TASK_ROTARY_JOINT_PLANNER_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/planner) | 4507 | M4L | Knee-restricted high-lift Planner (reference only, no joint output; added in v4.4.89) |
+| [TASK_ROTARY_JOINT_PLANNER_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/planner) | 4508 | M4L | Knee-restricted high-lift PD assist Planner (reference only, no joint output) |
+| [TASK_ROTARY_JOINT_PLANNER_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/planner) | 4509 | M4L | Knee-restricted high-lift dt assist Planner (reference only, no joint output) |
+| [TASK_ROTARY_JOINT_PLANNER_KNEE_RESTRICTION_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/planner) | 4510 | M4L | Knee-restricted harmonic PD assist Planner (reference only, no joint output) |
+| [TASK_ROTARY_JOINT_PLANNER_KNEE_RESTRICTION_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/planner) | 4511 | M4L | Knee-restricted harmonic dt assist Planner (reference only, no joint output) |
 | TASK_ROTARY_JOINT_MARK_TIME                       | 4130             | M4L               | Passive marching in place (4112 before v4.4.69)                           |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD      | 4117             | M4L               | Assisted marching in place (adjust PD parameters)                         |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT      | 4119             | M4L               | Assisted marching in place (adjust dt parameters)                         |
@@ -152,6 +162,10 @@ The pages below are the primary task descriptions organized in this repository a
 - [Assisted Marching in Place (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
 - [Assisted Marching in Place (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
 - [Passive Forward Walking – High-Lift (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift)
+- [Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd)
+- [Assisted Forward Walking – High-Lift (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_dt)
+- [Assisted Forward Walking – Harmonic Fitting (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_pd)
+- [Assisted Forward Walking – Harmonic Fitting (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_dt)
 
 ### Leg-Length Adjustment Tasks
 

@@ -12,7 +12,7 @@ nav_exclude: true
 * TOC
 {:toc}
 
-The Planner is an auxiliary task for trajectory-tracking tasks. It generates joint motion trajectory sequences for display on the host computer along with possible trajectory generation results. Planner tasks do not run the task activate/deactivate flow, so the robot itself does not execute trajectory-tracking motion.
+The Planner is an auxiliary task for trajectory-tracking tasks. It generates joint motion trajectory sequences for display on the host computer along with possible trajectory generation results. Planner tasks use a lightweight activation/deactivation path rather than the executing task's full motion activation flow, so the robot itself does not execute trajectory-tracking motion.
 
 > ⚠️ **Note**: before using the Planner, run Servo Off (TID=36) to make sure the device is de-energized, to avoid accidental injury.
 >
@@ -34,6 +34,8 @@ The Planner is an auxiliary task for trajectory-tracking tasks. It generates joi
 | Assisted Forward Walking – Harmonic Fitting (PD Mode) | **4408** | Planner preview |
 | Assisted Forward Walking – Harmonic Fitting (dt Mode) | **4409** | Planner preview |
 | Passive Forward Walking – High-Lift | **4410** | Planner preview |
+| Assisted Forward Walking – High-Lift (PD Mode) | **4411** | Planner preview |
+| Assisted Forward Walking – High-Lift (dt Mode) | **4412** | Planner preview |
 | Passive Forward Walking (Knee Restriction) | **4501** | Planner preview |
 | Passive Marching in Place (Knee Restriction) | **4502** | Planner preview |
 | Assisted Forward Walking (Knee Restriction, PD Mode) | **4503** | Planner preview |
@@ -41,6 +43,10 @@ The Planner is an auxiliary task for trajectory-tracking tasks. It generates joi
 | Assisted Forward Walking (Knee Restriction, dt Mode) | **4505** | Planner preview |
 | Assisted Marching in Place (Knee Restriction, dt Mode) | **4506** | Planner preview |
 | Passive Forward Walking – High-Lift (Knee Restriction) | **4507** | Planner preview |
+| Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode) | **4508** | Planner preview |
+| Assisted Forward Walking – High-Lift (Knee Restriction, dt Mode) | **4509** | Planner preview |
+| Assisted Forward Walking – Harmonic Fitting (Knee Restriction, PD Mode) | **4510** | Planner preview |
+| Assisted Forward Walking – Harmonic Fitting (Knee Restriction, dt Mode) | **4511** | Planner preview |
 
 ## Passive Forward Walking
 
@@ -112,6 +118,14 @@ The panel mapping is identical to executing task 4133: `param_1` hip swing ampli
 
 Task Parameters: refer to [Passive Forward Walking – High-Lift](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift). The panel mapping matches executing task 4134, with `param_3` setting the final actual ground-clearance target.
 
+## Assisted Forward Walking – High-Lift (PD Mode)
+
+Task Parameters: refer to [Assisted Forward Walking – High-Lift (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist). Planner 4411 matches executing task 4136: `param_3` sets the lift target and `param_4` sets the assist ratio used to calculate the PD tier, but no PD or position targets are sent to the robot.
+
+## Assisted Forward Walking – High-Lift (dt Mode)
+
+Task Parameters: refer to [Assisted Forward Walking – High-Lift (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt). Planner 4412 matches executing task 4137: `param_4` and `switch_1` control reference playback and automatic-assist evaluation without sending control targets to the robot.
+
 ## Passive Forward Walking (Knee Restriction)
 
 Task Parameters: refer to [Passive Forward Walking (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_passive)
@@ -139,6 +153,22 @@ Task Parameters: refer to [Assisted Marching in Place (Knee Restriction, dt Mode
 ## Passive Forward Walking – High-Lift (Knee Restriction)
 
 Task Parameters: refer to [Passive Forward Walking – High-Lift (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift). High-lift parameters match executing task 4307; user leg lengths and left/right knee restrictions are also read. The larger restriction becomes a shared minimum knee angle for both legs.
+
+## Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode)
+
+Task Parameters: refer to [Assisted Forward Walking – High-Lift (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_pd). Planner 4508 matches executing task 4308, combining the shared knee restriction, high-lift target and `param_4` PD assist ratio without driving the joints.
+
+## Assisted Forward Walking – High-Lift (Knee Restriction, dt Mode)
+
+Task Parameters: refer to [Assisted Forward Walking – High-Lift (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift_assist_adjust_dt). Planner 4509 matches executing task 4309, combining the shared knee restriction, high-lift target, `param_4` playback speed and `switch_1` automatic assist without driving the joints.
+
+## Assisted Forward Walking – Harmonic Fitting (Knee Restriction, PD Mode)
+
+Task Parameters: refer to [Assisted Forward Walking – Harmonic Fitting (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_pd). Planner 4510 matches executing task 4310, combining the table restriction, additional virtual-user restriction and `param_4` PD assist ratio without driving the joints.
+
+## Assisted Forward Walking – Harmonic Fitting (Knee Restriction, dt Mode)
+
+Task Parameters: refer to [Assisted Forward Walking – Harmonic Fitting (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_harmonic_assist_adjust_dt). Planner 4511 matches executing task 4311, combining the table restriction, additional virtual-user restriction, `param_4` playback speed and `switch_1` automatic assist without driving the joints.
 
 ## Principle Explanation
 
@@ -169,3 +199,5 @@ It answers “what reference would these inputs and model state produce?” It c
 - `fourier-grx` v4.4.57 internal blaze build (previously available through the v4.4.55 – v4.4.57 prerelease builds; on P1 use v4.4.57 or later): added the Passive Forward Walking – Harmonic Fitting planner (TID 4407), and extended the planner deactivation clear to cover all harmonic gait level echo fields.
 - `fourier-grx` v4.4.81 internal build: added harmonic-fitting assisted forward-walk planners for PD and dt adjustment (TID 4408 / 4409), with panel mappings identical to executing tasks 4132 / 4133.
 - `fourier-grx` v4.4.89 internal build: added normal and knee-restricted high-lift Planners (TID 4410 / 4507), with panel and user-input mappings matching executing tasks 4134 / 4307.
+- Development version: added high-lift PD / dt assist Planners 4411 / 4412 and knee-restricted counterparts 4508 / 4509, covering the inputs and algorithms of executing tasks 4136 / 4137 / 4308 / 4309.
+- Development version: added harmonic knee-restricted PD / dt assist Planners 4510 / 4511, covering the table restriction, additional virtual-user restriction and assist inputs of executing tasks 4310 / 4311.
