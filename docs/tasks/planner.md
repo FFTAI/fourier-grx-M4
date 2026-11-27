@@ -2,7 +2,7 @@
 layout: default
 title: 规划器
 parent: 任务描述
-nav_order: 4.29
+nav_order: 4.31
 has_toc: true
 ---
 
@@ -55,11 +55,11 @@ has_toc: true
 
 任务参数：参考 [助力原地踏步 (dt 模式)](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
 
-## 谐波系数前向行走
+## 谐波系数被动前向行走
 
 任务值 (TID)： **4407**
 
-任务参数：参考 [谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)
+任务参数：参考 [谐波系数被动前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)
 
 面板三条档位（`param_1` 髋幅度档 / `param_2` 伸膝限制档 / `param_3` 步频档）与执行版 4131 完全一致，且同样每个控制周期生效。除参考轨迹外，该规划器还会回显档位，供上位机在患者开始运动之前预览 4 × 4 = 16 条曲线的关节包络与 6 档节奏：
 
@@ -165,5 +165,5 @@ has_toc: true
 
 - `fourier-grx` v4.3.0 版本新增规划器任务（TID 4401–4406）。
 - `fourier-grx` v4.4.47 版本起，规划器任务退出时清零步频上报字段。
-- `fourier-grx` v4.4.57 内测构建发布（此前经 v4.4.55 ~ v4.4.57 预发布包提供；P1 请使用 v4.4.57 及以上）：新增谐波系数前向行走规划器（TID 4407），并扩展规划器停用时的清零范围至谐波步态的全部档位回显字段。
+- `fourier-grx` v4.4.57 内测构建发布（此前经 v4.4.55 ~ v4.4.57 预发布包提供；P1 请使用 v4.4.57 及以上）：新增谐波系数被动前向行走规划器（TID 4407），并扩展规划器停用时的清零范围至谐波步态的全部档位回显字段。
 - `fourier-grx` v4.4.81 内测构建：新增谐波助力调 PD / 调 dt 规划器（TID 4408 / 4409），面板映射分别与 4132 / 4133 一致。

@@ -2,7 +2,7 @@
 layout: default
 title: Move by Offset (Prismatic Joint)
 parent: Task Description
-nav_order: 4.28
+nav_order: 4.30
 has_toc: true
 nav_exclude: true
 ---

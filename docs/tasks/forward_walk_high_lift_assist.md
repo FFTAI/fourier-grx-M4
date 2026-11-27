@@ -1,27 +1,27 @@
 ---
 layout: default
-title: 高抬腿 DSP 助力前向行走
+title: 高抬腿 DSP 助力前向行走（PD / dt 模式）
 parent: 任务描述
-nav_order: 4.30
+nav_order: 4.19
 has_toc: true
 ---
 
-# 高抬腿 DSP 助力前向行走
+# 高抬腿 DSP 助力前向行走（PD / dt 模式）
 
 ## 任务信息
 
 | 任务 | 任务值 (TID) | 控制方式 |
 |---|---|---|
-| 高抬腿 DSP 助力前向行走（调 PD） | **4136** | 助力调 PD |
-| 高抬腿 DSP 助力前向行走（调 dt） | **4137** | 助力调 dt |
+| 高抬腿 DSP 助力前向行走（PD 模式） | **4136** | 助力（PD 模式） |
+| 高抬腿 DSP 助力前向行走（dt 模式） | **4137** | 助力（dt 模式） |
 
 适用机型：M4L（P1 / T1 / T2）。
 
 任务描述：
 
-- 轨迹与[高抬腿 DSP 前向行走（4134 / 4135）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)完全一致：在普通 DSP 前向行走的基础上补偿摆动脚抬升高度。本页只说明助力执行部分的差异，轨迹生成、参数含义与算法原理见该页。
-- 4136（调 PD）：助力系数在 buttery（最柔顺）与 soft（最软一档）之间对关节 PD 增益做线性插值，只在启动阶段写入一次；语义与[助力前向行走（PD 模式，4116）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)一致。
-- 4137（调 dt）：助力系数映射为 0.5～1.0 倍的轨迹回放速度，系数越大越接近正常步速；可用 `switch_1` 打开自动助力。语义与[助力前向行走（dt 模式，4118）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)一致。
+- 轨迹与[高抬腿 DSP 被动前向行走（4134 / 4135）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)完全一致：在普通 DSP 前向行走的基础上补偿摆动脚抬升高度。本页只说明助力执行部分的差异，轨迹生成、参数含义与算法原理见该页。
+- 4136（PD 模式）：助力系数在 buttery（最柔顺）与 soft（最软一档）之间对关节 PD 增益做线性插值，只在启动阶段写入一次；语义与[助力前向行走（PD 模式，4116）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)一致。
+- 4137（dt 模式）：助力系数映射为 0.5～1.0 倍的轨迹回放速度，系数越大越接近正常步速；可用 `switch_1` 打开自动助力。语义与[助力前向行走（dt 模式，4118）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)一致。
 - 启动、停止、摇杆与 Dynalink 上报分别沿用[助力前向行走（PD 模式，4116）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)与[助力前向行走（dt 模式，4118）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)。本页任务不读取 `param_9`（过力矩保护），也不提供暂停接口。
 
 ## 任务参数
@@ -64,10 +64,10 @@ has_toc: true
 
 ### 算法运行原理
 
-高抬腿轨迹与被动版本共用同一套生成器：先在摆动区间按目标离地高度重解髋 / 膝角，再做零相位平滑，最后进入普通 DSP 的起步、循环、收尾与 PD 控制流程，详见[高抬腿 DSP 前向行走 · 原理解释](/fourier-grx-M4/docs/tasks/forward_walk_high_lift#原理解释)。助力版本只改变执行阶段：
+高抬腿轨迹与被动版本共用同一套生成器：先在摆动区间按目标离地高度重解髋 / 膝角，再做零相位平滑，最后进入普通 DSP 的起步、循环、收尾与 PD 控制流程，详见[高抬腿 DSP 被动前向行走 · 原理解释](/fourier-grx-M4/docs/tasks/forward_walk_high_lift#原理解释)。助力版本只改变执行阶段：
 
-1. **4136（调 PD）**：启动阶段把助力系数 `r∈[0,1]` 插值到 buttery 与 soft 两组 PD 增益之间（档位表与 4116 相同），整个行走过程保持该刚度；运行中修改 `param_4` 不会重新读取。负载检测与自动 PD 爬升在本任务中显式关闭。
-2. **4137（调 dt）**：播放速度 `v_play=0.5+0.5r`，轨迹时间按 `Δt_motion=Δt_control·v_play` 推进，因此助力越大步态周期越短；自动助力按实测髋关节力矩增减系数（判定逻辑与 4118 相同），PD 全程固定 medium 档。
+1. **4136（PD 模式）**：启动阶段把助力系数 `r∈[0,1]` 插值到 buttery 与 soft 两组 PD 增益之间（档位表与 4116 相同），整个行走过程保持该刚度；运行中修改 `param_4` 不会重新读取。负载检测与自动 PD 爬升在本任务中显式关闭。
+2. **4137（dt 模式）**：播放速度 `v_play=0.5+0.5r`，轨迹时间按 `Δt_motion=Δt_control·v_play` 推进，因此助力越大步态周期越短；自动助力按实测髋关节力矩增减系数（判定逻辑与 4118 相同），PD 全程固定 medium 档。
 
 ### 康复临床使用建议
 

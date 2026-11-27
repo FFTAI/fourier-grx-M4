@@ -2,7 +2,7 @@
 layout: default
 title: Assisted Marching in Place (Knee Restriction, dt Mode)
 parent: Task Description
-nav_order: 4.26
+nav_order: 4.28
 has_toc: true
 nav_exclude: true
 ---

@@ -2,7 +2,7 @@
 layout: default
 title: Passive Marching in Place
 parent: Task Description
-nav_order: 4.17
+nav_order: 4.14
 has_toc: true
 nav_exclude: true
 ---

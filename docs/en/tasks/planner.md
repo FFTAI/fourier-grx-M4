@@ -2,7 +2,7 @@
 layout: default
 title: Planner
 parent: Task Description
-nav_order: 4.29
+nav_order: 4.31
 has_toc: true
 nav_exclude: true
 ---
@@ -56,11 +56,11 @@ Task ID (TID): **4406**
 
 Task Parameters: refer to [Assisted Marching in Place (dt Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
 
-## Harmonic-Coefficient Forward Walking
+## Harmonic-Coefficient Passive Forward Walking
 
 Task ID (TID): **4407**
 
-Task Parameters: refer to [Harmonic-Coefficient Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
+Task Parameters: refer to [Harmonic-Coefficient Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
 
 The three panel levels (`param_1` hip swing amplitude, `param_2` knee extension restriction, `param_3` step frequency) are identical to the executing task 4131 and are likewise applied every control cycle. On top of the reference trajectory, this Planner also echoes the levels, so the host can preview the joint envelopes of all 4 × 4 = 16 curves and the 6 rhythm levels before the patient starts moving:
 
@@ -166,5 +166,5 @@ It answers “what reference would these inputs and model state produce?” It c
 
 - Planner tasks (TID 4401–4406) added in `fourier-grx` v4.3.0.
 - Since `fourier-grx` v4.4.47, planner tasks clear the reported step-frequency field on exit.
-- `fourier-grx` v4.4.57 internal blaze build (previously available through the v4.4.55 – v4.4.57 prerelease builds; on P1 use v4.4.57 or later): added the Harmonic-Coefficient Forward Walking planner (TID 4407), and extended the planner deactivation clear to cover all harmonic gait level echo fields.
+- `fourier-grx` v4.4.57 internal blaze build (previously available through the v4.4.55 – v4.4.57 prerelease builds; on P1 use v4.4.57 or later): added the Harmonic-Coefficient Passive Forward Walking planner (TID 4407), and extended the planner deactivation clear to cover all harmonic gait level echo fields.
 - `fourier-grx` v4.4.81 internal build: added harmonic-coefficient assisted forward-walk planners for PD and dt adjustment (TID 4408 / 4409), with panel mappings identical to executing tasks 4132 / 4133.

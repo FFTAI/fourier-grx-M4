@@ -2,7 +2,7 @@
 layout: default
 title: Gait Generation Algorithms
 parent: Task Description
-nav_order: 4.32
+nav_order: 4.33
 has_toc: true
 nav_exclude: true
 ---
@@ -201,8 +201,8 @@ Task comparison therefore requires more than “VHIP or DSP”: also confirm PD 
 | VHIP | [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive), [Assisted Forward Walking PD](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd), [Assisted Forward Walking dt](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt), and corresponding knee-restricted tasks | Leg lengths, step length/speed or step period, foot lift, base height, assist ratio |
 | FHIP | `gait_generator_type="fhip"` in developer control models; no independent public TID | Similar to VHIP, but vertical trajectory is quadratic |
 | DSP | [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive), [Passive Forward Walking with Knee Restriction](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_passive) | Step length, speed, leg lengths, base height, foot lift, double-support ratio |
-| High-lift DSP | [High-Lift DSP Forward Walk](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) (TID 4134/4135) | DSP parameters plus compensated target lift peak `param_3` |
-| Harmonic | [Harmonic-Coefficient Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic), [Harmonic Assist PD](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd), [Harmonic Assist dt](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt) | Hip amplitude, knee extension restriction, cadence, assist ratio |
+| High-lift DSP | [High-Lift DSP Passive Forward Walk](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) (TID 4134/4135) | DSP parameters plus compensated target lift peak `param_3` |
+| Harmonic | [Harmonic-Coefficient Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic), [Harmonic Assist PD](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd), [Harmonic Assist dt](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt) | Hip amplitude, knee extension restriction, cadence, assist ratio |
 | Multi-scheme preview | [Planner](/fourier-grx-M4/docs/en/tasks/planner) | Reuses executing-task generators and reports references without driving joints |
 
 Corresponding source files are under `src/fourier_grx/algorithm/m4l/` in the `fourier-grx` repository:

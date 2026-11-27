@@ -1,19 +1,19 @@
 ---
 layout: default
-title: 高抬腿 DSP 前向行走
+title: 高抬腿 DSP 被动前向行走
 parent: 任务描述
-nav_order: 4.29
+nav_order: 4.13
 has_toc: true
 ---
 
-# 高抬腿 DSP 前向行走
+# 高抬腿 DSP 被动前向行走
 
 ## 任务信息
 
 | 任务 | 任务值 (TID) | 控制方式 |
 |---|---|---|
-| 高抬腿 DSP 前向行走 | **4134** | PD |
-| 高抬腿 DSP 前向行走 + 速度前馈 | **4135** | PD + 速度前馈 |
+| 高抬腿 DSP 被动前向行走 | **4134** | PD |
+| 高抬腿 DSP 被动前向行走 + 速度前馈 | **4135** | PD + 速度前馈 |
 
 适用机型：M4L（P1 / T1 / T2）。
 
@@ -22,7 +22,7 @@ has_toc: true
 - 在普通 DSP 前向行走的基础上增加摆动脚抬升补偿：先计算原 DSP 轨迹的实际足端位置，再在摆动区间按目标离地高度重解髋 / 膝角，最后进行零相位平滑。
 - 目标是补偿髋角缩放与平滑造成的实际抬脚损失，不改变支撑腿轨迹，也不承诺基座前进量。
 - 4135 复用 4134 的轨迹与面板参数，仅增加速度前馈。T2 的 FSA v3 协议会直接下发速度前馈；P1/T1 的 FSA v2 fast 帧没有速度字段，相关参考轨迹补偿只影响可视化，不修改实际关节目标。
-- 助力版本 4136 / 4137 复用本任务的轨迹生成与 DSP 参数，并增加 `param_4` 助力系数，仅在执行阶段调整 PD 增益或轨迹回放速度，见[高抬腿 DSP 助力前向行走](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist)。
+- 助力版本 4136 / 4137 复用本任务的轨迹生成与 DSP 参数，并增加 `param_4` 助力系数，仅在执行阶段调整 PD 增益或轨迹回放速度，见[高抬腿 DSP 助力前向行走（PD / dt 模式）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist)。
 - 启动、停止、暂停、过力矩保护及 Dynalink 上报均沿用[被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)。
 
 ## 任务参数
@@ -78,5 +78,5 @@ TID 4135 不改变上述轨迹补偿，只在执行阶段增加速度前馈；�
 ## 更新日志
 
 - `fourier-grx` v4.4.85：新增 4134 / 4135。默认目标抬脚峰值 10 cm，可按需提高至 15 cm；新增 Harmonic / DSP / DSP+lift 对比工具用于离线检查轨迹。
-- `fourier-grx` v4.4.87：增加 Beta 抬升窗和角加速度约束，默认峰值相位 0.42、目标高度 15 cm。实际峰值受约束影响，当前默认工况约为 10 cm；同版本新增助力版本 4136 / 4137，见[高抬腿 DSP 助力前向行走](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist)。
+- `fourier-grx` v4.4.87：增加 Beta 抬升窗和角加速度约束，默认峰值相位 0.42、目标高度 15 cm。实际峰值受约束影响，当前默认工况约为 10 cm；同版本新增助力版本 4136 / 4137，见[高抬腿 DSP 助力前向行走（PD / dt 模式）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist)。
 - `fourier-grx` v4.4.88：默认改为 actual 最终高度反解，目标 10 cm；平滑参数按单步时间归一化（sigma 0.08×T_step、基础平滑 0.10×T_step），加速度改为输出诊断，peak 兼容模式保留旧语义。

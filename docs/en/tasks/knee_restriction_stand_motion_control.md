@@ -2,7 +2,7 @@
 layout: default
 title: Standing Posture Control (Knee Restriction)
 parent: Task Description
-nav_order: 4.20
+nav_order: 4.22
 has_toc: true
 nav_exclude: true
 ---

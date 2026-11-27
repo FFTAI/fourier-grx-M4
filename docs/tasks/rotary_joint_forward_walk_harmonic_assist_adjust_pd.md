@@ -2,7 +2,7 @@
 layout: default
 title: 谐波系数助力前向行走（PD 模式）
 parent: 任务描述
-nav_order: 4.13
+nav_order: 4.17
 has_toc: true
 ---
 
@@ -19,7 +19,7 @@ has_toc: true
 
 任务描述：
 
-- 步态来源与[谐波系数前向行走（4131）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)完全一致：回放 Fourier-GRX 主表（预存的 Fourier 谐波系数）采样出的周期性关节曲线，**曲线形状固定**（由幅度档与伸膝限制档从 16 条曲线中选定），**节奏**由步频档决定。
+- 步态来源与[谐波系数被动前向行走（4131）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)完全一致：回放 Fourier-GRX 主表（预存的 Fourier 谐波系数）采样出的周期性关节曲线，**曲线形状固定**（由幅度档与伸膝限制档从 16 条曲线中选定），**节奏**由步频档决定。
 - 助力语义与[助力前向行走（PD 模式，4116）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)一致：助力系数在 buttery（最柔顺）与 soft（最软一档）之间对 PD 增益做线性插值，系数越小关节越柔顺、患者自主发力空间越大。
 - 与 4116 的差别：**4116 的轨迹由 LIPM 模型按步长/步速在线生成，本任务的轨迹固定来自系数表**；因此本任务没有步长/步速/基座高度/抬腿高度/双支撑期占比参数，面板前三档与 4131 完全相同（幅度档 / 伸膝限制档 / 步频档），助力系数挪到 `param_4`。
 - 负载检测与自动 PD 爬升在本任务中关闭（助力档位由上位机直接给定）。
@@ -68,7 +68,7 @@ has_toc: true
 | 参考轨迹位置最大值  | `rehab.reference_joint_position_max`      |
 | 参考轨迹位置最小值  | `rehab.reference_joint_position_min`      |
 
-> 步态回显字段（`gait_name` 等 5 项）语义与 4131 相同，详见[谐波系数前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)的接口说明。
+> 步态回显字段（`gait_name` 等 5 项）语义与 4131 相同，详见[谐波系数被动前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)的接口说明。
 
 指令接口：
 

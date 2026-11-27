@@ -1,28 +1,28 @@
 ---
 layout: default
-title: High-Lift DSP Assisted Forward Walk
+title: High-Lift DSP Assisted Forward Walk (PD / dt Mode)
 parent: Task Description
-nav_order: 4.30
+nav_order: 4.19
 has_toc: true
 nav_exclude: true
 ---
 
-# High-Lift DSP Assisted Forward Walk
+# High-Lift DSP Assisted Forward Walk (PD / dt Mode)
 
 ## Task Info
 
 | Task | Task ID (TID) | Control |
 |---|---|---|
-| High-lift DSP assist forward walk (PD) | **4136** | PD-adjust assist |
-| High-lift DSP assist forward walk (dt) | **4137** | dt-adjust assist |
+| High-lift DSP assisted forward walk (PD Mode) | **4136** | PD-mode assist |
+| High-lift DSP assisted forward walk (dt Mode) | **4137** | dt-mode assist |
 
 Applicable models: M4L (P1 / T1 / T2).
 
 Task description:
 
-- Uses exactly the same trajectory as [High-Lift DSP Forward Walk (4134 / 4135)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift): swing-foot lift compensation on top of normal DSP forward walking. This page covers only the assist execution layer; trajectory generation, parameter meanings and algorithm details are on that page.
-- 4136 (PD adjust): the assist ratio linearly interpolates joint PD gains between the buttery (most compliant) and soft (softest preset) levels and is latched once at startup, matching [Assisted Forward Walking (PD Mode, 4116)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd).
-- 4137 (dt adjust): the assist ratio maps to a 0.5–1.0× trajectory playback speed, closer to normal cadence at higher values, with automatic assist enabled by `switch_1`, matching [Assisted Forward Walking (dt Mode, 4118)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt).
+- Uses exactly the same trajectory as [High-Lift DSP Passive Forward Walk (4134 / 4135)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift): swing-foot lift compensation on top of normal DSP forward walking. This page covers only the assist execution layer; trajectory generation, parameter meanings and algorithm details are on that page.
+- 4136 (PD Mode): the assist ratio linearly interpolates joint PD gains between the buttery (most compliant) and soft (softest preset) levels and is latched once at startup, matching [Assisted Forward Walking (PD Mode, 4116)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd).
+- 4137 (dt Mode): the assist ratio maps to a 0.5–1.0× trajectory playback speed, closer to normal cadence at higher values, with automatic assist enabled by `switch_1`, matching [Assisted Forward Walking (dt Mode, 4118)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt).
 - Start, stop, joystick and Dynalink reporting follow [Assisted Forward Walking (PD Mode, 4116)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd) and [Assisted Forward Walking (dt Mode, 4118)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt) respectively. These tasks do not read `param_9` (torque protection) and do not provide a pause interface.
 
 ## Task Parameters
@@ -65,10 +65,10 @@ The state and command interfaces match 4116 / 4118 respectively, with the assist
 
 ### Algorithm Operation
 
-The high-lift trajectory shares the same generator as the passive version: it re-solves hip / knee angles for a target ground clearance during swing, applies zero-phase smoothing, then enters the normal DSP start/loop/end and PD pipeline. See [High-Lift DSP Forward Walk · Principle Explanation](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift#principle-explanation). The assist variants change only the execution layer:
+The high-lift trajectory shares the same generator as the passive version: it re-solves hip / knee angles for a target ground clearance during swing, applies zero-phase smoothing, then enters the normal DSP start/loop/end and PD pipeline. See [High-Lift DSP Passive Forward Walk · Principle Explanation](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift#principle-explanation). The assist variants change only the execution layer:
 
-1. **4136 (PD adjust)**: at startup the assist ratio `r∈[0,1]` interpolates between the buttery and soft PD gain sets (same tier table as 4116), and that stiffness is held for the whole walk; changing `param_4` while running is not re-read. Load detection and automatic PD ramping are explicitly disabled for this task.
-2. **4137 (dt adjust)**: playback speed is `v_play=0.5+0.5r`, and trajectory time advances by `Δt_motion=Δt_control·v_play`, so a higher ratio shortens the gait period. Automatic assist adjusts the ratio from measured hip torque (same decision logic as 4118), while PD stays at the fixed medium tier.
+1. **4136 (PD Mode)**: at startup the assist ratio `r∈[0,1]` interpolates between the buttery and soft PD gain sets (same tier table as 4116), and that stiffness is held for the whole walk; changing `param_4` while running is not re-read. Load detection and automatic PD ramping are explicitly disabled for this task.
+2. **4137 (dt Mode)**: playback speed is `v_play=0.5+0.5r`, and trajectory time advances by `Δt_motion=Δt_control·v_play`, so a higher ratio shortens the gait period. Automatic assist adjusts the ratio from measured hip torque (same decision logic as 4118), while PD stays at the fixed medium tier.
 
 ### Rehabilitation and Clinical Use
 

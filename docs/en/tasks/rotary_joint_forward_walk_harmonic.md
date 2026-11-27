@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Harmonic-Coefficient Forward Walking
+title: Harmonic-Coefficient Passive Forward Walking
 parent: Task Description
 nav_order: 4.12
 has_toc: true
 nav_exclude: true
 ---
 
-# Harmonic-Coefficient Forward Walking
+# Harmonic-Coefficient Passive Forward Walking
 
 * TOC
 {:toc}

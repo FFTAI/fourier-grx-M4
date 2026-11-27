@@ -2,7 +2,7 @@
 layout: default
 title: Assisted Forward Walking (Knee Restriction, dt Mode)
 parent: Task Description
-nav_order: 4.23
+nav_order: 4.25
 has_toc: true
 nav_exclude: true
 ---
