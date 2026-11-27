@@ -15,15 +15,17 @@ nav_exclude: true
 |---|---|---|
 | Passive forward walking – high-lift | **4134** | PD |
 | Passive forward walking – high-lift + velocity feedforward | **4135** | PD + velocity feedforward |
+| Passive forward walking – high-lift (knee restriction) | **4307** | PD |
 
-Applicable models: M4L (P1 / T1 / T2).
+Applicable models: M4L (P1 / T1 / T2). Planner counterparts are **4410** for normal high lift and **4507** for knee-restricted high lift; they generate and report references without driving the joints.
 
 Task description:
 
 - Adds swing-foot lift compensation to normal DSP forward walking. The generator evaluates the actual foot position produced by the original DSP trajectory, re-solves hip / knee angles for a target ground clearance during swing, and applies zero-phase smoothing.
-- The compensation addresses lift lost through hip-angle scaling and smoothing. It does not alter the support-leg trajectory or promise forward base travel.
+- The compensation addresses lift lost through hip-angle scaling and smoothing. Normal high-lift tasks do not alter the support-leg trajectory; the knee-restricted variant adjusts both legs to the shared knee-angle floor. Neither promises forward base travel.
 - 4135 reuses the trajectory and panel parameters of 4134 and adds velocity feedforward. T2 sends it directly through FSA v3. FSA v2 fast frames on P1/T1 have no velocity field; the related reference compensation affects visualization only and does not modify actual joint targets.
 - The assist variants 4136 / 4137 reuse this trajectory and the DSP parameters, adding the assist ratio on `param_4`; they change only the execution layer (PD gains or playback speed). See [Assisted Forward Walking – High-Lift (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) and [Assisted Forward Walking – High-Lift (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt).
+- 4307 combines 4134 with the user inputs and base-height calculation of [Forward Walking with Knee Restriction](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_passive). The larger left/right restriction becomes a shared minimum knee angle for both legs and remains enforced after high-lift IK and smoothing. `param_6` has no effect on 4307.
 - Start, stop, pause, torque protection and Dynalink reporting are inherited from [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive).
 
 Task Parameters:
@@ -81,3 +83,4 @@ TID 4135 leaves this compensation unchanged and only adds velocity feedforward d
 - `fourier-grx` v4.4.85: added 4134 / 4135. The default lift target is 10 cm and can be raised to 15 cm; Harmonic / DSP / DSP+lift comparison tooling is included for offline trajectory inspection.
 - `fourier-grx` v4.4.87: added Beta lift windows and angular-acceleration limits. The default peak phase is 0.42 and the target height is 15 cm; actual lift is about 10 cm in the current default scenario. The same version added assist variants 4136 / 4137, documented in [Assisted Forward Walking – High-Lift (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) and [Assisted Forward Walking – High-Lift (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt).
 - `fourier-grx` v4.4.88: switches to actual-height solving with a 10 cm target. Smoothing is normalized by step time (sigma 0.08×T_step, base smoothing 0.10×T_step); acceleration becomes a diagnostic, while peak mode preserves the original semantics.
+- `fourier-grx` v4.4.89: adds knee-restricted executing task 4307 and Planners 4410 / 4507. The knee-angle floor is restored after high-lift IK, base smoothing and Gaussian smoothing.

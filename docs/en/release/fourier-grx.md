@@ -26,6 +26,7 @@ nav_exclude: true
 
 | Release Date | Version | Download | Release Notes | Release Type | Support |
 |--------------|---------|----------|---------------|--------------|---------|
+| 2026-11-27 | 4.4.89 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.89-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4489) | Internal build | ✅ Active |
 | 2026-11-26 | 4.4.88 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.88-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4488) | Internal build | ✅ Active |
 | 2026-11-26 | 4.4.87 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.87-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4487) | Internal build | ✅ Active |
 | 2026-11-23 | 4.4.86 | [⬇ Download](https://fourier-grx-1302548221.cos.ap-shanghai.myqcloud.com/grx/fourier-grx-4.4.86-linux-arm64-cpu-m4l-blaze.deb) | [Details](#4486) | Internal build | ✅ Active |
@@ -125,6 +126,25 @@ For details, see [Command Line Tool · Pre-release Channel](/fourier-grx-M4/docs
 ---
 
 ## Release Notes
+
+### 4.4.89
+
+> ⚠️ Release type: **internal blaze build, not an official release** &nbsp;·&nbsp; Support: **Active**. The latest official release at the time was 4.4.78, which remains long-term supported.
+
+> 📅 2026-11-27 &nbsp;·&nbsp; Platform: `linux/arm64`
+
+**New knee-restricted high-lift and Planner tasks**
+
+- Executing task **4307** combines the high-lift DSP trajectory and panel parameters of 4134 with the knee-restricted task's user leg lengths, left/right restrictions and base-height calculation. The larger restriction becomes a shared minimum knee angle for both legs; `param_6` has no effect.
+- Planners **4410 / 4507** preview normal and knee-restricted high-lift trajectories respectively. Panel and user-input mappings match the executing tasks; they generate and report references without driving the joints.
+- The knee-angle floor is restored after high-lift IK, binomial base smoothing and Gaussian smoothing, preventing post-processing from violating the restriction.
+
+**Verification**
+
+- Task registration, TIDs, model types, multiple-inheritance routing and Planner compute-only paths pass on P1/T1/T2/Zenoh. P1/T1/T2 registration counts are **65 / 65 / 66**.
+- Outputs are finite and final knee angles respect the floor at 200/100/50 Hz with restrictions of 0/0.2/0.35/0.6/1.0 rad. Actual lift is about 10 cm in the regular 0/0.2/0.35 rad cases. With larger knee angles, the base DSP trajectory may already exceed 10 cm; lift-only solving retains that trajectory and reports that the target was not reached.
+
+---
 
 ### 4.4.88
 

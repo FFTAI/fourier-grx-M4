@@ -54,6 +54,9 @@ Common task command examples for M4L robots:
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_PD_FF](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) | 4135 | M4L | Passive forward walking – high-lift + velocity feedforward (added in v4.4.85) |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) | 4136 | M4L | Assisted forward walking – high-lift (PD Mode; added in v4.4.87) |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt) | 4137 | M4L | Assisted forward walking – high-lift (dt Mode; added in v4.4.87) |
+| [TASK_ROTARY_JOINT_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) | 4307 | M4L | Passive forward walking – high-lift (knee restriction; added in v4.4.89) |
+| [TASK_ROTARY_JOINT_PLANNER_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/planner) | 4410 | M4L | Passive forward walking – high-lift Planner (reference only, no joint output; added in v4.4.89) |
+| [TASK_ROTARY_JOINT_PLANNER_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/planner) | 4507 | M4L | Knee-restricted high-lift Planner (reference only, no joint output; added in v4.4.89) |
 | TASK_ROTARY_JOINT_MARK_TIME                       | 4130             | M4L               | Passive marching in place (4112 before v4.4.69)                           |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD      | 4117             | M4L               | Assisted marching in place (adjust PD parameters)                         |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT      | 4119             | M4L               | Assisted marching in place (adjust dt parameters)                         |

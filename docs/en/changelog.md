@@ -12,6 +12,16 @@ This document records all significant updates to the Fourier-GRX-M4 SDK and its 
 
 ## November 2026
 
+### v1.2.75 (2026-11-27)
+
+**Release**
+
+- `fourier-grx` **v4.4.89 internal build (not an official release)**: `fourier-grx-4.4.89-linux-arm64-cpu-m4l-blaze.deb` (built 2026-11-27 11:52 CST, branch `m4-lfs`, package `X-Commit` = `ca0cd29bbb86`, `X-Release-Class` = `beta`, `X-Variant` = `linux-arm64-cpu-m4l-blaze`); install with `fourier-grx update` (reads the release index) or `fourier-grx update 4.4.89`, sha256 `e6e0ea425730e216a8356fc31ea79ccdb84b11d9a686997fd952563563bf5f5c`
+- Added knee-restricted high-lift executing task **4307**, plus normal and knee-restricted high-lift Planners **4410 / 4507**. Task 4307 reuses 4134's high-lift trajectory and panel parameters; the larger left/right restriction becomes a shared minimum knee angle, and `param_6` has no effect. Planners generate and report references without driving the joints
+- The knee-angle floor is restored after high-lift IK, binomial base smoothing and Gaussian smoothing, preventing post-processing from violating the restriction. P1/T1/T2 task registration counts are **65 / 65 / 66**
+- Verified at 200/100/50 Hz with restrictions of 0/0.2/0.35/0.6/1.0 rad: outputs are finite and knee angles respect the floor. Actual lift is about 10 cm in regular 0/0.2/0.35 rad cases. With larger knee angles, base DSP may already exceed the target; lift-only solving retains the trajectory and reports that the target was not reached
+- Chinese and English high-lift, Planner, task-index and generator-mapping pages are synchronized. The firmware release table gains a 4.4.89 row and notes section (internal build · Active); the current official release remains **4.4.78**
+
 ### v1.2.72 (2026-11-24)
 
 **Documentation Updates**

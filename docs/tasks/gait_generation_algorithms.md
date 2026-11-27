@@ -200,7 +200,7 @@ DSP（Double Support Phase）在 VHIP 类模型基础上，把每一步拆成单
 | VHIP | [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)、[助力前向行走 PD](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)、[助力前向行走 dt](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt) 及对应膝限任务 | 腿长、步长/步速或踏步周期、抬脚高度、基座高度、助力系数 |
 | FHIP | 开发者控制模型的 `gait_generator_type="fhip"`，无独立公开 TID | 与 VHIP 类似，但垂直轨迹为二次曲线 |
 | DSP | [被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)、[被动前向行走（膝限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive) | 步长、步速、腿长、基座高度、抬脚高度、双支撑期占比 |
-| 高抬腿 DSP | [被动前向行走 高抬腿](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)（TID 4134/4135） | DSP 参数 + 补偿后目标抬脚峰值 `param_3` |
+| 高抬腿 DSP | [被动前向行走 高抬腿](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)（TID 4134–4137，膝限 4307） | DSP 参数 + 补偿后目标抬脚峰值 `param_3`；膝限版另读取用户腿长与左右伸膝限制 |
 | 谐波系数 | [被动前向行走 谐波拟合](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)、[谐波助力 PD](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)、[谐波助力 dt](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt) | 髋幅度档、伸膝限制档、步频档、助力系数 |
 | 多方案预览 | [规划器](/fourier-grx-M4/docs/tasks/planner) | 复用对应执行版生成器，只上报参考，不驱动关节 |
 
