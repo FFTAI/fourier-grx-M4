@@ -81,7 +81,15 @@
     var path = window.location.pathname;
     var isEnPage = path.indexOf("/docs/en") !== -1;
     var cut = path.indexOf("/docs/");
-    var siteRoot = cut === -1 ? path.replace(/[^/]*$/, "") : path.slice(0, cut) + "/";
+    var demoCut = path.indexOf("/demo/");
+    var siteRoot;
+    if (cut !== -1) {
+      siteRoot = path.slice(0, cut) + "/";
+    } else if (demoCut !== -1) {
+      siteRoot = path.slice(0, demoCut) + "/";
+    } else {
+      siteRoot = path.replace(/[^/]*$/, "");
+    }
     var zhPath;
     var enPath;
 

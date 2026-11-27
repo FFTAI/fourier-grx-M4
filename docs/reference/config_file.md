@@ -60,9 +60,8 @@ run_type="custom"
 | debug: print_imu_state                        | 是否打印 IMU 原始状态信息            | boolean | false | true, false | 是     |
 | debug: print_joint_position_state             | 是否打印 关节 原始位置状态信息           | boolean | false | true, false | 是     |
 | debug: print_joint_velocity_state             | 是否打印 关节 原始速度状态信息           | boolean | false | true, false | 是     |
-| debug: print_joint_kinetic_state              | 是否打印 关节 原始力矩状态信息           | boolean | false | true, false | 是     |
+| debug: print_joint_effort_state               | 是否打印 关节 原始力矩状态信息           | boolean | false | true, false | 是     |
 | debug: print_joint_current_state              | 是否打印 关节 原始电流状态信息           | boolean | false | true, false | 是     |
-| debug: print_imu_urdf_state                   | 是否打印 IMU 对应 URDF 文件位姿状态信息  | boolean | false | true, false | 是     |
 | debug: print_joint_urdf_position_state        | 是否打印 关节 对应 URDF 文件位姿位置状态信息 | boolean | false | true, false | 是     |
 | debug: print_peripheral_virtual_joystick      | 是否打印 外设 虚拟摇杆状态信息           | boolean | false | true, false | 是     |
 | debug: print_peripheral_virtual_teleoperation | 是否打印 外设 虚拟遥操作状态信息          | boolean | false | true, false | 是     |
@@ -102,10 +101,12 @@ run_type="custom"
 
 | 配置项                         | 说明        | 数据类型   | 默认值      | 可选项                                   | 用户可修改 |
 |-----------------------------|-----------|--------|----------|-----------------------------------------|-------|
-| robot: name                 | 机器人名称     | string | 按机型      | "M4L", "M4LP1", "M4LT1", "M4LT2", "M4LZenoh" | 否     |
-| robot: backend              | 机器人通信后端类型 | string | "Real"   | "Real"                                  | 否     |
+| robot: name                 | 机器人名称     | string | 按机型      | "M4LP1", "M4LT1", "M4LT2", "M4LZenoh" | 否     |
+| robot: backend              | 机器人通信后端类型 | string | 必填       | "Real", "Zenoh"                         | 否     |
 | robot: control_period       | 控制周期      | float  | 按机型：P1/Zenoh 0.02，T1 0.01，T2 0.005 | 单位为秒；对应 50/100/200 Hz | 否     |
 | communication: period       | 通信周期      | float  | 0.02     | 单位为秒（顶层 `communication` 段）              | 否     |
+
+> ⚠️ `robot.backend` 不会自动补默认值。`M4LP1` / `M4LT1` / `M4LT2` 使用 `"Real"`；`M4LZenoh` 必须使用 `"Zenoh"`。名称与后端组合未注册时，程序会在启动时报错。
 
 > ℹ️ **机器人型号说明**
 >

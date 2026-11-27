@@ -115,7 +115,6 @@ def algorithm():
 
     if finish_flag is True:
         print("move default position movement finish!")
-        exit(0)
 
     # --------------------------------------------------
 
@@ -169,6 +168,9 @@ def algorithm():
 
     # output control
     control_system.robot_control_loop_set_control(control_dict=control_dict)
+
+    if finish_flag is True:
+        exit(0)
 
 
 if __name__ == "__main__":

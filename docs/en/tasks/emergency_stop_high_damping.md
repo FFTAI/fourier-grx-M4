@@ -62,7 +62,7 @@ State Interface:
 
 Command Interface:
 
-This task requires no additional command parameters and is triggered automatically by the control program. It cannot be activated manually by sending TID=4600.
+This task requires no additional command parameters and is triggered automatically by the control program. It is registered for M4LT2 and can be activated with TID=4600, but manual activation through the host API is not recommended.
 
 ## Comparison with Servo Off
 

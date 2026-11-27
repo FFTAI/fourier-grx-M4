@@ -27,9 +27,8 @@ permalink: /demo/udp/
     type: "socket"
   ```
 
-  `release` / `debug` 模式的 M4L 配置已带有以上字段；`sdk`（开发者模式）的配置目前
-  只有 `dynalink.enable`，需要补上 `communication` 段，否则机器人不会监听 UDP 5566，
-  示例会一直等待广播直到超时。可用 `fourier-grx list` 确认当前生效的配置文件。
+  Real 后端 M4L 的 `release` / `debug` / `sdk` 配置均已带有以上字段，无需手动补充
+  `communication` 段。可用 `fourier-grx list` 确认当前生效的配置文件。
 
 ## 协议简介（UDP + MessagePack）
 

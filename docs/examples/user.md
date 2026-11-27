@@ -37,7 +37,7 @@ Fourier-GRX User 接口适用于高层应用开发，通过网络与机器人通
      type: "socket"
    ```
 
-   `release`（发布模式）与 `debug`（调试模式）的 M4L 配置文件已默认带有以上字段；`sdk`（开发者模式）的 M4L 配置文件目前只有 `dynalink.enable`，需要手动补上 `communication` 段，否则机器人不会监听 UDP 5566 端口，示例会一直停在“等待连接到机器人...”。
+   Real 后端 M4L 的 `release`、`debug` 与 `sdk` 配置文件均已默认带有以上字段，无需手动补充 `communication` 段。`sdk` 配置也已默认开启 `peripheral.use_virtual_panel` 和 `peripheral.use_virtual_user`，可直接运行虚拟面板示例。
    可用 `fourier-grx list` 查看当前生效的配置文件路径。
 
 2. 在机器人主控电脑上启动 Fourier-GRX 主程序：

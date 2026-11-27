@@ -252,11 +252,13 @@ key 说明列表：
 任务指令发送接口如下，发送指令时要求按照以下流程执行：
 
 - 任务指令发送：
-    1. 发送 robot_task_command 和 robot_task_command_data，任务相关信息
+    1. 发送 robot_task_command，指定任务 TID
     2. 发送 flag_task_command_update 指令更新标志位，确认更新任务指令
 - 模块指令发送：
-    1. 发送 robot_component_command 和 robot_component_command_data，模块相关信息
+    1. 发送 robot_component_command，指定模块 MID
     2. 发送 flag_component_command_update 指令更新标志位，确认更新模块指令
+
+`robot_task_command_data` 和 `robot_component_command_data` 当前仅为预留字段；接收后不会传给任务或模块。任务参数应使用各任务页面说明的虚拟面板、虚拟用户等接口。
 
 key 说明列表：
 
@@ -264,10 +266,10 @@ key 说明列表：
 |---------------------------------|------------|------|-----------------|
 | `flag_task_command_update`      | 任务指令请求更新标志 | bool | 0: 不更新，1: 更新    |
 | `robot_task_command`            | 任务指令       | int  | 机器人任务指令 (TID 值) |
-| `robot_task_command_data`       | 任务指令数据     | dict | 机器人任务指令数据       |
+| `robot_task_command_data`       | 预留任务指令数据   | dict | 当前接收但不消费，不传递任务参数 |
 | `flag_component_command_update` | 模块指令请求更新标志 | bool | 0: 不更新，1: 更新    |
 | `robot_component_command`       | 模块指令       | int  | 机器人模块指令 (MID 值) |
-| `robot_component_command_data`  | 模块指令数据     | dict | 机器人模块指令数据       |
+| `robot_component_command_data`  | 预留模块指令数据   | dict | 当前接收但不消费，不传递模块参数 |
 
 ### grx/client 接口协议 (指令信息)
 

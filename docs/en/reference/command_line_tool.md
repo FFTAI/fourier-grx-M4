@@ -74,7 +74,7 @@ The variant is the package's platform/model identifier (the deb `X-Variant` fiel
 ### Where the version list comes from
 
 - **Release index (since v4.4.77)**: `grx/manifest.json` is fetched once and carries every published version of this variant together with its release class and `sha256`. Entries are listed in ascending version order with no window limit.
-- **Fallback probing (when the index is unavailable)**: if the index cannot be fetched (offline, older server), the client falls back to HTTP HEAD probing version by version — `patch + 1` through `patch + 20` of the current minor version (stopping after 5 consecutive 404s), `minor + 1` (patch 0-10, stop after 3), and `minor 0` of `major + 1` (patch 0-5, stop after 3). Because of that window, some later patch versions may stay invisible to a device sitting on an old release; this is a known limitation of the fallback path only.
+- **Fallback probing (when the index is unavailable)**: if the index cannot be fetched (offline, older server), the client falls back to HTTP HEAD probing version by version — `patch + 1` through `patch + 20` of the current minor version (stopping after 5 consecutive 404s), `minor + 1` (patch 0-10, stop after 3), and `minor 0` of `major + 1` (patch 0-5, stop after 3). Because of that window, some later patch versions may stay invisible to a device sitting on an old release; this is a known limitation of the fallback path only. HEAD confirms only that a package exists, not its release class, so fallback candidates are labeled **release class unknown** rather than being mislabeled as beta or stable.
 - When the index reports nothing newer, the client additionally spot-checks the immediately next version number with one HEAD request, in case a package was uploaded without updating the index.
 
 ### Workflow
@@ -82,9 +82,9 @@ The variant is the package's platform/model identifier (the deb `X-Variant` fiel
 1. Reads the currently installed version number and variant from the deb record
 2. Fetches the release index and collects all versions of this variant that are newer than the installed one, together with their `sha256`
 3. Falls back to version-by-version probing if the index is unavailable
-4. Lists the candidates, marking the latest one and each entry's release class
+4. Lists candidates and marks the latest; index entries show their release class, while fallback entries show **release class unknown**
 5. Prompts the user to select a version number (press Enter to install the latest version, enter `n` to cancel)
-6. Downloads the `.deb` package for the selected version and verifies its `sha256`
+6. Downloads the selected `.deb` package; verifies its `sha256` when the index provides one, otherwise prints a notice and skips verification
 7. Completes the installation with `sudo dpkg -i`
 
 ### Example Output

@@ -27,7 +27,7 @@ The available run types are listed below:
 | No. | Run Modes         | Config Value  | Description                                                                      | End User | Developer |
 |-----|------------------|---------------|----------------------------------------------------------------------------------|----------|-----------|
 | 1   | release mode     | release       | For factory-deployed robots; uses the **host PC** for robot control by default   | ✅       | ❌        |
-| 2   | debug mode       | debug         | For developer debugging; uses a **joystick** for robot control by default         | ❌       | ✅        |
+| 2   | debug mode       | debug         | For developer debugging; shipped Real-backend M4L configs use the **keyboard** by default | ❌       | ✅        |
 | 3   | Teleoperation    | teleoperation | For developer debugging; uses **Vision Pro** for robot control by default         | ❌       | ⚠️        |
 | A   | developer mode   | sdk           | For developers using the **SDK** library for debugging                            | ❌       | ✅        |
 | B   | server mode      | server        | For the SDK PubSub API; exchanges data with the server over Zenoh                    | ❌       | ✅        |
@@ -35,9 +35,8 @@ The available run types are listed below:
 
 ## Debug Mode
 
-In debug mode, the robot primarily uses a **joystick** 🎮 to invoke internal algorithms and perform motion tasks.
-Task switching is achieved using combinations of the `L1`, `L2`, `R1`, and `R2` buttons on the joystick.
-The currently selected and confirmed task status is printed in the terminal; to see it, you must start the program from a terminal window.
+The shipped Real-backend M4L debug configs set `use_keyboard: true` and `use_joystick: false`, so the keyboard invokes internal algorithms by default. The currently selected and confirmed task status is printed in the terminal; to see it, start the program from a terminal window.
+To use a joystick instead, set `use_joystick: true` and disable the keyboard in the active config. Task switching then uses combinations of the `L1`, `L2`, `R1`, and `R2` buttons.
 
 - `L1` cycles through task selections; **double-click** `L2` within 0.3 s to confirm and execute a task
 - `R1` cycles through module selections; **double-click** `R2` within 0.3 s to confirm and execute a module

@@ -253,11 +253,13 @@ Key description list:
 The task command send interface is as follows. Commands must be sent in this order:
 
 - Task command send:
-    1. Send `robot_task_command` and `robot_task_command_data` with task-related information
+    1. Send `robot_task_command` with the task TID
     2. Send `flag_task_command_update` to confirm the task command update
 - Module command send:
-    1. Send `robot_component_command` and `robot_component_command_data` with module-related information
+    1. Send `robot_component_command` with the module MID
     2. Send `flag_component_command_update` to confirm the module command update
+
+`robot_task_command_data` and `robot_component_command_data` are reserved fields. They are accepted but not forwarded to tasks or modules. Use the virtual panel, virtual user, or other task-specific interfaces documented on each task page for parameters.
 
 Key description list:
 
@@ -265,10 +267,10 @@ Key description list:
 |---------------------------------|-------------------------------------|------|----------------------------------|
 | `flag_task_command_update`      | Task command request update flag    | bool | 0: do not update, 1: update      |
 | `robot_task_command`            | Task command                        | int  | Robot task command (TID value)   |
-| `robot_task_command_data`       | Task command data                   | dict | Robot task command data          |
+| `robot_task_command_data`       | Reserved task command data          | dict | Accepted but currently ignored; no task parameters are forwarded |
 | `flag_component_command_update` | Module command request update flag  | bool | 0: do not update, 1: update      |
 | `robot_component_command`       | Module command                      | int  | Robot module command (MID value) |
-| `robot_component_command_data`  | Module command data                 | dict | Robot module command data        |
+| `robot_component_command_data`  | Reserved module command data        | dict | Accepted but currently ignored; no module parameters are forwarded |
 
 ### grx/client Interface Protocol (Command Information)
 

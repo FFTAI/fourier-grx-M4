@@ -56,7 +56,7 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 |------|-----|-----------|-------------|
 | 1 | 4104 | Border detection and return | Drives hip joints toward MIN and knee joints toward MAX; retracts along the same path after detecting contact. |
 | 2 | — | Joint Servo Off | Executes ServoOff so joints drop naturally under gravity. |
-| 3 | 4105 | Set Home (software layer) | Continuously samples 50 cycles and takes the average; calls `set_home_position()` to write the zero point. |
+| 3 | 4105 | Set Home (software layer) | Samples for approximately 1 second and takes the average (50/100/200 cycles at 50/100/200 Hz); calls `set_home_position()` to write the zero point. |
 
 ## Notes and Common Issues
 

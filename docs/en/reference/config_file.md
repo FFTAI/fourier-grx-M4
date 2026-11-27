@@ -61,9 +61,8 @@ The Startup Configuration File is a YAML-formatted file that contains various ro
 | debug: print_imu_state                          | Whether to print raw IMU state information                     | boolean | false   | true, false | Yes           |
 | debug: print_joint_position_state               | Whether to print raw joint position state information          | boolean | false   | true, false | Yes           |
 | debug: print_joint_velocity_state               | Whether to print raw joint velocity state information          | boolean | false   | true, false | Yes           |
-| debug: print_joint_kinetic_state                | Whether to print raw joint torque state information            | boolean | false   | true, false | Yes           |
+| debug: print_joint_effort_state                 | Whether to print raw joint torque state information            | boolean | false   | true, false | Yes           |
 | debug: print_joint_current_state                | Whether to print raw joint current state information           | boolean | false   | true, false | Yes           |
-| debug: print_imu_urdf_state                     | Whether to print IMU pose state corresponding to the URDF file | boolean | false   | true, false | Yes           |
 | debug: print_joint_urdf_position_state          | Whether to print joint position state corresponding to the URDF file | boolean | false | true, false | Yes        |
 | debug: print_peripheral_virtual_joystick        | Whether to print virtual joystick peripheral state information | boolean | false   | true, false | Yes           |
 | debug: print_peripheral_virtual_teleoperation   | Whether to print virtual teleoperation peripheral state information | boolean | false | true, false | Yes         |
@@ -103,10 +102,12 @@ The Startup Configuration File is a YAML-formatted file that contains various ro
 
 | Parameter             | Description       | Type   | Default   | Options                                                                 | User-editable |
 |-----------------------|-------------------|--------|-----------|-------------------------------------------------------------------------|---------------|
-| robot: name           | Robot name        | string | by model  | "M4L", "M4LP1", "M4LT1", "M4LT2", "M4LZenoh"                 | No            |
-| robot: backend        | Robot communication backend type | string | "Real" | "Real"      | No            |
+| robot: name           | Robot name        | string | by model  | "M4LP1", "M4LT1", "M4LT2", "M4LZenoh"                 | No            |
+| robot: backend        | Robot communication backend type | string | Required | "Real", "Zenoh" | No            |
 | robot: control_period | Control period    | float  | Model-dependent: P1/Zenoh 0.02, T1 0.01, T2 0.005 | Unit: seconds; corresponding to 50/100/200 Hz | No            |
 | communication: period | Communication period | float | 0.02   | Unit: seconds (top-level `communication` section) | No            |
+
+> ⚠️ `robot.backend` has no automatic fallback. Use `"Real"` for `M4LP1` / `M4LT1` / `M4LT2`, and `"Zenoh"` for `M4LZenoh`. Startup fails if the name/backend pair is not registered.
 
 > ℹ️ **Robot Model Notes**
 >

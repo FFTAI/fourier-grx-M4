@@ -64,7 +64,7 @@ This task requires no command parameters. Send the corresponding TID to trigger 
 | Step | TID | Task Name | Description |
 |------|-----|-----------|-------------|
 | 1 | — | Joint Servo Off | Executes ServoOff; the user manually positions the joints at the target zero posture. |
-| 2 | 4105 | Set Home (software layer) | Continuously samples 50 cycles and takes the average; calls `set_home_position()` to write the zero point; resets the joint target positions afterwards. |
+| 2 | 4105 | Set Home (software layer) | Samples for approximately 1 second and takes the average (50/100/200 cycles at 50/100/200 Hz); calls `set_home_position()` to write the zero point; resets the joint target positions afterwards. |
 
 ## Notes and Common Issues
 

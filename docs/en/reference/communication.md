@@ -83,12 +83,11 @@ client = SyncClientSocket(
 
 ## Topics and Data Direction
 
-Communication is organized into 6 topic keys:
+Communication is organized into 5 topic keys:
 
 | Topic Key | Direction           | Description                                      |
 |-----------|---------------------|--------------------------------------------------|
 | `comm`    | Bidirectional       | Communication status and heartbeat               |
-| `core`    | Server → Client     | Low-level core state (raw joint sensor data, etc.) |
 | `robot`   | Server → Client     | Robot motion state (joint position/velocity/torque, etc.) |
 | `task`    | Bidirectional       | Task state and task control commands             |
 | `grx`     | Bidirectional       | fourier-grx generic robot data (mainly humanoid) |
@@ -148,22 +147,22 @@ The `comm` topic includes a host heartbeat detection mechanism that automaticall
 
 ## Configuration Parameters
 
-In the `fourier-grx` configuration file (typically under `~/.fourier/fourier-grx/config/`), two blocks control communication behavior:
+In the `fourier-grx` configuration file (typically under `~/fourier-grx/config/m4l/`), two blocks control communication behavior:
 
 ```yaml
 # Controls whether SyncServer starts and the communication period
 communication:
   enable: true        # true = start the communication server
   type: "socket"      # backend type; standard M4L uses "socket"
-  period: 0.02        # publish period in seconds (default: 0.02 s = 50 Hz)
+  period: 0.02        # publish period in seconds (0.02 s = 50 Hz in shipped configs)
 
-# Controls whether the SyncClient subprocess starts
+# The internal sync subprocess is not required for User API communication
 sync:
-  enable: true        # true = start the internal sync subprocess
+  enable: false       # keep disabled unless internal synchronization is required
   period: 0.02        # subprocess publish period in seconds
 ```
 
-> ⚠️ **Note**: Both `communication.enable` and `sync.enable` must be set to `true` for communication to work. Both are enabled by default only in **Developer Mode**.
+> ⚠️ **Note**: The `SyncClientSocket` UDP communication described on this page requires `dynalink.enable=true`, `communication.enable=true`, and `communication.type: "socket"`; it does not require `sync.enable`. The shipped M4L release / debug / sdk configs enable communication and disable sync. Bulk publication from internal sync does not send `host_heartbeat_counter`; the external host must send heartbeats explicitly as described above rather than relying on internal sync.
 
 ---
 

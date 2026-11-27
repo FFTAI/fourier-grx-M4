@@ -30,7 +30,7 @@ Fourier-GRX developer 接口使用状态字典（state dict）返回机器人当
 |------------------|------------|------------------------------|-------|-------------------------------------------------------------|
 | `joint_position` | 机器人关节的位置信息 | array(float * num_of_joints) | rad   | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
 | `joint_velocity` | 机器人关节的速度信息 | array(float * num_of_joints) | rad/s | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
-| `joint_kinetic`  | 机器人关节的力矩信息 | array(float * num_of_joints) | Nm    | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
+| `joint_effort`   | 机器人关节的力矩信息 | array(float * num_of_joints) | Nm    | 参考 [机器人关节序列](/fourier-grx-M4/docs/reference/joint_sequence) |
 
 ## 控制字典（control dict）
 

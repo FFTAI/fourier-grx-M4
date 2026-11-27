@@ -38,7 +38,7 @@ You can run these examples on the robot controller or on any computer connected 
      type: "socket"
    ```
 
-   The M4L `release` and `debug` config files already include these fields; the M4L `sdk` config file currently only has `dynalink.enable`, so you need to add the `communication` section yourself — otherwise the robot never listens on UDP 5566 and the examples stay at "等待连接到机器人..." forever.
+   The Real-backend M4L `release`, `debug`, and `sdk` config files already include these fields; no manual `communication` section is needed. The `sdk` configs also enable `peripheral.use_virtual_panel` and `peripheral.use_virtual_user` by default, so the virtual-panel example can run directly.
    Run `fourier-grx list` to see which config file is currently in effect.
 
 2. Start the Fourier-GRX main program on the robot controller:

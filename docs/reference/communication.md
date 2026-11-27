@@ -81,12 +81,11 @@ client = SyncClientSocket(
 
 ## 主题（Topic）与数据方向
 
-通信内容按主题键（topic key）区分，共 6 个主题：
+通信内容按主题键（topic key）区分，共 5 个主题：
 
 | 主题键    | 方向                | 说明                         |
 |--------|-------------------|----------------------------|
 | `comm` | 双向                | 通信状态与心跳信息                  |
-| `core` | 服务端 → 客户端         | 底层核心状态（关节传感器原始数据等）         |
 | `robot` | 服务端 → 客户端        | 机器人运动状态（关节位置/速度/力矩等）       |
 | `task` | 双向                | 任务状态与任务控制指令                |
 | `grx`  | 双向                | fourier-grx 通用机器人（主要为人形）数据  |
@@ -146,22 +145,22 @@ client = SyncClientSocket(
 
 ## 配置文件参数
 
-在 `fourier-grx` 配置文件（通常位于 `~/.fourier/fourier-grx/config/`）中，以下两个配置块控制通信行为：
+在 `fourier-grx` 配置文件（通常位于 `~/fourier-grx/config/m4l/`）中，以下两个配置块控制通信行为：
 
 ```yaml
 # 控制 SyncServer 是否启动及通信周期
 communication:
   enable: true        # true = 启动通信服务端
   type: "socket"      # 通信后端类型，M4L 标准使用 "socket"
-  period: 0.02        # 通信发布周期（秒），默认 0.02 s（50 Hz）
+  period: 0.02        # 通信发布周期（秒），随包配置为 0.02 s（50 Hz）
 
-# 控制 SyncClient 子进程是否启动
+# 内部同步子进程不是 User API 通信的前置条件
 sync:
-  enable: true        # true = 启动内部同步子进程
+  enable: false       # 无内部同步需求时保持关闭
   period: 0.02        # 子进程发布周期（秒）
 ```
 
-> ⚠️ **注意**：`communication.enable` 和 `sync.enable` 需**同时**设置为 `true`，通信功能才能正常工作。仅在 **开发者模式** 下，两者才默认开启。
+> ⚠️ **注意**：本页所述 `SyncClientSocket` UDP 通信需要 `dynalink.enable=true`、`communication.enable=true` 和 `communication.type: "socket"`，不要求开启 `sync.enable`。M4L 的 release / debug / sdk 随包配置均已开启通信并关闭 sync。内部 sync 的批量发布不会发送 `host_heartbeat_counter`；上位机必须按上文显式发送心跳，不能用内部 sync 代替外部心跳。
 
 ---
 

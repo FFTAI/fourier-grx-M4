@@ -31,7 +31,7 @@ The Fourier-GRX Developer API returns the robot's current state information thro
 |------------------|--------------------------|------------------------------|-------|---------------------------------------------------------------------------------------------|
 | `joint_position` | Robot joint position     | array(float * num_of_joints) | rad   | See [Joint Sequence](/fourier-grx-M4/docs/en/reference/joint_sequence)                      |
 | `joint_velocity` | Robot joint velocity     | array(float * num_of_joints) | rad/s | See [Joint Sequence](/fourier-grx-M4/docs/en/reference/joint_sequence)                      |
-| `joint_kinetic`  | Robot joint torque       | array(float * num_of_joints) | Nm    | See [Joint Sequence](/fourier-grx-M4/docs/en/reference/joint_sequence)                      |
+| `joint_effort`   | Robot joint torque       | array(float * num_of_joints) | Nm    | See [Joint Sequence](/fourier-grx-M4/docs/en/reference/joint_sequence)                      |
 
 ## Control Dictionary (control dict)
 
