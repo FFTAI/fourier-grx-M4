@@ -2,7 +2,7 @@
 layout: default
 title: 规划器
 parent: 任务描述
-nav_order: 4.32
+nav_order: 4.33
 has_toc: true
 ---
 
@@ -137,7 +137,7 @@ has_toc: true
 
 ## 被动前向行走 高抬腿（膝受限）
 
-任务参数：参考 [被动前向行走 高抬腿](/fourier-grx-M4/docs/tasks/forward_walk_high_lift)。高抬腿参数与执行版 4307 一致，另读取用户腿长和左右伸膝限制；左右限制取较大值，作为双腿共同的最小膝角。
+任务参数：参考 [被动前向行走 高抬腿（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift)。高抬腿参数与执行版 4307 一致，另读取用户腿长和左右伸膝限制；左右限制取较大值，作为双腿共同的最小膝角。
 
 ## 原理解释
 

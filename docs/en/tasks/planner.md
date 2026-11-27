@@ -2,7 +2,7 @@
 layout: default
 title: Planner
 parent: Task Description
-nav_order: 4.32
+nav_order: 4.33
 has_toc: true
 nav_exclude: true
 ---
@@ -138,7 +138,7 @@ Task Parameters: refer to [Assisted Marching in Place (Knee Restriction, dt Mode
 
 ## Passive Forward Walking – High-Lift (Knee Restriction)
 
-Task Parameters: refer to [Passive Forward Walking – High-Lift](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift). High-lift parameters match executing task 4307; user leg lengths and left/right knee restrictions are also read. The larger restriction becomes a shared minimum knee angle for both legs.
+Task Parameters: refer to [Passive Forward Walking – High-Lift (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_high_lift). High-lift parameters match executing task 4307; user leg lengths and left/right knee restrictions are also read. The larger restriction becomes a shared minimum knee angle for both legs.
 
 ## Principle Explanation
 

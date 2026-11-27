@@ -53,7 +53,7 @@ M4L 机器人常见任务指令示例：
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_PD_FF](/fourier-grx-M4/docs/tasks/forward_walk_high_lift) | 4135 | M4L | 被动前向行走 高抬腿 + 速度前馈（v4.4.85 新增） |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist) | 4136 | M4L | 助力前向行走 高抬腿（PD 模式；v4.4.87 新增） |
 | [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist_adjust_dt) | 4137 | M4L | 助力前向行走 高抬腿（dt 模式；v4.4.87 新增） |
-| [TASK_ROTARY_JOINT_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/tasks/forward_walk_high_lift) | 4307 | M4L | 被动前向行走 高抬腿（膝受限；v4.4.89 新增） |
+| [TASK_ROTARY_JOINT_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift) | 4307 | M4L | 被动前向行走 高抬腿（膝受限；v4.4.89 新增） |
 | [TASK_ROTARY_JOINT_PLANNER_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/tasks/planner) | 4410 | M4L | 被动前向行走 高抬腿规划器（只上报参考，不驱动关节；v4.4.89 新增） |
 | [TASK_ROTARY_JOINT_PLANNER_KNEE_RESTRICTION_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/tasks/planner) | 4507 | M4L | 膝受限高抬腿规划器（只上报参考，不驱动关节；v4.4.89 新增） |
 | TASK_ROTARY_JOINT_MARK_TIME                    | 4130      | M4L  | 被动原地踏步（v4.4.69 前为 4112）        |
@@ -150,6 +150,7 @@ M4L 机器人常见任务指令示例：
 - [被动原地踏步（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_passive)
 - [助力原地踏步（膝受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
 - [助力原地踏步（膝受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
+- [被动前向行走 高抬腿（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_high_lift)
 
 ### 腿长调节任务
 
