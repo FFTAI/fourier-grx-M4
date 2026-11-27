@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4302**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Passive Marching in Place (Knee Restriction) | **4302** | PD |
 
 Task Description:
 

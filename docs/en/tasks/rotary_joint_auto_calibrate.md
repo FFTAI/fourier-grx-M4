@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4120**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Auto Calibrate (Rotary Joint) | **4120** | Calibration |
 
 Task Description:
 

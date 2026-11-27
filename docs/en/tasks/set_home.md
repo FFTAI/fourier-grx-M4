@@ -11,7 +11,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **999**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Set Home | **999** | Zero setting |
 
 > ⚠️ **This task is not yet implemented.** TID 999 is defined in the general robot task table `TaskMenuGRX.TASK_SET_HOME`; `TaskMenuM4L` (the 4000–4999 range) has no matching implementation.
 >

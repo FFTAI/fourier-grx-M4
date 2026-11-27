@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4117**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Assisted Marching in Place (PD Mode) | **4117** | Assist (PD Mode) |
 
 Task Description:
 

@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4207**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Move by Offset (Prismatic Joint) | **4207** | Position control |
 
 Task Description:
 

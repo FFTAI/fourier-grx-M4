@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4103**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Set Home (Rotary Joint) | **4103** | Zero setting |
 
 Task Description:
 

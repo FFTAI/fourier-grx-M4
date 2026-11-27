@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4118**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Assisted Forward Walking (dt Mode) | **4118** | Assist (dt Mode) |
 
 Task Description:
 

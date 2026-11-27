@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **34**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Clear Fault | **34** | Actuator control |
 
 Task Description:
 

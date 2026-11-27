@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4132** (added in v4.4.79)
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Assisted Forward Walking – Harmonic Fitting (PD Mode) | **4132** | Assist (PD Mode) |
 
 Applicable Models: M4L (P1 / T1 / T2)
 

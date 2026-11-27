@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **41**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Servo Reboot | **41** | Actuator control |
 
 Task Description:
 

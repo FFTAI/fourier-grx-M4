@@ -24,14 +24,15 @@ current_step: 4
 |---|---|---|
 | Passive forward walking | **4129** | PD |
 | Passive forward walking + velocity feedforward | **4111** | PD + velocity feedforward |
+| Passive forward walking · POSITION + velocity feedforward | **4125** | POSITION + velocity feedforward |
 
-> A POSITION + velocity feedforward variant (TID 4125) runs the actuator position loop and is not covered on this page.
+> The POSITION + velocity feedforward variant runs the actuator position loop; its parameters match the PD variants.
 
 Task Description:
 
 - The robot uses the given parameters to generate a joint trajectory sequence for forward walking, and the actuators track that trajectory to achieve passive forward walking.
 - When the "stop motion flag" is set to true, the robot will gradually stop rather than halt immediately.
-- If the task enters a torque protection state, the robot will pause motion and set the "task pause flag" to true. The task must be restarted to resume walking.
+- If torque protection is triggered, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), sets the torque-protection flag, and the task must be re-issued to resume walking.
 - 4111 shares the trajectory and panel parameters of 4129 and only adds reference velocity feedforward during execution; FSA v2 frames on P1/T1 have no velocity field, so PD feedforward is effective only on M4LT2.
 
 > **Danger: prepare before entering walking mode**
@@ -59,7 +60,7 @@ Task Parameters:
 | Stop motion flag | `bool` | false | (true, false) | Whether to stop motion. true = stop; false = continue walking. |
 | Pause motion flag | `bool` | false | (true, false) | Whether to pause motion. true = pause; the task must be restarted to resume walking. |
 | Enable torque protection | `bool` | false | (true, false) | Whether to enable the torque protection feature. |
-| Torque protection limit | `float` | None | [0.0, 200.0] | The maximum allowable output torque for any joint during walking, in Nm. If the real-time torque of any joint exceeds this limit continuously for at least 0.1 s (since v4.4.75), the task pauses and sets the "task pause flag". Takes effect only when torque protection is enabled; disabled by default. |
+| Torque protection limit | `float` | None | [0.0, 200.0] | The maximum allowable output torque for any joint during walking, in Nm. If the real-time torque of any joint exceeds this limit continuously for at least 0.1 s (since v4.4.75), the robot immediately exits this task and switches to the idle task (`TASK_IDLE`) and sets the torque-protection flag. Takes effect only when torque protection is enabled; disabled by default. |
 
 > Recommendation:
 > - A step length between 0.5× and 1.0× the walking speed tends to produce good walking results. For example, at a walking speed of 0.5 m/s, a step length of 0.25 m to 0.5 m is recommended.

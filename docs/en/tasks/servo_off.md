@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **36**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Servo Off | **36** | Actuator control |
 
 Task Description:
 

@@ -102,7 +102,7 @@ run_type="custom"
 
 | 配置项                         | 说明        | 数据类型   | 默认值      | 可选项                                   | 用户可修改 |
 |-----------------------------|-----------|--------|----------|-----------------------------------------|-------|
-| robot: name                 | 机器人名称     | string | 按机型      | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" \| "M4LZenoh" | 否     |
+| robot: name                 | 机器人名称     | string | 按机型      | "M4L", "M4LP1", "M4LT1", "M4LT2", "M4LZenoh" | 否     |
 | robot: backend              | 机器人通信后端类型 | string | "Real"   | "Real"                                  | 否     |
 | robot: control_period       | 控制周期      | float  | 0.02     | 单位为秒                                    | 否     |
 | communication: period       | 通信周期      | float  | 0.02     | 单位为秒（顶层 `communication` 段）              | 否     |

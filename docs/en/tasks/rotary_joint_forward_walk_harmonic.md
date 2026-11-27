@@ -18,8 +18,9 @@ nav_exclude: true
 |---|---|---|
 | Passive forward walking – harmonic fitting | **4131** | PD |
 | Passive forward walking – harmonic fitting + velocity feedforward | **4113** | PD + velocity feedforward |
+| Passive forward walking – harmonic fitting · POSITION + velocity feedforward | **4127** | POSITION + velocity feedforward |
 
-> A POSITION + velocity feedforward variant (TID 4127) is not covered on this page.
+> The POSITION + velocity feedforward variant runs the actuator position loop; its parameters match the PD variants.
 
 Applicable Models: M4L (P1 / T1 / T2)
 

@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4301**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Passive Forward Walking (Knee Restriction) | **4301** | PD |
 
 Task Description:
 

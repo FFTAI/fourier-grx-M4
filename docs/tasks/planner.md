@@ -19,45 +19,51 @@ has_toc: true
 >
 > 规划器停用时会向上位机回零步频字段（`rehab.step_frequency`）与谐波系数步态的档位回显字段（`rehab.gait_*`）。
 
-## 被动前向行走
+## 任务信息
 
-任务值 (TID)： **4401**
+| 任务 | 任务值 (TID) | 控制方式 |
+|---|---|---|
+| 被动前向行走 | **4401** | 规划预览 |
+| 被动原地踏步 | **4402** | 规划预览 |
+| 助力前向行走（PD 模式） | **4403** | 规划预览 |
+| 助力原地踏步（PD 模式） | **4404** | 规划预览 |
+| 助力前向行走（dt 模式） | **4405** | 规划预览 |
+| 助力原地踏步（dt 模式） | **4406** | 规划预览 |
+| 被动前向行走 谐波拟合 | **4407** | 规划预览 |
+| 助力前向行走 谐波拟合（PD 模式） | **4408** | 规划预览 |
+| 助力前向行走 谐波拟合（dt 模式） | **4409** | 规划预览 |
+| 被动前向行走（膝关节受限） | **4501** | 规划预览 |
+| 被动原地踏步（膝关节受限） | **4502** | 规划预览 |
+| 助力前向行走（膝关节受限，PD 模式） | **4503** | 规划预览 |
+| 助力原地踏步（膝关节受限，PD 模式） | **4504** | 规划预览 |
+| 助力前向行走（膝关节受限，dt 模式） | **4505** | 规划预览 |
+| 助力原地踏步（膝关节受限，dt 模式） | **4506** | 规划预览 |
+
+## 被动前向行走
 
 任务参数：参考 [被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)
 
 ## 被动原地踏步
 
-任务值 (TID)： **4402**
-
 任务参数：参考 [被动原地踏步](/fourier-grx-M4/docs/tasks/mark_time_passive)
 
 ## 助力前向行走（PD 模式）
-
-任务值 (TID)： **4403**
 
 任务参数：参考 [助力前向行走 (PD 模式)](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_pd)
 
 ## 助力原地踏步（PD 模式）
 
-任务值 (TID)： **4404**
-
 任务参数：参考 [助力原地踏步 (PD 模式)](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_pd)
 
 ## 助力前向行走（dt 模式）
-
-任务值 (TID)： **4405**
 
 任务参数：参考 [助力前向行走 (dt 模式)](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)
 
 ## 助力原地踏步（dt 模式）
 
-任务值 (TID)： **4406**
-
 任务参数：参考 [助力原地踏步 (dt 模式)](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
 
 ## 被动前向行走 谐波拟合
-
-任务值 (TID)： **4407**
 
 任务参数：参考 [被动前向行走 谐波拟合](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)
 
@@ -89,15 +95,11 @@ has_toc: true
 
 ## 助力前向行走 谐波拟合（PD 模式）
 
-任务值 (TID)： **4408**
-
 任务参数：参考 [助力前向行走 谐波拟合（PD 模式）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
 
 面板参数与执行版 4132 一致：`param_1` 髋幅度档、`param_2` 伸膝限制档、`param_3` 步频档、`param_4` 助力系数。规划器按助力系数计算对应 PD 档位并生成、上报参考轨迹，但不向机器人下发 PD 或位置目标。
 
 ## 助力前向行走 谐波拟合（dt 模式）
-
-任务值 (TID)： **4409**
 
 任务参数：参考 [助力前向行走 谐波拟合（dt 模式）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
 
@@ -105,37 +107,25 @@ has_toc: true
 
 ## 被动前向行走（膝关节受限）
 
-任务值 (TID)： **4501**
-
 任务参数：参考 [被动前向行走 (膝关节受限)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive)
 
 ## 被动原地踏步（膝关节受限）
-
-任务值 (TID)： **4502**
 
 任务参数：参考 [被动原地踏步 (膝关节受限)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_passive)
 
 ## 助力前向行走（膝关节受限，PD 模式）
 
-任务值 (TID)： **4503**
-
 任务参数：参考 [助力前向行走 (膝关节受限, PD 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_pd)
 
 ## 助力原地踏步（膝关节受限，PD 模式）
-
-任务值 (TID)： **4504**
 
 任务参数：参考 [助力原地踏步 (膝关节受限, PD 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
 
 ## 助力前向行走（膝关节受限，dt 模式）
 
-任务值 (TID)： **4505**
-
 任务参数：参考 [助力前向行走 (膝关节受限, dt 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_dt)
 
 ## 助力原地踏步（膝关节受限，dt 模式）
-
-任务值 (TID)： **4506**
 
 任务参数：参考 [助力原地踏步 (膝关节受限, dt 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
 

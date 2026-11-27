@@ -103,7 +103,7 @@ The Startup Configuration File is a YAML-formatted file that contains various ro
 
 | Parameter             | Description       | Type   | Default   | Options                                                                 | User-editable |
 |-----------------------|-------------------|--------|-----------|-------------------------------------------------------------------------|---------------|
-| robot: name           | Robot name        | string | by model  | "M4L" \| "M4LP1" \| "M4LT1" \| "M4LT2" \| "M4LZenoh"                 | No            |
+| robot: name           | Robot name        | string | by model  | "M4L", "M4LP1", "M4LT1", "M4LT2", "M4LZenoh"                 | No            |
 | robot: backend        | Robot communication backend type | string | "Real" | "Real"      | No            |
 | robot: control_period | Control period    | float  | 0.02    | Unit: seconds   | No            |
 | communication: period | Communication period | float | 0.02   | Unit: seconds (top-level `communication` section) | No            |

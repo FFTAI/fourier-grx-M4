@@ -26,7 +26,7 @@ Task description:
 - The assist variants 4136 / 4137 reuse this trajectory and the DSP parameters, adding the assist ratio on `param_4`; they change only the execution layer (PD gains or playback speed). See [Assisted Forward Walking – High-Lift (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) and [Assisted Forward Walking – High-Lift (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt).
 - Start, stop, pause, torque protection and Dynalink reporting are inherited from [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive).
 
-## Task Parameters
+Task Parameters:
 
 | Panel parameter | Meaning | Default | Notes |
 |---|---|---|---|

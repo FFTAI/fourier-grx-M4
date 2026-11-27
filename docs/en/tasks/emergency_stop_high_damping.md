@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4600**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| High-Damping Protection (Emergency Stop Response, M4LT2) | **4600** | High damping |
 
 Applicable Models: **M4LT2**
 

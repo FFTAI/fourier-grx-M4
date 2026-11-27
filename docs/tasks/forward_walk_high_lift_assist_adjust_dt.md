@@ -23,7 +23,7 @@ has_toc: true
 - 启动、停止、摇杆与 Dynalink 上报沿用 4118。本任务不读取 `param_9`（过力矩保护），也不提供暂停接口。
 - PD 模式见[助力前向行走 高抬腿（PD 模式）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist)。
 
-## 任务参数
+任务参数：
 
 面板参数沿用被动版本的步长 / 步速 / 抬脚目标 / 基座高度 / 原始抬升 / 双支撑期，并把助力系数放到 `param_4`：
 

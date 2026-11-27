@@ -24,7 +24,7 @@ Task description:
 - Start, stop, joystick and Dynalink reporting follow 4118. This task does not read `param_9` (torque protection) and does not provide a pause interface.
 - For the PD variant, see [Assisted Forward Walking – High-Lift (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist).
 
-## Task Parameters
+Task Parameters:
 
 Panel parameters reuse the passive version's step length / velocity / lift target / base height / raw lift / double-support ratio, with the assist ratio moved to `param_4`:
 

@@ -18,8 +18,9 @@ nav_exclude: true
 |---|---|---|
 | Passive marching in place | **4130** | PD |
 | Passive marching in place + velocity feedforward | **4112** | PD + velocity feedforward |
+| Passive marching in place · POSITION + velocity feedforward | **4126** | POSITION + velocity feedforward |
 
-> A POSITION + velocity feedforward variant (TID 4126) is not covered on this page.
+> The POSITION + velocity feedforward variant runs the actuator position loop; its parameters match the PD variants.
 
 Task Description:
 

@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4303**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Assisted Forward Walking (Knee Restriction, PD Mode) | **4303** | Assist (PD Mode) |
 
 Task Description:
 

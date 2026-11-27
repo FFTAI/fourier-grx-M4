@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4020**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Standing Posture Control | **4020** | PD |
 
 Task Description:
 

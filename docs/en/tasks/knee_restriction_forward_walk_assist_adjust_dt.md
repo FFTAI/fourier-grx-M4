@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4305**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Assisted Forward Walking (Knee Restriction, dt Mode) | **4305** | Assist (dt Mode) |
 
 Task Description:
 

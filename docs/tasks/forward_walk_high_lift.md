@@ -25,7 +25,7 @@ has_toc: true
 - 助力版本 4136 / 4137 复用本任务的轨迹生成与 DSP 参数，并增加 `param_4` 助力系数，仅在执行阶段调整 PD 增益或轨迹回放速度，见[助力前向行走 高抬腿（PD 模式）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist)与[助力前向行走 高抬腿（dt 模式）](/fourier-grx-M4/docs/tasks/forward_walk_high_lift_assist_adjust_dt)。
 - 启动、停止、暂停、过力矩保护及 Dynalink 上报均沿用[被动前向行走](/fourier-grx-M4/docs/tasks/forward_walk_passive)。
 
-## 任务参数
+任务参数：
 
 | 面板参数 | 含义 | 默认值 | 说明 |
 |---|---|---|---|

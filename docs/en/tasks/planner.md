@@ -20,45 +20,51 @@ The Planner is an auxiliary task for trajectory-tracking tasks. It generates joi
 >
 > When a Planner task is deactivated, the step-frequency field (`rehab.step_frequency`) and the harmonic gait level echo fields (`rehab.gait_*`) reported to the host are cleared to zero.
 
-## Passive Forward Walking
+## Task Info
 
-Task ID (TID): **4401**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Passive Forward Walking | **4401** | Planner preview |
+| Passive Marching in Place | **4402** | Planner preview |
+| Assisted Forward Walking (PD Mode) | **4403** | Planner preview |
+| Assisted Marching in Place (PD Mode) | **4404** | Planner preview |
+| Assisted Forward Walking (dt Mode) | **4405** | Planner preview |
+| Assisted Marching in Place (dt Mode) | **4406** | Planner preview |
+| Passive Forward Walking – Harmonic Fitting | **4407** | Planner preview |
+| Assisted Forward Walking – Harmonic Fitting (PD Mode) | **4408** | Planner preview |
+| Assisted Forward Walking – Harmonic Fitting (dt Mode) | **4409** | Planner preview |
+| Passive Forward Walking (Knee Restriction) | **4501** | Planner preview |
+| Passive Marching in Place (Knee Restriction) | **4502** | Planner preview |
+| Assisted Forward Walking (Knee Restriction, PD Mode) | **4503** | Planner preview |
+| Assisted Marching in Place (Knee Restriction, PD Mode) | **4504** | Planner preview |
+| Assisted Forward Walking (Knee Restriction, dt Mode) | **4505** | Planner preview |
+| Assisted Marching in Place (Knee Restriction, dt Mode) | **4506** | Planner preview |
+
+## Passive Forward Walking
 
 Task Parameters: refer to [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive)
 
 ## Passive Marching in Place
 
-Task ID (TID): **4402**
-
 Task Parameters: refer to [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive)
 
 ## Assisted Forward Walking (PD Mode)
-
-Task ID (TID): **4403**
 
 Task Parameters: refer to [Assisted Forward Walking (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
 
 ## Assisted Marching in Place (PD Mode)
 
-Task ID (TID): **4404**
-
 Task Parameters: refer to [Assisted Marching in Place (PD Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_pd)
 
 ## Assisted Forward Walking (dt Mode)
-
-Task ID (TID): **4405**
 
 Task Parameters: refer to [Assisted Forward Walking (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
 
 ## Assisted Marching in Place (dt Mode)
 
-Task ID (TID): **4406**
-
 Task Parameters: refer to [Assisted Marching in Place (dt Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
 
 ## Passive Forward Walking – Harmonic Fitting
-
-Task ID (TID): **4407**
 
 Task Parameters: refer to [Passive Forward Walking – Harmonic Fitting](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
 
@@ -90,15 +96,11 @@ The knee **extension floor** equals the restriction level of that row (0 / 5 / 1
 
 ## Assisted Forward Walking – Harmonic Fitting (PD Mode)
 
-Task ID (TID): **4408**
-
 Task Parameters: refer to [Assisted Forward Walking – Harmonic Fitting (PD Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
 
 The panel mapping is identical to executing task 4132: `param_1` hip swing amplitude, `param_2` knee extension restriction, `param_3` cadence level, and `param_4` assist ratio. The Planner evaluates the assist-dependent PD level and generates and reports the reference trajectory, but does not send PD or position targets to the robot.
 
 ## Assisted Forward Walking – Harmonic Fitting (dt Mode)
-
-Task ID (TID): **4409**
 
 Task Parameters: refer to [Assisted Forward Walking – Harmonic Fitting (dt Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
 
@@ -106,37 +108,25 @@ The panel mapping is identical to executing task 4133: `param_1` hip swing ampli
 
 ## Passive Forward Walking (Knee Restriction)
 
-Task ID (TID): **4501**
-
 Task Parameters: refer to [Passive Forward Walking (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_passive)
 
 ## Passive Marching in Place (Knee Restriction)
-
-Task ID (TID): **4502**
 
 Task Parameters: refer to [Passive Marching in Place (Knee Restriction)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_passive)
 
 ## Assisted Forward Walking (Knee Restriction, PD Mode)
 
-Task ID (TID): **4503**
-
 Task Parameters: refer to [Assisted Forward Walking (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_pd)
 
 ## Assisted Marching in Place (Knee Restriction, PD Mode)
-
-Task ID (TID): **4504**
 
 Task Parameters: refer to [Assisted Marching in Place (Knee Restriction, PD Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_pd)
 
 ## Assisted Forward Walking (Knee Restriction, dt Mode)
 
-Task ID (TID): **4505**
-
 Task Parameters: refer to [Assisted Forward Walking (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_forward_walk_assist_adjust_dt)
 
 ## Assisted Marching in Place (Knee Restriction, dt Mode)
-
-Task ID (TID): **4506**
 
 Task Parameters: refer to [Assisted Marching in Place (Knee Restriction, dt Mode)](/fourier-grx-M4/docs/en/tasks/knee_restriction_mark_time_assist_adjust_dt)
 

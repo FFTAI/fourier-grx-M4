@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4206**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Adjust Length (Prismatic Joint) | **4206** | Position control |
 
 Task Description:
 

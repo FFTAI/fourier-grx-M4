@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4133** (added in v4.4.79)
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Assisted Forward Walking – Harmonic Fitting (dt Mode) | **4133** | Assist (dt Mode) |
 
 Applicable Models: M4L (P1 / T1 / T2)
 

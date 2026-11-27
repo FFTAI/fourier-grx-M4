@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4210**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Auto Calibrate (Prismatic Joint) | **4210** | Calibration |
 
 Task Description:
 

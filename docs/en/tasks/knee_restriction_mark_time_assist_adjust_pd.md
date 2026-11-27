@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4304**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Assisted Marching in Place (Knee Restriction, PD Mode) | **4304** | Assist (PD Mode) |
 
 Task Description:
 

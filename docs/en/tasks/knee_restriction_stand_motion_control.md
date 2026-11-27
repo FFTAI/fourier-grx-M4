@@ -14,7 +14,9 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4300**
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Standing Posture Control (Knee Restriction) | **4300** | PD |
 
 Task Description:
 
