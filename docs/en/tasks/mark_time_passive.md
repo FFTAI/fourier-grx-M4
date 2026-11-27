@@ -14,13 +14,19 @@ nav_exclude: true
 
 ## Task Info
 
-Task ID (TID): **4130** (since v4.4.69; previously 4112)
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Passive marching in place | **4130** | PD |
+| Passive marching in place + velocity feedforward | **4112** | PD + velocity feedforward |
+
+> A POSITION + velocity feedforward variant (TID 4126) is not covered on this page.
 
 Task Description:
 
 - The robot generates a joint motion trajectory sequence for mark time based on the given parameters, and drives the actuators to track that trajectory, achieving Passive Marching in Place.
 - When the "stop motion flag" is set to true, the robot will gradually slow down and stop rather than halting immediately.
 - Once torque protection is triggered, the robot immediately exits this task and switches to the idle task (`TASK_IDLE`), and the torque-protection flag is set. This task must be sent again before stepping can continue.
+- 4112 shares the trajectory and panel parameters of 4130 and only adds reference velocity feedforward during execution; FSA v2 frames on P1/T1 have no velocity field, so PD feedforward is effective only on M4LT2.
 
 Task Parameters:
 

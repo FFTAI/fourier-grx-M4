@@ -1,20 +1,20 @@
 ---
 layout: default
-title: High-Lift DSP Passive Forward Walk
+title: Passive Forward Walking – High-Lift
 parent: Task Description
 nav_order: 4.13
 has_toc: true
 nav_exclude: true
 ---
 
-# High-Lift DSP Passive Forward Walk
+# Passive Forward Walking – High-Lift
 
 ## Task Info
 
 | Task | Task ID (TID) | Control |
 |---|---|---|
-| High-lift DSP passive forward walk | **4134** | PD |
-| High-lift DSP passive forward walk + velocity feedforward | **4135** | PD + velocity feedforward |
+| Passive forward walking – high-lift | **4134** | PD |
+| Passive forward walking – high-lift + velocity feedforward | **4135** | PD + velocity feedforward |
 
 Applicable models: M4L (P1 / T1 / T2).
 
@@ -23,7 +23,7 @@ Task description:
 - Adds swing-foot lift compensation to normal DSP forward walking. The generator evaluates the actual foot position produced by the original DSP trajectory, re-solves hip / knee angles for a target ground clearance during swing, and applies zero-phase smoothing.
 - The compensation addresses lift lost through hip-angle scaling and smoothing. It does not alter the support-leg trajectory or promise forward base travel.
 - 4135 reuses the trajectory and panel parameters of 4134 and adds velocity feedforward. T2 sends it directly through FSA v3. FSA v2 fast frames on P1/T1 have no velocity field; the related reference compensation affects visualization only and does not modify actual joint targets.
-- The assist variants 4136 / 4137 reuse this trajectory and the DSP parameters, adding the assist ratio on `param_4`; they change only the execution layer (PD gains or playback speed). See [High-Lift DSP Assisted Forward Walk (PD / dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist).
+- The assist variants 4136 / 4137 reuse this trajectory and the DSP parameters, adding the assist ratio on `param_4`; they change only the execution layer (PD gains or playback speed). See [Assisted Forward Walking – High-Lift (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) and [Assisted Forward Walking – High-Lift (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt).
 - Start, stop, pause, torque protection and Dynalink reporting are inherited from [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive).
 
 ## Task Parameters
@@ -79,5 +79,5 @@ TID 4135 leaves this compensation unchanged and only adds velocity feedforward d
 ## Update Log
 
 - `fourier-grx` v4.4.85: added 4134 / 4135. The default lift target is 10 cm and can be raised to 15 cm; Harmonic / DSP / DSP+lift comparison tooling is included for offline trajectory inspection.
-- `fourier-grx` v4.4.87: added Beta lift windows and angular-acceleration limits. The default peak phase is 0.42 and the target height is 15 cm; actual lift is about 10 cm in the current default scenario. The same version added assist variants 4136 / 4137, documented in [High-Lift DSP Assisted Forward Walk (PD / dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist).
+- `fourier-grx` v4.4.87: added Beta lift windows and angular-acceleration limits. The default peak phase is 0.42 and the target height is 15 cm; actual lift is about 10 cm in the current default scenario. The same version added assist variants 4136 / 4137, documented in [Assisted Forward Walking – High-Lift (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) and [Assisted Forward Walking – High-Lift (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt).
 - `fourier-grx` v4.4.88: switches to actual-height solving with a 10 cm target. Smoothing is normalized by step time (sigma 0.08×T_step, base smoothing 0.10×T_step); acceleration becomes a diagnostic, while peak mode preserves the original semantics.

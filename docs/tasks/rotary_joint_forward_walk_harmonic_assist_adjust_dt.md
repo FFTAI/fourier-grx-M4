@@ -1,12 +1,12 @@
 ---
 layout: default
-title: 谐波系数助力前向行走（dt 模式）
+title: 助力前向行走 谐波拟合（dt 模式）
 parent: 任务描述
 nav_order: 4.18
 has_toc: true
 ---
 
-# 谐波系数助力前向行走（dt 模式）
+# 助力前向行走 谐波拟合（dt 模式）
 
 * TOC
 {:toc}
@@ -19,7 +19,7 @@ has_toc: true
 
 任务描述：
 
-- 步态来源与[谐波系数被动前向行走（4131）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)完全一致：回放 Fourier-GRX 主表（预存的 Fourier 谐波系数）采样出的周期性关节曲线，**曲线形状固定**（由幅度档与伸膝限制档从 16 条曲线中选定），**节奏**由步频档决定。
+- 步态来源与[被动前向行走 谐波拟合（4131）](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)完全一致：回放 Fourier-GRX 主表（预存的 Fourier 谐波系数）采样出的周期性关节曲线，**曲线形状固定**（由幅度档与伸膝限制档从 16 条曲线中选定），**节奏**由步频档决定。
 - 助力语义与[助力前向行走（dt 模式，4118）](/fourier-grx-M4/docs/tasks/forward_walk_assist_adjust_dt)一致：助力系数映射到轨迹**播放速度**（play_speed ∈ [0.5, 1.0]），系数越大播放越快（越接近所选步频档位的正常节奏）；系数越小播放越慢，给患者更多时间跟随运动。可启用自动助力模式，由算法根据实测关节力矩自动增减助力系数。
 - 与 4118 的差别：**4118 的轨迹由 LIPM 模型按步长/步速在线生成，本任务的轨迹固定来自系数表**；因此本任务没有步长/步速/基座高度/抬腿高度/双支撑期占比参数，面板前三档与 4131 完全相同（幅度档 / 伸膝限制档 / 步频档），助力系数挪到 `param_4`。
 - 本任务 PD 增益**全程固定 medium 档**（与 4118 相同：助力场景人主动、机器跟随调步频，hard 档太硬、与人较劲），不随负载变化。
@@ -69,7 +69,7 @@ has_toc: true
 | 参考轨迹位置最大值  | `rehab.reference_joint_position_max`      |
 | 参考轨迹位置最小值  | `rehab.reference_joint_position_min`      |
 
-> 步态回显字段（`gait_name` 等 5 项）语义与 4131 相同，详见[谐波系数被动前向行走](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)的接口说明。
+> 步态回显字段（`gait_name` 等 5 项）语义与 4131 相同，详见[被动前向行走 谐波拟合](/fourier-grx-M4/docs/tasks/rotary_joint_forward_walk_harmonic)的接口说明。
 
 指令接口：
 

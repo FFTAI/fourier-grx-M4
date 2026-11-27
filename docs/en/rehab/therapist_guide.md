@@ -97,7 +97,7 @@ Knee restriction limits the knee extension angle in the reference trajectory. It
 | Goal | Task family | Examples | Effect |
 |------|-------------|----------|--------|
 | Early passive guidance | Passive walking / stepping | 4129 / 4130 | Device follows a precomputed trajectory |
-| Precomputed gait with levels | Harmonic passive forward walking | 4131 | Amplitude, knee restriction, cadence levels |
+| Precomputed gait with levels | Passive forward walking – harmonic fitting | 4131 | Amplitude, knee restriction, cadence levels |
 | Active participation via stiffness | Assist PD | 4116 / 4117; harmonic 4132 | Assist ratio changes PD gains |
 | Active participation via cadence | Assist DT | 4118 / 4119; harmonic 4133 | Assist ratio changes playback speed |
 | Knee extension restriction | Knee-restricted tasks | 4301–4306 | Restricts knee extension in the reference |

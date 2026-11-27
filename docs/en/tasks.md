@@ -45,15 +45,15 @@ Common task command examples for M4L robots:
 | TASK_PRISMATIC_JOINT_MOVE_LENGTH                  | 4206             | M4L               | Leg-length adjustment (absolute position command)                         |
 | TASK_PRISMATIC_JOINT_MOVE_OFFSET                  | 4207             | M4L               | Relative leg-length adjustment (offset from the current position, no re-calibration required) |
 | TASK_ROTARY_JOINT_FORWARD_WALK                    | 4129             | M4L               | Passive forward walking (4111 before v4.4.69)                             |
-| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC           | 4131             | M4L               | Harmonic-coefficient passive forward walking (pre-computed gait curves; amplitude / knee-restriction / cadence levels; 4113 before v4.4.69) |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC           | 4131             | M4L               | Passive forward walking – harmonic fitting (pre-computed gait curves; amplitude / knee-restriction / cadence levels; 4113 before v4.4.69) |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_PD   | 4116             | M4L               | Assisted forward walking (adjust PD parameters)                           |
 | TASK_ROTARY_JOINT_FORWARD_WALK_ASSIST_ADJUST_DT   | 4118             | M4L               | Assisted forward walking (adjust dt parameters)                           |
-| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD | 4132      | M4L               | Harmonic-coefficient assisted forward walking (adjust PD; same three panel levels as 4131, assist ratio on param_4; added in v4.4.79) |
-| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT | 4133      | M4L               | Harmonic-coefficient assisted forward walking (adjust dt; same three panel levels as 4131, assist ratio on param_4; added in v4.4.79) |
-| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) | 4134 | M4L | High-lift DSP passive forward walking (`param_3` sets the target lift peak in cm; added in v4.4.85) |
-| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_PD_FF](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) | 4135 | M4L | High-lift DSP passive forward walking + velocity feedforward (added in v4.4.85) |
-| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) | 4136 | M4L | High-lift DSP assisted forward walking (PD Mode; added in v4.4.87) |
-| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) | 4137 | M4L | High-lift DSP assisted forward walking (dt Mode; added in v4.4.87) |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_PD | 4132      | M4L               | Assisted forward walking – harmonic fitting (PD Mode; same three panel levels as 4131, assist ratio on param_4; added in v4.4.79) |
+| TASK_ROTARY_JOINT_FORWARD_WALK_HARMONIC_ASSIST_ADJUST_DT | 4133      | M4L               | Assisted forward walking – harmonic fitting (dt Mode; same three panel levels as 4131, assist ratio on param_4; added in v4.4.79) |
+| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) | 4134 | M4L | Passive forward walking – high-lift (`param_3` sets the target lift peak in cm; added in v4.4.85) |
+| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_PD_FF](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift) | 4135 | M4L | Passive forward walking – high-lift + velocity feedforward (added in v4.4.85) |
+| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_PD](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist) | 4136 | M4L | Assisted forward walking – high-lift (PD Mode; added in v4.4.87) |
+| [TASK_ROTARY_JOINT_FORWARD_WALK_HIGH_LIFT_ASSIST_ADJUST_DT](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt) | 4137 | M4L | Assisted forward walking – high-lift (dt Mode; added in v4.4.87) |
 | TASK_ROTARY_JOINT_MARK_TIME                       | 4130             | M4L               | Passive marching in place (4112 before v4.4.69)                           |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_PD      | 4117             | M4L               | Assisted marching in place (adjust PD parameters)                         |
 | TASK_ROTARY_JOINT_MARK_TIME_ASSIST_ADJUST_DT      | 4119             | M4L               | Assisted marching in place (adjust dt parameters)                         |
@@ -70,15 +70,15 @@ From `fourier-grx` v4.4.69 the rotary-joint tasks are regrouped by control mode,
 | Sinusoidal trajectory | 4110 | **4128** |
 | Passive forward walking | 4111 | **4129** |
 | Passive marching in place | 4112 | **4130** |
-| Harmonic-coefficient passive forward walking | 4113 | **4131** |
-| Forward walking · POSITION + velocity feedforward | 4124 | **4125** |
-| Marching in place · POSITION + velocity feedforward | 4125 | **4126** |
-| Forward walking · PD + velocity feedforward | 4126 | **4111** |
-| Marching in place · PD + velocity feedforward | 4127 | **4112** |
+| Passive forward walking – harmonic fitting | 4113 | **4131** |
+| Passive forward walking · POSITION + velocity feedforward | 4124 | **4125** |
+| Passive marching in place · POSITION + velocity feedforward | 4125 | **4126** |
+| Passive forward walking · PD + velocity feedforward | 4126 | **4111** |
+| Passive marching in place · PD + velocity feedforward | 4127 | **4112** |
 | Sinusoidal trajectory · POSITION + velocity feedforward | none (new) | **4124** |
 | Sinusoidal trajectory · PD + velocity feedforward | none (new) | **4110** |
-| Harmonic passive forward walking · POSITION + velocity feedforward | none (new) | **4127** |
-| Harmonic passive forward walking · PD + velocity feedforward | none (new) | **4113** |
+| Passive forward walking – harmonic fitting · POSITION + velocity feedforward | none (new) | **4127** |
+| Passive forward walking – harmonic fitting · PD + velocity feedforward | none (new) | **4113** |
 
 - ⚠️ **4110–4113 are redefinitions, not additions**: after upgrading, a host that still calls 4111 for passive forward walking will get the PD + feedforward variant instead. Use **4129**.
 - Assist tasks (4114–4119) and calibration tasks (4120–4123) keep their TIDs.
@@ -124,17 +124,18 @@ The pages below are the primary task descriptions organized in this repository a
 
 - [Standing Posture Control](/fourier-grx-M4/docs/en/tasks/stand_motion_control)
 - [Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/forward_walk_passive)
-- [Harmonic-Coefficient Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
-- [High-Lift DSP Passive Forward Walk](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift)
+- [Passive Forward Walking – Harmonic Fitting](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic)
+- [Passive Forward Walking – High-Lift](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift)
 - [Passive Marching in Place](/fourier-grx-M4/docs/en/tasks/mark_time_passive)
 
 ### Assisted Motion Control
 
 - [Assisted Forward Walking (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd)
 - [Assisted Forward Walking (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_dt)
-- [Harmonic-Coefficient Assisted Forward Walking (PD Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
-- [Harmonic-Coefficient Assisted Forward Walking (dt Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
-- [High-Lift DSP Assisted Forward Walk (PD / dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist)
+- [Assisted Forward Walking – Harmonic Fitting (PD Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_pd)
+- [Assisted Forward Walking – Harmonic Fitting (dt Mode)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic_assist_adjust_dt)
+- [Assisted Forward Walking – High-Lift (PD Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist)
+- [Assisted Forward Walking – High-Lift (dt Mode)](/fourier-grx-M4/docs/en/tasks/forward_walk_high_lift_assist_adjust_dt)
 - [Assisted Marching in Place (PD Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_pd)
 - [Assisted Marching in Place (dt Mode)](/fourier-grx-M4/docs/en/tasks/mark_time_assist_adjust_dt)
 

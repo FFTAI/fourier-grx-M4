@@ -20,13 +20,19 @@ current_step: 4
 
 ## Task Info
 
-Task ID (TID): **4129** (since v4.4.69; previously 4111)
+| Task | Task ID (TID) | Control |
+|---|---|---|
+| Passive forward walking | **4129** | PD |
+| Passive forward walking + velocity feedforward | **4111** | PD + velocity feedforward |
+
+> A POSITION + velocity feedforward variant (TID 4125) runs the actuator position loop and is not covered on this page.
 
 Task Description:
 
 - The robot uses the given parameters to generate a joint trajectory sequence for forward walking, and the actuators track that trajectory to achieve passive forward walking.
 - When the "stop motion flag" is set to true, the robot will gradually stop rather than halt immediately.
 - If the task enters a torque protection state, the robot will pause motion and set the "task pause flag" to true. The task must be restarted to resume walking.
+- 4111 shares the trajectory and panel parameters of 4129 and only adds reference velocity feedforward during execution; FSA v2 frames on P1/T1 have no velocity field, so PD feedforward is effective only on M4LT2.
 
 > **Danger: prepare before entering walking mode**
 >

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Harmonic-Coefficient Assisted Forward Walking (PD Mode)
+title: Assisted Forward Walking – Harmonic Fitting (PD Mode)
 parent: Task Description
 nav_order: 4.17
 has_toc: true
 nav_exclude: true
 ---
 
-# Harmonic-Coefficient Assisted Forward Walking (PD Mode)
+# Assisted Forward Walking – Harmonic Fitting (PD Mode)
 
 * TOC
 {:toc}
@@ -20,7 +20,7 @@ Applicable Models: M4L (P1 / T1 / T2)
 
 Task Description:
 
-- The gait source is identical to [Harmonic-Coefficient Passive Forward Walking (4131)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic): a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables. The **curve shape is fixed** (selected from 16 curves by the amplitude level and the knee restriction level); the **timing** is set by the cadence level.
+- The gait source is identical to [Passive Forward Walking – Harmonic Fitting (4131)](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic): a periodic joint curve sampled from pre-stored Fourier (harmonic) coefficients of the main walking tables. The **curve shape is fixed** (selected from 16 curves by the amplitude level and the knee restriction level); the **timing** is set by the cadence level.
 - The assist semantics are identical to [Assisted Forward Walking (PD Mode, 4116)](/fourier-grx-M4/docs/en/tasks/forward_walk_assist_adjust_pd): the assist ratio linearly interpolates the PD control gains between buttery (most compliant) and soft (least compliant). A smaller ratio makes the joints more compliant and leaves more room for the patient to actively contribute torque.
 - Difference from 4116: **4118 generates its trajectory online with the LIPM model from step length / walking speed, while this task replays a fixed curve from the coefficient table**. Consequently there are no step-length / walking-speed / base-height / step-height / double-support-ratio parameters; the first three panel levels are exactly the same as 4131 (amplitude / knee restriction / cadence), and the assist ratio moves to `param_4`.
 - Load detection and automatic PD ramping are disabled in this task (the assist level is set directly by the host).
@@ -69,7 +69,7 @@ Status interface:
 | Reference trajectory position max | `rehab.reference_joint_position_max` |
 | Reference trajectory position min | `rehab.reference_joint_position_min` |
 
-> The five gait report fields have the same semantics as 4131; see the interface section of [Harmonic-Coefficient Passive Forward Walking](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic).
+> The five gait report fields have the same semantics as 4131; see the interface section of [Passive Forward Walking – Harmonic Fitting](/fourier-grx-M4/docs/en/tasks/rotary_joint_forward_walk_harmonic).
 
 Command interface:
 

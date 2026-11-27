@@ -33,12 +33,12 @@
 {% assign basic = pages | where_exp: "item", "item.nav_order >= 4.01" | where_exp: "item", "item.nav_order <= 4.05" | sort: "nav_order" %}
 {% assign calibration = pages | where_exp: "item", "item.nav_order >= 4.06" | where_exp: "item", "item.nav_order <= 4.09" | sort: "nav_order" %}
 {% assign passive_motion = pages | where_exp: "item", "item.nav_order >= 4.10" | where_exp: "item", "item.nav_order <= 4.14" | sort: "nav_order" %}
-{% assign assist_motion = pages | where_exp: "item", "item.nav_order >= 4.15" | where_exp: "item", "item.nav_order <= 4.21" | sort: "nav_order" %}
-{% assign knee = pages | where_exp: "item", "item.nav_order >= 4.22" | where_exp: "item", "item.nav_order <= 4.28" | sort: "nav_order" %}
-{% assign leg = pages | where_exp: "item", "item.nav_order >= 4.29" | where_exp: "item", "item.nav_order <= 4.30" | sort: "nav_order" %}
-{% assign planner = pages | where_exp: "item", "item.nav_order == 4.31" | sort: "nav_order" %}
-{% assign emergency = pages | where_exp: "item", "item.nav_order == 4.32" | sort: "nav_order" %}
-{% assign algorithm = pages | where_exp: "item", "item.nav_order == 4.33" | sort: "nav_order" %}
+{% assign assist_motion = pages | where_exp: "item", "item.nav_order >= 4.15" | where_exp: "item", "item.nav_order <= 4.22" | sort: "nav_order" %}
+{% assign knee = pages | where_exp: "item", "item.nav_order >= 4.23" | where_exp: "item", "item.nav_order <= 4.29" | sort: "nav_order" %}
+{% assign leg = pages | where_exp: "item", "item.nav_order >= 4.30" | where_exp: "item", "item.nav_order <= 4.31" | sort: "nav_order" %}
+{% assign planner = pages | where_exp: "item", "item.nav_order == 4.32" | sort: "nav_order" %}
+{% assign emergency = pages | where_exp: "item", "item.nav_order == 4.33" | sort: "nav_order" %}
+{% assign algorithm = pages | where_exp: "item", "item.nav_order == 4.34" | sort: "nav_order" %}
 
 {% assign active_basic = false %}
 {% assign active_calibration = false %}
@@ -53,12 +53,12 @@
   {% if no >= 4.01 and no <= 4.05 %}{% assign active_basic = true %}{% endif %}
   {% if no >= 4.06 and no <= 4.09 %}{% assign active_calibration = true %}{% endif %}
   {% if no >= 4.10 and no <= 4.14 %}{% assign active_passive_motion = true %}{% endif %}
-  {% if no >= 4.15 and no <= 4.21 %}{% assign active_assist_motion = true %}{% endif %}
-  {% if no >= 4.22 and no <= 4.28 %}{% assign active_knee = true %}{% endif %}
-  {% if no >= 4.29 and no <= 4.30 %}{% assign active_leg = true %}{% endif %}
-  {% if no == 4.31 %}{% assign active_planner = true %}{% endif %}
-  {% if no == 4.32 %}{% assign active_emergency = true %}{% endif %}
-  {% if no == 4.33 %}{% assign active_algorithm = true %}{% endif %}
+  {% if no >= 4.15 and no <= 4.22 %}{% assign active_assist_motion = true %}{% endif %}
+  {% if no >= 4.23 and no <= 4.29 %}{% assign active_knee = true %}{% endif %}
+  {% if no >= 4.30 and no <= 4.31 %}{% assign active_leg = true %}{% endif %}
+  {% if no == 4.32 %}{% assign active_planner = true %}{% endif %}
+  {% if no == 4.33 %}{% assign active_emergency = true %}{% endif %}
+  {% if no == 4.34 %}{% assign active_algorithm = true %}{% endif %}
 {% endif %}
 
 {% include components/grx_nav_group.html title=label_basic pages=basic active=active_basic %}
