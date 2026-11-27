@@ -138,15 +138,15 @@ M4L 机器人常见任务指令示例：
 - [助力原地踏步（PD 模式）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_pd)
 - [助力原地踏步（dt 模式）](/fourier-grx-M4/docs/tasks/mark_time_assist_adjust_dt)
 
-### 膝关节受限任务
+### 膝受限任务
 
-- [站立姿态控制（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_stand_motion_control)
-- [被动前向行走（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive)
-- [助力前向行走（膝关节受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_pd)
-- [助力前向行走（膝关节受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_dt)
-- [被动原地踏步（膝关节受限）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_passive)
-- [助力原地踏步（膝关节受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
-- [助力原地踏步（膝关节受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
+- [站立姿态控制（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_stand_motion_control)
+- [被动前向行走（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive)
+- [助力前向行走（膝受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_pd)
+- [助力前向行走（膝受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_dt)
+- [被动原地踏步（膝受限）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_passive)
+- [助力原地踏步（膝受限，PD 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
+- [助力原地踏步（膝受限，dt 模式）](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
 
 ### 腿长调节任务
 

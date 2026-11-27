@@ -32,12 +32,12 @@ has_toc: true
 | 被动前向行走 谐波拟合 | **4407** | 规划预览 |
 | 助力前向行走 谐波拟合（PD 模式） | **4408** | 规划预览 |
 | 助力前向行走 谐波拟合（dt 模式） | **4409** | 规划预览 |
-| 被动前向行走（膝关节受限） | **4501** | 规划预览 |
-| 被动原地踏步（膝关节受限） | **4502** | 规划预览 |
-| 助力前向行走（膝关节受限，PD 模式） | **4503** | 规划预览 |
-| 助力原地踏步（膝关节受限，PD 模式） | **4504** | 规划预览 |
-| 助力前向行走（膝关节受限，dt 模式） | **4505** | 规划预览 |
-| 助力原地踏步（膝关节受限，dt 模式） | **4506** | 规划预览 |
+| 被动前向行走（膝受限） | **4501** | 规划预览 |
+| 被动原地踏步（膝受限） | **4502** | 规划预览 |
+| 助力前向行走（膝受限，PD 模式） | **4503** | 规划预览 |
+| 助力原地踏步（膝受限，PD 模式） | **4504** | 规划预览 |
+| 助力前向行走（膝受限，dt 模式） | **4505** | 规划预览 |
+| 助力原地踏步（膝受限，dt 模式） | **4506** | 规划预览 |
 
 ## 被动前向行走
 
@@ -105,29 +105,29 @@ has_toc: true
 
 面板参数与执行版 4133 一致：`param_1` 髋幅度档、`param_2` 伸膝限制档、`param_3` 步频档、`param_4` 助力系数，`switch_1` 控制自动助力。规划器按助力系数调整参考轨迹的播放进度，自动开启时也执行力矩判定，但不向机器人下发控制目标。
 
-## 被动前向行走（膝关节受限）
+## 被动前向行走（膝受限）
 
-任务参数：参考 [被动前向行走 (膝关节受限)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive)
+任务参数：参考 [被动前向行走 (膝受限)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_passive)
 
-## 被动原地踏步（膝关节受限）
+## 被动原地踏步（膝受限）
 
-任务参数：参考 [被动原地踏步 (膝关节受限)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_passive)
+任务参数：参考 [被动原地踏步 (膝受限)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_passive)
 
-## 助力前向行走（膝关节受限，PD 模式）
+## 助力前向行走（膝受限，PD 模式）
 
-任务参数：参考 [助力前向行走 (膝关节受限, PD 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_pd)
+任务参数：参考 [助力前向行走 (膝受限, PD 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_pd)
 
-## 助力原地踏步（膝关节受限，PD 模式）
+## 助力原地踏步（膝受限，PD 模式）
 
-任务参数：参考 [助力原地踏步 (膝关节受限, PD 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
+任务参数：参考 [助力原地踏步 (膝受限, PD 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_pd)
 
-## 助力前向行走（膝关节受限，dt 模式）
+## 助力前向行走（膝受限，dt 模式）
 
-任务参数：参考 [助力前向行走 (膝关节受限, dt 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_dt)
+任务参数：参考 [助力前向行走 (膝受限, dt 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_forward_walk_assist_adjust_dt)
 
-## 助力原地踏步（膝关节受限，dt 模式）
+## 助力原地踏步（膝受限，dt 模式）
 
-任务参数：参考 [助力原地踏步 (膝关节受限, dt 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
+任务参数：参考 [助力原地踏步 (膝受限, dt 模式)](/fourier-grx-M4/docs/tasks/knee_restriction_mark_time_assist_adjust_dt)
 
 ## 原理解释
 
