@@ -25,6 +25,9 @@ Run this script by:
 
 """
 
+import time
+from threading import Event
+
 import numpy
 from ischedule import run_loop, schedule
 
@@ -35,6 +38,8 @@ control_system = fourier_grx.ControlSystem()
 move_count = 0
 move_period = 100
 joint_start_position = None
+movement_stop_event = Event()
+movement_finished = False
 
 
 def main():
@@ -51,11 +56,18 @@ def main():
     # 设置定时任务
     schedule(algorithm, interval=target_control_period_in_s)
 
-    run_loop()
+    run_loop(stop_event=movement_stop_event)
+
+    # set_control 只写入后台控制线程的目标；run_loop 退出后开发者控制线程仍在运行，
+    # 等待约 10 个 100 Hz 控制周期，让最终目标真正下发后再退出进程
+    time.sleep(0.1)
 
 
 def algorithm():
-    global move_count, move_period, joint_start_position
+    global move_count, move_period, joint_start_position, movement_finished
+
+    if movement_finished:
+        return
 
     # update state
     """
@@ -170,7 +182,11 @@ def algorithm():
     control_system.robot_control_loop_set_control(control_dict=control_dict)
 
     if finish_flag is True:
-        exit(0)
+        # 不在调度回调内 sleep：开发者控制线程与主循环共享 ischedule 任务列表，
+        # 在回调里等待会阻塞同一线程上的控制输出。改为通知主循环退出，
+        # 在 run_loop 返回后再等待最终目标下发。
+        movement_finished = True
+        movement_stop_event.set()
 
 
 if __name__ == "__main__":

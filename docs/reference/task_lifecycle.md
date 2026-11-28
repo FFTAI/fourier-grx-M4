@@ -167,6 +167,8 @@ FSMManager.flag_task_command_update = SET
 | `NORMAL` | 普通循环任务 | 持续执行，`flag_task_running` 置位 |
 | `ONESHOT` | 一次性任务 | 执行完成后由任务自身切换到其他任务 |
 
+> 说明：`TaskBase.add_task` 的 `task_type` 参数是任务的函数类型 `TaskFunctionType`（`STANDALONE` / `COMPONENT` / `META` 等），不是上面的 FSM `TaskType`。`TaskBase.add_task` 会把 `task_key == TaskMenuRobotBase.TASK_IDLE` 的任务注册为 `TaskType.IDLE`，其余现有任务注册为 `TaskType.NORMAL`。当前代码没有任务注册路径使用 `TaskType.ONESHOT`，该值仅保留。
+
 按回调实现方式又可分为：
 
 | 类型 | 含义 |
@@ -224,7 +226,11 @@ class MyTask(TaskBase):
             fsm_manager=fsm_manager,
             task_type=TaskFunctionType.STANDALONE,
         )
+
+    def register(self, fsm_manager):
+        super().register(fsm_manager=fsm_manager)
         self.task_key = MyTaskMenu.MY_TASK
+        return FunctionResult.SUCCESS
 
     def function_on_activate(self, **kwargs):
         # 只在这里做一次初始化
@@ -234,6 +240,8 @@ class MyTask(TaskBase):
         # 每个控制周期执行
         return FunctionResult.SUCCESS
 ```
+
+`task_key` 必须在 `register()` 中设置；如果放到 `__init__` 的 `super().__init__()` 之后，`add_task()` 已经执行，任务会以基类默认的 `TASK_IDLE` 注册。
 
 实际实现还需要：
 

@@ -165,16 +165,43 @@ def heartbeat():
 
 threading.Thread(target=heartbeat, daemon=True).start()
 
+# Switch to IDLE first: if the walk task is pause-latched, leaving it triggers
+# deactivate and resets the latch. Task and panel commands have no ACK; finite
+# repeats and waits only reduce packet-loss/reordering risk, not eliminate it.
+for _ in range(5):
+    client.publish(key="task", value={
+        "robot_task_command": fourier_grx.TaskCommand.TASK_IDLE,
+        "flag_task_command_update": True,
+    })
+    time.sleep(0.02)
+time.sleep(0.2)  # let deactivate finish and absorb delayed IDLE packets
+
+# The server only applies received fields; stop / pause do not auto-clear.
+# pause is latched whenever it is observed True while the task runs; only
+# re-entering the task resets it.
+for _ in range(5):
+    client.publish(key="grx", value={
+        "virtual_panel_command_start": False,
+        "virtual_panel_command_stop": False,
+        "virtual_panel_command_pause": False,
+    })
+    time.sleep(0.02)
+time.sleep(0.1)  # let the peripheral sync and absorb delayed clear packets
+
 client.publish(key="task", value={
     "robot_task_command": fourier_grx.TaskCommand.TASK_WALK,
     "flag_task_command_update": True,
 })
 time.sleep(1)
 
+# `start` is a start trigger, not a held level: setting it False after start does not stop;
+# use stop to stop walking. Keep the first trial slow.
 client.publish(key="grx", value={
     "virtual_panel_command_param_1": 0.20,
     "virtual_panel_command_param_2": 0.20,
     "virtual_panel_command_start": True,
+    "virtual_panel_command_stop": False,
+    "virtual_panel_command_pause": False,
 })
 
 try:

@@ -88,10 +88,10 @@ Communication is organized into 5 topic keys:
 | Topic Key | Direction           | Description                                      |
 |-----------|---------------------|--------------------------------------------------|
 | `comm`    | Bidirectional       | Communication status and heartbeat               |
-| `robot`   | Server → Client     | Robot motion state (joint position/velocity/torque, etc.) |
+| `robot`   | Bidirectional       | Robot motion state and protection-flag clear commands |
 | `task`    | Bidirectional       | Task state and task control commands             |
 | `grx`     | Bidirectional       | fourier-grx generic robot data (mainly humanoid) |
-| `rehab`   | Bidirectional       | Rehabilitation robot-specific data               |
+| `rehab`   | Server → Client     | Rehabilitation robot-specific data (client → server channel not open yet) |
 
 **Data direction notes**:
 - **Server → Client**: Current robot state, serialized via `read_to_dict()` / deserialized via `read_from_dict()`.
@@ -112,15 +112,12 @@ The `comm` topic includes a host heartbeat detection mechanism that automaticall
    The client must write the `host_heartbeat_counter` field to the server's `comm` topic every communication cycle:
 
    ```python
-   write_dict = {
-       "comm": {
-           "host_heartbeat_counter": 1,  # any fixed value or incrementing counter
-       }
-   }
+   client.publish(key="comm", value={"host_heartbeat_counter": 1})
    ```
 
    - The controller treats each received `host_heartbeat_counter` write as a valid heartbeat and refreshes its internal timer.
    - Writing a fixed value (e.g., always `1`) is sufficient; an incrementing counter makes it easier to verify that fresh data is arriving.
+   - Use an explicit `publish(key="comm", value=...)` call; a bulk `publish()` without arguments strips `host_heartbeat_counter` from the `comm` payload and cannot replace an external heartbeat.
 
 2. **Controller detects timeout**
 
@@ -162,7 +159,7 @@ sync:
   period: 0.02        # subprocess publish period in seconds
 ```
 
-> ⚠️ **Note**: The `SyncClientSocket` UDP communication described on this page requires `dynalink.enable=true`, `communication.enable=true`, and `communication.type: "socket"`; it does not require `sync.enable`. The shipped M4L release / debug / sdk configs enable communication and disable sync. Bulk publication from internal sync does not send `host_heartbeat_counter`; the external host must send heartbeats explicitly as described above rather than relying on internal sync.
+> ⚠️ **Note**: The `SyncClientSocket` UDP communication described on this page requires `dynalink.enable=true`, `communication.enable=true`, and `communication.type: "socket"`; it does not require `sync.enable`. The shipped M4L release / debug / sdk configs enable communication and disable sync. For all sync client backends (socket / zenoh / zmq), a bulk `publish()` without arguments strips `host_heartbeat_counter` from `comm`; only an explicit `publish(key="comm", value={"host_heartbeat_counter": ...})` sends a heartbeat, so internal sync cannot replace an external heartbeat.
 
 ---
 

@@ -173,6 +173,27 @@ def heartbeat():
 
 threading.Thread(target=heartbeat, daemon=True).start()
 
+# 先切到 IDLE：若目标行走任务已被 pause 锁存，切走会触发 deactivate 并复位。
+# 任务与面板命令都没有 ACK；有限重发和等待只降低丢包/乱序风险，不能保证绝对送达。
+for _ in range(5):
+    client.publish(key="task", value={
+        "robot_task_command": fourier_grx.TaskCommand.TASK_IDLE,
+        "flag_task_command_update": True,
+    })
+    time.sleep(0.02)
+time.sleep(0.2)  # 等待 deactivate 完成，并吸收延迟到达的 IDLE 包
+
+# 服务端只更新收到的字段，stop / pause 不会自动清零；
+# pause 在任务运行期间读到 True 即会锁存，只有重新进入任务才复位。
+for _ in range(5):
+    client.publish(key="grx", value={
+        "virtual_panel_command_start": False,
+        "virtual_panel_command_stop": False,
+        "virtual_panel_command_pause": False,
+    })
+    time.sleep(0.02)
+time.sleep(0.1)  # 等待 peripheral 同步，并吸收延迟到达的清零包
+
 # 启动行走任务；实际 TID 以当前机型任务表为准
 client.publish(key="task", value={
     "robot_task_command": fourier_grx.TaskCommand.TASK_WALK,
@@ -180,11 +201,14 @@ client.publish(key="task", value={
 })
 time.sleep(1)
 
-# 通过虚拟面板给出很小的步长和速度，先做低速验证
+# start 是启动触发，不是需要持续保持的电平：启动后置 False 不会停止，
+# 停止行走要发送 stop。这里给出很小的步长和速度，先做低速验证。
 client.publish(key="grx", value={
     "virtual_panel_command_param_1": 0.20,
     "virtual_panel_command_param_2": 0.20,
     "virtual_panel_command_start": True,
+    "virtual_panel_command_stop": False,
+    "virtual_panel_command_pause": False,
 })
 
 try:

@@ -148,6 +148,13 @@ Task B
 | `NORMAL` | Normal cyclic task | Runs continuously; `flag_task_running` is set |
 | `ONESHOT` | One-shot task | Task switches itself when finished |
 
+> Note: the `task_type` parameter of `TaskBase.add_task` is the task function type
+> `TaskFunctionType` (`STANDALONE` / `COMPONENT` / `META`, ...), not the FSM `TaskType`
+> listed above. `TaskBase.add_task` registers a task whose `task_key` is
+> `TaskMenuRobotBase.TASK_IDLE` as `TaskType.IDLE`, and all other existing tasks as
+> `TaskType.NORMAL`. No task registration path currently uses `TaskType.ONESHOT`; that
+> value is reserved.
+
 Function types:
 
 | Type | Meaning |
@@ -201,7 +208,11 @@ class MyTask(TaskBase):
             fsm_manager=fsm_manager,
             task_type=TaskFunctionType.STANDALONE,
         )
+
+    def register(self, fsm_manager):
+        super().register(fsm_manager=fsm_manager)
         self.task_key = MyTaskMenu.MY_TASK
+        return FunctionResult.SUCCESS
 
     def function_on_activate(self, **kwargs):
         return FunctionResult.SUCCESS
@@ -209,6 +220,8 @@ class MyTask(TaskBase):
     def function_standalone(self, **kwargs):
         return FunctionResult.SUCCESS
 ```
+
+`task_key` must be set in `register()`; setting it after `super().__init__()` in `__init__` is too late—`add_task()` has already run and the task is registered under the base-class default `TASK_IDLE`.
 
 A real task also needs a TID, registration for the target model, cleanup in `on_deactivate`, explicit safety boundaries, and simulator / no-load validation.
 

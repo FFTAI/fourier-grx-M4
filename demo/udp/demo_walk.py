@@ -31,6 +31,8 @@ peripheral:
 
 注意：
 - 执行行走前请确保机器人已使能（servo on）并处于安全环境
+- 虚拟面板 start 为启动触发，启动后置 False 不会停止；停止请使用 stop
+- 服务端只更新收到的字段，stop / pause 不会自动清零；本示例会在启动任务前显式清零
 - 本示例运行期间会发送上位机心跳；示例退出后心跳停止，
   约 6 秒后控制器会按设计触发断连保护（常规机型 SERVO_OFF，
   M4LT2 高阻尼软制动）
@@ -53,6 +55,7 @@ from fourier_udp_client import (
     TASK_ROTARY_JOINT_FORWARD_WALK,
 )
 
+TASK_IDLE = 1             # TaskMenuRobotBase.TASK_IDLE; fourier_udp_client does not export it
 WALK_DURATION = 5.0       # seconds
 STEP_LENGTH = 0.20        # meters; valid range [0.20, 0.80]
 WALK_SPEED = 0.20         # meters/second; valid range [0.10, 1.20]
@@ -64,6 +67,29 @@ def demo_walk(host=None):
 
     try:
         with HeartbeatSender(client):
+            # 0. 先切到 IDLE。若行走任务正处于暂停锁存状态，切走会触发
+            #    deactivate 并复位 pause 标志。任务与面板命令都没有 ACK，
+            #    有限重发和等待只降低丢包/乱序风险，不能保证绝对送达。
+            print(f"发送任务指令: TASK_IDLE ({TASK_IDLE})")
+            for _ in range(5):
+                client.send_task_command(TASK_IDLE)
+                time.sleep(0.02)
+            # 等待 deactivate 完成，并给可能延迟到达的 IDLE 包留出处理时间
+            time.sleep(0.2)
+
+            # 1. 清除面板状态。服务端只按收到的字段更新，stop / pause 不会自动清零；
+            #    pause 在任务运行期间读到 True 即会锁存，只有重新进入任务才复位。
+            for _ in range(5):
+                client.publish("grx", {
+                    "virtual_panel_command_start": False,
+                    "virtual_panel_command_stop": False,
+                    "virtual_panel_command_pause": False,
+                })
+                time.sleep(0.02)
+            # 等待 peripheral 同步，并吸收可能延迟到达的清零包
+            time.sleep(0.1)
+
+            # 2. 启动行走任务
             print(f"发送任务指令: TASK_ROTARY_JOINT_FORWARD_WALK ({TASK_ROTARY_JOINT_FORWARD_WALK})")
             client.send_task_command(TASK_ROTARY_JOINT_FORWARD_WALK)
             time.sleep(1)
@@ -74,6 +100,8 @@ def demo_walk(host=None):
                     "virtual_panel_command_param_1": STEP_LENGTH,
                     "virtual_panel_command_param_2": WALK_SPEED,
                     "virtual_panel_command_start": True,
+                    # 启动前已清零；这里再声明一次 stop / pause，
+                    # 避免清除帧丢失后残留的 stop 让行走在第一步后停止
                     "virtual_panel_command_stop": False,
                     "virtual_panel_command_pause": False,
                 })

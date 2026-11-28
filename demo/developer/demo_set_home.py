@@ -21,12 +21,13 @@ Demo code for Fourier robots
 
 ⚠️ 在 M4L 上此示例不会真正执行任何动作：
    SDK 常量 fourier_grx.TaskCommand.TASK_SET_HOME 对应 TID 999，
-   M4L 没有注册该任务。Developer 接口是直接在进程内调用
-   ControlSystem.robot_control_set_task_command()，任务切换前会先查已注册任务表，
-   未命中时只打一条 warning 就跳过切换、保持原任务不变：
-   "task command: 999 TASK_SET_HOME is not available at current state. Command update skipped."
-   （若改用 User 接口 / UDP 下发同一个 TID，报错文本不同：
-   "Task command value 999 is not supported."）
+   M4L 没有注册该任务。Developer 接口在进程内调用
+   ControlSystem.robot_control_set_task_command()，最终进入当前机器人的
+   set_task_command()。未注册的 TID 会在该阶段打印 error 并直接忽略，
+   当前任务保持不变，不会发生任务切换。
+   关键日志前缀（机器人类名随机型变化，M4LT2 为 RobotM4LT2）：
+   "RobotM4LT2.set_task_command: TID <TaskMenuGRX.TASK_SET_HOME: 999> is not registered ..."
+   日志随后还包含 "The task command will be ignored."。
    M4L 请改用以下专项任务（把下方 task_command 替换即可）：
    - 4103 TASK_ROTARY_JOINT_SET_HOME    设置旋转关节（髋/膝）当前位置为零点
    - 4203 TASK_PRISMATIC_JOINT_SET_HOME 设置直线关节（腿长）零点

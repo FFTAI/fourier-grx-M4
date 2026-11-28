@@ -86,10 +86,10 @@ client = SyncClientSocket(
 | 主题键    | 方向                | 说明                         |
 |--------|-------------------|----------------------------|
 | `comm` | 双向                | 通信状态与心跳信息                  |
-| `robot` | 服务端 → 客户端        | 机器人运动状态（关节位置/速度/力矩等）       |
+| `robot` | 双向                | 机器人运动状态与保护标志清除指令            |
 | `task` | 双向                | 任务状态与任务控制指令                |
 | `grx`  | 双向                | fourier-grx 通用机器人（主要为人形）数据  |
-| `rehab` | 双向               | 康复机器人专用数据                  |
+| `rehab` | 服务端 → 客户端        | 康复机器人专用数据（客户端 → 服务端通道暂未开放） |
 
 **数据方向说明**：
 - **服务端 → 客户端**：机器人当前状态，通过 `read_to_dict()` / `read_from_dict()` 序列化/反序列化。
@@ -110,15 +110,12 @@ client = SyncClientSocket(
    客户端需在每个通信周期向服务端的 `comm` topic 写入 `host_heartbeat_counter` 字段：
 
    ```python
-   write_dict = {
-       "comm": {
-           "host_heartbeat_counter": 1,  # 可写任意固定值或递增计数器
-       }
-   }
+   client.publish(key="comm", value={"host_heartbeat_counter": 1})
    ```
 
    - 控制器收到该字段即视为一次有效心跳，刷新内部计时器。
    - 写固定值（如始终写 `1`）即可生效；写递增计数器更便于排查是否收到新数据。
+   - 必须使用显式 `publish(key="comm", value=...)`；无参批量 `publish()` 会把 `host_heartbeat_counter` 从 `comm` 数据中剔除，无法代替外部心跳。
 
 2. **控制器检测超时**
 
@@ -160,7 +157,7 @@ sync:
   period: 0.02        # 子进程发布周期（秒）
 ```
 
-> ⚠️ **注意**：本页所述 `SyncClientSocket` UDP 通信需要 `dynalink.enable=true`、`communication.enable=true` 和 `communication.type: "socket"`，不要求开启 `sync.enable`。M4L 的 release / debug / sdk 随包配置均已开启通信并关闭 sync。内部 sync 的批量发布不会发送 `host_heartbeat_counter`；上位机必须按上文显式发送心跳，不能用内部 sync 代替外部心跳。
+> ⚠️ **注意**：本页所述 `SyncClientSocket` UDP 通信需要 `dynalink.enable=true`、`communication.enable=true` 和 `communication.type: "socket"`，不要求开启 `sync.enable`。M4L 的 release / debug / sdk 随包配置均已开启通信并关闭 sync。所有 sync 客户端后端（socket / zenoh / zmq）的无参批量 `publish()` 都会剔除 `comm` 的 `host_heartbeat_counter`；只有显式 `publish(key="comm", value={"host_heartbeat_counter": ...})` 才会发送心跳，因此不能用内部 sync 代替外部心跳。
 
 ---
 
